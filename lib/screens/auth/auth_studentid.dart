@@ -1,0 +1,141 @@
+import 'package:acha/repository/authentication.dart';
+import 'package:acha/screens/auth/auth_password.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
+
+import 'package:acha/blocs/signin/signin_bloc.dart';
+
+class AuthStudentIdScreen extends StatefulWidget {
+  const AuthStudentIdScreen({super.key});
+
+  static Route<void> route() {
+    return MaterialPageRoute(
+      builder: (context) => const AuthStudentIdScreen()
+    );
+  }
+
+  @override
+  State<AuthStudentIdScreen> createState() => _AuthStudentIdScreenState();
+}
+
+class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
+  late final FocusNode _focusNode;
+  late final TextEditingController _textEditingController;
+  late AuthenticationRepository _authenticationRepository;
+
+  @override
+  void initState() {
+    _authenticationRepository = GetIt.I<AuthenticationRepository>();
+    _textEditingController = TextEditingController();
+    _focusNode = FocusNode();
+    _focusNode.addListener(() {
+      if (_focusNode.hasFocus) {
+        _textEditingController.clear();
+      }
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _authenticationRepository.disposeSignInStream();
+    _focusNode.dispose();
+    _textEditingController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final OutlineInputBorder textFieldBorder = OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: const BorderSide(
+          color: Color.fromARGB(255, 237, 239, 242),
+        )
+    );
+
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: const Text(
+            "시작하기"
+          )
+        ),
+        body: SafeArea(
+          child: BlocProvider<SignInBloc>(
+            create: (context) => SignInBloc(authenticationRepository: _authenticationRepository),
+            child: Builder(
+              builder: (context) {
+                return Column(
+                  children: [
+                    // ProgressBar
+                    // Form Container
+                    Container(
+                      width: MediaQuery.sizeOf(context).width,
+                      margin: const EdgeInsets.all(24),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "학번을 입력해 주세요.",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontFamily: "Pretendard",
+                              fontWeight: FontWeight.w700
+                            )
+                          ),
+                          const SizedBox(height: 30),
+                          TextFormField(
+                            maxLength: 9,
+                            autofocus: true,
+                            focusNode: _focusNode,
+                            controller: _textEditingController,
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
+                            decoration: InputDecoration(
+                              hintText: "학번",
+                              hintStyle: const TextStyle(
+                                color: Color.fromARGB(255, 186, 186, 186),
+                                fontSize: 16,
+                                fontFamily: "Pretendard",
+                                fontWeight: FontWeight.w400
+                              ),
+                              counterText: "",
+                              filled: true,
+                              fillColor: const Color.fromARGB(255, 251, 251, 251),
+                              border: textFieldBorder,
+                              enabledBorder: textFieldBorder,
+                              focusedBorder: textFieldBorder
+                            ),
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontFamily: "Pretendard",
+                              fontWeight: FontWeight.w400
+                            ),
+                            onChanged: (value) {
+                              if (value.length == 9) {
+                                context.read<SignInBloc>().add(SignInStudentIdEntered(value));
+                                Navigator.push(context, AuthPasswordScreen.route(context.read<SignInBloc>()));
+                              }
+                            },
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                );
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
