@@ -1,4 +1,4 @@
-library auth_bloc;
+library;
 
 import 'dart:async';
 

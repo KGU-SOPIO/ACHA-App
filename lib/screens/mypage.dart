@@ -5,6 +5,12 @@ class MyPageScreen extends StatefulWidget {
 
   @override
   State<MyPageScreen> createState() => _MyPageScreenState();
+
+  static Route<void> route() {
+    return MaterialPageRoute(
+      builder: (context) => const MyPageScreen()
+    );
+  }
 }
 
 class _MyPageScreenState extends State<MyPageScreen> {

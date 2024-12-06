@@ -5,6 +5,12 @@ class CourseScreen extends StatefulWidget {
 
   @override
   State<CourseScreen> createState() => _CourseScreenState();
+
+  static Route<void> route() {
+    return MaterialPageRoute(
+      builder: (context) => const CourseScreen()
+    );
+  }
 }
 
 class _CourseScreenState extends State<CourseScreen> {

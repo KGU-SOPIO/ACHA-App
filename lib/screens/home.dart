@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:acha/screens/main.dart';
 import 'package:acha/screens/course.dart';
 import 'package:acha/screens/notification.dart';
 import 'package:acha/screens/mypage.dart';
@@ -11,7 +12,9 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 
   static Route<void> route() {
-    return MaterialPageRoute<void>(builder: (_) => const HomeScreen());
+    return MaterialPageRoute(
+      builder: (context) => const HomeScreen()
+    );
   }
 }
 
@@ -24,14 +27,14 @@ class _HomeScreenState extends State<HomeScreen> {
       body: IndexedStack(
         index: _pageIndex,
         children: const [
-          HomeScreen(),
+          MainScreen(),
           CourseScreen(),
           NotificationScreen(),
           MyPageScreen()
         ],
       ),
       bottomNavigationBar: NavigationBar(
-        onDestinationSelected: (index) {
+        onDestinationSelected: (int index) {
           setState(() {
             _pageIndex = index;
           });
@@ -59,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
             label: "내 정보",
           )
         ],
-      ),
+      )
     );
   }
 }

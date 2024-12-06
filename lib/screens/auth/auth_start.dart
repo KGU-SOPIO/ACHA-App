@@ -22,7 +22,7 @@ class AuthStartScreen extends StatelessWidget {
               Container(
                 height: 56,
                 width: MediaQuery.of(context).size.width,
-                margin: const EdgeInsets.only(bottom: 40, left: 24, right: 24),
+                margin: const EdgeInsets.only(bottom: 30, left: 24, right: 24),
                 child: ElevatedButton(
                   onPressed: () => Navigator.push(context, AuthStudentIdScreen.route()),
                   style: ElevatedButton.styleFrom(

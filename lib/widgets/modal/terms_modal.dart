@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:url_launcher/url_launcher.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 
 class TermsBottomModalSheet {
   final String modalTitle;
@@ -30,9 +29,18 @@ class TermsBottomModalSheet {
           children: [
             Center(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 30),
+                padding: const EdgeInsets.only(top: 12, bottom: 30, left: 24, right: 24),
                 child: Column(
                   children: [
+                    Container(
+                      width: 79,
+                      height: 6,
+                      margin: EdgeInsets.only(bottom: 22),
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 228, 232, 241),
+                        borderRadius: BorderRadius.circular(7)
+                      ),
+                    ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Column(

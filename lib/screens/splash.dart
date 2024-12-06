@@ -4,7 +4,8 @@ class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
   static Route<void> route() {
-    return MaterialPageRoute<void>(builder: (_) => const SplashScreen(),
+    return MaterialPageRoute(
+      builder: (context) => const SplashScreen(),
     );
   }
 

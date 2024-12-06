@@ -1,12 +1,13 @@
-import 'package:acha/repository/authentication.dart';
-import 'package:acha/screens/auth/auth_password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
+import 'package:acha/repository/authentication.dart';
 import 'package:acha/blocs/signin/signin_bloc.dart';
+
+import 'package:acha/screens/auth/auth_password.dart';
 
 class AuthStudentIdScreen extends StatefulWidget {
   const AuthStudentIdScreen({super.key});
@@ -62,7 +63,12 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: const Text(
-            "시작하기"
+            "시작하기",
+            style: TextStyle(
+              fontSize: 20,
+              fontFamily: "Pretendard",
+              fontWeight: FontWeight.w500
+            ),
           )
         ),
         body: SafeArea(
@@ -72,20 +78,29 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
               builder: (context) {
                 return Column(
                   children: [
-                    // ProgressBar
-                    // Form Container
                     Container(
                       width: MediaQuery.sizeOf(context).width,
                       margin: const EdgeInsets.all(24),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            "학번을 입력해 주세요.",
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontFamily: "Pretendard",
-                              fontWeight: FontWeight.w700
+                          RichText(
+                            text: TextSpan(
+                              style: const TextStyle(
+                                fontSize: 15,
+                                fontFamily: "Pretendard",
+                                color: Colors.black
+                              ),
+                              children: [
+                                TextSpan(
+                                    text: "학번을 ",
+                                    style: TextStyle(fontWeight: FontWeight.w700)
+                                ),
+                                TextSpan(
+                                  text: "입력해 주세요",
+                                  style: TextStyle(fontWeight: FontWeight.w400)
+                                )
+                              ]
                             )
                           ),
                           const SizedBox(height: 30),
@@ -122,7 +137,7 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
                             onChanged: (value) {
                               if (value.length == 9) {
                                 context.read<SignInBloc>().add(SignInStudentIdEntered(value));
-                                Navigator.push(context, AuthPasswordScreen.route(context.read<SignInBloc>()));
+                                Navigator.push(context, AuthPasswordScreen.route(context));
                               }
                             },
                           )

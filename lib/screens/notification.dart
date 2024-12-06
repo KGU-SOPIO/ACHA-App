@@ -5,6 +5,12 @@ class NotificationScreen extends StatefulWidget {
 
   @override
   State<NotificationScreen> createState() => _NotificationScreenState();
+
+  static Route<void> route() {
+    return MaterialPageRoute(
+      builder: (context) => const NotificationScreen()
+    );
+  }
 }
 
 class _NotificationScreenState extends State<NotificationScreen> {

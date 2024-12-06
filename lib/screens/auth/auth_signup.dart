@@ -47,7 +47,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
       termsTitle: "아차 사용 약관",
       url: TermsAndConditionsUrl.serviceTermsAndConditions,
       buttonText: "동의하고 회원가입",
-      onAgree: () => Navigator.push(context, AuthProcessScreen.route(context.read<SignInBloc>()))
+      onAgree: () => Navigator.push(context, AuthProcessScreen.route(context))
     ).show(context);
   }
 

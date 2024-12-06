@@ -55,7 +55,8 @@ class AuthenticationRepository {
 
   /// SignIn Stream
   Stream<SignInStatus> createSignInStatusStream() {
-    return StreamController<SignInStatus>().stream;
+    _signInController = StreamController<SignInStatus>();
+    return _signInController.stream;
   }
 
   /// SignIn
