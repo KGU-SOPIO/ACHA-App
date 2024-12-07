@@ -7,7 +7,7 @@ import 'package:acha/blocs/signin/signin_bloc.dart';
 
 import 'package:acha/screens/auth/auth_process.dart';
 
-import 'package:acha/widgets/container/text_container.dart';
+import 'package:acha/widgets/container/signin/text_container.dart';
 import 'package:acha/widgets/modal/terms_modal.dart';
 
 import 'package:acha/constants/manual.dart';

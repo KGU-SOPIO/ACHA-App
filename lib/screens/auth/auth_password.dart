@@ -73,6 +73,7 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
+          backgroundColor: Colors.white,
           title: const Text(
             "시작하기",
             style: TextStyle(
@@ -148,8 +149,8 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
                               _showTermsModal();
                             } : null,
                             style: ButtonStyle(
-                              foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
-                              backgroundColor: WidgetStateProperty.resolveWith<Color>(
+                              foregroundColor: WidgetStateProperty.all(Colors.white),
+                              backgroundColor: WidgetStateProperty.resolveWith(
                                     (Set<WidgetState> states) {
                                   if (states.contains(WidgetState.disabled)) {
                                     bool isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;

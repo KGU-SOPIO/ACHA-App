@@ -88,12 +88,12 @@ class _AppViewState extends State<AppView> {
           listener: (context, state) {
             switch (state.status) {
               case AuthenticationStatus.authenticated:
-                _navigator.pushAndRemoveUntil<void>(
+                _navigator.pushAndRemoveUntil(
                   HomeScreen.route(),
                   (route) => false,
                 );
               case AuthenticationStatus.unauthenticated:
-                _navigator.pushAndRemoveUntil<void>(
+                _navigator.pushAndRemoveUntil(
                   AuthStartScreen.route(),
                   (route) => false,
                 );

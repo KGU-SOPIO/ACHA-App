@@ -43,6 +43,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
+          backgroundColor: Colors.white,
           title: const Text(
             "시작하기",
             style: TextStyle(
@@ -50,7 +51,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
               fontFamily: "Pretendard",
               fontWeight: FontWeight.w500
             ),
-          ),
+          )
         ),
         body: SafeArea(
           child: BlocConsumer<SignInBloc, SignInState>(

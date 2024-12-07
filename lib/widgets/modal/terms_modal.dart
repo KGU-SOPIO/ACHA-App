@@ -32,13 +32,20 @@ class TermsBottomModalSheet {
                 padding: const EdgeInsets.only(top: 12, bottom: 30, left: 24, right: 24),
                 child: Column(
                   children: [
-                    Container(
-                      width: 79,
-                      height: 6,
-                      margin: EdgeInsets.only(bottom: 22),
-                      decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 228, 232, 241),
-                        borderRadius: BorderRadius.circular(7)
+                    IgnorePointer(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(bottom: 24),
+                            height: 6,
+                            width: 79,
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 228, 232, 241),
+                              borderRadius: BorderRadius.circular(7)
+                            )
+                          )
+                        ],
                       ),
                     ),
                     SizedBox(

@@ -62,6 +62,7 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
+          backgroundColor: Colors.white,
           title: const Text(
             "시작하기",
             style: TextStyle(

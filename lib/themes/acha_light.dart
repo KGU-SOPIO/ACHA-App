@@ -9,6 +9,10 @@ ThemeData achaLight() {
       primary: Colors.black,
       secondary: Color.fromARGB(255, 0, 102, 255)
     ),
+    appBarTheme: AppBarTheme(
+      elevation: 0,
+      color: Color.fromARGB(255, 245, 246, 248),
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         splashFactory: NoSplash.splashFactory,
