@@ -1,5 +1,3 @@
-library;
-
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';

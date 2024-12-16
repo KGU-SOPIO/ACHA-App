@@ -44,6 +44,7 @@ flutter:
     - lib/assets/images/
     - lib/assets/svgs/
     - lib/assets/svgs/signin/
+    - lib/assets/svgs/modal/main/
     - lib/assets/svgs/navigation/
 
   fonts:

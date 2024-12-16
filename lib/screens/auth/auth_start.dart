@@ -6,7 +6,7 @@ class AuthStartScreen extends StatelessWidget {
   const AuthStartScreen({super.key});
 
   static Route<void> route() {
-    return MaterialPageRoute<void>(builder: (context) => const AuthStartScreen());
+    return MaterialPageRoute(builder: (context) => const AuthStartScreen());
   }
 
   @override
