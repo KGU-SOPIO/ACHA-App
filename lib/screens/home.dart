@@ -88,21 +88,21 @@ class _HomeScreenState extends State<HomeScreen> {
             destinations: [
               NavigationDestination(
                 selectedIcon: SvgPicture.asset("lib/assets/svgs/navigation/home.svg"),
-                icon: Icon(Icons.home_outlined),
+                icon: SvgPicture.asset("lib/assets/svgs/navigation/home_outline.svg"),
                 label: "홈",
               ),
               NavigationDestination(
-                selectedIcon: Icon(Icons.class_),
+                selectedIcon: SvgPicture.asset("lib/assets/svgs/navigation/course.svg"),
                 icon: SvgPicture.asset("lib/assets/svgs/navigation/course_outline.svg"),
                 label: "강좌",
               ),
               NavigationDestination(
-                selectedIcon: Icon(Icons.notifications),
+                selectedIcon: SvgPicture.asset("lib/assets/svgs/navigation/notification.svg"),
                 icon: SvgPicture.asset("lib/assets/svgs/navigation/notification_outline.svg"),
                 label: "알림",
               ),
               NavigationDestination(
-                selectedIcon: Icon(Icons.person),
+                selectedIcon: SvgPicture.asset("lib/assets/svgs/navigation/user.svg"),
                 icon: SvgPicture.asset("lib/assets/svgs/navigation/user_outline.svg"),
                 label: "내 정보",
               )

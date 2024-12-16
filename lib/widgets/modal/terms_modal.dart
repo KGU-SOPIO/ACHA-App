@@ -117,9 +117,11 @@ class TermsBottomModalSheet {
   }
 
   Future<void> _openTermsUrl(Uri url) async {
-    if (await canLaunchUrl(url)) {
-      await launchUrl(url);
-    } else {
+    try {
+      if (await canLaunchUrl(url)) {
+        await launchUrl(url);
+      }
+    } catch (e) {
       debugPrint("Could not launch url");
     }
   }
