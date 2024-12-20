@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:acha/blocs/navigation/navigation_bloc.dart';
 
+import 'package:acha/widgets/container/user_header.dart';
 import 'package:acha/widgets/container/main/today_course_container.dart';
 
 class MainScreen extends StatefulWidget {
@@ -27,8 +28,7 @@ class _MainScreenState extends State<MainScreen> {
         child: AppBar(
           leading: Padding(
             padding: EdgeInsets.only(left: 24),
-            child: SvgPicture.asset("lib/assets/svgs/home_logo.svg",
-              alignment: Alignment.topLeft),
+            child: SvgPicture.asset("lib/assets/svgs/home_logo.svg", alignment: Alignment.topLeft),
           ),
           leadingWidth: 80
         )
@@ -44,65 +44,10 @@ class _MainScreenState extends State<MainScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      RichText(
-                        text: TextSpan(
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontFamily: "Pretendard",
-                            color: Color.fromARGB(255, 30, 30, 30)
-                          ),
-                          children: [
-                            TextSpan(
-                              text: "홍준서",
-                              style: TextStyle(fontWeight: FontWeight.w700)
-                            ),
-                            TextSpan(
-                              text: " 님",
-                              style: TextStyle(fontWeight: FontWeight.w500)
-                            )
-                          ]
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            "소프트웨어경영대학",
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontFamily: "Pretendard",
-                              fontWeight: FontWeight.w400,
-                              color: Color.fromARGB(255, 151, 151, 151)
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(left: 12),
-                            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                            decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 0, 102, 255),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(30)
-                              )
-                            ),
-                            child: Text(
-                              "컴퓨터공학과",
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontFamily: "Pretendard",
-                                fontWeight: FontWeight.w500,
-                                color: Color.fromARGB(255, 255, 255, 255)
-                              ),
-                            ),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
+                  UserHeader(bottomMargin: 20),
                   TodayCourseContainer()
-                ],
-              ),
+                ]
+              )
             ),
             DraggableScrollableSheet(
               initialChildSize: 0.12,
@@ -118,19 +63,19 @@ class _MainScreenState extends State<MainScreen> {
                         color: Color(0XFF000066).withOpacity(0.03),
                         blurRadius: 15,
                         spreadRadius: 10,
-                        offset: const Offset(0, 10),
+                        offset: const Offset(0, 10)
                       ),
                       BoxShadow(
                         color: Color(0XFF000066).withOpacity(0.0165),
                         blurRadius: 7.5,
                         spreadRadius: 5,
-                        offset: const Offset(0, 5),
+                        offset: const Offset(0, 5)
                       ),
                       BoxShadow(
                         color: Color(0XFF000066).withOpacity(0.0095),
                         blurRadius: 5,
                         spreadRadius: 2.5,
-                        offset: const Offset(0, 2.5),
+                        offset: const Offset(0, 2.5)
                       ),
                     ]
                   ),

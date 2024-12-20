@@ -57,7 +57,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
           child: BlocConsumer<SignInBloc, SignInState>(
             listener: (context, state) {
               if (state.status == SignInStatus.inSignUp) {
-                Navigator.push(context, AuthSignUpScreen.route());
+                Navigator.push(context, AuthSignUpScreen.route(context));
               } else if (state.status == SignInStatus.signInSuccess) {
                 Navigator.pushAndRemoveUntil(context, HomeScreen.route(), (route) => false);
               }
@@ -74,7 +74,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
                         children: [
                           Container(
                             margin: EdgeInsets.only(bottom: 30),
-                            child: SvgPicture.asset("lib/assets/svgs/signin/signin_error.svg"),
+                            child: SvgPicture.asset("lib/assets/svgs/auth/signin_error.svg"),
                           ),
                           Container(
                             margin: EdgeInsets.only(bottom: 20),

@@ -43,9 +43,11 @@ flutter:
     - lib/assets/icons/
     - lib/assets/images/
     - lib/assets/svgs/
-    - lib/assets/svgs/signin/
+    - lib/assets/svgs/auth/
     - lib/assets/svgs/modal/main/
+    - lib/assets/svgs/mypage/
     - lib/assets/svgs/navigation/
+    - lib/assets/svgs/toast/
 
   fonts:
     - family: Pretendard

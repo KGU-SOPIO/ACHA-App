@@ -9,7 +9,7 @@ enum TokenStatus { valid, expired, notExist }
 class SecureStorage {
   final FlutterSecureStorage _storage = const FlutterSecureStorage();
   final List<String> _userKeys = [
-    'studentId', 'password', 'name', 'phonenumber', 'college', 'department', 'major'
+    'studentId', 'password', 'name', 'college', 'department', 'major'
   ];
 
   static const String accessTokenKey = 'accessToken';

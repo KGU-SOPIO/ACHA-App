@@ -15,12 +15,21 @@ ThemeData achaLight() {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
+        elevation: WidgetStateProperty.all(0),
+        splashFactory: NoSplash.splashFactory,
+        overlayColor: WidgetStateColor.resolveWith((state) => Colors.transparent)
+      )
+    ),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: ButtonStyle(
+        elevation: WidgetStateProperty.all(0),
         splashFactory: NoSplash.splashFactory,
         overlayColor: WidgetStateColor.resolveWith((state) => Colors.transparent)
       )
     ),
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(
+        elevation: WidgetStateProperty.all(0),
         splashFactory: NoSplash.splashFactory,
         overlayColor: WidgetStateColor.resolveWith((state) => Colors.transparent)
       )

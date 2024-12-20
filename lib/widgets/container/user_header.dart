@@ -1,0 +1,86 @@
+import 'package:acha/repository/user.dart';
+import 'package:flutter/material.dart';
+
+import 'package:acha/models/user/user.dart';
+import 'package:get_it/get_it.dart';
+
+class UserHeader extends StatelessWidget {
+  const UserHeader({super.key, required this.bottomMargin});
+
+  final double bottomMargin;
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: GetIt.I<UserRepository>().getUser(),
+      builder:(context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text("사용자 정보를 불러오는데 실패했습니다."));
+        } else {
+          final User user = snapshot.data!;
+          return Container(
+            margin: EdgeInsets.only(bottom: bottomMargin),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                RichText(
+                  text: TextSpan(
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontFamily: "Pretendard",
+                      color: Color.fromARGB(255, 30, 30, 30)
+                    ),
+                    children: [
+                      TextSpan(
+                        text: user.name,
+                        style: TextStyle(fontWeight: FontWeight.w700)
+                      ),
+                      TextSpan(
+                        text: " 님",
+                        style: TextStyle(fontWeight: FontWeight.w500)
+                      )
+                    ]
+                  ),
+                ),
+                Row(
+                  children: [
+                    Text(
+                      user.college,
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontFamily: "Pretendard",
+                        fontWeight: FontWeight.w400,
+                        color: Color.fromARGB(255, 151, 151, 151)
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: 12),
+                      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 0, 102, 255),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(30)
+                        )
+                      ),
+                      child: Text(
+                        user.major,
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontFamily: "Pretendard",
+                          fontWeight: FontWeight.w500,
+                          color: Color.fromARGB(255, 255, 255, 255)
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              ],
+            )
+          );
+        }
+      }
+    );
+  }
+}

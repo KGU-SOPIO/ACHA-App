@@ -45,9 +45,9 @@ class _ToastState extends State<Toast> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Align(
-        alignment: Alignment.topCenter,
+        alignment: Alignment.bottomCenter,
         child: Padding(
-          padding: const EdgeInsets.only(top: 30),
+          padding: const EdgeInsets.only(bottom: 100),
           child: FadeTransition(
             opacity: _animation,
             child: Material(

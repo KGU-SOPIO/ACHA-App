@@ -64,6 +64,7 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
     final OutlineInputBorder textFieldBorder = OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
       borderSide: const BorderSide(
+        width: 1.5,
         color: Color.fromARGB(255, 237, 239, 242),
       )
     );
@@ -85,14 +86,17 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
         ),
         body: SafeArea(
           child: Column(
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  margin: const EdgeInsets.all(24),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      RichText(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                width: MediaQuery.of(context).size.width,
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 30),
+                      child: RichText(
                         text: TextSpan(
                           style: const TextStyle(
                             fontSize: 15,
@@ -110,96 +114,95 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
                             )
                           ]
                         )
-                      ),
-                      const SizedBox(height: 30),
-                      TextFormField(
-                        autofocus: true,
-                        obscureText: true,
-                        controller: _textEditingController,
-                        decoration: InputDecoration(
-                            hintText: "비밀번호",
-                            hintStyle: const TextStyle(
-                                color: Color.fromARGB(255, 186, 186, 186),
-                                fontSize: 16,
-                                fontFamily: "Pretendard",
-                                fontWeight: FontWeight.w400
-                            ),
-                            filled: true,
-                            fillColor: const Color.fromARGB(255, 251, 251, 251),
-                            border: textFieldBorder,
-                            enabledBorder: textFieldBorder,
-                            focusedBorder: textFieldBorder
-                        ),
                       )
-                    ],
-                  ),
-                ),
-                const Spacer(),
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  margin: const EdgeInsets.symmetric(horizontal: 24),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                          height: 56,
-                          width: MediaQuery.of(context).size.width,
-                          child: ElevatedButton(
-                            onPressed: _isButtonEnabled ? () {
-                              context.read<SignInBloc>().add(SignInPasswordEntered(_textEditingController.text));
-                              _showTermsModal();
-                            } : null,
-                            style: ButtonStyle(
-                              foregroundColor: WidgetStateProperty.all(Colors.white),
-                              backgroundColor: WidgetStateProperty.resolveWith(
-                                    (Set<WidgetState> states) {
-                                  if (states.contains(WidgetState.disabled)) {
-                                    bool isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
-                                    return isDarkMode ? const Color.fromARGB(255, 100, 100, 100) : const Color.fromARGB(255, 199, 199, 199);
-                                  }
-                                  return const Color.fromARGB(255, 0, 102, 255);
-                                },
-                              ),
-                              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                  )
-                              ),
-                            ),
-                            child: const Text(
-                              "다음",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  letterSpacing: 0.3,
-                                  fontFamily: "Pretendard",
-                                  fontWeight: FontWeight.w700
-                              ),
-                            ),
-                          )
+                    ),
+                    TextFormField(
+                      autofocus: true,
+                      obscureText: true,
+                      controller: _textEditingController,
+                      decoration: InputDecoration(
+                        hintText: "비밀번호",
+                        hintStyle: const TextStyle(
+                          color: Color.fromARGB(255, 186, 186, 186),
+                          fontSize: 16,
+                          fontFamily: "Pretendard",
+                          fontWeight: FontWeight.w400
+                        ),
+                        filled: true,
+                        fillColor: const Color.fromARGB(255, 251, 251, 251),
+                        border: textFieldBorder,
+                        enabledBorder: textFieldBorder,
+                        focusedBorder: textFieldBorder
                       ),
-                      Container(
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                margin: const EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
+                  children: [
+                    SizedBox(
                         height: 56,
                         width: MediaQuery.of(context).size.width,
-                        margin: EdgeInsets.only(top: 5),
-                        child: TextButton(
-                          onPressed: () => Navigator.pop(context),
-                          child: const Text(
-                            "이전",
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 80, 80, 80),
-                              fontSize: 14,
-                              letterSpacing: 0.3,
-                              fontFamily: "Pretendard",
-                              fontWeight: FontWeight.w400,
+                        child: ElevatedButton(
+                          onPressed: _isButtonEnabled ? () {
+                            context.read<SignInBloc>().add(SignInPasswordEntered(_textEditingController.text));
+                            _showTermsModal();
+                          } : null,
+                          style: ButtonStyle(
+                            foregroundColor: WidgetStateProperty.all(Colors.white),
+                            backgroundColor: WidgetStateProperty.resolveWith(
+                                  (Set<WidgetState> states) {
+                                if (states.contains(WidgetState.disabled)) {
+                                  bool isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
+                                  return isDarkMode ? const Color.fromARGB(255, 100, 100, 100) : const Color.fromARGB(255, 199, 199, 199);
+                                }
+                                return const Color.fromARGB(255, 0, 102, 255);
+                              },
+                            ),
+                            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              )
                             ),
                           ),
+                          child: const Text(
+                            "다음",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              letterSpacing: 0.3,
+                              fontFamily: "Pretendard",
+                              fontWeight: FontWeight.w700
+                            ),
+                          ),
+                        )
+                    ),
+                    Container(
+                      height: 56,
+                      width: MediaQuery.of(context).size.width,
+                      margin: EdgeInsets.only(top: 5),
+                      child: TextButton(
+                        onPressed: () => Navigator.pop(context),
+                        child: const Text(
+                          "이전",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 80, 80, 80),
+                            fontSize: 14,
+                            letterSpacing: 0.3,
+                            fontFamily: "Pretendard",
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
-                      )
-                    ],
-                  )
+                      ),
+                    )
+                  ],
                 )
-              ],
-            ),
+              )
+            ],
+          ),
         ),
       ),
     );

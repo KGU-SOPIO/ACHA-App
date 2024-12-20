@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:acha/app.dart';
 import 'package:acha/constants/apis/authentication.dart';
+import 'package:acha/screens/auth/auth_start.dart';
 import 'package:flutter/material.dart';
 
 import 'package:dio/dio.dart';
@@ -11,6 +13,8 @@ import 'package:acha/blocs/signin/signin_bloc.dart';
 import 'package:acha/repository/storage.dart';
 import 'package:acha/models/authentication/response.dart';
 
+import 'package:acha/widgets/toast/toast_manager.dart';
+
 enum AuthenticationStatus { unknown, authenticated, unauthenticated }
 
 class AuthenticationRepository {
@@ -20,7 +24,7 @@ class AuthenticationRepository {
 
   final Dio _dio = Dio();
   final SecureStorage _secureStorage = GetIt.I<SecureStorage>();
-  final _authController = StreamController<AuthenticationStatus>();
+  final StreamController<AuthenticationStatus> _authController = StreamController<AuthenticationStatus>();
   late StreamController<SignInStatus> _signInController;
   late AuthenticationResponse signInResponse;
 
@@ -35,7 +39,7 @@ class AuthenticationRepository {
         case TokenStatus.expired:
           _authController.add(AuthenticationStatus.unauthenticated);
           _secureStorage.deleteAllData();
-          // GetIt.I<ToastManager>().error(message: "인증 상태가 만료되었습니다.");
+          GetIt.I<ToastManager>().error(message: "인증 상태가 만료되었습니다.");
           break;
         case TokenStatus.valid:
           await refreshAccessToken();
@@ -44,7 +48,8 @@ class AuthenticationRepository {
       }
     } catch (e) {
       _authController.add(AuthenticationStatus.unauthenticated);
-      // GetIt.I<ToastManager>().error(message: "인증에 문제가 발생했습니다.");
+      GetIt.I<ToastManager>().error(message: "인증에 문제가 발생했습니다.");
+      // ! 서버 상태 이상 Route 추가
     }
   }
 
@@ -134,6 +139,10 @@ class AuthenticationRepository {
 
   /// Logout
   void logout() {
+    final BuildContext context = AppView.navigatorKey.currentContext!;
+    _secureStorage.deleteAllData();
+    Navigator.pushAndRemoveUntil(context, AuthStartScreen.route(), (route) => false);
+    _authController.add(AuthenticationStatus.unauthenticated);
   }
 
   Future<void> refreshAccessToken() async {
@@ -157,6 +166,7 @@ class AuthenticationRepository {
         );
       }
     } catch (e) {
+      // ! DioException - connection error -> ACHA 서버 문제 판별
       debugPrint("AccessToken 재발급에 실패했습니다. Error: $e");
       throw Exception('사용자 인증 중 문제가 발생했어요.');
     }

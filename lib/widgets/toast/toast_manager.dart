@@ -4,7 +4,7 @@ import 'package:acha/app.dart';
 
 import 'package:acha/widgets/toast/toast.dart';
 
-import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class ToastManager {
   static const _toastDuration = Duration(milliseconds: 1700);
@@ -13,35 +13,33 @@ class ToastManager {
   void success({required String message}) async {
     Widget toastContainer = Container(
         width: double.infinity,
-        margin: const EdgeInsets.symmetric(horizontal: 18),
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+        margin: const EdgeInsets.symmetric(horizontal: 29),
+        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 20),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            color: const Color.fromARGB(100, 50, 90, 220)
+            color: const Color.fromARGB(180, 49, 67, 82)
         ),
         child: Row(
           children: [
-            const Flexible(
+            Flexible(
                 flex: 2,
                 child: Padding(
-                    padding: EdgeInsets.only(right: 24),
-                    child: Icon(
-                        Icons.check_sharp,
-                        size: 26,
-                        color: Colors.white
-                    )
+                    padding: EdgeInsets.only(right: 16),
+                    child: SvgPicture.asset("lib/assets/svgs/toast/bell.svg")
                 )
             ),
             Flexible(
               flex: 8,
-              child: AutoSizeText(
+              child: Text(
                 message.replaceAllMapped(RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D'),
                 maxLines: 2,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 20
-                ),
+                  fontSize: 14,
+                  fontFamily: "Pretendard",
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white
+                )
               ),
             )
           ],
@@ -57,34 +55,32 @@ class ToastManager {
   void error({required String message}) async {
     Widget toastContainer = Container(
         width: double.infinity,
-        margin: const EdgeInsets.symmetric(horizontal: 18),
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+        margin: const EdgeInsets.symmetric(horizontal: 29),
+        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 20),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          color: const Color.fromARGB(255, 225, 80, 80),
+          color: const Color.fromARGB(180, 49, 67, 82)
         ),
         child: Row(
           children: [
-            const Flexible(
+            Flexible(
               flex: 2,
               child: Padding(
                 padding: EdgeInsets.only(right: 24),
-                child: Icon(
-                    Icons.warning_amber_outlined,
-                    size: 26,
-                    color: Colors.white
-                ),
+                child: SvgPicture.asset("lib/assets/svgs/toast/bell.svg")
               ),
             ),
             Flexible(
               flex: 8,
-              child: AutoSizeText(
+              child: Text(
                 message.replaceAllMapped(RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D'),
                 maxLines: 2,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 20
+                    fontSize: 14,
+                    fontFamily: "Pretendard",
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white
                 ),
               ),
             )

@@ -6,7 +6,7 @@ import 'package:acha/repository/storage.dart';
 import 'package:acha/models/user/user.dart';
 
 class UserRepository {
-  final SecureStorage _secureStorage = GetIt.instance<SecureStorage>();
+  final SecureStorage _secureStorage = GetIt.I<SecureStorage>();
 
   Future<User?> getUser() async {
     try {

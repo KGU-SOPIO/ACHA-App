@@ -59,7 +59,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
         password: state.password!
       );
     } catch (e) {
-      emit(state.copyWith(status: SignInStatus.signInSuccess));
+      emit(state.copyWith(status: SignInStatus.signInFailure));
     }
   }
 

@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
-import 'package:acha/blocs/authentication/authentication_bloc.dart';
+import 'package:acha/blocs/auth/authentication_bloc.dart';
 
 import 'package:acha/repository/authentication.dart';
 import 'package:acha/repository/user.dart';
@@ -31,7 +31,7 @@ class _AppState extends State<App> {
   void initState() {
     super.initState();
     _authenticationRepository = GetIt.I<AuthenticationRepository>();
-    _userRepository = UserRepository();
+    _userRepository = GetIt.I<UserRepository>();
   }
 
   @override

@@ -11,7 +11,6 @@ class TodayCourseContainer extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.only(top: 20),
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: Colors.white,

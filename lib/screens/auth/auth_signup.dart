@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:acha/blocs/signin/signin_bloc.dart';
 
 import 'package:acha/screens/auth/auth_process.dart';
 
-import 'package:acha/widgets/container/signin/text_container.dart';
+import 'package:acha/widgets/container/authentication/text_container.dart';
 import 'package:acha/widgets/modal/terms_modal.dart';
 
 import 'package:acha/constants/manual.dart';
@@ -16,9 +17,12 @@ import 'package:acha/constants/terms.dart';
 class AuthSignUpScreen extends StatefulWidget {
   const AuthSignUpScreen({super.key});
 
-  static Route<void> route() {
+  static Route<void> route(BuildContext context) {
     return MaterialPageRoute(
-      builder: (context) => const AuthSignUpScreen()
+      builder: (_) => BlocProvider.value(
+        value: BlocProvider.of<SignInBloc>(context),
+        child: const AuthSignUpScreen(),
+      )
     );
   }
 
@@ -27,20 +31,6 @@ class AuthSignUpScreen extends StatefulWidget {
 }
 
 class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
-  final ScrollController _scrollController = ScrollController();
-
-  void _scrollOrNavigate() {
-    if (_scrollController.offset < _scrollController.position.maxScrollExtent) {
-      _scrollController.animateTo(
-        _scrollController.position.maxScrollExtent,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.ease
-      );
-    } else {
-      _showTermsModal();
-    }
-  }
-
   void _showTermsModal() {
     TermsBottomModalSheet(
       modalTitle: "사용 약관에 동의해주세요.",
@@ -53,98 +43,111 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    bool isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
-
     return PopScope(
       canPop: false,
       child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.white,
+          title: const Text(
+            "시작하기",
+            style: TextStyle(
+              fontSize: 20,
+              fontFamily: "Pretendard",
+              fontWeight: FontWeight.w500
+            ),
+          )
+        ),
         body: BlocBuilder<SignInBloc, SignInState>(
           builder: (context, state) {
             return SafeArea(
-              child: Stack(
-                alignment: Alignment.bottomCenter,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SingleChildScrollView(
-                    controller: _scrollController,
-                    child: Column(
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 30),
-                          child: const Text(
-                            "학생 정보를 불러왔어요."
-                          ),
-                        ),
-                        TextContainer(title: "이름", value: state.name),
-                        TextContainer(title: "대학", value: state.college),
-                        TextContainer(title: "학부", value: state.department),
-                        TextContainer(title: "전공", value: state.major)
-                      ],
-                    ),
-                  ),
-                  Stack(
-                    alignment: Alignment.bottomCenter,
+                  Column(
                     children: [
-                      IgnorePointer(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Container(
-                              height: 30,
-                              width: MediaQuery.of(context).size.width,
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  colors: isDarkMode ? [
-                                    const Color.fromARGB(255, 43, 43, 43).withOpacity(0.0),
-                                    const Color.fromARGB(255, 43, 43, 43).withOpacity(1.0)
-                                  ] : [
-                                    Colors.white.withOpacity(0.0),
-                                    Colors.white.withOpacity(1.0)
-                                  ]
-                                )
-                              ),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        padding: const EdgeInsets.all(24),
+                        child: RichText(
+                          text: TextSpan(
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontFamily: "Pretendard",
+                              color: Color.fromARGB(255, 60, 60, 60)
                             ),
-                            Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: 115,
-                              color: isDarkMode ? const Color.fromARGB(255, 43, 43, 43) : Colors.white,
-                            )
-                          ],
+                            children: [
+                              TextSpan(
+                                text: "정보가 맞는지 ",
+                                style: TextStyle(fontWeight: FontWeight.w700)
+                              ),
+                              TextSpan(
+                                text: "확인해 주세요",
+                                style: TextStyle(fontWeight: FontWeight.w400)
+                              )
+                            ]
+                          ),
                         )
                       ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          TextButton(
-                            child: const Text(
-                              "정보를 수정하고 싶어요."
-                            ),
-                            onPressed: () => _openManualUrl(),
-                          ),
-                          Container(
-                            height: 54,
-                            width: MediaQuery.of(context).size.width,
-                            margin: const EdgeInsets.only(bottom: 20, left: 22, right: 22),
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12)
+                      TextContainer(title: "이름", value: state.name),
+                      TextContainer(title: "대학", value: state.college),
+                      TextContainer(title: "학부", value: state.department),
+                      TextContainer(title: "전공", value: state.major),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          padding: EdgeInsets.zero,
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset("lib/assets/svgs/auth/signup_information.svg"),
+                            Padding(
+                              padding: EdgeInsets.only(left: 5),
+                              child: Text(
+                                "정보가 다른가요?",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontFamily: "Pretendard",
+                                  fontWeight: FontWeight.w500,
+                                  color: Color.fromARGB(255, 131, 131, 131)
                                 ),
-                                foregroundColor: Colors.white,
-                                backgroundColor: Colors.blueAccent,
                               ),
-                              onPressed: () {
-                                _scrollOrNavigate();
-                              },
-                              child: const Text(
-                                "다음"
-                              ),
+                            )
+                          ],
+                        ),
+                        onPressed: () => _openManualUrl()
+                      ),
+                      Container(
+                        height: 56,
+                        width: MediaQuery.of(context).size.width,
+                        margin: const EdgeInsets.only(left: 24, right: 24, bottom: 30, top: 24),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            _showTermsModal();
+                          },
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12)
                             ),
+                            foregroundColor: Colors.white,
+                            backgroundColor: const Color.fromARGB(255, 0, 102, 255)
+                          ),
+                          child: const Text(
+                            "다음",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              letterSpacing: 0.3,
+                              fontFamily: "Pretendard",
+                              fontWeight: FontWeight.w700
+                            )
                           )
-                        ],
+                        ),
                       )
                     ],
                   )
@@ -158,10 +161,12 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
   }
 
   Future<void> _openManualUrl() async {
-    Uri url = Uri.parse(ManualUrl.howToModifyMyInformation);
-    if (await canLaunchUrl(url)) {
-      await launchUrl(url);
-    } else {
+    Uri url = Uri.parse(ManualUrl.myInformationIsDifferent);
+    try {
+      if (await canLaunchUrl(url)) {
+        await launchUrl(url);
+      }
+    } catch (e) {
       debugPrint("Could not launch url");
     }
   }

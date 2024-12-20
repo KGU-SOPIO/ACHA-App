@@ -53,6 +53,7 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
     final OutlineInputBorder textFieldBorder = OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
         borderSide: const BorderSide(
+          width: 1.5,
           color: Color.fromARGB(255, 237, 239, 242),
         )
     );
@@ -77,75 +78,71 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
             create: (context) => SignInBloc(authenticationRepository: _authenticationRepository),
             child: Builder(
               builder: (context) {
-                return Column(
-                  children: [
-                    Container(
-                      width: MediaQuery.sizeOf(context).width,
-                      margin: const EdgeInsets.all(24),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          RichText(
-                            text: TextSpan(
-                              style: const TextStyle(
-                                fontSize: 15,
-                                fontFamily: "Pretendard",
-                                color: Colors.black
-                              ),
-                              children: [
-                                TextSpan(
-                                    text: "학번을 ",
-                                    style: TextStyle(fontWeight: FontWeight.w700)
-                                ),
-                                TextSpan(
-                                  text: "입력해 주세요",
-                                  style: TextStyle(fontWeight: FontWeight.w400)
-                                )
-                              ]
-                            )
+                return Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding: const EdgeInsets.all(24),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      RichText(
+                        text: TextSpan(
+                          style: const TextStyle(
+                            fontSize: 15,
+                            fontFamily: "Pretendard",
+                            color: Colors.black
                           ),
-                          const SizedBox(height: 30),
-                          TextFormField(
-                            maxLength: 9,
-                            autofocus: true,
-                            focusNode: _focusNode,
-                            controller: _textEditingController,
-                            keyboardType: TextInputType.number,
-                            inputFormatters: [
-                              FilteringTextInputFormatter.digitsOnly
-                            ],
-                            decoration: InputDecoration(
-                              hintText: "학번",
-                              hintStyle: const TextStyle(
-                                color: Color.fromARGB(255, 186, 186, 186),
-                                fontSize: 16,
-                                fontFamily: "Pretendard",
-                                fontWeight: FontWeight.w400
-                              ),
-                              counterText: "",
-                              filled: true,
-                              fillColor: const Color.fromARGB(255, 251, 251, 251),
-                              border: textFieldBorder,
-                              enabledBorder: textFieldBorder,
-                              focusedBorder: textFieldBorder
+                          children: [
+                            TextSpan(
+                                text: "학번을 ",
+                                style: TextStyle(fontWeight: FontWeight.w700)
                             ),
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
-                              fontFamily: "Pretendard",
-                              fontWeight: FontWeight.w400
-                            ),
-                            onChanged: (value) {
-                              if (value.length == 9) {
-                                context.read<SignInBloc>().add(SignInStudentIdEntered(value));
-                                Navigator.push(context, AuthPasswordScreen.route(context));
-                              }
-                            },
-                          )
-                        ],
+                            TextSpan(
+                              text: "입력해 주세요",
+                              style: TextStyle(fontWeight: FontWeight.w400)
+                            )
+                          ]
+                        )
                       ),
-                    )
-                  ],
+                      const SizedBox(height: 30),
+                      TextFormField(
+                        maxLength: 9,
+                        autofocus: true,
+                        focusNode: _focusNode,
+                        controller: _textEditingController,
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        decoration: InputDecoration(
+                          hintText: "학번",
+                          hintStyle: const TextStyle(
+                            color: Color.fromARGB(255, 186, 186, 186),
+                            fontSize: 16,
+                            fontFamily: "Pretendard",
+                            fontWeight: FontWeight.w400
+                          ),
+                          counterText: "",
+                          filled: true,
+                          fillColor: const Color.fromARGB(255, 251, 251, 251),
+                          border: textFieldBorder,
+                          enabledBorder: textFieldBorder,
+                          focusedBorder: textFieldBorder
+                        ),
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontFamily: "Pretendard",
+                          fontWeight: FontWeight.w400
+                        ),
+                        onChanged: (value) {
+                          if (value.length == 9) {
+                            context.read<SignInBloc>().add(SignInStudentIdEntered(value));
+                            Navigator.push(context, AuthPasswordScreen.route(context));
+                          }
+                        },
+                      )
+                    ],
+                  ),
                 );
               },
             ),
