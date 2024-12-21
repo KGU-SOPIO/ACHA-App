@@ -1,8 +1,11 @@
-import 'package:acha/repository/user.dart';
 import 'package:flutter/material.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:acha/blocs/auth/authentication_bloc.dart';
 import 'package:acha/models/user/user.dart';
-import 'package:get_it/get_it.dart';
+
+import 'package:acha/repository/authentication.dart';
 
 class UserHeader extends StatelessWidget {
   const UserHeader({super.key, required this.bottomMargin});
@@ -11,15 +14,10 @@ class UserHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: GetIt.I<UserRepository>().getUser(),
-      builder:(context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
-        } else if (snapshot.hasError) {
-          return Center(child: Text("사용자 정보를 불러오는데 실패했습니다."));
-        } else {
-          final User user = snapshot.data!;
+    return BlocBuilder<AuthenticationBloc, AuthenticationState>(
+      builder: (context, state) {
+        if (state.status == AuthenticationStatus.authenticated) {
+          final User user = state.user!;
           return Container(
             margin: EdgeInsets.only(bottom: bottomMargin),
             child: Column(
@@ -79,8 +77,10 @@ class UserHeader extends StatelessWidget {
               ],
             )
           );
+        } else {
+          return SizedBox.shrink();
         }
-      }
+      },
     );
   }
 }

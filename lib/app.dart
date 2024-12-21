@@ -31,7 +31,7 @@ class _AppState extends State<App> {
   void initState() {
     super.initState();
     _authenticationRepository = GetIt.I<AuthenticationRepository>();
-    _userRepository = GetIt.I<UserRepository>();
+    _userRepository = UserRepository();
   }
 
   @override
