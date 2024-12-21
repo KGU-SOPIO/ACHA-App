@@ -134,10 +134,8 @@ class _MainScreenState extends State<MainScreen> {
                                       SvgPicture.asset("lib/assets/svgs/modal/main/play_outline.svg")
                                     ],
                                   ),
-                                  InkWell(
-                                    onTap: () {
-                                      context.read<NavigationBloc>().add(TabChanged(2));
-                                    },
+                                  GestureDetector(
+                                    onTap: () => context.read<NavigationBloc>().add(TabChanged(2)),
                                     child: Row(
                                       children: [
                                         Padding(

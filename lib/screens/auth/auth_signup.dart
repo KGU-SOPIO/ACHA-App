@@ -31,15 +31,13 @@ class AuthSignUpScreen extends StatefulWidget {
 }
 
 class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
-  void _showTermsModal() {
-    TermsBottomModalSheet(
-      modalTitle: "사용 약관에 동의해주세요.",
-      termsTitle: "아차 사용 약관",
-      url: TermsAndConditionsUrl.serviceTermsAndConditions,
-      buttonText: "동의하고 회원가입",
-      onAgree: () => Navigator.push(context, AuthProcessScreen.route(context))
-    ).show(context);
-  }
+  void _showTermsModal() => TermsBottomModalSheet(
+    modalTitle: "사용 약관에 동의해주세요.",
+    termsTitle: "아차 사용 약관",
+    url: TermsAndConditionsUrl.serviceTermsAndConditions,
+    buttonText: "동의하고 회원가입",
+    onAgree: () => Navigator.push(context, AuthProcessScreen.route(context))
+  ).show(context);
 
   @override
   Widget build(BuildContext context) {

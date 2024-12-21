@@ -23,53 +23,47 @@ class TermsBottomModalSheet {
       useSafeArea: true,
       isScrollControlled: true,
       backgroundColor: Colors.white,
-      barrierColor: Colors.black.withOpacity(0.5),
+      barrierColor: Colors.black.withOpacity(0.3),
       builder: (context) {
         return Wrap(
           children: [
             Center(
-              child: Padding(
+              child: Container(
+                width: MediaQuery.of(context).size.width,
                 padding: const EdgeInsets.only(top: 12, bottom: 30, left: 24, right: 24),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     IgnorePointer(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            margin: EdgeInsets.only(bottom: 24),
-                            height: 6,
-                            width: 79,
-                            decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 228, 232, 241),
-                              borderRadius: BorderRadius.circular(7)
-                            )
-                          )
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            modalTitle,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              letterSpacing: 0.3,
-                              fontFamily: "Pretendard",
-                              fontWeight: FontWeight.w500
-                            ),
-                          )
-                        ],
+                      child: Container(
+                        height: 6,
+                        width: 79,
+                        margin: EdgeInsets.only(bottom: 24),
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 228, 232, 241),
+                          borderRadius: BorderRadius.circular(7)
+                        )
                       )
                     ),
                     Container(
-                      width: MediaQuery.of(context).size.width,
+                      width: double.infinity,
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: Text(
+                        modalTitle,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          letterSpacing: 0.3,
+                          fontFamily: "Pretendard",
+                          fontWeight: FontWeight.w500
+                        )
+                      )
+                    ),
+                    Container(
+                      width: double.infinity,
                       alignment: Alignment.center,
-                      margin: const EdgeInsets.symmetric(vertical: 20),
-                      child: InkWell(
+                      margin: const EdgeInsets.only(bottom: 20),
+                      child: GestureDetector(
+                        onTap: () => _openTermsUrl(url),
                         child: Text(
                           termsTitle,
                           style: const TextStyle(
@@ -78,12 +72,11 @@ class TermsBottomModalSheet {
                             fontFamily: "Pretendard",
                             fontWeight: FontWeight.w300
                           ),
-                        ),
-                        onTap: () => _openTermsUrl(url),
+                        )
                       )
                     ),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width,
+                      width: double.infinity,
                       height: 56,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(

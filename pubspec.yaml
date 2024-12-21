@@ -26,6 +26,7 @@ dependencies:
   flutter_secure_storage: ^9.2.2
 
   auto_size_text: ^3.0.0
+  numberpicker: ^2.1.2
   stacked_list_carousel: ^1.0.1
 
 dev_dependencies:
