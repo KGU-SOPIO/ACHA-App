@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:acha/widgets/container/appbar/acha_appbar.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
@@ -19,17 +19,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(kToolbarHeight + 10),
-        child: AppBar(
-          leading: Padding(
-            padding: EdgeInsets.only(left: 24),
-            child: SvgPicture.asset("lib/assets/svgs/home_logo.svg",
-              alignment: Alignment.topLeft),
-          ),
-          leadingWidth: 80
-        )
-      ),
+      appBar: AchaAppbar(),
       body: SafeArea(
         child: Container(
           width: MediaQuery.of(context).size.width,

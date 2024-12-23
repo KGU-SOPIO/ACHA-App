@@ -14,7 +14,7 @@ class ToastManager {
     Widget toastContainer = Container(
         width: double.infinity,
         margin: const EdgeInsets.symmetric(horizontal: 29),
-        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 16),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             color: const Color.fromARGB(180, 49, 67, 82)
@@ -25,7 +25,7 @@ class ToastManager {
                 flex: 2,
                 child: Padding(
                     padding: EdgeInsets.only(right: 16),
-                    child: SvgPicture.asset("lib/assets/svgs/toast/bell.svg")
+                    child: SvgPicture.asset("lib/assets/svgs/toast/success.svg")
                 )
             ),
             Flexible(
@@ -56,7 +56,7 @@ class ToastManager {
     Widget toastContainer = Container(
         width: double.infinity,
         margin: const EdgeInsets.symmetric(horizontal: 29),
-        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           color: const Color.fromARGB(180, 49, 67, 82)
@@ -67,7 +67,7 @@ class ToastManager {
               flex: 2,
               child: Padding(
                 padding: EdgeInsets.only(right: 24),
-                child: SvgPicture.asset("lib/assets/svgs/toast/bell.svg")
+                child: SvgPicture.asset("lib/assets/svgs/toast/warning.svg")
               ),
             ),
             Flexible(

@@ -19,6 +19,7 @@ dependencies:
   freezed_annotation: ^2.4.4
   json_annotation: ^4.9.0
   flutter_svg: ^2.0.16
+  lottie: ^3.2.0
 
   dio: ^5.7.0
   url_launcher: ^6.3.0
@@ -46,9 +47,11 @@ flutter:
     - lib/assets/svgs/
     - lib/assets/svgs/auth/
     - lib/assets/svgs/modal/main/
+    - lib/assets/svgs/course/
     - lib/assets/svgs/mypage/
     - lib/assets/svgs/navigation/
     - lib/assets/svgs/toast/
+    - lib/assets/lotties/auth/
 
   fonts:
     - family: Pretendard

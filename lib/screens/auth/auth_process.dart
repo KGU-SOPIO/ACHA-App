@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 
 import 'package:acha/blocs/signin/signin_bloc.dart';
 
@@ -96,7 +97,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
                           children: [
                             Container(
                               margin: EdgeInsets.only(bottom: 30),
-                              child: SvgPicture.asset("lib/assets/svgs/auth/signin_error.svg"),
+                              child: SvgPicture.asset("lib/assets/svgs/auth/error.svg"),
                             ),
                             Container(
                               margin: EdgeInsets.only(bottom: 20),
@@ -158,6 +159,13 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
+                        margin: EdgeInsets.only(top: 42, bottom: 24),
+                        child: Lottie.asset(
+                          "lib/assets/lotties/auth/loading.json",
+                          width: 45
+                        )
+                      ),
+                      Container(
                         padding: EdgeInsets.symmetric(horizontal: 22, vertical: 5),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(25),
@@ -170,17 +178,17 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
                             fontFamily: "Pretendard",
                             fontWeight: FontWeight.w500,
                             color: Color.fromARGB(255, 0, 102, 255)
-                          ),
+                          )
                         )
                       )
-                    ],
+                    ]
                   )
                 );
               }
-            },
-          ),
-        ),
-      ),
+            }
+          )
+        )
+      )
     );
   }
 }

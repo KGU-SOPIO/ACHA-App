@@ -12,6 +12,7 @@ ThemeData achaLight() {
     appBarTheme: AppBarTheme(
       elevation: 0,
       color: Color.fromARGB(255, 245, 246, 248),
+      surfaceTintColor: Colors.transparent
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(

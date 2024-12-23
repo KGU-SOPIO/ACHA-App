@@ -103,7 +103,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            SvgPicture.asset("lib/assets/svgs/auth/signup_information.svg"),
+                            SvgPicture.asset("lib/assets/svgs/auth/information.svg"),
                             Padding(
                               padding: EdgeInsets.only(left: 5),
                               child: Text(

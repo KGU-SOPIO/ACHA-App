@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:acha/blocs/navigation/navigation_bloc.dart';
 
 import 'package:acha/widgets/container/user_header.dart';
+import 'package:acha/widgets/container/appbar/acha_appbar.dart';
 import 'package:acha/widgets/container/main/today_course_container.dart';
 
 class MainScreen extends StatefulWidget {
@@ -23,23 +24,14 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(kToolbarHeight + 10),
-        child: AppBar(
-          leading: Padding(
-            padding: EdgeInsets.only(left: 24),
-            child: SvgPicture.asset("lib/assets/svgs/home_logo.svg", alignment: Alignment.topLeft),
-          ),
-          leadingWidth: 80
-        )
-      ),
+      appBar: AchaAppbar(),
       body: SafeArea(
         child: Stack(
           children: [
             Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
-              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+              padding: EdgeInsets.symmetric(horizontal: 26),
               color: Color.fromARGB(255, 245, 246, 248),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
