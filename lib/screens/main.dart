@@ -55,9 +55,14 @@ class _MainScreenState extends State<MainScreen> {
               )
             ),
             DraggableScrollableSheet(
-              initialChildSize: 0.12,
-              minChildSize: 0.12,
-              maxChildSize: 0.8,
+              initialChildSize: 0.1,
+              minChildSize: 0.1,
+              maxChildSize: 0.78,
+              snap: true,
+              snapSizes: [
+                0.1,
+                0.78
+              ],
               builder: (BuildContext context, ScrollController scrollController) {
                 return Container(
                   decoration: BoxDecoration(
@@ -123,16 +128,26 @@ class _MainScreenState extends State<MainScreen> {
             constraints: BoxConstraints(
               minHeight: constraints.maxHeight,
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Stack(
               children: [
                 CarouselSlider(
                   carouselController: _carouselSliderController,
+                  options: CarouselOptions(
+                    height: 520,
+                    viewportFraction: 1,
+                    enableInfiniteScroll: false,
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        currentSlide = index;
+                      });
+                    },
+                  ),
                   items: [
                     Container(
                       width: MediaQuery.of(context).size.width,
-                      padding: EdgeInsets.symmetric(horizontal: 32, vertical: 32),
+                      padding: EdgeInsets.only(left: 32, right: 32, top: 32),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -188,13 +203,236 @@ class _MainScreenState extends State<MainScreen> {
                               ),
                             ],
                           ),
-                        ],
-                      ),
+                          Container(
+                            margin: EdgeInsets.only(top: 18, bottom: 13),
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(25, 0, 102, 255),
+                              borderRadius: BorderRadius.circular(20)
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                  decoration: BoxDecoration(
+                                    color: Color.fromARGB(255, 0, 102, 255),
+                                    borderRadius: BorderRadius.circular(20)
+                                  ),
+                                  child: Text(
+                                    "D - Day",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontFamily: "Pretendard",
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.white
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.only(left: 12, right: 16, top: 6, bottom: 6),
+                                  child: Text(
+                                    "10월 1일",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontFamily: "Pretendard",
+                                      fontWeight: FontWeight.w700,
+                                      color: Color.fromARGB(255, 0, 102, 255)
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: double.infinity,
+                            margin: EdgeInsets.only(bottom: 13),
+                            padding: EdgeInsets.symmetric(horizontal: 22, vertical: 16),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Color.fromARGB(255, 228, 232, 241)
+                              ),
+                              borderRadius: BorderRadius.circular(20)
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "1주차 강의",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: "Pretendard",
+                                    fontWeight: FontWeight.w500,
+                                    color: Color.fromARGB(255, 60, 60, 60)
+                                  )
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(bottom: 14),
+                                  child: Text(
+                                    "사고와 표현",
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      fontFamily: "Pretendard",
+                                      fontWeight: FontWeight.w400,
+                                      color: Color.fromARGB(255, 60, 60, 60)
+                                    )
+                                  )
+                                ),
+                                RichText(
+                                  text: TextSpan(
+                                    style: TextStyle(
+                                      fontFamily: "Pretendard",
+                                      color: Color.fromARGB(255, 151, 151, 151)
+                                    ),
+                                    children: [
+                                      TextSpan(
+                                        text: "오후 09:00",
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500
+                                        )
+                                      ),
+                                      TextSpan(
+                                        text: "까지",
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500
+                                        )
+                                      )
+                                    ]
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: double.infinity,
+                            margin: EdgeInsets.only(bottom: 13),
+                            padding: EdgeInsets.symmetric(horizontal: 22, vertical: 16),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Color.fromARGB(255, 228, 232, 241)
+                              ),
+                              borderRadius: BorderRadius.circular(20)
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "1주차 강의",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: "Pretendard",
+                                    fontWeight: FontWeight.w500,
+                                    color: Color.fromARGB(255, 60, 60, 60)
+                                  )
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(bottom: 14),
+                                  child: Text(
+                                    "사고와 표현",
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      fontFamily: "Pretendard",
+                                      fontWeight: FontWeight.w400,
+                                      color: Color.fromARGB(255, 60, 60, 60)
+                                    )
+                                  )
+                                ),
+                                RichText(
+                                  text: TextSpan(
+                                    style: TextStyle(
+                                      fontFamily: "Pretendard",
+                                      color: Color.fromARGB(255, 151, 151, 151)
+                                    ),
+                                    children: [
+                                      TextSpan(
+                                        text: "오후 09:00",
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500
+                                        )
+                                      ),
+                                      TextSpan(
+                                        text: "까지",
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500
+                                        )
+                                      )
+                                    ]
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: double.infinity,
+                            padding: EdgeInsets.symmetric(horizontal: 22, vertical: 16),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Color.fromARGB(255, 228, 232, 241)
+                              ),
+                              borderRadius: BorderRadius.circular(20)
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "1주차 강의",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: "Pretendard",
+                                    fontWeight: FontWeight.w500,
+                                    color: Color.fromARGB(255, 60, 60, 60)
+                                  )
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(bottom: 14),
+                                  child: Text(
+                                    "사고와 표현",
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      fontFamily: "Pretendard",
+                                      fontWeight: FontWeight.w400,
+                                      color: Color.fromARGB(255, 60, 60, 60)
+                                    )
+                                  )
+                                ),
+                                RichText(
+                                  text: TextSpan(
+                                    style: TextStyle(
+                                      fontFamily: "Pretendard",
+                                      color: Color.fromARGB(255, 151, 151, 151)
+                                    ),
+                                    children: [
+                                      TextSpan(
+                                        text: "오후 09:00",
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500
+                                        )
+                                      ),
+                                      TextSpan(
+                                        text: "까지",
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500
+                                        )
+                                      )
+                                    ]
+                                  )
+                                )
+                              ]
+                            )
+                          )
+                        ]
+                      )
                     ),
                     Container(
                       width: MediaQuery.of(context).size.width,
                       padding: EdgeInsets.symmetric(horizontal: 32, vertical: 32),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -219,12 +457,12 @@ class _MainScreenState extends State<MainScreen> {
                                             text: "우선과제",
                                             style: TextStyle(fontWeight: FontWeight.w700)
                                           )
-                                        ],
-                                      ),
-                                    ),
+                                        ]
+                                      )
+                                    )
                                   ),
                                   SvgPicture.asset("lib/assets/svgs/modal/main/list.svg")
-                                ],
+                                ]
                               ),
                               GestureDetector(
                                 onTap: () => context.read<NavigationBloc>().add(TabChanged(2)),
@@ -245,26 +483,242 @@ class _MainScreenState extends State<MainScreen> {
                                     SvgPicture.asset(
                                       "lib/assets/svgs/modal/main/right_arrow.svg",
                                     )
-                                  ],
-                                ),
-                              ),
-                            ],
+                                  ]
+                                )
+                              )
+                            ]
                           ),
-                        ],
-                      ),
-                    ),
-                  ],
-                  options: CarouselOptions(
-                    viewportFraction: 1.0,
-                    enableInfiniteScroll: false,
-                    onPageChanged: (index, reason) {
-                      setState(() {
-                        currentSlide = index;
-                      });
-                    },
-                  ),
+                          Container(
+                            margin: EdgeInsets.only(top: 18, bottom: 13),
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(25, 0, 102, 255),
+                              borderRadius: BorderRadius.circular(20)
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                  decoration: BoxDecoration(
+                                    color: Color.fromARGB(255, 0, 102, 255),
+                                    borderRadius: BorderRadius.circular(20)
+                                  ),
+                                  child: Text(
+                                    "D - Day",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontFamily: "Pretendard",
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.white
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.only(left: 12, right: 16, top: 6, bottom: 6),
+                                  child: Text(
+                                    "10월 1일",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontFamily: "Pretendard",
+                                      fontWeight: FontWeight.w700,
+                                      color: Color.fromARGB(255, 0, 102, 255)
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: double.infinity,
+                            margin: EdgeInsets.only(bottom: 13),
+                            padding: EdgeInsets.symmetric(horizontal: 22, vertical: 16),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Color.fromARGB(255, 228, 232, 241)
+                              ),
+                              borderRadius: BorderRadius.circular(20)
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "1주차 강의",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: "Pretendard",
+                                    fontWeight: FontWeight.w500,
+                                    color: Color.fromARGB(255, 60, 60, 60)
+                                  )
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(bottom: 14),
+                                  child: Text(
+                                    "사고와 표현",
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      fontFamily: "Pretendard",
+                                      fontWeight: FontWeight.w400,
+                                      color: Color.fromARGB(255, 60, 60, 60)
+                                    )
+                                  )
+                                ),
+                                RichText(
+                                  text: TextSpan(
+                                    style: TextStyle(
+                                      fontFamily: "Pretendard",
+                                      color: Color.fromARGB(255, 151, 151, 151)
+                                    ),
+                                    children: [
+                                      TextSpan(
+                                        text: "오후 09:00",
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500
+                                        )
+                                      ),
+                                      TextSpan(
+                                        text: "까지",
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500
+                                        )
+                                      )
+                                    ]
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: double.infinity,
+                            margin: EdgeInsets.only(bottom: 13),
+                            padding: EdgeInsets.symmetric(horizontal: 22, vertical: 16),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Color.fromARGB(255, 228, 232, 241)
+                              ),
+                              borderRadius: BorderRadius.circular(20)
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "1주차 강의",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: "Pretendard",
+                                    fontWeight: FontWeight.w500,
+                                    color: Color.fromARGB(255, 60, 60, 60)
+                                  )
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(bottom: 14),
+                                  child: Text(
+                                    "사고와 표현",
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      fontFamily: "Pretendard",
+                                      fontWeight: FontWeight.w400,
+                                      color: Color.fromARGB(255, 60, 60, 60)
+                                    )
+                                  )
+                                ),
+                                RichText(
+                                  text: TextSpan(
+                                    style: TextStyle(
+                                      fontFamily: "Pretendard",
+                                      color: Color.fromARGB(255, 151, 151, 151)
+                                    ),
+                                    children: [
+                                      TextSpan(
+                                        text: "오후 09:00",
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500
+                                        )
+                                      ),
+                                      TextSpan(
+                                        text: "까지",
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500
+                                        )
+                                      )
+                                    ]
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: double.infinity,
+                            padding: EdgeInsets.symmetric(horizontal: 22, vertical: 16),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Color.fromARGB(255, 228, 232, 241)
+                              ),
+                              borderRadius: BorderRadius.circular(20)
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "1주차 강의",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: "Pretendard",
+                                    fontWeight: FontWeight.w500,
+                                    color: Color.fromARGB(255, 60, 60, 60)
+                                  )
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(bottom: 14),
+                                  child: Text(
+                                    "사고와 표현",
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      fontFamily: "Pretendard",
+                                      fontWeight: FontWeight.w400,
+                                      color: Color.fromARGB(255, 60, 60, 60)
+                                    )
+                                  )
+                                ),
+                                RichText(
+                                  text: TextSpan(
+                                    style: TextStyle(
+                                      fontFamily: "Pretendard",
+                                      color: Color.fromARGB(255, 151, 151, 151)
+                                    ),
+                                    children: [
+                                      TextSpan(
+                                        text: "오후 09:00",
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500
+                                        )
+                                      ),
+                                      TextSpan(
+                                        text: "까지",
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500
+                                        )
+                                      )
+                                    ]
+                                  )
+                                )
+                              ]
+                            )
+                          )
+                        ]
+                      )
+                    )
+                  ]
                 ),
-                sliderIndicator(),
+                Positioned(
+                  bottom: 20,
+                  child: _buildCarouselIndicator()
+                )
               ]
             )
           )
@@ -273,10 +727,9 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
-
-  Widget sliderIndicator() {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 30),
+  Widget _buildCarouselIndicator() {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: List.generate(2, (index) {

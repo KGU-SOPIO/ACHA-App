@@ -45,9 +45,11 @@ flutter:
   assets:
     - lib/assets/icons/
     - lib/assets/images/
+    - lib/assets/images/modal/terms/
     - lib/assets/svgs/
     - lib/assets/svgs/auth/
     - lib/assets/svgs/modal/main/
+    - lib/assets/svgs/modal/terms/
     - lib/assets/svgs/course/
     - lib/assets/svgs/mypage/
     - lib/assets/svgs/navigation/

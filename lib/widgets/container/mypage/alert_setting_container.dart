@@ -3,8 +3,6 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:acha/widgets/modal/alert_modal.dart';
-
 class AlertSettingContainer extends StatefulWidget {
   const AlertSettingContainer({super.key});
 
@@ -14,8 +12,6 @@ class AlertSettingContainer extends StatefulWidget {
 
 class _AlertSettingContainerState extends State<AlertSettingContainer> {
   bool _isAlert = false;
-
-  void _showAlertSettingModal() => AlertSettingBottomModalSheet().show(context);
 
   @override
   Widget build(BuildContext context) {
@@ -52,43 +48,11 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
               ],
             )
           ),
-          Container(
-            margin: EdgeInsets.only(bottom: 36),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "알림 켜기",
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontFamily: "Pretendard",
-                    fontWeight: FontWeight.w400,
-                    color: Color.fromARGB(255, 30, 30, 30)
-                  )
-                ),
-                SizedBox(
-                  height: 30,
-                  child: FittedBox(
-                    fit: BoxFit.contain,
-                    child: CupertinoSwitch(
-                      value: _isAlert,
-                      onChanged: (value) {
-                        setState(() {
-                          _isAlert = value;
-                        });
-                      },
-                      activeColor: Color.fromARGB(255, 0, 102, 255)
-                    )
-                  )
-                )
-              ],
-            )
-          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "알림 주기",
+                "알림 켜기",
                 style: TextStyle(
                   fontSize: 15,
                   fontFamily: "Pretendard",
@@ -96,14 +60,25 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
                   color: Color.fromARGB(255, 30, 30, 30)
                 )
               ),
-              GestureDetector(
-                onTap: () => _showAlertSettingModal(),
-                child: SvgPicture.asset("lib/assets/svgs/mypage/add.svg")
+              SizedBox(
+                height: 30,
+                child: FittedBox(
+                  fit: BoxFit.contain,
+                  child: CupertinoSwitch(
+                    value: _isAlert,
+                    onChanged: (value) {
+                      setState(() {
+                        _isAlert = value;
+                      });
+                    },
+                    activeTrackColor: Color.fromARGB(255, 0, 102, 255)
+                  )
+                )
               )
-            ],
+            ]
           )
-        ],
-      ),
+        ]
+      )
     );
   }
 }

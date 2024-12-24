@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:acha/blocs/signin/signin_bloc.dart';
 
@@ -32,10 +32,37 @@ class AuthSignUpScreen extends StatefulWidget {
 
 class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
   void _showTermsModal() => TermsBottomModalSheet(
-    modalTitle: "사용 약관에 동의해주세요.",
-    termsTitle: "아차 사용 약관",
+    titleWidget: Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          RichText(
+            text: TextSpan(
+              style: TextStyle(
+                fontSize: 16,
+                fontFamily: "Pretendard",
+                color: Color.fromARGB(255, 30, 30, 30)
+              ),
+              children: [
+                TextSpan(
+                  text: "사용 약관에 동의",
+                  style: TextStyle(fontWeight: FontWeight.w700)
+                ),
+                TextSpan(
+                  text: "하고\n회원가입을 진행합니다",
+                  style: TextStyle(fontWeight: FontWeight.w500, height: 1.7)
+                )
+              ]
+            ),
+          ),
+          SvgPicture.asset("lib/assets/svgs/acha_logo.svg", width: 50)
+        ],
+      )
+    ),
     url: TermsAndConditionsUrl.serviceTermsAndConditions,
-    buttonText: "동의하고 회원가입",
+    termsButtonText: "아차 사용 약관",
+    agreeButtonText: "동의하고 회원가입",
     onAgree: () => Navigator.push(context, AuthProcessScreen.route(context))
   ).show(context);
 

@@ -9,7 +9,7 @@ class AlertSettingBottomModalSheet {
       useSafeArea: true,
       isScrollControlled: true,
       backgroundColor: Colors.white,
-      barrierColor: Colors.black.withOpacity(0.3),
+      barrierColor: Colors.black.withValues(alpha: 0.3),
       builder: (context) {
         return _AlertSettingContent();
       }
@@ -102,6 +102,7 @@ class __AlertSettingContentState extends State<_AlertSettingContent> {
                       _buildPicker(
                         value: _minutes,
                         maxValue: 60,
+                        step: 5,
                         onChanged: (value) => setState(() => _minutes = value),
                         label: "분"
                       )

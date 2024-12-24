@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get_it/get_it.dart';
+import 'package:flutter_svg/svg.dart';
 
 import 'package:acha/repository/authentication.dart';
 
@@ -46,13 +47,40 @@ class _MyPageScreenState extends State<MyPageScreen> {
                     AlertSettingContainer(),
                     PhraseContainer(),
                     Container(
+                      width: double.infinity,
+                      margin: EdgeInsets.only(bottom: 34),
+                      padding: EdgeInsets.all(22),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Color.fromARGB(255, 228, 232, 241)
+                        ),
+                        borderRadius: BorderRadius.circular(25),
+                        color: Colors.white
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "SOPIO",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontFamily: "Pretendard",
+                              fontWeight: FontWeight.w500,
+                              color: Color.fromARGB(255, 30, 30, 30)
+                            ),
+                          ),
+                          SvgPicture.asset("lib/assets/svgs/mypage/right_arrow.svg")
+                        ],
+                      ),
+                    ),
+                    Container(
                       height: 56,
                       width: double.infinity,
                       margin: EdgeInsets.only(bottom: 18),
                       child: ElevatedButton(
                         onPressed: () {
                           GetIt.I<AuthenticationRepository>().logout();
-                          GetIt.I<ToastManager>().success(message: "안전하게 로그아웃되었어요");
+                          GetIt.I<ToastManager>().show(message: "정상적으로 로그아웃 되었어요", svgPath: "lib/assets/svgs/toast/logout.svg");
                         },
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
@@ -74,7 +102,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
                     Container(
                       height: 56,
                       width: double.infinity,
-                      margin: EdgeInsets.only(bottom: 50),
+                      margin: EdgeInsets.only(bottom: 54),
                       child: OutlinedButton(
                         onPressed: () {
                           GetIt.I<AuthenticationRepository>().logout();
@@ -101,7 +129,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
                         )
                       )
                     )
-                  ],
+                  ]
                 )
               )
             ]

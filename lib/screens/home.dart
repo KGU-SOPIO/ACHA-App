@@ -45,19 +45,19 @@ class _HomeScreenState extends State<HomeScreen> {
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  color: Color(0XFF000066).withOpacity(0.05),
+                  color: Color(0XFF000066).withValues(alpha: 0.05),
                   blurRadius: 15,
                   spreadRadius: 10,
                   offset: const Offset(0, 10),
                 ),
                 BoxShadow(
-                  color: Color(0XFF000066).withOpacity(0.03),
+                  color: Color(0XFF000066).withValues(alpha: 0.03),
                   blurRadius: 7.5,
                   spreadRadius: 5,
                   offset: const Offset(0, 5),
                 ),
                 BoxShadow(
-                  color: Color(0XFF000066).withOpacity(0.01),
+                  color: Color(0XFF000066).withValues(alpha: 0.01),
                   blurRadius: 5,
                   spreadRadius: 2.5,
                   offset: const Offset(0, 2.5),

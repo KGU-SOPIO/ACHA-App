@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class TermsBottomModalSheet {
-  final String modalTitle;
-  final String termsTitle;
-  final Uri url;
-  final String buttonText;
-  final VoidCallback onAgree;
-
   TermsBottomModalSheet({
-    required this.modalTitle,
-    required this.termsTitle,
+    this.title,
+    this.titleWidget,
     required String url,
-    required this.buttonText,
+    required this.termsButtonText,
+    required this.agreeButtonText,
     required this.onAgree
   }) : url = Uri.parse(url);
+
+  String? title;
+  Widget? titleWidget;
+  final Uri url;
+  final String termsButtonText;
+  final String agreeButtonText;
+  final VoidCallback onAgree;
 
   void show(BuildContext context) {
     showModalBottomSheet(
@@ -23,7 +26,7 @@ class TermsBottomModalSheet {
       useSafeArea: true,
       isScrollControlled: true,
       backgroundColor: Colors.white,
-      barrierColor: Colors.black.withOpacity(0.3),
+      barrierColor: Colors.black.withValues(alpha: 0.3),
       builder: (context) {
         return Wrap(
           children: [
@@ -48,8 +51,9 @@ class TermsBottomModalSheet {
                     Container(
                       width: double.infinity,
                       margin: EdgeInsets.only(bottom: 20),
-                      child: Text(
-                        modalTitle,
+                      child: titleWidget
+                      ?? Text(
+                        title!,
                         style: const TextStyle(
                           fontSize: 18,
                           letterSpacing: 0.3,
@@ -60,18 +64,35 @@ class TermsBottomModalSheet {
                     ),
                     Container(
                       width: double.infinity,
-                      alignment: Alignment.center,
-                      margin: const EdgeInsets.only(bottom: 20),
-                      child: GestureDetector(
-                        onTap: () => _openTermsUrl(url),
-                        child: Text(
-                          termsTitle,
-                          style: const TextStyle(
-                            fontSize: 16,
-                            letterSpacing: 0.3,
-                            fontFamily: "Pretendard",
-                            fontWeight: FontWeight.w300
+                      height: 56,
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12)
                           ),
+                          foregroundColor: Colors.white,
+                          backgroundColor: const Color.fromARGB(255, 242, 244, 246),
+                        ),
+                        onPressed: () => _openTermsUrl(url: url),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(right: 10),
+                              child: Text(
+                                termsButtonText,
+                                style: const TextStyle(
+                                  color: Color.fromARGB(255, 109, 109, 109),
+                                  fontSize: 16,
+                                  letterSpacing: 0.3,
+                                  fontFamily: "Pretendard",
+                                  fontWeight: FontWeight.w600
+                                )
+                              )
+                            ),
+                            SvgPicture.asset("lib/assets/svgs/modal/terms/document.svg")
+                          ]
                         )
                       )
                     ),
@@ -87,29 +108,38 @@ class TermsBottomModalSheet {
                           backgroundColor: const Color.fromARGB(255, 0, 102, 255),
                         ),
                         onPressed: onAgree,
-                        child: Text(
-                          buttonText,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            letterSpacing: 0.3,
-                            fontFamily: "Pretendard",
-                            fontWeight: FontWeight.w700
-                          ),
-                        ),
-                      ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset("lib/assets/svgs/modal/terms/check.svg"),
+                            Padding(
+                              padding: EdgeInsets.only(left: 10),
+                              child: Text(
+                                agreeButtonText,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  letterSpacing: 0.3,
+                                  fontFamily: "Pretendard",
+                                  fontWeight: FontWeight.w700
+                                )
+                              )
+                            )
+                          ]
+                        )
+                      )
                     )
-                  ],
-                ),
+                  ]
+                )
               )
-            ),
-          ],
+            )
+          ]
         );
       }
     );
   }
 
-  Future<void> _openTermsUrl(Uri url) async {
+  Future<void> _openTermsUrl({required Uri url}) async {
     try {
       if (await canLaunchUrl(url)) {
         await launchUrl(url);

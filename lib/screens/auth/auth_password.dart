@@ -51,10 +51,37 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
 
   void _showTermsModal() {
     TermsBottomModalSheet(
-      modalTitle: "학생 인증을 위해\n경기대학교에 로그인합니다.",
-      termsTitle: "개인정보 활용 동의",
+      titleWidget: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            RichText(
+              text: TextSpan(
+                style: TextStyle(
+                  fontSize: 16,
+                  fontFamily: "Pretendard",
+                  color: Color.fromARGB(255, 30, 30, 30)
+                ),
+                children: [
+                  TextSpan(
+                    text: "학생 인증",
+                    style: TextStyle(fontWeight: FontWeight.w700)
+                  ),
+                  TextSpan(
+                    text: "을 위해\n경기대학교에 로그인합니다",
+                    style: TextStyle(fontWeight: FontWeight.w500, height: 1.7)
+                  )
+                ]
+              ),
+            ),
+            Image.asset("lib/assets/images/modal/terms/school.png", width: 60)
+          ],
+        )
+      ),
       url: TermsAndConditionsUrl.consentToUseStudentInformation,
-      buttonText: "동의하고 학생 인증",
+      termsButtonText: "개인정보 활용 동의",
+      agreeButtonText: "동의하고 학생 인증",
       onAgree: () => Navigator.push(context, AuthProcessScreen.route(context))
     ).show(context);
   }
