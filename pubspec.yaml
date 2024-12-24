@@ -28,6 +28,7 @@ dependencies:
 
   auto_size_text: ^3.0.0
   numberpicker: ^2.1.2
+  carousel_slider: ^5.0.0
   stacked_list_carousel: ^1.0.1
 
 dev_dependencies:

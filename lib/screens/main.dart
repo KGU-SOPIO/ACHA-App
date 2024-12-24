@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 import 'package:acha/blocs/navigation/navigation_bloc.dart';
 
@@ -21,23 +22,35 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  final CarouselSliderController _carouselSliderController = CarouselSliderController();
+  int currentSlide = 0;
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AchaAppbar(),
+      backgroundColor: Color.fromARGB(255, 245, 246, 248),
       body: SafeArea(
         child: Stack(
           children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              padding: EdgeInsets.symmetric(horizontal: 26),
-              color: Color.fromARGB(255, 245, 246, 248),
+            SingleChildScrollView(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  UserHeader(bottomMargin: 20),
-                  TodayCourseContainer()
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 20),
+                    child: AchaAppbar()
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    padding: EdgeInsets.symmetric(horizontal: 26),
+                    color: Color.fromARGB(255, 245, 246, 248),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        UserHeader(bottomMargin: 20),
+                        TodayCourseContainer()
+                      ]
+                    )
+                  ),
                 ]
               )
             ),
@@ -52,19 +65,19 @@ class _MainScreenState extends State<MainScreen> {
                     color: Colors.white,
                     boxShadow: [
                       BoxShadow(
-                        color: Color(0XFF000066).withOpacity(0.03),
+                        color: Color(0XFF000066).withValues(alpha: 0.03),
                         blurRadius: 15,
                         spreadRadius: 10,
                         offset: const Offset(0, 10)
                       ),
                       BoxShadow(
-                        color: Color(0XFF000066).withOpacity(0.0165),
+                        color: Color(0XFF000066).withValues(alpha: 0.0165),
                         blurRadius: 7.5,
                         spreadRadius: 5,
                         offset: const Offset(0, 5)
                       ),
                       BoxShadow(
-                        color: Color(0XFF000066).withOpacity(0.0095),
+                        color: Color(0XFF000066).withValues(alpha: 0.0095),
                         blurRadius: 5,
                         spreadRadius: 2.5,
                         offset: const Offset(0, 2.5)
@@ -89,69 +102,7 @@ class _MainScreenState extends State<MainScreen> {
                           ],
                         ),
                       ),
-                      SingleChildScrollView(
-                        controller: scrollController,
-                        child: Column(
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width,
-                              padding: EdgeInsets.symmetric(horizontal: 32, vertical: 32),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.only(right: 10),
-                                        child: RichText(
-                                          text: TextSpan(
-                                            style: TextStyle(
-                                              fontSize: 16,
-                                              fontFamily: "Pretendard",
-                                              color: Color.fromARGB(255, 30, 30, 30)
-                                            ),
-                                            children: [
-                                              TextSpan(
-                                                text: "나의 ",
-                                                style: TextStyle(fontWeight: FontWeight.w500)
-                                              ),
-                                              TextSpan(
-                                                text: "우선강의",
-                                                style: TextStyle(fontWeight: FontWeight.w700)
-                                              )
-                                            ]
-                                          ),
-                                        ),
-                                      ),
-                                      SvgPicture.asset("lib/assets/svgs/modal/main/play_outline.svg")
-                                    ],
-                                  ),
-                                  GestureDetector(
-                                    onTap: () => context.read<NavigationBloc>().add(TabChanged(2)),
-                                    child: Row(
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(right: 6),
-                                          child: Text(
-                                            "전체보기",
-                                            style: TextStyle(
-                                              fontSize: 16,
-                                              fontFamily: "Pretendard",
-                                              fontWeight: FontWeight.w500,
-                                              color: Color.fromARGB(255, 151, 151, 151)
-                                            ),
-                                          ),
-                                        ),
-                                        SvgPicture.asset("lib/assets/svgs/modal/main/vector.svg",)
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        )
-                      )
+                      sliderWidget(scrollController: scrollController)
                     ],
                   )
                 );
@@ -159,6 +110,189 @@ class _MainScreenState extends State<MainScreen> {
             )
           ],
         ),
+      )
+    );
+  }
+
+  Widget sliderWidget({required ScrollController scrollController}) {
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        return SingleChildScrollView(
+          controller: scrollController,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: constraints.maxHeight,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CarouselSlider(
+                  carouselController: _carouselSliderController,
+                  items: [
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      padding: EdgeInsets.symmetric(horizontal: 32, vertical: 32),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(right: 10),
+                                    child: RichText(
+                                      text: TextSpan(
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontFamily: "Pretendard",
+                                          color: Color.fromARGB(255, 30, 30, 30)
+                                        ),
+                                        children: [
+                                          TextSpan(
+                                            text: "나의 ",
+                                            style: TextStyle(fontWeight: FontWeight.w500)
+                                          ),
+                                          TextSpan(
+                                            text: "우선강의",
+                                            style: TextStyle(fontWeight: FontWeight.w700)
+                                          )
+                                        ]
+                                      ),
+                                    ),
+                                  ),
+                                  SvgPicture.asset("lib/assets/svgs/modal/main/play.svg")
+                                ],
+                              ),
+                              GestureDetector(
+                                onTap: () => context.read<NavigationBloc>().add(TabChanged(2)),
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 6),
+                                      child: Text(
+                                        "전체보기",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontFamily: "Pretendard",
+                                          fontWeight: FontWeight.w500,
+                                          color: Color.fromARGB(255, 151, 151, 151)
+                                        ),
+                                      ),
+                                    ),
+                                    SvgPicture.asset(
+                                      "lib/assets/svgs/modal/main/right_arrow.svg",
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      padding: EdgeInsets.symmetric(horizontal: 32, vertical: 32),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(right: 10),
+                                    child: RichText(
+                                      text: TextSpan(
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontFamily: "Pretendard",
+                                          color: Color.fromARGB(255, 30, 30, 30)
+                                        ),
+                                        children: [
+                                          TextSpan(
+                                            text: "나의 ",
+                                            style: TextStyle(fontWeight: FontWeight.w500)
+                                          ),
+                                          TextSpan(
+                                            text: "우선과제",
+                                            style: TextStyle(fontWeight: FontWeight.w700)
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  SvgPicture.asset("lib/assets/svgs/modal/main/list.svg")
+                                ],
+                              ),
+                              GestureDetector(
+                                onTap: () => context.read<NavigationBloc>().add(TabChanged(2)),
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 6),
+                                      child: Text(
+                                        "전체보기",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontFamily: "Pretendard",
+                                          fontWeight: FontWeight.w500,
+                                          color: Color.fromARGB(255, 151, 151, 151)
+                                        ),
+                                      ),
+                                    ),
+                                    SvgPicture.asset(
+                                      "lib/assets/svgs/modal/main/right_arrow.svg",
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                  options: CarouselOptions(
+                    viewportFraction: 1.0,
+                    enableInfiniteScroll: false,
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        currentSlide = index;
+                      });
+                    },
+                  ),
+                ),
+                sliderIndicator(),
+              ]
+            )
+          )
+        );
+      }
+    );
+  }
+
+
+  Widget sliderIndicator() {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 30),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: List.generate(2, (index) {
+          return GestureDetector(
+            onTap: () => _carouselSliderController.animateToPage(index),
+            child: Container(
+              width: 8,
+              height: 8,
+              margin: const EdgeInsets.symmetric(horizontal: 2),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: currentSlide == index ? Color.fromARGB(255, 0, 102, 255) : Color.fromARGB(255, 182, 182, 182)
+              )
+            )
+          );
+        })
       )
     );
   }

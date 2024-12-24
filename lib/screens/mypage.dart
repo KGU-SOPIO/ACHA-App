@@ -29,7 +29,6 @@ class _MyPageScreenState extends State<MyPageScreen> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 245, 246, 248),
       body: SafeArea(
-        top: false,
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -40,7 +39,6 @@ class _MyPageScreenState extends State<MyPageScreen> {
               Container(
                 width: MediaQuery.of(context).size.width,
                 padding: EdgeInsets.symmetric(horizontal: 26),
-                color: Color.fromARGB(255, 245, 246, 248),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
