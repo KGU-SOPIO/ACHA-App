@@ -21,7 +21,7 @@ class TokenInterceptor extends Interceptor {
         }
 
         try {
-          await _refreshTokens(refreshToken: refreshToken);
+          await _refreshAccessTokens(refreshToken: refreshToken);
           accessToken = await _secureStorage.isAccessTokenExpiredOrReturn();
         } catch (e) {
           return handler.reject(e as DioException);
@@ -37,7 +37,7 @@ class TokenInterceptor extends Interceptor {
   }
 
   /// AccessToken을 재발급합니다.
-  Future<void> _refreshTokens({required String refreshToken}) async {
+  Future<void> _refreshAccessTokens({required String refreshToken}) async {
     final response = await _dio.post(
       AuthenticationApiEndpoints.refresh,
       data: {"refreshToken": refreshToken},

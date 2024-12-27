@@ -16,15 +16,15 @@ void main() async {
 
   final GetIt getIt = GetIt.I;
   getIt.registerSingleton<SecureStorage>(SecureStorage());
-  getIt.registerLazySingleton<AuthenticationRepository>(() => AuthenticationRepository());
-  getIt.registerLazySingleton<ToastManager>(() => ToastManager());
   getIt.registerSingleton(
     () {
-      final dio = Dio();
+      final Dio dio = Dio();
       dio.interceptors.add(TokenInterceptor());
       return dio;
     }()
   );
+  getIt.registerLazySingleton<AuthenticationRepository>(() => AuthenticationRepository());
+  getIt.registerLazySingleton<ToastManager>(() => ToastManager());
   
   runApp(const App());
 }
