@@ -1,8 +1,7 @@
 import 'dart:async';
 
 import 'package:acha/app.dart';
-import 'package:acha/constants/apis/authentication.dart';
-import 'package:acha/screens/auth/auth_start.dart';
+
 import 'package:flutter/material.dart';
 
 import 'package:dio/dio.dart';
@@ -12,21 +11,23 @@ import 'package:acha/blocs/signin/signin_bloc.dart';
 
 import 'package:acha/repository/storage.dart';
 import 'package:acha/models/authentication/response.dart';
+import 'package:acha/constants/apis/authentication.dart';
 
+import 'package:acha/screens/auth/auth_start.dart';
 import 'package:acha/widgets/toast/toast_manager.dart';
 
 enum AuthenticationStatus { unknown, authenticated, unauthenticated }
 
 class AuthenticationRepository {
-  AuthenticationRepository() {
-    _initAuthentication();
-  }
-
   final Dio _dio = Dio();
   final SecureStorage _secureStorage = GetIt.I<SecureStorage>();
   final StreamController<AuthenticationStatus> _authController = StreamController<AuthenticationStatus>();
   late StreamController<SignInStatus> _signInController;
   late AuthenticationResponse signInResponse;
+
+  AuthenticationRepository() {
+    _initAuthentication();
+  }
 
   /// 인증 상태를 초기화합니다.
   Future<void> _initAuthentication() async {
@@ -53,18 +54,18 @@ class AuthenticationRepository {
     }
   }
 
-  /// Authentication Stream
+  /// 인증 Stream을 반환합니다.
   Stream<AuthenticationStatus> get authStatus async* {
     yield* _authController.stream;
   }
 
-  /// SignIn Stream
+  /// 로그인 Stream을 생성하고 반환합니다.
   Stream<SignInStatus> createSignInStatusStream() {
     _signInController = StreamController<SignInStatus>();
     return _signInController.stream;
   }
 
-  /// SignIn
+  /// 로그인을 수행합니다.
   Future<void> signIn({required String studentId, required String password}) async {
     try {
       final response = await _dio.post(
@@ -97,7 +98,7 @@ class AuthenticationRepository {
     }
   }
 
-  /// SignUp
+  /// 회원가입을 수행합니다.
   Future<void> signUp({
     required String studentId,
     required String name,
@@ -137,14 +138,15 @@ class AuthenticationRepository {
     }
   }
 
-  /// Logout
+  /// 로그아웃을 수행합니다.
   void logout() {
     final BuildContext context = AppView.navigatorKey.currentContext!;
-    _secureStorage.deleteAllData();
     Navigator.pushAndRemoveUntil(context, AuthStartScreen.route(), (route) => false);
+    _secureStorage.deleteAllData();
     _authController.add(AuthenticationStatus.unauthenticated);
   }
 
+  /// AccessToken을 재발급합니다.
   Future<void> refreshAccessToken() async {
     try {
       final refreshToken = await _secureStorage.readRefreshToken();
@@ -172,10 +174,10 @@ class AuthenticationRepository {
     }
   }
 
-  /// Get User Data
+  /// 사용자 정보 응답을 반환합니다.
   AuthenticationSignUpResponse get getUserData => signInResponse as AuthenticationSignUpResponse;
 
-  /// Dispose Stream
+  /// Stream을 종료합니다.
   void disposeAuthStream() => _authController.close();
   void disposeSignInStream() => _signInController.close();
 }

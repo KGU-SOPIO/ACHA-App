@@ -1,8 +1,9 @@
-import 'package:acha/models/user/user.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
+
+import 'package:acha/models/user/user.dart';
 
 enum TokenStatus { valid, expired, notExist }
 
@@ -157,7 +158,7 @@ class SecureStorage {
 
   /// AccessToken이 유효하다면 토큰을 반환합니다.
   ///
-  /// 만료되었다면 null을 반환하고, 유효하다면 AccessToken을 반환합니다.
+  /// 유효하다면 AccessToken을 반환하고, 만료되었다면 nulll을 반환합니다.
   Future<dynamic> isAccessTokenExpiredOrReturn() async {
     final accessToken = await _storage.read(key: accessTokenKey);
     if (accessToken == null || JwtDecoder.isExpired(accessToken) == true) {
@@ -169,7 +170,7 @@ class SecureStorage {
 
   /// RefreshToken이 유효하다면 토큰을 반환합니다.
   ///
-  /// 만료되었다면 null을 반환하고, 유효하다면 RefreshToken을 반환합니다.
+  /// 유효하다면 RefreshToken을 반환하고, 만료되었다면 null을 반환합니다.
   Future<dynamic> isRefreshTokenExpiredOrReturn() async {
     final refreshToken = await _storage.read(key: refreshTokenKey);
     if (refreshToken == null || JwtDecoder.isExpired(refreshToken) == true) {
