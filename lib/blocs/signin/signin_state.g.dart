@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'signin_bloc.dart';
+part of 'signin_state.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

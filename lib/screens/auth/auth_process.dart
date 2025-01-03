@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
 
-import 'package:acha/blocs/signin/signin_bloc.dart';
+import 'package:acha/blocs/signin/index.dart';
 
 import 'package:acha/screens/auth/auth_studentid.dart';
 import 'package:acha/screens/auth/auth_signup.dart';

@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 import 'package:acha/repository/authentication.dart';
-import 'package:acha/blocs/signin/signin_bloc.dart';
+import 'package:acha/blocs/signin/index.dart';
 
 import 'package:acha/screens/auth/auth_password.dart';
 

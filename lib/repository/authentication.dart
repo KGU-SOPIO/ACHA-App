@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
-import 'package:acha/blocs/signin/signin_bloc.dart';
+import 'package:acha/blocs/signin/index.dart';
 
 import 'package:acha/repository/storage.dart';
 import 'package:acha/models/authentication/response.dart';

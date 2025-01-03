@@ -9,6 +9,8 @@ import 'package:acha/widgets/container/user_header.dart';
 import 'package:acha/widgets/container/appbar/acha_appbar.dart';
 import 'package:acha/widgets/container/mypage/alert_setting_container.dart';
 import 'package:acha/widgets/container/mypage/phrase_container.dart';
+import 'package:acha/widgets/button/container_button.dart';
+import 'package:acha/widgets/button/row_container_button.dart';
 import 'package:acha/widgets/toast/toast_manager.dart';
 
 class MyPageScreen extends StatefulWidget {
@@ -46,87 +48,59 @@ class _MyPageScreenState extends State<MyPageScreen> {
                     UserHeader(bottomMargin: 35),
                     AlertSettingContainer(),
                     PhraseContainer(),
-                    Container(
-                      width: double.infinity,
+                    RowContainerButton(
                       margin: EdgeInsets.only(bottom: 34),
-                      padding: EdgeInsets.all(22),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Color.fromARGB(255, 228, 232, 241)
-                        ),
-                        borderRadius: BorderRadius.circular(25),
-                        color: Colors.white
+                      padding: EdgeInsets.symmetric(vertical: 22),
+                      onPressed: () {},
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.white,
+                      border: BorderSide(
+                        color: Color.fromARGB(255, 228, 232, 241)
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "SOPIO",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontFamily: "Pretendard",
-                              fontWeight: FontWeight.w500,
-                              color: Color.fromARGB(255, 30, 30, 30)
-                            ),
-                          ),
-                          SvgPicture.asset("lib/assets/svgs/mypage/right_arrow.svg")
-                        ],
+                      borderRadius: 25,
+                      text: "SOPIO",
+                      textStyle: TextStyle(
+                        fontSize: 16,
+                        fontFamily: "Pretendard",
+                        fontWeight: FontWeight.w500,
+                        color: Color.fromARGB(255, 30, 30, 30)
                       ),
+                      widget: SvgPicture.asset("lib/assets/svgs/mypage/right_arrow.svg")
                     ),
-                    Container(
+                    ContainerButton(
                       height: 56,
-                      width: double.infinity,
                       margin: EdgeInsets.only(bottom: 18),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          GetIt.I<AuthenticationRepository>().logout();
-                          GetIt.I<ToastManager>().show(message: "정상적으로 로그아웃 되었어요", svgPath: "lib/assets/svgs/toast/logout.svg");
-                        },
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12)
-                          ),
-                          foregroundColor: const Color.fromARGB(255, 109, 109, 109),
-                          backgroundColor: const Color.fromARGB(255, 237, 239, 242)
-                        ),
-                        child: Text(
-                          "로그아웃",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontFamily: "Pretendard",
-                            fontWeight: FontWeight.w700
-                          ),
-                        ),
-                      ),
+                      onPressed: () {
+                        GetIt.I<AuthenticationRepository>().logout();
+                        GetIt.I<ToastManager>().show(message: "정상적으로 로그아웃 되었어요", svgPath: "lib/assets/svgs/toast/logout.svg");
+                      },
+                      foregroundColor: const Color.fromARGB(255, 109, 109, 109),
+                      backgroundColor: const Color.fromARGB(255, 237, 239, 242),
+                      border: BorderSide.none,
+                      text: "로그아웃",
+                      textStyle: TextStyle(
+                        fontSize: 14,
+                        fontFamily: "Pretendard",
+                        fontWeight: FontWeight.w700
+                      )
                     ),
-                    Container(
+                    ContainerButton(
                       height: 56,
-                      width: double.infinity,
                       margin: EdgeInsets.only(bottom: 54),
-                      child: OutlinedButton(
-                        onPressed: () {
-                          GetIt.I<AuthenticationRepository>().logout();
-                          GetIt.I<ToastManager>().success(message: "서비스를 탈퇴했어요");
-                        },
-                        style: OutlinedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12)
-                          ),
-                          side: BorderSide(
-                            color: Color.fromARGB(255, 255, 78, 107)
-                          ),
-                          elevation: 0,
-                          foregroundColor: Color.fromARGB(255, 255, 78, 107),
-                          backgroundColor: Color.fromARGB(25, 255, 78 , 107),
-                        ),
-                        child: Text(
-                          "탈퇴",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontFamily: "Pretendard",
-                            fontWeight: FontWeight.w700
-                          )
-                        )
+                      onPressed: () {
+                        GetIt.I<AuthenticationRepository>().logout();
+                        GetIt.I<ToastManager>().success(message: "서비스를 탈퇴했어요");
+                      },
+                      foregroundColor: const Color.fromARGB(255, 255, 78, 107),
+                      backgroundColor: const Color.fromARGB(25, 255, 78 , 107),
+                      border: BorderSide(
+                        color: Color.fromARGB(255, 255, 78, 107)
+                      ),
+                      text: "탈퇴",
+                      textStyle: TextStyle(
+                        fontSize: 14,
+                        fontFamily: "Pretendard",
+                        fontWeight: FontWeight.w700
                       )
                     )
                   ]

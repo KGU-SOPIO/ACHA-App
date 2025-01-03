@@ -1,10 +1,7 @@
-part of 'signin_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-/// Use when executing build_runner command
-// import 'package:freezed_annotation/freezed_annotation.dart';
-//
-// part 'signin_state.freezed.dart';
-// part 'signin_state.g.dart';
+part 'signin_state.freezed.dart';
+part 'signin_state.g.dart';
 
 enum SignInStatus { initial, signInProgress, signUpProgress, inSignUp, signInSuccess, signUpSuccess, signInFailure, signUpFailure }
 

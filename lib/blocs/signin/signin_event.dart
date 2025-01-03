@@ -1,4 +1,6 @@
-part of 'signin_bloc.dart';
+import 'package:equatable/equatable.dart';
+
+import 'package:acha/blocs/signin/signin_state.dart';
 
 sealed class SignInEvent extends Equatable {
   const SignInEvent();
@@ -7,14 +9,14 @@ sealed class SignInEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-/// Stream 상태 변경 이벤트
-final class _SignInStatusChanged extends SignInEvent {
-  const _SignInStatusChanged(this.status);
-
+/// Stream 로그인 상태 변경 이벤트입니다.
+final class SignInStatusChanged extends SignInEvent {
   final SignInStatus status;
+  
+  const SignInStatusChanged(this.status);
 }
 
-/// 학번 입력 이벤트
+/// 학번 입력 이벤트입니다.
 final class SignInStudentIdEntered extends SignInEvent {
   final String studentId;
 
@@ -24,7 +26,7 @@ final class SignInStudentIdEntered extends SignInEvent {
   List<Object> get props => [studentId];
 }
 
-/// 비밀번호 입력 이벤트
+/// 비밀번호 입력 이벤트입니다.
 final class SignInPasswordEntered extends SignInEvent {
   final String password;
 
@@ -34,12 +36,12 @@ final class SignInPasswordEntered extends SignInEvent {
   List<Object> get props => [password];
 }
 
-/// 로그인 요청 이벤트
+/// 로그인 요청 이벤트입니다.
 final class SignInSubmitted extends SignInEvent {
   const SignInSubmitted();
 }
 
-/// 회원가입 요청 이벤트
+/// 회원가입 요청 이벤트입니다.
 final class SignUpSubmitted extends SignInEvent {
   const SignUpSubmitted();
 }
