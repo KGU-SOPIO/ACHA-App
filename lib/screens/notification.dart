@@ -120,9 +120,9 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
           body: TabBarView(
             controller: _tabController,
             children: [
-              _buildActivityListView(data.getLectureAndAssignmentActivities(flat: true)),
-              _buildActivityListView(data.getLectureActivities(flat: true)),
-              _buildActivityListView(data.getAssignmentActivities(flat: true))
+              _buildActivityListView(data.getLectureAndAssignmentActivities(group: true)),
+              _buildActivityListView(data.getLectureActivities(group: true)),
+              _buildActivityListView(data.getAssignmentActivities(group: true))
             ]
           )
         )
@@ -130,27 +130,38 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
     );
   }
 
-  Widget _buildActivityListView(List<dynamic> activities) {
-    if (activities.isEmpty) {
+  Widget _buildActivityListView(Map<DateTime, List<Activity>> groupedActivities) {
+    if (groupedActivities.isEmpty) {
       return Center(
         child: Text(
           "다 끝내셨군요! 고생하셨어요"
-        ),
+        )
       );
     }
 
     return ListView.builder(
-      itemCount: activities.length,
+      itemCount: groupedActivities.length,
       itemBuilder: (context, index) {
-        final activity = activities[index] as Activity;
+        final entry = groupedActivities.entries.elementAt(index);
+        final date = entry.key;
+        final activities = entry.value;
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 26),
-          child: ActivityContainer(
-            title: activity.name!,
-            course: data.name,
-            deadline: activity.deadline!.toTimeLeftFormattedTime(),
-            margin: EdgeInsets.only(bottom: 16),
-            backgroundColor: Colors.white
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              DDayContainer(deadline: date),
+              SizedBox(height: 16),
+              ...activities.map(
+                (activity) => ActivityContainer(
+                  title: activity.name!,
+                  course: data.name,
+                  deadline: activity.deadline!.toTimeLeftFormattedTime(),
+                  margin: EdgeInsets.only(bottom: 16),
+                  backgroundColor: Colors.white
+                )
+              )
+            ]
           )
         );
       }

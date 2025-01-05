@@ -1,13 +1,9 @@
 import 'package:intl/intl.dart';
 
 extension DateTimeExtensions on DateTime {
-  String formatDate({required String pattern}) {
-    return DateFormat(pattern, 'ko').format(this);
-  }
+  String formatDate({required String pattern}) => DateFormat(pattern, 'ko').format(this);
 
-  String toTimeLeftFormattedTime() {
-    return formatDate(pattern: 'a h:m');
-  }
+  String toTimeLeftFormattedTime() => formatDate(pattern: 'a hh : mm');
 
   String toDDay() {
     final difference = this.difference(DateTime.now()).inDays;
@@ -19,5 +15,10 @@ extension DateTimeExtensions on DateTime {
     } else {
       return "D + ${difference.abs()}";
     }
+  }
+
+  bool isDDay() {
+    final today = DateTime.now();
+    return year == today.year && month == today.month && day == today.day;
   }
 }
