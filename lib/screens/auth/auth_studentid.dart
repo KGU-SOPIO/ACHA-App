@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:acha/repository/authentication.dart';
+import 'package:acha/repository/index.dart';
 import 'package:acha/blocs/signin/index.dart';
 
-import 'package:acha/screens/auth/auth_password.dart';
+import 'package:acha/screens/auth/index.dart';
 
 class AuthStudentIdScreen extends StatefulWidget {
   const AuthStudentIdScreen({super.key});

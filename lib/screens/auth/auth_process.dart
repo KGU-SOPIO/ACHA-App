@@ -6,9 +6,8 @@ import 'package:lottie/lottie.dart';
 
 import 'package:acha/blocs/signin/index.dart';
 
-import 'package:acha/screens/auth/auth_studentid.dart';
-import 'package:acha/screens/auth/auth_signup.dart';
 import 'package:acha/screens/home.dart';
+import 'package:acha/screens/auth/index.dart';
 
 class AuthProcessScreen extends StatefulWidget {
   const AuthProcessScreen({super.key});

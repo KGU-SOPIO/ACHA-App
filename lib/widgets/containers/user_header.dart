@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:acha/models/index.dart';
+import 'package:acha/repository/index.dart';
 import 'package:acha/blocs/auth/authentication_bloc.dart';
-import 'package:acha/models/user/user.dart';
-
-import 'package:acha/repository/authentication.dart';
 
 class UserHeader extends StatelessWidget {
   const UserHeader({super.key, required this.bottomMargin});

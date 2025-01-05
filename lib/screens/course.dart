@@ -4,8 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:acha/screens/course/main.dart';
 
-import 'package:acha/widgets/container/course/course_container.dart';
-import 'package:acha/widgets/container/appbar/acha_appbar.dart';
+import 'package:acha/widgets/containers/index.dart';
 
 class CourseScreen extends StatefulWidget {
   const CourseScreen({super.key});

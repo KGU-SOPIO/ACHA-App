@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
-import 'package:acha/models/user/user.dart';
+import 'package:acha/models/index.dart';
 
 enum TokenStatus { valid, expired, notExist }
 

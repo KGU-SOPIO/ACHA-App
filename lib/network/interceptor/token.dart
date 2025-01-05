@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
-import 'package:acha/repository/storage.dart';
+import 'package:acha/repository/index.dart';
 
 import 'package:acha/constants/apis/authentication.dart';
 

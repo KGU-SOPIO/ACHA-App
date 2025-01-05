@@ -25,7 +25,7 @@ mixin _$Course {
   String get code => throw _privateConstructorUsedError;
   String get professor => throw _privateConstructorUsedError;
   String get lectureRoom => throw _privateConstructorUsedError;
-  List<Activity> get activities => throw _privateConstructorUsedError;
+  List<List<Activity>> get activities => throw _privateConstructorUsedError;
 
   /// Serializes this Course to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -47,7 +47,7 @@ abstract class $CourseCopyWith<$Res> {
       String code,
       String professor,
       String lectureRoom,
-      List<Activity> activities});
+      List<List<Activity>> activities});
 }
 
 /// @nodoc
@@ -96,7 +96,7 @@ class _$CourseCopyWithImpl<$Res, $Val extends Course>
       activities: null == activities
           ? _value.activities
           : activities // ignore: cast_nullable_to_non_nullable
-              as List<Activity>,
+              as List<List<Activity>>,
     ) as $Val);
   }
 }
@@ -114,7 +114,7 @@ abstract class _$$CourseImplCopyWith<$Res> implements $CourseCopyWith<$Res> {
       String code,
       String professor,
       String lectureRoom,
-      List<Activity> activities});
+      List<List<Activity>> activities});
 }
 
 /// @nodoc
@@ -161,22 +161,23 @@ class __$$CourseImplCopyWithImpl<$Res>
       activities: null == activities
           ? _value._activities
           : activities // ignore: cast_nullable_to_non_nullable
-              as List<Activity>,
+              as List<List<Activity>>,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$CourseImpl implements _Course {
+class _$CourseImpl extends _Course {
   const _$CourseImpl(
       {required this.name,
       required this.link,
       required this.code,
       required this.professor,
       required this.lectureRoom,
-      required final List<Activity> activities})
-      : _activities = activities;
+      required final List<List<Activity>> activities})
+      : _activities = activities,
+        super._();
 
   factory _$CourseImpl.fromJson(Map<String, dynamic> json) =>
       _$$CourseImplFromJson(json);
@@ -191,9 +192,9 @@ class _$CourseImpl implements _Course {
   final String professor;
   @override
   final String lectureRoom;
-  final List<Activity> _activities;
+  final List<List<Activity>> _activities;
   @override
-  List<Activity> get activities {
+  List<List<Activity>> get activities {
     if (_activities is EqualUnmodifiableListView) return _activities;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_activities);
@@ -241,14 +242,15 @@ class _$CourseImpl implements _Course {
   }
 }
 
-abstract class _Course implements Course {
+abstract class _Course extends Course {
   const factory _Course(
       {required final String name,
       required final String link,
       required final String code,
       required final String professor,
       required final String lectureRoom,
-      required final List<Activity> activities}) = _$CourseImpl;
+      required final List<List<Activity>> activities}) = _$CourseImpl;
+  const _Course._() : super._();
 
   factory _Course.fromJson(Map<String, dynamic> json) = _$CourseImpl.fromJson;
 
@@ -263,7 +265,7 @@ abstract class _Course implements Course {
   @override
   String get lectureRoom;
   @override
-  List<Activity> get activities;
+  List<List<Activity>> get activities;
 
   /// Create a copy of Course
   /// with the given fields replaced by the non-null parameter values.

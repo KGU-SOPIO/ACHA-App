@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:acha/widgets/container/appbar/acha_appbar.dart';
+import 'package:acha/models/index.dart';
+
+import 'package:acha/extensions/index.dart';
+
+import 'package:acha/widgets/containers/index.dart';
+import 'package:acha/widgets/tabbars/index.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
@@ -18,6 +23,71 @@ class NotificationScreen extends StatefulWidget {
 class _NotificationScreenState extends State<NotificationScreen> with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
+  final Course data = Course(
+    name: '사고와 표현',
+    link: 'https://example.com/course',
+    code: 'CRS001',
+    professor: '송명진',
+    lectureRoom: '301',
+    activities: [
+      [
+        Activity(
+          activityType: ActivityType.video,
+          name: '1주차 강의!',
+          link: 'https://example.com/video1',
+          deadline: DateTime.now().add(const Duration(hours: 5)),
+        ),
+        Activity(
+          activityType: ActivityType.assignment,
+          name: '1주차 과제!',
+          deadline: DateTime.now().add(const Duration(days: 3)),
+        ),
+        Activity(
+          activityType: ActivityType.video,
+          name: '1주차 !!!!',
+        ),
+      ],
+      [
+        Activity(
+          activityType: ActivityType.video,
+          name: '2주차 강의!',
+          link: 'https://example.com/video2',
+          deadline: DateTime.now().add(const Duration(days: 5)),
+        ),
+        Activity(
+          activityType: ActivityType.assignment,
+          name: '2주차 과제!',
+          deadline: DateTime.now().add(const Duration(days: 5)),
+        ),
+        Activity(
+          activityType: ActivityType.survey,
+          name: '2주차 설문!',
+          link: 'https://example.com/survey2',
+          deadline: DateTime.now().add(const Duration(days: 5)),
+        ),
+      ],
+      [
+        Activity(
+          activityType: ActivityType.video,
+          name: '3주차 강의!',
+          link: 'https://example.com/video3',
+          deadline: DateTime.now().add(const Duration(days: 5)),
+        ),
+        Activity(
+          activityType: ActivityType.assignment,
+          name: '3주차 과제!',
+          deadline: DateTime.now().add(const Duration(days: 7)),
+        ),
+        Activity(
+          activityType: ActivityType.file,
+          name: '3주차 자료!',
+          link: 'https://example.com/file3',
+          deadline: DateTime.now().add(const Duration(days: 5)),
+        ),
+      ],
+    ],
+  );
+
   @override
   void initState() {
     super.initState();
@@ -26,8 +96,8 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
 
   @override
   void dispose() {
-    super.dispose();
     _tabController.dispose();
+    super.dispose();
   }
 
   @override
@@ -35,154 +105,55 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 245, 246, 248),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
+        child: NestedScrollView(
+          headerSliverBuilder: (context, innerBoxIsScrolled) {
+            return [
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: AchaAppbar()
+                )
+              ),
+              SliverToBoxAdapter(child: NotificationTabbar(tabController: _tabController))
+            ];
+          },
+          body: TabBarView(
+            controller: _tabController,
             children: [
-              Padding(
-                padding: EdgeInsets.only(bottom: 20),
-                child: AchaAppbar()
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: 43,
-                margin: EdgeInsets.only(bottom: 18),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Container(
-                    width: 242,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: Color.fromARGB(255, 237, 239, 242)
-                    ),
-                    child: TabBar(
-                      controller: _tabController,
-                      padding: EdgeInsets.all(3),
-                      indicatorSize: TabBarIndicatorSize.tab,
-                      indicator: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: Colors.white
-                      ),
-                      overlayColor: WidgetStateProperty.all(Colors.transparent),
-                      dividerColor: Colors.transparent,
-                      labelColor: Colors.black,
-                      unselectedLabelColor: Color.fromARGB(255, 186, 186, 186),
-                      tabs: [
-                        Tab(
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              "전체",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontFamily: "Pretendard",
-                                fontWeight: FontWeight.w500
-                              )
-                            )
-                          )
-                        ),
-                        Tab(
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              "강의",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontFamily: "Pretendard",
-                                fontWeight: FontWeight.w500
-                              )
-                            )
-                          )
-                        ),
-                        Tab(
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              "과제",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontFamily: "Pretendard",
-                                fontWeight: FontWeight.w500
-                              )
-                            )
-                          )
-                        )
-                      ]
-                    )
-                  )
-                )
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height+ 1000,
-                child: TabBarView(
-                  controller: _tabController,
-                  children: [
-                    ListView(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height + 500,
-                          decoration: BoxDecoration(
-                            color: Colors.blue
-                          ),
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height + 100,
-                          decoration: BoxDecoration(
-                            color: Colors.red
-                          ),
-                        )
-                      ]
-                    ),
-                    ListView(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height + 500,
-                          decoration: BoxDecoration(
-                            color: Colors.blue
-                          ),
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height + 100,
-                          decoration: BoxDecoration(
-                            color: Colors.red
-                          ),
-                        )
-                      ]
-                    ),
-                    ListView(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height + 500,
-                          decoration: BoxDecoration(
-                            color: Colors.blue
-                          ),
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height + 100,
-                          decoration: BoxDecoration(
-                            color: Colors.red
-                          )
-                        )
-                      ]
-                    )
-                  ]
-                )
-              )
+              _buildActivityListView(data.getLectureAndAssignmentActivities(flat: true)),
+              _buildActivityListView(data.getLectureActivities(flat: true)),
+              _buildActivityListView(data.getAssignmentActivities(flat: true))
             ]
           )
         )
       )
+    );
+  }
+
+  Widget _buildActivityListView(List<dynamic> activities) {
+    if (activities.isEmpty) {
+      return Center(
+        child: Text(
+          "다 끝내셨군요! 고생하셨어요"
+        ),
+      );
+    }
+
+    return ListView.builder(
+      itemCount: activities.length,
+      itemBuilder: (context, index) {
+        final activity = activities[index] as Activity;
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 26),
+          child: ActivityContainer(
+            title: activity.name!,
+            course: data.name,
+            deadline: activity.deadline!.toTimeLeftFormattedTime(),
+            margin: EdgeInsets.only(bottom: 16),
+            backgroundColor: Colors.white
+          )
+        );
+      }
     );
   }
 }

@@ -6,8 +6,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 
 import 'package:acha/blocs/navigation/navigation_bloc.dart';
 
-import 'package:acha/widgets/container/d_day_container.dart';
-import 'package:acha/widgets/container/main/activity_container.dart';
+import 'package:acha/widgets/containers/index.dart';
 
 class SliderWidget extends StatelessWidget {
   const SliderWidget({super.key, required this.scrollController, required this.carouselSliderController, required this.currentSlide, required this.onPageChanged});
@@ -123,18 +122,19 @@ class SliderWidget extends StatelessWidget {
             title: "1주차 강의",
             course: "사고와 표현",
             deadline: "오후 09:00",
+            margin: EdgeInsets.only(bottom: 13)
           ),
-          const SizedBox(height: 13),
           const ActivityContainer(
             title: "1주차 강의",
             course: "사고와 표현",
             deadline: "오후 09:00",
+            margin: EdgeInsets.only(bottom: 13)
           ),
-          const SizedBox(height: 13),
           const ActivityContainer(
             title: "1주차 강의",
             course: "사고와 표현",
             deadline: "오후 09:00",
+            margin: EdgeInsets.only(bottom: 13)
           )
         ]
       )
@@ -205,18 +205,19 @@ class SliderWidget extends StatelessWidget {
             title: "1주차 강의",
             course: "사고와 표현",
             deadline: "오후 09:00",
+            margin: EdgeInsets.only(bottom: 13)
           ),
-          const SizedBox(height: 13),
           const ActivityContainer(
             title: "1주차 강의",
             course: "사고와 표현",
             deadline: "오후 09:00",
+            margin: EdgeInsets.only(bottom: 13)
           ),
-          const SizedBox(height: 13),
           const ActivityContainer(
             title: "1주차 강의",
             course: "사고와 표현",
             deadline: "오후 09:00",
+            margin: EdgeInsets.only(bottom: 13)
           )
         ]
       )

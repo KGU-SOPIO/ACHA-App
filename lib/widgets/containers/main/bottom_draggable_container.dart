@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:carousel_slider/carousel_slider.dart';
 
-import 'package:acha/widgets/slider/main/slider.dart';
+import 'package:acha/widgets/sliders/index.dart';
 
 class BottomDraggableContainer extends StatelessWidget {
   const BottomDraggableContainer({super.key, required this.carouselSliderController, required this.currentSlide, required this.onPageChanged});

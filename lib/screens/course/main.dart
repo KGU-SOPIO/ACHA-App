@@ -1,9 +1,12 @@
-import 'package:acha/widgets/button/row_container_button.dart';
 import 'package:flutter/material.dart';
 
-import 'package:acha/widgets/container/appbar/acha_appbar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stacked_list_carousel/stacked_list_carousel.dart';
+
+import 'package:acha/models/index.dart';
+
+import 'package:acha/widgets/containers/index.dart';
+import 'package:acha/widgets/buttons/index.dart';
 
 class CourseMainScreen extends StatefulWidget {
   const CourseMainScreen({super.key});
@@ -17,28 +20,89 @@ class CourseMainScreen extends StatefulWidget {
 }
 
 class _CourseMainScreenState extends State<CourseMainScreen> {
-  List weeks = [
-    {
-      "week": "1주차",
-      "items": ["플립러닝 수업 - 01", "과제 제출 - 01"]
-    },
-    {
-      "week": "2주차",
-      "items": ["플립러닝 수업 - 02", "토론 참여 - 02"]
-    },
-    {
-      "week": "3주차",
-      "items": ["플립러닝 수업 - 03", "팀 프로젝트 시작"]
-    }
-  ];
+  late final List<dynamic> trackedActivities;
+  late final List<dynamic> containers;
+
+  final Course data = Course(
+    name: '사고와 표현',
+    link: 'https://example.com/course',
+    code: 'CRS001',
+    professor: '송명진',
+    lectureRoom: '301',
+    activities: [
+      [
+        Activity(
+          activityType: ActivityType.video,
+          name: '1주차 강의!',
+          link: 'https://example.com/video1',
+        ),
+        Activity(
+          activityType: ActivityType.assignment,
+          name: '1주차 과제!',
+          deadline: DateTime.now().add(const Duration(days: 3)),
+        ),
+        Activity(
+          activityType: ActivityType.board,
+          name: '1주차 게시판!',
+        ),
+      ],
+      [
+        Activity(
+          activityType: ActivityType.video,
+          name: '2주차 강의!',
+          link: 'https://example.com/video2',
+        ),
+        Activity(
+          activityType: ActivityType.assignment,
+          name: '2주차 과제!',
+          deadline: DateTime.now().add(const Duration(days: 5)),
+        ),
+        Activity(
+          activityType: ActivityType.survey,
+          name: '2주차 설문!',
+          link: 'https://example.com/survey2',
+        ),
+      ],
+      [
+        Activity(
+          activityType: ActivityType.video,
+          name: '3주차 강의!',
+          link: 'https://example.com/video3',
+        ),
+        Activity(
+          activityType: ActivityType.assignment,
+          name: '3주차 과제!',
+          deadline: DateTime.now().add(const Duration(days: 7)),
+        ),
+        Activity(
+          activityType: ActivityType.file,
+          name: '3주차 자료!',
+          link: 'https://example.com/file3',
+        ),
+      ],
+    ],
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    trackedActivities = data.getLectureAndAssignmentActivities();
+    containers = trackedActivities.asMap().entries.expand((entry) {
+      final week = entry.key;
+      final weekActivities = entry.value;
+      return weekActivities.map((activity) => _buildActivityContainer(week: week + 1, activity: activity));
+    }).toList();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         bottom: false,
-        child: Container(
-          color: Color.fromARGB(255, 245, 246, 248),
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: Color.fromARGB(255, 245, 246, 248)
+          ),
           child: ListView(
             physics: ClampingScrollPhysics(),
             children: [
@@ -85,10 +149,10 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                                     fontFamily: "Pretendard",
                                     fontWeight: FontWeight.w700,
                                     color: Color.fromARGB(255, 30, 30, 30)
-                                  ),
-                                ),
-                              ],
-                            ),
+                                  )
+                                )
+                              ]
+                            )
                           ),
                           RowContainerButton(
                             margin: EdgeInsets.only(bottom: 27),
@@ -169,9 +233,9 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                 child: ListView.builder(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
-                  itemCount: weeks.length,
+                  itemCount: data.activities.length,
                   itemBuilder: (context, index) {
-                    final Map<String, dynamic> weekData = weeks[index];
+                    final List<Activity> weekActivities = data.activities[index];
 
                     return Container(
                       width: double.infinity,
@@ -194,7 +258,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                                       child: Icon(Icons.circle, size: 15, color: Color.fromARGB(255, 255, 78, 107))
                                     ),
                                     title: Text(
-                                      weekData["week"],
+                                      "${index + 1}주차",
                                       style: const TextStyle(
                                         fontSize: 14,
                                         fontFamily: "Pretendard",
@@ -208,28 +272,28 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                               body: Column(
                                 children: [
                                   Divider(height: 1, color: Color.fromARGB(255, 245, 246, 248)),
-                                  ...weekData["items"].map((item) {
+                                  ...weekActivities.map((activity) {
                                     return ListTile(
                                       leading: SvgPicture.asset("lib/assets/svgs/course/video.svg"),
                                       title: Text(
-                                        item,
+                                        activity.name!,
                                         style: TextStyle(
                                           fontSize: 14,
                                           fontFamily: "Pretendard",
                                           fontWeight: FontWeight.w400,
                                           color: Color.fromARGB(255, 60, 60, 60)
-                                        ),
-                                      ),
+                                        )
+                                      )
                                     );
                                   })
                                 ]
                               )
                             )
-                          ],
+                          ]
                         )
                       )
                     );
-                  },
+                  }
                 )
               )
             ]
@@ -239,8 +303,8 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
     );
   }
 
-  List containers = [
-    Container(
+  Widget _buildActivityContainer({required int week, required Activity activity}) {
+    return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 24, vertical: 22),
       decoration: BoxDecoration(
@@ -256,7 +320,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
           Padding(
             padding: EdgeInsets.only(bottom: 12),
             child: Text(
-              "1주차",
+              "$week주차",
               style: TextStyle(
                 fontSize: 14,
                 fontFamily: "Pretendard",
@@ -281,76 +345,20 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                 Padding(
                   padding: EdgeInsets.only(left: 7),
                   child: Text(
-                    "1주차 플립러닝 수업",
+                    activity.name!,
                     style: TextStyle(
                       fontSize: 14,
                       fontFamily: "Pretendard",
                       fontWeight: FontWeight.w500,
                       color: Color.fromARGB(255, 60, 60, 60)
-                    ),
+                    )
                   )
                 )
-              ],
-            ),
-          )
-        ],
-      ),
-    ),
-    Container(
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 22),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Color.fromARGB(255, 237, 239, 242)
-        ),
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(25)
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.only(bottom: 12),
-            child: Text(
-              "1주차",
-              style: TextStyle(
-                fontSize: 14,
-                fontFamily: "Pretendard",
-                fontWeight: FontWeight.w700,
-                color: Color.fromARGB(255, 30, 30, 30)
-              )
+              ]
             )
-          ),
-          Container(
-            width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 14, vertical: 14),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Color.fromARGB(255, 237, 239, 242),
-                width: 1.5
-              ),
-              borderRadius: BorderRadius.circular(12)
-            ),
-            child: Row(
-              children: [
-                SvgPicture.asset("lib/assets/svgs/course/video.svg"),
-                Padding(
-                  padding: EdgeInsets.only(left: 7),
-                  child: Text(
-                    "1주차 플립러닝 수업",
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontFamily: "Pretendard",
-                      fontWeight: FontWeight.w500,
-                      color: Color.fromARGB(255, 60, 60, 60)
-                    ),
-                  )
-                )
-              ],
-            ),
           )
-        ],
-      ),
-    )
-  ];
+        ]
+      )
+    );
+  }
 }

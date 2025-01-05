@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:acha/app.dart';
 
 import 'package:acha/widgets/toast/toast.dart';
-
-import 'package:flutter_svg/flutter_svg.dart';
 
 class ToastManager {
   static const _toastDuration = Duration(milliseconds: 1700);

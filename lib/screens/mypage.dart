@@ -3,14 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter_svg/svg.dart';
 
-import 'package:acha/repository/authentication.dart';
+import 'package:acha/repository/index.dart';
 
-import 'package:acha/widgets/container/user_header.dart';
-import 'package:acha/widgets/container/appbar/acha_appbar.dart';
-import 'package:acha/widgets/container/mypage/alert_setting_container.dart';
-import 'package:acha/widgets/container/mypage/phrase_container.dart';
-import 'package:acha/widgets/button/container_button.dart';
-import 'package:acha/widgets/button/row_container_button.dart';
+import 'package:acha/widgets/containers/index.dart';
+import 'package:acha/widgets/buttons/index.dart';
 import 'package:acha/widgets/toast/toast_manager.dart';
 
 class MyPageScreen extends StatefulWidget {

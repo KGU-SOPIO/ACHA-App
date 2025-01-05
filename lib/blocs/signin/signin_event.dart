@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:acha/blocs/signin/signin_state.dart';
+import 'package:acha/blocs/signin/index.dart';
 
 sealed class SignInEvent extends Equatable {
   const SignInEvent();

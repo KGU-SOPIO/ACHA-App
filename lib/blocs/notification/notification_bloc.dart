@@ -1,10 +1,9 @@
 import 'package:get_it/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:acha/blocs/notification/notification_event.dart';
-import 'package:acha/blocs/notification/notification_state.dart';
+import 'package:acha/blocs/notification/index.dart';
 
-import 'package:acha/repository/notification.dart';
+import 'package:acha/repository/index.dart';
 
 import 'package:acha/widgets/toast/toast_manager.dart';
 

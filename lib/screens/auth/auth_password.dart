@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:acha/blocs/signin/index.dart';
 
-import 'package:acha/screens/auth/auth_process.dart';
-import 'package:acha/widgets/modal/terms_modal.dart';
+import 'package:acha/screens/auth/index.dart';
+import 'package:acha/widgets/modals/index.dart';
 
 import 'package:acha/constants/terms.dart';
 

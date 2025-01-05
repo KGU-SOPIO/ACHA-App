@@ -13,7 +13,9 @@ _$CourseImpl _$$CourseImplFromJson(Map<String, dynamic> json) => _$CourseImpl(
       professor: json['professor'] as String,
       lectureRoom: json['lectureRoom'] as String,
       activities: (json['activities'] as List<dynamic>)
-          .map((e) => Activity.fromJson(e as Map<String, dynamic>))
+          .map((e) => (e as List<dynamic>)
+              .map((e) => Activity.fromJson(e as Map<String, dynamic>))
+              .toList())
           .toList(),
     );
 

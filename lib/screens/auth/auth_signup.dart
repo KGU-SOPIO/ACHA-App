@@ -8,8 +8,8 @@ import 'package:acha/blocs/signin/index.dart';
 
 import 'package:acha/screens/auth/auth_process.dart';
 
-import 'package:acha/widgets/container/authentication/text_container.dart';
-import 'package:acha/widgets/modal/terms_modal.dart';
+import 'package:acha/widgets/containers/index.dart';
+import 'package:acha/widgets/modals/index.dart';
 
 import 'package:acha/constants/manual.dart';
 import 'package:acha/constants/terms.dart';

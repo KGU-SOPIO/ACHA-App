@@ -1,0 +1,1 @@
+export 'package:acha/widgets/modals/terms_modal.dart';

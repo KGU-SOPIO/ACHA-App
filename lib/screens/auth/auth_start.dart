@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:acha/screens/auth/auth_studentid.dart';
+import 'package:acha/screens/auth/index.dart';
 
 class AuthStartScreen extends StatelessWidget {
   const AuthStartScreen({super.key});

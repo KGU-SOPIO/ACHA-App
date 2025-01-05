@@ -6,12 +6,11 @@ import 'package:get_it/get_it.dart';
 
 import 'package:acha/blocs/auth/authentication_bloc.dart';
 
-import 'package:acha/repository/authentication.dart';
-import 'package:acha/repository/user.dart';
+import 'package:acha/repository/index.dart';
 
-import 'package:acha/screens/home.dart';
-import 'package:acha/screens/auth/auth_start.dart';
 import 'package:acha/screens/splash.dart';
+import 'package:acha/screens/home.dart';
+import 'package:acha/screens/auth/index.dart';
 
 import 'package:acha/themes/acha_light.dart';
 import 'package:acha/themes/acha_dark.dart';
@@ -62,6 +61,14 @@ class _AppState extends State<App> {
 
 
 
+class Behavior extends ScrollBehavior {
+  @override
+  Widget buildOverscrollIndicator(
+      BuildContext context, Widget child, ScrollableDetails details) {
+    return child;
+  }
+}
+
 class AppView extends StatefulWidget {
   const AppView({super.key});
 
@@ -83,6 +90,7 @@ class _AppViewState extends State<AppView> {
       darkTheme: achaDark(),
       themeMode: ThemeMode.system,
       navigatorKey: AppView.navigatorKey,
+      scrollBehavior: Behavior(),
       builder: (context, child) {
         return BlocListener<AuthenticationBloc, AuthenticationState>(
           listener: (context, state) {

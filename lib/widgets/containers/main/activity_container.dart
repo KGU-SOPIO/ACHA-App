@@ -1,22 +1,30 @@
 import 'package:flutter/material.dart';
 
 class ActivityContainer extends StatelessWidget {
-  const ActivityContainer({super.key, required this.title, required this.course, required this.deadline});
+  const ActivityContainer({
+    super.key,
+    required this.title,
+    required this.course,
+    required this.deadline,
+    this.margin,
+    this.backgroundColor
+  });
 
   final String title;
   final String course;
   final String deadline;
+  final EdgeInsets? margin;
+  final Color? backgroundColor;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      // margin: EdgeInsets.only(bottom: 13),
+      margin: margin,
       padding: EdgeInsets.symmetric(horizontal: 22, vertical: 16),
       decoration: BoxDecoration(
-        border: Border.all(
-          color: Color.fromARGB(255, 228, 232, 241)
-        ),
+        border: Border.all(color: Color.fromARGB(255, 228, 232, 241)),
+        color: backgroundColor,
         borderRadius: BorderRadius.circular(20)
       ),
       child: Column(

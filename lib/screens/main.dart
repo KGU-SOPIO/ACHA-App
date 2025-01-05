@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:carousel_slider/carousel_slider.dart';
 
-import 'package:acha/widgets/container/user_header.dart';
-import 'package:acha/widgets/container/appbar/acha_appbar.dart';
-import 'package:acha/widgets/container/main/today_course_container.dart';
-import 'package:acha/widgets/container/main/bottom_draggable_container.dart';
+import 'package:acha/widgets/containers/index.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});

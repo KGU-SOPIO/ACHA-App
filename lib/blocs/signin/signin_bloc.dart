@@ -2,10 +2,8 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:acha/blocs/signin/signin_event.dart';
-import 'package:acha/blocs/signin/signin_state.dart';
-
-import 'package:acha/repository/authentication.dart';
+import 'package:acha/repository/index.dart';
+import 'package:acha/blocs/signin/index.dart';
 
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   SignInBloc({required this.authenticationRepository}): super(const SignInState()) {

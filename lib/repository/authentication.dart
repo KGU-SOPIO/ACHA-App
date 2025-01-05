@@ -1,19 +1,19 @@
 import 'dart:async';
 
-import 'package:acha/app.dart';
-
 import 'package:flutter/material.dart';
 
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
+import 'package:acha/app.dart';
+
+import 'package:acha/models/index.dart';
+import 'package:acha/repository/index.dart';
 import 'package:acha/blocs/signin/index.dart';
 
-import 'package:acha/repository/storage.dart';
-import 'package:acha/models/authentication/response.dart';
 import 'package:acha/constants/apis/authentication.dart';
 
-import 'package:acha/screens/auth/auth_start.dart';
+import 'package:acha/screens/auth/index.dart';
 import 'package:acha/widgets/toast/toast_manager.dart';
 
 enum AuthenticationStatus { unknown, authenticated, unauthenticated }

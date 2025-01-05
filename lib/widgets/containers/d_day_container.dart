@@ -2,22 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
 
+import 'package:acha/extensions/index.dart';
+
 class DDayContainer extends StatelessWidget {
   const DDayContainer({super.key, required this.deadline});
 
   final DateTime deadline;
-
-  String _calculate() {
-    final difference = deadline.difference(DateTime.now()).inDays;
-
-    if (difference == 0) {
-      return "D - Day";
-    } else if (difference > 0) {
-      return "D - $difference";
-    } else {
-      return "D + ${difference.abs()}";
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +26,7 @@ class DDayContainer extends StatelessWidget {
               borderRadius: BorderRadius.circular(20)
             ),
             child: Text(
-              _calculate(),
+              deadline.toDDay(),
               style: TextStyle(
                 fontSize: 12,
                 fontFamily: "Pretendard",

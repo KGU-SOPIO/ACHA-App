@@ -5,9 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import 'package:acha/repository/user.dart';
-import 'package:acha/repository/authentication.dart';
-import 'package:acha/models/user/user.dart';
+import 'package:acha/models/index.dart';
+import 'package:acha/repository/index.dart';
 
 part 'authentication_event.dart';
 part 'authentication_state.dart';
