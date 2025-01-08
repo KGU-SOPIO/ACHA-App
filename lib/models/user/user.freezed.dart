@@ -25,7 +25,7 @@ mixin _$User {
   String get name => throw _privateConstructorUsedError;
   String get college => throw _privateConstructorUsedError;
   String get department => throw _privateConstructorUsedError;
-  String get major => throw _privateConstructorUsedError;
+  String? get major => throw _privateConstructorUsedError;
 
   /// Serializes this User to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -47,7 +47,7 @@ abstract class $UserCopyWith<$Res> {
       String name,
       String college,
       String department,
-      String major});
+      String? major});
 }
 
 /// @nodoc
@@ -70,7 +70,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? name = null,
     Object? college = null,
     Object? department = null,
-    Object? major = null,
+    Object? major = freezed,
   }) {
     return _then(_value.copyWith(
       studentId: null == studentId
@@ -93,10 +93,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.department
           : department // ignore: cast_nullable_to_non_nullable
               as String,
-      major: null == major
+      major: freezed == major
           ? _value.major
           : major // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -114,7 +114,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       String name,
       String college,
       String department,
-      String major});
+      String? major});
 }
 
 /// @nodoc
@@ -134,7 +134,7 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? name = null,
     Object? college = null,
     Object? department = null,
-    Object? major = null,
+    Object? major = freezed,
   }) {
     return _then(_$UserImpl(
       studentId: null == studentId
@@ -157,10 +157,10 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.department
           : department // ignore: cast_nullable_to_non_nullable
               as String,
-      major: null == major
+      major: freezed == major
           ? _value.major
           : major // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -190,7 +190,7 @@ class _$UserImpl with DiagnosticableTreeMixin implements _User {
   @override
   final String department;
   @override
-  final String major;
+  final String? major;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -254,7 +254,7 @@ abstract class _User implements User {
       required final String name,
       required final String college,
       required final String department,
-      required final String major}) = _$UserImpl;
+      required final String? major}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
@@ -269,7 +269,7 @@ abstract class _User implements User {
   @override
   String get department;
   @override
-  String get major;
+  String? get major;
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.

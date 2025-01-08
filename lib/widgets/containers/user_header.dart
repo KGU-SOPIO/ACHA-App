@@ -60,7 +60,7 @@ class UserHeader extends StatelessWidget {
                         )
                       ),
                       child: Text(
-                        user.major,
+                        user.major ?? user.department,
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,

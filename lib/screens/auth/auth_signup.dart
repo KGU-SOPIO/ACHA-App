@@ -112,7 +112,8 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
                       TextContainer(title: "이름", value: state.name),
                       TextContainer(title: "대학", value: state.college),
                       TextContainer(title: "학부", value: state.department),
-                      TextContainer(title: "전공", value: state.major),
+                      if (state.major != null)
+                        TextContainer(title: "전공", value: state.major),
                     ]
                   ),
                   Column(

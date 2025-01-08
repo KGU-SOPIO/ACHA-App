@@ -101,7 +101,7 @@ class AuthenticationRepository {
     required String name,
     required String college,
     required String department,
-    required String major
+    required String? major
   }) async {
     try {
       final response = await _dio.post(
@@ -111,7 +111,8 @@ class AuthenticationRepository {
           "name": name,
           "college": college,
           "department": department,
-          "major": major
+          if (major != null)
+            "major": major,
         }
       );
 

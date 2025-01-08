@@ -12,7 +12,7 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       name: json['name'] as String,
       college: json['college'] as String,
       department: json['department'] as String,
-      major: json['major'] as String,
+      major: json['major'] as String?,
     );
 
 Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>

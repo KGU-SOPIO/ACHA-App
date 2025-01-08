@@ -148,7 +148,7 @@ class SecureStorage {
         name: user['name']!,
         college: user['college']!,
         department: user['department']!,
-        major: user['major']!
+        major: user['major']
       );
     } catch (e) {
       debugPrint("SecureStorage.readUser(): 사용자 정보를 불러오지 못했습니다.\nError: $e");

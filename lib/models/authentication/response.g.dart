@@ -28,7 +28,7 @@ _$AuthenticationSignUpResponseImpl _$$AuthenticationSignUpResponseImplFromJson(
       name: json['name'] as String,
       college: json['college'] as String,
       department: json['department'] as String,
-      major: json['major'] as String,
+      major: json['major'] as String?,
       $type: json['result'] as String?,
     );
 

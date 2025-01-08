@@ -16,7 +16,7 @@ class AuthenticationResponse with _$AuthenticationResponse {
     required String name,
     required String college,
     required String department,
-    required String major
+    required String? major
   }) = AuthenticationSignUpResponse;
 
   @FreezedUnionValue('refresh')

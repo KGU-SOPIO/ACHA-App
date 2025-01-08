@@ -65,7 +65,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
         name: state.name!,
         college: state.college!,
         department: state.department!,
-        major: state.major!
+        major: state.major
       );
     } catch (e) {
       emit(state.copyWith(status: SignInStatus.signUpFailure));
