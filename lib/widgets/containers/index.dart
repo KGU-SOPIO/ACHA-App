@@ -13,3 +13,5 @@ export 'package:acha/widgets/containers/main/today_course_container.dart';
 
 export 'package:acha/widgets/containers/mypage/alert_setting_container.dart';
 export 'package:acha/widgets/containers/mypage/phrase_container.dart';
+
+export 'package:acha/widgets/containers/sopio/member_container.dart';

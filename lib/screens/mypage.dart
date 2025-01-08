@@ -5,6 +5,8 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:acha/repository/index.dart';
 
+import 'package:acha/screens/mypage/sopio.dart';
+
 import 'package:acha/widgets/containers/index.dart';
 import 'package:acha/widgets/buttons/index.dart';
 import 'package:acha/widgets/toast/toast_manager.dart';
@@ -47,7 +49,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
                     RowContainerButton(
                       margin: EdgeInsets.only(bottom: 34),
                       padding: EdgeInsets.symmetric(vertical: 22),
-                      onPressed: () {},
+                      onPressed: () => Navigator.push(context, SopioScreen.route()),
                       foregroundColor: Colors.white,
                       backgroundColor: Colors.white,
                       border: BorderSide(
