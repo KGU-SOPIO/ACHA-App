@@ -51,33 +51,29 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
 
   void _showTermsModal() {
     TermsBottomModalSheet(
-      titleWidget: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            RichText(
-              text: TextSpan(
-                style: TextStyle(
-                  fontSize: 16,
-                  fontFamily: "Pretendard",
-                  color: Color.fromARGB(255, 30, 30, 30)
-                ),
-                children: [
-                  TextSpan(
-                    text: "학생 인증",
-                    style: TextStyle(fontWeight: FontWeight.w700)
-                  ),
-                  TextSpan(
-                    text: "을 위해\n경기대학교에 로그인합니다",
-                    style: TextStyle(fontWeight: FontWeight.w500, height: 1.7)
-                  )
-                ]
+      titleWidget: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          RichText(
+            text: TextSpan(
+              style: const TextStyle(
+                fontSize: 16,
+                color: Color.fromARGB(255, 30, 30, 30)
               ),
-            ),
-            Image.asset("lib/assets/images/modal/terms/school.png", width: 60)
-          ],
-        )
+              children: [
+                TextSpan(
+                  text: "학생 인증",
+                  style: TextStyle(fontWeight: FontWeight.w700)
+                ),
+                TextSpan(
+                  text: "을 위해\n경기대학교에 로그인합니다",
+                  style: TextStyle(fontWeight: FontWeight.w500, height: 1.7)
+                )
+              ]
+            )
+          ),
+          Image.asset("lib/assets/images/modal/terms/school.png", width: 60)
+        ]
       ),
       url: TermsAndConditionsUrl.consentToUseStudentInformation,
       termsButtonText: "개인정보 활용 동의",
@@ -106,132 +102,121 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
             "시작하기",
             style: TextStyle(
               fontSize: 20,
-              fontFamily: "Pretendard",
               fontWeight: FontWeight.w500
             ),
           )
         ),
         body: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width,
-                padding: const EdgeInsets.all(24),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 30),
-                      child: RichText(
-                        text: TextSpan(
-                          style: const TextStyle(
-                            fontSize: 15,
-                            fontFamily: "Pretendard",
-                            color: Colors.black
-                          ),
-                          children: [
-                            TextSpan(
-                              text: "비밀번호를 ",
-                              style: TextStyle(fontWeight: FontWeight.w700)
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(top: 30),
+                  padding: const EdgeInsets.symmetric(vertical: 24),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 30),
+                        child: RichText(
+                          text: TextSpan(
+                            style: const TextStyle(
+                              fontSize: 15,
+                              color: Colors.black
                             ),
-                            TextSpan(
-                              text: "입력해 주세요",
-                              style: TextStyle(fontWeight: FontWeight.w400)
-                            )
-                          ]
+                            children: [
+                              TextSpan(
+                                text: "비밀번호를 ",
+                                style: TextStyle(fontWeight: FontWeight.w700)
+                              ),
+                              TextSpan(
+                                text: "입력해 주세요",
+                                style: TextStyle(fontWeight: FontWeight.w400)
+                              )
+                            ]
+                          )
+                        )
+                      ),
+                      TextFormField(
+                        autofocus: true,
+                        obscureText: true,
+                        controller: _textEditingController,
+                        decoration: InputDecoration(
+                          hintText: "비밀번호",
+                          hintStyle: const TextStyle(
+                            color: Color.fromARGB(255, 186, 186, 186),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400
+                          ),
+                          filled: true,
+                          fillColor: const Color.fromARGB(255, 251, 251, 251),
+                          border: textFieldBorder,
+                          enabledBorder: textFieldBorder,
+                          focusedBorder: textFieldBorder
+                        )
+                      )
+                    ]
+                  )
+                ),
+                Column(
+                  children: [
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        minimumSize: WidgetStateProperty.all(Size(double.infinity, 56)),
+                        backgroundColor: WidgetStateProperty.resolveWith(
+                              (Set<WidgetState> states) {
+                            if (states.contains(WidgetState.disabled)) {
+                              bool isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
+                              return isDarkMode ? const Color.fromARGB(255, 100, 100, 100) : const Color.fromARGB(255, 199, 199, 199);
+                            }
+                            return const Color.fromARGB(255, 0, 102, 255);
+                          },
+                        ),
+                        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          )
+                        ),
+                      ),
+                      onPressed: _isButtonEnabled ? () {
+                        context.read<SignInBloc>().add(SignInPasswordEntered(_textEditingController.text));
+                        _showTermsModal();
+                      } : null,
+                      child: const Text(
+                        "다음",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white
                         )
                       )
                     ),
-                    TextFormField(
-                      autofocus: true,
-                      obscureText: true,
-                      controller: _textEditingController,
-                      decoration: InputDecoration(
-                        hintText: "비밀번호",
-                        hintStyle: const TextStyle(
-                          color: Color.fromARGB(255, 186, 186, 186),
-                          fontSize: 16,
-                          fontFamily: "Pretendard",
-                          fontWeight: FontWeight.w400
-                        ),
-                        filled: true,
-                        fillColor: const Color.fromARGB(255, 251, 251, 251),
-                        border: textFieldBorder,
-                        enabledBorder: textFieldBorder,
-                        focusedBorder: textFieldBorder
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                margin: const EdgeInsets.symmetric(horizontal: 24),
-                child: Column(
-                  children: [
-                    SizedBox(
-                        height: 56,
-                        width: MediaQuery.of(context).size.width,
-                        child: ElevatedButton(
-                          onPressed: _isButtonEnabled ? () {
-                            context.read<SignInBloc>().add(SignInPasswordEntered(_textEditingController.text));
-                            _showTermsModal();
-                          } : null,
-                          style: ButtonStyle(
-                            foregroundColor: WidgetStateProperty.all(Colors.white),
-                            backgroundColor: WidgetStateProperty.resolveWith(
-                                  (Set<WidgetState> states) {
-                                if (states.contains(WidgetState.disabled)) {
-                                  bool isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
-                                  return isDarkMode ? const Color.fromARGB(255, 100, 100, 100) : const Color.fromARGB(255, 199, 199, 199);
-                                }
-                                return const Color.fromARGB(255, 0, 102, 255);
-                              },
-                            ),
-                            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              )
-                            ),
-                          ),
-                          child: const Text(
-                            "다음",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              letterSpacing: 0.3,
-                              fontFamily: "Pretendard",
-                              fontWeight: FontWeight.w700
-                            ),
-                          ),
-                        )
-                    ),
-                    Container(
-                      height: 56,
-                      width: MediaQuery.of(context).size.width,
-                      margin: EdgeInsets.only(top: 5),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5),
                       child: TextButton(
+                        style: ButtonStyle(
+                          minimumSize: WidgetStateProperty.all(Size(double.infinity, 56))
+                        ),
                         onPressed: () => Navigator.pop(context),
                         child: const Text(
                           "이전",
                           style: TextStyle(
-                            color: Color.fromARGB(255, 80, 80, 80),
-                            fontSize: 14,
-                            letterSpacing: 0.3,
-                            fontFamily: "Pretendard",
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                            color: Color.fromARGB(255, 80, 80, 80)
+                          )
+                        )
+                      )
                     )
-                  ],
+                  ]
                 )
-              )
-            ],
-          ),
-        ),
-      ),
+              ]
+            )
+          )
+        )
+      )
     );
   }
 }

@@ -136,7 +136,6 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                                     "송명진 교수님",
                                     style: TextStyle(
                                       fontSize: 14,
-                                      fontFamily: "Pretendard",
                                       fontWeight: FontWeight.w400,
                                       color: Color.fromARGB(255, 30, 30, 30)
                                     )
@@ -146,7 +145,6 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                                   "사고와 표현",
                                   style: TextStyle(
                                     fontSize: 24,
-                                    fontFamily: "Pretendard",
                                     fontWeight: FontWeight.w700,
                                     color: Color.fromARGB(255, 30, 30, 30)
                                   )
@@ -167,7 +165,6 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                             text: "공지사항",
                             textStyle: TextStyle(
                               fontSize: 14,
-                              fontFamily: "Pretendard",
                               fontWeight: FontWeight.w500,
                               color: Color.fromARGB(255, 0, 102, 255)
                             ),
@@ -184,7 +181,6 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                                     text: TextSpan(
                                       style: TextStyle(
                                         fontSize: 14,
-                                        fontFamily: "Pretendard",
                                         color: Color.fromARGB(255, 30, 30, 30)
                                       ),
                                       children: [
@@ -261,7 +257,6 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                                       "${index + 1}주차",
                                       style: const TextStyle(
                                         fontSize: 14,
-                                        fontFamily: "Pretendard",
                                         fontWeight: FontWeight.w500,
                                         color: Color.fromARGB(255, 60, 60, 60)
                                       )
@@ -279,7 +274,6 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                                         activity.name!,
                                         style: TextStyle(
                                           fontSize: 14,
-                                          fontFamily: "Pretendard",
                                           fontWeight: FontWeight.w400,
                                           color: Color.fromARGB(255, 60, 60, 60)
                                         )
@@ -323,7 +317,6 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
               "$week주차",
               style: TextStyle(
                 fontSize: 14,
-                fontFamily: "Pretendard",
                 fontWeight: FontWeight.w700,
                 color: Color.fromARGB(255, 30, 30, 30)
               )
@@ -348,7 +341,6 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                     activity.name!,
                     style: TextStyle(
                       fontSize: 14,
-                      fontFamily: "Pretendard",
                       fontWeight: FontWeight.w500,
                       color: Color.fromARGB(255, 60, 60, 60)
                     )

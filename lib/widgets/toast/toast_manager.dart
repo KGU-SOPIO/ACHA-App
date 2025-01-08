@@ -36,7 +36,6 @@ class ToastManager {
               textAlign: TextAlign.center,
               style: const TextStyle(
                 fontSize: 14,
-                fontFamily: "Pretendard",
                 fontWeight: FontWeight.w500,
                 color: Colors.white
               )

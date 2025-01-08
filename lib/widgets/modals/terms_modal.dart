@@ -5,16 +5,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class TermsBottomModalSheet {
   TermsBottomModalSheet({
-    this.title,
-    this.titleWidget,
+    required this.titleWidget,
     required String url,
     required this.termsButtonText,
     required this.agreeButtonText,
     required this.onAgree
   }) : url = Uri.parse(url);
 
-  String? title;
-  Widget? titleWidget;
+  final Widget titleWidget;
   final Uri url;
   final String termsButtonText;
   final String agreeButtonText;
@@ -32,8 +30,8 @@ class TermsBottomModalSheet {
           children: [
             Center(
               child: Container(
-                width: MediaQuery.of(context).size.width,
-                padding: const EdgeInsets.only(top: 12, bottom: 30, left: 24, right: 24),
+                width: double.infinity,
+                padding: const EdgeInsets.only(top: 12, bottom: 40, left: 24, right: 24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -50,28 +48,17 @@ class TermsBottomModalSheet {
                     ),
                     Container(
                       width: double.infinity,
-                      margin: EdgeInsets.only(bottom: 20),
+                      margin: EdgeInsets.only(left: 16, right: 16, bottom: 20),
                       child: titleWidget
-                      ?? Text(
-                        title!,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          letterSpacing: 0.3,
-                          fontFamily: "Pretendard",
-                          fontWeight: FontWeight.w500
-                        )
-                      )
                     ),
-                    Container(
-                      width: double.infinity,
-                      height: 56,
-                      margin: EdgeInsets.only(bottom: 20),
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 20),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
+                          minimumSize: Size(double.infinity, 56),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12)
                           ),
-                          foregroundColor: Colors.white,
                           backgroundColor: const Color.fromARGB(255, 242, 244, 246),
                         ),
                         onPressed: () => _openTermsUrl(url: url),
@@ -83,11 +70,9 @@ class TermsBottomModalSheet {
                               child: Text(
                                 termsButtonText,
                                 style: const TextStyle(
-                                  color: Color.fromARGB(255, 109, 109, 109),
                                   fontSize: 16,
-                                  letterSpacing: 0.3,
-                                  fontFamily: "Pretendard",
-                                  fontWeight: FontWeight.w600
+                                  fontWeight: FontWeight.w600,
+                                  color: Color.fromARGB(255, 109, 109, 109)
                                 )
                               )
                             ),
@@ -96,37 +81,31 @@ class TermsBottomModalSheet {
                         )
                       )
                     ),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 56,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12)
-                          ),
-                          foregroundColor: Colors.white,
-                          backgroundColor: const Color.fromARGB(255, 0, 102, 255),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: Size(double.infinity, 56),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12)
                         ),
-                        onPressed: onAgree,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SvgPicture.asset("lib/assets/svgs/modal/terms/check.svg"),
-                            Padding(
-                              padding: EdgeInsets.only(left: 10),
-                              child: Text(
-                                agreeButtonText,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  letterSpacing: 0.3,
-                                  fontFamily: "Pretendard",
-                                  fontWeight: FontWeight.w700
-                                )
+                        backgroundColor: const Color.fromARGB(255, 0, 102, 255),
+                      ),
+                      onPressed: onAgree,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset("lib/assets/svgs/modal/terms/check.svg"),
+                          Padding(
+                            padding: EdgeInsets.only(left: 10),
+                            child: Text(
+                              agreeButtonText,
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white
                               )
                             )
-                          ]
-                        )
+                          )
+                        ]
                       )
                     )
                   ]

@@ -56,23 +56,23 @@ flutter:
     - lib/assets/lotties/auth/
 
   fonts:
-    - family: Pretendard
+    - family: NotoSansKR
       fonts:
-        - asset: lib/assets/fonts/pretendard/Pretendard-Thin.ttf
+        - asset: lib/assets/fonts/NotoSansKR-Thin.ttf
           weight: 100
-        - asset: lib/assets/fonts/pretendard/Pretendard-ExtraLight.ttf
+        - asset: lib/assets/fonts/NotoSansKR-ExtraLight.ttf
           weight: 200
-        - asset: lib/assets/fonts/pretendard/Pretendard-Light.ttf
+        - asset: lib/assets/fonts/NotoSansKR-Light.ttf
           weight: 300
-        - asset: lib/assets/fonts/pretendard/Pretendard-Regular.ttf
+        - asset: lib/assets/fonts/NotoSansKR-Regular.ttf
           weight: 400
-        - asset: lib/assets/fonts/pretendard/Pretendard-Medium.ttf
+        - asset: lib/assets/fonts/NotoSansKR-Medium.ttf
           weight: 500
-        - asset: lib/assets/fonts/pretendard/Pretendard-SemiBold.ttf
+        - asset: lib/assets/fonts/NotoSansKR-SemiBold.ttf
           weight: 600
-        - asset: lib/assets/fonts/pretendard/Pretendard-Bold.ttf
+        - asset: lib/assets/fonts/NotoSansKR-Bold.ttf
           weight: 700
-        - asset: lib/assets/fonts/pretendard/Pretendard-ExtraBold.ttf
+        - asset: lib/assets/fonts/NotoSansKR-ExtraBold.ttf
           weight: 800
-        - asset: lib/assets/fonts/pretendard/Pretendard-Black.ttf
+        - asset: lib/assets/fonts/NotoSansKR-Black.ttf
           weight: 900

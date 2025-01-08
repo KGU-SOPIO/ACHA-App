@@ -84,7 +84,6 @@ class _CourseScreenState extends State<CourseScreen> {
                               "나의 강좌",
                               style: TextStyle(
                                 fontSize: 20,
-                                fontFamily: "Pretendard",
                                 fontWeight: FontWeight.w700,
                                 color: Color.fromARGB(255, 30, 30, 30)
                               ),

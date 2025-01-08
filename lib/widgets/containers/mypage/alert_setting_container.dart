@@ -40,7 +40,6 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
                   "알림 설정",
                   style: TextStyle(
                     fontSize: 16,
-                    fontFamily: "Pretendard",
                     fontWeight: FontWeight.w500,
                     color: Color.fromARGB(255, 30, 30, 30)
                   ),
@@ -55,7 +54,6 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
                 "알림 켜기",
                 style: TextStyle(
                   fontSize: 15,
-                  fontFamily: "Pretendard",
                   fontWeight: FontWeight.w400,
                   color: Color.fromARGB(255, 30, 30, 30)
                 )

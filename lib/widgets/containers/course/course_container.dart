@@ -44,7 +44,6 @@ class CourseContainer extends StatelessWidget {
                     "$professorName 교수",
                     style: TextStyle(
                       fontSize: 12,
-                      fontFamily: "Pretendard",
                       fontWeight: FontWeight.w400,
                       color: Color.fromARGB(255, 109, 109, 109)
                     )
@@ -56,7 +55,6 @@ class CourseContainer extends StatelessWidget {
                     courseName,
                     style: TextStyle(
                       fontSize: 16,
-                      fontFamily: "Pretendard",
                       fontWeight: FontWeight.w400,
                       color: Colors.black
                     )
@@ -66,7 +64,6 @@ class CourseContainer extends StatelessWidget {
                   lectureRoom,
                   style: TextStyle(
                     fontSize: 12,
-                    fontFamily: "Pretendard",
                     fontWeight: FontWeight.w400,
                     color: Colors.black
                   )
@@ -83,7 +80,6 @@ class CourseContainer extends StatelessWidget {
                 "D - $daysLeft",
                 style: TextStyle(
                   fontSize: 14,
-                  fontFamily: "Pretendard",
                   fontWeight: FontWeight.w700,
                   color: Color.fromARGB(255, 255, 78, 107)
                 ),

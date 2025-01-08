@@ -74,7 +74,6 @@ class SliderWidget extends StatelessWidget {
                     text: const TextSpan(
                       style: TextStyle(
                         fontSize: 16,
-                        fontFamily: "Pretendard",
                         color: Color.fromARGB(255, 30, 30, 30),
                       ),
                       children: [
@@ -103,7 +102,6 @@ class SliderWidget extends StatelessWidget {
                         "전체보기",
                         style: TextStyle(
                           fontSize: 16,
-                          fontFamily: "Pretendard",
                           fontWeight: FontWeight.w500,
                           color: Color.fromARGB(255, 151, 151, 151),
                         ),
@@ -157,7 +155,6 @@ class SliderWidget extends StatelessWidget {
                     text: const TextSpan(
                       style: TextStyle(
                         fontSize: 16,
-                        fontFamily: "Pretendard",
                         color: Color.fromARGB(255, 30, 30, 30),
                       ),
                       children: [
@@ -186,7 +183,6 @@ class SliderWidget extends StatelessWidget {
                         "전체보기",
                         style: TextStyle(
                           fontSize: 16,
-                          fontFamily: "Pretendard",
                           fontWeight: FontWeight.w500,
                           color: Color.fromARGB(255, 151, 151, 151),
                         ),

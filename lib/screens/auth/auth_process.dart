@@ -9,6 +9,8 @@ import 'package:acha/blocs/signin/index.dart';
 import 'package:acha/screens/home.dart';
 import 'package:acha/screens/auth/index.dart';
 
+import 'package:acha/widgets/buttons/index.dart';
+
 class AuthProcessScreen extends StatefulWidget {
   const AuthProcessScreen({super.key});
 
@@ -49,7 +51,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
       case SignInStatus.inSignUp:
         return "인증 완료";
       default:
-        return "오류";
+        return "문제 발생";
     }
   }
 
@@ -65,105 +67,80 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
             "시작하기",
             style: TextStyle(
               fontSize: 20,
-              fontFamily: "Pretendard",
               fontWeight: FontWeight.w500
-            ),
+            )
           )
         ),
         body: SafeArea(
           child: BlocConsumer<SignInBloc, SignInState>(
             listener: (context, state) {
-              if (state.status == SignInStatus.inSignUp) {
-                Navigator.push(context, AuthSignUpScreen.route(context));
-              } else if (state.status == SignInStatus.signInSuccess) {
+              if (state.status == SignInStatus.signInSuccess) {
                 Navigator.pushAndRemoveUntil(context, HomeScreen.route(), (route) => false);
+              } else if (state.status == SignInStatus.inSignUp) {
+                Navigator.push(context, AuthSignUpScreen.route(context));
               }
             },
             builder: (context, state) {
               if (state.status == SignInStatus.signInFailure || state.status == SignInStatus.signUpFailure) {
-                return Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
+                return Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        width: double.infinity,
-                        margin: EdgeInsets.symmetric(vertical: 50),
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 50),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Container(
-                              margin: EdgeInsets.only(bottom: 30),
-                              child: SvgPicture.asset("lib/assets/svgs/auth/error.svg"),
+                            SvgPicture.asset("lib/assets/svgs/auth/error.svg"),
+                            SizedBox(height: 30),
+                            Text(
+                              "문제 발생",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w700
+                              )
                             ),
-                            Container(
-                              margin: EdgeInsets.only(bottom: 20),
-                              child: Text(
-                                "문제 발생",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontFamily: "Pretendard",
-                                  fontWeight: FontWeight.w700
-                                ),
-                              ),
-                            ),
+                            SizedBox(height: 20),
                             Text(
                               "인증에 문제가 발생했어요",
                               style: TextStyle(
                                 fontSize: 14,
-                                fontFamily: "Pretendard",
                                 fontWeight: FontWeight.w400,
                                 color: Color.fromARGB(255, 109, 109, 109)
-                              ),
+                              )
                             )
-                          ],
-                        ),
+                          ]
+                        )
                       ),
-                      Container(
+                      ContainerButton(
                         height: 56,
-                        width: double.infinity,
                         margin: const EdgeInsets.only(bottom: 30),
-                        child: ElevatedButton(
-                          onPressed: () => Navigator.pushAndRemoveUntil(context, AuthStudentIdScreen.route(), (route) => false),
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12)
-                            ),
-                            foregroundColor: Colors.white,
-                            backgroundColor: const Color.fromARGB(255, 0, 102, 255)
-                          ),
-                          child: const Text(
-                            "돌아가기",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              letterSpacing: 0.3,
-                              fontFamily: "Pretendard",
-                              fontWeight: FontWeight.w700
-                            ),
-                          ),
-                        ),
+                        onPressed: () => Navigator.pushAndRemoveUntil(context, AuthStudentIdScreen.route(), (route) => false),
+                        backgroundColor: const Color.fromARGB(255, 0, 102, 255),
+                        text: "돌아가기",
+                        textStyle: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700
+                        )
                       )
-                    ],
+                    ]
                   )
                 );
               } else {
                 return Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
+                  width: double.infinity,
                   padding: EdgeInsets.symmetric(horizontal: 24),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Container(
-                        margin: EdgeInsets.only(top: 42, bottom: 24),
-                        child: Lottie.asset(
-                          "lib/assets/lotties/auth/loading.json",
-                          width: 45
-                        )
+                      SizedBox(height: 42),
+                      Lottie.asset(
+                        "lib/assets/lotties/auth/loading.json",
+                        width: 45
                       ),
+                      SizedBox(height: 24),
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 22, vertical: 5),
                         decoration: BoxDecoration(
@@ -174,7 +151,6 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
                           _getDisplayText(state.status),
                           style: TextStyle(
                             fontSize: 14,
-                            fontFamily: "Pretendard",
                             fontWeight: FontWeight.w500,
                             color: Color.fromARGB(255, 0, 102, 255)
                           )

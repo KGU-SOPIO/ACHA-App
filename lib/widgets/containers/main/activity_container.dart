@@ -34,7 +34,6 @@ class ActivityContainer extends StatelessWidget {
             title,
             style: TextStyle(
               fontSize: 16,
-              fontFamily: "Pretendard",
               fontWeight: FontWeight.w500,
               color: Color.fromARGB(255, 60, 60, 60)
             )
@@ -43,7 +42,6 @@ class ActivityContainer extends StatelessWidget {
             course,
             style: TextStyle(
               fontSize: 13,
-              fontFamily: "Pretendard",
               fontWeight: FontWeight.w400,
               color: Color.fromARGB(255, 60, 60, 60)
             )
@@ -52,7 +50,6 @@ class ActivityContainer extends StatelessWidget {
           RichText(
             text: TextSpan(
               style: TextStyle(
-                fontFamily: "Pretendard",
                 color: Color.fromARGB(255, 151, 151, 151)
               ),
               children: [

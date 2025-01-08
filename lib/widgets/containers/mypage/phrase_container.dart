@@ -25,7 +25,6 @@ class PhraseContainer extends StatelessWidget {
             text: TextSpan(
               style: TextStyle(
                 fontSize: 16,
-                fontFamily: "Pretendard",
                 color: Color.fromARGB(255, 30, 30, 30)
               ),
               children: [
@@ -63,7 +62,6 @@ class PhraseContainer extends StatelessWidget {
                       "평범하게 살고 싶지 않은데\n왜 평범하게 노력하는가?",
                       style: TextStyle(
                         fontSize: 16,
-                        fontFamily: "Pretendard",
                         fontWeight: FontWeight.w600,
                         color: Color.fromARGB(255, 0, 102, 255)
                       )

@@ -3,24 +3,24 @@ import 'package:flutter/material.dart';
 class RowContainerButton extends StatelessWidget {
   const RowContainerButton({
     super.key,
-    required this.margin,
+    this.margin,
     required this.padding,
     required this.onPressed,
-    required this.foregroundColor,
+    this.foregroundColor,
     required this.backgroundColor,
-    required this.border,
+    this.border,
     required this.borderRadius,
     required this.text,
     required this.textStyle,
     required this.widget
   });
 
-  final EdgeInsets margin;
+  final EdgeInsets? margin;
   final EdgeInsets padding;
   final VoidCallback onPressed;
-  final Color foregroundColor;
+  final Color? foregroundColor;
   final Color backgroundColor;
-  final BorderSide border;
+  final BorderSide? border;
   final double borderRadius;
   final String text;
   final TextStyle textStyle;
@@ -29,18 +29,19 @@ class RowContainerButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: margin,
+      padding: margin ?? EdgeInsets.zero,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
+          minimumSize: Size(double.infinity, 0),
           shape: RoundedRectangleBorder(
-            side: border,
+            side: border ?? BorderSide.none,
             borderRadius: BorderRadius.circular(borderRadius)
           ),
+          foregroundColor: foregroundColor,
           backgroundColor: backgroundColor
         ),
-        child: Container(
-          width: double.infinity,
+        child: Padding(
           padding: padding,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

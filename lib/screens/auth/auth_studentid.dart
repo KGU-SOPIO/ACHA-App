@@ -25,7 +25,7 @@ class AuthStudentIdScreen extends StatefulWidget {
 class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
   late final FocusNode _focusNode;
   late final TextEditingController _textEditingController;
-  late AuthenticationRepository _authenticationRepository;
+  late final AuthenticationRepository _authenticationRepository;
 
   @override
   void initState() {
@@ -68,7 +68,6 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
             "시작하기",
             style: TextStyle(
               fontSize: 20,
-              fontFamily: "Pretendard",
               fontWeight: FontWeight.w500
             ),
           )
@@ -80,6 +79,7 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
               builder: (context) {
                 return Container(
                   width: MediaQuery.of(context).size.width,
+                  margin: const EdgeInsets.only(top: 30),
                   padding: const EdgeInsets.all(24),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,8 +88,7 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
                         text: TextSpan(
                           style: const TextStyle(
                             fontSize: 15,
-                            fontFamily: "Pretendard",
-                            color: Colors.black
+                            color: Color.fromARGB(255, 60, 60, 60)
                           ),
                           children: [
                             TextSpan(
@@ -118,7 +117,6 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
                           hintStyle: const TextStyle(
                             color: Color.fromARGB(255, 186, 186, 186),
                             fontSize: 16,
-                            fontFamily: "Pretendard",
                             fontWeight: FontWeight.w400
                           ),
                           counterText: "",
@@ -131,7 +129,6 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
                         style: const TextStyle(
                           color: Colors.black,
                           fontSize: 16,
-                          fontFamily: "Pretendard",
                           fontWeight: FontWeight.w400
                         ),
                         onChanged: (value) {
@@ -139,16 +136,16 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
                             context.read<SignInBloc>().add(SignInStudentIdEntered(value));
                             Navigator.push(context, AuthPasswordScreen.route(context));
                           }
-                        },
+                        }
                       )
-                    ],
-                  ),
+                    ]
+                  )
                 );
-              },
-            ),
-          ),
-        ),
-      ),
+              }
+            )
+          )
+        )
+      )
     );
   }
 }

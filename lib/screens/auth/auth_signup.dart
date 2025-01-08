@@ -10,6 +10,7 @@ import 'package:acha/screens/auth/auth_process.dart';
 
 import 'package:acha/widgets/containers/index.dart';
 import 'package:acha/widgets/modals/index.dart';
+import 'package:acha/widgets/buttons/index.dart';
 
 import 'package:acha/constants/manual.dart';
 import 'package:acha/constants/terms.dart';
@@ -32,33 +33,29 @@ class AuthSignUpScreen extends StatefulWidget {
 
 class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
   void _showTermsModal() => TermsBottomModalSheet(
-    titleWidget: Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          RichText(
-            text: TextSpan(
-              style: TextStyle(
-                fontSize: 16,
-                fontFamily: "Pretendard",
-                color: Color.fromARGB(255, 30, 30, 30)
-              ),
-              children: [
-                TextSpan(
-                  text: "사용 약관에 동의",
-                  style: TextStyle(fontWeight: FontWeight.w700)
-                ),
-                TextSpan(
-                  text: "하고\n회원가입을 진행합니다",
-                  style: TextStyle(fontWeight: FontWeight.w500, height: 1.7)
-                )
-              ]
+    titleWidget: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        RichText(
+          text: TextSpan(
+            style: TextStyle(
+              fontSize: 16,
+              color: Color.fromARGB(255, 30, 30, 30)
             ),
-          ),
-          SvgPicture.asset("lib/assets/svgs/acha_logo.svg", width: 50)
-        ],
-      )
+            children: [
+              TextSpan(
+                text: "사용 약관에 동의",
+                style: TextStyle(fontWeight: FontWeight.w700)
+              ),
+              TextSpan(
+                text: "하고\n회원가입을 진행합니다",
+                style: TextStyle(fontWeight: FontWeight.w500, height: 1.7)
+              )
+            ]
+          )
+        ),
+        SvgPicture.asset("lib/assets/svgs/acha_logo.svg", width: 50)
+      ],
     ),
     url: TermsAndConditionsUrl.serviceTermsAndConditions,
     termsButtonText: "아차 사용 약관",
@@ -78,7 +75,6 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
             "시작하기",
             style: TextStyle(
               fontSize: 20,
-              fontFamily: "Pretendard",
               fontWeight: FontWeight.w500
             ),
           )
@@ -98,7 +94,6 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
                           text: TextSpan(
                             style: TextStyle(
                               fontSize: 15,
-                              fontFamily: "Pretendard",
                               color: Color.fromARGB(255, 60, 60, 60)
                             ),
                             children: [
@@ -111,77 +106,59 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
                                 style: TextStyle(fontWeight: FontWeight.w400)
                               )
                             ]
-                          ),
+                          )
                         )
                       ),
                       TextContainer(title: "이름", value: state.name),
                       TextContainer(title: "대학", value: state.college),
                       TextContainer(title: "학부", value: state.department),
                       TextContainer(title: "전공", value: state.major),
-                    ],
+                    ]
                   ),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       TextButton(
                         style: TextButton.styleFrom(
-                          padding: EdgeInsets.zero,
                           tapTargetSize: MaterialTapTargetSize.shrinkWrap
                         ),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
                           children: [
                             SvgPicture.asset("lib/assets/svgs/auth/information.svg"),
-                            Padding(
-                              padding: EdgeInsets.only(left: 5),
-                              child: Text(
-                                "정보가 다른가요?",
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontFamily: "Pretendard",
-                                  fontWeight: FontWeight.w500,
-                                  color: Color.fromARGB(255, 131, 131, 131)
-                                ),
-                              ),
+                            SizedBox(width: 5),
+                            Text(
+                              "정보가 다른가요?",
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                color: Color.fromARGB(255, 131, 131, 131)
+                              )
                             )
-                          ],
+                          ]
                         ),
                         onPressed: () => _openManualUrl()
                       ),
-                      Container(
+                      ContainerButton(
                         height: 56,
-                        width: MediaQuery.of(context).size.width,
-                        margin: const EdgeInsets.only(left: 24, right: 24, bottom: 30, top: 24),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            _showTermsModal();
-                          },
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12)
-                            ),
-                            foregroundColor: Colors.white,
-                            backgroundColor: const Color.fromARGB(255, 0, 102, 255)
-                          ),
-                          child: const Text(
-                            "다음",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              letterSpacing: 0.3,
-                              fontFamily: "Pretendard",
-                              fontWeight: FontWeight.w700
-                            )
-                          )
-                        ),
+                        margin: const EdgeInsets.only(left: 24, right: 24, bottom: 30, top: 20),
+                        onPressed: () => _showTermsModal(),
+                        backgroundColor: const Color.fromARGB(255, 0, 102, 255),
+                        text: "다음",
+                        textStyle: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white
+                        )
                       )
-                    ],
+                    ]
                   )
-                ],
-              ),
+                ]
+              )
             );
-          },
-        ),
-      ),
+          }
+        )
+      )
     );
   }
 

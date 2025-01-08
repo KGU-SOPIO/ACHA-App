@@ -26,7 +26,6 @@ class UserHeader extends StatelessWidget {
                   text: TextSpan(
                     style: TextStyle(
                       fontSize: 24,
-                      fontFamily: "Pretendard",
                       color: Color.fromARGB(255, 30, 30, 30)
                     ),
                     children: [
@@ -47,7 +46,6 @@ class UserHeader extends StatelessWidget {
                       user.college,
                       style: TextStyle(
                         fontSize: 15,
-                        fontFamily: "Pretendard",
                         fontWeight: FontWeight.w400,
                         color: Color.fromARGB(255, 151, 151, 151)
                       ),
@@ -65,7 +63,6 @@ class UserHeader extends StatelessWidget {
                         user.major,
                         style: TextStyle(
                           fontSize: 12,
-                          fontFamily: "Pretendard",
                           fontWeight: FontWeight.w500,
                           color: Color.fromARGB(255, 255, 255, 255)
                         ),

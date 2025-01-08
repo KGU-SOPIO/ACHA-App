@@ -8,8 +8,7 @@ class TextContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
+    return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
       child: Column(
         children: [
@@ -19,15 +18,14 @@ class TextContainer extends StatelessWidget {
               title,
               style: TextStyle(
                 fontSize: 15,
-                fontFamily: "Pretendard",
                 fontWeight: FontWeight.w700,
                 color: Color.fromARGB(255, 60, 60, 60)
               ),
             ),
           ),
+          SizedBox(height: 16),
           Container(
             height: 56,
-            margin: EdgeInsets.only(top: 16),
             alignment: Alignment.centerLeft,
             decoration: BoxDecoration(
               border: Border.all(
@@ -42,15 +40,14 @@ class TextContainer extends StatelessWidget {
                 value ?? "",
                 style: TextStyle(
                   fontSize: 16,
-                  fontFamily: "Pretendard",
                   fontWeight: FontWeight.w400,
                   color: Color.fromARGB(255, 60, 60, 60)
                 )
-              ),
+              )
             )
           )
-        ],
-      ),
+        ]
+      )
     );
   }
 }

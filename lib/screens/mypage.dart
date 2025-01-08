@@ -57,7 +57,6 @@ class _MyPageScreenState extends State<MyPageScreen> {
                       text: "SOPIO",
                       textStyle: TextStyle(
                         fontSize: 16,
-                        fontFamily: "Pretendard",
                         fontWeight: FontWeight.w500,
                         color: Color.fromARGB(255, 30, 30, 30)
                       ),
@@ -70,14 +69,12 @@ class _MyPageScreenState extends State<MyPageScreen> {
                         GetIt.I<AuthenticationRepository>().logout();
                         GetIt.I<ToastManager>().show(message: "정상적으로 로그아웃 되었어요", svgPath: "lib/assets/svgs/toast/logout.svg");
                       },
-                      foregroundColor: const Color.fromARGB(255, 109, 109, 109),
                       backgroundColor: const Color.fromARGB(255, 237, 239, 242),
-                      border: BorderSide.none,
                       text: "로그아웃",
                       textStyle: TextStyle(
                         fontSize: 14,
-                        fontFamily: "Pretendard",
-                        fontWeight: FontWeight.w700
+                        fontWeight: FontWeight.w700,
+                        color: const Color.fromARGB(255, 109, 109, 109),
                       )
                     ),
                     ContainerButton(
@@ -87,7 +84,6 @@ class _MyPageScreenState extends State<MyPageScreen> {
                         GetIt.I<AuthenticationRepository>().logout();
                         GetIt.I<ToastManager>().success(message: "서비스를 탈퇴했어요");
                       },
-                      foregroundColor: const Color.fromARGB(255, 255, 78, 107),
                       backgroundColor: const Color.fromARGB(25, 255, 78 , 107),
                       border: BorderSide(
                         color: Color.fromARGB(255, 255, 78, 107)
@@ -95,8 +91,8 @@ class _MyPageScreenState extends State<MyPageScreen> {
                       text: "탈퇴",
                       textStyle: TextStyle(
                         fontSize: 14,
-                        fontFamily: "Pretendard",
-                        fontWeight: FontWeight.w700
+                        fontWeight: FontWeight.w700,
+                        color: const Color.fromARGB(255, 255, 78, 107)
                       )
                     )
                   ]

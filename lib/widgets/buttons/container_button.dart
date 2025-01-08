@@ -4,40 +4,35 @@ class ContainerButton extends StatelessWidget {
   const ContainerButton({
     super.key,
     required this.height,
-    required this.margin,
+    this.margin,
     required this.onPressed,
-    required this.foregroundColor,
     required this.backgroundColor,
-    required this.border,
+    this.border,
     required this.text,
     required this.textStyle
   });
 
   final double height;
-  final EdgeInsets margin;
+  final EdgeInsets? margin;
   final VoidCallback onPressed;
-  final Color foregroundColor;
   final Color backgroundColor;
-  final BorderSide border;
+  final BorderSide? border;
   final String text;
   final TextStyle textStyle;
-  
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: height,
-      width: double.infinity,
-      margin: margin,
+    return Padding(
+      padding: margin ?? EdgeInsets.zero,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
+          minimumSize: Size(double.infinity, height),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12)
           ),
-          foregroundColor: foregroundColor,
-          backgroundColor: backgroundColor,
-          side: border
+          side: border,
+          backgroundColor: backgroundColor
         ),
         child: Text(text, style: textStyle)
       )

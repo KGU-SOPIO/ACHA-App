@@ -37,7 +37,6 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
                   text: TextSpan(
                     style: TextStyle(
                       fontSize: 16,
-                      fontFamily: "Pretendard",
                       color: Color.fromARGB(255, 30, 30, 30)
                     ),
                     children: [
@@ -56,7 +55,6 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
                   formattedDate,
                   style: TextStyle(
                     fontSize: 16,
-                    fontFamily: "Pretendard",
                     fontWeight: FontWeight.w500,
                     color: Color.fromARGB(255, 0, 102, 255)
                   )
@@ -88,7 +86,6 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
                             "송명진 교수님",
                             style: TextStyle(
                               fontSize: 12,
-                              fontFamily: "Pretendard",
                               fontWeight: FontWeight.w400,
                               color: Color.fromARGB(255, 109, 109, 109)
                             )
@@ -100,7 +97,6 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
                             "사고와 표현",
                             style: TextStyle(
                               fontSize: 16,
-                              fontFamily: "Pretendard",
                               fontWeight: FontWeight.w400,
                               color: Colors.black
                             )
@@ -110,7 +106,6 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
                           "3306",
                           style: TextStyle(
                             fontSize: 12,
-                            fontFamily: "Pretendard",
                             fontWeight: FontWeight.w400,
                             color: Colors.black
                           )
@@ -127,7 +122,6 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
                         "D - 1",
                         style: TextStyle(
                           fontSize: 14,
-                          fontFamily: "Pretendard",
                           fontWeight: FontWeight.w700,
                           color: Color.fromARGB(255, 255, 78, 107)
                         ),

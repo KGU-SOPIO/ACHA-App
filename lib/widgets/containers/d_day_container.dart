@@ -44,7 +44,6 @@ class DDayContainer extends StatelessWidget {
           deadline.toDDay(),
           style: TextStyle(
             fontSize: 12,
-            fontFamily: "Pretendard",
             fontWeight: FontWeight.w700,
             color: isDDay ? Colors.white : primaryColor
           )
@@ -60,7 +59,6 @@ class DDayContainer extends StatelessWidget {
         deadline.formatDate(pattern: "M월 d일"),
         style: TextStyle(
           fontSize: 12,
-          fontFamily: "Pretendard",
           fontWeight: FontWeight.w700,
           color: primaryColor
         )

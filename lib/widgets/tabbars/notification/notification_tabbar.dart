@@ -40,7 +40,6 @@ class NotificationTabbar extends StatelessWidget {
                     "전체",
                     style: TextStyle(
                       fontSize: 16,
-                      fontFamily: "Pretendard",
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -53,7 +52,6 @@ class NotificationTabbar extends StatelessWidget {
                     "강의",
                     style: TextStyle(
                       fontSize: 16,
-                      fontFamily: "Pretendard",
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -66,7 +64,6 @@ class NotificationTabbar extends StatelessWidget {
                     "과제",
                     style: TextStyle(
                       fontSize: 16,
-                      fontFamily: "Pretendard",
                       fontWeight: FontWeight.w500,
                     )
                   )
