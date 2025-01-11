@@ -15,6 +15,7 @@ class SecureStorage {
 
   static const String accessTokenKey = 'accessToken';
   static const String refreshTokenKey = 'refreshToken';
+  static const String coursesListKey = 'courses';
 
   /// AccessToken을 반환합니다.
   ///

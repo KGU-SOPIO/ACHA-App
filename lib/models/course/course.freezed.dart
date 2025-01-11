@@ -20,12 +20,21 @@ Course _$CourseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Course {
+  @HiveField(0)
   String get name => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get link => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get code => throw _privateConstructorUsedError;
+  @HiveField(3)
   String get professor => throw _privateConstructorUsedError;
+  @HiveField(4)
   String get lectureRoom => throw _privateConstructorUsedError;
-  List<List<Activity>> get activities => throw _privateConstructorUsedError;
+  @HiveField(5)
+  List<WeekActivities>? get weekActivities =>
+      throw _privateConstructorUsedError;
+  @HiveField(6)
+  List<Notice>? get notices => throw _privateConstructorUsedError;
 
   /// Serializes this Course to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,12 +51,13 @@ abstract class $CourseCopyWith<$Res> {
       _$CourseCopyWithImpl<$Res, Course>;
   @useResult
   $Res call(
-      {String name,
-      String link,
-      String code,
-      String professor,
-      String lectureRoom,
-      List<List<Activity>> activities});
+      {@HiveField(0) String name,
+      @HiveField(1) String link,
+      @HiveField(2) String code,
+      @HiveField(3) String professor,
+      @HiveField(4) String lectureRoom,
+      @HiveField(5) List<WeekActivities>? weekActivities,
+      @HiveField(6) List<Notice>? notices});
 }
 
 /// @nodoc
@@ -70,7 +80,8 @@ class _$CourseCopyWithImpl<$Res, $Val extends Course>
     Object? code = null,
     Object? professor = null,
     Object? lectureRoom = null,
-    Object? activities = null,
+    Object? weekActivities = freezed,
+    Object? notices = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -93,10 +104,14 @@ class _$CourseCopyWithImpl<$Res, $Val extends Course>
           ? _value.lectureRoom
           : lectureRoom // ignore: cast_nullable_to_non_nullable
               as String,
-      activities: null == activities
-          ? _value.activities
-          : activities // ignore: cast_nullable_to_non_nullable
-              as List<List<Activity>>,
+      weekActivities: freezed == weekActivities
+          ? _value.weekActivities
+          : weekActivities // ignore: cast_nullable_to_non_nullable
+              as List<WeekActivities>?,
+      notices: freezed == notices
+          ? _value.notices
+          : notices // ignore: cast_nullable_to_non_nullable
+              as List<Notice>?,
     ) as $Val);
   }
 }
@@ -109,12 +124,13 @@ abstract class _$$CourseImplCopyWith<$Res> implements $CourseCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String name,
-      String link,
-      String code,
-      String professor,
-      String lectureRoom,
-      List<List<Activity>> activities});
+      {@HiveField(0) String name,
+      @HiveField(1) String link,
+      @HiveField(2) String code,
+      @HiveField(3) String professor,
+      @HiveField(4) String lectureRoom,
+      @HiveField(5) List<WeekActivities>? weekActivities,
+      @HiveField(6) List<Notice>? notices});
 }
 
 /// @nodoc
@@ -135,7 +151,8 @@ class __$$CourseImplCopyWithImpl<$Res>
     Object? code = null,
     Object? professor = null,
     Object? lectureRoom = null,
-    Object? activities = null,
+    Object? weekActivities = freezed,
+    Object? notices = freezed,
   }) {
     return _then(_$CourseImpl(
       name: null == name
@@ -158,10 +175,14 @@ class __$$CourseImplCopyWithImpl<$Res>
           ? _value.lectureRoom
           : lectureRoom // ignore: cast_nullable_to_non_nullable
               as String,
-      activities: null == activities
-          ? _value._activities
-          : activities // ignore: cast_nullable_to_non_nullable
-              as List<List<Activity>>,
+      weekActivities: freezed == weekActivities
+          ? _value._weekActivities
+          : weekActivities // ignore: cast_nullable_to_non_nullable
+              as List<WeekActivities>?,
+      notices: freezed == notices
+          ? _value._notices
+          : notices // ignore: cast_nullable_to_non_nullable
+              as List<Notice>?,
     ));
   }
 }
@@ -170,39 +191,60 @@ class __$$CourseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CourseImpl extends _Course {
   const _$CourseImpl(
-      {required this.name,
-      required this.link,
-      required this.code,
-      required this.professor,
-      required this.lectureRoom,
-      required final List<List<Activity>> activities})
-      : _activities = activities,
+      {@HiveField(0) required this.name,
+      @HiveField(1) required this.link,
+      @HiveField(2) required this.code,
+      @HiveField(3) required this.professor,
+      @HiveField(4) required this.lectureRoom,
+      @HiveField(5) final List<WeekActivities>? weekActivities,
+      @HiveField(6) final List<Notice>? notices})
+      : _weekActivities = weekActivities,
+        _notices = notices,
         super._();
 
   factory _$CourseImpl.fromJson(Map<String, dynamic> json) =>
       _$$CourseImplFromJson(json);
 
   @override
+  @HiveField(0)
   final String name;
   @override
+  @HiveField(1)
   final String link;
   @override
+  @HiveField(2)
   final String code;
   @override
+  @HiveField(3)
   final String professor;
   @override
+  @HiveField(4)
   final String lectureRoom;
-  final List<List<Activity>> _activities;
+  final List<WeekActivities>? _weekActivities;
   @override
-  List<List<Activity>> get activities {
-    if (_activities is EqualUnmodifiableListView) return _activities;
+  @HiveField(5)
+  List<WeekActivities>? get weekActivities {
+    final value = _weekActivities;
+    if (value == null) return null;
+    if (_weekActivities is EqualUnmodifiableListView) return _weekActivities;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_activities);
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<Notice>? _notices;
+  @override
+  @HiveField(6)
+  List<Notice>? get notices {
+    final value = _notices;
+    if (value == null) return null;
+    if (_notices is EqualUnmodifiableListView) return _notices;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'Course(name: $name, link: $link, code: $code, professor: $professor, lectureRoom: $lectureRoom, activities: $activities)';
+    return 'Course(name: $name, link: $link, code: $code, professor: $professor, lectureRoom: $lectureRoom, weekActivities: $weekActivities, notices: $notices)';
   }
 
   @override
@@ -218,13 +260,21 @@ class _$CourseImpl extends _Course {
             (identical(other.lectureRoom, lectureRoom) ||
                 other.lectureRoom == lectureRoom) &&
             const DeepCollectionEquality()
-                .equals(other._activities, _activities));
+                .equals(other._weekActivities, _weekActivities) &&
+            const DeepCollectionEquality().equals(other._notices, _notices));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, name, link, code, professor,
-      lectureRoom, const DeepCollectionEquality().hash(_activities));
+  int get hashCode => Object.hash(
+      runtimeType,
+      name,
+      link,
+      code,
+      professor,
+      lectureRoom,
+      const DeepCollectionEquality().hash(_weekActivities),
+      const DeepCollectionEquality().hash(_notices));
 
   /// Create a copy of Course
   /// with the given fields replaced by the non-null parameter values.
@@ -244,28 +294,38 @@ class _$CourseImpl extends _Course {
 
 abstract class _Course extends Course {
   const factory _Course(
-      {required final String name,
-      required final String link,
-      required final String code,
-      required final String professor,
-      required final String lectureRoom,
-      required final List<List<Activity>> activities}) = _$CourseImpl;
+      {@HiveField(0) required final String name,
+      @HiveField(1) required final String link,
+      @HiveField(2) required final String code,
+      @HiveField(3) required final String professor,
+      @HiveField(4) required final String lectureRoom,
+      @HiveField(5) final List<WeekActivities>? weekActivities,
+      @HiveField(6) final List<Notice>? notices}) = _$CourseImpl;
   const _Course._() : super._();
 
   factory _Course.fromJson(Map<String, dynamic> json) = _$CourseImpl.fromJson;
 
   @override
+  @HiveField(0)
   String get name;
   @override
+  @HiveField(1)
   String get link;
   @override
+  @HiveField(2)
   String get code;
   @override
+  @HiveField(3)
   String get professor;
   @override
+  @HiveField(4)
   String get lectureRoom;
   @override
-  List<List<Activity>> get activities;
+  @HiveField(5)
+  List<WeekActivities>? get weekActivities;
+  @override
+  @HiveField(6)
+  List<Notice>? get notices;
 
   /// Create a copy of Course
   /// with the given fields replaced by the non-null parameter values.

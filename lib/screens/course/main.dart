@@ -20,77 +20,21 @@ class CourseMainScreen extends StatefulWidget {
 }
 
 class _CourseMainScreenState extends State<CourseMainScreen> {
-  late final List<dynamic> trackedActivities;
-  late final List<dynamic> containers;
+  late final List<WeekActivities> trackedActivities;
+  late final List<Widget> containers;
 
-  final Course data = Course(
-    name: '사고와 표현',
-    link: 'https://example.com/course',
-    code: 'CRS001',
-    professor: '송명진',
-    lectureRoom: '301',
-    activities: [
-      [
-        Activity(
-          activityType: ActivityType.video,
-          name: '1주차 강의!',
-          link: 'https://example.com/video1',
-        ),
-        Activity(
-          activityType: ActivityType.assignment,
-          name: '1주차 과제!',
-          deadline: DateTime.now().add(const Duration(days: 3)),
-        ),
-        Activity(
-          activityType: ActivityType.board,
-          name: '1주차 게시판!',
-        ),
-      ],
-      [
-        Activity(
-          activityType: ActivityType.video,
-          name: '2주차 강의!',
-          link: 'https://example.com/video2',
-        ),
-        Activity(
-          activityType: ActivityType.assignment,
-          name: '2주차 과제!',
-          deadline: DateTime.now().add(const Duration(days: 5)),
-        ),
-        Activity(
-          activityType: ActivityType.survey,
-          name: '2주차 설문!',
-          link: 'https://example.com/survey2',
-        ),
-      ],
-      [
-        Activity(
-          activityType: ActivityType.video,
-          name: '3주차 강의!',
-          link: 'https://example.com/video3',
-        ),
-        Activity(
-          activityType: ActivityType.assignment,
-          name: '3주차 과제!',
-          deadline: DateTime.now().add(const Duration(days: 7)),
-        ),
-        Activity(
-          activityType: ActivityType.file,
-          name: '3주차 자료!',
-          link: 'https://example.com/file3',
-        ),
-      ],
-    ],
-  );
+  // 디버깅용 테스트 데이터
+  Course data = testData;
 
   @override
   void initState() {
     super.initState();
     trackedActivities = data.getLectureAndAssignmentActivities();
-    containers = trackedActivities.asMap().entries.expand((entry) {
-      final week = entry.key;
-      final weekActivities = entry.value;
-      return weekActivities.map((activity) => _buildActivityContainer(week: week + 1, activity: activity));
+    containers = trackedActivities.expand((weekActivities) {
+      final week = weekActivities.week;
+      return weekActivities.activities.map((activity) {
+        return _buildActivityContainer(week: week, activity: activity);
+      });
     }).toList();
   }
 
@@ -196,7 +140,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                                     )
                                   )
                                 ),
-                                SvgPicture.asset("lib/assets/svgs/course/course_book.svg")
+                                SvgPicture.asset("lib/assets/svgs/course/course.svg")
                               ],
                             ),
                           ),
@@ -229,9 +173,12 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                 child: ListView.builder(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
-                  itemCount: data.activities.length,
+                  itemCount: data.weekActivities?.length ?? 0,
                   itemBuilder: (context, index) {
-                    final List<Activity> weekActivities = data.activities[index];
+                    final WeekActivities? weekActivities = data.weekActivities?[index];
+                    if (weekActivities == null) {
+                      return SizedBox.shrink();
+                    }
 
                     return Container(
                       width: double.infinity,
@@ -267,9 +214,9 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                               body: Column(
                                 children: [
                                   Divider(height: 1, color: Color.fromARGB(255, 245, 246, 248)),
-                                  ...weekActivities.map((activity) {
+                                  ...weekActivities.activities.map((activity) {
                                     return ListTile(
-                                      leading: SvgPicture.asset("lib/assets/svgs/course/video.svg"),
+                                      leading: SvgPicture.asset("lib/assets/svgs/course/lecture.svg"),
                                       title: Text(
                                         activity.name!,
                                         style: TextStyle(
@@ -334,7 +281,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
             ),
             child: Row(
               children: [
-                SvgPicture.asset("lib/assets/svgs/course/video.svg"),
+                SvgPicture.asset("lib/assets/svgs/course/lecture.svg"),
                 Padding(
                   padding: EdgeInsets.only(left: 7),
                   child: Text(

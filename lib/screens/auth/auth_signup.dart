@@ -126,7 +126,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            SvgPicture.asset("lib/assets/svgs/auth/information.svg"),
+                            SvgPicture.asset("lib/assets/svgs/auth/question.svg"),
                             SizedBox(width: 5),
                             Text(
                               "정보가 다른가요?",

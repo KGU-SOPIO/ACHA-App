@@ -3,12 +3,182 @@
 part of 'activity.dart';
 
 // **************************************************************************
+// TypeAdapterGenerator
+// **************************************************************************
+
+class WeekActivitiesAdapter extends TypeAdapter<WeekActivities> {
+  @override
+  final int typeId = 2;
+
+  @override
+  WeekActivities read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return WeekActivities(
+      week: fields[0] as int,
+      activities: (fields[1] as List).cast<Activity>(),
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, WeekActivities obj) {
+    writer
+      ..writeByte(2)
+      ..writeByte(0)
+      ..write(obj.week)
+      ..writeByte(1)
+      ..write(obj.activities);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is WeekActivitiesAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class ActivityAdapter extends TypeAdapter<Activity> {
+  @override
+  final int typeId = 3;
+
+  @override
+  Activity read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return Activity(
+      type: fields[0] as ActivityType,
+      available: fields[1] as bool,
+      name: fields[2] as String?,
+      link: fields[3] as String?,
+      code: fields[4] as String?,
+      deadline: fields[5] as DateTime?,
+      lectureTime: fields[6] as String?,
+      gradingStatus: fields[7] as String?,
+      timeLeft: fields[8] as String?,
+      lastModified: fields[9] as String?,
+      description: fields[10] as String?,
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, Activity obj) {
+    writer
+      ..writeByte(11)
+      ..writeByte(0)
+      ..write(obj.type)
+      ..writeByte(1)
+      ..write(obj.available)
+      ..writeByte(2)
+      ..write(obj.name)
+      ..writeByte(3)
+      ..write(obj.link)
+      ..writeByte(4)
+      ..write(obj.code)
+      ..writeByte(5)
+      ..write(obj.deadline)
+      ..writeByte(6)
+      ..write(obj.lectureTime)
+      ..writeByte(7)
+      ..write(obj.gradingStatus)
+      ..writeByte(8)
+      ..write(obj.timeLeft)
+      ..writeByte(9)
+      ..write(obj.lastModified)
+      ..writeByte(10)
+      ..write(obj.description);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ActivityAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class ActivityTypeAdapter extends TypeAdapter<ActivityType> {
+  @override
+  final int typeId = 0;
+
+  @override
+  ActivityType read(BinaryReader reader) {
+    switch (reader.readByte()) {
+      case 0:
+        return ActivityType.file;
+      case 1:
+        return ActivityType.lecture;
+      case 2:
+        return ActivityType.assignment;
+      case 3:
+        return ActivityType.url;
+      default:
+        return ActivityType.file;
+    }
+  }
+
+  @override
+  void write(BinaryWriter writer, ActivityType obj) {
+    switch (obj) {
+      case ActivityType.file:
+        writer.writeByte(0);
+        break;
+      case ActivityType.lecture:
+        writer.writeByte(1);
+        break;
+      case ActivityType.assignment:
+        writer.writeByte(2);
+        break;
+      case ActivityType.url:
+        writer.writeByte(3);
+        break;
+    }
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ActivityTypeAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+// **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
+_$WeekActivitiesImpl _$$WeekActivitiesImplFromJson(Map<String, dynamic> json) =>
+    _$WeekActivitiesImpl(
+      week: (json['week'] as num).toInt(),
+      activities: (json['activities'] as List<dynamic>)
+          .map((e) => Activity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$WeekActivitiesImplToJson(
+        _$WeekActivitiesImpl instance) =>
+    <String, dynamic>{
+      'week': instance.week,
+      'activities': instance.activities,
+    };
+
 _$ActivityImpl _$$ActivityImplFromJson(Map<String, dynamic> json) =>
     _$ActivityImpl(
-      activityType: $enumDecode(_$ActivityTypeEnumMap, json['activityType']),
+      type: $enumDecode(_$ActivityTypeEnumMap, json['type']),
+      available: json['available'] as bool,
       name: json['name'] as String?,
       link: json['link'] as String?,
       code: json['code'] as String?,
@@ -20,12 +190,12 @@ _$ActivityImpl _$$ActivityImplFromJson(Map<String, dynamic> json) =>
       timeLeft: json['timeLeft'] as String?,
       lastModified: json['lastModified'] as String?,
       description: json['description'] as String?,
-      isAvailable: json['isAvailable'] as bool?,
     );
 
 Map<String, dynamic> _$$ActivityImplToJson(_$ActivityImpl instance) =>
     <String, dynamic>{
-      'activityType': _$ActivityTypeEnumMap[instance.activityType]!,
+      'type': _$ActivityTypeEnumMap[instance.type]!,
+      'available': instance.available,
       'name': instance.name,
       'link': instance.link,
       'code': instance.code,
@@ -35,15 +205,11 @@ Map<String, dynamic> _$$ActivityImplToJson(_$ActivityImpl instance) =>
       'timeLeft': instance.timeLeft,
       'lastModified': instance.lastModified,
       'description': instance.description,
-      'isAvailable': instance.isAvailable,
     };
 
 const _$ActivityTypeEnumMap = {
   ActivityType.file: 'file',
-  ActivityType.video: 'video',
+  ActivityType.lecture: 'lecture',
   ActivityType.assignment: 'assignment',
-  ActivityType.survey: 'survey',
-  ActivityType.board: 'board',
   ActivityType.url: 'url',
-  ActivityType.text: 'text',
 };

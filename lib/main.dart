@@ -17,6 +17,7 @@ void main() async {
 
   final GetIt getIt = GetIt.I;
   getIt.registerSingleton<SecureStorage>(SecureStorage());
+  getIt.registerSingleton<HiveHelper>(HiveHelper());
   getIt.registerSingleton(
     () {
       final Dio dio = Dio();
@@ -26,6 +27,8 @@ void main() async {
   );
   getIt.registerLazySingleton<AuthenticationRepository>(() => AuthenticationRepository());
   getIt.registerLazySingleton<ToastManager>(() => ToastManager());
-  
+
+  await getIt<HiveHelper>().init();
+
   runApp(const App());
 }
