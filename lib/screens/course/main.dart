@@ -114,53 +114,58 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                             ),
                             widget: SvgPicture.asset("lib/assets/svgs/course/right_arrow.svg")
                           ),
-                          Container(
-                            width: double.infinity,
-                            margin: EdgeInsets.only(bottom: 15),
-                            child: Row(
+                          if (containers.isNotEmpty)
+                            Column(
                               children: [
-                                Padding(
-                                  padding: EdgeInsets.only(right: 4),
-                                  child: RichText(
-                                    text: TextSpan(
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: Color.fromARGB(255, 30, 30, 30)
-                                      ),
-                                      children: [
-                                        TextSpan(
-                                          text: "주차별 ",
-                                          style: TextStyle(fontWeight: FontWeight.w700)
-                                        ),
-                                        TextSpan(
-                                          text: "학습 활동",
-                                          style: TextStyle(fontWeight: FontWeight.w500)
+                                Container(
+                                  width: double.infinity,
+                                  margin: EdgeInsets.only(bottom: 15),
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(right: 4),
+                                        child: RichText(
+                                          text: TextSpan(
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              color: Color.fromARGB(255, 30, 30, 30)
+                                            ),
+                                            children: [
+                                              TextSpan(
+                                                text: "주차별 ",
+                                                style: TextStyle(fontWeight: FontWeight.w700)
+                                              ),
+                                              TextSpan(
+                                                text: "학습 활동",
+                                                style: TextStyle(fontWeight: FontWeight.w500)
+                                              )
+                                            ]
+                                          )
                                         )
-                                      ]
-                                    )
-                                  )
+                                      ),
+                                      SvgPicture.asset("lib/assets/svgs/course/course.svg")
+                                    ],
+                                  ),
                                 ),
-                                SvgPicture.asset("lib/assets/svgs/course/course.svg")
-                              ],
-                            ),
-                          ),
-                          Container(
-                            width: double.infinity,
-                            height: 160,
-                            margin: EdgeInsets.only(bottom: 5),
-                            child: StackedListCarousel(
-                              items: containers,
-                              behavior: CarouselBehavior.loop,
-                              cardBuilder: (context, item, size) {
-                                return item;
-                              },
-                              outermostCardHeightFactor: 0.94,
-                              itemGapHeightFactor: 0.03,
-                              cardAspectRatio: MediaQuery.of(context).size.width / 160,
-                              outermostCardAnimationDuration: Duration(milliseconds: 200),
-                              autoSlideDuration: Duration(seconds: 5),
+                                Container(
+                                  width: double.infinity,
+                                  height: 160,
+                                  margin: EdgeInsets.only(bottom: 5),
+                                  child: StackedListCarousel(
+                                    items: containers,
+                                    behavior: CarouselBehavior.loop,
+                                    cardBuilder: (context, item, size) {
+                                      return item;
+                                    },
+                                    outermostCardHeightFactor: 0.94,
+                                    itemGapHeightFactor: 0.03,
+                                    cardAspectRatio: MediaQuery.of(context).size.width / 160,
+                                    outermostCardAnimationDuration: Duration(milliseconds: 200),
+                                    autoSlideDuration: Duration(seconds: 5),
+                                  )
+                                )
+                              ]
                             )
-                          )
                         ]
                       )
                     )
@@ -173,12 +178,9 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                 child: ListView.builder(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
-                  itemCount: data.weekActivities?.length ?? 0,
+                  itemCount: data.weekActivities.length,
                   itemBuilder: (context, index) {
-                    final WeekActivities? weekActivities = data.weekActivities?[index];
-                    if (weekActivities == null) {
-                      return SizedBox.shrink();
-                    }
+                    final WeekActivities weekActivities = data.weekActivities[index];
 
                     return Container(
                       width: double.infinity,

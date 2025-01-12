@@ -61,17 +61,18 @@ class ActivityAdapter extends TypeAdapter<Activity> {
       code: fields[4] as String?,
       deadline: fields[5] as DateTime?,
       lectureTime: fields[6] as String?,
-      gradingStatus: fields[7] as String?,
-      timeLeft: fields[8] as String?,
-      lastModified: fields[9] as String?,
-      description: fields[10] as String?,
+      attendance: fields[7] as bool?,
+      gradingStatus: fields[8] as String?,
+      timeLeft: fields[9] as String?,
+      lastModified: fields[10] as String?,
+      description: fields[11] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, Activity obj) {
     writer
-      ..writeByte(11)
+      ..writeByte(12)
       ..writeByte(0)
       ..write(obj.type)
       ..writeByte(1)
@@ -87,12 +88,14 @@ class ActivityAdapter extends TypeAdapter<Activity> {
       ..writeByte(6)
       ..write(obj.lectureTime)
       ..writeByte(7)
-      ..write(obj.gradingStatus)
+      ..write(obj.attendance)
       ..writeByte(8)
-      ..write(obj.timeLeft)
+      ..write(obj.gradingStatus)
       ..writeByte(9)
-      ..write(obj.lastModified)
+      ..write(obj.timeLeft)
       ..writeByte(10)
+      ..write(obj.lastModified)
+      ..writeByte(11)
       ..write(obj.description);
   }
 
@@ -186,6 +189,7 @@ _$ActivityImpl _$$ActivityImplFromJson(Map<String, dynamic> json) =>
           ? null
           : DateTime.parse(json['deadline'] as String),
       lectureTime: json['lectureTime'] as String?,
+      attendance: json['attendance'] as bool?,
       gradingStatus: json['gradingStatus'] as String?,
       timeLeft: json['timeLeft'] as String?,
       lastModified: json['lastModified'] as String?,
@@ -201,6 +205,7 @@ Map<String, dynamic> _$$ActivityImplToJson(_$ActivityImpl instance) =>
       'code': instance.code,
       'deadline': instance.deadline?.toIso8601String(),
       'lectureTime': instance.lectureTime,
+      'attendance': instance.attendance,
       'gradingStatus': instance.gradingStatus,
       'timeLeft': instance.timeLeft,
       'lastModified': instance.lastModified,

@@ -220,12 +220,14 @@ mixin _$Activity {
   @HiveField(6)
   String? get lectureTime => throw _privateConstructorUsedError;
   @HiveField(7)
-  String? get gradingStatus => throw _privateConstructorUsedError;
+  bool? get attendance => throw _privateConstructorUsedError;
   @HiveField(8)
-  String? get timeLeft => throw _privateConstructorUsedError;
+  String? get gradingStatus => throw _privateConstructorUsedError;
   @HiveField(9)
-  String? get lastModified => throw _privateConstructorUsedError;
+  String? get timeLeft => throw _privateConstructorUsedError;
   @HiveField(10)
+  String? get lastModified => throw _privateConstructorUsedError;
+  @HiveField(11)
   String? get description => throw _privateConstructorUsedError;
 
   /// Serializes this Activity to a JSON map.
@@ -251,10 +253,11 @@ abstract class $ActivityCopyWith<$Res> {
       @HiveField(4) String? code,
       @HiveField(5) DateTime? deadline,
       @HiveField(6) String? lectureTime,
-      @HiveField(7) String? gradingStatus,
-      @HiveField(8) String? timeLeft,
-      @HiveField(9) String? lastModified,
-      @HiveField(10) String? description});
+      @HiveField(7) bool? attendance,
+      @HiveField(8) String? gradingStatus,
+      @HiveField(9) String? timeLeft,
+      @HiveField(10) String? lastModified,
+      @HiveField(11) String? description});
 }
 
 /// @nodoc
@@ -279,6 +282,7 @@ class _$ActivityCopyWithImpl<$Res, $Val extends Activity>
     Object? code = freezed,
     Object? deadline = freezed,
     Object? lectureTime = freezed,
+    Object? attendance = freezed,
     Object? gradingStatus = freezed,
     Object? timeLeft = freezed,
     Object? lastModified = freezed,
@@ -313,6 +317,10 @@ class _$ActivityCopyWithImpl<$Res, $Val extends Activity>
           ? _value.lectureTime
           : lectureTime // ignore: cast_nullable_to_non_nullable
               as String?,
+      attendance: freezed == attendance
+          ? _value.attendance
+          : attendance // ignore: cast_nullable_to_non_nullable
+              as bool?,
       gradingStatus: freezed == gradingStatus
           ? _value.gradingStatus
           : gradingStatus // ignore: cast_nullable_to_non_nullable
@@ -349,10 +357,11 @@ abstract class _$$ActivityImplCopyWith<$Res>
       @HiveField(4) String? code,
       @HiveField(5) DateTime? deadline,
       @HiveField(6) String? lectureTime,
-      @HiveField(7) String? gradingStatus,
-      @HiveField(8) String? timeLeft,
-      @HiveField(9) String? lastModified,
-      @HiveField(10) String? description});
+      @HiveField(7) bool? attendance,
+      @HiveField(8) String? gradingStatus,
+      @HiveField(9) String? timeLeft,
+      @HiveField(10) String? lastModified,
+      @HiveField(11) String? description});
 }
 
 /// @nodoc
@@ -375,6 +384,7 @@ class __$$ActivityImplCopyWithImpl<$Res>
     Object? code = freezed,
     Object? deadline = freezed,
     Object? lectureTime = freezed,
+    Object? attendance = freezed,
     Object? gradingStatus = freezed,
     Object? timeLeft = freezed,
     Object? lastModified = freezed,
@@ -409,6 +419,10 @@ class __$$ActivityImplCopyWithImpl<$Res>
           ? _value.lectureTime
           : lectureTime // ignore: cast_nullable_to_non_nullable
               as String?,
+      attendance: freezed == attendance
+          ? _value.attendance
+          : attendance // ignore: cast_nullable_to_non_nullable
+              as bool?,
       gradingStatus: freezed == gradingStatus
           ? _value.gradingStatus
           : gradingStatus // ignore: cast_nullable_to_non_nullable
@@ -440,10 +454,11 @@ class _$ActivityImpl implements _Activity {
       @HiveField(4) this.code,
       @HiveField(5) this.deadline,
       @HiveField(6) this.lectureTime,
-      @HiveField(7) this.gradingStatus,
-      @HiveField(8) this.timeLeft,
-      @HiveField(9) this.lastModified,
-      @HiveField(10) this.description});
+      @HiveField(7) this.attendance,
+      @HiveField(8) this.gradingStatus,
+      @HiveField(9) this.timeLeft,
+      @HiveField(10) this.lastModified,
+      @HiveField(11) this.description});
 
   factory _$ActivityImpl.fromJson(Map<String, dynamic> json) =>
       _$$ActivityImplFromJson(json);
@@ -471,20 +486,23 @@ class _$ActivityImpl implements _Activity {
   final String? lectureTime;
   @override
   @HiveField(7)
-  final String? gradingStatus;
+  final bool? attendance;
   @override
   @HiveField(8)
-  final String? timeLeft;
+  final String? gradingStatus;
   @override
   @HiveField(9)
-  final String? lastModified;
+  final String? timeLeft;
   @override
   @HiveField(10)
+  final String? lastModified;
+  @override
+  @HiveField(11)
   final String? description;
 
   @override
   String toString() {
-    return 'Activity(type: $type, available: $available, name: $name, link: $link, code: $code, deadline: $deadline, lectureTime: $lectureTime, gradingStatus: $gradingStatus, timeLeft: $timeLeft, lastModified: $lastModified, description: $description)';
+    return 'Activity(type: $type, available: $available, name: $name, link: $link, code: $code, deadline: $deadline, lectureTime: $lectureTime, attendance: $attendance, gradingStatus: $gradingStatus, timeLeft: $timeLeft, lastModified: $lastModified, description: $description)';
   }
 
   @override
@@ -502,6 +520,8 @@ class _$ActivityImpl implements _Activity {
                 other.deadline == deadline) &&
             (identical(other.lectureTime, lectureTime) ||
                 other.lectureTime == lectureTime) &&
+            (identical(other.attendance, attendance) ||
+                other.attendance == attendance) &&
             (identical(other.gradingStatus, gradingStatus) ||
                 other.gradingStatus == gradingStatus) &&
             (identical(other.timeLeft, timeLeft) ||
@@ -523,6 +543,7 @@ class _$ActivityImpl implements _Activity {
       code,
       deadline,
       lectureTime,
+      attendance,
       gradingStatus,
       timeLeft,
       lastModified,
@@ -553,10 +574,11 @@ abstract class _Activity implements Activity {
       @HiveField(4) final String? code,
       @HiveField(5) final DateTime? deadline,
       @HiveField(6) final String? lectureTime,
-      @HiveField(7) final String? gradingStatus,
-      @HiveField(8) final String? timeLeft,
-      @HiveField(9) final String? lastModified,
-      @HiveField(10) final String? description}) = _$ActivityImpl;
+      @HiveField(7) final bool? attendance,
+      @HiveField(8) final String? gradingStatus,
+      @HiveField(9) final String? timeLeft,
+      @HiveField(10) final String? lastModified,
+      @HiveField(11) final String? description}) = _$ActivityImpl;
 
   factory _Activity.fromJson(Map<String, dynamic> json) =
       _$ActivityImpl.fromJson;
@@ -584,15 +606,18 @@ abstract class _Activity implements Activity {
   String? get lectureTime;
   @override
   @HiveField(7)
-  String? get gradingStatus;
+  bool? get attendance;
   @override
   @HiveField(8)
-  String? get timeLeft;
+  String? get gradingStatus;
   @override
   @HiveField(9)
-  String? get lastModified;
+  String? get timeLeft;
   @override
   @HiveField(10)
+  String? get lastModified;
+  @override
+  @HiveField(11)
   String? get description;
 
   /// Create a copy of Activity

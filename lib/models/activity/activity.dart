@@ -30,10 +30,11 @@ class Activity with _$Activity {
     @HiveField(4) String? code,
     @HiveField(5) DateTime? deadline,
     @HiveField(6) String? lectureTime,
-    @HiveField(7) String? gradingStatus,
-    @HiveField(8) String? timeLeft,
-    @HiveField(9) String? lastModified,
-    @HiveField(10) String? description
+    @HiveField(7) bool? attendance,
+    @HiveField(8) String? gradingStatus,
+    @HiveField(9) String? timeLeft,
+    @HiveField(10) String? lastModified,
+    @HiveField(11) String? description
   }) = _Activity;
 
   factory Activity.fromJson(Map<String, dynamic> json) => _$ActivityFromJson(json);

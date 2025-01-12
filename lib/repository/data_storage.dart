@@ -2,12 +2,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:acha/models/index.dart';
 
-class HiveHelper {
+class DataStorage {
   static const String courseBoxKey = 'courses';
-  static const String weekActivitiesBoxKey = 'weekActivities';
-  static const String activityBoxKey = 'activities';
-  static const String noticeBoxKey = 'notices';
-  static const String fileBoxKey = 'files';
 
   Future<void> init() async {
     await Hive.initFlutter();
@@ -20,15 +16,6 @@ class HiveHelper {
     Hive.registerAdapter(FileAdapter());
 
     await Hive.openBox<Course>(courseBoxKey);
-    await Hive.openBox<WeekActivities>(weekActivitiesBoxKey);
-    await Hive.openBox<Activity>(activityBoxKey);
-    await Hive.openBox<Notice>(noticeBoxKey);
-    await Hive.openBox<File>(fileBoxKey);
-  }
-
-  List<T> getAll<T>(String boxName) {
-    final box = Hive.box<T>(boxName);
-    return box.values.toList();
   }
 
   Future<void> saveCourses(List<Course> courses) async {
@@ -73,7 +60,7 @@ class HiveHelper {
     final box = Hive.box<Course>(courseBoxKey);
     final course = box.get(courseCode);
     if (course?.weekActivities != null) {
-      return course!.weekActivities!.map((weekActivities) => weekActivities.activities).toList();
+      return course!.weekActivities.map((weekActivities) => weekActivities.activities).toList();
     }
     return [];
   }
@@ -98,6 +85,36 @@ class HiveHelper {
     } else {
       throw Exception('강좌를 찾을 수 없습니다.');
     }
+  }
+
+  Future<void> updateAssignment(String courseCode, String activityCode, Assignment assignment) async {
+    final box = Hive.box<Course>(courseBoxKey);
+    final course = box.get(courseCode);
+    if (course == null) {
+      throw Exception('강좌를 찾을 수 없습니다.');
+    }
+
+    final updatedWeekActivities = course.weekActivities.map((weekActivities) {
+      final updatedActivities = weekActivities.activities.map((activity) {
+        if (activity.type == ActivityType.assignment && activity.code == activityCode) {
+          return activity.copyWith(
+            available: assignment.available,
+            name: assignment.title,
+            description: assignment.description,
+            deadline: assignment.deadline,
+            gradingStatus: assignment.gradingStatus,
+            timeLeft: assignment.timeLeft,
+            lastModified: assignment.lastModified,
+          );
+        }
+        return activity;
+      }).toList();
+
+      return weekActivities.copyWith(activities: updatedActivities);
+    }).toList();
+
+    final updatedCourse = course.copyWith(weekActivities: updatedWeekActivities);
+    await box.put(courseCode, updatedCourse);
   }
 
   Future<void> saveNotices(String courseCode, List<Notice> notices) async {

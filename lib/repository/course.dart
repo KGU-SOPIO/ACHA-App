@@ -8,7 +8,7 @@ import 'package:acha/constants/apis/course.dart';
 
 class CourseRepository {
   final Dio _dio = GetIt.I<Dio>();
-  final HiveHelper _hiveHelper = GetIt.I<HiveHelper>();
+  final DataStorage _dataStorage = GetIt.I<DataStorage>();
 
   Future<List<Course>> fetchCourses() async {
     try {
@@ -16,7 +16,7 @@ class CourseRepository {
       final List<dynamic> data = response.data;
 
       final List<Course> courses = data.map((json) => Course.fromJson(json)).toList();
-      await _hiveHelper.saveCourses(courses);
+      await _dataStorage.saveCourses(courses);
 
       return courses;
     } catch (e) {
@@ -33,9 +33,23 @@ class CourseRepository {
         final List<dynamic> weekData = week;
         return weekData.map((json) => Activity.fromJson(json)).toList();
       }).toList();
-      await _hiveHelper.updateActivities(courseCode, activities);
+      await _dataStorage.updateActivities(courseCode, activities);
 
       return activities;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<Assignment> fetchAssignment(String courseCode, String activityCode) async {
+    try {
+      final response = await _dio.get(CourseApiEndpoints.assignmentDetail(activityCode));
+      final Map<String, dynamic> data = response.data;
+
+      final Assignment assignment = Assignment.fromJson(data);
+      await _dataStorage.updateAssignment(courseCode, activityCode, assignment);
+
+      return assignment;
     } catch (e) {
       rethrow;
     }
@@ -47,7 +61,7 @@ class CourseRepository {
       final List<dynamic> data = response.data;
 
       final List<Notice> notices = data.map((json) => Notice.fromJson(json)).toList();
-      await _hiveHelper.updateNotices(courseCode, notices);
+      await _dataStorage.updateNotices(courseCode, notices);
 
       return notices;
     } catch (e) {
