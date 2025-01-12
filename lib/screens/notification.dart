@@ -24,7 +24,7 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
   late TabController _tabController;
 
   // 디버깅용 테스트 데이터
-  Course data = testData;
+  Course data = dummyData.first;
 
   @override
   void initState() {

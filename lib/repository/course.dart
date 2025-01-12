@@ -4,6 +4,8 @@ import 'package:get_it/get_it.dart';
 import 'package:acha/models/index.dart';
 import 'package:acha/repository/index.dart';
 
+import 'package:acha/widgets/toast/toast_manager.dart';
+
 import 'package:acha/constants/apis/course.dart';
 
 class CourseRepository {
@@ -19,8 +21,14 @@ class CourseRepository {
       await _dataStorage.saveCourses(courses);
 
       return courses;
-    } catch (e) {
-      rethrow;
+    } on DioException catch (e) {
+      GetIt.I<ToastManager>().error(message: e.error as String);
+      final storedCourses = await _dataStorage.readCourses();
+      if (storedCourses.isNotEmpty) {
+        return storedCourses;
+      } else {
+        throw Exception();
+      }
     }
   }
 

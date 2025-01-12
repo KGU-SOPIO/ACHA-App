@@ -5,4 +5,4 @@ export 'package:acha/models/activity/activity.dart';
 export 'package:acha/models/assignment/assignment.dart';
 export 'package:acha/models/notice/notice.dart';
 
-export 'package:acha/models/test_data.dart';
+export 'package:acha/models/dummy_data.dart';

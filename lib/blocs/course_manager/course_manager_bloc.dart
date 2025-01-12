@@ -20,7 +20,6 @@ class CourseManagerBloc extends Bloc<CourseManagerEvent, CourseManagerState> {
       emit(CourseManagerState.loaded(courses: courses));
     } catch (e) {
       emit(CourseManagerState.error(message: e.toString()));
-      rethrow;
     }
   }
 

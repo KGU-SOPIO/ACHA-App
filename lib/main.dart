@@ -7,7 +7,9 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:acha/app.dart';
 
 import 'package:acha/repository/index.dart';
-import 'package:acha/network/interceptor/token.dart';
+
+import 'package:acha/network/interceptor/index.dart';
+import 'package:acha/network/util/connectivity_checker.dart';
 
 import 'package:acha/widgets/toast/toast_manager.dart';
 
@@ -18,10 +20,12 @@ void main() async {
   final GetIt getIt = GetIt.I;
   getIt.registerSingleton<SecureStorage>(SecureStorage());
   getIt.registerSingleton<DataStorage>(DataStorage());
+  getIt.registerSingleton<ConnectivityChecker>(ConnectivityChecker());
   getIt.registerSingleton(
     () {
       final Dio dio = Dio();
       dio.interceptors.add(TokenInterceptor());
+      dio.interceptors.add(ErrorInterceptor());
       return dio;
     }()
   );

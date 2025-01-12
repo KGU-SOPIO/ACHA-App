@@ -12,10 +12,7 @@ part 'authentication_event.dart';
 part 'authentication_state.dart';
 
 class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
-  AuthenticationBloc({
-    required this.authenticationRepository,
-    required this.userRepository
-  }) : super(const AuthenticationState.unknown()) {
+  AuthenticationBloc({required this.authenticationRepository, required this.userRepository}) : super(const AuthenticationState.unknown()) {
     on<_AuthentacationStatusChanged>(_onAuthenticationStatusChanged);
     on<_AuthenticationLogoutRequested>(_onAuthenticationLogoutRequested);
 

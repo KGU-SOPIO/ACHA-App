@@ -3,21 +3,29 @@ import 'package:get_it/get_it.dart';
 
 import 'package:acha/repository/index.dart';
 
+import 'package:acha/network/util/connectivity_checker.dart';
+
 import 'package:acha/constants/apis/authentication.dart';
 
 class TokenInterceptor extends Interceptor {
   final Dio _dio = Dio();
   final SecureStorage _secureStorage = GetIt.I<SecureStorage>();
+  final ConnectivityChecker _connectivityChecker = GetIt.I<ConnectivityChecker>();
 
   /// 요청 시 AccessToken을 검증하고, 만료 시 재발급합니다.
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
     try {
+      bool connected = await _connectivityChecker.isConnected();
+      if (!connected) {
+        return _rejectRequest(handler: handler, options: options, message: '인터넷 연결을 확인해 주세요');
+      }
+
       String? accessToken = await _secureStorage.isAccessTokenExpiredOrReturn();
       if (accessToken == null) {
         String? refreshToken = await _secureStorage.isRefreshTokenExpiredOrReturn();
         if (refreshToken == null) {
-          return _rejectRequest(handler: handler, options: options, message: "인증 상태가 만료되었어요\n로그인을 다시 진행해 주세요");
+          return _rejectRequest(handler: handler, options: options, message: '인증이 만료되었어요\n로그인을 다시 진행해 주세요');
         }
 
         try {
@@ -40,17 +48,17 @@ class TokenInterceptor extends Interceptor {
   Future<void> _refreshAccessTokens({required String refreshToken}) async {
     final response = await _dio.post(
       AuthenticationApiEndpoints.refresh,
-      data: {"refreshToken": refreshToken},
-      options: Options(headers: {"Content-Type": "application/json"})
+      data: {'refreshToken': refreshToken},
+      options: Options(headers: {'Content-Type': 'application/json'})
     );
 
-    final newAccessToken = response.data.get("accessToken");
-    final newRefreshToken = response.data.get("refreshToken");
+    final newAccessToken = response.data['accessToken'];
+    final newRefreshToken = response.data['refreshToken'];
 
     if (newAccessToken == null && newRefreshToken == null) {
       throw DioException(
         requestOptions: RequestOptions(path: AuthenticationApiEndpoints.refresh),
-        error: "서비스 이용을 위한 인증에 실패했어요",
+        error: '서비스 이용을 위한 인증에 실패했어요',
         type: DioExceptionType.badResponse
       );
     }

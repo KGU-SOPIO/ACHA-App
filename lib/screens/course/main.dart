@@ -24,7 +24,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
   late final List<Widget> containers;
 
   // 디버깅용 테스트 데이터
-  Course data = testData;
+  Course data = dummyData.first;
 
   @override
   void initState() {
