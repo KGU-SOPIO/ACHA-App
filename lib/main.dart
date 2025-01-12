@@ -26,6 +26,7 @@ void main() async {
     }()
   );
   getIt.registerLazySingleton<AuthenticationRepository>(() => AuthenticationRepository());
+  getIt.registerLazySingleton<CourseRepository>(() => CourseRepository());
   getIt.registerLazySingleton<ToastManager>(() => ToastManager());
 
   await getIt<DataStorage>().init();

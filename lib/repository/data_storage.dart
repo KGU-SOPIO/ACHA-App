@@ -65,22 +65,14 @@ class DataStorage {
     return [];
   }
 
-  Future<void> updateActivities(String courseCode, List<List<Activity>> activities) async {
+  Future<void> updateActivities(String courseCode, List<WeekActivities> weekActivities) async {
     final box = Hive.box<Course>(courseBoxKey);
     final course = box.get(courseCode);
     if (course != null) {
-      final updatedActivities = activities.asMap().entries.map((entry) {
-        final week = entry.key + 1;
-        final activities = entry.value;
-        return WeekActivities(
-          week: week,
-          activities: activities
-        );
-      }).toList();
-
       final updatedCourse = course.copyWith(
-        weekActivities: updatedActivities,
+        weekActivities: weekActivities
       );
+      
       await box.put(courseCode, updatedCourse);
     } else {
       throw Exception('강좌를 찾을 수 없습니다.');

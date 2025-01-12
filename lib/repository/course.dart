@@ -24,18 +24,24 @@ class CourseRepository {
     }
   }
 
-  Future<List<List<Activity>>> fetchActivities(String courseCode) async {
+  Future<List<WeekActivities>> fetchActivities(String courseCode) async {
     try {
       final response = await _dio.get(CourseApiEndpoints.activityDetail(courseCode));
       final List<dynamic> data = response.data;
 
-      final List<List<Activity>> activities = data.map((week) {
-        final List<dynamic> weekData = week;
-        return weekData.map((json) => Activity.fromJson(json)).toList();
-      }).toList();
-      await _dataStorage.updateActivities(courseCode, activities);
+      final List<WeekActivities> weekActivities = data.asMap().entries.map((entry) {
+        final int week = entry.key + 1;
+        final List<dynamic> activitiesData = entry.value as List<dynamic>;
+        final List<Activity> activities = activitiesData.map((activityJson) => Activity.fromJson(activityJson as Map<String, dynamic>)).toList();
 
-      return activities;
+        return WeekActivities(
+          week: week,
+          activities: activities,
+        );
+      }).toList();
+      await _dataStorage.updateActivities(courseCode, weekActivities);
+
+      return weekActivities;
     } catch (e) {
       rethrow;
     }

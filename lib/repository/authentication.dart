@@ -167,7 +167,6 @@ class AuthenticationRepository {
         );
       }
     } catch (e) {
-      debugPrint("AccessToken 재발급에 실패했습니다. Error: $e");
       throw Exception("서비스 이용을 위한 인증에 실패했어요");
     }
   }
