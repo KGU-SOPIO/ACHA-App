@@ -78,18 +78,18 @@ class SliderWidget extends StatelessWidget {
                       ),
                       children: [
                         TextSpan(
-                          text: "나의 ",
+                          text: '나의 ',
                           style: TextStyle(fontWeight: FontWeight.w500),
                         ),
                         TextSpan(
-                          text: "우선강의",
+                          text: '우선강의',
                           style: TextStyle(fontWeight: FontWeight.w700),
                         ),
                       ],
                     ),
                   ),
                   const SizedBox(width: 10),
-                  SvgPicture.asset("lib/assets/svgs/modal/main/play.svg"),
+                  SvgPicture.asset('lib/assets/svgs/modal/main/play.svg'),
                 ],
               ),
               GestureDetector(
@@ -99,7 +99,7 @@ class SliderWidget extends StatelessWidget {
                     const Padding(
                       padding: EdgeInsets.only(right: 6),
                       child: Text(
-                        "전체보기",
+                        '전체보기',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
@@ -107,7 +107,7 @@ class SliderWidget extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SvgPicture.asset("lib/assets/svgs/modal/main/right_arrow.svg"),
+                    SvgPicture.asset('lib/assets/svgs/modal/main/right_arrow.svg'),
                   ],
                 ),
               ),
@@ -117,21 +117,21 @@ class SliderWidget extends StatelessWidget {
           DDayContainer(deadline: DateTime.now()),
           SizedBox(height: 13),
           const ActivityContainer(
-            title: "1주차 강의",
-            course: "사고와 표현",
-            deadline: "오후 09:00",
+            title: '1주차 강의',
+            course: '사고와 표현',
+            deadline: '오후 09:00',
             margin: EdgeInsets.only(bottom: 13)
           ),
           const ActivityContainer(
-            title: "1주차 강의",
-            course: "사고와 표현",
-            deadline: "오후 09:00",
+            title: '1주차 강의',
+            course: '사고와 표현',
+            deadline: '오후 09:00',
             margin: EdgeInsets.only(bottom: 13)
           ),
           const ActivityContainer(
-            title: "1주차 강의",
-            course: "사고와 표현",
-            deadline: "오후 09:00",
+            title: '1주차 강의',
+            course: '사고와 표현',
+            deadline: '오후 09:00',
             margin: EdgeInsets.only(bottom: 13)
           )
         ]
@@ -159,18 +159,18 @@ class SliderWidget extends StatelessWidget {
                       ),
                       children: [
                         TextSpan(
-                          text: "나의 ",
+                          text: '나의 ',
                           style: TextStyle(fontWeight: FontWeight.w500),
                         ),
                         TextSpan(
-                          text: "우선과제",
+                          text: '우선과제',
                           style: TextStyle(fontWeight: FontWeight.w700),
                         ),
                       ],
                     ),
                   ),
                   const SizedBox(width: 10),
-                  SvgPicture.asset("lib/assets/svgs/modal/main/list.svg"),
+                  SvgPicture.asset('lib/assets/svgs/modal/main/list.svg'),
                 ],
               ),
               GestureDetector(
@@ -180,7 +180,7 @@ class SliderWidget extends StatelessWidget {
                     const Padding(
                       padding: EdgeInsets.only(right: 6),
                       child: Text(
-                        "전체보기",
+                        '전체보기',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
@@ -188,7 +188,7 @@ class SliderWidget extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SvgPicture.asset("lib/assets/svgs/modal/main/right_arrow.svg"),
+                    SvgPicture.asset('lib/assets/svgs/modal/main/right_arrow.svg'),
                   ],
                 ),
               ),
@@ -198,21 +198,21 @@ class SliderWidget extends StatelessWidget {
           DDayContainer(deadline: DateTime.now()),
           SizedBox(height: 13),
           const ActivityContainer(
-            title: "1주차 강의",
-            course: "사고와 표현",
-            deadline: "오후 09:00",
+            title: '1주차 강의',
+            course: '사고와 표현',
+            deadline: '오후 09:00',
             margin: EdgeInsets.only(bottom: 13)
           ),
           const ActivityContainer(
-            title: "1주차 강의",
-            course: "사고와 표현",
-            deadline: "오후 09:00",
+            title: '1주차 강의',
+            course: '사고와 표현',
+            deadline: '오후 09:00',
             margin: EdgeInsets.only(bottom: 13)
           ),
           const ActivityContainer(
-            title: "1주차 강의",
-            course: "사고와 표현",
-            deadline: "오후 09:00",
+            title: '1주차 강의',
+            course: '사고와 표현',
+            deadline: '오후 09:00',
             margin: EdgeInsets.only(bottom: 13)
           )
         ]

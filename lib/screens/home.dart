@@ -91,24 +91,24 @@ class _HomeScreenState extends State<HomeScreen> {
                 selectedIndex: state.selectedIndex,
                 destinations: [
                   NavigationDestination(
-                    selectedIcon: SvgPicture.asset("lib/assets/svgs/navigation/home.svg"),
-                    icon: SvgPicture.asset("lib/assets/svgs/navigation/home_outline.svg"),
-                    label: "홈",
+                    selectedIcon: SvgPicture.asset('lib/assets/svgs/navigation/home.svg'),
+                    icon: SvgPicture.asset('lib/assets/svgs/navigation/home_outline.svg'),
+                    label: '홈',
                   ),
                   NavigationDestination(
-                    selectedIcon: SvgPicture.asset("lib/assets/svgs/navigation/course.svg"),
-                    icon: SvgPicture.asset("lib/assets/svgs/navigation/course_outline.svg"),
-                    label: "강좌",
+                    selectedIcon: SvgPicture.asset('lib/assets/svgs/navigation/course.svg'),
+                    icon: SvgPicture.asset('lib/assets/svgs/navigation/course_outline.svg'),
+                    label: '강좌',
                   ),
                   NavigationDestination(
-                    selectedIcon: SvgPicture.asset("lib/assets/svgs/navigation/notification.svg"),
-                    icon: SvgPicture.asset("lib/assets/svgs/navigation/notification_outline.svg"),
-                    label: "알림",
+                    selectedIcon: SvgPicture.asset('lib/assets/svgs/navigation/notification.svg'),
+                    icon: SvgPicture.asset('lib/assets/svgs/navigation/notification_outline.svg'),
+                    label: '알림',
                   ),
                   NavigationDestination(
-                    selectedIcon: SvgPicture.asset("lib/assets/svgs/navigation/user.svg"),
-                    icon: SvgPicture.asset("lib/assets/svgs/navigation/user_outline.svg"),
-                    label: "내 정보",
+                    selectedIcon: SvgPicture.asset('lib/assets/svgs/navigation/user.svg'),
+                    icon: SvgPicture.asset('lib/assets/svgs/navigation/user_outline.svg'),
+                    label: '내 정보',
                   )
                 ],
               )

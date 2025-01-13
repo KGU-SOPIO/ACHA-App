@@ -37,7 +37,7 @@ class NotificationTabbar extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    "전체",
+                    '전체',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
@@ -49,7 +49,7 @@ class NotificationTabbar extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    "강의",
+                    '강의',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
@@ -61,7 +61,7 @@ class NotificationTabbar extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    "과제",
+                    '과제',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,

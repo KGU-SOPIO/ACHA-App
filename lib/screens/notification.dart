@@ -72,7 +72,7 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
     if (groupedActivities.isEmpty) {
       return Center(
         child: Text(
-          "다 끝내셨군요! 고생하셨어요"
+          '다 끝내셨군요! 고생하셨어요'
         )
       );
     }

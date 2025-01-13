@@ -62,22 +62,22 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
               ),
               children: [
                 TextSpan(
-                  text: "학생 인증",
+                  text: '학생 인증',
                   style: TextStyle(fontWeight: FontWeight.w700)
                 ),
                 TextSpan(
-                  text: "을 위해\n경기대학교에 로그인합니다",
+                  text: '을 위해\n경기대학교에 로그인합니다',
                   style: TextStyle(fontWeight: FontWeight.w500, height: 1.7)
                 )
               ]
             )
           ),
-          Image.asset("lib/assets/images/modal/terms/school.png", width: 60)
+          Image.asset('lib/assets/images/modal/terms/school.png', width: 60)
         ]
       ),
       url: TermsAndConditionsUrl.consentToUseStudentInformation,
-      termsButtonText: "개인정보 활용 동의",
-      agreeButtonText: "동의하고 학생 인증",
+      termsButtonText: '개인정보 활용 동의',
+      agreeButtonText: '동의하고 학생 인증',
       onAgree: () => Navigator.push(context, AuthProcessScreen.route(context))
     ).show(context);
   }
@@ -99,7 +99,7 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
           automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
           title: const Text(
-            "시작하기",
+            '시작하기',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500
@@ -128,11 +128,11 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
                             ),
                             children: [
                               TextSpan(
-                                text: "비밀번호를 ",
+                                text: '비밀번호를 ',
                                 style: TextStyle(fontWeight: FontWeight.w700)
                               ),
                               TextSpan(
-                                text: "입력해 주세요",
+                                text: '입력해 주세요',
                                 style: TextStyle(fontWeight: FontWeight.w400)
                               )
                             ]
@@ -144,7 +144,7 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
                         obscureText: true,
                         controller: _textEditingController,
                         decoration: InputDecoration(
-                          hintText: "비밀번호",
+                          hintText: '비밀번호',
                           hintStyle: const TextStyle(
                             color: Color.fromARGB(255, 186, 186, 186),
                             fontSize: 16,
@@ -185,7 +185,7 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
                         _showTermsModal();
                       } : null,
                       child: const Text(
-                        "다음",
+                        '다음',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
@@ -201,7 +201,7 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
                         ),
                         onPressed: () => Navigator.pop(context),
                         child: const Text(
-                          "이전",
+                          '이전',
                           style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w500,

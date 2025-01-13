@@ -10,11 +10,11 @@ extension DateTimeExtensions on DateTime {
     final difference = this.difference(DateTime(now.year, now.month, now.day)).inDays;
 
     if (difference == 0) {
-      return "D - Day";
+      return 'D - Day';
     } else if (difference > 0) {
-      return "D - $difference";
+      return 'D - $difference';
     } else {
-      return "D + ${difference.abs()}";
+      return 'D + ${difference.abs()}';
     }
   }
 

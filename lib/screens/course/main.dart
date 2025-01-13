@@ -77,7 +77,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                                 Padding(
                                   padding: EdgeInsets.only(bottom: 5),
                                   child: Text(
-                                    "송명진 교수님",
+                                    '송명진 교수님',
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w400,
@@ -86,7 +86,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                                   )
                                 ),
                                 Text(
-                                  "사고와 표현",
+                                  '사고와 표현',
                                   style: TextStyle(
                                     fontSize: 24,
                                     fontWeight: FontWeight.w700,
@@ -106,13 +106,13 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                               color: Color.fromARGB(255, 0, 102, 255)
                             ),
                             borderRadius: 20,
-                            text: "공지사항",
+                            text: '공지사항',
                             textStyle: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
                               color: Color.fromARGB(255, 0, 102, 255)
                             ),
-                            widget: SvgPicture.asset("lib/assets/svgs/course/right_arrow.svg")
+                            widget: SvgPicture.asset('lib/assets/svgs/course/right_arrow.svg')
                           ),
                           if (containers.isNotEmpty)
                             Column(
@@ -132,18 +132,18 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                                             ),
                                             children: [
                                               TextSpan(
-                                                text: "주차별 ",
+                                                text: '주차별 ',
                                                 style: TextStyle(fontWeight: FontWeight.w700)
                                               ),
                                               TextSpan(
-                                                text: "학습 활동",
+                                                text: '학습 활동',
                                                 style: TextStyle(fontWeight: FontWeight.w500)
                                               )
                                             ]
                                           )
                                         )
                                       ),
-                                      SvgPicture.asset("lib/assets/svgs/course/course.svg")
+                                      SvgPicture.asset('lib/assets/svgs/course/course.svg')
                                     ],
                                   ),
                                 ),
@@ -193,7 +193,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                           children: [
                             ExpansionPanelRadio(
                               canTapOnHeader: true,
-                              value: "$index",
+                              value: '$index',
                               headerBuilder:(context, isExpanded) {
                                 return Padding(
                                   padding: EdgeInsets.symmetric(vertical: 7),
@@ -203,7 +203,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                                       child: Icon(Icons.circle, size: 15, color: Color.fromARGB(255, 255, 78, 107))
                                     ),
                                     title: Text(
-                                      "${index + 1}주차",
+                                      '${index + 1}주차',
                                       style: const TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w500,
@@ -218,7 +218,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                                   Divider(height: 1, color: Color.fromARGB(255, 245, 246, 248)),
                                   ...weekActivities.activities.map((activity) {
                                     return ListTile(
-                                      leading: SvgPicture.asset("lib/assets/svgs/course/lecture.svg"),
+                                      leading: SvgPicture.asset('lib/assets/svgs/course/lecture.svg'),
                                       title: Text(
                                         activity.name!,
                                         style: TextStyle(
@@ -263,7 +263,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
           Padding(
             padding: EdgeInsets.only(bottom: 12),
             child: Text(
-              "$week주차",
+              '$week주차',
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w700,
@@ -283,7 +283,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
             ),
             child: Row(
               children: [
-                SvgPicture.asset("lib/assets/svgs/course/lecture.svg"),
+                SvgPicture.asset('lib/assets/svgs/course/lecture.svg'),
                 Padding(
                   padding: EdgeInsets.only(left: 7),
                   child: Text(

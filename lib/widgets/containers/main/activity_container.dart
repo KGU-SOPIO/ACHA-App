@@ -61,7 +61,7 @@ class ActivityContainer extends StatelessWidget {
                   )
                 ),
                 TextSpan(
-                  text: "까지",
+                  text: '까지',
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500

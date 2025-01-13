@@ -56,23 +56,23 @@ class _MyPageScreenState extends State<MyPageScreen> {
                         color: Color.fromARGB(255, 228, 232, 241)
                       ),
                       borderRadius: 25,
-                      text: "SOPIO",
+                      text: 'SOPIO',
                       textStyle: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                         color: Color.fromARGB(255, 30, 30, 30)
                       ),
-                      widget: SvgPicture.asset("lib/assets/svgs/mypage/right_arrow.svg")
+                      widget: SvgPicture.asset('lib/assets/svgs/mypage/right_arrow.svg')
                     ),
                     ContainerButton(
                       height: 56,
                       margin: EdgeInsets.only(bottom: 18),
                       onPressed: () {
                         GetIt.I<AuthenticationRepository>().logout();
-                        GetIt.I<ToastManager>().show(message: "정상적으로 로그아웃 되었어요", svgPath: "lib/assets/svgs/toast/logout.svg");
+                        GetIt.I<ToastManager>().show(message: '정상적으로 로그아웃 되었어요', svgPath: 'lib/assets/svgs/toast/logout.svg');
                       },
                       backgroundColor: const Color.fromARGB(255, 237, 239, 242),
-                      text: "로그아웃",
+                      text: '로그아웃',
                       textStyle: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w700,
@@ -84,13 +84,13 @@ class _MyPageScreenState extends State<MyPageScreen> {
                       margin: EdgeInsets.only(bottom: 54),
                       onPressed: () {
                         GetIt.I<AuthenticationRepository>().logout();
-                        GetIt.I<ToastManager>().success(message: "서비스를 탈퇴했어요");
+                        GetIt.I<ToastManager>().success(message: '서비스를 탈퇴했어요');
                       },
                       backgroundColor: const Color.fromARGB(25, 255, 78 , 107),
                       border: BorderSide(
                         color: Color.fromARGB(255, 255, 78, 107)
                       ),
-                      text: "탈퇴",
+                      text: '탈퇴',
                       textStyle: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w700,

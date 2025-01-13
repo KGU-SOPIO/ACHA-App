@@ -29,7 +29,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
 
   /// 인증 상태 변화를 감지합니다.
   Future<void> _onAuthenticationStatusChanged(StatusChanged event, Emitter<AuthenticationState> emit) async {
-    debugPrint("Authentication Status: ${event.status.toString()}");
+    debugPrint('Authentication Status: ${event.status.toString()}');
     switch (event.status) {
       case AuthenticationStatus.unauthenticated:
         emit(const AuthenticationState.unauthenticated());

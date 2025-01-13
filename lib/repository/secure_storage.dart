@@ -39,7 +39,7 @@ class SecureStorage {
       }
       await Future.wait(futures);
     } catch (e) {
-      debugPrint("SecureStorage.saveTokens(): 토큰들을 저장하지 못했습니다. Error: $e");
+      debugPrint('SecureStorage.saveTokens(): 토큰들을 저장하지 못했습니다. Error: $e');
       throw Exception('토큰을 저장하지 못했습니다.');
     }
   }
@@ -51,7 +51,7 @@ class SecureStorage {
     try {
       await _storage.deleteAll();
     } catch (e) {
-      debugPrint("SecureStorage.deleteAllData(): 데이터를 삭제하지 못했습니다.\nError: $e");
+      debugPrint('SecureStorage.deleteAllData(): 데이터를 삭제하지 못했습니다.\nError: $e');
       throw Exception('데이터를 삭제하지 못했습니다.');
     }
   }

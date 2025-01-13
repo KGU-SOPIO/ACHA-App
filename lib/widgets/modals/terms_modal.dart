@@ -76,7 +76,7 @@ class TermsBottomModalSheet {
                                 )
                               )
                             ),
-                            SvgPicture.asset("lib/assets/svgs/modal/terms/document.svg")
+                            SvgPicture.asset('lib/assets/svgs/modal/terms/document.svg')
                           ]
                         )
                       )
@@ -93,7 +93,7 @@ class TermsBottomModalSheet {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SvgPicture.asset("lib/assets/svgs/modal/terms/check.svg"),
+                          SvgPicture.asset('lib/assets/svgs/modal/terms/check.svg'),
                           Padding(
                             padding: EdgeInsets.only(left: 10),
                             child: Text(
@@ -124,7 +124,7 @@ class TermsBottomModalSheet {
         await launchUrl(url);
       }
     } catch (e) {
-      debugPrint("Could not launch url");
+      debugPrint('Could not launch url');
     }
   }
 }

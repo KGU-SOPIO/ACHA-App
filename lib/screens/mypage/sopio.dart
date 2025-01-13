@@ -25,14 +25,14 @@ class SopioScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "About",
+                        'About',
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w400
                         )
                       ),
                       Text(
-                        "SOPIO",
+                        'SOPIO',
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.w700,
@@ -50,18 +50,18 @@ class SopioScreen extends StatelessWidget {
                           ),
                           children: [
                             TextSpan(
-                              text: "'Software of Public Interest Organization'\n".replaceAllMapped(RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D'),
+                              text: '\'Software of Public Interest Organization\'\n'.replaceAllMapped(RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D'),
                               style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600
                               )
                             ),
-                            TextSpan(text: "2023년에 2명으로 시작하여 현재는 5인으로 구성된 소프트웨어 개발팀입니다.\n\n소프트웨어 기술을 활용하여 일상의 불편함을 해소하고, 누구나 쉽게 이용할 수 있는 편리한 서비스를 제공하는 것을 목표로 합니다.\n\n첫 번째 프로젝트로 스마트한 학습 관리 어플리케이션 ".replaceAllMapped(RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D')),
+                            TextSpan(text: '2023년에 2명으로 시작하여 현재는 5인으로 구성된 서비스 개발팀입니다.\n\n소프트웨어 기술을 활용하여 일상의 불편함을 해소하고, 누구나 쉽게 이용할 수 있는 편리한 서비스를 제공하는 것을 목표로 합니다.\n\n첫 번째 프로젝트로 스마트한 학습 관리 서비스 '.replaceAllMapped(RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D')),
                             TextSpan(
-                              text: "‘아차(ACHA)’".replaceAllMapped(RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D'),
+                              text: '\'아차(ACHA)\''.replaceAllMapped(RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D'),
                               style: TextStyle(fontWeight: FontWeight.w600)
                             ),
-                            TextSpan(text: "를 선보입니다.".replaceAllMapped(RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D')),
+                            TextSpan(text: '를 선보입니다.'.replaceAllMapped(RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D')),
                           ]
                         )
                       )
@@ -69,15 +69,15 @@ class SopioScreen extends StatelessWidget {
                   )
                 ),
                 SizedBox(height: 50),
-                MemberContainer(name: "홍준서", part: "앱", department: "AI컴퓨터공학부", sns: "@SOPIO"),
+                MemberContainer(name: '홍준서', part: '앱', department: 'AI컴퓨터공학부', sns: '@SOPIO'),
                 SizedBox(height: 21),
-                MemberContainer(name: "최수인", part: "웹", department: "AI컴퓨터공학부", sns: "@SOPIO"),
+                MemberContainer(name: '최수인', part: '웹', department: 'AI컴퓨터공학부', sns: '@SOPIO'),
                 SizedBox(height: 21),
-                MemberContainer(name: "이한음", part: "서버", department: "AI컴퓨터공학부", sns: "@SOPIO"),
+                MemberContainer(name: '이한음', part: '서버', department: 'AI컴퓨터공학부', sns: '@SOPIO'),
                 SizedBox(height: 21),
-                MemberContainer(name: "권우진", part: "서버", department: "AI컴퓨터공학부", sns: "@SOPIO"),
+                MemberContainer(name: '권우진', part: '서버', department: 'AI컴퓨터공학부', sns: '@SOPIO'),
                 SizedBox(height: 21),
-                MemberContainer(name: "서민혁", part: "디자인", department: "AI컴퓨터공학부", sns: "@SOPIO"),
+                MemberContainer(name: '서민혁', part: '디자인', department: 'AI컴퓨터공학부', sns: '@SOPIO'),
                 SizedBox(height: 50)
               ]
             )

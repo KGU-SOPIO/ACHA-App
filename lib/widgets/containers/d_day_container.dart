@@ -56,7 +56,7 @@ class DDayContainer extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.only(left: 12, right: 16, top: 6, bottom: 6),
       child: Text(
-        deadline.formatDate(pattern: "M월 d일"),
+        deadline.formatDate(pattern: 'M월 d일'),
         style: TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.w700,

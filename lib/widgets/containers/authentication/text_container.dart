@@ -4,7 +4,7 @@ class TextContainer extends StatelessWidget {
   const TextContainer({super.key, required this.title, required this.value});
 
   final String title;
-  final String? value;
+  final String value;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class TextContainer extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.only(left: 16),
               child: Text(
-                value ?? "",
+                value,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w400,

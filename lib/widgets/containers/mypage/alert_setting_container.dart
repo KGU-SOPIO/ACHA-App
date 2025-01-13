@@ -53,10 +53,10 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
                     children: [
                       Container(
                         margin: EdgeInsets.only(right: 9),
-                        child: SvgPicture.asset("lib/assets/svgs/mypage/bell.svg")
+                        child: SvgPicture.asset('lib/assets/svgs/mypage/bell.svg')
                       ),              
                       Text(
-                        "알림 설정",
+                        '알림 설정',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
@@ -70,7 +70,7 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "알림 켜기",
+                      '알림 켜기',
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w400,

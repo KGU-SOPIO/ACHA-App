@@ -44,22 +44,22 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
             ),
             children: [
               TextSpan(
-                text: "사용 약관에 동의",
+                text: '사용 약관에 동의',
                 style: TextStyle(fontWeight: FontWeight.w700)
               ),
               TextSpan(
-                text: "하고\n회원가입을 진행합니다",
+                text: '하고\n회원가입을 진행합니다',
                 style: TextStyle(fontWeight: FontWeight.w500, height: 1.7)
               )
             ]
           )
         ),
-        SvgPicture.asset("lib/assets/svgs/acha_logo.svg", width: 50)
+        SvgPicture.asset('lib/assets/svgs/acha_logo.svg', width: 50)
       ],
     ),
     url: TermsAndConditionsUrl.serviceTermsAndConditions,
-    termsButtonText: "아차 사용 약관",
-    agreeButtonText: "동의하고 회원가입",
+    termsButtonText: '아차 사용 약관',
+    agreeButtonText: '동의하고 회원가입',
     onAgree: () => Navigator.push(context, AuthProcessScreen.route(context))
   ).show(context);
 
@@ -72,7 +72,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
           automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
           title: const Text(
-            "시작하기",
+            '시작하기',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500
@@ -98,22 +98,22 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
                             ),
                             children: [
                               TextSpan(
-                                text: "정보가 맞는지 ",
+                                text: '정보가 맞는지 ',
                                 style: TextStyle(fontWeight: FontWeight.w700)
                               ),
                               TextSpan(
-                                text: "확인해 주세요",
+                                text: '확인해 주세요',
                                 style: TextStyle(fontWeight: FontWeight.w400)
                               )
                             ]
                           )
                         )
                       ),
-                      TextContainer(title: "이름", value: state.name),
-                      TextContainer(title: "대학", value: state.college),
-                      TextContainer(title: "학부", value: state.department),
+                      TextContainer(title: '이름', value: state.name!),
+                      TextContainer(title: '대학', value: state.college!),
+                      TextContainer(title: '학부', value: state.department!),
                       if (state.major != null)
-                        TextContainer(title: "전공", value: state.major),
+                        TextContainer(title: '전공', value: state.major!),
                     ]
                   ),
                   Column(
@@ -126,10 +126,10 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            SvgPicture.asset("lib/assets/svgs/auth/question.svg"),
+                            SvgPicture.asset('lib/assets/svgs/auth/question.svg'),
                             SizedBox(width: 5),
                             Text(
-                              "정보가 다른가요?",
+                              '정보가 다른가요?',
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
@@ -145,7 +145,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
                         margin: const EdgeInsets.only(left: 24, right: 24, bottom: 30, top: 20),
                         onPressed: () => _showTermsModal(),
                         backgroundColor: const Color.fromARGB(255, 0, 102, 255),
-                        text: "다음",
+                        text: '다음',
                         textStyle: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
@@ -170,7 +170,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
         await launchUrl(url);
       }
     } catch (e) {
-      debugPrint("Could not launch url");
+      debugPrint('Could not launch url');
     }
   }
 }

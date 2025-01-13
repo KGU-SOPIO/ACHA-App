@@ -20,12 +20,12 @@ class AuthStartScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text("아차!"),
+              const Text('아차!'),
               ContainerButton(
                 height: 56,
                 onPressed: () => Navigator.push(context, AuthStudentIdScreen.route()),
                 backgroundColor: const Color.fromARGB(255, 0, 102, 255),
-                text: "지금 시작하기",
+                text: '지금 시작하기',
                 textStyle: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,

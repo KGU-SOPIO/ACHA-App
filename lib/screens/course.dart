@@ -20,39 +20,39 @@ class CourseScreen extends StatefulWidget {
 class _CourseScreenState extends State<CourseScreen> {
   final List courseList = [
     {
-      'professorName': "송명진 교수님",
-      'courseName': "사고와 표현",
-      'lectureRoom': "3306",
+      'professorName': '송명진 교수님',
+      'courseName': '사고와 표현',
+      'lectureRoom': '3306',
       'daysLeft': 1,
     },
     {
-      'professorName': "송명진 교수님",
-      'courseName': "사고와 표현",
-      'lectureRoom': "3306",
+      'professorName': '송명진 교수님',
+      'courseName': '사고와 표현',
+      'lectureRoom': '3306',
       'daysLeft': 1,
     },
     {
-      'professorName': "송명진 교수님",
-      'courseName': "사고와 표현",
-      'lectureRoom': "3306",
+      'professorName': '송명진 교수님',
+      'courseName': '사고와 표현',
+      'lectureRoom': '3306',
       'daysLeft': 1,
     },
     {
-      'professorName': "송명진 교수님",
-      'courseName': "사고와 표현",
-      'lectureRoom': "3306",
+      'professorName': '송명진 교수님',
+      'courseName': '사고와 표현',
+      'lectureRoom': '3306',
       'daysLeft': 1,
     },
     {
-      'professorName': "송명진 교수님",
-      'courseName': "사고와 표현",
-      'lectureRoom': "3306",
+      'professorName': '송명진 교수님',
+      'courseName': '사고와 표현',
+      'lectureRoom': '3306',
       'daysLeft': 1,
     },
     {
-      'professorName': "송명진 교수님",
-      'courseName': "사고와 표현",
-      'lectureRoom': "3306",
+      'professorName': '송명진 교수님',
+      'courseName': '사고와 표현',
+      'lectureRoom': '3306',
       'daysLeft': 1,
     },
   ];
@@ -81,7 +81,7 @@ class _CourseScreenState extends State<CourseScreen> {
                           Padding(
                             padding: EdgeInsets.only(right: 4),
                             child: Text(
-                              "나의 강좌",
+                              '나의 강좌',
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w700,
@@ -89,7 +89,7 @@ class _CourseScreenState extends State<CourseScreen> {
                               ),
                             )
                           ),
-                          SvgPicture.asset("lib/assets/svgs/course/book.svg")
+                          SvgPicture.asset('lib/assets/svgs/course/book.svg')
                         ],
                       )
                     ),

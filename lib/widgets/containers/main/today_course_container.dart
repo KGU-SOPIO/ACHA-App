@@ -12,7 +12,7 @@ class TodayCourseContainer extends StatefulWidget {
 class _TodayCourseContainerState extends State<TodayCourseContainer> {
   @override
   Widget build(BuildContext context) {
-    final String formattedDate = DateFormat("M월 d일").format(DateTime.now());
+    final String formattedDate = DateFormat('M월 d일').format(DateTime.now());
 
     return Container(
       width: double.infinity,
@@ -41,11 +41,11 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
                     ),
                     children: [
                       TextSpan(
-                        text: "오늘의 ",
+                        text: '오늘의 ',
                         style: TextStyle(fontWeight: FontWeight.w500)
                       ),
                       TextSpan(
-                        text: "강의",
+                        text: '강의',
                         style: TextStyle(fontWeight: FontWeight.w700)
                       )
                     ]
@@ -83,7 +83,7 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
                         Padding(
                           padding: EdgeInsets.only(bottom: 3),
                           child: Text(
-                            "송명진 교수님",
+                            '송명진 교수님',
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w400,
@@ -94,7 +94,7 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
                         Padding(
                           padding: EdgeInsets.only(bottom: 2),
                           child: Text(
-                            "사고와 표현",
+                            '사고와 표현',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w400,
@@ -103,7 +103,7 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
                           )
                         ),
                         Text(
-                          "3306",
+                          '3306',
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
@@ -119,7 +119,7 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
                         color: Color.fromARGB(25, 255, 78, 107)
                       ),
                       child: Text(
-                        "D - 1",
+                        'D - 1',
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w700,

@@ -41,17 +41,17 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
   String _getDisplayText(SignInStatus status) {
     switch (status) {
       case SignInStatus.signInProgress:
-        return "인증하는 중";
+        return '인증하는 중';
       case SignInStatus.signUpProgress:
-        return "회원가입 중";
+        return '회원가입 중';
       case SignInStatus.signInSuccess:
-        return "로그인 완료";
+        return '로그인 완료';
       case SignInStatus.signUpSuccess:
-        return "회원가입 완료";
+        return '회원가입 완료';
       case SignInStatus.inSignUp:
-        return "인증 완료";
+        return '인증 완료';
       default:
-        return "문제 발생";
+        return '문제 발생';
     }
   }
 
@@ -64,7 +64,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
           automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
           title: const Text(
-            "시작하기",
+            '시작하기',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500
@@ -92,10 +92,10 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            SvgPicture.asset("lib/assets/svgs/auth/error.svg"),
+                            SvgPicture.asset('lib/assets/svgs/auth/error.svg'),
                             SizedBox(height: 30),
                             Text(
-                              "문제 발생",
+                              '문제 발생',
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w700
@@ -103,7 +103,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
                             ),
                             SizedBox(height: 20),
                             Text(
-                              "인증에 문제가 발생했어요",
+                              '인증에 문제가 발생했어요',
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
@@ -118,7 +118,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
                         margin: const EdgeInsets.only(bottom: 30),
                         onPressed: () => Navigator.pushAndRemoveUntil(context, AuthStudentIdScreen.route(), (route) => false),
                         backgroundColor: const Color.fromARGB(255, 0, 102, 255),
-                        text: "돌아가기",
+                        text: '돌아가기',
                         textStyle: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
@@ -137,7 +137,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
                     children: [
                       SizedBox(height: 42),
                       Lottie.asset(
-                        "lib/assets/lotties/auth/loading.json",
+                        'lib/assets/lotties/auth/loading.json',
                         width: 45
                       ),
                       SizedBox(height: 24),

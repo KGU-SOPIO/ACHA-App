@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 ThemeData achaLight() {
   return ThemeData(
-    fontFamily: "NotoSansKR",
+    fontFamily: 'NotoSansKR',
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
     scaffoldBackgroundColor: Colors.white,

@@ -41,7 +41,7 @@ class CourseContainer extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(bottom: 3),
                   child: Text(
-                    "$professorName 교수",
+                    '$professorName 교수',
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w400,
@@ -77,7 +77,7 @@ class CourseContainer extends StatelessWidget {
                 color: Color.fromARGB(25, 255, 78, 107)
               ),
               child: Text(
-                "D - $daysLeft",
+                'D - $daysLeft',
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w700,

@@ -65,7 +65,7 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
           automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
           title: const Text(
-            "시작하기",
+            '시작하기',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500
@@ -92,11 +92,11 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
                           ),
                           children: [
                             TextSpan(
-                                text: "학번을 ",
+                                text: '학번을 ',
                                 style: TextStyle(fontWeight: FontWeight.w700)
                             ),
                             TextSpan(
-                              text: "입력해 주세요",
+                              text: '입력해 주세요',
                               style: TextStyle(fontWeight: FontWeight.w400)
                             )
                           ]
@@ -113,13 +113,13 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
                           FilteringTextInputFormatter.digitsOnly
                         ],
                         decoration: InputDecoration(
-                          hintText: "학번",
+                          hintText: '학번',
                           hintStyle: const TextStyle(
                             color: Color.fromARGB(255, 186, 186, 186),
                             fontSize: 16,
                             fontWeight: FontWeight.w400
                           ),
-                          counterText: "",
+                          counterText: '',
                           filled: true,
                           fillColor: const Color.fromARGB(255, 251, 251, 251),
                           border: textFieldBorder,

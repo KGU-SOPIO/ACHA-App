@@ -29,11 +29,11 @@ class PhraseContainer extends StatelessWidget {
               ),
               children: [
                 TextSpan(
-                  text: "오늘의 ",
+                  text: '오늘의 ',
                   style: TextStyle(fontWeight: FontWeight.w500)
                 ),
                 TextSpan(
-                  text: "문구",
+                  text: '문구',
                   style: TextStyle(fontWeight: FontWeight.w700)
                 )
               ]
@@ -49,17 +49,17 @@ class PhraseContainer extends StatelessWidget {
                   Positioned(
                     top: 0,
                     left: 0,
-                    child: SvgPicture.asset("lib/assets/svgs/mypage/left.svg"),
+                    child: SvgPicture.asset('lib/assets/svgs/mypage/left.svg'),
                   ),
                   Positioned(
                     bottom: 0,
                     right: 0,
-                    child: SvgPicture.asset("lib/assets/svgs/mypage/right.svg"),
+                    child: SvgPicture.asset('lib/assets/svgs/mypage/right.svg'),
                   ),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
                       child: Text(
-                      "평범하게 살고 싶지 않은데\n왜 평범하게 노력하는가?",
+                      '평범하게 살고 싶지 않은데\n왜 평범하게 노력하는가?',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,

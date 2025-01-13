@@ -60,11 +60,11 @@ class ToastManager {
   }
 
   void success({required String message}) {
-    _showToast(message: message, svgPath: "lib/assets/svgs/toast/success.svg");
+    _showToast(message: message, svgPath: 'lib/assets/svgs/toast/success.svg');
   }
 
   void error({required String message}) {
-    _showToast(message: message, svgPath: "lib/assets/svgs/toast/error.svg");
+    _showToast(message: message, svgPath: 'lib/assets/svgs/toast/error.svg');
   }
 
   void show({required String message, required String svgPath}) {

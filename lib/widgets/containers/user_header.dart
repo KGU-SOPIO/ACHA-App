@@ -53,7 +53,7 @@ class _UserHeaderState extends State<UserHeader> {
                           style: TextStyle(fontWeight: FontWeight.w700)
                         ),
                         TextSpan(
-                          text: " 님",
+                          text: ' 님',
                           style: TextStyle(fontWeight: FontWeight.w500)
                         )
                       ]
