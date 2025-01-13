@@ -1,22 +1,14 @@
-part of 'authentication_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class AuthenticationState extends Equatable {
-  const AuthenticationState._({
-    this.user,
-    this.status = AuthenticationStatus.unknown,
-  });
+import 'package:acha/models/index.dart';
 
-  final User? user;
-  final AuthenticationStatus status;
+part 'authentication_state.freezed.dart';
 
-  const AuthenticationState.unknown() : this._(user: null, status: AuthenticationStatus.unknown);
+enum AuthenticationStatus { unknown, authenticated, unauthenticated }
 
-  const AuthenticationState.authenticated(User user)
-      : this._(user: user, status: AuthenticationStatus.authenticated);
-
-  const AuthenticationState.unauthenticated()
-      : this._(user: null, status: AuthenticationStatus.unauthenticated);
-
-  @override
-  List<Object?> get props => [user, status];
+@freezed
+class AuthenticationState with _$AuthenticationState {
+  const factory AuthenticationState.unknown() = Unknown;
+  const factory AuthenticationState.authenticated({required User user}) = Authenticated;
+  const factory AuthenticationState.unauthenticated() = UnAuthenticated;
 }

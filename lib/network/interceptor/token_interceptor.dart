@@ -3,14 +3,14 @@ import 'package:get_it/get_it.dart';
 
 import 'package:acha/repository/index.dart';
 
-import 'package:acha/network/util/connectivity_checker.dart';
+import 'package:acha/network/util/internet_checker.dart';
 
 import 'package:acha/constants/apis/authentication.dart';
 
 class TokenInterceptor extends Interceptor {
   final Dio _dio = Dio();
   final SecureStorage _secureStorage = GetIt.I<SecureStorage>();
-  final ConnectivityChecker _connectivityChecker = GetIt.I<ConnectivityChecker>();
+  final InternetChecker _connectivityChecker = GetIt.I<InternetChecker>();
 
   /// 요청 시 AccessToken을 검증하고, 만료 시 재발급합니다.
   @override

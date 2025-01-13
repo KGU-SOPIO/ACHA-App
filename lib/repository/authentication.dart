@@ -9,6 +9,7 @@ import 'package:acha/app.dart';
 
 import 'package:acha/models/index.dart';
 import 'package:acha/repository/index.dart';
+import 'package:acha/blocs/auth/index.dart';
 import 'package:acha/blocs/signin/index.dart';
 
 import 'package:acha/constants/apis/authentication.dart';
@@ -16,11 +17,10 @@ import 'package:acha/constants/apis/authentication.dart';
 import 'package:acha/screens/auth/index.dart';
 import 'package:acha/widgets/toast/toast_manager.dart';
 
-enum AuthenticationStatus { unknown, authenticated, unauthenticated }
-
 class AuthenticationRepository {
   final Dio _dio = Dio();
   final SecureStorage _secureStorage = GetIt.I<SecureStorage>();
+  final DataStorage _dataStorage = GetIt.I<DataStorage>();
   final StreamController<AuthenticationStatus> _authController = StreamController<AuthenticationStatus>();
   late StreamController<SignInStatus> _signInController;
   late AuthenticationResponse signInResponse;
@@ -39,7 +39,8 @@ class AuthenticationRepository {
           break;
         case TokenStatus.expired:
           _authController.add(AuthenticationStatus.unauthenticated);
-          _secureStorage.deleteAllData();
+          await _secureStorage.deleteAllData();
+          await _dataStorage.deleteAllData();
           GetIt.I<ToastManager>().error(message: "인증 상태가 만료되었어요\n로그인을 다시 진행해 주세요");
           break;
         case TokenStatus.valid:
@@ -49,7 +50,7 @@ class AuthenticationRepository {
       }
     } catch (e) {
       _authController.add(AuthenticationStatus.unauthenticated);
-      GetIt.I<ToastManager>().error(message: "사용자 인증 중에 문제가 발생했어요");
+      GetIt.I<ToastManager>().error(message: "사용자 인증 중 문제가 발생했어요");
       // ! 서버 상태 이상 Route 추가
     }
   }

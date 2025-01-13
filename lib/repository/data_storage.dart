@@ -36,6 +36,11 @@ class DataStorage {
     await box.put(course.code, course);
   }
 
+  Future<void> deleteAllData() async {
+    final box = Hive.box<Course>(courseBoxKey);
+    await box.clear();
+  }
+
   Future<void> saveActivities(String courseCode, List<List<Activity>> activities) async {
     final box = Hive.box<Course>(courseBoxKey);
     final course = box.get(courseCode);

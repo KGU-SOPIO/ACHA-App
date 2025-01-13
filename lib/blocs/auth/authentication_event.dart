@@ -1,15 +1,11 @@
-part of 'authentication_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-sealed class AuthenticationEvent {
-  const AuthenticationEvent();
+import 'package:acha/blocs/auth/index.dart';
+
+part 'authentication_event.freezed.dart';
+
+@freezed
+class AuthenticationEvent with _$AuthenticationEvent {
+  const factory AuthenticationEvent.statusChanged(AuthenticationStatus status) = AuthenticationStatusChanged;
+  const factory AuthenticationEvent.logout() = Logout;
 }
-
-/// Stream 인증 상태 변경 이벤트
-final class _AuthentacationStatusChanged extends AuthenticationEvent {
-  const _AuthentacationStatusChanged(this.status);
-
-  final AuthenticationStatus status;
-}
-
-/// 로그아웃 이벤트
-final class _AuthenticationLogoutRequested extends AuthenticationEvent {}

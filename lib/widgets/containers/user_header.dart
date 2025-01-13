@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:acha/models/index.dart';
-import 'package:acha/repository/index.dart';
-import 'package:acha/blocs/auth/authentication_bloc.dart';
+import 'package:acha/blocs/auth/index.dart';
 
 class UserHeader extends StatelessWidget {
   const UserHeader({super.key, required this.bottomMargin});
@@ -15,9 +13,8 @@ class UserHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthenticationBloc, AuthenticationState>(
       builder: (context, state) {
-        if (state.status == AuthenticationStatus.authenticated) {
-          final User user = state.user!;
-          return Container(
+        return state.maybeWhen(
+          authenticated: (user) => Container(
             margin: EdgeInsets.only(bottom: bottomMargin),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,10 +69,9 @@ class UserHeader extends StatelessWidget {
                 )
               ],
             )
-          );
-        } else {
-          return SizedBox.shrink();
-        }
+          ),
+          orElse: () => const SizedBox.shrink()
+        );
       },
     );
   }

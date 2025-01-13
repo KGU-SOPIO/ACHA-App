@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
-import 'package:acha/blocs/auth/authentication_bloc.dart';
+import 'package:acha/blocs/auth/index.dart';
 import 'package:acha/blocs/course_manager/index.dart';
 
 import 'package:acha/repository/index.dart';
@@ -107,10 +107,7 @@ class _AppViewState extends State<AppView> {
         return MultiBlocListener(
           listeners: [
             BlocListener<AuthenticationBloc, AuthenticationState>(
-              listener: (context, state) {
-                context.read<CourseManagerBloc>().add(Load());
-                _checkStates(context, state, context.read<CourseManagerBloc>().state);
-              }
+              listener: (context, state) => _checkStates(context, state, context.read<CourseManagerBloc>().state)
             ),
             BlocListener<CourseManagerBloc, CourseManagerState>(
               listener: (context, state) => _checkStates(context, context.read<AuthenticationBloc>().state, state)
@@ -125,20 +122,34 @@ class _AppViewState extends State<AppView> {
 
   void _checkStates(BuildContext context, AuthenticationState authState, CourseManagerState courseState) {
     if (_isNavigate) return;
-    
-    if (courseState is Loading) {
-      return;
-    } else if (courseState is Loaded) {
-      if (authState.status == AuthenticationStatus.authenticated) {
-        _isNavigate = true;
+
+    courseState.maybeWhen(
+      initial: () {
+        context.read<CourseManagerBloc>().add(Load());
+        return;
+      },
+      loaded: (courses) {
+        authState.when(
+          authenticated: (user) {
+            _isNavigate = true;
+            _navigator.pushAndRemoveUntil(HomeScreen.route(), (route) => false);
+          },
+          unauthenticated: () {
+            _isNavigate = true;
+            _navigator.pushAndRemoveUntil(AuthStartScreen.route(), (route) => false);
+          },
+          unknown: () {
+            return;
+          }
+        );
+      },
+      error: (message) {
+        debugPrint('서버에서 데이터를 가져오지 못했습니다');
         _navigator.pushAndRemoveUntil(HomeScreen.route(), (route) => false);
-      } else if (authState.status == AuthenticationStatus.unauthenticated) {
-        _isNavigate = true;
-        _navigator.pushAndRemoveUntil(AuthStartScreen.route(), (route) => false);
+      },
+      orElse: () {
+        return;
       }
-    } else if (courseState is Error) {
-      debugPrint('서버에서 데이터를 가져오지 못했습니다');
-      _navigator.pushAndRemoveUntil(HomeScreen.route(), (route) => false);
-    }
+    );
   }
 }

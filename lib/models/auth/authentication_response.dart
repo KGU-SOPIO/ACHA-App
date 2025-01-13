@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'authentication.freezed.dart';
-part 'authentication.g.dart';
+part 'authentication_response.freezed.dart';
+part 'authentication_response.g.dart';
 
 @Freezed(unionKey: 'result', unionValueCase: FreezedUnionCase.pascal)
 class AuthenticationResponse with _$AuthenticationResponse {
