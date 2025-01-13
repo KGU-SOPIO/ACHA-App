@@ -3,27 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
-import 'package:acha/models/index.dart';
-
 enum TokenStatus { valid, expired, notExist }
 
 class SecureStorage {
   final FlutterSecureStorage _storage = const FlutterSecureStorage();
-  final List<String> _userKeys = [
-    'studentId', 'password', 'name', 'college', 'department', 'major'
-  ];
-
   static const String accessTokenKey = 'accessToken';
   static const String refreshTokenKey = 'refreshToken';
-  static const String coursesListKey = 'courses';
-
-  /// AccessToken을 반환합니다.
-  ///
-  /// AccessToken이 없다면 Exception을 던집니다.
-  Future<String> readAccessToken() async {
-    final accessToken = await _storage.read(key: accessTokenKey);
-    return accessToken ?? (throw Exception('AccessToken을 불러오지 못했습니다.'));
-  }
 
   /// RefreshToken을 반환합니다.
   /// 
@@ -48,9 +33,6 @@ class SecureStorage {
 
       if (accessToken != null) {
         futures.add(_storage.write(key: accessTokenKey, value: accessToken));
-        if (extract == true) {
-          futures.add(saveUser(accessToken));
-        }
       }
       if (refreshToken != null) {
         futures.add(_storage.write(key: refreshTokenKey, value: refreshToken));
@@ -59,43 +41,6 @@ class SecureStorage {
     } catch (e) {
       debugPrint("SecureStorage.saveTokens(): 토큰들을 저장하지 못했습니다. Error: $e");
       throw Exception('토큰을 저장하지 못했습니다.');
-    }
-  }
-
-  /// AccessToken을 삭제합니다.
-  ///
-  /// AccessToken을 삭제하지 못했다면 Exception을 던집니다.
-  Future<void> deleteAccessToken() async {
-    try {
-      await _storage.delete(key: accessTokenKey);
-    } catch (e) {
-      debugPrint("SecureStorage.deleteAccessToken(): AccessToken을 삭제하지 못했습니다.\nError: $e");
-      throw Exception('AccessToken을 삭제하지 못했습니다.');
-    }
-  }
-
-  /// RefreshToken을 삭제합니다.
-  ///
-  /// RefreshToken을 삭제하지 못했다면 Exception을 던집니다.
-  Future<void> deleteRefreshToken() async {
-    try {
-      await _storage.delete(key: refreshTokenKey);
-    } catch (e) {
-      debugPrint("SecureStorage.deleteRefreshToken(): RefreshToken을 삭제하지 못했습니다.\nError: $e");
-      throw Exception('RefreshToken을 삭제하지 못했습니다.');
-    }
-  }
-
-  /// AccessToken과 RefreshToken을 삭제합니다.
-  ///
-  /// 토큰을 삭제하지 못했다면 Exception을 던집니다.
-  Future<void> deleteTokens() async {
-    try {
-      await _storage.delete(key: accessTokenKey);
-      await _storage.delete(key: refreshTokenKey);
-    } catch (e) {
-      debugPrint("SecureStorage.deleteTokens(): 토큰들을 삭제하지 못했습니다.\nError: $e");
-      throw Exception('토큰을 삭제하지 못했습니다');
     }
   }
 
@@ -108,52 +53,6 @@ class SecureStorage {
     } catch (e) {
       debugPrint("SecureStorage.deleteAllData(): 데이터를 삭제하지 못했습니다.\nError: $e");
       throw Exception('데이터를 삭제하지 못했습니다.');
-    }
-  }
-
-  /// 사용자 정보를 저장합니다.
-  ///
-  /// 사용자 정보를 저장하지 못했다면 Exception을 던집니다.
-  Future<void> saveUser(String token) async {
-    try {
-      final payload = JwtDecoder.decode(token);
-
-      List<Future> futures = _userKeys.map(
-              (key) => _storage.write(key: key, value: payload[key])
-      ).toList();
-      await Future.wait(futures);
-    } catch (e) {
-      debugPrint("SecureStorage.saveUserFromToken(): 사용자를 저장하지 못했습니다.\nError: $e");
-      throw Exception('사용자 정보를 저장하지 못했습니다.');
-    }
-  }
-
-  /// 사용자 정보를 반환합니다.
-  ///
-  /// 사용자 정보를 불러오지 못했다면 Exception을 던집니다.
-  Future<User> readUser() async {
-    try {
-      Map<String, String?> user = {};
-      List<Future> futures = _userKeys.map(
-        (key) => _storage.read(key: key).then(
-          (value) => user[key] = value
-        )
-      ).toList();
-      await Future.wait(futures);
-
-      debugPrint(user.toString());
-
-      return User(
-        studentId: user['studentId']!,
-        password: user['password']!,
-        name: user['name']!,
-        college: user['college']!,
-        department: user['department']!,
-        major: user['major']
-      );
-    } catch (e) {
-      debugPrint("SecureStorage.readUser(): 사용자 정보를 불러오지 못했습니다.\nError: $e");
-      throw Exception('사용자 정보를 불러오지 못했습니다.');
     }
   }
 

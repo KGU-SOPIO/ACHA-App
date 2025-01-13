@@ -20,12 +20,9 @@ User _$UserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$User {
-  String get studentId => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get college => throw _privateConstructorUsedError;
-  String get department => throw _privateConstructorUsedError;
-  String? get major => throw _privateConstructorUsedError;
+  String get major => throw _privateConstructorUsedError;
 
   /// Serializes this User to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,13 +38,7 @@ abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res, User>;
   @useResult
-  $Res call(
-      {String studentId,
-      String password,
-      String name,
-      String college,
-      String department,
-      String? major});
+  $Res call({String name, String college, String major});
 }
 
 /// @nodoc
@@ -65,22 +56,11 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? studentId = null,
-    Object? password = null,
     Object? name = null,
     Object? college = null,
-    Object? department = null,
-    Object? major = freezed,
+    Object? major = null,
   }) {
     return _then(_value.copyWith(
-      studentId: null == studentId
-          ? _value.studentId
-          : studentId // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -89,14 +69,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.college
           : college // ignore: cast_nullable_to_non_nullable
               as String,
-      department: null == department
-          ? _value.department
-          : department // ignore: cast_nullable_to_non_nullable
-              as String,
-      major: freezed == major
+      major: null == major
           ? _value.major
           : major // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ) as $Val);
   }
 }
@@ -108,13 +84,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       __$$UserImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String studentId,
-      String password,
-      String name,
-      String college,
-      String department,
-      String? major});
+  $Res call({String name, String college, String major});
 }
 
 /// @nodoc
@@ -129,22 +99,11 @@ class __$$UserImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? studentId = null,
-    Object? password = null,
     Object? name = null,
     Object? college = null,
-    Object? department = null,
-    Object? major = freezed,
+    Object? major = null,
   }) {
     return _then(_$UserImpl(
-      studentId: null == studentId
-          ? _value.studentId
-          : studentId // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -153,61 +112,33 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.college
           : college // ignore: cast_nullable_to_non_nullable
               as String,
-      department: null == department
-          ? _value.department
-          : department // ignore: cast_nullable_to_non_nullable
-              as String,
-      major: freezed == major
+      major: null == major
           ? _value.major
           : major // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$UserImpl with DiagnosticableTreeMixin implements _User {
+class _$UserImpl implements _User {
   const _$UserImpl(
-      {required this.studentId,
-      required this.password,
-      required this.name,
-      required this.college,
-      required this.department,
-      required this.major});
+      {required this.name, required this.college, required this.major});
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
 
   @override
-  final String studentId;
-  @override
-  final String password;
-  @override
   final String name;
   @override
   final String college;
   @override
-  final String department;
-  @override
-  final String? major;
+  final String major;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'User(studentId: $studentId, password: $password, name: $name, college: $college, department: $department, major: $major)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'User'))
-      ..add(DiagnosticsProperty('studentId', studentId))
-      ..add(DiagnosticsProperty('password', password))
-      ..add(DiagnosticsProperty('name', name))
-      ..add(DiagnosticsProperty('college', college))
-      ..add(DiagnosticsProperty('department', department))
-      ..add(DiagnosticsProperty('major', major));
+  String toString() {
+    return 'User(name: $name, college: $college, major: $major)';
   }
 
   @override
@@ -215,21 +146,14 @@ class _$UserImpl with DiagnosticableTreeMixin implements _User {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserImpl &&
-            (identical(other.studentId, studentId) ||
-                other.studentId == studentId) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.college, college) || other.college == college) &&
-            (identical(other.department, department) ||
-                other.department == department) &&
             (identical(other.major, major) || other.major == major));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, studentId, password, name, college, department, major);
+  int get hashCode => Object.hash(runtimeType, name, college, major);
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
@@ -249,27 +173,18 @@ class _$UserImpl with DiagnosticableTreeMixin implements _User {
 
 abstract class _User implements User {
   const factory _User(
-      {required final String studentId,
-      required final String password,
-      required final String name,
+      {required final String name,
       required final String college,
-      required final String department,
-      required final String? major}) = _$UserImpl;
+      required final String major}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
-  @override
-  String get studentId;
-  @override
-  String get password;
   @override
   String get name;
   @override
   String get college;
   @override
-  String get department;
-  @override
-  String? get major;
+  String get major;
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.

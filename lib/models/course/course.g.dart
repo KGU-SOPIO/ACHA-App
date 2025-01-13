@@ -22,8 +22,8 @@ class CourseAdapter extends TypeAdapter<Course> {
       code: fields[2] as String,
       professor: fields[3] as String,
       lectureRoom: fields[4] as String,
-      weekActivities: (fields[5] as List).cast<WeekActivities>(),
-      notices: (fields[6] as List).cast<Notice>(),
+      weekActivities: (fields[5] as List?)?.cast<WeekActivities>(),
+      notices: (fields[6] as List?)?.cast<Notice>(),
     );
   }
 
@@ -69,13 +69,11 @@ _$CourseImpl _$$CourseImplFromJson(Map<String, dynamic> json) => _$CourseImpl(
       professor: json['professor'] as String,
       lectureRoom: json['lectureRoom'] as String,
       weekActivities: (json['weekActivities'] as List<dynamic>?)
-              ?.map((e) => WeekActivities.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
+          ?.map((e) => WeekActivities.fromJson(e as Map<String, dynamic>))
+          .toList(),
       notices: (json['notices'] as List<dynamic>?)
-              ?.map((e) => Notice.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
+          ?.map((e) => Notice.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$CourseImplToJson(_$CourseImpl instance) =>

@@ -31,9 +31,10 @@ mixin _$Course {
   @HiveField(4)
   String get lectureRoom => throw _privateConstructorUsedError;
   @HiveField(5)
-  List<WeekActivities> get weekActivities => throw _privateConstructorUsedError;
+  List<WeekActivities>? get weekActivities =>
+      throw _privateConstructorUsedError;
   @HiveField(6)
-  List<Notice> get notices => throw _privateConstructorUsedError;
+  List<Notice>? get notices => throw _privateConstructorUsedError;
 
   /// Serializes this Course to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -55,8 +56,8 @@ abstract class $CourseCopyWith<$Res> {
       @HiveField(2) String code,
       @HiveField(3) String professor,
       @HiveField(4) String lectureRoom,
-      @HiveField(5) List<WeekActivities> weekActivities,
-      @HiveField(6) List<Notice> notices});
+      @HiveField(5) List<WeekActivities>? weekActivities,
+      @HiveField(6) List<Notice>? notices});
 }
 
 /// @nodoc
@@ -79,8 +80,8 @@ class _$CourseCopyWithImpl<$Res, $Val extends Course>
     Object? code = null,
     Object? professor = null,
     Object? lectureRoom = null,
-    Object? weekActivities = null,
-    Object? notices = null,
+    Object? weekActivities = freezed,
+    Object? notices = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -103,14 +104,14 @@ class _$CourseCopyWithImpl<$Res, $Val extends Course>
           ? _value.lectureRoom
           : lectureRoom // ignore: cast_nullable_to_non_nullable
               as String,
-      weekActivities: null == weekActivities
+      weekActivities: freezed == weekActivities
           ? _value.weekActivities
           : weekActivities // ignore: cast_nullable_to_non_nullable
-              as List<WeekActivities>,
-      notices: null == notices
+              as List<WeekActivities>?,
+      notices: freezed == notices
           ? _value.notices
           : notices // ignore: cast_nullable_to_non_nullable
-              as List<Notice>,
+              as List<Notice>?,
     ) as $Val);
   }
 }
@@ -128,8 +129,8 @@ abstract class _$$CourseImplCopyWith<$Res> implements $CourseCopyWith<$Res> {
       @HiveField(2) String code,
       @HiveField(3) String professor,
       @HiveField(4) String lectureRoom,
-      @HiveField(5) List<WeekActivities> weekActivities,
-      @HiveField(6) List<Notice> notices});
+      @HiveField(5) List<WeekActivities>? weekActivities,
+      @HiveField(6) List<Notice>? notices});
 }
 
 /// @nodoc
@@ -150,8 +151,8 @@ class __$$CourseImplCopyWithImpl<$Res>
     Object? code = null,
     Object? professor = null,
     Object? lectureRoom = null,
-    Object? weekActivities = null,
-    Object? notices = null,
+    Object? weekActivities = freezed,
+    Object? notices = freezed,
   }) {
     return _then(_$CourseImpl(
       name: null == name
@@ -174,14 +175,14 @@ class __$$CourseImplCopyWithImpl<$Res>
           ? _value.lectureRoom
           : lectureRoom // ignore: cast_nullable_to_non_nullable
               as String,
-      weekActivities: null == weekActivities
+      weekActivities: freezed == weekActivities
           ? _value._weekActivities
           : weekActivities // ignore: cast_nullable_to_non_nullable
-              as List<WeekActivities>,
-      notices: null == notices
+              as List<WeekActivities>?,
+      notices: freezed == notices
           ? _value._notices
           : notices // ignore: cast_nullable_to_non_nullable
-              as List<Notice>,
+              as List<Notice>?,
     ));
   }
 }
@@ -195,8 +196,8 @@ class _$CourseImpl extends _Course {
       @HiveField(2) required this.code,
       @HiveField(3) required this.professor,
       @HiveField(4) required this.lectureRoom,
-      @HiveField(5) final List<WeekActivities> weekActivities = const [],
-      @HiveField(6) final List<Notice> notices = const []})
+      @HiveField(5) final List<WeekActivities>? weekActivities,
+      @HiveField(6) final List<Notice>? notices})
       : _weekActivities = weekActivities,
         _notices = notices,
         super._();
@@ -219,24 +220,26 @@ class _$CourseImpl extends _Course {
   @override
   @HiveField(4)
   final String lectureRoom;
-  final List<WeekActivities> _weekActivities;
+  final List<WeekActivities>? _weekActivities;
   @override
-  @JsonKey()
   @HiveField(5)
-  List<WeekActivities> get weekActivities {
+  List<WeekActivities>? get weekActivities {
+    final value = _weekActivities;
+    if (value == null) return null;
     if (_weekActivities is EqualUnmodifiableListView) return _weekActivities;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_weekActivities);
+    return EqualUnmodifiableListView(value);
   }
 
-  final List<Notice> _notices;
+  final List<Notice>? _notices;
   @override
-  @JsonKey()
   @HiveField(6)
-  List<Notice> get notices {
+  List<Notice>? get notices {
+    final value = _notices;
+    if (value == null) return null;
     if (_notices is EqualUnmodifiableListView) return _notices;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_notices);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -296,8 +299,8 @@ abstract class _Course extends Course {
       @HiveField(2) required final String code,
       @HiveField(3) required final String professor,
       @HiveField(4) required final String lectureRoom,
-      @HiveField(5) final List<WeekActivities> weekActivities,
-      @HiveField(6) final List<Notice> notices}) = _$CourseImpl;
+      @HiveField(5) final List<WeekActivities>? weekActivities,
+      @HiveField(6) final List<Notice>? notices}) = _$CourseImpl;
   const _Course._() : super._();
 
   factory _Course.fromJson(Map<String, dynamic> json) = _$CourseImpl.fromJson;
@@ -319,10 +322,10 @@ abstract class _Course extends Course {
   String get lectureRoom;
   @override
   @HiveField(5)
-  List<WeekActivities> get weekActivities;
+  List<WeekActivities>? get weekActivities;
   @override
   @HiveField(6)
-  List<Notice> get notices;
+  List<Notice>? get notices;
 
   /// Create a copy of Course
   /// with the given fields replaced by the non-null parameter values.

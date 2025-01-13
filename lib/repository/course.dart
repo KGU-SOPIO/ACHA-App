@@ -6,7 +6,7 @@ import 'package:acha/repository/index.dart';
 
 import 'package:acha/widgets/toast/toast_manager.dart';
 
-import 'package:acha/constants/apis/course.dart';
+import 'package:acha/constants/apis/index.dart';
 
 class CourseRepository {
   final Dio _dio = GetIt.I<Dio>();

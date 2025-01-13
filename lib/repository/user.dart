@@ -1,18 +1,21 @@
-import 'dart:async';
-
+import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
 import 'package:acha/models/index.dart';
-import 'package:acha/repository/index.dart';
+
+import 'package:acha/constants/apis/index.dart';
 
 class UserRepository {
-  final SecureStorage _secureStorage = GetIt.I<SecureStorage>();
+  final Dio _dio = GetIt.I<Dio>();
 
-  Future<User?> getUser() async {
+  Future<User> fetchUser() async {
     try {
-      return await _secureStorage.readUser();
+      final response = await _dio.get(UserApiEndpoints.user);
+      return User.fromJson(response.data);
+    } on DioException {
+      rethrow;
     } catch (e) {
-      return null;
+      throw Exception('학생 정보를 불러오지 못했어요');
     }
   }
 }

@@ -12,7 +12,9 @@ import 'package:acha/repository/index.dart';
 import 'package:acha/blocs/auth/index.dart';
 import 'package:acha/blocs/signin/index.dart';
 
-import 'package:acha/constants/apis/authentication.dart';
+import 'package:acha/network/interceptor/index.dart';
+
+import 'package:acha/constants/apis/index.dart';
 
 import 'package:acha/screens/auth/index.dart';
 import 'package:acha/widgets/toast/toast_manager.dart';
@@ -26,6 +28,7 @@ class AuthenticationRepository {
   late AuthenticationResponse signInResponse;
 
   AuthenticationRepository() {
+    _dio.interceptors.add(ErrorInterceptor());
     _initAuthentication();
   }
 
@@ -41,17 +44,20 @@ class AuthenticationRepository {
           _authController.add(AuthenticationStatus.unauthenticated);
           await _secureStorage.deleteAllData();
           await _dataStorage.deleteAllData();
-          GetIt.I<ToastManager>().error(message: "인증 상태가 만료되었어요\n로그인을 다시 진행해 주세요");
+          GetIt.I<ToastManager>().error(message: '인증 상태가 만료되었어요\n로그인을 다시 진행해 주세요');
           break;
         case TokenStatus.valid:
           await _refreshAccessToken();
           _authController.add(AuthenticationStatus.authenticated);
           break;
       }
+    } on DioException catch (e) {
+      _authController.add(AuthenticationStatus.unauthenticated);
+      GetIt.I<ToastManager>().error(message: e.error as String);
+      // Routing 추가 필요
     } catch (e) {
       _authController.add(AuthenticationStatus.unauthenticated);
-      GetIt.I<ToastManager>().error(message: "사용자 인증 중 문제가 발생했어요");
-      // ! 서버 상태 이상 Route 추가
+      GetIt.I<ToastManager>().error(message: '사용자 인증 중 문제가 발생했어요');
     }
   }
 
@@ -71,7 +77,7 @@ class AuthenticationRepository {
     try {
       final response = await _dio.post(
         AuthenticationApiEndpoints.signIn,
-        data: {"studentId": studentId, "password": password}
+        data: {'studentId': studentId, 'password': password}
       );
 
       if (response.statusCode == 200) {
@@ -85,14 +91,14 @@ class AuthenticationRepository {
           signup: (name, college, department, major) {
             _signInController.add(SignInStatus.inSignUp);
           },
-          refresh: (accessToken) => throw Exception("문제가 발생해 로그인에 실패했어요")
+          refresh: (accessToken) => throw Exception('문제가 발생해 로그인에 실패했어요')
         );
       } else {
-        throw Exception("문제가 발생해 로그인에 실패했어요");
+        throw Exception('문제가 발생해 로그인에 실패했어요');
       }
     } catch (e) {
       _authController.add(AuthenticationStatus.unauthenticated);
-      throw Exception("문제가 발생해 로그인에 실패했어요");
+      throw Exception('문제가 발생해 로그인에 실패했어요');
     }
   }
 
@@ -108,12 +114,12 @@ class AuthenticationRepository {
       final response = await _dio.post(
         AuthenticationApiEndpoints.signUp,
         data: {
-          "studentid": studentId,
-          "name": name,
-          "college": college,
-          "department": department,
+          'studentid': studentId,
+          'name': name,
+          'college': college,
+          'department': department,
           if (major != null)
-            "major": major,
+            'major': major,
         }
       );
 
@@ -125,15 +131,15 @@ class AuthenticationRepository {
             _signInController.add(SignInStatus.signUpSuccess);
             _authController.add(AuthenticationStatus.authenticated);
           },
-          signup: (name, college, department, major) => throw Exception("문제가 발생해 회원가입에 실패했어요"),
-          refresh: (accessToken) => throw Exception("문제가 발생해 회원가입에 실패했어요")
+          signup: (name, college, department, major) => throw Exception('문제가 발생해 회원가입에 실패했어요'),
+          refresh: (accessToken) => throw Exception('문제가 발생해 회원가입에 실패했어요')
         );
       } else {
-        throw Exception("문제가 발생해 회원가입에 실패했어요");
+        throw Exception('문제가 발생해 회원가입에 실패했어요');
       }
     } catch (e) {
       _authController.add(AuthenticationStatus.unauthenticated);
-      throw Exception("문제가 발생해 회원가입에 실패했어요");
+      throw Exception('문제가 발생해 회원가입에 실패했어요');
     }
   }
 
@@ -154,21 +160,21 @@ class AuthenticationRepository {
       final refreshToken = await _secureStorage.readRefreshToken();
       final response = await _dio.post(
         AuthenticationApiEndpoints.refresh,
-        data: {"refreshToken": refreshToken}
+        data: {'refreshToken': refreshToken}
       );
 
-      if (response.statusCode == 200) {
-        final refreshResponse = AuthenticationResponse.fromJson(response.data);
-        refreshResponse.when(
-          refresh: (accessToken) async {
-            await _secureStorage.saveTokens(accessToken: accessToken);
-          },
-          success: (accessToken, refreshToken) => throw Exception("서비스 이용을 위한 인증에 실패했어요"),
-          signup: (name, college, department, major) => throw Exception("서비스 이용을 위한 인증에 실패했어요"),
-        );
-      }
+      final refreshResponse = AuthenticationResponse.fromJson(response.data);
+      refreshResponse.when(
+        refresh: (accessToken) async {
+          await _secureStorage.saveTokens(accessToken: accessToken);
+        },
+        success: (accessToken, refreshToken) => throw Exception('서비스 이용을 위한 인증에 실패했어요'),
+        signup: (name, college, department, major) => throw Exception('서비스 이용을 위한 인증에 실패했어요'),
+      );
+    } on DioException {
+      rethrow;
     } catch (e) {
-      throw Exception("서비스 이용을 위한 인증에 실패했어요");
+      throw Exception('서비스 이용을 위한 인증에 실패했어요');
     }
   }
 

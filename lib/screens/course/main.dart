@@ -178,9 +178,9 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                 child: ListView.builder(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
-                  itemCount: data.weekActivities.length,
+                  itemCount: data.weekActivities!.length,
                   itemBuilder: (context, index) {
-                    final WeekActivities weekActivities = data.weekActivities[index];
+                    final WeekActivities weekActivities = data.weekActivities![index];
 
                     return Container(
                       width: double.infinity,

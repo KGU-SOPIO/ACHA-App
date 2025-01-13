@@ -9,7 +9,6 @@ import 'package:acha/app.dart';
 import 'package:acha/repository/index.dart';
 
 import 'package:acha/network/interceptor/index.dart';
-import 'package:acha/network/util/internet_checker.dart';
 
 import 'package:acha/widgets/toast/toast_manager.dart';
 
@@ -20,7 +19,6 @@ void main() async {
   final GetIt getIt = GetIt.I;
   getIt.registerSingleton<SecureStorage>(SecureStorage());
   getIt.registerSingleton<DataStorage>(DataStorage());
-  getIt.registerSingleton<InternetChecker>(InternetChecker());
   getIt.registerSingleton(
     () {
       final Dio dio = Dio();
@@ -31,6 +29,8 @@ void main() async {
   );
   getIt.registerLazySingleton<AuthenticationRepository>(() => AuthenticationRepository());
   getIt.registerLazySingleton<CourseRepository>(() => CourseRepository());
+  getIt.registerLazySingleton<UserRepository>(() => UserRepository());
+  getIt.registerLazySingleton<AlertRepository>(() => AlertRepository());
   getIt.registerLazySingleton<ToastManager>(() => ToastManager());
 
   await getIt<DataStorage>().init();

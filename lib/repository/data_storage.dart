@@ -65,7 +65,7 @@ class DataStorage {
     final box = Hive.box<Course>(courseBoxKey);
     final course = box.get(courseCode);
     if (course?.weekActivities != null) {
-      return course!.weekActivities.map((weekActivities) => weekActivities.activities).toList();
+      return course!.weekActivities!.map((weekActivities) => weekActivities.activities).toList();
     }
     return [];
   }
@@ -91,7 +91,7 @@ class DataStorage {
       throw Exception('강좌를 찾을 수 없습니다.');
     }
 
-    final updatedWeekActivities = course.weekActivities.map((weekActivities) {
+    final updatedWeekActivities = course.weekActivities!.map((weekActivities) {
       final updatedActivities = weekActivities.activities.map((activity) {
         if (activity.type == ActivityType.assignment && activity.code == activityCode) {
           return activity.copyWith(

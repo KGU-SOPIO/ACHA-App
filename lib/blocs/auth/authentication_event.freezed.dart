@@ -37,19 +37,19 @@ mixin _$AuthenticationEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthenticationStatusChanged value) statusChanged,
+    required TResult Function(StatusChanged value) statusChanged,
     required TResult Function(Logout value) logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthenticationStatusChanged value)? statusChanged,
+    TResult? Function(StatusChanged value)? statusChanged,
     TResult? Function(Logout value)? logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthenticationStatusChanged value)? statusChanged,
+    TResult Function(StatusChanged value)? statusChanged,
     TResult Function(Logout value)? logout,
     required TResult orElse(),
   }) =>
@@ -78,23 +78,20 @@ class _$AuthenticationEventCopyWithImpl<$Res, $Val extends AuthenticationEvent>
 }
 
 /// @nodoc
-abstract class _$$AuthenticationStatusChangedImplCopyWith<$Res> {
-  factory _$$AuthenticationStatusChangedImplCopyWith(
-          _$AuthenticationStatusChangedImpl value,
-          $Res Function(_$AuthenticationStatusChangedImpl) then) =
-      __$$AuthenticationStatusChangedImplCopyWithImpl<$Res>;
+abstract class _$$StatusChangedImplCopyWith<$Res> {
+  factory _$$StatusChangedImplCopyWith(
+          _$StatusChangedImpl value, $Res Function(_$StatusChangedImpl) then) =
+      __$$StatusChangedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({AuthenticationStatus status});
 }
 
 /// @nodoc
-class __$$AuthenticationStatusChangedImplCopyWithImpl<$Res>
-    extends _$AuthenticationEventCopyWithImpl<$Res,
-        _$AuthenticationStatusChangedImpl>
-    implements _$$AuthenticationStatusChangedImplCopyWith<$Res> {
-  __$$AuthenticationStatusChangedImplCopyWithImpl(
-      _$AuthenticationStatusChangedImpl _value,
-      $Res Function(_$AuthenticationStatusChangedImpl) _then)
+class __$$StatusChangedImplCopyWithImpl<$Res>
+    extends _$AuthenticationEventCopyWithImpl<$Res, _$StatusChangedImpl>
+    implements _$$StatusChangedImplCopyWith<$Res> {
+  __$$StatusChangedImplCopyWithImpl(
+      _$StatusChangedImpl _value, $Res Function(_$StatusChangedImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AuthenticationEvent
@@ -104,7 +101,7 @@ class __$$AuthenticationStatusChangedImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
   }) {
-    return _then(_$AuthenticationStatusChangedImpl(
+    return _then(_$StatusChangedImpl(
       null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -115,8 +112,8 @@ class __$$AuthenticationStatusChangedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AuthenticationStatusChangedImpl implements AuthenticationStatusChanged {
-  const _$AuthenticationStatusChangedImpl(this.status);
+class _$StatusChangedImpl implements StatusChanged {
+  const _$StatusChangedImpl(this.status);
 
   @override
   final AuthenticationStatus status;
@@ -130,7 +127,7 @@ class _$AuthenticationStatusChangedImpl implements AuthenticationStatusChanged {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthenticationStatusChangedImpl &&
+            other is _$StatusChangedImpl &&
             (identical(other.status, status) || other.status == status));
   }
 
@@ -142,9 +139,8 @@ class _$AuthenticationStatusChangedImpl implements AuthenticationStatusChanged {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$AuthenticationStatusChangedImplCopyWith<_$AuthenticationStatusChangedImpl>
-      get copyWith => __$$AuthenticationStatusChangedImplCopyWithImpl<
-          _$AuthenticationStatusChangedImpl>(this, _$identity);
+  _$$StatusChangedImplCopyWith<_$StatusChangedImpl> get copyWith =>
+      __$$StatusChangedImplCopyWithImpl<_$StatusChangedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -180,7 +176,7 @@ class _$AuthenticationStatusChangedImpl implements AuthenticationStatusChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthenticationStatusChanged value) statusChanged,
+    required TResult Function(StatusChanged value) statusChanged,
     required TResult Function(Logout value) logout,
   }) {
     return statusChanged(this);
@@ -189,7 +185,7 @@ class _$AuthenticationStatusChangedImpl implements AuthenticationStatusChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthenticationStatusChanged value)? statusChanged,
+    TResult? Function(StatusChanged value)? statusChanged,
     TResult? Function(Logout value)? logout,
   }) {
     return statusChanged?.call(this);
@@ -198,7 +194,7 @@ class _$AuthenticationStatusChangedImpl implements AuthenticationStatusChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthenticationStatusChanged value)? statusChanged,
+    TResult Function(StatusChanged value)? statusChanged,
     TResult Function(Logout value)? logout,
     required TResult orElse(),
   }) {
@@ -209,17 +205,17 @@ class _$AuthenticationStatusChangedImpl implements AuthenticationStatusChanged {
   }
 }
 
-abstract class AuthenticationStatusChanged implements AuthenticationEvent {
-  const factory AuthenticationStatusChanged(final AuthenticationStatus status) =
-      _$AuthenticationStatusChangedImpl;
+abstract class StatusChanged implements AuthenticationEvent {
+  const factory StatusChanged(final AuthenticationStatus status) =
+      _$StatusChangedImpl;
 
   AuthenticationStatus get status;
 
   /// Create a copy of AuthenticationEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AuthenticationStatusChangedImplCopyWith<_$AuthenticationStatusChangedImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$StatusChangedImplCopyWith<_$StatusChangedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -294,7 +290,7 @@ class _$LogoutImpl implements Logout {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthenticationStatusChanged value) statusChanged,
+    required TResult Function(StatusChanged value) statusChanged,
     required TResult Function(Logout value) logout,
   }) {
     return logout(this);
@@ -303,7 +299,7 @@ class _$LogoutImpl implements Logout {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthenticationStatusChanged value)? statusChanged,
+    TResult? Function(StatusChanged value)? statusChanged,
     TResult? Function(Logout value)? logout,
   }) {
     return logout?.call(this);
@@ -312,7 +308,7 @@ class _$LogoutImpl implements Logout {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthenticationStatusChanged value)? statusChanged,
+    TResult Function(StatusChanged value)? statusChanged,
     TResult Function(Logout value)? logout,
     required TResult orElse(),
   }) {

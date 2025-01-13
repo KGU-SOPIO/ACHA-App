@@ -5,7 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 import 'package:acha/blocs/auth/index.dart';
-import 'package:acha/blocs/course_manager/index.dart';
+import 'package:acha/blocs/user/index.dart';
+import 'package:acha/blocs/alert/index.dart';
 
 import 'package:acha/repository/index.dart';
 
@@ -26,14 +27,14 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   late final AuthenticationRepository _authenticationRepository;
   late final UserRepository _userRepository;
-  late final CourseRepository _courseRepository;
+  late final AlertRepository _alertRepository;
 
   @override
   void initState() {
     super.initState();
     _authenticationRepository = GetIt.I<AuthenticationRepository>();
-    _userRepository = UserRepository();
-    _courseRepository = GetIt.I<CourseRepository>();
+    _userRepository = GetIt.I<UserRepository>();
+    _alertRepository = GetIt.I<AlertRepository>();
   }
 
   @override
@@ -53,17 +54,9 @@ class _AppState extends State<App> {
       value: _authenticationRepository,
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(
-            create: (_) => AuthenticationBloc(
-              authenticationRepository: _authenticationRepository,
-              userRepository: _userRepository
-            )
-          ),
-          BlocProvider(
-            create: (context) => CourseManagerBloc(
-              courseRepository: _courseRepository
-            )
-          )
+          BlocProvider(create: (context) => AuthenticationBloc(authenticationRepository: _authenticationRepository)),
+          BlocProvider(create: (context) => UserBloc(userRepository: _userRepository)),
+          BlocProvider(create: (context) => AlertBloc(alertRepository: _alertRepository))
         ],
         child: const AppView(),
       ),
@@ -91,7 +84,6 @@ class AppView extends StatefulWidget {
 
 class _AppViewState extends State<AppView> {
   NavigatorState get _navigator => AppView.navigatorKey.currentState!;
-  bool _isNavigate = false;
 
   @override
   Widget build(BuildContext context) {
@@ -103,53 +95,17 @@ class _AppViewState extends State<AppView> {
       themeMode: ThemeMode.system,
       navigatorKey: AppView.navigatorKey,
       scrollBehavior: Behavior(),
-      builder: (context, child) {
-        return MultiBlocListener(
-          listeners: [
-            BlocListener<AuthenticationBloc, AuthenticationState>(
-              listener: (context, state) => _checkStates(context, state, context.read<CourseManagerBloc>().state)
-            ),
-            BlocListener<CourseManagerBloc, CourseManagerState>(
-              listener: (context, state) => _checkStates(context, context.read<AuthenticationBloc>().state, state)
-            )
-          ],
-          child: child!,
-        );
-      },
-      onGenerateRoute: (_) => SplashScreen.route()
-    );
-  }
-
-  void _checkStates(BuildContext context, AuthenticationState authState, CourseManagerState courseState) {
-    if (_isNavigate) return;
-
-    courseState.maybeWhen(
-      initial: () {
-        context.read<CourseManagerBloc>().add(Load());
-        return;
-      },
-      loaded: (courses) {
-        authState.when(
-          authenticated: (user) {
-            _isNavigate = true;
-            _navigator.pushAndRemoveUntil(HomeScreen.route(), (route) => false);
-          },
-          unauthenticated: () {
-            _isNavigate = true;
-            _navigator.pushAndRemoveUntil(AuthStartScreen.route(), (route) => false);
-          },
+      builder: (context, child) => BlocListener<AuthenticationBloc, AuthenticationState>(
+        listener: (context, state) => state.when(
+          authenticated: () => _navigator.pushAndRemoveUntil(HomeScreen.route(), (route) => false),
+          unauthenticated:() => _navigator.pushAndRemoveUntil(AuthStartScreen.route(), (route) => false),
           unknown: () {
             return;
           }
-        );
-      },
-      error: (message) {
-        debugPrint('서버에서 데이터를 가져오지 못했습니다');
-        _navigator.pushAndRemoveUntil(HomeScreen.route(), (route) => false);
-      },
-      orElse: () {
-        return;
-      }
+        ),
+        child: child
+      ),
+      onGenerateRoute: (context) => SplashScreen.route()
     );
   }
 }

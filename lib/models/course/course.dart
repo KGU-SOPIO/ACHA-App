@@ -20,8 +20,8 @@ class Course with _$Course {
     @HiveField(2) required String code,
     @HiveField(3) required String professor,
     @HiveField(4) required String lectureRoom,
-    @HiveField(5) @Default([]) List<WeekActivities> weekActivities,
-    @HiveField(6) @Default([]) List<Notice> notices
+    @HiveField(5) List<WeekActivities>? weekActivities,
+    @HiveField(6) List<Notice>? notices
   }) = _Course;
 
   factory Course.fromJson(Map<String, dynamic> json) => _$CourseFromJson(json);
@@ -48,13 +48,13 @@ class Course with _$Course {
   /// 조건에 따라 필터링된 활동 목록을 반환합니다.
   List<dynamic> _filterActivities({required Set<ActivityType> types, required bool onlyWithDeadline, required bool flat}) {
     if (flat) {
-      return weekActivities.expand((weekActivities) =>
+      return weekActivities!.expand((weekActivities) =>
         weekActivities.activities.where((activity) =>
           types.contains(activity.type) && (!onlyWithDeadline || activity.deadline != null))
       ).toList();
     }
 
-    return weekActivities.map((week) => week.copyWith(
+    return weekActivities!.map((week) => week.copyWith(
       activities: week.activities.where((activity) =>
         types.contains(activity.type) && (!onlyWithDeadline || activity.deadline != null)
       ).toList(),
