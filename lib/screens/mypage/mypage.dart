@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:acha/repository/index.dart';
 
-import 'package:acha/screens/mypage/sopio.dart';
+import 'package:acha/screens/mypage/mypage_sopio.dart';
 
 import 'package:acha/widgets/containers/index.dart';
 import 'package:acha/widgets/buttons/index.dart';

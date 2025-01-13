@@ -6,6 +6,7 @@ import 'package:get_it/get_it.dart';
 
 import 'package:acha/blocs/auth/index.dart';
 import 'package:acha/blocs/user/index.dart';
+import 'package:acha/blocs/today_course/index.dart';
 import 'package:acha/blocs/alert/index.dart';
 
 import 'package:acha/repository/index.dart';
@@ -27,6 +28,7 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   late final AuthenticationRepository _authenticationRepository;
   late final UserRepository _userRepository;
+  late final TodayCourseRepository _todayCourseRepository;
   late final AlertRepository _alertRepository;
 
   @override
@@ -34,6 +36,7 @@ class _AppState extends State<App> {
     super.initState();
     _authenticationRepository = GetIt.I<AuthenticationRepository>();
     _userRepository = GetIt.I<UserRepository>();
+    _todayCourseRepository = GetIt.I<TodayCourseRepository>();
     _alertRepository = GetIt.I<AlertRepository>();
   }
 
@@ -56,6 +59,7 @@ class _AppState extends State<App> {
         providers: [
           BlocProvider(create: (context) => AuthenticationBloc(authenticationRepository: _authenticationRepository)),
           BlocProvider(create: (context) => UserBloc(userRepository: _userRepository)),
+          BlocProvider(create: (context) => TodayCourseBloc(todayCourseRepository: _todayCourseRepository)),
           BlocProvider(create: (context) => AlertBloc(alertRepository: _alertRepository))
         ],
         child: const AppView(),
@@ -84,6 +88,7 @@ class AppView extends StatefulWidget {
 
 class _AppViewState extends State<AppView> {
   NavigatorState get _navigator => AppView.navigatorKey.currentState!;
+  bool _isNavigate = false;
 
   @override
   Widget build(BuildContext context) {
@@ -95,17 +100,40 @@ class _AppViewState extends State<AppView> {
       themeMode: ThemeMode.system,
       navigatorKey: AppView.navigatorKey,
       scrollBehavior: Behavior(),
-      builder: (context, child) => BlocListener<AuthenticationBloc, AuthenticationState>(
-        listener: (context, state) => state.when(
-          authenticated: () => _navigator.pushAndRemoveUntil(HomeScreen.route(), (route) => false),
-          unauthenticated:() => _navigator.pushAndRemoveUntil(AuthStartScreen.route(), (route) => false),
-          unknown: () {
-            return;
-          }
-        ),
-        child: child
+      builder: (context, child) => MultiBlocListener(
+        listeners: [
+          BlocListener<AuthenticationBloc, AuthenticationState>(
+            listener: (context, state) => state.when(
+              authenticated: () {
+                context.read<UserBloc>().add(UserEvent.fetch());
+                context.read<TodayCourseBloc>().add(TodayCourseEvent.fetch());
+                _checkStates(context);
+                return;
+              },
+              unauthenticated: () => _navigator.pushAndRemoveUntil(AuthStartScreen.route(), (route) => false),
+              unknown: () => null,
+            )
+          ),
+          BlocListener<UserBloc, UserState>(listener: (context, state) => _checkStates(context)),
+          BlocListener<TodayCourseBloc, TodayCourseState>(listener: (context, state) => _checkStates(context))
+        ],
+        child: child!
       ),
       onGenerateRoute: (context) => SplashScreen.route()
     );
+  }
+
+  void _checkStates(BuildContext context) {
+    if (_isNavigate) return;
+
+    final userState = context.read<UserBloc>().state;
+    final courseState = context.read<TodayCourseBloc>().state;
+
+    if (courseState.status == TodayCourseStatus.loading && userState.status == UserStatus.loading) {
+      return;
+    } else {
+      _isNavigate = true;
+      _navigator.pushAndRemoveUntil(HomeScreen.route(), (route) => false);
+    }
   }
 }

@@ -6,9 +6,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:acha/blocs/navigation/navigation_bloc.dart';
 
 import 'package:acha/screens/main.dart';
-import 'package:acha/screens/course.dart';
-import 'package:acha/screens/notification.dart';
-import 'package:acha/screens/mypage.dart';
+import 'package:acha/screens/course/course.dart';
+import 'package:acha/screens/notification/notification.dart';
+import 'package:acha/screens/mypage/mypage.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

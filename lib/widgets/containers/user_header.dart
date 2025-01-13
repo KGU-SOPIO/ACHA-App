@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:acha/blocs/user/index.dart';
 
+import 'package:acha/widgets/containers/index.dart';
 import 'package:acha/widgets/toast/toast_manager.dart';
 
 class UserHeader extends StatefulWidget {
@@ -34,7 +35,7 @@ class _UserHeaderState extends State<UserHeader> {
       child: BlocBuilder<UserBloc, UserState>(
         builder: (context, state) {
           if (state.status == UserStatus.loading) {
-            return const Center(child: CircularProgressIndicator());
+            return Loader(height: 63 + widget.bottomMargin);
           } else if (state.status == UserStatus.loaded) {
             return Container(
               margin: EdgeInsets.only(bottom: widget.bottomMargin),

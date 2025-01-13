@@ -1,5 +1,6 @@
-import 'package:acha/models/index.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import 'package:acha/models/index.dart';
 
 part 'user_state.freezed.dart';
 
