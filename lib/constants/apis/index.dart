@@ -3,3 +3,5 @@ export 'package:acha/constants/apis/user.dart';
 export 'package:acha/constants/apis/course.dart';
 export 'package:acha/constants/apis/alert.dart';
 export 'package:acha/constants/apis/today_course.dart';
+export 'package:acha/constants/apis/priority_lecture.dart';
+export 'package:acha/constants/apis/priority_assignment.dart';

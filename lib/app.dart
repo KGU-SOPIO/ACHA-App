@@ -7,6 +7,8 @@ import 'package:get_it/get_it.dart';
 import 'package:acha/blocs/auth/index.dart';
 import 'package:acha/blocs/user/index.dart';
 import 'package:acha/blocs/today_course/index.dart';
+import 'package:acha/blocs/priority_lecture/index.dart';
+import 'package:acha/blocs/priority_assignment/index.dart';
 import 'package:acha/blocs/alert/index.dart';
 
 import 'package:acha/repository/index.dart';
@@ -29,6 +31,8 @@ class _AppState extends State<App> {
   late final AuthenticationRepository _authenticationRepository;
   late final UserRepository _userRepository;
   late final TodayCourseRepository _todayCourseRepository;
+  late final PriorityLectureRepository _priorityLectureRepository;
+  late final PriorityAssignmentRepository _priorityAssignmentRepository;
   late final AlertRepository _alertRepository;
 
   @override
@@ -37,6 +41,8 @@ class _AppState extends State<App> {
     _authenticationRepository = GetIt.I<AuthenticationRepository>();
     _userRepository = GetIt.I<UserRepository>();
     _todayCourseRepository = GetIt.I<TodayCourseRepository>();
+    _priorityLectureRepository = GetIt.I<PriorityLectureRepository>();
+    _priorityAssignmentRepository = GetIt.I<PriorityAssignmentRepository>();
     _alertRepository = GetIt.I<AlertRepository>();
   }
 
@@ -60,6 +66,8 @@ class _AppState extends State<App> {
           BlocProvider(create: (context) => AuthenticationBloc(authenticationRepository: _authenticationRepository)),
           BlocProvider(create: (context) => UserBloc(userRepository: _userRepository)),
           BlocProvider(create: (context) => TodayCourseBloc(todayCourseRepository: _todayCourseRepository)),
+          BlocProvider(create: (context) => PriorityLectureBloc(priorityLectureRepository: _priorityLectureRepository)),
+          BlocProvider(create: (context) => PriorityAssignmentBloc(priorityAssignmentRepository: _priorityAssignmentRepository)),
           BlocProvider(create: (context) => AlertBloc(alertRepository: _alertRepository))
         ],
         child: const AppView(),

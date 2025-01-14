@@ -182,6 +182,7 @@ mixin _$TodayCourse {
   String get title => throw _privateConstructorUsedError;
   String get lectureRoom => throw _privateConstructorUsedError;
   String get professor => throw _privateConstructorUsedError;
+  String get courseCode => throw _privateConstructorUsedError;
   DateTime? get deadline => throw _privateConstructorUsedError;
 
   /// Serializes this TodayCourse to a JSON map.
@@ -201,7 +202,11 @@ abstract class $TodayCourseCopyWith<$Res> {
       _$TodayCourseCopyWithImpl<$Res, TodayCourse>;
   @useResult
   $Res call(
-      {String title, String lectureRoom, String professor, DateTime? deadline});
+      {String title,
+      String lectureRoom,
+      String professor,
+      String courseCode,
+      DateTime? deadline});
 }
 
 /// @nodoc
@@ -222,6 +227,7 @@ class _$TodayCourseCopyWithImpl<$Res, $Val extends TodayCourse>
     Object? title = null,
     Object? lectureRoom = null,
     Object? professor = null,
+    Object? courseCode = null,
     Object? deadline = freezed,
   }) {
     return _then(_value.copyWith(
@@ -236,6 +242,10 @@ class _$TodayCourseCopyWithImpl<$Res, $Val extends TodayCourse>
       professor: null == professor
           ? _value.professor
           : professor // ignore: cast_nullable_to_non_nullable
+              as String,
+      courseCode: null == courseCode
+          ? _value.courseCode
+          : courseCode // ignore: cast_nullable_to_non_nullable
               as String,
       deadline: freezed == deadline
           ? _value.deadline
@@ -254,7 +264,11 @@ abstract class _$$TodayCourseImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String title, String lectureRoom, String professor, DateTime? deadline});
+      {String title,
+      String lectureRoom,
+      String professor,
+      String courseCode,
+      DateTime? deadline});
 }
 
 /// @nodoc
@@ -273,6 +287,7 @@ class __$$TodayCourseImplCopyWithImpl<$Res>
     Object? title = null,
     Object? lectureRoom = null,
     Object? professor = null,
+    Object? courseCode = null,
     Object? deadline = freezed,
   }) {
     return _then(_$TodayCourseImpl(
@@ -287,6 +302,10 @@ class __$$TodayCourseImplCopyWithImpl<$Res>
       professor: null == professor
           ? _value.professor
           : professor // ignore: cast_nullable_to_non_nullable
+              as String,
+      courseCode: null == courseCode
+          ? _value.courseCode
+          : courseCode // ignore: cast_nullable_to_non_nullable
               as String,
       deadline: freezed == deadline
           ? _value.deadline
@@ -303,6 +322,7 @@ class _$TodayCourseImpl implements _TodayCourse {
       {required this.title,
       required this.lectureRoom,
       required this.professor,
+      required this.courseCode,
       this.deadline});
 
   factory _$TodayCourseImpl.fromJson(Map<String, dynamic> json) =>
@@ -315,11 +335,13 @@ class _$TodayCourseImpl implements _TodayCourse {
   @override
   final String professor;
   @override
+  final String courseCode;
+  @override
   final DateTime? deadline;
 
   @override
   String toString() {
-    return 'TodayCourse(title: $title, lectureRoom: $lectureRoom, professor: $professor, deadline: $deadline)';
+    return 'TodayCourse(title: $title, lectureRoom: $lectureRoom, professor: $professor, courseCode: $courseCode, deadline: $deadline)';
   }
 
   @override
@@ -332,14 +354,16 @@ class _$TodayCourseImpl implements _TodayCourse {
                 other.lectureRoom == lectureRoom) &&
             (identical(other.professor, professor) ||
                 other.professor == professor) &&
+            (identical(other.courseCode, courseCode) ||
+                other.courseCode == courseCode) &&
             (identical(other.deadline, deadline) ||
                 other.deadline == deadline));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, title, lectureRoom, professor, deadline);
+  int get hashCode => Object.hash(
+      runtimeType, title, lectureRoom, professor, courseCode, deadline);
 
   /// Create a copy of TodayCourse
   /// with the given fields replaced by the non-null parameter values.
@@ -362,6 +386,7 @@ abstract class _TodayCourse implements TodayCourse {
       {required final String title,
       required final String lectureRoom,
       required final String professor,
+      required final String courseCode,
       final DateTime? deadline}) = _$TodayCourseImpl;
 
   factory _TodayCourse.fromJson(Map<String, dynamic> json) =
@@ -373,6 +398,8 @@ abstract class _TodayCourse implements TodayCourse {
   String get lectureRoom;
   @override
   String get professor;
+  @override
+  String get courseCode;
   @override
   DateTime? get deadline;
 

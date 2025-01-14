@@ -18,6 +18,7 @@ class TodayCourse with _$TodayCourse {
     required String title,
     required String lectureRoom,
     required String professor,
+    required String courseCode,
     DateTime? deadline
   }) = _TodayCourse;
 
