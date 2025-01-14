@@ -21,26 +21,14 @@ class CourseRepository {
     }
   }
 
-  Future<List<WeekActivities>> fetchActivities(String courseCode) async {
+  Future<Activities> fetchActivities() async {
     try {
-      final response = await _dio.get(CourseApiEndpoints.activityDetail(courseCode));
-      final List<dynamic> data = response.data;
-
-      final List<WeekActivities> weekActivities = data.asMap().entries.map((entry) {
-        final int week = entry.key + 1;
-        final List<dynamic> activitiesData = entry.value as List<dynamic>;
-        final List<Activity> activities = activitiesData.map((activityJson) => Activity.fromJson(activityJson as Map<String, dynamic>)).toList();
-
-        return WeekActivities(
-          week: week,
-          activities: activities,
-        );
-      }).toList();
-      await _dataStorage.updateActivities(courseCode, weekActivities);
-
-      return weekActivities;
-    } catch (e) {
+      final response = await _dio.get(CourseApiEndpoints.activity);
+      return Activities.fromJson(response.data);
+    } on DioException {
       rethrow;
+    } catch (e) {
+      throw Exception('활동을 불러오지 못했어요');
     }
   }
 

@@ -74,7 +74,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
         body: SafeArea(
           child: BlocConsumer<SignInBloc, SignInState>(
             listener: (context, state) {
-              if (state.status == SignInStatus.signInSuccess) {
+              if (state.status == SignInStatus.signInSuccess || state.status == SignInStatus.signUpSuccess) {
                 Navigator.pushAndRemoveUntil(context, HomeScreen.route(), (route) => false);
               } else if (state.status == SignInStatus.inSignUp) {
                 Navigator.push(context, AuthSignUpScreen.route(context));

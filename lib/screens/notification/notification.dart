@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 
+import 'package:get_it/get_it.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:acha/blocs/activity/index.dart';
+
 import 'package:acha/models/index.dart';
 
 import 'package:acha/extensions/index.dart';
 
 import 'package:acha/widgets/containers/index.dart';
 import 'package:acha/widgets/tabbars/index.dart';
+import 'package:acha/widgets/toast/toast_manager.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
@@ -23,12 +29,10 @@ class NotificationScreen extends StatefulWidget {
 class _NotificationScreenState extends State<NotificationScreen> with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
-  // 디버깅용 테스트 데이터
-  Course data = dummyData.first;
-
   @override
   void initState() {
     super.initState();
+    context.read<ActivityBloc>().add(ActivityEvent.fetch());
     _tabController = TabController(length: 3, vsync: this);
   }
 
@@ -55,13 +59,31 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
               SliverToBoxAdapter(child: NotificationTabbar(tabController: _tabController))
             ];
           },
-          body: TabBarView(
-            controller: _tabController,
-            children: [
-              _buildActivityListView(data.getLectureAndAssignmentActivities(group: true)),
-              _buildActivityListView(data.getLectureActivities(group: true)),
-              _buildActivityListView(data.getAssignmentActivities(group: true))
-            ]
+          body: BlocListener<ActivityBloc, ActivityState>(
+            listener: (context, state) {
+              if (state.status == ActivityStatus.error) {
+                GetIt.I<ToastManager>().error(message: '활동을 불러오지 못했어요');
+              }
+            },
+            child: BlocBuilder<ActivityBloc, ActivityState>(
+              builder: (context, state) {
+                if (state.status == ActivityStatus.loading) {
+                  return Loader(height: MediaQuery.of(context).size.height);
+                } else if (state.status == ActivityStatus.loaded) {
+                  final Activities activities = state.activities!;
+                  return TabBarView(
+                    controller: _tabController,
+                    children: [
+                      _buildActivityListView(activities.getLectureAndAssignmentActivities(group: true)),
+                      _buildActivityListView(activities.getLectureActivities(group: true)),
+                      _buildActivityListView(activities.getAssignmentActivities(group: true))
+                    ]
+                  );
+                } else {
+                  return const SizedBox.shrink();
+                }
+              },
+            ),
           )
         )
       )
@@ -93,7 +115,7 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
               ...activities.map(
                 (activity) => ActivityContainer(
                   title: activity.name!,
-                  course: data.name,
+                  course: activity.courseName!,
                   deadline: activity.deadline!.toTimeLeftFormattedTime(),
                   margin: EdgeInsets.only(bottom: 16),
                   backgroundColor: Colors.white

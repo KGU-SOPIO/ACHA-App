@@ -23,7 +23,7 @@ class CourseAdapter extends TypeAdapter<Course> {
       deadline: fields[3] as DateTime?,
       link: fields[4] as String?,
       code: fields[5] as String?,
-      weekActivities: (fields[6] as List?)?.cast<WeekActivities>(),
+      weekActivities: (fields[6] as List?)?.cast<Activities>(),
       notices: (fields[7] as List?)?.cast<Notice>(),
     );
   }
@@ -87,7 +87,7 @@ _$CourseImpl _$$CourseImplFromJson(Map<String, dynamic> json) => _$CourseImpl(
       link: json['link'] as String?,
       code: json['code'] as String?,
       weekActivities: (json['weekActivities'] as List<dynamic>?)
-          ?.map((e) => WeekActivities.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => Activities.fromJson(e as Map<String, dynamic>))
           .toList(),
       notices: (json['notices'] as List<dynamic>?)
           ?.map((e) => Notice.fromJson(e as Map<String, dynamic>))

@@ -8,7 +8,7 @@ final List<Course> dummyData = [
     professor: '송명진',
     lectureRoom: '301',
     weekActivities: [
-      WeekActivities(
+      Activities(
         week: 1,
         activities: [
           Activity(
@@ -58,7 +58,7 @@ final List<Course> dummyData = [
     professor: '김철수',
     lectureRoom: '402',
     weekActivities: [
-      WeekActivities(
+      Activities(
         week: 1,
         activities: [
           Activity(
@@ -76,7 +76,7 @@ final List<Course> dummyData = [
           ),
         ],
       ),
-      WeekActivities(
+      Activities(
         week: 2,
         activities: [
           Activity(
@@ -132,7 +132,7 @@ final List<Course> dummyData = [
     professor: '이영희',
     lectureRoom: '503',
     weekActivities: [
-      WeekActivities(
+      Activities(
         week: 1,
         activities: [
           Activity(
@@ -150,7 +150,7 @@ final List<Course> dummyData = [
           ),
         ],
       ),
-      WeekActivities(
+      Activities(
         week: 2,
         activities: [
           Activity(
@@ -199,7 +199,7 @@ final List<Course> dummyData = [
     professor: '박지성',
     lectureRoom: '604',
     weekActivities: [
-      WeekActivities(
+      Activities(
         week: 1,
         activities: [
           Activity(
@@ -217,7 +217,7 @@ final List<Course> dummyData = [
           ),
         ],
       ),
-      WeekActivities(
+      Activities(
         week: 2,
         activities: [
           Activity(
@@ -242,7 +242,7 @@ final List<Course> dummyData = [
           ),
         ],
       ),
-      WeekActivities(
+      Activities(
         week: 3,
         activities: [
           Activity(

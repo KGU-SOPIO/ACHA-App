@@ -186,8 +186,7 @@ mixin _$Course {
   @HiveField(5)
   String? get code => throw _privateConstructorUsedError;
   @HiveField(6)
-  List<WeekActivities>? get weekActivities =>
-      throw _privateConstructorUsedError;
+  List<Activities>? get weekActivities => throw _privateConstructorUsedError;
   @HiveField(7)
   List<Notice>? get notices => throw _privateConstructorUsedError;
 
@@ -212,7 +211,7 @@ abstract class $CourseCopyWith<$Res> {
       @HiveField(3) DateTime? deadline,
       @HiveField(4) String? link,
       @HiveField(5) String? code,
-      @HiveField(6) List<WeekActivities>? weekActivities,
+      @HiveField(6) List<Activities>? weekActivities,
       @HiveField(7) List<Notice>? notices});
 }
 
@@ -268,7 +267,7 @@ class _$CourseCopyWithImpl<$Res, $Val extends Course>
       weekActivities: freezed == weekActivities
           ? _value.weekActivities
           : weekActivities // ignore: cast_nullable_to_non_nullable
-              as List<WeekActivities>?,
+              as List<Activities>?,
       notices: freezed == notices
           ? _value.notices
           : notices // ignore: cast_nullable_to_non_nullable
@@ -291,7 +290,7 @@ abstract class _$$CourseImplCopyWith<$Res> implements $CourseCopyWith<$Res> {
       @HiveField(3) DateTime? deadline,
       @HiveField(4) String? link,
       @HiveField(5) String? code,
-      @HiveField(6) List<WeekActivities>? weekActivities,
+      @HiveField(6) List<Activities>? weekActivities,
       @HiveField(7) List<Notice>? notices});
 }
 
@@ -345,7 +344,7 @@ class __$$CourseImplCopyWithImpl<$Res>
       weekActivities: freezed == weekActivities
           ? _value._weekActivities
           : weekActivities // ignore: cast_nullable_to_non_nullable
-              as List<WeekActivities>?,
+              as List<Activities>?,
       notices: freezed == notices
           ? _value._notices
           : notices // ignore: cast_nullable_to_non_nullable
@@ -364,7 +363,7 @@ class _$CourseImpl extends _Course {
       @HiveField(3) this.deadline,
       @HiveField(4) this.link,
       @HiveField(5) this.code,
-      @HiveField(6) final List<WeekActivities>? weekActivities,
+      @HiveField(6) final List<Activities>? weekActivities,
       @HiveField(7) final List<Notice>? notices})
       : _weekActivities = weekActivities,
         _notices = notices,
@@ -391,10 +390,10 @@ class _$CourseImpl extends _Course {
   @override
   @HiveField(5)
   final String? code;
-  final List<WeekActivities>? _weekActivities;
+  final List<Activities>? _weekActivities;
   @override
   @HiveField(6)
-  List<WeekActivities>? get weekActivities {
+  List<Activities>? get weekActivities {
     final value = _weekActivities;
     if (value == null) return null;
     if (_weekActivities is EqualUnmodifiableListView) return _weekActivities;
@@ -474,7 +473,7 @@ abstract class _Course extends Course {
       @HiveField(3) final DateTime? deadline,
       @HiveField(4) final String? link,
       @HiveField(5) final String? code,
-      @HiveField(6) final List<WeekActivities>? weekActivities,
+      @HiveField(6) final List<Activities>? weekActivities,
       @HiveField(7) final List<Notice>? notices}) = _$CourseImpl;
   const _Course._() : super._();
 
@@ -500,7 +499,7 @@ abstract class _Course extends Course {
   String? get code;
   @override
   @HiveField(6)
-  List<WeekActivities>? get weekActivities;
+  List<Activities>? get weekActivities;
   @override
   @HiveField(7)
   List<Notice>? get notices;

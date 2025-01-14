@@ -6,24 +6,24 @@ part of 'activity.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class WeekActivitiesAdapter extends TypeAdapter<WeekActivities> {
+class ActivitiesAdapter extends TypeAdapter<Activities> {
   @override
   final int typeId = 2;
 
   @override
-  WeekActivities read(BinaryReader reader) {
+  Activities read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return WeekActivities(
-      week: fields[0] as int,
-      activities: (fields[1] as List).cast<Activity>(),
+    return Activities(
+      week: fields[0] as int?,
+      activities: (fields[1] as List?)?.cast<Activity>(),
     );
   }
 
   @override
-  void write(BinaryWriter writer, WeekActivities obj) {
+  void write(BinaryWriter writer, Activities obj) {
     writer
       ..writeByte(2)
       ..writeByte(0)
@@ -38,7 +38,7 @@ class WeekActivitiesAdapter extends TypeAdapter<WeekActivities> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is WeekActivitiesAdapter &&
+      other is ActivitiesAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
@@ -66,13 +66,14 @@ class ActivityAdapter extends TypeAdapter<Activity> {
       timeLeft: fields[9] as String?,
       lastModified: fields[10] as String?,
       description: fields[11] as String?,
+      courseName: fields[12] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, Activity obj) {
     writer
-      ..writeByte(12)
+      ..writeByte(13)
       ..writeByte(0)
       ..write(obj.type)
       ..writeByte(1)
@@ -96,7 +97,9 @@ class ActivityAdapter extends TypeAdapter<Activity> {
       ..writeByte(10)
       ..write(obj.lastModified)
       ..writeByte(11)
-      ..write(obj.description);
+      ..write(obj.description)
+      ..writeByte(12)
+      ..write(obj.courseName);
   }
 
   @override
@@ -163,16 +166,15 @@ class ActivityTypeAdapter extends TypeAdapter<ActivityType> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$WeekActivitiesImpl _$$WeekActivitiesImplFromJson(Map<String, dynamic> json) =>
-    _$WeekActivitiesImpl(
-      week: (json['week'] as num).toInt(),
-      activities: (json['activities'] as List<dynamic>)
-          .map((e) => Activity.fromJson(e as Map<String, dynamic>))
+_$ActivitiesImpl _$$ActivitiesImplFromJson(Map<String, dynamic> json) =>
+    _$ActivitiesImpl(
+      week: (json['week'] as num?)?.toInt(),
+      activities: (json['activities'] as List<dynamic>?)
+          ?.map((e) => Activity.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$WeekActivitiesImplToJson(
-        _$WeekActivitiesImpl instance) =>
+Map<String, dynamic> _$$ActivitiesImplToJson(_$ActivitiesImpl instance) =>
     <String, dynamic>{
       'week': instance.week,
       'activities': instance.activities,
@@ -194,6 +196,7 @@ _$ActivityImpl _$$ActivityImplFromJson(Map<String, dynamic> json) =>
       timeLeft: json['timeLeft'] as String?,
       lastModified: json['lastModified'] as String?,
       description: json['description'] as String?,
+      courseName: json['courseName'] as String?,
     );
 
 Map<String, dynamic> _$$ActivityImplToJson(_$ActivityImpl instance) =>
@@ -210,6 +213,7 @@ Map<String, dynamic> _$$ActivityImplToJson(_$ActivityImpl instance) =>
       'timeLeft': instance.timeLeft,
       'lastModified': instance.lastModified,
       'description': instance.description,
+      'courseName': instance.courseName,
     };
 
 const _$ActivityTypeEnumMap = {

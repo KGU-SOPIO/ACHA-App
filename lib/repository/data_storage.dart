@@ -9,7 +9,7 @@ class DataStorage {
     await Hive.initFlutter();
 
     Hive.registerAdapter(CourseAdapter());
-    Hive.registerAdapter(WeekActivitiesAdapter());
+    Hive.registerAdapter(ActivitiesAdapter());
     Hive.registerAdapter(ActivityAdapter());
     Hive.registerAdapter(ActivityTypeAdapter());
     Hive.registerAdapter(NoticeAdapter());
@@ -48,7 +48,7 @@ class DataStorage {
       final updatedActivities = activities.asMap().entries.map((entry) {
         final week = entry.key + 1;
         final activities = entry.value;
-        return WeekActivities(
+        return Activities(
           week: week,
           activities: activities
         );
@@ -61,16 +61,13 @@ class DataStorage {
     }
   }
 
-  Future<List<List<Activity>>?> readActivities(String courseCode) async {
+  Future<List<Activities>?> readActivities(String courseCode) async {
     final box = Hive.box<Course>(courseBoxKey);
     final course = box.get(courseCode);
-    if (course?.weekActivities != null) {
-      return course!.weekActivities!.map((weekActivities) => weekActivities.activities).toList();
-    }
-    return [];
+    return course?.weekActivities;
   }
 
-  Future<void> updateActivities(String courseCode, List<WeekActivities> weekActivities) async {
+  Future<void> updateActivities(String courseCode, List<Activities> weekActivities) async {
     final box = Hive.box<Course>(courseBoxKey);
     final course = box.get(courseCode);
     if (course != null) {
@@ -91,8 +88,8 @@ class DataStorage {
       throw Exception('강좌를 찾을 수 없습니다.');
     }
 
-    final updatedWeekActivities = course.weekActivities!.map((weekActivities) {
-      final updatedActivities = weekActivities.activities.map((activity) {
+    final updatedWeekActivities = course.weekActivities?.map((weekActivities) {
+      final updatedActivities = weekActivities.activities?.map((activity) {
         if (activity.type == ActivityType.assignment && activity.code == activityCode) {
           return activity.copyWith(
             available: assignment.available,

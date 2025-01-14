@@ -14,140 +14,143 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-WeekActivities _$WeekActivitiesFromJson(Map<String, dynamic> json) {
-  return _WeekActivities.fromJson(json);
+Activities _$ActivitiesFromJson(Map<String, dynamic> json) {
+  return _Activities.fromJson(json);
 }
 
 /// @nodoc
-mixin _$WeekActivities {
+mixin _$Activities {
   @HiveField(0)
-  int get week => throw _privateConstructorUsedError;
+  int? get week => throw _privateConstructorUsedError;
   @HiveField(1)
-  List<Activity> get activities => throw _privateConstructorUsedError;
+  List<Activity>? get activities => throw _privateConstructorUsedError;
 
-  /// Serializes this WeekActivities to a JSON map.
+  /// Serializes this Activities to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of WeekActivities
+  /// Create a copy of Activities
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $WeekActivitiesCopyWith<WeekActivities> get copyWith =>
+  $ActivitiesCopyWith<Activities> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $WeekActivitiesCopyWith<$Res> {
-  factory $WeekActivitiesCopyWith(
-          WeekActivities value, $Res Function(WeekActivities) then) =
-      _$WeekActivitiesCopyWithImpl<$Res, WeekActivities>;
+abstract class $ActivitiesCopyWith<$Res> {
+  factory $ActivitiesCopyWith(
+          Activities value, $Res Function(Activities) then) =
+      _$ActivitiesCopyWithImpl<$Res, Activities>;
   @useResult
-  $Res call({@HiveField(0) int week, @HiveField(1) List<Activity> activities});
+  $Res call(
+      {@HiveField(0) int? week, @HiveField(1) List<Activity>? activities});
 }
 
 /// @nodoc
-class _$WeekActivitiesCopyWithImpl<$Res, $Val extends WeekActivities>
-    implements $WeekActivitiesCopyWith<$Res> {
-  _$WeekActivitiesCopyWithImpl(this._value, this._then);
+class _$ActivitiesCopyWithImpl<$Res, $Val extends Activities>
+    implements $ActivitiesCopyWith<$Res> {
+  _$ActivitiesCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of WeekActivities
+  /// Create a copy of Activities
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? week = null,
-    Object? activities = null,
+    Object? week = freezed,
+    Object? activities = freezed,
   }) {
     return _then(_value.copyWith(
-      week: null == week
+      week: freezed == week
           ? _value.week
           : week // ignore: cast_nullable_to_non_nullable
-              as int,
-      activities: null == activities
+              as int?,
+      activities: freezed == activities
           ? _value.activities
           : activities // ignore: cast_nullable_to_non_nullable
-              as List<Activity>,
+              as List<Activity>?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$WeekActivitiesImplCopyWith<$Res>
-    implements $WeekActivitiesCopyWith<$Res> {
-  factory _$$WeekActivitiesImplCopyWith(_$WeekActivitiesImpl value,
-          $Res Function(_$WeekActivitiesImpl) then) =
-      __$$WeekActivitiesImplCopyWithImpl<$Res>;
+abstract class _$$ActivitiesImplCopyWith<$Res>
+    implements $ActivitiesCopyWith<$Res> {
+  factory _$$ActivitiesImplCopyWith(
+          _$ActivitiesImpl value, $Res Function(_$ActivitiesImpl) then) =
+      __$$ActivitiesImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@HiveField(0) int week, @HiveField(1) List<Activity> activities});
+  $Res call(
+      {@HiveField(0) int? week, @HiveField(1) List<Activity>? activities});
 }
 
 /// @nodoc
-class __$$WeekActivitiesImplCopyWithImpl<$Res>
-    extends _$WeekActivitiesCopyWithImpl<$Res, _$WeekActivitiesImpl>
-    implements _$$WeekActivitiesImplCopyWith<$Res> {
-  __$$WeekActivitiesImplCopyWithImpl(
-      _$WeekActivitiesImpl _value, $Res Function(_$WeekActivitiesImpl) _then)
+class __$$ActivitiesImplCopyWithImpl<$Res>
+    extends _$ActivitiesCopyWithImpl<$Res, _$ActivitiesImpl>
+    implements _$$ActivitiesImplCopyWith<$Res> {
+  __$$ActivitiesImplCopyWithImpl(
+      _$ActivitiesImpl _value, $Res Function(_$ActivitiesImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of WeekActivities
+  /// Create a copy of Activities
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? week = null,
-    Object? activities = null,
+    Object? week = freezed,
+    Object? activities = freezed,
   }) {
-    return _then(_$WeekActivitiesImpl(
-      week: null == week
+    return _then(_$ActivitiesImpl(
+      week: freezed == week
           ? _value.week
           : week // ignore: cast_nullable_to_non_nullable
-              as int,
-      activities: null == activities
+              as int?,
+      activities: freezed == activities
           ? _value._activities
           : activities // ignore: cast_nullable_to_non_nullable
-              as List<Activity>,
+              as List<Activity>?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$WeekActivitiesImpl implements _WeekActivities {
-  const _$WeekActivitiesImpl(
-      {@HiveField(0) required this.week,
-      @HiveField(1) required final List<Activity> activities})
+class _$ActivitiesImpl implements _Activities {
+  const _$ActivitiesImpl(
+      {@HiveField(0) this.week, @HiveField(1) final List<Activity>? activities})
       : _activities = activities;
 
-  factory _$WeekActivitiesImpl.fromJson(Map<String, dynamic> json) =>
-      _$$WeekActivitiesImplFromJson(json);
+  factory _$ActivitiesImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ActivitiesImplFromJson(json);
 
   @override
   @HiveField(0)
-  final int week;
-  final List<Activity> _activities;
+  final int? week;
+  final List<Activity>? _activities;
   @override
   @HiveField(1)
-  List<Activity> get activities {
+  List<Activity>? get activities {
+    final value = _activities;
+    if (value == null) return null;
     if (_activities is EqualUnmodifiableListView) return _activities;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_activities);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'WeekActivities(week: $week, activities: $activities)';
+    return 'Activities(week: $week, activities: $activities)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$WeekActivitiesImpl &&
+            other is _$ActivitiesImpl &&
             (identical(other.week, week) || other.week == week) &&
             const DeepCollectionEquality()
                 .equals(other._activities, _activities));
@@ -158,44 +161,42 @@ class _$WeekActivitiesImpl implements _WeekActivities {
   int get hashCode => Object.hash(
       runtimeType, week, const DeepCollectionEquality().hash(_activities));
 
-  /// Create a copy of WeekActivities
+  /// Create a copy of Activities
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$WeekActivitiesImplCopyWith<_$WeekActivitiesImpl> get copyWith =>
-      __$$WeekActivitiesImplCopyWithImpl<_$WeekActivitiesImpl>(
-          this, _$identity);
+  _$$ActivitiesImplCopyWith<_$ActivitiesImpl> get copyWith =>
+      __$$ActivitiesImplCopyWithImpl<_$ActivitiesImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$WeekActivitiesImplToJson(
+    return _$$ActivitiesImplToJson(
       this,
     );
   }
 }
 
-abstract class _WeekActivities implements WeekActivities {
-  const factory _WeekActivities(
-          {@HiveField(0) required final int week,
-          @HiveField(1) required final List<Activity> activities}) =
-      _$WeekActivitiesImpl;
+abstract class _Activities implements Activities {
+  const factory _Activities(
+      {@HiveField(0) final int? week,
+      @HiveField(1) final List<Activity>? activities}) = _$ActivitiesImpl;
 
-  factory _WeekActivities.fromJson(Map<String, dynamic> json) =
-      _$WeekActivitiesImpl.fromJson;
+  factory _Activities.fromJson(Map<String, dynamic> json) =
+      _$ActivitiesImpl.fromJson;
 
   @override
   @HiveField(0)
-  int get week;
+  int? get week;
   @override
   @HiveField(1)
-  List<Activity> get activities;
+  List<Activity>? get activities;
 
-  /// Create a copy of WeekActivities
+  /// Create a copy of Activities
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$WeekActivitiesImplCopyWith<_$WeekActivitiesImpl> get copyWith =>
+  _$$ActivitiesImplCopyWith<_$ActivitiesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -229,6 +230,8 @@ mixin _$Activity {
   String? get lastModified => throw _privateConstructorUsedError;
   @HiveField(11)
   String? get description => throw _privateConstructorUsedError;
+  @HiveField(12)
+  String? get courseName => throw _privateConstructorUsedError;
 
   /// Serializes this Activity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -257,7 +260,8 @@ abstract class $ActivityCopyWith<$Res> {
       @HiveField(8) String? gradingStatus,
       @HiveField(9) String? timeLeft,
       @HiveField(10) String? lastModified,
-      @HiveField(11) String? description});
+      @HiveField(11) String? description,
+      @HiveField(12) String? courseName});
 }
 
 /// @nodoc
@@ -287,6 +291,7 @@ class _$ActivityCopyWithImpl<$Res, $Val extends Activity>
     Object? timeLeft = freezed,
     Object? lastModified = freezed,
     Object? description = freezed,
+    Object? courseName = freezed,
   }) {
     return _then(_value.copyWith(
       type: null == type
@@ -337,6 +342,10 @@ class _$ActivityCopyWithImpl<$Res, $Val extends Activity>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      courseName: freezed == courseName
+          ? _value.courseName
+          : courseName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -361,7 +370,8 @@ abstract class _$$ActivityImplCopyWith<$Res>
       @HiveField(8) String? gradingStatus,
       @HiveField(9) String? timeLeft,
       @HiveField(10) String? lastModified,
-      @HiveField(11) String? description});
+      @HiveField(11) String? description,
+      @HiveField(12) String? courseName});
 }
 
 /// @nodoc
@@ -389,6 +399,7 @@ class __$$ActivityImplCopyWithImpl<$Res>
     Object? timeLeft = freezed,
     Object? lastModified = freezed,
     Object? description = freezed,
+    Object? courseName = freezed,
   }) {
     return _then(_$ActivityImpl(
       type: null == type
@@ -439,6 +450,10 @@ class __$$ActivityImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      courseName: freezed == courseName
+          ? _value.courseName
+          : courseName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -458,7 +473,8 @@ class _$ActivityImpl implements _Activity {
       @HiveField(8) this.gradingStatus,
       @HiveField(9) this.timeLeft,
       @HiveField(10) this.lastModified,
-      @HiveField(11) this.description});
+      @HiveField(11) this.description,
+      @HiveField(12) this.courseName});
 
   factory _$ActivityImpl.fromJson(Map<String, dynamic> json) =>
       _$$ActivityImplFromJson(json);
@@ -499,10 +515,13 @@ class _$ActivityImpl implements _Activity {
   @override
   @HiveField(11)
   final String? description;
+  @override
+  @HiveField(12)
+  final String? courseName;
 
   @override
   String toString() {
-    return 'Activity(type: $type, available: $available, name: $name, link: $link, code: $code, deadline: $deadline, lectureTime: $lectureTime, attendance: $attendance, gradingStatus: $gradingStatus, timeLeft: $timeLeft, lastModified: $lastModified, description: $description)';
+    return 'Activity(type: $type, available: $available, name: $name, link: $link, code: $code, deadline: $deadline, lectureTime: $lectureTime, attendance: $attendance, gradingStatus: $gradingStatus, timeLeft: $timeLeft, lastModified: $lastModified, description: $description, courseName: $courseName)';
   }
 
   @override
@@ -529,7 +548,9 @@ class _$ActivityImpl implements _Activity {
             (identical(other.lastModified, lastModified) ||
                 other.lastModified == lastModified) &&
             (identical(other.description, description) ||
-                other.description == description));
+                other.description == description) &&
+            (identical(other.courseName, courseName) ||
+                other.courseName == courseName));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -547,7 +568,8 @@ class _$ActivityImpl implements _Activity {
       gradingStatus,
       timeLeft,
       lastModified,
-      description);
+      description,
+      courseName);
 
   /// Create a copy of Activity
   /// with the given fields replaced by the non-null parameter values.
@@ -578,7 +600,8 @@ abstract class _Activity implements Activity {
       @HiveField(8) final String? gradingStatus,
       @HiveField(9) final String? timeLeft,
       @HiveField(10) final String? lastModified,
-      @HiveField(11) final String? description}) = _$ActivityImpl;
+      @HiveField(11) final String? description,
+      @HiveField(12) final String? courseName}) = _$ActivityImpl;
 
   factory _Activity.fromJson(Map<String, dynamic> json) =
       _$ActivityImpl.fromJson;
@@ -619,6 +642,9 @@ abstract class _Activity implements Activity {
   @override
   @HiveField(11)
   String? get description;
+  @override
+  @HiveField(12)
+  String? get courseName;
 
   /// Create a copy of Activity
   /// with the given fields replaced by the non-null parameter values.

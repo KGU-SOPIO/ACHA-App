@@ -30,7 +30,7 @@ class Course with _$Course {
     @HiveField(3) DateTime? deadline,
     @HiveField(4) String? link,
     @HiveField(5) String? code,
-    @HiveField(6) List<WeekActivities>? weekActivities,
+    @HiveField(6) List<Activities>? weekActivities,
     @HiveField(7) List<Notice>? notices
   }) = _Course;
 
@@ -59,13 +59,13 @@ class Course with _$Course {
   List<dynamic> _filterActivities({required Set<ActivityType> types, required bool onlyWithDeadline, required bool flat}) {
     if (flat) {
       return weekActivities!.expand((weekActivities) =>
-        weekActivities.activities.where((activity) =>
+        weekActivities.activities!.where((activity) =>
           types.contains(activity.type) && (!onlyWithDeadline || activity.deadline != null))
       ).toList();
     }
 
     return weekActivities!.map((week) => week.copyWith(
-      activities: week.activities.where((activity) =>
+      activities: week.activities!.where((activity) =>
         types.contains(activity.type) && (!onlyWithDeadline || activity.deadline != null)
       ).toList(),
     )).toList();

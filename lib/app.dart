@@ -10,6 +10,7 @@ import 'package:acha/blocs/course_manager/index.dart';
 import 'package:acha/blocs/today_course/index.dart';
 import 'package:acha/blocs/priority_lecture/index.dart';
 import 'package:acha/blocs/priority_assignment/index.dart';
+import 'package:acha/blocs/activity/index.dart';
 import 'package:acha/blocs/alert/index.dart';
 
 import 'package:acha/repository/index.dart';
@@ -72,6 +73,7 @@ class _AppState extends State<App> {
           BlocProvider(create: (context) => TodayCourseBloc(todayCourseRepository: _todayCourseRepository)),
           BlocProvider(create: (context) => PriorityLectureBloc(priorityLectureRepository: _priorityLectureRepository)),
           BlocProvider(create: (context) => PriorityAssignmentBloc(priorityAssignmentRepository: _priorityAssignmentRepository)),
+          BlocProvider(create: (context) => ActivityBloc(courseRepository: _courseRepository)),
           BlocProvider(create: (context) => AlertBloc(alertRepository: _alertRepository))
         ],
         child: const AppView(),

@@ -20,7 +20,7 @@ class CourseMainScreen extends StatefulWidget {
 }
 
 class _CourseMainScreenState extends State<CourseMainScreen> {
-  late final List<WeekActivities> trackedActivities;
+  late final List<Activities> trackedActivities;
   late final List<Widget> containers;
 
   // 디버깅용 테스트 데이터
@@ -32,8 +32,8 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
     trackedActivities = data.getLectureAndAssignmentActivities();
     containers = trackedActivities.expand((weekActivities) {
       final week = weekActivities.week;
-      return weekActivities.activities.map((activity) {
-        return _buildActivityContainer(week: week, activity: activity);
+      return weekActivities.activities!.map((activity) {
+        return _buildActivityContainer(week: week!, activity: activity);
       });
     }).toList();
   }
@@ -180,7 +180,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                   physics: NeverScrollableScrollPhysics(),
                   itemCount: data.weekActivities!.length,
                   itemBuilder: (context, index) {
-                    final WeekActivities weekActivities = data.weekActivities![index];
+                    final Activities weekActivities = data.weekActivities![index];
 
                     return Container(
                       width: double.infinity,
@@ -216,7 +216,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                               body: Column(
                                 children: [
                                   Divider(height: 1, color: Color.fromARGB(255, 245, 246, 248)),
-                                  ...weekActivities.activities.map((activity) {
+                                  ...weekActivities.activities!.map((activity) {
                                     return ListTile(
                                       leading: SvgPicture.asset('lib/assets/svgs/course/lecture.svg'),
                                       title: Text(
