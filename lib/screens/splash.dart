@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:acha/widgets/containers/index.dart';
+
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
@@ -12,7 +14,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(child: CircularProgressIndicator()),
+      body: Center(child: Loader()),
     );
   }
 }

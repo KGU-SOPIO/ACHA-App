@@ -84,7 +84,7 @@ class _CourseScreenState extends State<CourseScreen> {
                                     professorName: course.professor,
                                     courseName: course.name,
                                     lectureRoom: course.lectureRoom,
-                                    deadline: course.deadline!,
+                                    deadline: course.deadline,
                                     onTap:() => Navigator.push(context, CourseMainScreen.route()),
                                   );
                                 }),

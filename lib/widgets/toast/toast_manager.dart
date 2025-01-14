@@ -16,8 +16,11 @@ class ToastManager {
       margin: const EdgeInsets.symmetric(horizontal: 29),
       padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 16),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: const Color.fromARGB(255, 110, 123, 134)
+        borderRadius: BorderRadius.circular(12),
+        color: const Color.fromARGB(255, 223, 236, 255),
+        border: Border.all(
+         color: Color.fromARGB(255, 166, 201, 255)
+        )
       ),
       child: Row(
         children: [
@@ -37,7 +40,7 @@ class ToastManager {
               style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
-                color: Colors.white
+                color: Color.fromARGB(255, 0, 102, 255)
               )
             ),
           )

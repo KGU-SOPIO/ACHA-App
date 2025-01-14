@@ -81,7 +81,6 @@ class _SliderWidgetState extends State<SliderWidget> {
       width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.only(left: 32, right: 32, top: 32),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -100,7 +99,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                           style: TextStyle(fontWeight: FontWeight.w500),
                         ),
                         TextSpan(
-                          text: '우선강의',
+                          text: '우선 강의',
                           style: TextStyle(fontWeight: FontWeight.w700),
                         )
                       ]
@@ -145,6 +144,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                 } else if (state.status == PriorityLectureStatus.loaded) {
                   final lectures = state.priorityLectures!.lectures;
                   return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       DDayContainer(deadline: state.priorityLectures!.deadline!),
                       SizedBox(height: 13),
@@ -174,7 +174,6 @@ class _SliderWidgetState extends State<SliderWidget> {
       width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.only(left: 32, right: 32, top: 32),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -193,7 +192,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                           style: TextStyle(fontWeight: FontWeight.w500),
                         ),
                         TextSpan(
-                          text: '우선과제',
+                          text: '우선 과제',
                           style: TextStyle(fontWeight: FontWeight.w700),
                         )
                       ]
@@ -238,6 +237,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                 } else if (state.status == PriorityAssignmentStatus.loaded) {
                   final assignments = state.priorityAssignments!.assignments;
                   return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       DDayContainer(deadline: state.priorityAssignments!.deadline!),
                       SizedBox(height: 13),

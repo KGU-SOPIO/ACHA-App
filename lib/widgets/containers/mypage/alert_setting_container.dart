@@ -28,8 +28,10 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
     return BlocListener<AlertBloc, AlertState>(
       listenWhen: (previous, current) => previous.status != current.status,
       listener: (context, state) {
-        if (state.status == AlertStatus.changed || state.status == AlertStatus.error) {
+        if (state.status == AlertStatus.error) {
           GetIt.I<ToastManager>().error(message: state.message!);
+        } else if (state.status == AlertStatus.changed) {
+          GetIt.I<ToastManager>().show(message: state.message!, svgPath: 'lib/assets/svgs/toast/alert.svg');
         }
       },
       child: BlocBuilder<AlertBloc, AlertState>(

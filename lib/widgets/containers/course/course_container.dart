@@ -8,14 +8,14 @@ class CourseContainer extends StatelessWidget {
       required this.professorName,
       required this.courseName,
       required this.lectureRoom,
-      required this.deadline,
+      this.deadline,
       required this.onTap
     });
 
   final String professorName;
   final String courseName;
   final String lectureRoom;
-  final DateTime deadline;
+  final DateTime? deadline;
   final VoidCallback onTap;
 
   @override
@@ -72,21 +72,24 @@ class CourseContainer extends StatelessWidget {
                 )
               ],
             ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Color.fromARGB(25, 255, 78, 107)
-              ),
-              child: Text(
-                deadline.toDDay(),
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w700,
-                  color: Color.fromARGB(255, 255, 78, 107)
+            if (deadline != null)
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Color.fromARGB(25, 255, 78, 107)
                 ),
-              ),
-            )
+                child: Text(
+                  deadline!.toDDay(),
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                    color: Color.fromARGB(255, 255, 78, 107)
+                  ),
+                ),
+              )
+            else
+              const SizedBox()
           ],
         )
       )
