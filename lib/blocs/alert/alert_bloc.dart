@@ -16,7 +16,7 @@ class AlertBloc extends Bloc<AlertEvent, AlertState> {
   /// 설정된 알림 상태를 요청합니다.
   Future<void> _onFetchAlert(Fetch event, Emitter<AlertState> emit) async {
     try {
-      final isEnabled = await alertRepository.fetchSetting();
+      final bool isEnabled = await alertRepository.fetchSetting();
       emit(state.copyWith(status: AlertStatus.loaded, isEnabled: isEnabled));
     } on DioException catch (e) {
       emit(state.copyWith(status: AlertStatus.error, message: e.error as String));

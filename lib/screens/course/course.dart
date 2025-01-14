@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
+import 'package:get_it/get_it.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import 'package:acha/blocs/course_manager/index.dart';
 
 import 'package:acha/screens/course/course_main.dart';
 
 import 'package:acha/widgets/containers/index.dart';
+import 'package:acha/widgets/toast/toast_manager.dart';
 
 class CourseScreen extends StatefulWidget {
   const CourseScreen({super.key});
@@ -18,44 +23,11 @@ class CourseScreen extends StatefulWidget {
 }
 
 class _CourseScreenState extends State<CourseScreen> {
-  final List courseList = [
-    {
-      'professorName': '송명진 교수님',
-      'courseName': '사고와 표현',
-      'lectureRoom': '3306',
-      'daysLeft': 1,
-    },
-    {
-      'professorName': '송명진 교수님',
-      'courseName': '사고와 표현',
-      'lectureRoom': '3306',
-      'daysLeft': 1,
-    },
-    {
-      'professorName': '송명진 교수님',
-      'courseName': '사고와 표현',
-      'lectureRoom': '3306',
-      'daysLeft': 1,
-    },
-    {
-      'professorName': '송명진 교수님',
-      'courseName': '사고와 표현',
-      'lectureRoom': '3306',
-      'daysLeft': 1,
-    },
-    {
-      'professorName': '송명진 교수님',
-      'courseName': '사고와 표현',
-      'lectureRoom': '3306',
-      'daysLeft': 1,
-    },
-    {
-      'professorName': '송명진 교수님',
-      'courseName': '사고와 표현',
-      'lectureRoom': '3306',
-      'daysLeft': 1,
-    },
-  ];
+  @override
+  void initState() {
+    super.initState();
+    context.read<CourseManagerBloc>().add(CourseManagerEvent.fetch());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,27 +65,45 @@ class _CourseScreenState extends State<CourseScreen> {
                         ],
                       )
                     ),
-                    Column(
-                      children: [
-                        ...courseList.map((course) {
-                          return CourseContainer(
-                            professorName: course['professorName'],
-                            courseName: course['courseName'],
-                            lectureRoom: course['lectureRoom'],
-                            daysLeft: course['daysLeft'],
-                            onTap:() => Navigator.push(context, CourseMainScreen.route()),
-                          );
-                        }),
-                        const SizedBox(height: 16)
-                      ],
+                    BlocListener<CourseManagerBloc, CourseManagerState>(
+                      listener: (context, state) {
+                        if (state.status == CourseManagerStatus.error) {
+                          GetIt.I<ToastManager>().error(message: state.message!);
+                        }
+                      },
+                      child: BlocBuilder<CourseManagerBloc, CourseManagerState>(
+                        builder: (context, state) {
+                          if (state.status == CourseManagerStatus.loading) {
+                            return const Loader(height: 500);
+                          } else if (state.status == CourseManagerStatus.loaded) {
+                            final courses = state.courses!.courses;
+                            return Column(
+                              children: [
+                                ...courses!.map((course) {
+                                  return CourseContainer(
+                                    professorName: course.professor,
+                                    courseName: course.name,
+                                    lectureRoom: course.lectureRoom,
+                                    deadline: course.deadline!,
+                                    onTap:() => Navigator.push(context, CourseMainScreen.route()),
+                                  );
+                                }),
+                                const SizedBox(height: 16)
+                              ]
+                            );
+                          } else {
+                            return const SizedBox.shrink();
+                          }
+                        }
+                      )
                     )
-                  ],
-                ),
+                  ]
+                )
               )
-            ],
+            ]
           )
         )
-      ),
+      )
     );
   }
 }

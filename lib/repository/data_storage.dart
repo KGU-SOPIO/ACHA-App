@@ -18,10 +18,10 @@ class DataStorage {
     await Hive.openBox<Course>(courseBoxKey);
   }
 
-  Future<void> saveCourses(List<Course> courses) async {
+  Future<void> saveCourses(Courses courses) async {
     final box = Hive.box<Course>(courseBoxKey);
     await box.clear();
-    for (Course course in courses) {
+    for (Course course in courses.courses!) {
       await box.put(course.code, course);
     }
   }

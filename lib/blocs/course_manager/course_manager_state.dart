@@ -4,11 +4,13 @@ import 'package:acha/models/index.dart';
 
 part 'course_manager_state.freezed.dart';
 
+enum CourseManagerStatus { loading, loaded, error }
+
 @freezed
 class CourseManagerState with _$CourseManagerState {
-  const factory CourseManagerState.initial() = Initial;
-  const factory CourseManagerState.loading() = Loading;
-  const factory CourseManagerState.updating({required Course course}) = Updating;
-  const factory CourseManagerState.loaded({required List<Course> courses}) = Loaded;
-  const factory CourseManagerState.error({required String message}) = Error;
+  const factory CourseManagerState({
+    required CourseManagerStatus status,
+    Courses? courses,
+    String? message
+  }) = _CourseManagerState;
 }

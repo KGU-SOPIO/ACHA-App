@@ -17,7 +17,7 @@ class CourseBloc extends Bloc<CourseEvent, CourseState> {
   Future<void> _onUpdateWeekActivities(UpdateWeekActivities event, Emitter<CourseState> emit) async {
     emit(const CourseState.loadingWeekActivities());
     try {
-      final weekActivities = await courseRepository.fetchActivities(course.code);
+      final weekActivities = await courseRepository.fetchActivities(course.code!);
       course = course.copyWith(weekActivities: weekActivities);
       emit(CourseState.loaded(course: course));
     } catch (e) {
@@ -29,7 +29,7 @@ class CourseBloc extends Bloc<CourseEvent, CourseState> {
   Future<void> _onUpdateNotices(UpdateNotices event, Emitter<CourseState> emit) async {
     emit(const CourseState.loadingNotices());
     try {
-      final notices = await courseRepository.fetchNotices(course.code);
+      final notices = await courseRepository.fetchNotices(course.code!);
       course = course.copyWith(notices: notices);
       emit(CourseState.loaded(course: course));
     } catch (e) {

@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 
+import 'package:acha/extensions/index.dart';
+
 class CourseContainer extends StatelessWidget {
   const CourseContainer({
       super.key,
       required this.professorName,
       required this.courseName,
       required this.lectureRoom,
-      required this.daysLeft,
+      required this.deadline,
       required this.onTap
     });
 
   final String professorName;
   final String courseName;
   final String lectureRoom;
-  final int daysLeft;
+  final DateTime deadline;
   final VoidCallback onTap;
 
   @override
@@ -77,7 +79,7 @@ class CourseContainer extends StatelessWidget {
                 color: Color.fromARGB(25, 255, 78, 107)
               ),
               child: Text(
-                'D - $daysLeft',
+                deadline.toDDay(),
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w700,

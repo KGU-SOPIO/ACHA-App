@@ -10,18 +10,28 @@ part 'course.freezed.dart';
 part 'course.g.dart';
 
 @freezed
+class Courses with _$Courses {
+  const factory Courses({
+    List<Course>? courses
+  }) = _Courses;
+
+  factory Courses.fromJson(Map<String, dynamic> json) => _$CoursesFromJson(json);
+}
+
+@freezed
 @HiveType(typeId: 1)
 class Course with _$Course {
   const Course._();
 
   const factory Course({
     @HiveField(0) required String name,
-    @HiveField(1) required String link,
-    @HiveField(2) required String code,
-    @HiveField(3) required String professor,
-    @HiveField(4) required String lectureRoom,
-    @HiveField(5) List<WeekActivities>? weekActivities,
-    @HiveField(6) List<Notice>? notices
+    @HiveField(1) required String professor,
+    @HiveField(2) required String lectureRoom,
+    @HiveField(3) DateTime? deadline,
+    @HiveField(4) String? link,
+    @HiveField(5) String? code,
+    @HiveField(6) List<WeekActivities>? weekActivities,
+    @HiveField(7) List<Notice>? notices
   }) = _Course;
 
   factory Course.fromJson(Map<String, dynamic> json) => _$CourseFromJson(json);

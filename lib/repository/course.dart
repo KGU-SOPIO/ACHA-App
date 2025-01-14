@@ -4,31 +4,20 @@ import 'package:get_it/get_it.dart';
 import 'package:acha/models/index.dart';
 import 'package:acha/repository/index.dart';
 
-import 'package:acha/widgets/toast/toast_manager.dart';
-
 import 'package:acha/constants/apis/index.dart';
 
 class CourseRepository {
   final Dio _dio = GetIt.I<Dio>();
   final DataStorage _dataStorage = GetIt.I<DataStorage>();
 
-  Future<List<Course>> fetchCourses() async {
+  Future<Courses> fetchCourses() async {
     try {
       final response = await _dio.get(CourseApiEndpoints.courses);
-      final List<dynamic> data = response.data;
-
-      final List<Course> courses = data.map((json) => Course.fromJson(json)).toList();
-      await _dataStorage.saveCourses(courses);
-
-      return courses;
-    } on DioException catch (e) {
-      GetIt.I<ToastManager>().error(message: e.error as String);
-      final storedCourses = await _dataStorage.readCourses();
-      if (storedCourses.isNotEmpty) {
-        return storedCourses;
-      } else {
-        throw Exception();
-      }
+      return Courses.fromJson(response.data);
+    } on DioException {
+      rethrow;
+    } catch (e) {
+      throw Exception('강좌를 불러오지 못했어요');
     }
   }
 

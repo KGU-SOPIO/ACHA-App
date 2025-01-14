@@ -172,7 +172,7 @@ class _SliderWidgetState extends State<SliderWidget> {
   Widget _buildAssignmentSection(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 32),
+      padding: const EdgeInsets.only(left: 32, right: 32, top: 32),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
