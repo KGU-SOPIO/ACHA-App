@@ -16,7 +16,7 @@ enum ActivityType { @HiveField(0) file, @HiveField(1) lecture, @HiveField(2) ass
 class Activities with _$Activities {
   const factory Activities({
     @HiveField(0) int? week,
-    @HiveField(1) List<Activity>? activities,
+    @HiveField(1) @Default([]) List<Activity>? activities,
   }) = _Activities;
 
   factory Activities.fromJson(Map<String, dynamic> json) => _$ActivitiesFromJson(json);

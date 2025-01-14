@@ -71,7 +71,7 @@ class TermsBottomModalSheet {
                                 termsButtonText,
                                 style: const TextStyle(
                                   fontSize: 16,
-                                  fontWeight: FontWeight.w600,
+                                  fontWeight: FontWeight.w500,
                                   color: Color.fromARGB(255, 109, 109, 109)
                                 )
                               )

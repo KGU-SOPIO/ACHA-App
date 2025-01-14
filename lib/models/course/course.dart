@@ -12,7 +12,7 @@ part 'course.g.dart';
 @freezed
 class Courses with _$Courses {
   const factory Courses({
-    List<Course>? courses
+    @Default([]) List<Course>? courses
   }) = _Courses;
 
   factory Courses.fromJson(Map<String, dynamic> json) => _$CoursesFromJson(json);

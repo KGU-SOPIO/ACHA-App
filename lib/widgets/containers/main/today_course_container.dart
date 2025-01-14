@@ -79,11 +79,11 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
                 if (state.status == TodayCourseStatus.loading) {
                   return const Loader(height: 97);
                 } else if (state.status == TodayCourseStatus.loaded) {
-                  final courses = state.todayCourses?.courses;
-                  if (courses == null) {
+                  final courses = state.todayCourses!.courses;
+                  if (courses!.isEmpty) {
                     return SizedBox(
                       height: 97,
-                      child: Center(child: Text('오늘은 공강이에요'))
+                      child: Center(child: Text('오늘은 공강이에요', style: TextStyle(fontSize: 15)))
                     );
                   } else {
                     return Column(
@@ -109,7 +109,7 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
                                     Padding(
                                       padding: EdgeInsets.only(bottom: 3),
                                       child: Text(
-                                        '${course.professor} 교수님',
+                                        '${course.professor} 교수',
                                         style: TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.w400,
@@ -163,7 +163,7 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
                 } else {
                   return SizedBox(
                     height: 97,
-                    child: Center(child: Text('강의를 불러오지 못했어요'))
+                    child: Center(child: Text('강의를 불러오지 못했어요', style: TextStyle(fontSize: 15)))
                   );
                 }
               }

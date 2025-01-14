@@ -4,6 +4,4 @@ export 'package:acha/repository/secure_storage.dart';
 export 'package:acha/repository/user.dart';
 export 'package:acha/repository/course.dart';
 export 'package:acha/repository/today_course.dart';
-export 'package:acha/repository/priority_lecture.dart';
-export 'package:acha/repository/priority_assignment.dart';
 export 'package:acha/repository/alert.dart';

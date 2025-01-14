@@ -1,6 +1,7 @@
+import 'package:acha/constants/apis/index.dart';
+
 class AuthenticationApiEndpoints {
-  static const String baseUrl = 'http://127.0.0.1:8000';
-  static const String signIn = '$baseUrl/signin';
-  static const String signUp = '$baseUrl/signup';
-  static const String refresh = '$baseUrl/access-token';
+  static const String signIn = '${BaseApiEndpoints.baseUrl}/signin';
+  static const String signUp = '${BaseApiEndpoints.baseUrl}/signup';
+  static const String refresh = '${BaseApiEndpoints.baseUrl}/access-token';
 }

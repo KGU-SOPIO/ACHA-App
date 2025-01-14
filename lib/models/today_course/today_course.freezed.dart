@@ -105,7 +105,7 @@ class __$$TodayCoursesImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$TodayCoursesImpl implements _TodayCourses {
-  const _$TodayCoursesImpl({final List<TodayCourse>? courses})
+  const _$TodayCoursesImpl({final List<TodayCourse>? courses = const []})
       : _courses = courses;
 
   factory _$TodayCoursesImpl.fromJson(Map<String, dynamic> json) =>
@@ -113,6 +113,7 @@ class _$TodayCoursesImpl implements _TodayCourses {
 
   final List<TodayCourse>? _courses;
   @override
+  @JsonKey()
   List<TodayCourse>? get courses {
     final value = _courses;
     if (value == null) return null;

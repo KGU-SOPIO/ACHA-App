@@ -170,8 +170,9 @@ _$ActivitiesImpl _$$ActivitiesImplFromJson(Map<String, dynamic> json) =>
     _$ActivitiesImpl(
       week: (json['week'] as num?)?.toInt(),
       activities: (json['activities'] as List<dynamic>?)
-          ?.map((e) => Activity.fromJson(e as Map<String, dynamic>))
-          .toList(),
+              ?.map((e) => Activity.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$ActivitiesImplToJson(_$ActivitiesImpl instance) =>

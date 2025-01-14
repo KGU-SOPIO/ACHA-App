@@ -121,7 +121,8 @@ class __$$ActivitiesImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ActivitiesImpl implements _Activities {
   const _$ActivitiesImpl(
-      {@HiveField(0) this.week, @HiveField(1) final List<Activity>? activities})
+      {@HiveField(0) this.week,
+      @HiveField(1) final List<Activity>? activities = const []})
       : _activities = activities;
 
   factory _$ActivitiesImpl.fromJson(Map<String, dynamic> json) =>
@@ -132,6 +133,7 @@ class _$ActivitiesImpl implements _Activities {
   final int? week;
   final List<Activity>? _activities;
   @override
+  @JsonKey()
   @HiveField(1)
   List<Activity>? get activities {
     final value = _activities;

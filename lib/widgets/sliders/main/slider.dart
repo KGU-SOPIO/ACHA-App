@@ -5,11 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
+import 'package:acha/models/index.dart';
 import 'package:acha/blocs/navigation/navigation_bloc.dart';
-import 'package:acha/blocs/priority_lecture/index.dart';
-import 'package:acha/blocs/priority_assignment/index.dart';
+import 'package:acha/blocs/activity/index.dart';
 
-import 'package:acha/extensions/index.dart';
+import 'package:acha/extensions/date_extensions.dart';
 
 import 'package:acha/widgets/containers/index.dart';
 import 'package:acha/widgets/toast/toast_manager.dart';
@@ -30,8 +30,7 @@ class _SliderWidgetState extends State<SliderWidget> {
   @override
   void initState() {
     super.initState();
-    context.read<PriorityLectureBloc>().add(PriorityLectureEvent.fetch());
-    context.read<PriorityAssignmentBloc>().add(PriorityAssignmentEvent.fetch());
+    context.read<ActivityBloc>().add(ActivityEvent.fetch());
   }
 
   @override
@@ -45,11 +44,10 @@ class _SliderWidgetState extends State<SliderWidget> {
             constraints: BoxConstraints(minHeight: constraints.maxHeight),
             child: Stack(
               children: [
-                // Carousel 슬라이더
                 CarouselSlider(
                   carouselController: widget.carouselSliderController,
                   options: CarouselOptions(
-                    height: 520,
+                    aspectRatio: 0.74,
                     viewportFraction: 1,
                     enableInfiniteScroll: false,
                     onPageChanged: (index, reason) {
@@ -131,35 +129,50 @@ class _SliderWidgetState extends State<SliderWidget> {
             ]
           ),
           SizedBox(height: 18),
-          BlocListener<PriorityLectureBloc, PriorityLectureState>(
+          BlocListener<ActivityBloc, ActivityState>(
             listener: (context, state) {
-              if (state.status == PriorityLectureStatus.error) {
+              if (state.status == ActivityStatus.error) {
                 GetIt.I<ToastManager>().error(message: state.message!);
               }
             },
-            child: BlocBuilder<PriorityLectureBloc, PriorityLectureState>(
+            child: BlocBuilder<ActivityBloc, ActivityState>(
               builder: (context, state) {
-                if (state.status == PriorityLectureStatus.loading) {
+                if (state.status == ActivityStatus.loading) {
                   return const Expanded(child: Center(child: Loader()));
-                } else if (state.status == PriorityLectureStatus.loaded) {
-                  final lectures = state.priorityLectures!.lectures;
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      DDayContainer(deadline: state.priorityLectures!.deadline!),
-                      SizedBox(height: 13),
-                      ...lectures!.map((lecture) =>
-                        ActivityContainer(
-                          title: lecture.title,
-                          course: lecture.course,
-                          deadline: lecture.deadline.toTimeLeftFormattedTime(),
-                          margin: EdgeInsets.only(bottom: 13)
-                        )
-                      )
-                    ]
+                } else if (state.status == ActivityStatus.loaded) {
+                  Map<DateTime, List<Activity>> lectures = state.activities!.getLectureActivities(group: true);
+                  List<MapEntry<DateTime, List<Activity>>> lectureEntries = lectures.entries.toList();
+                  if (lectureEntries.isEmpty) {
+                    return Expanded(child: Center(child: Text('남은 강의가 없어요', style: TextStyle(fontSize: 15))));
+                  }
+
+                  return Expanded(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: lectureEntries.length,
+                      itemBuilder: (context, index) {
+                        final date = lectureEntries[index].key;
+                        final activityList = lectureEntries[index].value;
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            DDayContainer(deadline: date),
+                            const SizedBox(height: 13),
+                            for (final lecture in activityList)
+                              ActivityContainer(
+                                title: lecture.name!,
+                                course: lecture.courseName!,
+                                deadline: lecture.deadline!.toTimeLeftFormattedTime(),
+                                margin: const EdgeInsets.only(bottom: 13)
+                              ),
+                            const SizedBox(height: 20),
+                          ]
+                        );
+                      }
+                    )
                   );
                 } else {
-                  return const Expanded(child: Center(child: Text('우선 강의를 불러오지 못했어요')));
+                  return const Expanded(child: Center(child: Text('우선 강의를 불러오지 못했어요', style: TextStyle(fontSize: 15))));
                 }
               }
             )
@@ -224,35 +237,50 @@ class _SliderWidgetState extends State<SliderWidget> {
             ]
           ),
           SizedBox(height: 18),
-          BlocListener<PriorityAssignmentBloc, PriorityAssignmentState>(
+          BlocListener<ActivityBloc, ActivityState>(
             listener: (context, state) {
-              if (state.status == PriorityAssignmentStatus.error) {
+              if (state.status == ActivityStatus.error) {
                 GetIt.I<ToastManager>().error(message: state.message!);
               }
             },
-            child: BlocBuilder<PriorityAssignmentBloc, PriorityAssignmentState>(
+            child: BlocBuilder<ActivityBloc, ActivityState>(
               builder: (context, state) {
-                if (state.status == PriorityAssignmentStatus.loading) {
+                if (state.status == ActivityStatus.loading) {
                   return const Expanded(child: Center(child: Loader()));
-                } else if (state.status == PriorityAssignmentStatus.loaded) {
-                  final assignments = state.priorityAssignments!.assignments;
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      DDayContainer(deadline: state.priorityAssignments!.deadline!),
-                      SizedBox(height: 13),
-                      ...assignments!.map((assignment) =>
-                        ActivityContainer(
-                          title: assignment.title,
-                          course: assignment.course,
-                          deadline: assignment.deadline.toTimeLeftFormattedTime(),
-                          margin: EdgeInsets.only(bottom: 13)
-                        )
-                      )
-                    ]
+                } else if (state.status == ActivityStatus.loaded) {
+                  Map<DateTime, List<Activity>> assignments = state.activities!.getAssignmentActivities(group: true);
+                  List<MapEntry<DateTime, List<Activity>>> assignmentEntries = assignments.entries.toList();
+                  if (assignmentEntries.isEmpty) {
+                    return Expanded(child: Center(child: Text('남은 과제가 없어요', style: TextStyle(fontSize: 15))));
+                  }
+
+                  return Expanded(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: assignmentEntries.length,
+                      itemBuilder: (context, index) {
+                        final date = assignmentEntries[index].key;
+                        final activities = assignmentEntries[index].value;
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            DDayContainer(deadline: date),
+                            const SizedBox(height: 13),
+                            for (final assignment in activities)
+                              ActivityContainer(
+                                title: assignment.name!,
+                                course: assignment.courseName!,
+                                deadline: assignment.deadline!.toTimeLeftFormattedTime(),
+                                margin: const EdgeInsets.only(bottom: 13),
+                              ),
+                            const SizedBox(height: 20),
+                          ],
+                        );
+                      },
+                    )
                   );
                 } else {
-                  return const Expanded(child: Center(child: Text('우선 과제를 불러오지 못했어요')));
+                  return const Expanded(child: Center(child: Text('우선 과제를 불러오지 못했어요', style: TextStyle(fontSize: 15))));
                 }
               }
             )

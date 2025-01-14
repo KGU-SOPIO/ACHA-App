@@ -4,7 +4,7 @@ export 'package:acha/widgets/containers/d_day_container.dart';
 
 export 'package:acha/widgets/containers/appbar/acha_appbar.dart';
 
-export 'package:acha/widgets/containers/authentication/text_container.dart';
+export 'package:acha/widgets/containers/auth/text_container.dart';
 
 export 'package:acha/widgets/containers/course/course_container.dart';
 

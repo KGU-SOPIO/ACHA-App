@@ -6,7 +6,7 @@ part 'today_course.g.dart';
 @freezed
 class TodayCourses with _$TodayCourses {
   const factory TodayCourses({
-    List<TodayCourse>? courses
+    @Default([]) List<TodayCourse>? courses
   }) = _TodayCourses;
 
   factory TodayCourses.fromJson(Map<String, dynamic> json) => _$TodayCoursesFromJson(json);

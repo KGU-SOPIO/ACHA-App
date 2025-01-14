@@ -30,7 +30,7 @@ class MemberContainer extends StatelessWidget {
                 name,
                 style: TextStyle(
                   fontSize: 16,
-                  fontWeight: FontWeight.w600
+                  fontWeight: FontWeight.w500
                 )
               ),
               Text(

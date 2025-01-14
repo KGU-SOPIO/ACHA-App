@@ -53,13 +53,13 @@ class SopioScreen extends StatelessWidget {
                               text: '\'Software of Public Interest Organization\'\n'.replaceAllMapped(RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D'),
                               style: TextStyle(
                                 fontSize: 15,
-                                fontWeight: FontWeight.w600
+                                fontWeight: FontWeight.w700
                               )
                             ),
                             TextSpan(text: '2023년에 2명으로 시작하여 현재는 5인으로 구성된 서비스 개발팀입니다.\n\n소프트웨어 기술을 활용하여 일상의 불편함을 해소하고, 누구나 쉽게 이용할 수 있는 편리한 서비스를 제공하는 것을 목표로 합니다.\n\n첫 번째 프로젝트로 스마트한 학습 관리 서비스 '.replaceAllMapped(RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D')),
                             TextSpan(
                               text: '\'아차(ACHA)\''.replaceAllMapped(RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D'),
-                              style: TextStyle(fontWeight: FontWeight.w600)
+                              style: TextStyle(fontWeight: FontWeight.w700)
                             ),
                             TextSpan(text: '를 선보입니다.'.replaceAllMapped(RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D')),
                           ]

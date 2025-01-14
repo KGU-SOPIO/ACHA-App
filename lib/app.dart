@@ -8,8 +8,6 @@ import 'package:acha/blocs/auth/index.dart';
 import 'package:acha/blocs/user/index.dart';
 import 'package:acha/blocs/course_manager/index.dart';
 import 'package:acha/blocs/today_course/index.dart';
-import 'package:acha/blocs/priority_lecture/index.dart';
-import 'package:acha/blocs/priority_assignment/index.dart';
 import 'package:acha/blocs/activity/index.dart';
 import 'package:acha/blocs/alert/index.dart';
 
@@ -34,8 +32,6 @@ class _AppState extends State<App> {
   late final UserRepository _userRepository;
   late final CourseRepository _courseRepository;
   late final TodayCourseRepository _todayCourseRepository;
-  late final PriorityLectureRepository _priorityLectureRepository;
-  late final PriorityAssignmentRepository _priorityAssignmentRepository;
   late final AlertRepository _alertRepository;
 
   @override
@@ -45,8 +41,6 @@ class _AppState extends State<App> {
     _userRepository = GetIt.I<UserRepository>();
     _courseRepository = GetIt.I<CourseRepository>();
     _todayCourseRepository = GetIt.I<TodayCourseRepository>();
-    _priorityLectureRepository = GetIt.I<PriorityLectureRepository>();
-    _priorityAssignmentRepository = GetIt.I<PriorityAssignmentRepository>();
     _alertRepository = GetIt.I<AlertRepository>();
   }
 
@@ -71,8 +65,6 @@ class _AppState extends State<App> {
           BlocProvider(create: (context) => UserBloc(userRepository: _userRepository)),
           BlocProvider(create: (context) => CourseManagerBloc(courseRepository: _courseRepository)),
           BlocProvider(create: (context) => TodayCourseBloc(todayCourseRepository: _todayCourseRepository)),
-          BlocProvider(create: (context) => PriorityLectureBloc(priorityLectureRepository: _priorityLectureRepository)),
-          BlocProvider(create: (context) => PriorityAssignmentBloc(priorityAssignmentRepository: _priorityAssignmentRepository)),
           BlocProvider(create: (context) => ActivityBloc(courseRepository: _courseRepository)),
           BlocProvider(create: (context) => AlertBloc(alertRepository: _alertRepository))
         ],

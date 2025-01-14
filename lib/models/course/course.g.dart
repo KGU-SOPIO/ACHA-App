@@ -68,8 +68,9 @@ class CourseAdapter extends TypeAdapter<Course> {
 _$CoursesImpl _$$CoursesImplFromJson(Map<String, dynamic> json) =>
     _$CoursesImpl(
       courses: (json['courses'] as List<dynamic>?)
-          ?.map((e) => Course.fromJson(e as Map<String, dynamic>))
-          .toList(),
+              ?.map((e) => Course.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$CoursesImplToJson(_$CoursesImpl instance) =>

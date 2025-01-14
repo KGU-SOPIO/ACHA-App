@@ -1,4 +1,5 @@
+import 'package:acha/constants/apis/index.dart';
+
 class TodayCourseApiEndpoints {
-  static const String baseUrl = 'http://127.0.0.1:8000';
-  static const String todayCourse = '$baseUrl/today';
+  static const String todayCourse = '${BaseApiEndpoints.baseUrl}/today';
 }

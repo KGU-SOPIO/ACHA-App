@@ -9,8 +9,9 @@ part of 'today_course.dart';
 _$TodayCoursesImpl _$$TodayCoursesImplFromJson(Map<String, dynamic> json) =>
     _$TodayCoursesImpl(
       courses: (json['courses'] as List<dynamic>?)
-          ?.map((e) => TodayCourse.fromJson(e as Map<String, dynamic>))
-          .toList(),
+              ?.map((e) => TodayCourse.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$TodayCoursesImplToJson(_$TodayCoursesImpl instance) =>

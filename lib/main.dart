@@ -31,8 +31,6 @@ void main() async {
   getIt.registerLazySingleton<CourseRepository>(() => CourseRepository());
   getIt.registerLazySingleton<UserRepository>(() => UserRepository());
   getIt.registerLazySingleton<TodayCourseRepository>(() => TodayCourseRepository());
-  getIt.registerLazySingleton<PriorityLectureRepository>(() => PriorityLectureRepository());
-  getIt.registerLazySingleton<PriorityAssignmentRepository>(() => PriorityAssignmentRepository());
   getIt.registerLazySingleton<AlertRepository>(() => AlertRepository());
   getIt.registerLazySingleton<ToastManager>(() => ToastManager());
 

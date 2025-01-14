@@ -77,9 +77,13 @@ class _CourseScreenState extends State<CourseScreen> {
                             return const Loader(height: 500);
                           } else if (state.status == CourseManagerStatus.loaded) {
                             final courses = state.courses!.courses;
+                            if (courses!.isEmpty) {
+                              return SizedBox(height: 500, child: Center(child: Text('등록된 강좌가 없어요', style: TextStyle(fontSize: 15))));
+                            }
+                            
                             return Column(
                               children: [
-                                ...courses!.map((course) {
+                                ...courses.map((course) {
                                   return CourseContainer(
                                     professorName: course.professor,
                                     courseName: course.name,
@@ -92,7 +96,7 @@ class _CourseScreenState extends State<CourseScreen> {
                               ]
                             );
                           } else {
-                            return const SizedBox.shrink();
+                            return SizedBox(height: 500, child: Center(child: Text(state.message!, style: TextStyle(fontSize: 15))));
                           }
                         }
                       )

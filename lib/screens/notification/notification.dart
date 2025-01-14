@@ -80,7 +80,14 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
                     ]
                   );
                 } else {
-                  return const SizedBox.shrink();
+                  return TabBarView(
+                    controller: _tabController,
+                    children: [
+                      const Center(child: Text('활동을 불러오지 못했어요', style: TextStyle(fontSize: 15))),
+                      const Center(child: Text('활동을 불러오지 못했어요', style: TextStyle(fontSize: 15))),
+                      const Center(child: Text('활동을 불러오지 못했어요', style: TextStyle(fontSize: 15)))
+                    ]
+                  );
                 }
               },
             ),
@@ -92,11 +99,7 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
 
   Widget _buildActivityListView(Map<DateTime, List<Activity>> groupedActivities) {
     if (groupedActivities.isEmpty) {
-      return Center(
-        child: Text(
-          '다 끝내셨군요! 고생하셨어요'
-        )
-      );
+      return Center(child: Text('다 끝내셨군요! 고생하셨어요'));
     }
 
     return ListView.builder(
