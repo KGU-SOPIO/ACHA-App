@@ -9,7 +9,7 @@ class DataStorage {
     await Hive.initFlutter();
 
     Hive.registerAdapter(CourseAdapter());
-    Hive.registerAdapter(ActivitiesAdapter());
+    Hive.registerAdapter(WeekActivitiesAdapter());
     Hive.registerAdapter(ActivityAdapter());
     Hive.registerAdapter(ActivityTypeAdapter());
     Hive.registerAdapter(NoticeAdapter());
@@ -45,34 +45,32 @@ class DataStorage {
     final box = Hive.box<Course>(courseBoxKey);
     final course = box.get(courseCode);
     if (course != null) {
-      final updatedActivities = activities.asMap().entries.map((entry) {
+      final updatedWeekActivities = activities.asMap().entries.map((entry) {
         final week = entry.key + 1;
-        final activities = entry.value;
-        return Activities(
+        return WeekActivities(
           week: week,
-          activities: activities
+          activities: entry.value,
         );
       }).toList();
 
-      final updatedCourse = course.copyWith(
-        weekActivities: updatedActivities,
-      );
+      final updatedCourseActivities = CourseActivities(courseActivities: updatedWeekActivities);
+      final updatedCourse = course.copyWith(courseActivities: updatedCourseActivities);
       await box.put(courseCode, updatedCourse);
     }
   }
 
-  Future<List<Activities>?> readActivities(String courseCode) async {
+  Future<CourseActivities?> readActivities(String courseCode) async {
     final box = Hive.box<Course>(courseBoxKey);
     final course = box.get(courseCode);
-    return course?.weekActivities;
+    return course?.courseActivities;
   }
 
-  Future<void> updateActivities(String courseCode, List<Activities> weekActivities) async {
+  Future<void> updateActivities(String courseCode, CourseActivities courseActivities) async {
     final box = Hive.box<Course>(courseBoxKey);
     final course = box.get(courseCode);
     if (course != null) {
       final updatedCourse = course.copyWith(
-        weekActivities: weekActivities
+        courseActivities: courseActivities
       );
       
       await box.put(courseCode, updatedCourse);
@@ -88,7 +86,8 @@ class DataStorage {
       throw Exception('강좌를 찾을 수 없습니다.');
     }
 
-    final updatedWeekActivities = course.weekActivities?.map((weekActivities) {
+    final courseActivities = course.courseActivities;
+    final updatedWeekActivities = course.courseActivities!.courseActivities!.map((weekActivities) {
       final updatedActivities = weekActivities.activities?.map((activity) {
         if (activity.type == ActivityType.assignment && activity.code == activityCode) {
           return activity.copyWith(
@@ -107,7 +106,8 @@ class DataStorage {
       return weekActivities.copyWith(activities: updatedActivities);
     }).toList();
 
-    final updatedCourse = course.copyWith(weekActivities: updatedWeekActivities);
+    final updatedCourseActivities = courseActivities!.copyWith(courseActivities: updatedWeekActivities);
+    final updatedCourse = course.copyWith(courseActivities: updatedCourseActivities);
     await box.put(courseCode, updatedCourse);
   }
 

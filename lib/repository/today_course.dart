@@ -8,10 +8,10 @@ import 'package:acha/constants/apis/index.dart';
 class TodayCourseRepository {
   final Dio _dio = GetIt.I<Dio>();
 
-  Future<TodayCourses> fetchTodayCourses() async {
+  Future<Courses> fetchTodayCourses() async {
     try {
       final response = await _dio.get(TodayCourseApiEndpoints.todayCourse);
-      return TodayCourses.fromJson(response.data);
+      return Courses.fromJson(response.data);
     } on DioException {
       rethrow;
     } catch (e) {

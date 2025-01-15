@@ -30,6 +30,7 @@ dependencies:
   auto_size_text: ^3.0.0
   carousel_slider: ^5.0.0
   stacked_list_carousel: ^1.0.1
+  skeletonizer: ^1.4.3
 
 dev_dependencies:
   flutter_test:
@@ -52,6 +53,7 @@ flutter:
     - lib/assets/svgs/modal/main/
     - lib/assets/svgs/modal/terms/
     - lib/assets/svgs/course/
+    - lib/assets/svgs/notice/
     - lib/assets/svgs/mypage/
     - lib/assets/svgs/navigation/
     - lib/assets/svgs/toast/

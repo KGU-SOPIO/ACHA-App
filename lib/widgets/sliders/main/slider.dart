@@ -9,7 +9,7 @@ import 'package:acha/models/index.dart';
 import 'package:acha/blocs/navigation/navigation_bloc.dart';
 import 'package:acha/blocs/activity/index.dart';
 
-import 'package:acha/extensions/date_extensions.dart';
+import 'package:acha/extensions/index.dart';
 
 import 'package:acha/widgets/containers/index.dart';
 import 'package:acha/widgets/toast/toast_manager.dart';
@@ -40,34 +40,26 @@ class _SliderWidgetState extends State<SliderWidget> {
         return SingleChildScrollView(
           controller: widget.scrollController,
           physics: const ClampingScrollPhysics(),
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: constraints.maxHeight),
-            child: Stack(
-              children: [
-                CarouselSlider(
-                  carouselController: widget.carouselSliderController,
-                  options: CarouselOptions(
-                    aspectRatio: 0.74,
-                    viewportFraction: 1,
-                    enableInfiniteScroll: false,
-                    onPageChanged: (index, reason) {
-                      widget.onPageChanged(index);
-                    }
-                  ),
-                  items: [
-                    _buildLectureSection(context),
-                    _buildAssignmentSection(context),
-                  ]
+          child: Stack(
+            children: [
+              CarouselSlider(
+                carouselController: widget.carouselSliderController,
+                options: CarouselOptions(
+                  aspectRatio: 0.74,
+                  viewportFraction: 1,
+                  enableInfiniteScroll: false,
+                  onPageChanged: (index, reason) => widget.onPageChanged(index)
                 ),
-                Positioned(
-                  bottom: 20,
-                  child: CarouselIndicator(
-                    itemCount: 2,
-                    currentIndex: widget.currentSlide
-                  )
-                )
-              ]
-            )
+                items: [
+                  _buildLectureSection(context),
+                  _buildAssignmentSection(context),
+                ]
+              ),
+              Positioned(
+                bottom: 20,
+                child: CarouselIndicator(itemCount: 2, currentIndex: widget.currentSlide)
+              )
+            ]
           )
         );
       }
@@ -75,8 +67,7 @@ class _SliderWidgetState extends State<SliderWidget> {
   }
 
   Widget _buildLectureSection(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
+    return Padding(
       padding: const EdgeInsets.only(left: 32, right: 32, top: 32),
       child: Column(
         children: [
@@ -132,7 +123,7 @@ class _SliderWidgetState extends State<SliderWidget> {
           BlocListener<ActivityBloc, ActivityState>(
             listener: (context, state) {
               if (state.status == ActivityStatus.error) {
-                GetIt.I<ToastManager>().error(message: state.message!);
+                GetIt.I<ToastManager>().error(message: state.errorMessage!);
               }
             },
             child: BlocBuilder<ActivityBloc, ActivityState>(
@@ -140,25 +131,26 @@ class _SliderWidgetState extends State<SliderWidget> {
                 if (state.status == ActivityStatus.loading) {
                   return const Expanded(child: Center(child: Loader()));
                 } else if (state.status == ActivityStatus.loaded) {
-                  Map<DateTime, List<Activity>> lectures = state.activities!.getLectureActivities(group: true);
-                  List<MapEntry<DateTime, List<Activity>>> lectureEntries = lectures.entries.toList();
-                  if (lectureEntries.isEmpty) {
-                    return Expanded(child: Center(child: Text('남은 강의가 없어요', style: TextStyle(fontSize: 15))));
+                  Map<DateTime, List<Activity>> lectures = state.weekActivities?.getLectureActivities(group: true);
+                  
+                  if (lectures.isEmpty) {
+                    return const Expanded(child: Center(child: Text('남은 강의가 없어요', style: TextStyle(fontSize: 15))));
                   }
 
                   return Expanded(
                     child: ListView.builder(
                       shrinkWrap: true,
-                      itemCount: lectureEntries.length,
+                      itemCount: lectures.length,
                       itemBuilder: (context, index) {
-                        final date = lectureEntries[index].key;
-                        final activityList = lectureEntries[index].value;
+                        final entry = lectures.entries.elementAt(index);
+                        final date = entry.key;
+                        final activities = entry.value;
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             DDayContainer(deadline: date),
                             const SizedBox(height: 13),
-                            for (final lecture in activityList)
+                            for (final lecture in activities)
                               ActivityContainer(
                                 title: lecture.name!,
                                 course: lecture.courseName!,
@@ -183,8 +175,7 @@ class _SliderWidgetState extends State<SliderWidget> {
   }
 
   Widget _buildAssignmentSection(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
+    return Padding(
       padding: const EdgeInsets.only(left: 32, right: 32, top: 32),
       child: Column(
         children: [
@@ -239,28 +230,27 @@ class _SliderWidgetState extends State<SliderWidget> {
           SizedBox(height: 18),
           BlocListener<ActivityBloc, ActivityState>(
             listener: (context, state) {
-              if (state.status == ActivityStatus.error) {
-                GetIt.I<ToastManager>().error(message: state.message!);
-              }
+              GetIt.I<ToastManager>().error(message: state.errorMessage!);
             },
             child: BlocBuilder<ActivityBloc, ActivityState>(
               builder: (context, state) {
                 if (state.status == ActivityStatus.loading) {
                   return const Expanded(child: Center(child: Loader()));
                 } else if (state.status == ActivityStatus.loaded) {
-                  Map<DateTime, List<Activity>> assignments = state.activities!.getAssignmentActivities(group: true);
-                  List<MapEntry<DateTime, List<Activity>>> assignmentEntries = assignments.entries.toList();
-                  if (assignmentEntries.isEmpty) {
-                    return Expanded(child: Center(child: Text('남은 과제가 없어요', style: TextStyle(fontSize: 15))));
+                  Map<DateTime, List<Activity>> assignments = state.weekActivities?.getAssignmentActivities(group: true);
+
+                  if (assignments.isEmpty) {
+                    return const Expanded(child: Center(child: Text('남은 과제가 없어요', style: TextStyle(fontSize: 15))));
                   }
 
                   return Expanded(
                     child: ListView.builder(
                       shrinkWrap: true,
-                      itemCount: assignmentEntries.length,
+                      itemCount: assignments.length,
                       itemBuilder: (context, index) {
-                        final date = assignmentEntries[index].key;
-                        final activities = assignmentEntries[index].value;
+                        final entry = assignments.entries.elementAt(index);
+                        final date = entry.key;
+                        final activities = entry.value;
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [

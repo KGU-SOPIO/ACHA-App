@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:acha/blocs/auth/index.dart';
-
 import 'package:acha/repository/index.dart';
+import 'package:acha/blocs/auth/index.dart';
 
 class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
   AuthenticationBloc({required this.authenticationRepository}) : super(const AuthenticationState.unknown()) {

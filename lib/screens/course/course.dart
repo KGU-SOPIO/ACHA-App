@@ -4,7 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:acha/blocs/course_manager/index.dart';
+import 'package:acha/blocs/course_list/index.dart';
 
 import 'package:acha/screens/course/course_main.dart';
 
@@ -26,7 +26,7 @@ class _CourseScreenState extends State<CourseScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<CourseManagerBloc>().add(CourseManagerEvent.fetch());
+    context.read<CourseListBloc>().add(CourseListEvent.fetch());
   }
 
   @override
@@ -38,20 +38,19 @@ class _CourseScreenState extends State<CourseScreen> {
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(bottom: 20),
+                padding: const EdgeInsets.only(bottom: 20),
                 child: AchaAppbar()
               ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.symmetric(horizontal: 26),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 26),
                 child: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(bottom: 18),
+                      padding: const EdgeInsets.only(bottom: 18),
                       child: Row(
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(right: 4),
+                            padding: const EdgeInsets.only(right: 4),
                             child: Text(
                               '나의 강좌',
                               style: TextStyle(
@@ -65,20 +64,21 @@ class _CourseScreenState extends State<CourseScreen> {
                         ],
                       )
                     ),
-                    BlocListener<CourseManagerBloc, CourseManagerState>(
+                    BlocListener<CourseListBloc, CourseListState>(
                       listener: (context, state) {
-                        if (state.status == CourseManagerStatus.error) {
-                          GetIt.I<ToastManager>().error(message: state.message!);
+                        if (state.status == CourseListStatus.error) {
+                          GetIt.I<ToastManager>().error(message: state.errorMessage!);
                         }
                       },
-                      child: BlocBuilder<CourseManagerBloc, CourseManagerState>(
+                      child: BlocBuilder<CourseListBloc, CourseListState>(
                         builder: (context, state) {
-                          if (state.status == CourseManagerStatus.loading) {
+                          if (state.status == CourseListStatus.loading) {
                             return const Loader(height: 500);
-                          } else if (state.status == CourseManagerStatus.loaded) {
-                            final courses = state.courses!.courses;
-                            if (courses!.isEmpty) {
-                              return SizedBox(height: 500, child: Center(child: Text('등록된 강좌가 없어요', style: TextStyle(fontSize: 15))));
+                          } else if (state.status == CourseListStatus.loaded) {
+                            final courses = state.courses!.courses!;
+                            
+                            if (courses.isEmpty) {
+                              return const SizedBox(height: 500, child: Center(child: Text('등록된 강좌가 없어요', style: TextStyle(fontSize: 15))));
                             }
                             
                             return Column(
@@ -89,14 +89,14 @@ class _CourseScreenState extends State<CourseScreen> {
                                     courseName: course.name,
                                     lectureRoom: course.lectureRoom,
                                     deadline: course.deadline,
-                                    onTap:() => Navigator.push(context, CourseMainScreen.route()),
+                                    onTap: () => Navigator.push(context, CourseMainScreen.route(course: course)),
                                   );
                                 }),
                                 const SizedBox(height: 16)
                               ]
                             );
                           } else {
-                            return SizedBox(height: 500, child: Center(child: Text(state.message!, style: TextStyle(fontSize: 15))));
+                            return SizedBox(height: 500, child: Center(child: Text(state.errorMessage!, style: TextStyle(fontSize: 15))));
                           }
                         }
                       )

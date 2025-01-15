@@ -70,7 +70,8 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
                 if (state.status == ActivityStatus.loading) {
                   return Loader(height: MediaQuery.of(context).size.height);
                 } else if (state.status == ActivityStatus.loaded) {
-                  final Activities activities = state.activities!;
+                  final WeekActivities activities = state.weekActivities!;
+                  
                   return TabBarView(
                     controller: _tabController,
                     children: [
@@ -90,7 +91,7 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
                   );
                 }
               },
-            ),
+            )
           )
         )
       )

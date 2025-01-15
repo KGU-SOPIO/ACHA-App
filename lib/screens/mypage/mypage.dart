@@ -34,12 +34,11 @@ class _MyPageScreenState extends State<MyPageScreen> {
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(bottom: 20),
+                padding: const EdgeInsets.only(bottom: 20),
                 child: AchaAppbar()
               ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.symmetric(horizontal: 26),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 26),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

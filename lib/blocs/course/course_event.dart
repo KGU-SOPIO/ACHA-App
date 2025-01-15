@@ -4,6 +4,5 @@ part 'course_event.freezed.dart';
 
 @freezed
 class CourseEvent with _$CourseEvent {
-  const factory CourseEvent.updateWeekActivities() = UpdateWeekActivities;
-  const factory CourseEvent.updateNotices() = UpdateNotices;
+  const factory CourseEvent.fetchActivities() = FetchActivities;
 }

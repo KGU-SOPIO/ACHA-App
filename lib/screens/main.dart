@@ -51,9 +51,7 @@ class _MainScreenState extends State<MainScreen> {
             BottomDraggableContainer(
               carouselSliderController: _carouselSliderController,
               currentSlide: currentSlide,
-              onPageChanged: (index) {
-                setState(() => currentSlide = index);
-              }
+              onPageChanged: (index) => setState(() => currentSlide = index)
             )
           ]
         )

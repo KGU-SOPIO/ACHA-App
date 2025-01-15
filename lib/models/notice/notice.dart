@@ -5,15 +5,24 @@ part 'notice.freezed.dart';
 part 'notice.g.dart';
 
 @freezed
+class Notices with _$Notices {
+  const factory Notices({
+    @Default([]) List<Notice>? notices
+  }) = _Notices;
+
+  factory Notices.fromJson(Map<String, dynamic> json) => _$NoticesFromJson(json);
+}
+
+@freezed
 @HiveType(typeId: 4)
 class Notice with _$Notice {
   const factory Notice({
     @HiveField(0) required String index,
     @HiveField(1) required String title,
     @HiveField(2) required DateTime date,
-    @HiveField(3) required String link,
-    @HiveField(4) required String content,
-    @HiveField(5) required List<File> files,
+    @HiveField(3) String? link,
+    @HiveField(4) String? content,
+    @HiveField(5) List<File>? files,
   }) = _Notice;
 
   factory Notice.fromJson(Map<String, dynamic> json) => _$NoticeFromJson(json);

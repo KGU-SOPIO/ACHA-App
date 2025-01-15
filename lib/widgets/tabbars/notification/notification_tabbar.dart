@@ -8,7 +8,7 @@ class NotificationTabbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width,
+      width: double.infinity,
       height: 43,
       margin: const EdgeInsets.only(bottom: 18),
       child: Align(

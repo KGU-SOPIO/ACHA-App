@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$UserState {
   UserStatus get status => throw _privateConstructorUsedError;
   User? get user => throw _privateConstructorUsedError;
-  String? get message => throw _privateConstructorUsedError;
+  String? get errorMessage => throw _privateConstructorUsedError;
 
   /// Create a copy of UserState
   /// with the given fields replaced by the non-null parameter values.
@@ -32,7 +32,7 @@ abstract class $UserStateCopyWith<$Res> {
   factory $UserStateCopyWith(UserState value, $Res Function(UserState) then) =
       _$UserStateCopyWithImpl<$Res, UserState>;
   @useResult
-  $Res call({UserStatus status, User? user, String? message});
+  $Res call({UserStatus status, User? user, String? errorMessage});
 
   $UserCopyWith<$Res>? get user;
 }
@@ -54,7 +54,7 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
   $Res call({
     Object? status = null,
     Object? user = freezed,
-    Object? message = freezed,
+    Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -65,9 +65,9 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User?,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -95,7 +95,7 @@ abstract class _$$UserStateImplCopyWith<$Res>
       __$$UserStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({UserStatus status, User? user, String? message});
+  $Res call({UserStatus status, User? user, String? errorMessage});
 
   @override
   $UserCopyWith<$Res>? get user;
@@ -116,7 +116,7 @@ class __$$UserStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? user = freezed,
-    Object? message = freezed,
+    Object? errorMessage = freezed,
   }) {
     return _then(_$UserStateImpl(
       status: null == status
@@ -127,9 +127,9 @@ class __$$UserStateImplCopyWithImpl<$Res>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User?,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -138,18 +138,18 @@ class __$$UserStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UserStateImpl implements _UserState {
-  const _$UserStateImpl({required this.status, this.user, this.message});
+  const _$UserStateImpl({required this.status, this.user, this.errorMessage});
 
   @override
   final UserStatus status;
   @override
   final User? user;
   @override
-  final String? message;
+  final String? errorMessage;
 
   @override
   String toString() {
-    return 'UserState(status: $status, user: $user, message: $message)';
+    return 'UserState(status: $status, user: $user, errorMessage: $errorMessage)';
   }
 
   @override
@@ -159,11 +159,12 @@ class _$UserStateImpl implements _UserState {
             other is _$UserStateImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.user, user) || other.user == user) &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, user, message);
+  int get hashCode => Object.hash(runtimeType, status, user, errorMessage);
 
   /// Create a copy of UserState
   /// with the given fields replaced by the non-null parameter values.
@@ -178,14 +179,14 @@ abstract class _UserState implements UserState {
   const factory _UserState(
       {required final UserStatus status,
       final User? user,
-      final String? message}) = _$UserStateImpl;
+      final String? errorMessage}) = _$UserStateImpl;
 
   @override
   UserStatus get status;
   @override
   User? get user;
   @override
-  String? get message;
+  String? get errorMessage;
 
   /// Create a copy of UserState
   /// with the given fields replaced by the non-null parameter values.

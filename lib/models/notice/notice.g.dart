@@ -20,9 +20,9 @@ class NoticeAdapter extends TypeAdapter<Notice> {
       index: fields[0] as String,
       title: fields[1] as String,
       date: fields[2] as DateTime,
-      link: fields[3] as String,
-      content: fields[4] as String,
-      files: (fields[5] as List).cast<File>(),
+      link: fields[3] as String?,
+      content: fields[4] as String?,
+      files: (fields[5] as List?)?.cast<File>(),
     );
   }
 
@@ -96,14 +96,27 @@ class FileAdapter extends TypeAdapter<File> {
 // JsonSerializableGenerator
 // **************************************************************************
 
+_$NoticesImpl _$$NoticesImplFromJson(Map<String, dynamic> json) =>
+    _$NoticesImpl(
+      notices: (json['notices'] as List<dynamic>?)
+              ?.map((e) => Notice.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+    );
+
+Map<String, dynamic> _$$NoticesImplToJson(_$NoticesImpl instance) =>
+    <String, dynamic>{
+      'notices': instance.notices,
+    };
+
 _$NoticeImpl _$$NoticeImplFromJson(Map<String, dynamic> json) => _$NoticeImpl(
       index: json['index'] as String,
       title: json['title'] as String,
       date: DateTime.parse(json['date'] as String),
-      link: json['link'] as String,
-      content: json['content'] as String,
-      files: (json['files'] as List<dynamic>)
-          .map((e) => File.fromJson(e as Map<String, dynamic>))
+      link: json['link'] as String?,
+      content: json['content'] as String?,
+      files: (json['files'] as List<dynamic>?)
+          ?.map((e) => File.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

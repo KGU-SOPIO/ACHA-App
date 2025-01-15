@@ -1,1 +1,1 @@
-export 'package:acha/widgets/modals/terms_modal.dart';
+export 'package:acha/widgets/modals/terms/terms_modal.dart';

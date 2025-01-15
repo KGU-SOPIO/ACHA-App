@@ -17,8 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$TodayCourseState {
   TodayCourseStatus get status => throw _privateConstructorUsedError;
-  TodayCourses? get todayCourses => throw _privateConstructorUsedError;
-  String? get message => throw _privateConstructorUsedError;
+  Courses? get todayCourses => throw _privateConstructorUsedError;
+  String? get errorMessage => throw _privateConstructorUsedError;
 
   /// Create a copy of TodayCourseState
   /// with the given fields replaced by the non-null parameter values.
@@ -34,9 +34,9 @@ abstract class $TodayCourseStateCopyWith<$Res> {
       _$TodayCourseStateCopyWithImpl<$Res, TodayCourseState>;
   @useResult
   $Res call(
-      {TodayCourseStatus status, TodayCourses? todayCourses, String? message});
+      {TodayCourseStatus status, Courses? todayCourses, String? errorMessage});
 
-  $TodayCoursesCopyWith<$Res>? get todayCourses;
+  $CoursesCopyWith<$Res>? get todayCourses;
 }
 
 /// @nodoc
@@ -56,7 +56,7 @@ class _$TodayCourseStateCopyWithImpl<$Res, $Val extends TodayCourseState>
   $Res call({
     Object? status = null,
     Object? todayCourses = freezed,
-    Object? message = freezed,
+    Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -66,10 +66,10 @@ class _$TodayCourseStateCopyWithImpl<$Res, $Val extends TodayCourseState>
       todayCourses: freezed == todayCourses
           ? _value.todayCourses
           : todayCourses // ignore: cast_nullable_to_non_nullable
-              as TodayCourses?,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
+              as Courses?,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -78,12 +78,12 @@ class _$TodayCourseStateCopyWithImpl<$Res, $Val extends TodayCourseState>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $TodayCoursesCopyWith<$Res>? get todayCourses {
+  $CoursesCopyWith<$Res>? get todayCourses {
     if (_value.todayCourses == null) {
       return null;
     }
 
-    return $TodayCoursesCopyWith<$Res>(_value.todayCourses!, (value) {
+    return $CoursesCopyWith<$Res>(_value.todayCourses!, (value) {
       return _then(_value.copyWith(todayCourses: value) as $Val);
     });
   }
@@ -98,10 +98,10 @@ abstract class _$$TodayCourseStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {TodayCourseStatus status, TodayCourses? todayCourses, String? message});
+      {TodayCourseStatus status, Courses? todayCourses, String? errorMessage});
 
   @override
-  $TodayCoursesCopyWith<$Res>? get todayCourses;
+  $CoursesCopyWith<$Res>? get todayCourses;
 }
 
 /// @nodoc
@@ -119,7 +119,7 @@ class __$$TodayCourseStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? todayCourses = freezed,
-    Object? message = freezed,
+    Object? errorMessage = freezed,
   }) {
     return _then(_$TodayCourseStateImpl(
       status: null == status
@@ -129,10 +129,10 @@ class __$$TodayCourseStateImplCopyWithImpl<$Res>
       todayCourses: freezed == todayCourses
           ? _value.todayCourses
           : todayCourses // ignore: cast_nullable_to_non_nullable
-              as TodayCourses?,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
+              as Courses?,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -142,18 +142,18 @@ class __$$TodayCourseStateImplCopyWithImpl<$Res>
 
 class _$TodayCourseStateImpl implements _TodayCourseState {
   const _$TodayCourseStateImpl(
-      {required this.status, this.todayCourses, this.message});
+      {required this.status, this.todayCourses, this.errorMessage});
 
   @override
   final TodayCourseStatus status;
   @override
-  final TodayCourses? todayCourses;
+  final Courses? todayCourses;
   @override
-  final String? message;
+  final String? errorMessage;
 
   @override
   String toString() {
-    return 'TodayCourseState(status: $status, todayCourses: $todayCourses, message: $message)';
+    return 'TodayCourseState(status: $status, todayCourses: $todayCourses, errorMessage: $errorMessage)';
   }
 
   @override
@@ -164,11 +164,13 @@ class _$TodayCourseStateImpl implements _TodayCourseState {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.todayCourses, todayCourses) ||
                 other.todayCourses == todayCourses) &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, todayCourses, message);
+  int get hashCode =>
+      Object.hash(runtimeType, status, todayCourses, errorMessage);
 
   /// Create a copy of TodayCourseState
   /// with the given fields replaced by the non-null parameter values.
@@ -183,15 +185,15 @@ class _$TodayCourseStateImpl implements _TodayCourseState {
 abstract class _TodayCourseState implements TodayCourseState {
   const factory _TodayCourseState(
       {required final TodayCourseStatus status,
-      final TodayCourses? todayCourses,
-      final String? message}) = _$TodayCourseStateImpl;
+      final Courses? todayCourses,
+      final String? errorMessage}) = _$TodayCourseStateImpl;
 
   @override
   TodayCourseStatus get status;
   @override
-  TodayCourses? get todayCourses;
+  Courses? get todayCourses;
   @override
-  String? get message;
+  String? get errorMessage;
 
   /// Create a copy of TodayCourseState
   /// with the given fields replaced by the non-null parameter values.

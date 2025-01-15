@@ -17,8 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ActivityState {
   ActivityStatus get status => throw _privateConstructorUsedError;
-  Activities? get activities => throw _privateConstructorUsedError;
-  String? get message => throw _privateConstructorUsedError;
+  WeekActivities? get weekActivities => throw _privateConstructorUsedError;
+  String? get errorMessage => throw _privateConstructorUsedError;
 
   /// Create a copy of ActivityState
   /// with the given fields replaced by the non-null parameter values.
@@ -33,9 +33,12 @@ abstract class $ActivityStateCopyWith<$Res> {
           ActivityState value, $Res Function(ActivityState) then) =
       _$ActivityStateCopyWithImpl<$Res, ActivityState>;
   @useResult
-  $Res call({ActivityStatus status, Activities? activities, String? message});
+  $Res call(
+      {ActivityStatus status,
+      WeekActivities? weekActivities,
+      String? errorMessage});
 
-  $ActivitiesCopyWith<$Res>? get activities;
+  $WeekActivitiesCopyWith<$Res>? get weekActivities;
 }
 
 /// @nodoc
@@ -54,21 +57,21 @@ class _$ActivityStateCopyWithImpl<$Res, $Val extends ActivityState>
   @override
   $Res call({
     Object? status = null,
-    Object? activities = freezed,
-    Object? message = freezed,
+    Object? weekActivities = freezed,
+    Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ActivityStatus,
-      activities: freezed == activities
-          ? _value.activities
-          : activities // ignore: cast_nullable_to_non_nullable
-              as Activities?,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
+      weekActivities: freezed == weekActivities
+          ? _value.weekActivities
+          : weekActivities // ignore: cast_nullable_to_non_nullable
+              as WeekActivities?,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -77,13 +80,13 @@ class _$ActivityStateCopyWithImpl<$Res, $Val extends ActivityState>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ActivitiesCopyWith<$Res>? get activities {
-    if (_value.activities == null) {
+  $WeekActivitiesCopyWith<$Res>? get weekActivities {
+    if (_value.weekActivities == null) {
       return null;
     }
 
-    return $ActivitiesCopyWith<$Res>(_value.activities!, (value) {
-      return _then(_value.copyWith(activities: value) as $Val);
+    return $WeekActivitiesCopyWith<$Res>(_value.weekActivities!, (value) {
+      return _then(_value.copyWith(weekActivities: value) as $Val);
     });
   }
 }
@@ -96,10 +99,13 @@ abstract class _$$ActivityStateImplCopyWith<$Res>
       __$$ActivityStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ActivityStatus status, Activities? activities, String? message});
+  $Res call(
+      {ActivityStatus status,
+      WeekActivities? weekActivities,
+      String? errorMessage});
 
   @override
-  $ActivitiesCopyWith<$Res>? get activities;
+  $WeekActivitiesCopyWith<$Res>? get weekActivities;
 }
 
 /// @nodoc
@@ -116,21 +122,21 @@ class __$$ActivityStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? activities = freezed,
-    Object? message = freezed,
+    Object? weekActivities = freezed,
+    Object? errorMessage = freezed,
   }) {
     return _then(_$ActivityStateImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ActivityStatus,
-      activities: freezed == activities
-          ? _value.activities
-          : activities // ignore: cast_nullable_to_non_nullable
-              as Activities?,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
+      weekActivities: freezed == weekActivities
+          ? _value.weekActivities
+          : weekActivities // ignore: cast_nullable_to_non_nullable
+              as WeekActivities?,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -140,18 +146,18 @@ class __$$ActivityStateImplCopyWithImpl<$Res>
 
 class _$ActivityStateImpl implements _ActivityState {
   const _$ActivityStateImpl(
-      {required this.status, this.activities, this.message});
+      {required this.status, this.weekActivities, this.errorMessage});
 
   @override
   final ActivityStatus status;
   @override
-  final Activities? activities;
+  final WeekActivities? weekActivities;
   @override
-  final String? message;
+  final String? errorMessage;
 
   @override
   String toString() {
-    return 'ActivityState(status: $status, activities: $activities, message: $message)';
+    return 'ActivityState(status: $status, weekActivities: $weekActivities, errorMessage: $errorMessage)';
   }
 
   @override
@@ -160,13 +166,15 @@ class _$ActivityStateImpl implements _ActivityState {
         (other.runtimeType == runtimeType &&
             other is _$ActivityStateImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.activities, activities) ||
-                other.activities == activities) &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.weekActivities, weekActivities) ||
+                other.weekActivities == weekActivities) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, activities, message);
+  int get hashCode =>
+      Object.hash(runtimeType, status, weekActivities, errorMessage);
 
   /// Create a copy of ActivityState
   /// with the given fields replaced by the non-null parameter values.
@@ -180,15 +188,15 @@ class _$ActivityStateImpl implements _ActivityState {
 abstract class _ActivityState implements ActivityState {
   const factory _ActivityState(
       {required final ActivityStatus status,
-      final Activities? activities,
-      final String? message}) = _$ActivityStateImpl;
+      final WeekActivities? weekActivities,
+      final String? errorMessage}) = _$ActivityStateImpl;
 
   @override
   ActivityStatus get status;
   @override
-  Activities? get activities;
+  WeekActivities? get weekActivities;
   @override
-  String? get message;
+  String? get errorMessage;
 
   /// Create a copy of ActivityState
   /// with the given fields replaced by the non-null parameter values.

@@ -6,7 +6,7 @@ import 'package:get_it/get_it.dart';
 
 import 'package:acha/blocs/auth/index.dart';
 import 'package:acha/blocs/user/index.dart';
-import 'package:acha/blocs/course_manager/index.dart';
+import 'package:acha/blocs/course_list/index.dart';
 import 'package:acha/blocs/today_course/index.dart';
 import 'package:acha/blocs/activity/index.dart';
 import 'package:acha/blocs/alert/index.dart';
@@ -63,7 +63,7 @@ class _AppState extends State<App> {
         providers: [
           BlocProvider(create: (context) => AuthenticationBloc(authenticationRepository: _authenticationRepository)),
           BlocProvider(create: (context) => UserBloc(userRepository: _userRepository)),
-          BlocProvider(create: (context) => CourseManagerBloc(courseRepository: _courseRepository)),
+          BlocProvider(create: (context) => CourseListBloc(courseRepository: _courseRepository)),
           BlocProvider(create: (context) => TodayCourseBloc(todayCourseRepository: _todayCourseRepository)),
           BlocProvider(create: (context) => ActivityBloc(courseRepository: _courseRepository)),
           BlocProvider(create: (context) => AlertBloc(alertRepository: _alertRepository))

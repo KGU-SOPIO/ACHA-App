@@ -6,6 +6,7 @@ export 'package:acha/widgets/containers/appbar/acha_appbar.dart';
 
 export 'package:acha/widgets/containers/auth/text_container.dart';
 
+export 'package:acha/widgets/containers/course/carousel_activity_container.dart';
 export 'package:acha/widgets/containers/course/course_container.dart';
 
 export 'package:acha/widgets/containers/main/activity_container.dart';

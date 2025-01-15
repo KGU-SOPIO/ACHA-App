@@ -1,27 +1,27 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:acha/blocs/course/index.dart';
 
 import 'package:acha/models/index.dart';
 import 'package:acha/repository/index.dart';
+import 'package:acha/blocs/course/index.dart';
 
 class CourseBloc extends Bloc<CourseEvent, CourseState> {
-  CourseBloc({required this.courseRepository, required this.course}) : super(CourseState.loaded(course: course)) {
-    on<UpdateNotices>(_onUpdateNotices);
+  CourseBloc({required this.courseRepository, required this.course}) : super(CourseState(status: CourseStatus.loading, course: course)) {
+    on<FetchActivities>(_onFetchActivities);
   }
 
   final CourseRepository courseRepository;
-  Course course;
+  final Course course;
 
-  Future<void> _onUpdateNotices(UpdateNotices event, Emitter<CourseState> emit) async {
-    emit(const CourseState.loadingNotices());
+  /// 활동 데이터를 요청합니다.
+  Future<void> _onFetchActivities(FetchActivities event, Emitter<CourseState> emit) async {
     try {
-      final notices = await courseRepository.fetchNotices(course.code!);
-      course = course.copyWith(notices: notices);
-      emit(CourseState.loaded(course: course));
+      final CourseActivities courseActivities = await courseRepository.fetchCourseActivities(course.code);
+      emit(state.copyWith(status: CourseStatus.loaded, course: course.copyWith(courseActivities: courseActivities)));
+    } on DioException catch (e) {
+      emit(state.copyWith(status: CourseStatus.error, errorMessage: e.error as String));
     } catch (e) {
-      emit(CourseState.error(message: e.toString()));
-      rethrow;
+      emit(state.copyWith(status: CourseStatus.error, errorMessage: '활동을 불러오지 못했어요'));
     }
   }
 }

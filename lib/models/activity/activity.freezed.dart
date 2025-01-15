@@ -14,48 +14,213 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Activities _$ActivitiesFromJson(Map<String, dynamic> json) {
-  return _Activities.fromJson(json);
+CourseActivities _$CourseActivitiesFromJson(Map<String, dynamic> json) {
+  return _CourseActivities.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Activities {
-  @HiveField(0)
-  int? get week => throw _privateConstructorUsedError;
-  @HiveField(1)
-  List<Activity>? get activities => throw _privateConstructorUsedError;
+mixin _$CourseActivities {
+  List<WeekActivities>? get courseActivities =>
+      throw _privateConstructorUsedError;
 
-  /// Serializes this Activities to a JSON map.
+  /// Serializes this CourseActivities to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of Activities
+  /// Create a copy of CourseActivities
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ActivitiesCopyWith<Activities> get copyWith =>
+  $CourseActivitiesCopyWith<CourseActivities> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ActivitiesCopyWith<$Res> {
-  factory $ActivitiesCopyWith(
-          Activities value, $Res Function(Activities) then) =
-      _$ActivitiesCopyWithImpl<$Res, Activities>;
+abstract class $CourseActivitiesCopyWith<$Res> {
+  factory $CourseActivitiesCopyWith(
+          CourseActivities value, $Res Function(CourseActivities) then) =
+      _$CourseActivitiesCopyWithImpl<$Res, CourseActivities>;
   @useResult
-  $Res call(
-      {@HiveField(0) int? week, @HiveField(1) List<Activity>? activities});
+  $Res call({List<WeekActivities>? courseActivities});
 }
 
 /// @nodoc
-class _$ActivitiesCopyWithImpl<$Res, $Val extends Activities>
-    implements $ActivitiesCopyWith<$Res> {
-  _$ActivitiesCopyWithImpl(this._value, this._then);
+class _$CourseActivitiesCopyWithImpl<$Res, $Val extends CourseActivities>
+    implements $CourseActivitiesCopyWith<$Res> {
+  _$CourseActivitiesCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Activities
+  /// Create a copy of CourseActivities
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? courseActivities = freezed,
+  }) {
+    return _then(_value.copyWith(
+      courseActivities: freezed == courseActivities
+          ? _value.courseActivities
+          : courseActivities // ignore: cast_nullable_to_non_nullable
+              as List<WeekActivities>?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$CourseActivitiesImplCopyWith<$Res>
+    implements $CourseActivitiesCopyWith<$Res> {
+  factory _$$CourseActivitiesImplCopyWith(_$CourseActivitiesImpl value,
+          $Res Function(_$CourseActivitiesImpl) then) =
+      __$$CourseActivitiesImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<WeekActivities>? courseActivities});
+}
+
+/// @nodoc
+class __$$CourseActivitiesImplCopyWithImpl<$Res>
+    extends _$CourseActivitiesCopyWithImpl<$Res, _$CourseActivitiesImpl>
+    implements _$$CourseActivitiesImplCopyWith<$Res> {
+  __$$CourseActivitiesImplCopyWithImpl(_$CourseActivitiesImpl _value,
+      $Res Function(_$CourseActivitiesImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CourseActivities
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? courseActivities = freezed,
+  }) {
+    return _then(_$CourseActivitiesImpl(
+      courseActivities: freezed == courseActivities
+          ? _value._courseActivities
+          : courseActivities // ignore: cast_nullable_to_non_nullable
+              as List<WeekActivities>?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$CourseActivitiesImpl implements _CourseActivities {
+  const _$CourseActivitiesImpl(
+      {final List<WeekActivities>? courseActivities = const []})
+      : _courseActivities = courseActivities;
+
+  factory _$CourseActivitiesImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CourseActivitiesImplFromJson(json);
+
+  final List<WeekActivities>? _courseActivities;
+  @override
+  @JsonKey()
+  List<WeekActivities>? get courseActivities {
+    final value = _courseActivities;
+    if (value == null) return null;
+    if (_courseActivities is EqualUnmodifiableListView)
+      return _courseActivities;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  String toString() {
+    return 'CourseActivities(courseActivities: $courseActivities)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CourseActivitiesImpl &&
+            const DeepCollectionEquality()
+                .equals(other._courseActivities, _courseActivities));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_courseActivities));
+
+  /// Create a copy of CourseActivities
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CourseActivitiesImplCopyWith<_$CourseActivitiesImpl> get copyWith =>
+      __$$CourseActivitiesImplCopyWithImpl<_$CourseActivitiesImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$CourseActivitiesImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _CourseActivities implements CourseActivities {
+  const factory _CourseActivities(
+      {final List<WeekActivities>? courseActivities}) = _$CourseActivitiesImpl;
+
+  factory _CourseActivities.fromJson(Map<String, dynamic> json) =
+      _$CourseActivitiesImpl.fromJson;
+
+  @override
+  List<WeekActivities>? get courseActivities;
+
+  /// Create a copy of CourseActivities
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CourseActivitiesImplCopyWith<_$CourseActivitiesImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+WeekActivities _$WeekActivitiesFromJson(Map<String, dynamic> json) {
+  return _WeekActivities.fromJson(json);
+}
+
+/// @nodoc
+mixin _$WeekActivities {
+  @HiveField(0)
+  int? get week => throw _privateConstructorUsedError;
+  @HiveField(1)
+  List<Activity>? get activities => throw _privateConstructorUsedError;
+
+  /// Serializes this WeekActivities to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of WeekActivities
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $WeekActivitiesCopyWith<WeekActivities> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WeekActivitiesCopyWith<$Res> {
+  factory $WeekActivitiesCopyWith(
+          WeekActivities value, $Res Function(WeekActivities) then) =
+      _$WeekActivitiesCopyWithImpl<$Res, WeekActivities>;
+  @useResult
+  $Res call(
+      {@HiveField(0) int? week, @HiveField(1) List<Activity>? activities});
+}
+
+/// @nodoc
+class _$WeekActivitiesCopyWithImpl<$Res, $Val extends WeekActivities>
+    implements $WeekActivitiesCopyWith<$Res> {
+  _$WeekActivitiesCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of WeekActivities
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -77,11 +242,11 @@ class _$ActivitiesCopyWithImpl<$Res, $Val extends Activities>
 }
 
 /// @nodoc
-abstract class _$$ActivitiesImplCopyWith<$Res>
-    implements $ActivitiesCopyWith<$Res> {
-  factory _$$ActivitiesImplCopyWith(
-          _$ActivitiesImpl value, $Res Function(_$ActivitiesImpl) then) =
-      __$$ActivitiesImplCopyWithImpl<$Res>;
+abstract class _$$WeekActivitiesImplCopyWith<$Res>
+    implements $WeekActivitiesCopyWith<$Res> {
+  factory _$$WeekActivitiesImplCopyWith(_$WeekActivitiesImpl value,
+          $Res Function(_$WeekActivitiesImpl) then) =
+      __$$WeekActivitiesImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -89,14 +254,14 @@ abstract class _$$ActivitiesImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ActivitiesImplCopyWithImpl<$Res>
-    extends _$ActivitiesCopyWithImpl<$Res, _$ActivitiesImpl>
-    implements _$$ActivitiesImplCopyWith<$Res> {
-  __$$ActivitiesImplCopyWithImpl(
-      _$ActivitiesImpl _value, $Res Function(_$ActivitiesImpl) _then)
+class __$$WeekActivitiesImplCopyWithImpl<$Res>
+    extends _$WeekActivitiesCopyWithImpl<$Res, _$WeekActivitiesImpl>
+    implements _$$WeekActivitiesImplCopyWith<$Res> {
+  __$$WeekActivitiesImplCopyWithImpl(
+      _$WeekActivitiesImpl _value, $Res Function(_$WeekActivitiesImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Activities
+  /// Create a copy of WeekActivities
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -104,7 +269,7 @@ class __$$ActivitiesImplCopyWithImpl<$Res>
     Object? week = freezed,
     Object? activities = freezed,
   }) {
-    return _then(_$ActivitiesImpl(
+    return _then(_$WeekActivitiesImpl(
       week: freezed == week
           ? _value.week
           : week // ignore: cast_nullable_to_non_nullable
@@ -119,14 +284,14 @@ class __$$ActivitiesImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ActivitiesImpl implements _Activities {
-  const _$ActivitiesImpl(
+class _$WeekActivitiesImpl implements _WeekActivities {
+  const _$WeekActivitiesImpl(
       {@HiveField(0) this.week,
       @HiveField(1) final List<Activity>? activities = const []})
       : _activities = activities;
 
-  factory _$ActivitiesImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ActivitiesImplFromJson(json);
+  factory _$WeekActivitiesImpl.fromJson(Map<String, dynamic> json) =>
+      _$$WeekActivitiesImplFromJson(json);
 
   @override
   @HiveField(0)
@@ -145,14 +310,14 @@ class _$ActivitiesImpl implements _Activities {
 
   @override
   String toString() {
-    return 'Activities(week: $week, activities: $activities)';
+    return 'WeekActivities(week: $week, activities: $activities)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ActivitiesImpl &&
+            other is _$WeekActivitiesImpl &&
             (identical(other.week, week) || other.week == week) &&
             const DeepCollectionEquality()
                 .equals(other._activities, _activities));
@@ -163,29 +328,30 @@ class _$ActivitiesImpl implements _Activities {
   int get hashCode => Object.hash(
       runtimeType, week, const DeepCollectionEquality().hash(_activities));
 
-  /// Create a copy of Activities
+  /// Create a copy of WeekActivities
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ActivitiesImplCopyWith<_$ActivitiesImpl> get copyWith =>
-      __$$ActivitiesImplCopyWithImpl<_$ActivitiesImpl>(this, _$identity);
+  _$$WeekActivitiesImplCopyWith<_$WeekActivitiesImpl> get copyWith =>
+      __$$WeekActivitiesImplCopyWithImpl<_$WeekActivitiesImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ActivitiesImplToJson(
+    return _$$WeekActivitiesImplToJson(
       this,
     );
   }
 }
 
-abstract class _Activities implements Activities {
-  const factory _Activities(
+abstract class _WeekActivities implements WeekActivities {
+  const factory _WeekActivities(
       {@HiveField(0) final int? week,
-      @HiveField(1) final List<Activity>? activities}) = _$ActivitiesImpl;
+      @HiveField(1) final List<Activity>? activities}) = _$WeekActivitiesImpl;
 
-  factory _Activities.fromJson(Map<String, dynamic> json) =
-      _$ActivitiesImpl.fromJson;
+  factory _WeekActivities.fromJson(Map<String, dynamic> json) =
+      _$WeekActivitiesImpl.fromJson;
 
   @override
   @HiveField(0)
@@ -194,11 +360,11 @@ abstract class _Activities implements Activities {
   @HiveField(1)
   List<Activity>? get activities;
 
-  /// Create a copy of Activities
+  /// Create a copy of WeekActivities
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ActivitiesImplCopyWith<_$ActivitiesImpl> get copyWith =>
+  _$$WeekActivitiesImplCopyWith<_$WeekActivitiesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

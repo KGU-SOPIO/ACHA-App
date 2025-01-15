@@ -18,39 +18,33 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CourseEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() updateWeekActivities,
-    required TResult Function() updateNotices,
+    required TResult Function() fetchActivities,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? updateWeekActivities,
-    TResult? Function()? updateNotices,
+    TResult? Function()? fetchActivities,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? updateWeekActivities,
-    TResult Function()? updateNotices,
+    TResult Function()? fetchActivities,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(UpdateWeekActivities value) updateWeekActivities,
-    required TResult Function(UpdateNotices value) updateNotices,
+    required TResult Function(FetchActivities value) fetchActivities,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(UpdateWeekActivities value)? updateWeekActivities,
-    TResult? Function(UpdateNotices value)? updateNotices,
+    TResult? Function(FetchActivities value)? fetchActivities,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(UpdateWeekActivities value)? updateWeekActivities,
-    TResult Function(UpdateNotices value)? updateNotices,
+    TResult Function(FetchActivities value)? fetchActivities,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -78,18 +72,18 @@ class _$CourseEventCopyWithImpl<$Res, $Val extends CourseEvent>
 }
 
 /// @nodoc
-abstract class _$$UpdateWeekActivitiesImplCopyWith<$Res> {
-  factory _$$UpdateWeekActivitiesImplCopyWith(_$UpdateWeekActivitiesImpl value,
-          $Res Function(_$UpdateWeekActivitiesImpl) then) =
-      __$$UpdateWeekActivitiesImplCopyWithImpl<$Res>;
+abstract class _$$FetchActivitiesImplCopyWith<$Res> {
+  factory _$$FetchActivitiesImplCopyWith(_$FetchActivitiesImpl value,
+          $Res Function(_$FetchActivitiesImpl) then) =
+      __$$FetchActivitiesImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$UpdateWeekActivitiesImplCopyWithImpl<$Res>
-    extends _$CourseEventCopyWithImpl<$Res, _$UpdateWeekActivitiesImpl>
-    implements _$$UpdateWeekActivitiesImplCopyWith<$Res> {
-  __$$UpdateWeekActivitiesImplCopyWithImpl(_$UpdateWeekActivitiesImpl _value,
-      $Res Function(_$UpdateWeekActivitiesImpl) _then)
+class __$$FetchActivitiesImplCopyWithImpl<$Res>
+    extends _$CourseEventCopyWithImpl<$Res, _$FetchActivitiesImpl>
+    implements _$$FetchActivitiesImplCopyWith<$Res> {
+  __$$FetchActivitiesImplCopyWithImpl(
+      _$FetchActivitiesImpl _value, $Res Function(_$FetchActivitiesImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CourseEvent
@@ -98,19 +92,18 @@ class __$$UpdateWeekActivitiesImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UpdateWeekActivitiesImpl implements UpdateWeekActivities {
-  const _$UpdateWeekActivitiesImpl();
+class _$FetchActivitiesImpl implements FetchActivities {
+  const _$FetchActivitiesImpl();
 
   @override
   String toString() {
-    return 'CourseEvent.updateWeekActivities()';
+    return 'CourseEvent.fetchActivities()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UpdateWeekActivitiesImpl);
+        (other.runtimeType == runtimeType && other is _$FetchActivitiesImpl);
   }
 
   @override
@@ -119,30 +112,27 @@ class _$UpdateWeekActivitiesImpl implements UpdateWeekActivities {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() updateWeekActivities,
-    required TResult Function() updateNotices,
+    required TResult Function() fetchActivities,
   }) {
-    return updateWeekActivities();
+    return fetchActivities();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? updateWeekActivities,
-    TResult? Function()? updateNotices,
+    TResult? Function()? fetchActivities,
   }) {
-    return updateWeekActivities?.call();
+    return fetchActivities?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? updateWeekActivities,
-    TResult Function()? updateNotices,
+    TResult Function()? fetchActivities,
     required TResult orElse(),
   }) {
-    if (updateWeekActivities != null) {
-      return updateWeekActivities();
+    if (fetchActivities != null) {
+      return fetchActivities();
     }
     return orElse();
   }
@@ -150,140 +140,32 @@ class _$UpdateWeekActivitiesImpl implements UpdateWeekActivities {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(UpdateWeekActivities value) updateWeekActivities,
-    required TResult Function(UpdateNotices value) updateNotices,
+    required TResult Function(FetchActivities value) fetchActivities,
   }) {
-    return updateWeekActivities(this);
+    return fetchActivities(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(UpdateWeekActivities value)? updateWeekActivities,
-    TResult? Function(UpdateNotices value)? updateNotices,
+    TResult? Function(FetchActivities value)? fetchActivities,
   }) {
-    return updateWeekActivities?.call(this);
+    return fetchActivities?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(UpdateWeekActivities value)? updateWeekActivities,
-    TResult Function(UpdateNotices value)? updateNotices,
+    TResult Function(FetchActivities value)? fetchActivities,
     required TResult orElse(),
   }) {
-    if (updateWeekActivities != null) {
-      return updateWeekActivities(this);
+    if (fetchActivities != null) {
+      return fetchActivities(this);
     }
     return orElse();
   }
 }
 
-abstract class UpdateWeekActivities implements CourseEvent {
-  const factory UpdateWeekActivities() = _$UpdateWeekActivitiesImpl;
-}
-
-/// @nodoc
-abstract class _$$UpdateNoticesImplCopyWith<$Res> {
-  factory _$$UpdateNoticesImplCopyWith(
-          _$UpdateNoticesImpl value, $Res Function(_$UpdateNoticesImpl) then) =
-      __$$UpdateNoticesImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$UpdateNoticesImplCopyWithImpl<$Res>
-    extends _$CourseEventCopyWithImpl<$Res, _$UpdateNoticesImpl>
-    implements _$$UpdateNoticesImplCopyWith<$Res> {
-  __$$UpdateNoticesImplCopyWithImpl(
-      _$UpdateNoticesImpl _value, $Res Function(_$UpdateNoticesImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of CourseEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$UpdateNoticesImpl implements UpdateNotices {
-  const _$UpdateNoticesImpl();
-
-  @override
-  String toString() {
-    return 'CourseEvent.updateNotices()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$UpdateNoticesImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() updateWeekActivities,
-    required TResult Function() updateNotices,
-  }) {
-    return updateNotices();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? updateWeekActivities,
-    TResult? Function()? updateNotices,
-  }) {
-    return updateNotices?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? updateWeekActivities,
-    TResult Function()? updateNotices,
-    required TResult orElse(),
-  }) {
-    if (updateNotices != null) {
-      return updateNotices();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(UpdateWeekActivities value) updateWeekActivities,
-    required TResult Function(UpdateNotices value) updateNotices,
-  }) {
-    return updateNotices(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(UpdateWeekActivities value)? updateWeekActivities,
-    TResult? Function(UpdateNotices value)? updateNotices,
-  }) {
-    return updateNotices?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(UpdateWeekActivities value)? updateWeekActivities,
-    TResult Function(UpdateNotices value)? updateNotices,
-    required TResult orElse(),
-  }) {
-    if (updateNotices != null) {
-      return updateNotices(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class UpdateNotices implements CourseEvent {
-  const factory UpdateNotices() = _$UpdateNoticesImpl;
+abstract class FetchActivities implements CourseEvent {
+  const factory FetchActivities() = _$FetchActivitiesImpl;
 }

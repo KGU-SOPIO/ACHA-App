@@ -28,8 +28,9 @@ void main() async {
     }()
   );
   getIt.registerLazySingleton<AuthenticationRepository>(() => AuthenticationRepository());
-  getIt.registerLazySingleton<CourseRepository>(() => CourseRepository());
   getIt.registerLazySingleton<UserRepository>(() => UserRepository());
+  getIt.registerLazySingleton<CourseRepository>(() => CourseRepository());
+  getIt.registerLazySingleton<NoticeRepository>(() => NoticeRepository());
   getIt.registerLazySingleton<TodayCourseRepository>(() => TodayCourseRepository());
   getIt.registerLazySingleton<AlertRepository>(() => AlertRepository());
   getIt.registerLazySingleton<ToastManager>(() => ToastManager());

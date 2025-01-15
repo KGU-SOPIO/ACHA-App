@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'course_manager_event.dart';
+part of 'course_list_event.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$CourseManagerEvent {
+mixin _$CourseListEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
@@ -51,23 +51,23 @@ mixin _$CourseManagerEvent {
 }
 
 /// @nodoc
-abstract class $CourseManagerEventCopyWith<$Res> {
-  factory $CourseManagerEventCopyWith(
-          CourseManagerEvent value, $Res Function(CourseManagerEvent) then) =
-      _$CourseManagerEventCopyWithImpl<$Res, CourseManagerEvent>;
+abstract class $CourseListEventCopyWith<$Res> {
+  factory $CourseListEventCopyWith(
+          CourseListEvent value, $Res Function(CourseListEvent) then) =
+      _$CourseListEventCopyWithImpl<$Res, CourseListEvent>;
 }
 
 /// @nodoc
-class _$CourseManagerEventCopyWithImpl<$Res, $Val extends CourseManagerEvent>
-    implements $CourseManagerEventCopyWith<$Res> {
-  _$CourseManagerEventCopyWithImpl(this._value, this._then);
+class _$CourseListEventCopyWithImpl<$Res, $Val extends CourseListEvent>
+    implements $CourseListEventCopyWith<$Res> {
+  _$CourseListEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CourseManagerEvent
+  /// Create a copy of CourseListEvent
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -80,13 +80,13 @@ abstract class _$$FetchImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$FetchImplCopyWithImpl<$Res>
-    extends _$CourseManagerEventCopyWithImpl<$Res, _$FetchImpl>
+    extends _$CourseListEventCopyWithImpl<$Res, _$FetchImpl>
     implements _$$FetchImplCopyWith<$Res> {
   __$$FetchImplCopyWithImpl(
       _$FetchImpl _value, $Res Function(_$FetchImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CourseManagerEvent
+  /// Create a copy of CourseListEvent
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -97,7 +97,7 @@ class _$FetchImpl implements Fetch {
 
   @override
   String toString() {
-    return 'CourseManagerEvent.fetch()';
+    return 'CourseListEvent.fetch()';
   }
 
   @override
@@ -166,6 +166,6 @@ class _$FetchImpl implements Fetch {
   }
 }
 
-abstract class Fetch implements CourseManagerEvent {
+abstract class Fetch implements CourseListEvent {
   const factory Fetch() = _$FetchImpl;
 }

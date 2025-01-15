@@ -18,9 +18,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       final User user = await userRepository.fetchUser();
       emit(state.copyWith(status: UserStatus.loaded, user: user));
     } on DioException catch (e) {
-      emit(state.copyWith(status: UserStatus.error, message: e.error as String));
+      emit(state.copyWith(status: UserStatus.error, errorMessage: e.error as String));
     } catch (e) {
-      emit(state.copyWith(status: UserStatus.error, message: '학생 정보를 불러오지 못했어요'));
+      emit(state.copyWith(status: UserStatus.error, errorMessage: '학생 정보를 불러오지 못했어요'));
     }
   }
 }

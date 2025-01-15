@@ -85,9 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 })
               ),
               child: NavigationBar(
-                onDestinationSelected: (int index) {
-                  context.read<NavigationBloc>().add(TabChanged(index));
-                },
+                onDestinationSelected: (index) => context.read<NavigationBloc>().add(TabChanged(index)),
                 selectedIndex: state.selectedIndex,
                 destinations: [
                   NavigationDestination(
@@ -110,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     icon: SvgPicture.asset('lib/assets/svgs/navigation/user_outline.svg'),
                     label: '내 정보',
                   )
-                ],
+                ]
               )
             )
           )

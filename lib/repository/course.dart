@@ -21,10 +21,21 @@ class CourseRepository {
     }
   }
 
-  Future<Activities> fetchActivities() async {
+  Future<WeekActivities> fetchActivities() async {
     try {
       final response = await _dio.get(CourseApiEndpoints.activity);
-      return Activities.fromJson(response.data);
+      return WeekActivities.fromJson(response.data);
+    } on DioException {
+      rethrow;
+    } catch (e) {
+      throw Exception('활동을 불러오지 못했어요');
+    }
+  }
+
+  Future<CourseActivities> fetchCourseActivities(String courseCode) async {
+    try {
+      final response = await _dio.get(CourseApiEndpoints.activityDetail(courseCode));
+      return CourseActivities.fromJson(response.data);
     } on DioException {
       rethrow;
     } catch (e) {

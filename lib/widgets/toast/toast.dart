@@ -51,8 +51,8 @@ class _ToastState extends State<Toast> with SingleTickerProviderStateMixin {
           child: FadeTransition(
             opacity: _animation,
             child: Material(
-                color: Colors.transparent,
-                child: widget.toastContainer
+              color: Colors.transparent,
+              child: widget.toastContainer
             ),
           ),
         ),

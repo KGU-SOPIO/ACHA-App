@@ -182,13 +182,13 @@ mixin _$Course {
   @HiveField(2)
   String get lectureRoom => throw _privateConstructorUsedError;
   @HiveField(3)
-  DateTime? get deadline => throw _privateConstructorUsedError;
+  String get code => throw _privateConstructorUsedError;
   @HiveField(4)
-  String? get link => throw _privateConstructorUsedError;
+  DateTime? get deadline => throw _privateConstructorUsedError;
   @HiveField(5)
-  String? get code => throw _privateConstructorUsedError;
+  String? get link => throw _privateConstructorUsedError;
   @HiveField(6)
-  List<Activities>? get weekActivities => throw _privateConstructorUsedError;
+  CourseActivities? get courseActivities => throw _privateConstructorUsedError;
   @HiveField(7)
   List<Notice>? get notices => throw _privateConstructorUsedError;
 
@@ -210,11 +210,13 @@ abstract class $CourseCopyWith<$Res> {
       {@HiveField(0) String name,
       @HiveField(1) String professor,
       @HiveField(2) String lectureRoom,
-      @HiveField(3) DateTime? deadline,
-      @HiveField(4) String? link,
-      @HiveField(5) String? code,
-      @HiveField(6) List<Activities>? weekActivities,
+      @HiveField(3) String code,
+      @HiveField(4) DateTime? deadline,
+      @HiveField(5) String? link,
+      @HiveField(6) CourseActivities? courseActivities,
       @HiveField(7) List<Notice>? notices});
+
+  $CourseActivitiesCopyWith<$Res>? get courseActivities;
 }
 
 /// @nodoc
@@ -235,10 +237,10 @@ class _$CourseCopyWithImpl<$Res, $Val extends Course>
     Object? name = null,
     Object? professor = null,
     Object? lectureRoom = null,
+    Object? code = null,
     Object? deadline = freezed,
     Object? link = freezed,
-    Object? code = freezed,
-    Object? weekActivities = freezed,
+    Object? courseActivities = freezed,
     Object? notices = freezed,
   }) {
     return _then(_value.copyWith(
@@ -254,6 +256,10 @@ class _$CourseCopyWithImpl<$Res, $Val extends Course>
           ? _value.lectureRoom
           : lectureRoom // ignore: cast_nullable_to_non_nullable
               as String,
+      code: null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String,
       deadline: freezed == deadline
           ? _value.deadline
           : deadline // ignore: cast_nullable_to_non_nullable
@@ -262,19 +268,29 @@ class _$CourseCopyWithImpl<$Res, $Val extends Course>
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
               as String?,
-      code: freezed == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String?,
-      weekActivities: freezed == weekActivities
-          ? _value.weekActivities
-          : weekActivities // ignore: cast_nullable_to_non_nullable
-              as List<Activities>?,
+      courseActivities: freezed == courseActivities
+          ? _value.courseActivities
+          : courseActivities // ignore: cast_nullable_to_non_nullable
+              as CourseActivities?,
       notices: freezed == notices
           ? _value.notices
           : notices // ignore: cast_nullable_to_non_nullable
               as List<Notice>?,
     ) as $Val);
+  }
+
+  /// Create a copy of Course
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CourseActivitiesCopyWith<$Res>? get courseActivities {
+    if (_value.courseActivities == null) {
+      return null;
+    }
+
+    return $CourseActivitiesCopyWith<$Res>(_value.courseActivities!, (value) {
+      return _then(_value.copyWith(courseActivities: value) as $Val);
+    });
   }
 }
 
@@ -289,11 +305,14 @@ abstract class _$$CourseImplCopyWith<$Res> implements $CourseCopyWith<$Res> {
       {@HiveField(0) String name,
       @HiveField(1) String professor,
       @HiveField(2) String lectureRoom,
-      @HiveField(3) DateTime? deadline,
-      @HiveField(4) String? link,
-      @HiveField(5) String? code,
-      @HiveField(6) List<Activities>? weekActivities,
+      @HiveField(3) String code,
+      @HiveField(4) DateTime? deadline,
+      @HiveField(5) String? link,
+      @HiveField(6) CourseActivities? courseActivities,
       @HiveField(7) List<Notice>? notices});
+
+  @override
+  $CourseActivitiesCopyWith<$Res>? get courseActivities;
 }
 
 /// @nodoc
@@ -312,10 +331,10 @@ class __$$CourseImplCopyWithImpl<$Res>
     Object? name = null,
     Object? professor = null,
     Object? lectureRoom = null,
+    Object? code = null,
     Object? deadline = freezed,
     Object? link = freezed,
-    Object? code = freezed,
-    Object? weekActivities = freezed,
+    Object? courseActivities = freezed,
     Object? notices = freezed,
   }) {
     return _then(_$CourseImpl(
@@ -331,6 +350,10 @@ class __$$CourseImplCopyWithImpl<$Res>
           ? _value.lectureRoom
           : lectureRoom // ignore: cast_nullable_to_non_nullable
               as String,
+      code: null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String,
       deadline: freezed == deadline
           ? _value.deadline
           : deadline // ignore: cast_nullable_to_non_nullable
@@ -339,14 +362,10 @@ class __$$CourseImplCopyWithImpl<$Res>
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
               as String?,
-      code: freezed == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String?,
-      weekActivities: freezed == weekActivities
-          ? _value._weekActivities
-          : weekActivities // ignore: cast_nullable_to_non_nullable
-              as List<Activities>?,
+      courseActivities: freezed == courseActivities
+          ? _value.courseActivities
+          : courseActivities // ignore: cast_nullable_to_non_nullable
+              as CourseActivities?,
       notices: freezed == notices
           ? _value._notices
           : notices // ignore: cast_nullable_to_non_nullable
@@ -362,13 +381,12 @@ class _$CourseImpl extends _Course {
       {@HiveField(0) required this.name,
       @HiveField(1) required this.professor,
       @HiveField(2) required this.lectureRoom,
-      @HiveField(3) this.deadline,
-      @HiveField(4) this.link,
-      @HiveField(5) this.code,
-      @HiveField(6) final List<Activities>? weekActivities,
+      @HiveField(3) required this.code,
+      @HiveField(4) this.deadline,
+      @HiveField(5) this.link,
+      @HiveField(6) this.courseActivities,
       @HiveField(7) final List<Notice>? notices})
-      : _weekActivities = weekActivities,
-        _notices = notices,
+      : _notices = notices,
         super._();
 
   factory _$CourseImpl.fromJson(Map<String, dynamic> json) =>
@@ -385,24 +403,16 @@ class _$CourseImpl extends _Course {
   final String lectureRoom;
   @override
   @HiveField(3)
-  final DateTime? deadline;
+  final String code;
   @override
   @HiveField(4)
-  final String? link;
+  final DateTime? deadline;
   @override
   @HiveField(5)
-  final String? code;
-  final List<Activities>? _weekActivities;
+  final String? link;
   @override
   @HiveField(6)
-  List<Activities>? get weekActivities {
-    final value = _weekActivities;
-    if (value == null) return null;
-    if (_weekActivities is EqualUnmodifiableListView) return _weekActivities;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
+  final CourseActivities? courseActivities;
   final List<Notice>? _notices;
   @override
   @HiveField(7)
@@ -416,7 +426,7 @@ class _$CourseImpl extends _Course {
 
   @override
   String toString() {
-    return 'Course(name: $name, professor: $professor, lectureRoom: $lectureRoom, deadline: $deadline, link: $link, code: $code, weekActivities: $weekActivities, notices: $notices)';
+    return 'Course(name: $name, professor: $professor, lectureRoom: $lectureRoom, code: $code, deadline: $deadline, link: $link, courseActivities: $courseActivities, notices: $notices)';
   }
 
   @override
@@ -429,12 +439,12 @@ class _$CourseImpl extends _Course {
                 other.professor == professor) &&
             (identical(other.lectureRoom, lectureRoom) ||
                 other.lectureRoom == lectureRoom) &&
+            (identical(other.code, code) || other.code == code) &&
             (identical(other.deadline, deadline) ||
                 other.deadline == deadline) &&
             (identical(other.link, link) || other.link == link) &&
-            (identical(other.code, code) || other.code == code) &&
-            const DeepCollectionEquality()
-                .equals(other._weekActivities, _weekActivities) &&
+            (identical(other.courseActivities, courseActivities) ||
+                other.courseActivities == courseActivities) &&
             const DeepCollectionEquality().equals(other._notices, _notices));
   }
 
@@ -445,10 +455,10 @@ class _$CourseImpl extends _Course {
       name,
       professor,
       lectureRoom,
+      code,
       deadline,
       link,
-      code,
-      const DeepCollectionEquality().hash(_weekActivities),
+      courseActivities,
       const DeepCollectionEquality().hash(_notices));
 
   /// Create a copy of Course
@@ -472,10 +482,10 @@ abstract class _Course extends Course {
       {@HiveField(0) required final String name,
       @HiveField(1) required final String professor,
       @HiveField(2) required final String lectureRoom,
-      @HiveField(3) final DateTime? deadline,
-      @HiveField(4) final String? link,
-      @HiveField(5) final String? code,
-      @HiveField(6) final List<Activities>? weekActivities,
+      @HiveField(3) required final String code,
+      @HiveField(4) final DateTime? deadline,
+      @HiveField(5) final String? link,
+      @HiveField(6) final CourseActivities? courseActivities,
       @HiveField(7) final List<Notice>? notices}) = _$CourseImpl;
   const _Course._() : super._();
 
@@ -492,16 +502,16 @@ abstract class _Course extends Course {
   String get lectureRoom;
   @override
   @HiveField(3)
-  DateTime? get deadline;
+  String get code;
   @override
   @HiveField(4)
-  String? get link;
+  DateTime? get deadline;
   @override
   @HiveField(5)
-  String? get code;
+  String? get link;
   @override
   @HiveField(6)
-  List<Activities>? get weekActivities;
+  CourseActivities? get courseActivities;
   @override
   @HiveField(7)
   List<Notice>? get notices;

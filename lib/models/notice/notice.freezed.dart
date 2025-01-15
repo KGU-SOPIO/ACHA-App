@@ -14,6 +14,161 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+Notices _$NoticesFromJson(Map<String, dynamic> json) {
+  return _Notices.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Notices {
+  List<Notice>? get notices => throw _privateConstructorUsedError;
+
+  /// Serializes this Notices to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of Notices
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $NoticesCopyWith<Notices> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $NoticesCopyWith<$Res> {
+  factory $NoticesCopyWith(Notices value, $Res Function(Notices) then) =
+      _$NoticesCopyWithImpl<$Res, Notices>;
+  @useResult
+  $Res call({List<Notice>? notices});
+}
+
+/// @nodoc
+class _$NoticesCopyWithImpl<$Res, $Val extends Notices>
+    implements $NoticesCopyWith<$Res> {
+  _$NoticesCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of Notices
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? notices = freezed,
+  }) {
+    return _then(_value.copyWith(
+      notices: freezed == notices
+          ? _value.notices
+          : notices // ignore: cast_nullable_to_non_nullable
+              as List<Notice>?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$NoticesImplCopyWith<$Res> implements $NoticesCopyWith<$Res> {
+  factory _$$NoticesImplCopyWith(
+          _$NoticesImpl value, $Res Function(_$NoticesImpl) then) =
+      __$$NoticesImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<Notice>? notices});
+}
+
+/// @nodoc
+class __$$NoticesImplCopyWithImpl<$Res>
+    extends _$NoticesCopyWithImpl<$Res, _$NoticesImpl>
+    implements _$$NoticesImplCopyWith<$Res> {
+  __$$NoticesImplCopyWithImpl(
+      _$NoticesImpl _value, $Res Function(_$NoticesImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of Notices
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? notices = freezed,
+  }) {
+    return _then(_$NoticesImpl(
+      notices: freezed == notices
+          ? _value._notices
+          : notices // ignore: cast_nullable_to_non_nullable
+              as List<Notice>?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$NoticesImpl implements _Notices {
+  const _$NoticesImpl({final List<Notice>? notices = const []})
+      : _notices = notices;
+
+  factory _$NoticesImpl.fromJson(Map<String, dynamic> json) =>
+      _$$NoticesImplFromJson(json);
+
+  final List<Notice>? _notices;
+  @override
+  @JsonKey()
+  List<Notice>? get notices {
+    final value = _notices;
+    if (value == null) return null;
+    if (_notices is EqualUnmodifiableListView) return _notices;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  String toString() {
+    return 'Notices(notices: $notices)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$NoticesImpl &&
+            const DeepCollectionEquality().equals(other._notices, _notices));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_notices));
+
+  /// Create a copy of Notices
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$NoticesImplCopyWith<_$NoticesImpl> get copyWith =>
+      __$$NoticesImplCopyWithImpl<_$NoticesImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$NoticesImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Notices implements Notices {
+  const factory _Notices({final List<Notice>? notices}) = _$NoticesImpl;
+
+  factory _Notices.fromJson(Map<String, dynamic> json) = _$NoticesImpl.fromJson;
+
+  @override
+  List<Notice>? get notices;
+
+  /// Create a copy of Notices
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$NoticesImplCopyWith<_$NoticesImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 Notice _$NoticeFromJson(Map<String, dynamic> json) {
   return _Notice.fromJson(json);
 }
@@ -27,11 +182,11 @@ mixin _$Notice {
   @HiveField(2)
   DateTime get date => throw _privateConstructorUsedError;
   @HiveField(3)
-  String get link => throw _privateConstructorUsedError;
+  String? get link => throw _privateConstructorUsedError;
   @HiveField(4)
-  String get content => throw _privateConstructorUsedError;
+  String? get content => throw _privateConstructorUsedError;
   @HiveField(5)
-  List<File> get files => throw _privateConstructorUsedError;
+  List<File>? get files => throw _privateConstructorUsedError;
 
   /// Serializes this Notice to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -51,9 +206,9 @@ abstract class $NoticeCopyWith<$Res> {
       {@HiveField(0) String index,
       @HiveField(1) String title,
       @HiveField(2) DateTime date,
-      @HiveField(3) String link,
-      @HiveField(4) String content,
-      @HiveField(5) List<File> files});
+      @HiveField(3) String? link,
+      @HiveField(4) String? content,
+      @HiveField(5) List<File>? files});
 }
 
 /// @nodoc
@@ -74,9 +229,9 @@ class _$NoticeCopyWithImpl<$Res, $Val extends Notice>
     Object? index = null,
     Object? title = null,
     Object? date = null,
-    Object? link = null,
-    Object? content = null,
-    Object? files = null,
+    Object? link = freezed,
+    Object? content = freezed,
+    Object? files = freezed,
   }) {
     return _then(_value.copyWith(
       index: null == index
@@ -91,18 +246,18 @@ class _$NoticeCopyWithImpl<$Res, $Val extends Notice>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      link: null == link
+      link: freezed == link
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
-              as String,
-      content: null == content
+              as String?,
+      content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String,
-      files: null == files
+              as String?,
+      files: freezed == files
           ? _value.files
           : files // ignore: cast_nullable_to_non_nullable
-              as List<File>,
+              as List<File>?,
     ) as $Val);
   }
 }
@@ -118,9 +273,9 @@ abstract class _$$NoticeImplCopyWith<$Res> implements $NoticeCopyWith<$Res> {
       {@HiveField(0) String index,
       @HiveField(1) String title,
       @HiveField(2) DateTime date,
-      @HiveField(3) String link,
-      @HiveField(4) String content,
-      @HiveField(5) List<File> files});
+      @HiveField(3) String? link,
+      @HiveField(4) String? content,
+      @HiveField(5) List<File>? files});
 }
 
 /// @nodoc
@@ -139,9 +294,9 @@ class __$$NoticeImplCopyWithImpl<$Res>
     Object? index = null,
     Object? title = null,
     Object? date = null,
-    Object? link = null,
-    Object? content = null,
-    Object? files = null,
+    Object? link = freezed,
+    Object? content = freezed,
+    Object? files = freezed,
   }) {
     return _then(_$NoticeImpl(
       index: null == index
@@ -156,18 +311,18 @@ class __$$NoticeImplCopyWithImpl<$Res>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      link: null == link
+      link: freezed == link
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
-              as String,
-      content: null == content
+              as String?,
+      content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String,
-      files: null == files
+              as String?,
+      files: freezed == files
           ? _value._files
           : files // ignore: cast_nullable_to_non_nullable
-              as List<File>,
+              as List<File>?,
     ));
   }
 }
@@ -179,9 +334,9 @@ class _$NoticeImpl implements _Notice {
       {@HiveField(0) required this.index,
       @HiveField(1) required this.title,
       @HiveField(2) required this.date,
-      @HiveField(3) required this.link,
-      @HiveField(4) required this.content,
-      @HiveField(5) required final List<File> files})
+      @HiveField(3) this.link,
+      @HiveField(4) this.content,
+      @HiveField(5) final List<File>? files})
       : _files = files;
 
   factory _$NoticeImpl.fromJson(Map<String, dynamic> json) =>
@@ -198,17 +353,19 @@ class _$NoticeImpl implements _Notice {
   final DateTime date;
   @override
   @HiveField(3)
-  final String link;
+  final String? link;
   @override
   @HiveField(4)
-  final String content;
-  final List<File> _files;
+  final String? content;
+  final List<File>? _files;
   @override
   @HiveField(5)
-  List<File> get files {
+  List<File>? get files {
+    final value = _files;
+    if (value == null) return null;
     if (_files is EqualUnmodifiableListView) return _files;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_files);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -255,9 +412,9 @@ abstract class _Notice implements Notice {
       {@HiveField(0) required final String index,
       @HiveField(1) required final String title,
       @HiveField(2) required final DateTime date,
-      @HiveField(3) required final String link,
-      @HiveField(4) required final String content,
-      @HiveField(5) required final List<File> files}) = _$NoticeImpl;
+      @HiveField(3) final String? link,
+      @HiveField(4) final String? content,
+      @HiveField(5) final List<File>? files}) = _$NoticeImpl;
 
   factory _Notice.fromJson(Map<String, dynamic> json) = _$NoticeImpl.fromJson;
 
@@ -272,13 +429,13 @@ abstract class _Notice implements Notice {
   DateTime get date;
   @override
   @HiveField(3)
-  String get link;
+  String? get link;
   @override
   @HiveField(4)
-  String get content;
+  String? get content;
   @override
   @HiveField(5)
-  List<File> get files;
+  List<File>? get files;
 
   /// Create a copy of Notice
   /// with the given fields replaced by the non-null parameter values.

@@ -20,10 +20,10 @@ class CourseAdapter extends TypeAdapter<Course> {
       name: fields[0] as String,
       professor: fields[1] as String,
       lectureRoom: fields[2] as String,
-      deadline: fields[3] as DateTime?,
-      link: fields[4] as String?,
-      code: fields[5] as String?,
-      weekActivities: (fields[6] as List?)?.cast<Activities>(),
+      code: fields[3] as String,
+      deadline: fields[4] as DateTime?,
+      link: fields[5] as String?,
+      courseActivities: fields[6] as CourseActivities?,
       notices: (fields[7] as List?)?.cast<Notice>(),
     );
   }
@@ -39,13 +39,13 @@ class CourseAdapter extends TypeAdapter<Course> {
       ..writeByte(2)
       ..write(obj.lectureRoom)
       ..writeByte(3)
-      ..write(obj.deadline)
-      ..writeByte(4)
-      ..write(obj.link)
-      ..writeByte(5)
       ..write(obj.code)
+      ..writeByte(4)
+      ..write(obj.deadline)
+      ..writeByte(5)
+      ..write(obj.link)
       ..writeByte(6)
-      ..write(obj.weekActivities)
+      ..write(obj.courseActivities)
       ..writeByte(7)
       ..write(obj.notices);
   }
@@ -82,14 +82,15 @@ _$CourseImpl _$$CourseImplFromJson(Map<String, dynamic> json) => _$CourseImpl(
       name: json['name'] as String,
       professor: json['professor'] as String,
       lectureRoom: json['lectureRoom'] as String,
+      code: json['code'] as String,
       deadline: json['deadline'] == null
           ? null
           : DateTime.parse(json['deadline'] as String),
       link: json['link'] as String?,
-      code: json['code'] as String?,
-      weekActivities: (json['weekActivities'] as List<dynamic>?)
-          ?.map((e) => Activities.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      courseActivities: json['courseActivities'] == null
+          ? null
+          : CourseActivities.fromJson(
+              json['courseActivities'] as Map<String, dynamic>),
       notices: (json['notices'] as List<dynamic>?)
           ?.map((e) => Notice.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -100,9 +101,9 @@ Map<String, dynamic> _$$CourseImplToJson(_$CourseImpl instance) =>
       'name': instance.name,
       'professor': instance.professor,
       'lectureRoom': instance.lectureRoom,
+      'code': instance.code,
       'deadline': instance.deadline?.toIso8601String(),
       'link': instance.link,
-      'code': instance.code,
-      'weekActivities': instance.weekActivities,
+      'courseActivities': instance.courseActivities,
       'notices': instance.notices,
     };

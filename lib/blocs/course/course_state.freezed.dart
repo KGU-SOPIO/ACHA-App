@@ -16,68 +16,14 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CourseState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() loadingWeekActivities,
-    required TResult Function() loadingNotices,
-    required TResult Function(Course course) loaded,
-    required TResult Function(String message) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? loadingWeekActivities,
-    TResult? Function()? loadingNotices,
-    TResult? Function(Course course)? loaded,
-    TResult? Function(String message)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? loadingWeekActivities,
-    TResult Function()? loadingNotices,
-    TResult Function(Course course)? loaded,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(LoadingWeekActivities value)
-        loadingWeekActivities,
-    required TResult Function(LoadingNotices value) loadingNotices,
-    required TResult Function(Loaded value) loaded,
-    required TResult Function(Error value) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(LoadingWeekActivities value)? loadingWeekActivities,
-    TResult? Function(LoadingNotices value)? loadingNotices,
-    TResult? Function(Loaded value)? loaded,
-    TResult? Function(Error value)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(LoadingWeekActivities value)? loadingWeekActivities,
-    TResult Function(LoadingNotices value)? loadingNotices,
-    TResult Function(Loaded value)? loaded,
-    TResult Function(Error value)? error,
-    required TResult orElse(),
-  }) =>
+  CourseStatus get status => throw _privateConstructorUsedError;
+  Course get course => throw _privateConstructorUsedError;
+  String? get errorMessage => throw _privateConstructorUsedError;
+
+  /// Create a copy of CourseState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $CourseStateCopyWith<CourseState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -86,6 +32,10 @@ abstract class $CourseStateCopyWith<$Res> {
   factory $CourseStateCopyWith(
           CourseState value, $Res Function(CourseState) then) =
       _$CourseStateCopyWithImpl<$Res, CourseState>;
+  @useResult
+  $Res call({CourseStatus status, Course course, String? errorMessage});
+
+  $CourseCopyWith<$Res> get course;
 }
 
 /// @nodoc
@@ -100,562 +50,27 @@ class _$CourseStateCopyWithImpl<$Res, $Val extends CourseState>
 
   /// Create a copy of CourseState
   /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$CourseStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of CourseState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$InitialImpl implements Initial {
-  const _$InitialImpl();
-
-  @override
-  String toString() {
-    return 'CourseState.initial()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() loadingWeekActivities,
-    required TResult Function() loadingNotices,
-    required TResult Function(Course course) loaded,
-    required TResult Function(String message) error,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? loadingWeekActivities,
-    TResult? Function()? loadingNotices,
-    TResult? Function(Course course)? loaded,
-    TResult? Function(String message)? error,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? loadingWeekActivities,
-    TResult Function()? loadingNotices,
-    TResult Function(Course course)? loaded,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(LoadingWeekActivities value)
-        loadingWeekActivities,
-    required TResult Function(LoadingNotices value) loadingNotices,
-    required TResult Function(Loaded value) loaded,
-    required TResult Function(Error value) error,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(LoadingWeekActivities value)? loadingWeekActivities,
-    TResult? Function(LoadingNotices value)? loadingNotices,
-    TResult? Function(Loaded value)? loaded,
-    TResult? Function(Error value)? error,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(LoadingWeekActivities value)? loadingWeekActivities,
-    TResult Function(LoadingNotices value)? loadingNotices,
-    TResult Function(Loaded value)? loaded,
-    TResult Function(Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class Initial implements CourseState {
-  const factory Initial() = _$InitialImpl;
-}
-
-/// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
-  factory _$$LoadingImplCopyWith(
-          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
-      __$$LoadingImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$CourseStateCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
-  __$$LoadingImplCopyWithImpl(
-      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of CourseState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$LoadingImpl implements Loading {
-  const _$LoadingImpl();
-
-  @override
-  String toString() {
-    return 'CourseState.loading()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() loadingWeekActivities,
-    required TResult Function() loadingNotices,
-    required TResult Function(Course course) loaded,
-    required TResult Function(String message) error,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? loadingWeekActivities,
-    TResult? Function()? loadingNotices,
-    TResult? Function(Course course)? loaded,
-    TResult? Function(String message)? error,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? loadingWeekActivities,
-    TResult Function()? loadingNotices,
-    TResult Function(Course course)? loaded,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(LoadingWeekActivities value)
-        loadingWeekActivities,
-    required TResult Function(LoadingNotices value) loadingNotices,
-    required TResult Function(Loaded value) loaded,
-    required TResult Function(Error value) error,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(LoadingWeekActivities value)? loadingWeekActivities,
-    TResult? Function(LoadingNotices value)? loadingNotices,
-    TResult? Function(Loaded value)? loaded,
-    TResult? Function(Error value)? error,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(LoadingWeekActivities value)? loadingWeekActivities,
-    TResult Function(LoadingNotices value)? loadingNotices,
-    TResult Function(Loaded value)? loaded,
-    TResult Function(Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class Loading implements CourseState {
-  const factory Loading() = _$LoadingImpl;
-}
-
-/// @nodoc
-abstract class _$$LoadingWeekActivitiesImplCopyWith<$Res> {
-  factory _$$LoadingWeekActivitiesImplCopyWith(
-          _$LoadingWeekActivitiesImpl value,
-          $Res Function(_$LoadingWeekActivitiesImpl) then) =
-      __$$LoadingWeekActivitiesImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$LoadingWeekActivitiesImplCopyWithImpl<$Res>
-    extends _$CourseStateCopyWithImpl<$Res, _$LoadingWeekActivitiesImpl>
-    implements _$$LoadingWeekActivitiesImplCopyWith<$Res> {
-  __$$LoadingWeekActivitiesImplCopyWithImpl(_$LoadingWeekActivitiesImpl _value,
-      $Res Function(_$LoadingWeekActivitiesImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of CourseState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$LoadingWeekActivitiesImpl implements LoadingWeekActivities {
-  const _$LoadingWeekActivitiesImpl();
-
-  @override
-  String toString() {
-    return 'CourseState.loadingWeekActivities()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LoadingWeekActivitiesImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() loadingWeekActivities,
-    required TResult Function() loadingNotices,
-    required TResult Function(Course course) loaded,
-    required TResult Function(String message) error,
-  }) {
-    return loadingWeekActivities();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? loadingWeekActivities,
-    TResult? Function()? loadingNotices,
-    TResult? Function(Course course)? loaded,
-    TResult? Function(String message)? error,
-  }) {
-    return loadingWeekActivities?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? loadingWeekActivities,
-    TResult Function()? loadingNotices,
-    TResult Function(Course course)? loaded,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) {
-    if (loadingWeekActivities != null) {
-      return loadingWeekActivities();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(LoadingWeekActivities value)
-        loadingWeekActivities,
-    required TResult Function(LoadingNotices value) loadingNotices,
-    required TResult Function(Loaded value) loaded,
-    required TResult Function(Error value) error,
-  }) {
-    return loadingWeekActivities(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(LoadingWeekActivities value)? loadingWeekActivities,
-    TResult? Function(LoadingNotices value)? loadingNotices,
-    TResult? Function(Loaded value)? loaded,
-    TResult? Function(Error value)? error,
-  }) {
-    return loadingWeekActivities?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(LoadingWeekActivities value)? loadingWeekActivities,
-    TResult Function(LoadingNotices value)? loadingNotices,
-    TResult Function(Loaded value)? loaded,
-    TResult Function(Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (loadingWeekActivities != null) {
-      return loadingWeekActivities(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class LoadingWeekActivities implements CourseState {
-  const factory LoadingWeekActivities() = _$LoadingWeekActivitiesImpl;
-}
-
-/// @nodoc
-abstract class _$$LoadingNoticesImplCopyWith<$Res> {
-  factory _$$LoadingNoticesImplCopyWith(_$LoadingNoticesImpl value,
-          $Res Function(_$LoadingNoticesImpl) then) =
-      __$$LoadingNoticesImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$LoadingNoticesImplCopyWithImpl<$Res>
-    extends _$CourseStateCopyWithImpl<$Res, _$LoadingNoticesImpl>
-    implements _$$LoadingNoticesImplCopyWith<$Res> {
-  __$$LoadingNoticesImplCopyWithImpl(
-      _$LoadingNoticesImpl _value, $Res Function(_$LoadingNoticesImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of CourseState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$LoadingNoticesImpl implements LoadingNotices {
-  const _$LoadingNoticesImpl();
-
-  @override
-  String toString() {
-    return 'CourseState.loadingNotices()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingNoticesImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() loadingWeekActivities,
-    required TResult Function() loadingNotices,
-    required TResult Function(Course course) loaded,
-    required TResult Function(String message) error,
-  }) {
-    return loadingNotices();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? loadingWeekActivities,
-    TResult? Function()? loadingNotices,
-    TResult? Function(Course course)? loaded,
-    TResult? Function(String message)? error,
-  }) {
-    return loadingNotices?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? loadingWeekActivities,
-    TResult Function()? loadingNotices,
-    TResult Function(Course course)? loaded,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) {
-    if (loadingNotices != null) {
-      return loadingNotices();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(LoadingWeekActivities value)
-        loadingWeekActivities,
-    required TResult Function(LoadingNotices value) loadingNotices,
-    required TResult Function(Loaded value) loaded,
-    required TResult Function(Error value) error,
-  }) {
-    return loadingNotices(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(LoadingWeekActivities value)? loadingWeekActivities,
-    TResult? Function(LoadingNotices value)? loadingNotices,
-    TResult? Function(Loaded value)? loaded,
-    TResult? Function(Error value)? error,
-  }) {
-    return loadingNotices?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(LoadingWeekActivities value)? loadingWeekActivities,
-    TResult Function(LoadingNotices value)? loadingNotices,
-    TResult Function(Loaded value)? loaded,
-    TResult Function(Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (loadingNotices != null) {
-      return loadingNotices(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class LoadingNotices implements CourseState {
-  const factory LoadingNotices() = _$LoadingNoticesImpl;
-}
-
-/// @nodoc
-abstract class _$$LoadedImplCopyWith<$Res> {
-  factory _$$LoadedImplCopyWith(
-          _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
-      __$$LoadedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Course course});
-
-  $CourseCopyWith<$Res> get course;
-}
-
-/// @nodoc
-class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$CourseStateCopyWithImpl<$Res, _$LoadedImpl>
-    implements _$$LoadedImplCopyWith<$Res> {
-  __$$LoadedImplCopyWithImpl(
-      _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of CourseState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? status = null,
     Object? course = null,
+    Object? errorMessage = freezed,
   }) {
-    return _then(_$LoadedImpl(
+    return _then(_value.copyWith(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as CourseStatus,
       course: null == course
           ? _value.course
           : course // ignore: cast_nullable_to_non_nullable
               as Course,
-    ));
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
   }
 
   /// Create a copy of CourseState
@@ -664,158 +79,31 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   $CourseCopyWith<$Res> get course {
     return $CourseCopyWith<$Res>(_value.course, (value) {
-      return _then(_value.copyWith(course: value));
+      return _then(_value.copyWith(course: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-
-class _$LoadedImpl implements Loaded {
-  const _$LoadedImpl({required this.course});
-
+abstract class _$$CourseStateImplCopyWith<$Res>
+    implements $CourseStateCopyWith<$Res> {
+  factory _$$CourseStateImplCopyWith(
+          _$CourseStateImpl value, $Res Function(_$CourseStateImpl) then) =
+      __$$CourseStateImplCopyWithImpl<$Res>;
   @override
-  final Course course;
-
-  @override
-  String toString() {
-    return 'CourseState.loaded(course: $course)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LoadedImpl &&
-            (identical(other.course, course) || other.course == course));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, course);
-
-  /// Create a copy of CourseState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      __$$LoadedImplCopyWithImpl<_$LoadedImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() loadingWeekActivities,
-    required TResult Function() loadingNotices,
-    required TResult Function(Course course) loaded,
-    required TResult Function(String message) error,
-  }) {
-    return loaded(course);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? loadingWeekActivities,
-    TResult? Function()? loadingNotices,
-    TResult? Function(Course course)? loaded,
-    TResult? Function(String message)? error,
-  }) {
-    return loaded?.call(course);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? loadingWeekActivities,
-    TResult Function()? loadingNotices,
-    TResult Function(Course course)? loaded,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(course);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(LoadingWeekActivities value)
-        loadingWeekActivities,
-    required TResult Function(LoadingNotices value) loadingNotices,
-    required TResult Function(Loaded value) loaded,
-    required TResult Function(Error value) error,
-  }) {
-    return loaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(LoadingWeekActivities value)? loadingWeekActivities,
-    TResult? Function(LoadingNotices value)? loadingNotices,
-    TResult? Function(Loaded value)? loaded,
-    TResult? Function(Error value)? error,
-  }) {
-    return loaded?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(LoadingWeekActivities value)? loadingWeekActivities,
-    TResult Function(LoadingNotices value)? loadingNotices,
-    TResult Function(Loaded value)? loaded,
-    TResult Function(Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class Loaded implements CourseState {
-  const factory Loaded({required final Course course}) = _$LoadedImpl;
-
-  Course get course;
-
-  /// Create a copy of CourseState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ErrorImplCopyWith<$Res> {
-  factory _$$ErrorImplCopyWith(
-          _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
-      __$$ErrorImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String message});
+  $Res call({CourseStatus status, Course course, String? errorMessage});
+
+  @override
+  $CourseCopyWith<$Res> get course;
 }
 
 /// @nodoc
-class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$CourseStateCopyWithImpl<$Res, _$ErrorImpl>
-    implements _$$ErrorImplCopyWith<$Res> {
-  __$$ErrorImplCopyWithImpl(
-      _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
+class __$$CourseStateImplCopyWithImpl<$Res>
+    extends _$CourseStateCopyWithImpl<$Res, _$CourseStateImpl>
+    implements _$$CourseStateImplCopyWith<$Res> {
+  __$$CourseStateImplCopyWithImpl(
+      _$CourseStateImpl _value, $Res Function(_$CourseStateImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CourseState
@@ -823,145 +111,85 @@ class __$$ErrorImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = null,
+    Object? status = null,
+    Object? course = null,
+    Object? errorMessage = freezed,
   }) {
-    return _then(_$ErrorImpl(
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
+    return _then(_$CourseStateImpl(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as CourseStatus,
+      course: null == course
+          ? _value.course
+          : course // ignore: cast_nullable_to_non_nullable
+              as Course,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$ErrorImpl implements Error {
-  const _$ErrorImpl({required this.message});
+class _$CourseStateImpl implements _CourseState {
+  const _$CourseStateImpl(
+      {required this.status, required this.course, this.errorMessage});
 
   @override
-  final String message;
+  final CourseStatus status;
+  @override
+  final Course course;
+  @override
+  final String? errorMessage;
 
   @override
   String toString() {
-    return 'CourseState.error(message: $message)';
+    return 'CourseState(status: $status, course: $course, errorMessage: $errorMessage)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ErrorImpl &&
-            (identical(other.message, message) || other.message == message));
+            other is _$CourseStateImpl &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.course, course) || other.course == course) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message);
+  int get hashCode => Object.hash(runtimeType, status, course, errorMessage);
 
   /// Create a copy of CourseState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
-      __$$ErrorImplCopyWithImpl<_$ErrorImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() loadingWeekActivities,
-    required TResult Function() loadingNotices,
-    required TResult Function(Course course) loaded,
-    required TResult Function(String message) error,
-  }) {
-    return error(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? loadingWeekActivities,
-    TResult? Function()? loadingNotices,
-    TResult? Function(Course course)? loaded,
-    TResult? Function(String message)? error,
-  }) {
-    return error?.call(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? loadingWeekActivities,
-    TResult Function()? loadingNotices,
-    TResult Function(Course course)? loaded,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(message);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(LoadingWeekActivities value)
-        loadingWeekActivities,
-    required TResult Function(LoadingNotices value) loadingNotices,
-    required TResult Function(Loaded value) loaded,
-    required TResult Function(Error value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(LoadingWeekActivities value)? loadingWeekActivities,
-    TResult? Function(LoadingNotices value)? loadingNotices,
-    TResult? Function(Loaded value)? loaded,
-    TResult? Function(Error value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(LoadingWeekActivities value)? loadingWeekActivities,
-    TResult Function(LoadingNotices value)? loadingNotices,
-    TResult Function(Loaded value)? loaded,
-    TResult Function(Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
+  _$$CourseStateImplCopyWith<_$CourseStateImpl> get copyWith =>
+      __$$CourseStateImplCopyWithImpl<_$CourseStateImpl>(this, _$identity);
 }
 
-abstract class Error implements CourseState {
-  const factory Error({required final String message}) = _$ErrorImpl;
+abstract class _CourseState implements CourseState {
+  const factory _CourseState(
+      {required final CourseStatus status,
+      required final Course course,
+      final String? errorMessage}) = _$CourseStateImpl;
 
-  String get message;
+  @override
+  CourseStatus get status;
+  @override
+  Course get course;
+  @override
+  String? get errorMessage;
 
   /// Create a copy of CourseState
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+  _$$CourseStateImplCopyWith<_$CourseStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

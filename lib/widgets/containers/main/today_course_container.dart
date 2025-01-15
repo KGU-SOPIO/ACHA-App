@@ -1,4 +1,3 @@
-import 'package:acha/widgets/containers/index.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get_it/get_it.dart';
@@ -8,6 +7,9 @@ import 'package:acha/blocs/today_course/index.dart';
 
 import 'package:acha/extensions/index.dart';
 
+import 'package:acha/screens/course/course_main.dart';
+
+import 'package:acha/widgets/containers/index.dart';
 import 'package:acha/widgets/toast/toast_manager.dart';
 
 class TodayCourseContainer extends StatefulWidget {
@@ -71,7 +73,7 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
           BlocListener<TodayCourseBloc, TodayCourseState>(
             listener: (context, state) {
               if (state.status == TodayCourseStatus.error) {
-                GetIt.I<ToastManager>().error(message: state.message!);
+                GetIt.I<ToastManager>().error(message: state.errorMessage!);
               }
             },
             child: BlocBuilder<TodayCourseBloc, TodayCourseState>(
@@ -88,72 +90,75 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
                   } else {
                     return Column(
                       children: courses.map((course) {
-                        return Padding(
-                          padding: const EdgeInsets.only(bottom: 10),
-                          child: Container(
-                            width: double.infinity,
-                            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Color.fromARGB(255, 237, 239, 242),
-                                width: 1.5
+                        return GestureDetector(
+                          onTap: () => Navigator.push(context, CourseMainScreen.route(course: course)),
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 10),
+                            child: Container(
+                              width: double.infinity,
+                              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Color.fromARGB(255, 237, 239, 242),
+                                  width: 1.5
+                                ),
+                                borderRadius: BorderRadius.circular(20)
                               ),
-                              borderRadius: BorderRadius.circular(20)
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(bottom: 3),
-                                      child: Text(
-                                        '${course.professor} 교수',
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(bottom: 3),
+                                        child: Text(
+                                          '${course.professor} 교수',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w400,
+                                            color: Color.fromARGB(255, 109, 109, 109)
+                                          )
+                                        )
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(bottom: 2),
+                                        child: Text(
+                                          course.name,
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w400,
+                                            color: Colors.black
+                                          )
+                                        )
+                                      ),
+                                      Text(
+                                        course.lectureRoom,
                                         style: TextStyle(
                                           fontSize: 12,
-                                          fontWeight: FontWeight.w400,
-                                          color: Color.fromARGB(255, 109, 109, 109)
-                                        )
-                                      )
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(bottom: 2),
-                                      child: Text(
-                                        course.title,
-                                        style: TextStyle(
-                                          fontSize: 16,
                                           fontWeight: FontWeight.w400,
                                           color: Colors.black
                                         )
                                       )
+                                    ],
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: Color.fromARGB(25, 255, 78, 107)
                                     ),
-                                    Text(
-                                      course.lectureRoom,
+                                    child: Text(
+                                      course.deadline!.toDDay(),
                                       style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.black
-                                      )
-                                    )
-                                  ],
-                                ),
-                                Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: Color.fromARGB(25, 255, 78, 107)
-                                  ),
-                                  child: Text(
-                                    course.deadline!.toDDay(),
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w700,
-                                      color: Color.fromARGB(255, 255, 78, 107)
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w700,
+                                        color: Color.fromARGB(255, 255, 78, 107)
+                                      ),
                                     ),
-                                  ),
-                                )
-                              ],
+                                  )
+                                ],
+                              )
                             )
                           )
                         );

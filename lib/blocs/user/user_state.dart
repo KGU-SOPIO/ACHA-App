@@ -11,6 +11,6 @@ class UserState with _$UserState {
   const factory UserState({
     required UserStatus status,
     User? user,
-    String? message
+    String? errorMessage
   }) = _UserState;
 }

@@ -29,7 +29,7 @@ class _UserHeaderState extends State<UserHeader> {
     return BlocListener<UserBloc, UserState>(
       listener: (context, state) {
         if (state.status == UserStatus.error) {
-          GetIt.I<ToastManager>().error(message: state.message!);
+          GetIt.I<ToastManager>().error(message: state.errorMessage!);
         }
       },
       child: BlocBuilder<UserBloc, UserState>(

@@ -6,24 +6,24 @@ part of 'activity.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class ActivitiesAdapter extends TypeAdapter<Activities> {
+class WeekActivitiesAdapter extends TypeAdapter<WeekActivities> {
   @override
   final int typeId = 2;
 
   @override
-  Activities read(BinaryReader reader) {
+  WeekActivities read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Activities(
+    return WeekActivities(
       week: fields[0] as int?,
       activities: (fields[1] as List?)?.cast<Activity>(),
     );
   }
 
   @override
-  void write(BinaryWriter writer, Activities obj) {
+  void write(BinaryWriter writer, WeekActivities obj) {
     writer
       ..writeByte(2)
       ..writeByte(0)
@@ -38,7 +38,7 @@ class ActivitiesAdapter extends TypeAdapter<Activities> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ActivitiesAdapter &&
+      other is WeekActivitiesAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
@@ -166,8 +166,23 @@ class ActivityTypeAdapter extends TypeAdapter<ActivityType> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ActivitiesImpl _$$ActivitiesImplFromJson(Map<String, dynamic> json) =>
-    _$ActivitiesImpl(
+_$CourseActivitiesImpl _$$CourseActivitiesImplFromJson(
+        Map<String, dynamic> json) =>
+    _$CourseActivitiesImpl(
+      courseActivities: (json['courseActivities'] as List<dynamic>?)
+              ?.map((e) => WeekActivities.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+    );
+
+Map<String, dynamic> _$$CourseActivitiesImplToJson(
+        _$CourseActivitiesImpl instance) =>
+    <String, dynamic>{
+      'courseActivities': instance.courseActivities,
+    };
+
+_$WeekActivitiesImpl _$$WeekActivitiesImplFromJson(Map<String, dynamic> json) =>
+    _$WeekActivitiesImpl(
       week: (json['week'] as num?)?.toInt(),
       activities: (json['activities'] as List<dynamic>?)
               ?.map((e) => Activity.fromJson(e as Map<String, dynamic>))
@@ -175,7 +190,8 @@ _$ActivitiesImpl _$$ActivitiesImplFromJson(Map<String, dynamic> json) =>
           const [],
     );
 
-Map<String, dynamic> _$$ActivitiesImplToJson(_$ActivitiesImpl instance) =>
+Map<String, dynamic> _$$WeekActivitiesImplToJson(
+        _$WeekActivitiesImpl instance) =>
     <String, dynamic>{
       'week': instance.week,
       'activities': instance.activities,

@@ -1,9 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:acha/blocs/alert/index.dart';
-
 import 'package:acha/repository/index.dart';
+import 'package:acha/blocs/alert/index.dart';
 
 class AlertBloc extends Bloc<AlertEvent, AlertState> {
   AlertBloc({required this.alertRepository}) : super(const AlertState(status: AlertStatus.loading)) {
