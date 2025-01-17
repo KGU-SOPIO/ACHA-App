@@ -81,9 +81,10 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
                 if (state.status == TodayCourseStatus.loading) {
                   return const Loader(height: 97);
                 } else if (state.status == TodayCourseStatus.loaded) {
-                  final courses = state.todayCourses!.courses;
-                  if (courses!.isEmpty) {
-                    return SizedBox(
+                  final courses = state.todayCourses!.courses!;
+
+                  if (courses.isEmpty) {
+                    return const SizedBox(
                       height: 97,
                       child: Center(child: Text('오늘은 공강이에요', style: TextStyle(fontSize: 15)))
                     );
@@ -140,7 +141,7 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
                                           color: Colors.black
                                         )
                                       )
-                                    ],
+                                    ]
                                   ),
                                   Container(
                                     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
@@ -154,10 +155,10 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
                                         fontSize: 14,
                                         fontWeight: FontWeight.w700,
                                         color: Color.fromARGB(255, 255, 78, 107)
-                                      ),
-                                    ),
+                                      )
+                                    )
                                   )
-                                ],
+                                ]
                               )
                             )
                           )
@@ -166,7 +167,7 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
                     );
                   }
                 } else {
-                  return SizedBox(
+                  return const SizedBox(
                     height: 97,
                     child: Center(child: Text('강의를 불러오지 못했어요', style: TextStyle(fontSize: 15)))
                   );

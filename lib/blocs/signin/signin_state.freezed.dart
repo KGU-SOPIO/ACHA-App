@@ -14,22 +14,16 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-SignInState _$SignInStateFromJson(Map<String, dynamic> json) {
-  return _SignInState.fromJson(json);
-}
-
 /// @nodoc
 mixin _$SignInState {
+  SignInStatus get status => throw _privateConstructorUsedError;
   String? get studentId => throw _privateConstructorUsedError;
   String? get password => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get college => throw _privateConstructorUsedError;
   String? get department => throw _privateConstructorUsedError;
   String? get major => throw _privateConstructorUsedError;
-  SignInStatus get status => throw _privateConstructorUsedError;
-
-  /// Serializes this SignInState to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String? get errorMessage => throw _privateConstructorUsedError;
 
   /// Create a copy of SignInState
   /// with the given fields replaced by the non-null parameter values.
@@ -45,13 +39,14 @@ abstract class $SignInStateCopyWith<$Res> {
       _$SignInStateCopyWithImpl<$Res, SignInState>;
   @useResult
   $Res call(
-      {String? studentId,
+      {SignInStatus status,
+      String? studentId,
       String? password,
       String? name,
       String? college,
       String? department,
       String? major,
-      SignInStatus status});
+      String? errorMessage});
 }
 
 /// @nodoc
@@ -69,15 +64,20 @@ class _$SignInStateCopyWithImpl<$Res, $Val extends SignInState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? status = null,
     Object? studentId = freezed,
     Object? password = freezed,
     Object? name = freezed,
     Object? college = freezed,
     Object? department = freezed,
     Object? major = freezed,
-    Object? status = null,
+    Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as SignInStatus,
       studentId: freezed == studentId
           ? _value.studentId
           : studentId // ignore: cast_nullable_to_non_nullable
@@ -102,10 +102,10 @@ class _$SignInStateCopyWithImpl<$Res, $Val extends SignInState>
           ? _value.major
           : major // ignore: cast_nullable_to_non_nullable
               as String?,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as SignInStatus,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -119,13 +119,14 @@ abstract class _$$SignInStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? studentId,
+      {SignInStatus status,
+      String? studentId,
       String? password,
       String? name,
       String? college,
       String? department,
       String? major,
-      SignInStatus status});
+      String? errorMessage});
 }
 
 /// @nodoc
@@ -141,15 +142,20 @@ class __$$SignInStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? status = null,
     Object? studentId = freezed,
     Object? password = freezed,
     Object? name = freezed,
     Object? college = freezed,
     Object? department = freezed,
     Object? major = freezed,
-    Object? status = null,
+    Object? errorMessage = freezed,
   }) {
     return _then(_$SignInStateImpl(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as SignInStatus,
       studentId: freezed == studentId
           ? _value.studentId
           : studentId // ignore: cast_nullable_to_non_nullable
@@ -174,29 +180,30 @@ class __$$SignInStateImplCopyWithImpl<$Res>
           ? _value.major
           : major // ignore: cast_nullable_to_non_nullable
               as String?,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as SignInStatus,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$SignInStateImpl implements _SignInState {
   const _$SignInStateImpl(
-      {this.studentId,
+      {this.status = SignInStatus.initial,
+      this.studentId,
       this.password,
       this.name,
       this.college,
       this.department,
       this.major,
-      this.status = SignInStatus.initial});
+      this.errorMessage});
 
-  factory _$SignInStateImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SignInStateImplFromJson(json);
-
+  @override
+  @JsonKey()
+  final SignInStatus status;
   @override
   final String? studentId;
   @override
@@ -210,12 +217,11 @@ class _$SignInStateImpl implements _SignInState {
   @override
   final String? major;
   @override
-  @JsonKey()
-  final SignInStatus status;
+  final String? errorMessage;
 
   @override
   String toString() {
-    return 'SignInState(studentId: $studentId, password: $password, name: $name, college: $college, department: $department, major: $major, status: $status)';
+    return 'SignInState(status: $status, studentId: $studentId, password: $password, name: $name, college: $college, department: $department, major: $major, errorMessage: $errorMessage)';
   }
 
   @override
@@ -223,6 +229,7 @@ class _$SignInStateImpl implements _SignInState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SignInStateImpl &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.studentId, studentId) ||
                 other.studentId == studentId) &&
             (identical(other.password, password) ||
@@ -232,13 +239,13 @@ class _$SignInStateImpl implements _SignInState {
             (identical(other.department, department) ||
                 other.department == department) &&
             (identical(other.major, major) || other.major == major) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, studentId, password, name,
-      college, department, major, status);
+  int get hashCode => Object.hash(runtimeType, status, studentId, password,
+      name, college, department, major, errorMessage);
 
   /// Create a copy of SignInState
   /// with the given fields replaced by the non-null parameter values.
@@ -247,28 +254,21 @@ class _$SignInStateImpl implements _SignInState {
   @pragma('vm:prefer-inline')
   _$$SignInStateImplCopyWith<_$SignInStateImpl> get copyWith =>
       __$$SignInStateImplCopyWithImpl<_$SignInStateImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$SignInStateImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _SignInState implements SignInState {
   const factory _SignInState(
-      {final String? studentId,
+      {final SignInStatus status,
+      final String? studentId,
       final String? password,
       final String? name,
       final String? college,
       final String? department,
       final String? major,
-      final SignInStatus status}) = _$SignInStateImpl;
+      final String? errorMessage}) = _$SignInStateImpl;
 
-  factory _SignInState.fromJson(Map<String, dynamic> json) =
-      _$SignInStateImpl.fromJson;
-
+  @override
+  SignInStatus get status;
   @override
   String? get studentId;
   @override
@@ -282,7 +282,7 @@ abstract class _SignInState implements SignInState {
   @override
   String? get major;
   @override
-  SignInStatus get status;
+  String? get errorMessage;
 
   /// Create a copy of SignInState
   /// with the given fields replaced by the non-null parameter values.

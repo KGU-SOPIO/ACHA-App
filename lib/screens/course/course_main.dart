@@ -1,5 +1,5 @@
-import 'package:acha/screens/notice/notice.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:get_it/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +10,8 @@ import 'package:acha/blocs/course/index.dart';
 
 import 'package:acha/models/index.dart';
 import 'package:acha/repository/index.dart';
+
+import 'package:acha/screens/notice/notice.dart';
 
 import 'package:acha/widgets/containers/index.dart';
 import 'package:acha/widgets/buttons/index.dart';
@@ -22,7 +24,7 @@ class CourseMainScreen extends StatefulWidget {
   State<CourseMainScreen> createState() => _CourseMainScreenState();
 
   static Route<void> route({required Course course}) {
-    return MaterialPageRoute(
+    return CupertinoPageRoute(
       builder: (context) => BlocProvider<CourseBloc>(
         create: (context) => CourseBloc(
           courseRepository: GetIt.I<CourseRepository>(),

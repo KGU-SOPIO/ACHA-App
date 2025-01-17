@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -11,7 +12,7 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 
   static Route<void> route() {
-    return MaterialPageRoute(builder: (context) => const MainScreen());
+    return CupertinoPageRoute(builder: (context) => const MainScreen());
   }
 }
 

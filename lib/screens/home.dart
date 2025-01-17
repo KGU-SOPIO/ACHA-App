@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -17,7 +18,7 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 
   static Route<void> route() {
-    return MaterialPageRoute(
+    return CupertinoPageRoute(
       builder: (context) => BlocProvider(
         create: (_) => NavigationBloc(),
         child: const HomeScreen()

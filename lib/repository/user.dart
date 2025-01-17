@@ -8,6 +8,7 @@ import 'package:acha/constants/apis/index.dart';
 class UserRepository {
   final Dio _dio = GetIt.I<Dio>();
 
+  /// 사용자 데이터를 요청합니다.
   Future<User> fetchUser() async {
     try {
       final response = await _dio.get(UserApiEndpoints.user);

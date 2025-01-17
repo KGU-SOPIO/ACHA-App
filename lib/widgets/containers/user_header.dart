@@ -19,12 +19,6 @@ class UserHeader extends StatefulWidget {
 
 class _UserHeaderState extends State<UserHeader> {
   @override
-  void initState() {
-    super.initState();
-    context.read<UserBloc>().add(UserEvent.fetch());
-  }
-
-  @override
   Widget build(BuildContext context) {
     return BlocListener<UserBloc, UserState>(
       listener: (context, state) {

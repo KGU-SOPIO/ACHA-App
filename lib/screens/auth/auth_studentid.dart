@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 
 import 'package:get_it/get_it.dart';
@@ -13,7 +14,7 @@ class AuthStudentIdScreen extends StatefulWidget {
   const AuthStudentIdScreen({super.key});
 
   static Route<void> route() {
-    return MaterialPageRoute(
+    return CupertinoPageRoute(
       builder: (context) => const AuthStudentIdScreen()
     );
   }
@@ -42,7 +43,6 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
 
   @override
   void dispose() {
-    _authenticationRepository.disposeSignInStream();
     _focusNode.dispose();
     _textEditingController.dispose();
     super.dispose();
@@ -133,7 +133,7 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
                         ),
                         onChanged: (value) {
                           if (value.length == 9) {
-                            context.read<SignInBloc>().add(SignInStudentIdEntered(value));
+                            context.read<SignInBloc>().add(StudentIdEntered(studentId: value));
                             Navigator.push(context, AuthPasswordScreen.route(context));
                           }
                         }

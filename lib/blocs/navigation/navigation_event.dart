@@ -1,6 +1,6 @@
 part of 'navigation_bloc.dart';
 
-abstract class TabEvent extends Equatable {
+sealed class TabEvent extends Equatable {
   const TabEvent();
 
   @override

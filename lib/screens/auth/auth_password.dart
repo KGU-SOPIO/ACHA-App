@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,7 +14,7 @@ class AuthPasswordScreen extends StatefulWidget {
   const AuthPasswordScreen({super.key});
 
   static Route<void> route(BuildContext context) {
-    return MaterialPageRoute(
+    return CupertinoPageRoute(
         builder: (_) => BlocProvider.value(
           value: BlocProvider.of<SignInBloc>(context),
           child: const AuthPasswordScreen(),
@@ -181,7 +182,7 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
                         ),
                       ),
                       onPressed: _isButtonEnabled ? () {
-                        context.read<SignInBloc>().add(SignInPasswordEntered(_textEditingController.text));
+                        context.read<SignInBloc>().add(PasswordEntered(password: _textEditingController.text));
                         _showTermsModal();
                       } : null,
                       child: const Text(

@@ -4,13 +4,13 @@ import 'package:acha/extensions/index.dart';
 
 class CourseContainer extends StatelessWidget {
   const CourseContainer({
-      super.key,
-      required this.professorName,
-      required this.courseName,
-      required this.lectureRoom,
-      this.deadline,
-      required this.onTap
-    });
+    super.key,
+    required this.professorName,
+    required this.courseName,
+    required this.lectureRoom,
+    this.deadline,
+    required this.onTap
+  });
 
   final String professorName;
   final String courseName;
@@ -85,12 +85,10 @@ class CourseContainer extends StatelessWidget {
                     fontSize: 14,
                     fontWeight: FontWeight.w700,
                     color: Color.fromARGB(255, 255, 78, 107)
-                  ),
-                ),
+                  )
+                )
               )
-            else
-              const SizedBox()
-          ],
+          ]
         )
       )
     );

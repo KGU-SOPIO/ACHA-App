@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:get_it/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,7 +19,7 @@ class CourseScreen extends StatefulWidget {
   State<CourseScreen> createState() => _CourseScreenState();
 
   static Route<void> route() {
-    return MaterialPageRoute(builder: (context) => const CourseScreen());
+    return CupertinoPageRoute(builder: (context) => const CourseScreen());
   }
 }
 

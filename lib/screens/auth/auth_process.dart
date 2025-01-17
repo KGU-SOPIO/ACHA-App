@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -15,7 +16,7 @@ class AuthProcessScreen extends StatefulWidget {
   const AuthProcessScreen({super.key});
 
   static Route<void> route(BuildContext context) {
-    return MaterialPageRoute(
+    return CupertinoPageRoute(
       builder: (_) => BlocProvider.value(
         value: BlocProvider.of<SignInBloc>(context),
         child: const AuthProcessScreen(),

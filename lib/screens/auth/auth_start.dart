@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:acha/screens/auth/index.dart';
 
@@ -8,7 +9,7 @@ class AuthStartScreen extends StatelessWidget {
   const AuthStartScreen({super.key});
 
   static Route<void> route() {
-    return MaterialPageRoute(builder: (context) => const AuthStartScreen());
+    return CupertinoPageRoute(builder: (context) => const AuthStartScreen());
   }
 
   @override

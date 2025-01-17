@@ -17,12 +17,17 @@ class Notices with _$Notices {
 @HiveType(typeId: 4)
 class Notice with _$Notice {
   const factory Notice({
-    @HiveField(0) required String index,
-    @HiveField(1) required String title,
-    @HiveField(2) required DateTime date,
-    @HiveField(3) String? link,
-    @HiveField(4) String? content,
-    @HiveField(5) List<File>? files,
+    @HiveField(0) required int id,
+    @HiveField(1) required String index,
+    @HiveField(2) required String title,
+    @HiveField(3) required DateTime date,
+    @HiveField(4) String? link,
+    @HiveField(5) String? content,
+    @HiveField(6) List<File>? files,
+    @HiveField(7) int? nextNoticeId,
+    @HiveField(8) String? nextNoticeTitle,
+    @HiveField(9) int? previousNoticeId,
+    @HiveField(10) String? previousNoticeTitle,
   }) = _Notice;
 
   factory Notice.fromJson(Map<String, dynamic> json) => _$NoticeFromJson(json);

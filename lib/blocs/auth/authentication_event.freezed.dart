@@ -102,7 +102,7 @@ class __$$StatusChangedImplCopyWithImpl<$Res>
     Object? status = null,
   }) {
     return _then(_$StatusChangedImpl(
-      null == status
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as AuthenticationStatus,
@@ -113,7 +113,7 @@ class __$$StatusChangedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$StatusChangedImpl implements StatusChanged {
-  const _$StatusChangedImpl(this.status);
+  const _$StatusChangedImpl({required this.status});
 
   @override
   final AuthenticationStatus status;
@@ -206,7 +206,7 @@ class _$StatusChangedImpl implements StatusChanged {
 }
 
 abstract class StatusChanged implements AuthenticationEvent {
-  const factory StatusChanged(final AuthenticationStatus status) =
+  const factory StatusChanged({required final AuthenticationStatus status}) =
       _$StatusChangedImpl;
 
   AuthenticationStatus get status;

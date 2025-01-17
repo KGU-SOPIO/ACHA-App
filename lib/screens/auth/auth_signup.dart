@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -19,7 +20,7 @@ class AuthSignUpScreen extends StatefulWidget {
   const AuthSignUpScreen({super.key});
 
   static Route<void> route(BuildContext context) {
-    return MaterialPageRoute(
+    return CupertinoPageRoute(
       builder: (_) => BlocProvider.value(
         value: BlocProvider.of<SignInBloc>(context),
         child: const AuthSignUpScreen(),

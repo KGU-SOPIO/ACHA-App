@@ -31,7 +31,6 @@ class _AppState extends State<App> {
   late final AuthenticationRepository _authenticationRepository;
   late final UserRepository _userRepository;
   late final CourseRepository _courseRepository;
-  late final TodayCourseRepository _todayCourseRepository;
   late final AlertRepository _alertRepository;
 
   @override
@@ -40,7 +39,6 @@ class _AppState extends State<App> {
     _authenticationRepository = GetIt.I<AuthenticationRepository>();
     _userRepository = GetIt.I<UserRepository>();
     _courseRepository = GetIt.I<CourseRepository>();
-    _todayCourseRepository = GetIt.I<TodayCourseRepository>();
     _alertRepository = GetIt.I<AlertRepository>();
   }
 
@@ -63,13 +61,13 @@ class _AppState extends State<App> {
         providers: [
           BlocProvider(create: (context) => AuthenticationBloc(authenticationRepository: _authenticationRepository)),
           BlocProvider(create: (context) => UserBloc(userRepository: _userRepository)),
-          BlocProvider(create: (context) => CourseListBloc(courseRepository: _courseRepository)),
-          BlocProvider(create: (context) => TodayCourseBloc(todayCourseRepository: _todayCourseRepository)),
           BlocProvider(create: (context) => ActivityBloc(courseRepository: _courseRepository)),
+          BlocProvider(create: (context) => CourseListBloc(courseRepository: _courseRepository)),
+          BlocProvider(create: (context) => TodayCourseBloc(courseRepository: _courseRepository)),
           BlocProvider(create: (context) => AlertBloc(alertRepository: _alertRepository))
         ],
-        child: const AppView(),
-      ),
+        child: const AppView()
+      )
     );
   }
 }

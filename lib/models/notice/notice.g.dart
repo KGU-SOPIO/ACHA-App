@@ -17,31 +17,46 @@ class NoticeAdapter extends TypeAdapter<Notice> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Notice(
-      index: fields[0] as String,
-      title: fields[1] as String,
-      date: fields[2] as DateTime,
-      link: fields[3] as String?,
-      content: fields[4] as String?,
-      files: (fields[5] as List?)?.cast<File>(),
+      id: fields[0] as int,
+      index: fields[1] as String,
+      title: fields[2] as String,
+      date: fields[3] as DateTime,
+      link: fields[4] as String?,
+      content: fields[5] as String?,
+      files: (fields[6] as List?)?.cast<File>(),
+      nextNoticeId: fields[7] as int?,
+      nextNoticeTitle: fields[8] as String?,
+      previousNoticeId: fields[9] as int?,
+      previousNoticeTitle: fields[10] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, Notice obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(11)
       ..writeByte(0)
-      ..write(obj.index)
+      ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.title)
+      ..write(obj.index)
       ..writeByte(2)
-      ..write(obj.date)
+      ..write(obj.title)
       ..writeByte(3)
-      ..write(obj.link)
+      ..write(obj.date)
       ..writeByte(4)
-      ..write(obj.content)
+      ..write(obj.link)
       ..writeByte(5)
-      ..write(obj.files);
+      ..write(obj.content)
+      ..writeByte(6)
+      ..write(obj.files)
+      ..writeByte(7)
+      ..write(obj.nextNoticeId)
+      ..writeByte(8)
+      ..write(obj.nextNoticeTitle)
+      ..writeByte(9)
+      ..write(obj.previousNoticeId)
+      ..writeByte(10)
+      ..write(obj.previousNoticeTitle);
   }
 
   @override
@@ -110,6 +125,7 @@ Map<String, dynamic> _$$NoticesImplToJson(_$NoticesImpl instance) =>
     };
 
 _$NoticeImpl _$$NoticeImplFromJson(Map<String, dynamic> json) => _$NoticeImpl(
+      id: (json['id'] as num).toInt(),
       index: json['index'] as String,
       title: json['title'] as String,
       date: DateTime.parse(json['date'] as String),
@@ -118,16 +134,25 @@ _$NoticeImpl _$$NoticeImplFromJson(Map<String, dynamic> json) => _$NoticeImpl(
       files: (json['files'] as List<dynamic>?)
           ?.map((e) => File.fromJson(e as Map<String, dynamic>))
           .toList(),
+      nextNoticeId: (json['nextNoticeId'] as num?)?.toInt(),
+      nextNoticeTitle: json['nextNoticeTitle'] as String?,
+      previousNoticeId: (json['previousNoticeId'] as num?)?.toInt(),
+      previousNoticeTitle: json['previousNoticeTitle'] as String?,
     );
 
 Map<String, dynamic> _$$NoticeImplToJson(_$NoticeImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'index': instance.index,
       'title': instance.title,
       'date': instance.date.toIso8601String(),
       'link': instance.link,
       'content': instance.content,
       'files': instance.files,
+      'nextNoticeId': instance.nextNoticeId,
+      'nextNoticeTitle': instance.nextNoticeTitle,
+      'previousNoticeId': instance.previousNoticeId,
+      'previousNoticeTitle': instance.previousNoticeTitle,
     };
 
 _$FileImpl _$$FileImplFromJson(Map<String, dynamic> json) => _$FileImpl(

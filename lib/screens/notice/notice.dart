@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:get_it/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +11,8 @@ import 'package:acha/blocs/notice_list/index.dart';
 
 import 'package:acha/extensions/index.dart';
 
+import 'package:acha/screens/notice/notice_main.dart';
+
 import 'package:acha/widgets/containers/index.dart';
 import 'package:acha/widgets/toast/toast_manager.dart';
 
@@ -20,10 +23,10 @@ class NoticeScreen extends StatefulWidget {
   State<NoticeScreen> createState() => _NoticeScreenState();
 
   static Route<void> route({required Course course}) {
-    return MaterialPageRoute(
+    return CupertinoPageRoute(
       builder: (context) => BlocProvider<NoticeListBloc>(
         create: (context) => NoticeListBloc(
-          noticeRepository: GetIt.I<NoticeRepository>(),
+          courseRepository: GetIt.I<CourseRepository>(),
           course: course
         )..add(NoticeListEvent.fetch()),
         child: const NoticeScreen(),
@@ -97,67 +100,70 @@ class _NoticeScreenState extends State<NoticeScreen> {
                           itemBuilder: (context, index) {
                             final Notice notice = noticeList[index];
 
-                            return Container(
-                              width: double.infinity,
-                              padding: const EdgeInsets.only(left: 10, top: 18, bottom: 15),
-                              decoration: BoxDecoration(
-                                border: Border(
-                                  bottom: BorderSide(
-                                    color: Color.fromARGB(255, 228, 232, 241)
+                            return GestureDetector(
+                              onTap: () => Navigator.push(context, NoticeMainScreen.route(course: context.read<NoticeListBloc>().course, noticeId: notice.id)),
+                              child: Container(
+                                width: double.infinity,
+                                padding: const EdgeInsets.only(left: 10, top: 18, bottom: 15),
+                                decoration: BoxDecoration(
+                                  border: Border(
+                                    bottom: BorderSide(
+                                      color: Color.fromARGB(255, 228, 232, 241)
+                                    )
                                   )
-                                )
-                              ),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        notice.index,
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w400,
-                                          color: Color.fromARGB(255, 151, 151, 151)
+                                ),
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          notice.index.toString(),
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w400,
+                                            color: Color.fromARGB(255, 151, 151, 151)
+                                          ),
                                         ),
-                                      ),
-                                      const SizedBox(width: 15),
-                                      Text(
-                                        notice.title,
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500,
-                                          color: Color.fromARGB(255, 60, 60, 60)
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  const SizedBox(height: 20),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      SvgPicture.asset('lib/assets/svgs/notice/person.svg'),
-                                      const SizedBox(width: 7),
-                                      Text(
-                                        context.read<NoticeListBloc>().course.professor,
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w500,
-                                          color: Color.fromARGB(255, 151, 151, 151)
-                                        ),
-                                      ),
-                                      const SizedBox(width: 20),
-                                      SvgPicture.asset('lib/assets/svgs/notice/clock.svg'),
-                                      const SizedBox(width: 7),
-                                      Text(
-                                        notice.date.formatDate(pattern: 'y년 M월 D일'),
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w500,
-                                          color: Color.fromARGB(255, 151, 151, 151)
+                                        const SizedBox(width: 15),
+                                        Text(
+                                          notice.title,
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                            color: Color.fromARGB(255, 60, 60, 60)
+                                          ),
                                         )
-                                      )
-                                    ]
-                                  )
-                                ]
+                                      ],
+                                    ),
+                                    const SizedBox(height: 20),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        SvgPicture.asset('lib/assets/svgs/notice/person.svg'),
+                                        const SizedBox(width: 7),
+                                        Text(
+                                          context.read<NoticeListBloc>().course.professor,
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w500,
+                                            color: Color.fromARGB(255, 151, 151, 151)
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20),
+                                        SvgPicture.asset('lib/assets/svgs/notice/clock.svg'),
+                                        const SizedBox(width: 7),
+                                        Text(
+                                          notice.date.formatDate(pattern: 'y년 M월 D일'),
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w500,
+                                            color: Color.fromARGB(255, 151, 151, 151)
+                                          )
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
                               )
                             );
                           }

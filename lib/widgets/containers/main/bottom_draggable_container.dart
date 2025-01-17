@@ -43,8 +43,8 @@ class BottomDraggableContainer extends StatelessWidget {
                 blurRadius: 5,
                 spreadRadius: 2.5,
                 offset: const Offset(0, 2.5),
-              ),
-            ],
+              )
+            ]
           ),
           child: Stack(
             children: [
@@ -59,10 +59,10 @@ class BottomDraggableContainer extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: const Color.fromARGB(255, 228, 232, 241),
                         borderRadius: BorderRadius.circular(7),
-                      ),
-                    ),
-                  ],
-                ),
+                      )
+                    )
+                  ]
+                )
               ),
               SliderWidget(
                 scrollController: scrollController,
@@ -70,10 +70,10 @@ class BottomDraggableContainer extends StatelessWidget {
                 currentSlide: currentSlide,
                 onPageChanged: onPageChanged,
               )
-            ],
-          ),
+            ]
+          )
         );
-      },
+      }
     );
   }
 }

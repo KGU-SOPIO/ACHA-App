@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:get_it/get_it.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
-import 'package:acha/repository/index.dart';
+import 'package:acha/blocs/auth/index.dart';
 
 import 'package:acha/screens/mypage/mypage_sopio.dart';
 
@@ -18,7 +20,7 @@ class MyPageScreen extends StatefulWidget {
   State<MyPageScreen> createState() => _MyPageScreenState();
 
   static Route<void> route() {
-    return MaterialPageRoute(
+    return CupertinoPageRoute(
       builder: (context) => const MyPageScreen()
     );
   }
@@ -67,7 +69,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
                       height: 56,
                       margin: EdgeInsets.only(bottom: 18),
                       onPressed: () {
-                        GetIt.I<AuthenticationRepository>().logout();
+                        context.read<AuthenticationBloc>().add(AuthenticationEvent.logout());
                         GetIt.I<ToastManager>().show(message: '정상적으로 로그아웃 되었어요', svgPath: 'lib/assets/svgs/toast/logout.svg');
                       },
                       backgroundColor: const Color.fromARGB(255, 237, 239, 242),
@@ -82,7 +84,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
                       height: 56,
                       margin: EdgeInsets.only(bottom: 54),
                       onPressed: () {
-                        GetIt.I<AuthenticationRepository>().logout();
+                        context.read<AuthenticationBloc>().add(AuthenticationEvent.logout());
                         GetIt.I<ToastManager>().success(message: '서비스를 탈퇴했어요');
                       },
                       backgroundColor: const Color.fromARGB(25, 255, 78 , 107),

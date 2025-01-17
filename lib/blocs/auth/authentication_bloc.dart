@@ -1,7 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:acha/repository/index.dart';
@@ -12,9 +10,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     on<StatusChanged>(_onAuthenticationStatusChanged);
     on<Logout>(_onAuthenticationLogoutRequested);
 
-    _authenticationStatusSubscription = authenticationRepository.authStatus.listen(
-      (status) => add(StatusChanged(status))
-    );
+    _authenticationStatusSubscription = authenticationRepository.authStream.listen((status) => add(StatusChanged(status: status)));
   }
 
   final AuthenticationRepository authenticationRepository;
@@ -28,13 +24,12 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
 
   /// 인증 상태 변화를 감지합니다.
   Future<void> _onAuthenticationStatusChanged(StatusChanged event, Emitter<AuthenticationState> emit) async {
-    debugPrint('Authentication Status: ${event.status.toString()}');
     switch (event.status) {
       case AuthenticationStatus.unauthenticated:
         emit(const AuthenticationState.unauthenticated());
         break;
       case AuthenticationStatus.authenticated:
-        emit(AuthenticationState.authenticated());
+        emit(const AuthenticationState.authenticated());
         break;
       case AuthenticationStatus.unknown:
         emit(const AuthenticationState.unknown());

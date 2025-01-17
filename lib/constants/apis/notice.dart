@@ -7,7 +7,7 @@ class NoticeApiEndpoints {
     return '$notice/$courseCode';
   }
 
-  static String noticeDetail(String courseCode, String noticeId) {
+  static String noticeDetail(String courseCode, int noticeId) {
     return '$notice/$courseCode/$noticeId';
   }
 }

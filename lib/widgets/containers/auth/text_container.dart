@@ -23,7 +23,7 @@ class TextContainer extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           Container(
             height: 56,
             alignment: Alignment.centerLeft,
@@ -35,7 +35,7 @@ class TextContainer extends StatelessWidget {
               borderRadius: BorderRadius.circular(12)
             ),
             child: Padding(
-              padding: EdgeInsets.only(left: 16),
+              padding: const EdgeInsets.only(left: 16),
               child: Text(
                 value,
                 style: TextStyle(

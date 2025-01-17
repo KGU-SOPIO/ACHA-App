@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:acha/widgets/containers/index.dart';
 
@@ -6,7 +7,7 @@ class SopioScreen extends StatelessWidget {
   const SopioScreen({super.key});
 
   static Route<void> route() {
-    return MaterialPageRoute(builder: (context) => const SopioScreen(),);
+    return CupertinoPageRoute(builder: (context) => const SopioScreen(),);
   }
 
   @override

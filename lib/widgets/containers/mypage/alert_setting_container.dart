@@ -63,9 +63,9 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
                           color: Color.fromARGB(255, 30, 30, 30)
-                        ),
+                        )
                       )
-                    ],
+                    ]
                   )
                 ),
                 Row(
@@ -95,8 +95,8 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
               ]
             )
           );
-        },
-      ),
+        }
+      )
     );
   }
 }
