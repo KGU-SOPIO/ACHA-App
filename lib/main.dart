@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:acha/firebase_options.dart';
 
 import 'package:acha/app.dart';
 
@@ -15,6 +17,8 @@ import 'package:acha/widgets/toast/toast_manager.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeDateFormatting('ko_KR', null);
+  
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   final GetIt getIt = GetIt.I;
   getIt.registerSingleton<SecureStorage>(SecureStorage());
