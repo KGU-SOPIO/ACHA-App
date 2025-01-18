@@ -65,42 +65,40 @@ class _CourseScreenState extends State<CourseScreen> {
                         ],
                       )
                     ),
-                    BlocListener<CourseListBloc, CourseListState>(
+                    BlocConsumer<CourseListBloc, CourseListState>(
                       listener: (context, state) {
                         if (state.status == CourseListStatus.error) {
                           GetIt.I<ToastManager>().error(message: state.errorMessage!);
                         }
                       },
-                      child: BlocBuilder<CourseListBloc, CourseListState>(
-                        builder: (context, state) {
-                          if (state.status == CourseListStatus.loading) {
-                            return const Loader(height: 500);
-                          } else if (state.status == CourseListStatus.loaded) {
-                            final courses = state.courses!.courses!;
-                            
-                            if (courses.isEmpty) {
-                              return const SizedBox(height: 500, child: Center(child: Text('등록된 강좌가 없어요', style: TextStyle(fontSize: 15))));
-                            }
-                            
-                            return Column(
-                              children: [
-                                ...courses.map((course) {
-                                  return CourseContainer(
-                                    professorName: course.professor,
-                                    courseName: course.name,
-                                    lectureRoom: course.lectureRoom,
-                                    deadline: course.deadline,
-                                    onTap: () => Navigator.push(context, CourseMainScreen.route(course: course)),
-                                  );
-                                }),
-                                const SizedBox(height: 16)
-                              ]
-                            );
-                          } else {
-                            return SizedBox(height: 500, child: Center(child: Text(state.errorMessage!, style: TextStyle(fontSize: 15))));
+                      builder: (context, state) {
+                        if (state.status == CourseListStatus.loading) {
+                          return const Loader(height: 500);
+                        } else if (state.status == CourseListStatus.loaded) {
+                          final courses = state.courses!.courses!;
+                          
+                          if (courses.isEmpty) {
+                            return const SizedBox(height: 500, child: Center(child: Text('등록된 강좌가 없어요', style: TextStyle(fontSize: 15))));
                           }
+                          
+                          return Column(
+                            children: [
+                              ...courses.map((course) {
+                                return CourseContainer(
+                                  professorName: course.professor,
+                                  courseName: course.name,
+                                  lectureRoom: course.lectureRoom,
+                                  deadline: course.deadline,
+                                  onTap: () => Navigator.push(context, CourseMainScreen.route(course: course)),
+                                );
+                              }),
+                              const SizedBox(height: 16)
+                            ]
+                          );
+                        } else {
+                          return SizedBox(height: 500, child: Center(child: Text(state.errorMessage!, style: TextStyle(fontSize: 15))));
                         }
-                      )
+                      }
                     )
                   ]
                 )

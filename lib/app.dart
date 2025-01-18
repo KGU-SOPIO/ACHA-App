@@ -114,7 +114,11 @@ class _AppViewState extends State<AppView> {
                 _checkStates(context);
                 return;
               },
-              unauthenticated: () => _navigator.pushAndRemoveUntil(AuthStartScreen.route(), (route) => false),
+              unauthenticated: () {
+                _isNavigate = false;
+                _navigator.pushAndRemoveUntil(AuthStartScreen.route(), (route) => false);
+                return;
+              },
               unknown: () => null,
             )
           ),

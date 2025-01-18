@@ -120,54 +120,52 @@ class _SliderWidgetState extends State<SliderWidget> {
             ]
           ),
           SizedBox(height: 18),
-          BlocListener<ActivityBloc, ActivityState>(
+          BlocConsumer<ActivityBloc, ActivityState>(
             listener: (context, state) {
               if (state.status == ActivityStatus.error) {
                 GetIt.I<ToastManager>().error(message: state.errorMessage!);
               }
             },
-            child: BlocBuilder<ActivityBloc, ActivityState>(
-              builder: (context, state) {
-                if (state.status == ActivityStatus.loading) {
-                  return const Expanded(child: Center(child: Loader()));
-                } else if (state.status == ActivityStatus.loaded) {
-                  Map<DateTime, List<Activity>> lectures = state.weekActivities?.getLectureActivities(group: true);
-                  
-                  if (lectures.isEmpty) {
-                    return const Expanded(child: Center(child: Text('남은 강의가 없어요', style: TextStyle(fontSize: 15))));
-                  }
-
-                  return Expanded(
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: lectures.length,
-                      itemBuilder: (context, index) {
-                        final entry = lectures.entries.elementAt(index);
-                        final date = entry.key;
-                        final activities = entry.value;
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            DDayContainer(deadline: date),
-                            const SizedBox(height: 13),
-                            for (final lecture in activities)
-                              ActivityContainer(
-                                title: lecture.name!,
-                                course: lecture.courseName!,
-                                deadline: lecture.deadline!.toTimeLeftFormattedTime(),
-                                margin: const EdgeInsets.only(bottom: 13)
-                              ),
-                            const SizedBox(height: 20),
-                          ]
-                        );
-                      }
-                    )
-                  );
-                } else {
-                  return const Expanded(child: Center(child: Text('우선 강의를 불러오지 못했어요', style: TextStyle(fontSize: 15))));
+            builder: (context, state) {
+              if (state.status == ActivityStatus.loading) {
+                return const Expanded(child: Center(child: Loader()));
+              } else if (state.status == ActivityStatus.loaded) {
+                Map<DateTime, List<Activity>> lectures = state.weekActivities?.getLectureActivities(group: true);
+                
+                if (lectures.isEmpty) {
+                  return const Expanded(child: Center(child: Text('남은 강의가 없어요', style: TextStyle(fontSize: 15))));
                 }
+
+                return Expanded(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: lectures.length,
+                    itemBuilder: (context, index) {
+                      final entry = lectures.entries.elementAt(index);
+                      final date = entry.key;
+                      final activities = entry.value;
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          DDayContainer(deadline: date),
+                          const SizedBox(height: 13),
+                          for (final lecture in activities)
+                            ActivityContainer(
+                              title: lecture.name!,
+                              course: lecture.courseName!,
+                              deadline: lecture.deadline!.toTimeLeftFormattedTime(),
+                              margin: const EdgeInsets.only(bottom: 13)
+                            ),
+                          const SizedBox(height: 20),
+                        ]
+                      );
+                    }
+                  )
+                );
+              } else {
+                return const Expanded(child: Center(child: Text('우선 강의를 불러오지 못했어요', style: TextStyle(fontSize: 15))));
               }
-            )
+            }
           )
         ]
       )
@@ -228,52 +226,52 @@ class _SliderWidgetState extends State<SliderWidget> {
             ]
           ),
           SizedBox(height: 18),
-          BlocListener<ActivityBloc, ActivityState>(
+          BlocConsumer<ActivityBloc, ActivityState>(
             listener: (context, state) {
-              GetIt.I<ToastManager>().error(message: state.errorMessage!);
-            },
-            child: BlocBuilder<ActivityBloc, ActivityState>(
-              builder: (context, state) {
-                if (state.status == ActivityStatus.loading) {
-                  return const Expanded(child: Center(child: Loader()));
-                } else if (state.status == ActivityStatus.loaded) {
-                  Map<DateTime, List<Activity>> assignments = state.weekActivities?.getAssignmentActivities(group: true);
-
-                  if (assignments.isEmpty) {
-                    return const Expanded(child: Center(child: Text('남은 과제가 없어요', style: TextStyle(fontSize: 15))));
-                  }
-
-                  return Expanded(
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: assignments.length,
-                      itemBuilder: (context, index) {
-                        final entry = assignments.entries.elementAt(index);
-                        final date = entry.key;
-                        final activities = entry.value;
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            DDayContainer(deadline: date),
-                            const SizedBox(height: 13),
-                            for (final assignment in activities)
-                              ActivityContainer(
-                                title: assignment.name!,
-                                course: assignment.courseName!,
-                                deadline: assignment.deadline!.toTimeLeftFormattedTime(),
-                                margin: const EdgeInsets.only(bottom: 13),
-                              ),
-                            const SizedBox(height: 20),
-                          ],
-                        );
-                      },
-                    )
-                  );
-                } else {
-                  return const Expanded(child: Center(child: Text('우선 과제를 불러오지 못했어요', style: TextStyle(fontSize: 15))));
-                }
+              if (state.status == ActivityStatus.error) {
+                GetIt.I<ToastManager>().error(message: state.errorMessage!);
               }
-            )
+            },
+            builder: (context, state) {
+              if (state.status == ActivityStatus.loading) {
+                return const Expanded(child: Center(child: Loader()));
+              } else if (state.status == ActivityStatus.loaded) {
+                Map<DateTime, List<Activity>> assignments = state.weekActivities?.getAssignmentActivities(group: true);
+
+                if (assignments.isEmpty) {
+                  return const Expanded(child: Center(child: Text('남은 과제가 없어요', style: TextStyle(fontSize: 15))));
+                }
+
+                return Expanded(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: assignments.length,
+                    itemBuilder: (context, index) {
+                      final entry = assignments.entries.elementAt(index);
+                      final date = entry.key;
+                      final activities = entry.value;
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          DDayContainer(deadline: date),
+                          const SizedBox(height: 13),
+                          for (final assignment in activities)
+                            ActivityContainer(
+                              title: assignment.name!,
+                              course: assignment.courseName!,
+                              deadline: assignment.deadline!.toTimeLeftFormattedTime(),
+                              margin: const EdgeInsets.only(bottom: 13),
+                            ),
+                          const SizedBox(height: 20),
+                        ]
+                      );
+                    }
+                  )
+                );
+              } else {
+                return const Expanded(child: Center(child: Text('우선 과제를 불러오지 못했어요', style: TextStyle(fontSize: 15))));
+              }
+            }
           )
         ]
       )

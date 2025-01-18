@@ -8,46 +8,40 @@ class TextContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-      child: Column(
-        children: [
-          Container(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              title,
-              style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w700,
-                color: Color.fromARGB(255, 60, 60, 60)
-              ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w700,
+            color: Color.fromARGB(255, 60, 60, 60)
+          )
+        ),
+        const SizedBox(height: 16),
+        Container(
+          width: double.infinity,
+          height: 56,
+          alignment: Alignment.centerLeft,
+          padding: const EdgeInsets.only(left: 16),
+          decoration: BoxDecoration(
+            border: Border.all(
+              width: 1.5,
+              color: Color.fromARGB(255, 237, 239, 242),
             ),
+            borderRadius: BorderRadius.circular(12)
           ),
-          const SizedBox(height: 16),
-          Container(
-            height: 56,
-            alignment: Alignment.centerLeft,
-            decoration: BoxDecoration(
-              border: Border.all(
-                width: 1.5,
-                color: Color.fromARGB(255, 237, 239, 242),
-              ),
-              borderRadius: BorderRadius.circular(12)
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only(left: 16),
-              child: Text(
-                value,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  color: Color.fromARGB(255, 60, 60, 60)
-                )
-              )
+          child: Text(
+            value,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+              color: Color.fromARGB(255, 60, 60, 60)
             )
           )
-        ]
-      )
+        )
+      ]
     );
   }
 }

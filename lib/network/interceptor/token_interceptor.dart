@@ -6,7 +6,11 @@ import 'package:acha/repository/index.dart';
 import 'package:acha/constants/apis/index.dart';
 
 class TokenInterceptor extends Interceptor {
-  final Dio _dio = Dio();
+  final Dio _dio = Dio(BaseOptions(
+    connectTimeout: const Duration(seconds: 3),
+    receiveTimeout: const Duration(seconds: 15),
+    sendTimeout: const Duration(seconds: 5)
+  ));
   final SecureStorage _secureStorage = GetIt.I<SecureStorage>();
 
   /// 요청 시 AccessToken을 검증하고, 만료 시 재발급합니다.

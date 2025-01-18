@@ -65,13 +65,13 @@ class SopioScreen extends StatelessWidget {
                   )
                 ),
                 SizedBox(height: 50),
-                MemberContainer(name: '홍준서', part: '앱', department: 'AI컴퓨터공학부', sns: '@SOPIO'),
+                MemberContainer(name: '홍준서', part: '앱', department: 'AI컴퓨터공학부', sns: '@JunseoKR'),
                 SizedBox(height: 21),
-                MemberContainer(name: '최수인', part: '웹', department: 'AI컴퓨터공학부', sns: '@SOPIO'),
+                MemberContainer(name: '최수인', part: '웹', department: 'AI컴퓨터공학부', sns: '@sooinice'),
                 SizedBox(height: 21),
-                MemberContainer(name: '이한음', part: '서버', department: 'AI컴퓨터공학부', sns: '@SOPIO'),
+                MemberContainer(name: '이한음', part: '서버', department: 'AI컴퓨터공학부', sns: '@LeeHanEum'),
                 SizedBox(height: 21),
-                MemberContainer(name: '권우진', part: '서버', department: 'AI컴퓨터공학부', sns: '@SOPIO'),
+                MemberContainer(name: '권우진', part: '서버', department: 'AI컴퓨터공학부', sns: '@kwj0175'),
                 SizedBox(height: 21),
                 MemberContainer(name: '서민혁', part: '디자인', department: 'AI컴퓨터공학부', sns: '@SOPIO'),
                 SizedBox(height: 30)

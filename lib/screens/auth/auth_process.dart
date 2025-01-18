@@ -7,7 +7,6 @@ import 'package:lottie/lottie.dart';
 
 import 'package:acha/blocs/signin/index.dart';
 
-import 'package:acha/screens/home.dart';
 import 'package:acha/screens/auth/index.dart';
 
 import 'package:acha/widgets/buttons/index.dart';
@@ -15,10 +14,10 @@ import 'package:acha/widgets/buttons/index.dart';
 class AuthProcessScreen extends StatefulWidget {
   const AuthProcessScreen({super.key});
 
-  static Route<void> route(BuildContext context) {
+  static Route<void> route(BuildContext parentContext) {
     return CupertinoPageRoute(
       builder: (_) => BlocProvider.value(
-        value: BlocProvider.of<SignInBloc>(context),
+        value: BlocProvider.of<SignInBloc>(parentContext),
         child: const AuthProcessScreen(),
       )
     );
@@ -39,23 +38,6 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
     }
   }
 
-  String _getDisplayText(SignInStatus status) {
-    switch (status) {
-      case SignInStatus.signInProgress:
-        return '인증하는 중';
-      case SignInStatus.signUpProgress:
-        return '회원가입 중';
-      case SignInStatus.signInSuccess:
-        return '로그인 완료';
-      case SignInStatus.signUpSuccess:
-        return '회원가입 완료';
-      case SignInStatus.inSignUp:
-        return '인증 완료';
-      default:
-        return '문제 발생';
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -64,6 +46,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
+          centerTitle: true,
           title: const Text(
             '시작하기',
             style: TextStyle(
@@ -75,9 +58,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
         body: SafeArea(
           child: BlocConsumer<SignInBloc, SignInState>(
             listener: (context, state) {
-              if (state.status == SignInStatus.signInSuccess || state.status == SignInStatus.signUpSuccess) {
-                Navigator.pushAndRemoveUntil(context, HomeScreen.route(), (route) => false);
-              } else if (state.status == SignInStatus.inSignUp) {
+              if (state.status == SignInStatus.inSignUp) {
                 Navigator.push(context, AuthSignUpScreen.route(context));
               }
             },
@@ -96,7 +77,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
                             SvgPicture.asset('lib/assets/svgs/auth/error.svg'),
                             SizedBox(height: 30),
                             Text(
-                              '문제 발생',
+                              state.status.description,
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w700
@@ -104,7 +85,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
                             ),
                             SizedBox(height: 20),
                             Text(
-                              '인증에 문제가 발생했어요',
+                              state.errorMessage!,
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
@@ -116,7 +97,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
                       ),
                       ContainerButton(
                         height: 56,
-                        margin: const EdgeInsets.only(bottom: 30),
+                        margin: const EdgeInsets.only(bottom: 20),
                         onPressed: () => Navigator.pushAndRemoveUntil(context, AuthStudentIdScreen.route(), (route) => false),
                         backgroundColor: const Color.fromARGB(255, 0, 102, 255),
                         text: '돌아가기',
@@ -149,7 +130,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
                           color: Color.fromARGB(25, 0, 102, 255)
                         ),
                         child: Text(
-                          _getDisplayText(state.status),
+                          state.status.description,
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,

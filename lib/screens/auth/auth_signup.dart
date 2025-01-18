@@ -19,10 +19,10 @@ import 'package:acha/constants/terms.dart';
 class AuthSignUpScreen extends StatefulWidget {
   const AuthSignUpScreen({super.key});
 
-  static Route<void> route(BuildContext context) {
+  static Route<void> route(BuildContext parentContext) {
     return CupertinoPageRoute(
       builder: (_) => BlocProvider.value(
-        value: BlocProvider.of<SignInBloc>(context),
+        value: BlocProvider.of<SignInBloc>(parentContext),
         child: const AuthSignUpScreen(),
       )
     );
@@ -72,90 +72,98 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
+          centerTitle: true,
           title: const Text(
             '시작하기',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500
-            ),
+            )
           )
         ),
         body: BlocBuilder<SignInBloc, SignInState>(
           builder: (context, state) {
             return SafeArea(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        padding: const EdgeInsets.all(24),
-                        child: RichText(
-                          text: TextSpan(
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: Color.fromARGB(255, 60, 60, 60)
-                            ),
-                            children: [
-                              TextSpan(
-                                text: '정보가 맞는지 ',
-                                style: TextStyle(fontWeight: FontWeight.w700)
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        const SizedBox(height: 24),
+                        SizedBox(
+                          width: double.infinity,
+                          child: RichText(
+                            text: TextSpan(
+                              style: TextStyle(
+                                fontSize: 15,
+                                color: Color.fromARGB(255, 60, 60, 60)
                               ),
-                              TextSpan(
-                                text: '확인해 주세요',
-                                style: TextStyle(fontWeight: FontWeight.w400)
+                              children: [
+                                TextSpan(
+                                  text: '정보가 맞는지 ',
+                                  style: TextStyle(fontWeight: FontWeight.w700)
+                                ),
+                                TextSpan(
+                                  text: '확인해 주세요',
+                                  style: TextStyle(fontWeight: FontWeight.w400)
+                                )
+                              ]
+                            )
+                          )
+                        ),
+                        const SizedBox(height: 30),
+                        TextContainer(title: '이름', value: state.name!),
+                        const SizedBox(height: 24),
+                        TextContainer(title: '대학', value: state.college!),
+                        const SizedBox(height: 24),
+                        TextContainer(title: '학부', value: state.department!),
+                        const SizedBox(height: 24),
+                        if (state.major != null)
+                          TextContainer(title: '전공', value: state.major!),
+                      ]
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            tapTargetSize: MaterialTapTargetSize.shrinkWrap
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              SvgPicture.asset('lib/assets/svgs/auth/question.svg'),
+                              SizedBox(width: 5),
+                              Text(
+                                '정보가 다른가요?',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: Color.fromARGB(255, 131, 131, 131)
+                                )
                               )
                             ]
+                          ),
+                          onPressed: () => _openManualUrl()
+                        ),
+                        ContainerButton(
+                          height: 56,
+                          margin: const EdgeInsets.symmetric(vertical: 20),
+                          onPressed: () => _showTermsModal(),
+                          backgroundColor: const Color.fromARGB(255, 0, 102, 255),
+                          text: '다음',
+                          textStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white
                           )
                         )
-                      ),
-                      TextContainer(title: '이름', value: state.name!),
-                      TextContainer(title: '대학', value: state.college!),
-                      TextContainer(title: '학부', value: state.department!),
-                      if (state.major != null)
-                        TextContainer(title: '전공', value: state.major!),
-                    ]
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          tapTargetSize: MaterialTapTargetSize.shrinkWrap
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            SvgPicture.asset('lib/assets/svgs/auth/question.svg'),
-                            SizedBox(width: 5),
-                            Text(
-                              '정보가 다른가요?',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                                color: Color.fromARGB(255, 131, 131, 131)
-                              )
-                            )
-                          ]
-                        ),
-                        onPressed: () => _openManualUrl()
-                      ),
-                      ContainerButton(
-                        height: 56,
-                        margin: const EdgeInsets.only(left: 24, right: 24, bottom: 30, top: 20),
-                        onPressed: () => _showTermsModal(),
-                        backgroundColor: const Color.fromARGB(255, 0, 102, 255),
-                        text: '다음',
-                        textStyle: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white
-                        )
-                      )
-                    ]
-                  )
-                ]
+                      ]
+                    )
+                  ]
+                )
               )
             );
           }
@@ -171,7 +179,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
         await launchUrl(url);
       }
     } catch (e) {
-      debugPrint('Could not launch url');
+      return;
     }
   }
 }

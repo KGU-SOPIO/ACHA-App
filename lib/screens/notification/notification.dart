@@ -60,39 +60,37 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
               SliverToBoxAdapter(child: NotificationTabbar(tabController: _tabController))
             ];
           },
-          body: BlocListener<ActivityBloc, ActivityState>(
+          body: BlocConsumer<ActivityBloc, ActivityState>(
             listener: (context, state) {
               if (state.status == ActivityStatus.error) {
                 GetIt.I<ToastManager>().error(message: '활동을 불러오지 못했어요');
               }
             },
-            child: BlocBuilder<ActivityBloc, ActivityState>(
-              builder: (context, state) {
-                if (state.status == ActivityStatus.loading) {
-                  return Loader(height: MediaQuery.of(context).size.height);
-                } else if (state.status == ActivityStatus.loaded) {
-                  final WeekActivities activities = state.weekActivities!;
-                  
-                  return TabBarView(
-                    controller: _tabController,
-                    children: [
-                      _buildActivityListView(activities.getLectureAndAssignmentActivities(group: true)),
-                      _buildActivityListView(activities.getLectureActivities(group: true)),
-                      _buildActivityListView(activities.getAssignmentActivities(group: true))
-                    ]
-                  );
-                } else {
-                  return TabBarView(
-                    controller: _tabController,
-                    children: [
-                      const Center(child: Text('활동을 불러오지 못했어요', style: TextStyle(fontSize: 15))),
-                      const Center(child: Text('활동을 불러오지 못했어요', style: TextStyle(fontSize: 15))),
-                      const Center(child: Text('활동을 불러오지 못했어요', style: TextStyle(fontSize: 15)))
-                    ]
-                  );
-                }
-              },
-            )
+            builder: (context, state) {
+              if (state.status == ActivityStatus.loading) {
+                return Loader(height: MediaQuery.of(context).size.height);
+              } else if (state.status == ActivityStatus.loaded) {
+                final WeekActivities activities = state.weekActivities!;
+                
+                return TabBarView(
+                  controller: _tabController,
+                  children: [
+                    _buildActivityListView(activities.getLectureAndAssignmentActivities(group: true)),
+                    _buildActivityListView(activities.getLectureActivities(group: true)),
+                    _buildActivityListView(activities.getAssignmentActivities(group: true))
+                  ]
+                );
+              } else {
+                return TabBarView(
+                  controller: _tabController,
+                  children: [
+                    const Center(child: Text('활동을 불러오지 못했어요', style: TextStyle(fontSize: 15))),
+                    const Center(child: Text('활동을 불러오지 못했어요', style: TextStyle(fontSize: 15))),
+                    const Center(child: Text('활동을 불러오지 못했어요', style: TextStyle(fontSize: 15)))
+                  ]
+                );
+              }
+            }
           )
         )
       )

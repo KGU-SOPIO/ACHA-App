@@ -7,6 +7,7 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:acha/blocs/auth/index.dart';
 
+import 'package:acha/screens/auth/index.dart';
 import 'package:acha/screens/mypage/mypage_sopio.dart';
 
 import 'package:acha/widgets/containers/index.dart';
@@ -70,6 +71,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
                       margin: EdgeInsets.only(bottom: 18),
                       onPressed: () {
                         context.read<AuthenticationBloc>().add(AuthenticationEvent.logout());
+                        Navigator.pushAndRemoveUntil(context, AuthStartScreen.route(), (route) => false);
                         GetIt.I<ToastManager>().show(message: '정상적으로 로그아웃 되었어요', svgPath: 'lib/assets/svgs/toast/logout.svg');
                       },
                       backgroundColor: const Color.fromARGB(255, 237, 239, 242),
@@ -85,6 +87,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
                       margin: EdgeInsets.only(bottom: 54),
                       onPressed: () {
                         context.read<AuthenticationBloc>().add(AuthenticationEvent.logout());
+                        Navigator.pushAndRemoveUntil(context, AuthStartScreen.route(), (route) => false);
                         GetIt.I<ToastManager>().success(message: '서비스를 탈퇴했어요');
                       },
                       backgroundColor: const Color.fromARGB(25, 255, 78 , 107),

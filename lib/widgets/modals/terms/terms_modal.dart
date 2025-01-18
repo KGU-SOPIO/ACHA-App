@@ -124,7 +124,7 @@ class TermsBottomModalSheet {
         await launchUrl(url);
       }
     } catch (e) {
-      debugPrint('Could not launch url');
+      return;
     }
   }
 }

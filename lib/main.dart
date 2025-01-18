@@ -25,7 +25,11 @@ void main() async {
   getIt.registerSingleton<DataStorage>(DataStorage());
   getIt.registerSingleton(
     () {
-      final Dio dio = Dio();
+      final Dio dio = Dio(BaseOptions(
+        connectTimeout: const Duration(seconds: 3),
+        receiveTimeout: const Duration(seconds: 15),
+        sendTimeout: const Duration(seconds: 5)
+      ));
       dio.interceptors.add(TokenInterceptor());
       dio.interceptors.add(ErrorInterceptor());
       return dio;

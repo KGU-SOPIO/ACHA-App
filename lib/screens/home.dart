@@ -20,7 +20,7 @@ class HomeScreen extends StatefulWidget {
   static Route<void> route() {
     return CupertinoPageRoute(
       builder: (context) => BlocProvider(
-        create: (_) => NavigationBloc(),
+        create: (context) => NavigationBloc(),
         child: const HomeScreen()
       )
     );

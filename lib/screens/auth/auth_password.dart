@@ -13,10 +13,10 @@ import 'package:acha/constants/terms.dart';
 class AuthPasswordScreen extends StatefulWidget {
   const AuthPasswordScreen({super.key});
 
-  static Route<void> route(BuildContext context) {
+  static Route<void> route(BuildContext parentContext) {
     return CupertinoPageRoute(
         builder: (_) => BlocProvider.value(
-          value: BlocProvider.of<SignInBloc>(context),
+          value: BlocProvider.of<SignInBloc>(parentContext),
           child: const AuthPasswordScreen(),
         )
     );
@@ -99,6 +99,7 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
+          centerTitle: true,
           title: const Text(
             '시작하기',
             style: TextStyle(

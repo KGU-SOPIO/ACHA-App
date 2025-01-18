@@ -64,6 +64,7 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
+          centerTitle: true,
           title: const Text(
             '시작하기',
             style: TextStyle(
@@ -73,7 +74,7 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
           )
         ),
         body: SafeArea(
-          child: BlocProvider<SignInBloc>(
+          child: BlocProvider(
             create: (context) => SignInBloc(authenticationRepository: _authenticationRepository),
             child: Builder(
               builder: (context) {

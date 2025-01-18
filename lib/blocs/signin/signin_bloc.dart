@@ -7,7 +7,7 @@ import 'package:acha/repository/index.dart';
 import 'package:acha/blocs/signin/index.dart';
 
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
-  SignInBloc({required this.authenticationRepository}): super(const SignInState()) {
+  SignInBloc({required this.authenticationRepository}): super(const SignInState(status: SignInStatus.initial)) {
     on<StudentIdEntered>((event, emit) => emit(state.copyWith(studentId: event.studentId)));
     on<PasswordEntered>((event, emit) => emit(state.copyWith(password: event.password)));
     on<SignInSubmitted>(_onSignInSubmitted);

@@ -1,11 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-
-import 'package:acha/app.dart';
 
 import 'package:acha/models/index.dart';
 import 'package:acha/repository/index.dart';
@@ -15,11 +11,14 @@ import 'package:acha/network/interceptor/index.dart';
 
 import 'package:acha/constants/apis/index.dart';
 
-import 'package:acha/screens/auth/index.dart';
 import 'package:acha/widgets/toast/toast_manager.dart';
 
 class AuthenticationRepository {
-  final Dio _dio = Dio();
+  final Dio _dio = Dio(BaseOptions(
+    connectTimeout: const Duration(seconds: 3),
+    receiveTimeout: const Duration(seconds: 15),
+    sendTimeout: const Duration(seconds: 5)
+  ));
   final SecureStorage _secureStorage = GetIt.I<SecureStorage>();
   final DataStorage _dataStorage = GetIt.I<DataStorage>();
 
@@ -131,7 +130,6 @@ class AuthenticationRepository {
     _secureStorage.deleteAllData();
     _dataStorage.deleteAllData();
     _authStreamController.add(AuthenticationStatus.unauthenticated);
-    Navigator.pushAndRemoveUntil(AppView.navigatorKey.currentContext!, AuthStartScreen.route(), (route) => false);
   }
 
   /// AccessToken을 재발급합니다.
