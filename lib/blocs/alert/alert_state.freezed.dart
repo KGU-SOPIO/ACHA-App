@@ -121,7 +121,7 @@ class __$$AlertStateImplCopyWithImpl<$Res>
 
 class _$AlertStateImpl implements _AlertState {
   const _$AlertStateImpl(
-      {required this.status, this.isEnabled = false, this.message});
+      {required this.status, this.isEnabled = true, this.message});
 
   @override
   final AlertStatus status;

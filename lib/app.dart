@@ -93,12 +93,13 @@ class AppView extends StatefulWidget {
 class _AppViewState extends State<AppView> {
   NavigatorState get _navigator => AppView.navigatorKey.currentState!;
   bool _isNavigate = false;
+  bool requestPermission = false;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'ACHA',
+      title: '아차',
       theme: achaLight(),
       darkTheme: achaDark(),
       themeMode: ThemeMode.system,
@@ -111,6 +112,13 @@ class _AppViewState extends State<AppView> {
               authenticated: () {
                 context.read<UserBloc>().add(UserEvent.fetch());
                 context.read<TodayCourseBloc>().add(TodayCourseEvent.fetch());
+                _checkStates(context);
+                return;
+              },
+              registered: () {
+                context.read<UserBloc>().add(UserEvent.fetch());
+                context.read<TodayCourseBloc>().add(TodayCourseEvent.fetch());
+                requestPermission = true;
                 _checkStates(context);
                 return;
               },
@@ -141,7 +149,7 @@ class _AppViewState extends State<AppView> {
       return;
     } else {
       _isNavigate = true;
-      _navigator.pushAndRemoveUntil(HomeScreen.route(), (route) => false);
+      _navigator.pushAndRemoveUntil(HomeScreen.route(requestPermission: requestPermission), (route) => false);
     }
   }
 }

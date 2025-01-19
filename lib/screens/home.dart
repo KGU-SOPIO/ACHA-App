@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:acha/blocs/alert/index.dart';
 import 'package:acha/blocs/navigation/navigation_bloc.dart';
 
 import 'package:acha/screens/main.dart';
@@ -12,22 +14,42 @@ import 'package:acha/screens/notification/notification.dart';
 import 'package:acha/screens/mypage/mypage.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({super.key, required this.requestPermission});
+
+  final bool requestPermission;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 
-  static Route<void> route() {
+  static Route<void> route({required bool requestPermission}) {
     return CupertinoPageRoute(
       builder: (context) => BlocProvider(
         create: (context) => NavigationBloc(),
-        child: const HomeScreen()
+        child: HomeScreen(requestPermission: requestPermission)
       )
     );
   }
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _checkPermission();
+  }
+
+  /// 기기 알림 권한을 확인하고 요청합니다.
+  void _checkPermission() async {
+    if (widget.requestPermission) {
+      FirebaseMessaging messaging = FirebaseMessaging.instance;
+      NotificationSettings settings = await messaging.requestPermission(announcement: true);
+      if (settings.authorizationStatus == AuthorizationStatus.denied) {
+        if (!mounted) return;
+        context.read<AlertBloc>().add(const AlertEvent.deny());
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NavigationBloc, TabState>(

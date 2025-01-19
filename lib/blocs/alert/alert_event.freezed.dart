@@ -20,18 +20,21 @@ mixin _$AlertEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
     required TResult Function(bool isEnabled) statusChanged,
+    required TResult Function() deny,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetch,
     TResult? Function(bool isEnabled)? statusChanged,
+    TResult? Function()? deny,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
     TResult Function(bool isEnabled)? statusChanged,
+    TResult Function()? deny,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$AlertEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(Fetch value) fetch,
     required TResult Function(StatusChanged value) statusChanged,
+    required TResult Function(Deny value) deny,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Fetch value)? fetch,
     TResult? Function(StatusChanged value)? statusChanged,
+    TResult? Function(Deny value)? deny,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Fetch value)? fetch,
     TResult Function(StatusChanged value)? statusChanged,
+    TResult Function(Deny value)? deny,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,6 +126,7 @@ class _$FetchImpl implements Fetch {
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
     required TResult Function(bool isEnabled) statusChanged,
+    required TResult Function() deny,
   }) {
     return fetch();
   }
@@ -129,6 +136,7 @@ class _$FetchImpl implements Fetch {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetch,
     TResult? Function(bool isEnabled)? statusChanged,
+    TResult? Function()? deny,
   }) {
     return fetch?.call();
   }
@@ -138,6 +146,7 @@ class _$FetchImpl implements Fetch {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
     TResult Function(bool isEnabled)? statusChanged,
+    TResult Function()? deny,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -151,6 +160,7 @@ class _$FetchImpl implements Fetch {
   TResult map<TResult extends Object?>({
     required TResult Function(Fetch value) fetch,
     required TResult Function(StatusChanged value) statusChanged,
+    required TResult Function(Deny value) deny,
   }) {
     return fetch(this);
   }
@@ -160,6 +170,7 @@ class _$FetchImpl implements Fetch {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Fetch value)? fetch,
     TResult? Function(StatusChanged value)? statusChanged,
+    TResult? Function(Deny value)? deny,
   }) {
     return fetch?.call(this);
   }
@@ -169,6 +180,7 @@ class _$FetchImpl implements Fetch {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Fetch value)? fetch,
     TResult Function(StatusChanged value)? statusChanged,
+    TResult Function(Deny value)? deny,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -253,6 +265,7 @@ class _$StatusChangedImpl implements StatusChanged {
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
     required TResult Function(bool isEnabled) statusChanged,
+    required TResult Function() deny,
   }) {
     return statusChanged(isEnabled);
   }
@@ -262,6 +275,7 @@ class _$StatusChangedImpl implements StatusChanged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetch,
     TResult? Function(bool isEnabled)? statusChanged,
+    TResult? Function()? deny,
   }) {
     return statusChanged?.call(isEnabled);
   }
@@ -271,6 +285,7 @@ class _$StatusChangedImpl implements StatusChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
     TResult Function(bool isEnabled)? statusChanged,
+    TResult Function()? deny,
     required TResult orElse(),
   }) {
     if (statusChanged != null) {
@@ -284,6 +299,7 @@ class _$StatusChangedImpl implements StatusChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(Fetch value) fetch,
     required TResult Function(StatusChanged value) statusChanged,
+    required TResult Function(Deny value) deny,
   }) {
     return statusChanged(this);
   }
@@ -293,6 +309,7 @@ class _$StatusChangedImpl implements StatusChanged {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Fetch value)? fetch,
     TResult? Function(StatusChanged value)? statusChanged,
+    TResult? Function(Deny value)? deny,
   }) {
     return statusChanged?.call(this);
   }
@@ -302,6 +319,7 @@ class _$StatusChangedImpl implements StatusChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Fetch value)? fetch,
     TResult Function(StatusChanged value)? statusChanged,
+    TResult Function(Deny value)? deny,
     required TResult orElse(),
   }) {
     if (statusChanged != null) {
@@ -322,4 +340,114 @@ abstract class StatusChanged implements AlertEvent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$StatusChangedImplCopyWith<_$StatusChangedImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DenyImplCopyWith<$Res> {
+  factory _$$DenyImplCopyWith(
+          _$DenyImpl value, $Res Function(_$DenyImpl) then) =
+      __$$DenyImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$DenyImplCopyWithImpl<$Res>
+    extends _$AlertEventCopyWithImpl<$Res, _$DenyImpl>
+    implements _$$DenyImplCopyWith<$Res> {
+  __$$DenyImplCopyWithImpl(_$DenyImpl _value, $Res Function(_$DenyImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AlertEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$DenyImpl implements Deny {
+  const _$DenyImpl();
+
+  @override
+  String toString() {
+    return 'AlertEvent.deny()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$DenyImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function(bool isEnabled) statusChanged,
+    required TResult Function() deny,
+  }) {
+    return deny();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function(bool isEnabled)? statusChanged,
+    TResult? Function()? deny,
+  }) {
+    return deny?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function(bool isEnabled)? statusChanged,
+    TResult Function()? deny,
+    required TResult orElse(),
+  }) {
+    if (deny != null) {
+      return deny();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Fetch value) fetch,
+    required TResult Function(StatusChanged value) statusChanged,
+    required TResult Function(Deny value) deny,
+  }) {
+    return deny(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Fetch value)? fetch,
+    TResult? Function(StatusChanged value)? statusChanged,
+    TResult? Function(Deny value)? deny,
+  }) {
+    return deny?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Fetch value)? fetch,
+    TResult Function(StatusChanged value)? statusChanged,
+    TResult Function(Deny value)? deny,
+    required TResult orElse(),
+  }) {
+    if (deny != null) {
+      return deny(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Deny implements AlertEvent {
+  const factory Deny() = _$DenyImpl;
 }

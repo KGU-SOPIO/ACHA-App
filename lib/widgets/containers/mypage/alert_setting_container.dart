@@ -31,6 +31,8 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
           GetIt.I<ToastManager>().error(message: state.message!);
         } else if (state.status == AlertStatus.changed) {
           GetIt.I<ToastManager>().show(message: state.message!, svgPath: 'lib/assets/svgs/toast/alert.svg');
+        } else if (state.status == AlertStatus.denied) {
+          GetIt.I<ToastManager>().error(message: state.message!);
         }
       },
       builder: (context, state) {

@@ -111,7 +111,7 @@ class AuthenticationRepository {
       signUpResponse.maybeWhen(
         success: (accessToken, refreshToken) async {
           await _secureStorage.saveTokens(accessToken: accessToken, refreshToken: refreshToken);
-          _authStreamController.add(AuthenticationStatus.authenticated);
+          _authStreamController.add(AuthenticationStatus.registered);
         },
         orElse: () => {}
       );
