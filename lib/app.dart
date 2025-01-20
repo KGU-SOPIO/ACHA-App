@@ -13,7 +13,10 @@ import 'package:acha/blocs/alert/index.dart';
 
 import 'package:acha/repository/index.dart';
 
+import 'package:acha/network/utils/connectivity_checker.dart';
+
 import 'package:acha/screens/splash.dart';
+import 'package:acha/screens/connect_error.dart';
 import 'package:acha/screens/home.dart';
 import 'package:acha/screens/auth/index.dart';
 
@@ -91,6 +94,7 @@ class AppView extends StatefulWidget {
 }
 
 class _AppViewState extends State<AppView> {
+  final ConnectivityChecker _connectivityChecker = ConnectivityChecker();
   NavigatorState get _navigator => AppView.navigatorKey.currentState!;
   bool _isNavigate = false;
   bool requestPermission = false;
@@ -122,9 +126,14 @@ class _AppViewState extends State<AppView> {
                 _checkStates(context);
                 return;
               },
-              unauthenticated: () {
-                _isNavigate = false;
-                _navigator.pushAndRemoveUntil(AuthStartScreen.route(), (route) => false);
+              unauthenticated: () async {
+                final isConnected = await _connectivityChecker.isConnected();
+                if (!isConnected) {
+                  _navigator.pushAndRemoveUntil(ConnectErrorScreen.route(), (route) => false);
+                } else {
+                  _isNavigate = false;
+                  _navigator.pushAndRemoveUntil(AuthStartScreen.route(), (route) => false);
+                }
                 return;
               },
               unknown: () => null,
@@ -139,6 +148,7 @@ class _AppViewState extends State<AppView> {
     );
   }
 
+  /// 상태 확인 후 화면을 전환합니다.
   void _checkStates(BuildContext context) {
     if (_isNavigate) return;
 

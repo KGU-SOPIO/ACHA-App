@@ -32,6 +32,8 @@ class AuthenticationRepository {
   /// 인증 상태를 초기화합니다.
   Future<void> _initAuthentication() async {
     try {
+      // 서버 연결 상태 추가 확인 필요
+
       final refreshTokenStatus = await _secureStorage.getRefreshTokenStatus();
       switch (refreshTokenStatus) {
         case TokenStatus.notExist:
@@ -51,7 +53,6 @@ class AuthenticationRepository {
     } on DioException catch (e) {
       _authStreamController.add(AuthenticationStatus.unauthenticated);
       GetIt.I<ToastManager>().error(message: e.error as String);
-      // Routing 추가 필요
     } catch (e) {
       _authStreamController.add(AuthenticationStatus.unauthenticated);
       GetIt.I<ToastManager>().error(message: '사용자 인증 중 문제가 발생했어요');

@@ -7,9 +7,9 @@ enum SignInStatus {
   signInProgress('인증하는 중'),
   signUpProgress('회원가입 중'),
   inSignUp('인증 완료'),
-  signInSuccess('로그인 완료'),
+  signInSuccess('인증 완료'),
   signUpSuccess('회원가입 완료'),
-  signInFailure('로그인 실패'),
+  signInFailure('인증 실패'),
   signUpFailure('회원가입 실패');
 
   final String description;

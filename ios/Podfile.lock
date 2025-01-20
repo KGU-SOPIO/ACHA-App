@@ -1,4 +1,7 @@
 PODS:
+  - connectivity_plus (0.0.1):
+    - Flutter
+    - FlutterMacOS
   - Firebase/CoreOnly (11.6.0):
     - FirebaseCore (~> 11.6.0)
   - Firebase/Messaging (11.6.0):
@@ -81,6 +84,7 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - connectivity_plus (from `.symlinks/plugins/connectivity_plus/darwin`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - Flutter (from `Flutter`)
@@ -104,6 +108,8 @@ SPEC REPOS:
     - PromisesObjC
 
 EXTERNAL SOURCES:
+  connectivity_plus:
+    :path: ".symlinks/plugins/connectivity_plus/darwin"
   firebase_core:
     :path: ".symlinks/plugins/firebase_core/ios"
   firebase_messaging:
@@ -124,6 +130,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
+  connectivity_plus: 2256d3e20624a7749ed21653aafe291a46446fee
   Firebase: 374a441a91ead896215703a674d58cdb3e9d772b
   firebase_core: 2337982fb78ee4d8d91e608b0a3d4f44346a93c8
   firebase_messaging: f3bddfa28c2cad70b3341bf461e987a24efd28d6

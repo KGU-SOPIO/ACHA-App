@@ -14,7 +14,7 @@ class ToastManager {
     final Widget toastContainer = Container(
       width: double.infinity,
       margin: const EdgeInsets.symmetric(horizontal: 29),
-      padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 16),
+      padding: const EdgeInsets.only(left: 22, right: 10, top: 16, bottom: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: const Color.fromARGB(255, 223, 236, 255),
@@ -36,7 +36,7 @@ class ToastManager {
             child: Text(
               message.replaceAllMapped(RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D'),
               maxLines: 2,
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.left,
               style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
