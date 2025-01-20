@@ -49,10 +49,13 @@ class CarouselActivityContainer extends StatelessWidget {
             child: Row(
               children: [
                 SvgPicture.asset('lib/assets/svgs/course/lecture.svg'),
-                Padding(
-                  padding: EdgeInsets.only(left: 7),
+                const SizedBox(width: 10),
+                Expanded(
                   child: Text(
                     activity.name!,
+                    maxLines: 1,
+                    overflow: TextOverflow.fade,
+                    softWrap: false,
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,

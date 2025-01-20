@@ -1,6 +1,8 @@
 export 'package:acha/widgets/containers/loader.dart';
-export 'package:acha/widgets/containers/user_header.dart';
-export 'package:acha/widgets/containers/d_day_container.dart';
+export 'package:acha/widgets/containers/header/user_header.dart';
+
+export 'package:acha/widgets/containers/d_day/d_day_container.dart';
+export 'package:acha/widgets/containers/d_day/d_day_badge.dart';
 
 export 'package:acha/widgets/containers/appbar/acha_appbar.dart';
 

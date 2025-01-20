@@ -72,7 +72,7 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    '알림 켜기',
+                    '알림',
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w400,

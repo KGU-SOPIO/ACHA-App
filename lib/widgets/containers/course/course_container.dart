@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:acha/extensions/index.dart';
+import 'package:acha/widgets/containers/d_day/d_day_badge.dart';
 
 class CourseContainer extends StatelessWidget {
   const CourseContainer({
@@ -73,21 +73,7 @@ class CourseContainer extends StatelessWidget {
               ],
             ),
             if (deadline != null)
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Color.fromARGB(25, 255, 78, 107)
-                ),
-                child: Text(
-                  deadline!.toDDay(),
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w700,
-                    color: Color.fromARGB(255, 255, 78, 107)
-                  )
-                )
-              )
+              DDayBadge(deadline: deadline!)
           ]
         )
       )

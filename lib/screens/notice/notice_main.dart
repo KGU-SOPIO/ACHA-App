@@ -120,7 +120,13 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
                         )
                       ),
                       const SizedBox(height: 20),
-                      Text(''),
+                      Text(
+                        state.notice!.content!.replaceAllMapped(RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D'),
+                        style: TextStyle(
+                          fontSize: 12,
+                          height: 1.7
+                        )
+                      ),
                       const SizedBox(height: 30),
                       Column(
                         children: [

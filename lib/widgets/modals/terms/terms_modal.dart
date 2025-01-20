@@ -39,7 +39,7 @@ class TermsBottomModalSheet {
                       child: Container(
                         height: 6,
                         width: 79,
-                        margin: EdgeInsets.only(bottom: 24),
+                        margin: const EdgeInsets.only(bottom: 24),
                         decoration: BoxDecoration(
                           color: Color.fromARGB(255, 228, 232, 241),
                           borderRadius: BorderRadius.circular(7)
@@ -48,7 +48,7 @@ class TermsBottomModalSheet {
                     ),
                     Container(
                       width: double.infinity,
-                      margin: EdgeInsets.only(left: 16, right: 16, bottom: 20),
+                      margin: const EdgeInsets.only(left: 16, right: 16, bottom: 20),
                       child: titleWidget
                     ),
                     Padding(
@@ -66,7 +66,7 @@ class TermsBottomModalSheet {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(
-                              padding: EdgeInsets.only(right: 10),
+                              padding: const EdgeInsets.only(right: 10),
                               child: Text(
                                 termsButtonText,
                                 style: const TextStyle(

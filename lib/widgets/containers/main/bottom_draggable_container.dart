@@ -25,7 +25,6 @@ class BottomDraggableContainer extends StatelessWidget {
             borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
             color: Colors.white,
             boxShadow: [
-              // 원하는 대로 Shadow를 정의하세요
               BoxShadow(
                 color: const Color(0XFF000066).withValues(alpha: 0.03),
                 blurRadius: 15,

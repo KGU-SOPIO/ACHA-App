@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:auto_size_text/auto_size_text.dart';
+
 class ActivityContainer extends StatelessWidget {
   const ActivityContainer({
     super.key,
@@ -30,8 +32,9 @@ class ActivityContainer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          AutoSizeText(
             title,
+            maxLines: 1,
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w500,

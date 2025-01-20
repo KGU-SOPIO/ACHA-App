@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'package:get_it/get_it.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
-import 'package:acha/blocs/auth/index.dart';
-
-import 'package:acha/screens/auth/index.dart';
 import 'package:acha/screens/mypage/mypage_sopio.dart';
 
 import 'package:acha/widgets/containers/index.dart';
 import 'package:acha/widgets/buttons/index.dart';
-import 'package:acha/widgets/toast/toast_manager.dart';
+import 'package:acha/widgets/modals/index.dart';
 
 class MyPageScreen extends StatefulWidget {
   const MyPageScreen({super.key});
@@ -28,6 +23,9 @@ class MyPageScreen extends StatefulWidget {
 }
 
 class _MyPageScreenState extends State<MyPageScreen> {
+  void _showLogoutModal() => LogoutModal.show(context);
+  void _showCancelModal() => CancelModal.show(context);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,11 +67,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
                     ContainerButton(
                       height: 56,
                       margin: EdgeInsets.only(bottom: 18),
-                      onPressed: () {
-                        context.read<AuthenticationBloc>().add(AuthenticationEvent.logout());
-                        Navigator.pushAndRemoveUntil(context, AuthStartScreen.route(), (route) => false);
-                        GetIt.I<ToastManager>().show(message: '정상적으로 로그아웃 되었어요', svgPath: 'lib/assets/svgs/toast/logout.svg');
-                      },
+                      onPressed: () => _showLogoutModal(),
                       backgroundColor: const Color.fromARGB(255, 237, 239, 242),
                       text: '로그아웃',
                       textStyle: TextStyle(
@@ -85,11 +79,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
                     ContainerButton(
                       height: 56,
                       margin: EdgeInsets.only(bottom: 54),
-                      onPressed: () {
-                        context.read<AuthenticationBloc>().add(AuthenticationEvent.logout());
-                        Navigator.pushAndRemoveUntil(context, AuthStartScreen.route(), (route) => false);
-                        GetIt.I<ToastManager>().success(message: '서비스를 탈퇴했어요');
-                      },
+                      onPressed: () => _showCancelModal(),
                       backgroundColor: const Color.fromARGB(25, 255, 78 , 107),
                       border: BorderSide(
                         color: Color.fromARGB(255, 255, 78, 107)
