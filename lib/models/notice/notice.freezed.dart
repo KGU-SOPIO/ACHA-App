@@ -182,20 +182,22 @@ mixin _$Notice {
   @HiveField(2)
   String get title => throw _privateConstructorUsedError;
   @HiveField(3)
-  DateTime get date => throw _privateConstructorUsedError;
+  String get professor => throw _privateConstructorUsedError;
   @HiveField(4)
-  String? get link => throw _privateConstructorUsedError;
+  DateTime get date => throw _privateConstructorUsedError;
   @HiveField(5)
-  String? get content => throw _privateConstructorUsedError;
+  String? get link => throw _privateConstructorUsedError;
   @HiveField(6)
-  List<File>? get files => throw _privateConstructorUsedError;
+  String? get content => throw _privateConstructorUsedError;
   @HiveField(7)
-  int? get nextNoticeId => throw _privateConstructorUsedError;
+  List<File>? get files => throw _privateConstructorUsedError;
   @HiveField(8)
-  String? get nextNoticeTitle => throw _privateConstructorUsedError;
+  int? get nextNoticeId => throw _privateConstructorUsedError;
   @HiveField(9)
-  int? get previousNoticeId => throw _privateConstructorUsedError;
+  String? get nextNoticeTitle => throw _privateConstructorUsedError;
   @HiveField(10)
+  int? get previousNoticeId => throw _privateConstructorUsedError;
+  @HiveField(11)
   String? get previousNoticeTitle => throw _privateConstructorUsedError;
 
   /// Serializes this Notice to a JSON map.
@@ -216,14 +218,15 @@ abstract class $NoticeCopyWith<$Res> {
       {@HiveField(0) int id,
       @HiveField(1) String index,
       @HiveField(2) String title,
-      @HiveField(3) DateTime date,
-      @HiveField(4) String? link,
-      @HiveField(5) String? content,
-      @HiveField(6) List<File>? files,
-      @HiveField(7) int? nextNoticeId,
-      @HiveField(8) String? nextNoticeTitle,
-      @HiveField(9) int? previousNoticeId,
-      @HiveField(10) String? previousNoticeTitle});
+      @HiveField(3) String professor,
+      @HiveField(4) DateTime date,
+      @HiveField(5) String? link,
+      @HiveField(6) String? content,
+      @HiveField(7) List<File>? files,
+      @HiveField(8) int? nextNoticeId,
+      @HiveField(9) String? nextNoticeTitle,
+      @HiveField(10) int? previousNoticeId,
+      @HiveField(11) String? previousNoticeTitle});
 }
 
 /// @nodoc
@@ -244,6 +247,7 @@ class _$NoticeCopyWithImpl<$Res, $Val extends Notice>
     Object? id = null,
     Object? index = null,
     Object? title = null,
+    Object? professor = null,
     Object? date = null,
     Object? link = freezed,
     Object? content = freezed,
@@ -265,6 +269,10 @@ class _$NoticeCopyWithImpl<$Res, $Val extends Notice>
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      professor: null == professor
+          ? _value.professor
+          : professor // ignore: cast_nullable_to_non_nullable
               as String,
       date: null == date
           ? _value.date
@@ -313,14 +321,15 @@ abstract class _$$NoticeImplCopyWith<$Res> implements $NoticeCopyWith<$Res> {
       {@HiveField(0) int id,
       @HiveField(1) String index,
       @HiveField(2) String title,
-      @HiveField(3) DateTime date,
-      @HiveField(4) String? link,
-      @HiveField(5) String? content,
-      @HiveField(6) List<File>? files,
-      @HiveField(7) int? nextNoticeId,
-      @HiveField(8) String? nextNoticeTitle,
-      @HiveField(9) int? previousNoticeId,
-      @HiveField(10) String? previousNoticeTitle});
+      @HiveField(3) String professor,
+      @HiveField(4) DateTime date,
+      @HiveField(5) String? link,
+      @HiveField(6) String? content,
+      @HiveField(7) List<File>? files,
+      @HiveField(8) int? nextNoticeId,
+      @HiveField(9) String? nextNoticeTitle,
+      @HiveField(10) int? previousNoticeId,
+      @HiveField(11) String? previousNoticeTitle});
 }
 
 /// @nodoc
@@ -339,6 +348,7 @@ class __$$NoticeImplCopyWithImpl<$Res>
     Object? id = null,
     Object? index = null,
     Object? title = null,
+    Object? professor = null,
     Object? date = null,
     Object? link = freezed,
     Object? content = freezed,
@@ -360,6 +370,10 @@ class __$$NoticeImplCopyWithImpl<$Res>
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      professor: null == professor
+          ? _value.professor
+          : professor // ignore: cast_nullable_to_non_nullable
               as String,
       date: null == date
           ? _value.date
@@ -404,14 +418,15 @@ class _$NoticeImpl implements _Notice {
       {@HiveField(0) required this.id,
       @HiveField(1) required this.index,
       @HiveField(2) required this.title,
-      @HiveField(3) required this.date,
-      @HiveField(4) this.link,
-      @HiveField(5) this.content,
-      @HiveField(6) final List<File>? files,
-      @HiveField(7) this.nextNoticeId,
-      @HiveField(8) this.nextNoticeTitle,
-      @HiveField(9) this.previousNoticeId,
-      @HiveField(10) this.previousNoticeTitle})
+      @HiveField(3) required this.professor,
+      @HiveField(4) required this.date,
+      @HiveField(5) this.link,
+      @HiveField(6) this.content,
+      @HiveField(7) final List<File>? files,
+      @HiveField(8) this.nextNoticeId,
+      @HiveField(9) this.nextNoticeTitle,
+      @HiveField(10) this.previousNoticeId,
+      @HiveField(11) this.previousNoticeTitle})
       : _files = files;
 
   factory _$NoticeImpl.fromJson(Map<String, dynamic> json) =>
@@ -428,16 +443,19 @@ class _$NoticeImpl implements _Notice {
   final String title;
   @override
   @HiveField(3)
-  final DateTime date;
+  final String professor;
   @override
   @HiveField(4)
-  final String? link;
+  final DateTime date;
   @override
   @HiveField(5)
+  final String? link;
+  @override
+  @HiveField(6)
   final String? content;
   final List<File>? _files;
   @override
-  @HiveField(6)
+  @HiveField(7)
   List<File>? get files {
     final value = _files;
     if (value == null) return null;
@@ -447,21 +465,21 @@ class _$NoticeImpl implements _Notice {
   }
 
   @override
-  @HiveField(7)
+  @HiveField(8)
   final int? nextNoticeId;
   @override
-  @HiveField(8)
+  @HiveField(9)
   final String? nextNoticeTitle;
   @override
-  @HiveField(9)
+  @HiveField(10)
   final int? previousNoticeId;
   @override
-  @HiveField(10)
+  @HiveField(11)
   final String? previousNoticeTitle;
 
   @override
   String toString() {
-    return 'Notice(id: $id, index: $index, title: $title, date: $date, link: $link, content: $content, files: $files, nextNoticeId: $nextNoticeId, nextNoticeTitle: $nextNoticeTitle, previousNoticeId: $previousNoticeId, previousNoticeTitle: $previousNoticeTitle)';
+    return 'Notice(id: $id, index: $index, title: $title, professor: $professor, date: $date, link: $link, content: $content, files: $files, nextNoticeId: $nextNoticeId, nextNoticeTitle: $nextNoticeTitle, previousNoticeId: $previousNoticeId, previousNoticeTitle: $previousNoticeTitle)';
   }
 
   @override
@@ -472,6 +490,8 @@ class _$NoticeImpl implements _Notice {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.index, index) || other.index == index) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.professor, professor) ||
+                other.professor == professor) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.link, link) || other.link == link) &&
             (identical(other.content, content) || other.content == content) &&
@@ -493,6 +513,7 @@ class _$NoticeImpl implements _Notice {
       id,
       index,
       title,
+      professor,
       date,
       link,
       content,
@@ -523,14 +544,15 @@ abstract class _Notice implements Notice {
       {@HiveField(0) required final int id,
       @HiveField(1) required final String index,
       @HiveField(2) required final String title,
-      @HiveField(3) required final DateTime date,
-      @HiveField(4) final String? link,
-      @HiveField(5) final String? content,
-      @HiveField(6) final List<File>? files,
-      @HiveField(7) final int? nextNoticeId,
-      @HiveField(8) final String? nextNoticeTitle,
-      @HiveField(9) final int? previousNoticeId,
-      @HiveField(10) final String? previousNoticeTitle}) = _$NoticeImpl;
+      @HiveField(3) required final String professor,
+      @HiveField(4) required final DateTime date,
+      @HiveField(5) final String? link,
+      @HiveField(6) final String? content,
+      @HiveField(7) final List<File>? files,
+      @HiveField(8) final int? nextNoticeId,
+      @HiveField(9) final String? nextNoticeTitle,
+      @HiveField(10) final int? previousNoticeId,
+      @HiveField(11) final String? previousNoticeTitle}) = _$NoticeImpl;
 
   factory _Notice.fromJson(Map<String, dynamic> json) = _$NoticeImpl.fromJson;
 
@@ -545,27 +567,30 @@ abstract class _Notice implements Notice {
   String get title;
   @override
   @HiveField(3)
-  DateTime get date;
+  String get professor;
   @override
   @HiveField(4)
-  String? get link;
+  DateTime get date;
   @override
   @HiveField(5)
-  String? get content;
+  String? get link;
   @override
   @HiveField(6)
-  List<File>? get files;
+  String? get content;
   @override
   @HiveField(7)
-  int? get nextNoticeId;
+  List<File>? get files;
   @override
   @HiveField(8)
-  String? get nextNoticeTitle;
+  int? get nextNoticeId;
   @override
   @HiveField(9)
-  int? get previousNoticeId;
+  String? get nextNoticeTitle;
   @override
   @HiveField(10)
+  int? get previousNoticeId;
+  @override
+  @HiveField(11)
   String? get previousNoticeTitle;
 
   /// Create a copy of Notice

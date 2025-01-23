@@ -20,21 +20,22 @@ class NoticeAdapter extends TypeAdapter<Notice> {
       id: fields[0] as int,
       index: fields[1] as String,
       title: fields[2] as String,
-      date: fields[3] as DateTime,
-      link: fields[4] as String?,
-      content: fields[5] as String?,
-      files: (fields[6] as List?)?.cast<File>(),
-      nextNoticeId: fields[7] as int?,
-      nextNoticeTitle: fields[8] as String?,
-      previousNoticeId: fields[9] as int?,
-      previousNoticeTitle: fields[10] as String?,
+      professor: fields[3] as String,
+      date: fields[4] as DateTime,
+      link: fields[5] as String?,
+      content: fields[6] as String?,
+      files: (fields[7] as List?)?.cast<File>(),
+      nextNoticeId: fields[8] as int?,
+      nextNoticeTitle: fields[9] as String?,
+      previousNoticeId: fields[10] as int?,
+      previousNoticeTitle: fields[11] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, Notice obj) {
     writer
-      ..writeByte(11)
+      ..writeByte(12)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -42,20 +43,22 @@ class NoticeAdapter extends TypeAdapter<Notice> {
       ..writeByte(2)
       ..write(obj.title)
       ..writeByte(3)
-      ..write(obj.date)
+      ..write(obj.professor)
       ..writeByte(4)
-      ..write(obj.link)
+      ..write(obj.date)
       ..writeByte(5)
-      ..write(obj.content)
+      ..write(obj.link)
       ..writeByte(6)
-      ..write(obj.files)
+      ..write(obj.content)
       ..writeByte(7)
-      ..write(obj.nextNoticeId)
+      ..write(obj.files)
       ..writeByte(8)
-      ..write(obj.nextNoticeTitle)
+      ..write(obj.nextNoticeId)
       ..writeByte(9)
-      ..write(obj.previousNoticeId)
+      ..write(obj.nextNoticeTitle)
       ..writeByte(10)
+      ..write(obj.previousNoticeId)
+      ..writeByte(11)
       ..write(obj.previousNoticeTitle);
   }
 
@@ -128,6 +131,7 @@ _$NoticeImpl _$$NoticeImplFromJson(Map<String, dynamic> json) => _$NoticeImpl(
       id: (json['id'] as num).toInt(),
       index: json['index'] as String,
       title: json['title'] as String,
+      professor: json['professor'] as String,
       date: DateTime.parse(json['date'] as String),
       link: json['link'] as String?,
       content: json['content'] as String?,
@@ -145,6 +149,7 @@ Map<String, dynamic> _$$NoticeImplToJson(_$NoticeImpl instance) =>
       'id': instance.id,
       'index': instance.index,
       'title': instance.title,
+      'professor': instance.professor,
       'date': instance.date.toIso8601String(),
       'link': instance.link,
       'content': instance.content,

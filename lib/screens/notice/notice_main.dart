@@ -95,7 +95,7 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
                                 SvgPicture.asset('lib/assets/svgs/notice/person.svg'),
                                 const SizedBox(width: 7),
                                 Text(
-                                  context.read<NoticeBloc>().course.professor,
+                                  state.notice!.professor,
                                   style: TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w500,

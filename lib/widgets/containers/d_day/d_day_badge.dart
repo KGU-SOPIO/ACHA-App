@@ -9,19 +9,22 @@ class DDayBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final now = DateTime.now();
+    final isWithin3Days = deadline.difference(DateTime(now.year, now.month, now.day)).inDays <= 3;
+    
     return Container(
       margin: const EdgeInsets.only(left: 10),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: Color.fromARGB(25, 255, 78, 107)
+        color: isWithin3Days ? Color.fromARGB(25, 255, 78, 107) : Color.fromARGB(25, 0, 102, 255)
       ),
       child: Text(
         deadline.toDDay(),
         style: TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w700,
-          color: Color.fromARGB(255, 255, 78, 107)
+          color: isWithin3Days ? Color.fromARGB(255, 255, 78, 107) : Color.fromARGB(255, 0, 102, 255)
         )
       )
     );

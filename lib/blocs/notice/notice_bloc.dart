@@ -1,9 +1,10 @@
-import 'package:acha/blocs/notice/index.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:acha/models/index.dart';
 import 'package:acha/repository/index.dart';
+
+import 'package:acha/blocs/notice/index.dart';
 
 class NoticeBloc extends Bloc<NoticeEvent, NoticeState> {
   NoticeBloc({required this.courseRepository, required this.course, required this.noticeId}) : super(const NoticeState(status: NoticeStatus.loading)) {

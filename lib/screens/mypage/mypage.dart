@@ -45,7 +45,9 @@ class _MyPageScreenState extends State<MyPageScreen> {
                   children: [
                     UserHeader(bottomMargin: 35),
                     AlertSettingContainer(),
+                    const SizedBox(height: 20),
                     PhraseContainer(),
+                    const SizedBox(height: 20),
                     RowContainerButton(
                       margin: EdgeInsets.only(bottom: 34),
                       padding: EdgeInsets.symmetric(vertical: 22),
