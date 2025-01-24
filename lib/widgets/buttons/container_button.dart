@@ -4,7 +4,6 @@ class ContainerButton extends StatelessWidget {
   const ContainerButton({
     super.key,
     required this.height,
-    this.margin,
     required this.onPressed,
     required this.backgroundColor,
     this.border,
@@ -13,7 +12,6 @@ class ContainerButton extends StatelessWidget {
   });
 
   final double height;
-  final EdgeInsets? margin;
   final VoidCallback onPressed;
   final Color backgroundColor;
   final BorderSide? border;
@@ -22,20 +20,17 @@ class ContainerButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: margin ?? EdgeInsets.zero,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          minimumSize: Size(double.infinity, height),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12)
-          ),
-          side: border,
-          backgroundColor: backgroundColor
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        minimumSize: Size(double.infinity, height),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12)
         ),
-        child: Text(text, style: textStyle)
-      )
+        side: border,
+        backgroundColor: backgroundColor
+      ),
+      child: Text(text, style: textStyle)
     );
   }
 }

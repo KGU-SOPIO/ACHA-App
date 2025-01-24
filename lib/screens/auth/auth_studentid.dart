@@ -14,9 +14,7 @@ class AuthStudentIdScreen extends StatefulWidget {
   const AuthStudentIdScreen({super.key});
 
   static Route<void> route() {
-    return CupertinoPageRoute(
-      builder: (context) => const AuthStudentIdScreen()
-    );
+    return CupertinoPageRoute(builder: (context) => const AuthStudentIdScreen());
   }
 
   @override
@@ -30,6 +28,7 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
 
   @override
   void initState() {
+    super.initState();
     _authenticationRepository = GetIt.I<AuthenticationRepository>();
     _textEditingController = TextEditingController();
     _focusNode = FocusNode();
@@ -38,7 +37,6 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
         _textEditingController.clear();
       }
     });
-    super.initState();
   }
 
   @override
@@ -51,11 +49,11 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
   @override
   Widget build(BuildContext context) {
     final OutlineInputBorder textFieldBorder = OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(
-          width: 1.5,
-          color: Color.fromARGB(255, 237, 239, 242),
-        )
+      borderRadius: BorderRadius.circular(12),
+      borderSide: const BorderSide(
+        width: 1.5,
+        color: Color.fromARGB(255, 237, 239, 242),
+      )
     );
 
     return PopScope(
@@ -79,11 +77,10 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
             child: Builder(
               builder: (context) {
                 return Container(
-                  width: MediaQuery.of(context).size.width,
-                  margin: const EdgeInsets.only(top: 30),
-                  padding: const EdgeInsets.all(24),
+                  margin: const EdgeInsets.only(top: 54),
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       RichText(
                         text: TextSpan(

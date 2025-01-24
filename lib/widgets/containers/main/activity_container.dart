@@ -23,7 +23,7 @@ class ActivityContainer extends StatelessWidget {
     return Container(
       width: double.infinity,
       margin: margin,
-      padding: EdgeInsets.symmetric(horizontal: 22, vertical: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 16),
       decoration: BoxDecoration(
         border: Border.all(color: Color.fromARGB(255, 228, 232, 241)),
         color: backgroundColor,
@@ -49,7 +49,7 @@ class ActivityContainer extends StatelessWidget {
               color: Color.fromARGB(255, 60, 60, 60)
             )
           ),
-          SizedBox(height: 14),
+          const SizedBox(height: 14),
           RichText(
             text: TextSpan(
               style: TextStyle(

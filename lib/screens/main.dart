@@ -23,25 +23,24 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 245, 246, 248),
+      backgroundColor: const Color.fromARGB(255, 245, 246, 248),
       body: SafeArea(
         child: Stack(
           children: [
             SingleChildScrollView(
               child: Column(
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 20),
-                    child: AchaAppbar()
-                  ),
+                  AchaAppbar(),
+                  const SizedBox(height: 20),
                   Container(
-                    width: MediaQuery.of(context).size.width,
-                    padding: EdgeInsets.symmetric(horizontal: 26),
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(horizontal: 26),
                     color: Color.fromARGB(255, 245, 246, 248),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        UserHeader(bottomMargin: 20),
+                        UserHeader(),
+                        const SizedBox(height: 20),
                         TodayCourseContainer()
                       ]
                     )

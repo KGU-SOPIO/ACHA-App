@@ -1,5 +1,5 @@
 name: acha
-description: "ACHA App"
+description: "아차! 이젠 놓치지 마세요"
 publish_to: 'none'
 version: 1.0.0+1
 
@@ -60,6 +60,7 @@ flutter:
   assets:
     - lib/assets/icons/
     - lib/assets/images/
+    - lib/assets/images/auth/
     - lib/assets/images/modal/terms/
     - lib/assets/svgs/
     - lib/assets/svgs/auth/

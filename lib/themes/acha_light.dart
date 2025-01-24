@@ -35,6 +35,13 @@ ThemeData achaLight() {
         splashFactory: NoSplash.splashFactory,
         overlayColor: WidgetStateColor.resolveWith((state) => Colors.transparent)
       )
+    ),
+    iconButtonTheme: IconButtonThemeData(
+      style: ButtonStyle(
+        elevation: WidgetStateProperty.all(0),
+        splashFactory: NoSplash.splashFactory,
+        overlayColor: WidgetStateColor.resolveWith((state) => Colors.transparent)
+      )
     )
   );
 }

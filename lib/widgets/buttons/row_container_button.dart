@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class RowContainerButton extends StatelessWidget {
   const RowContainerButton({
     super.key,
-    this.margin,
     required this.padding,
     required this.onPressed,
     this.foregroundColor,
@@ -15,7 +14,6 @@ class RowContainerButton extends StatelessWidget {
     required this.widget
   });
 
-  final EdgeInsets? margin;
   final EdgeInsets padding;
   final VoidCallback onPressed;
   final Color? foregroundColor;
@@ -28,28 +26,25 @@ class RowContainerButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: margin ?? EdgeInsets.zero,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          minimumSize: Size(double.infinity, 0),
-          shape: RoundedRectangleBorder(
-            side: border ?? BorderSide.none,
-            borderRadius: BorderRadius.circular(borderRadius)
-          ),
-          foregroundColor: foregroundColor,
-          backgroundColor: backgroundColor
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        minimumSize: Size(double.infinity, 0),
+        shape: RoundedRectangleBorder(
+          side: border ?? BorderSide.none,
+          borderRadius: BorderRadius.circular(borderRadius)
         ),
-        child: Padding(
-          padding: padding,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(text, style: textStyle),
-              widget
-            ]
-          )
+        foregroundColor: foregroundColor,
+        backgroundColor: backgroundColor
+      ),
+      child: Padding(
+        padding: padding,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(text, style: textStyle),
+            widget
+          ]
         )
       )
     );

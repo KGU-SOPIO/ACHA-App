@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'package:get_it/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:acha/blocs/activity/index.dart';
@@ -12,7 +11,6 @@ import 'package:acha/extensions/index.dart';
 
 import 'package:acha/widgets/containers/index.dart';
 import 'package:acha/widgets/tabbars/index.dart';
-import 'package:acha/widgets/toast/toast_manager.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
@@ -60,12 +58,7 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
               SliverToBoxAdapter(child: NotificationTabbar(tabController: _tabController))
             ];
           },
-          body: BlocConsumer<ActivityBloc, ActivityState>(
-            listener: (context, state) {
-              if (state.status == ActivityStatus.error) {
-                GetIt.I<ToastManager>().error(message: '활동을 불러오지 못했어요');
-              }
-            },
+          body: BlocBuilder<ActivityBloc, ActivityState>(
             builder: (context, state) {
               if (state.status == ActivityStatus.loading) {
                 return Loader(height: MediaQuery.of(context).size.height);
@@ -108,6 +101,7 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
         final entry = groupedActivities.entries.elementAt(index);
         final date = entry.key;
         final activities = entry.value;
+        
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 26),
           child: Column(

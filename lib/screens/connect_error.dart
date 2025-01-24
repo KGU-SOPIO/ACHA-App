@@ -30,7 +30,7 @@ class ConnectErrorScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SvgPicture.asset('lib/assets/svgs/auth/error.svg'),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     Text(
                       '인터넷 연결 문제',
                       style: TextStyle(
@@ -55,7 +55,6 @@ class ConnectErrorScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: ContainerButton(
                 height: 56,
-                margin: const EdgeInsets.only(bottom: 20),
                 onPressed: () {
                   if (Platform.isAndroid) {
                     SystemNavigator.pop();
@@ -71,7 +70,8 @@ class ConnectErrorScreen extends StatelessWidget {
                   fontWeight: FontWeight.w700
                 )
               )
-            )
+            ),
+            const SizedBox(height: 20)
           ]
         )
       )

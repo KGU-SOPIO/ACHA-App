@@ -21,7 +21,7 @@ class AuthSignUpScreen extends StatefulWidget {
 
   static Route<void> route(BuildContext parentContext) {
     return CupertinoPageRoute(
-      builder: (_) => BlocProvider.value(
+      builder: (context) => BlocProvider.value(
         value: BlocProvider.of<SignInBloc>(parentContext),
         child: const AuthSignUpScreen(),
       )
@@ -148,9 +148,9 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
                           ),
                           onPressed: () => _openManualUrl()
                         ),
+                        const SizedBox(height: 20),
                         ContainerButton(
                           height: 56,
-                          margin: const EdgeInsets.symmetric(vertical: 20),
                           onPressed: () => _showTermsModal(),
                           backgroundColor: const Color.fromARGB(255, 0, 102, 255),
                           text: '다음',
@@ -159,7 +159,8 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
                             fontWeight: FontWeight.w700,
                             color: Colors.white
                           )
-                        )
+                        ),
+                        const SizedBox(height: 20)
                       ]
                     )
                   ]

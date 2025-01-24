@@ -6,8 +6,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:acha/blocs/auth/index.dart';
 
-import 'package:acha/screens/auth/index.dart';
-
 import 'package:acha/widgets/toast/toast_manager.dart';
 
 class LogoutModal {
@@ -102,7 +100,6 @@ class LogoutModal {
                             ),
                             onPressed: () {
                               context.read<AuthenticationBloc>().add(AuthenticationEvent.logout());
-                              Navigator.pushAndRemoveUntil(context, AuthStartScreen.route(), (route) => false);
                               GetIt.I<ToastManager>().show(message: '정상적으로 로그아웃 되었어요', svgPath: 'lib/assets/svgs/toast/logout.svg');
                             },
                             child: Text(

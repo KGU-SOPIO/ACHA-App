@@ -34,22 +34,20 @@ class _MyPageScreenState extends State<MyPageScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 20),
-                child: AchaAppbar()
-              ),
+              AchaAppbar(),
+              const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 26),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    UserHeader(bottomMargin: 35),
+                    UserHeader(),
+                    const SizedBox(height: 35),
                     AlertSettingContainer(),
                     const SizedBox(height: 20),
                     PhraseContainer(),
                     const SizedBox(height: 20),
                     RowContainerButton(
-                      margin: EdgeInsets.only(bottom: 34),
                       padding: EdgeInsets.symmetric(vertical: 22),
                       onPressed: () => Navigator.push(context, SopioScreen.route()),
                       foregroundColor: Colors.white,
@@ -66,9 +64,9 @@ class _MyPageScreenState extends State<MyPageScreen> {
                       ),
                       widget: SvgPicture.asset('lib/assets/svgs/mypage/right_arrow.svg')
                     ),
+                    const SizedBox(height: 34),
                     ContainerButton(
                       height: 56,
-                      margin: EdgeInsets.only(bottom: 18),
                       onPressed: () => _showLogoutModal(),
                       backgroundColor: const Color.fromARGB(255, 237, 239, 242),
                       text: '로그아웃',
@@ -78,9 +76,9 @@ class _MyPageScreenState extends State<MyPageScreen> {
                         color: const Color.fromARGB(255, 109, 109, 109),
                       )
                     ),
+                    const SizedBox(height: 18),
                     ContainerButton(
                       height: 56,
-                      margin: EdgeInsets.only(bottom: 54),
                       onPressed: () => _showCancelModal(),
                       backgroundColor: const Color.fromARGB(25, 255, 78 , 107),
                       border: BorderSide(
@@ -92,7 +90,8 @@ class _MyPageScreenState extends State<MyPageScreen> {
                         fontWeight: FontWeight.w700,
                         color: const Color.fromARGB(255, 255, 78, 107)
                       )
-                    )
+                    ),
+                    const SizedBox(height: 54)
                   ]
                 )
               )

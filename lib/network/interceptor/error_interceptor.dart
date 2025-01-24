@@ -21,7 +21,11 @@ class ErrorInterceptor extends Interceptor {
         message = '네트워크 오류가 발생했어요';
         break;
       case DioExceptionType.cancel:
-        message = err.error as String;
+        if (err.error is String) {
+          message = err.error as String;
+        } else {
+          message = '요청을 처리하지 못했어요';
+        }
         break;
       case DioExceptionType.badResponse:
         if (err.response != null && err.response!.data != null) {

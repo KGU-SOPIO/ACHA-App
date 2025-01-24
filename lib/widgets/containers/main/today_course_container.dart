@@ -95,7 +95,7 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
                           padding: const EdgeInsets.only(bottom: 10),
                           child: Container(
                             width: double.infinity,
-                            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                             decoration: BoxDecoration(
                               border: Border.all(
                                 color: Color.fromARGB(255, 237, 239, 242),

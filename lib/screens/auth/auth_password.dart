@@ -15,7 +15,7 @@ class AuthPasswordScreen extends StatefulWidget {
 
   static Route<void> route(BuildContext parentContext) {
     return CupertinoPageRoute(
-        builder: (_) => BlocProvider.value(
+        builder: (context) => BlocProvider.value(
           value: BlocProvider.of<SignInBloc>(parentContext),
           child: const AuthPasswordScreen(),
         )
@@ -112,67 +112,60 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  margin: const EdgeInsets.only(top: 30),
-                  padding: const EdgeInsets.symmetric(vertical: 24),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(bottom: 30),
-                        child: RichText(
-                          text: TextSpan(
-                            style: const TextStyle(
-                              fontSize: 15,
-                              color: Colors.black
-                            ),
-                            children: [
-                              TextSpan(
-                                text: '비밀번호를 ',
-                                style: TextStyle(fontWeight: FontWeight.w700)
-                              ),
-                              TextSpan(
-                                text: '입력해 주세요',
-                                style: TextStyle(fontWeight: FontWeight.w400)
-                              )
-                            ]
-                          )
-                        )
-                      ),
-                      TextFormField(
-                        autofocus: true,
-                        obscureText: true,
-                        controller: _textEditingController,
-                        decoration: InputDecoration(
-                          hintText: '비밀번호',
-                          hintStyle: const TextStyle(
-                            color: Color.fromARGB(255, 186, 186, 186),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 54),
+                    RichText(
+                      text: TextSpan(
+                        style: const TextStyle(
+                          fontSize: 15,
+                          color: Colors.black
+                        ),
+                        children: [
+                          TextSpan(
+                            text: '비밀번호를 ',
+                            style: TextStyle(fontWeight: FontWeight.w700)
                           ),
-                          filled: true,
-                          fillColor: const Color.fromARGB(255, 251, 251, 251),
-                          border: textFieldBorder,
-                          enabledBorder: textFieldBorder,
-                          focusedBorder: textFieldBorder
-                        )
+                          TextSpan(
+                            text: '입력해 주세요',
+                            style: TextStyle(fontWeight: FontWeight.w400)
+                          )
+                        ]
                       )
-                    ]
-                  )
+                    ),
+                    const SizedBox(height: 30),
+                    TextFormField(
+                      autofocus: true,
+                      obscureText: true,
+                      controller: _textEditingController,
+                      decoration: InputDecoration(
+                        hintText: '비밀번호',
+                        hintStyle: const TextStyle(
+                          color: Color.fromARGB(255, 186, 186, 186),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400
+                        ),
+                        filled: true,
+                        fillColor: const Color.fromARGB(255, 251, 251, 251),
+                        border: textFieldBorder,
+                        enabledBorder: textFieldBorder,
+                        focusedBorder: textFieldBorder
+                      )
+                    )
+                  ]
                 ),
                 Column(
                   children: [
                     ElevatedButton(
                       style: ButtonStyle(
                         minimumSize: WidgetStateProperty.all(Size(double.infinity, 56)),
-                        backgroundColor: WidgetStateProperty.resolveWith(
-                              (Set<WidgetState> states) {
+                        backgroundColor: WidgetStateProperty.resolveWith((Set<WidgetState> states) {
                             if (states.contains(WidgetState.disabled)) {
-                              bool isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
-                              return isDarkMode ? const Color.fromARGB(255, 100, 100, 100) : const Color.fromARGB(255, 199, 199, 199);
+                              return const Color.fromARGB(255, 199, 199, 199);
                             }
                             return const Color.fromARGB(255, 0, 102, 255);
-                          },
+                          }
                         ),
                         shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
@@ -193,20 +186,18 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
                         )
                       )
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 5),
-                      child: TextButton(
-                        style: ButtonStyle(
-                          minimumSize: WidgetStateProperty.all(Size(double.infinity, 56))
-                        ),
-                        onPressed: () => Navigator.pop(context),
-                        child: const Text(
-                          '이전',
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500,
-                            color: Color.fromARGB(255, 80, 80, 80)
-                          )
+                    const SizedBox(height: 5),
+                    TextButton(
+                      style: ButtonStyle(
+                        minimumSize: WidgetStateProperty.all(Size(double.infinity, 56))
+                      ),
+                      onPressed: () => Navigator.pop(context),
+                      child: const Text(
+                        '이전',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: Color.fromARGB(255, 80, 80, 80)
                         )
                       )
                     )

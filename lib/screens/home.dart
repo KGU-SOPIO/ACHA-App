@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   /// 기기 알림 권한을 확인하고 요청합니다.
-  void _checkPermission() async {
+  Future<void> _checkPermission() async {
     if (widget.requestPermission) {
       FirebaseMessaging messaging = FirebaseMessaging.instance;
       NotificationSettings settings = await messaging.requestPermission(announcement: true);
@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
               CourseScreen(),
               NotificationScreen(),
               MyPageScreen()
-            ],
+            ]
           ),
           bottomNavigationBar: Container(
             decoration: BoxDecoration(
@@ -84,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   blurRadius: 5,
                   spreadRadius: 2.5,
                   offset: const Offset(0, 2.5),
-                ),
+                )
               ]
             ),
             child: NavigationBarTheme(

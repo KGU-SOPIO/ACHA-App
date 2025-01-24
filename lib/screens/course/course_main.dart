@@ -15,7 +15,6 @@ import 'package:acha/screens/notice/notice.dart';
 
 import 'package:acha/widgets/containers/index.dart';
 import 'package:acha/widgets/buttons/index.dart';
-import 'package:acha/widgets/toast/toast_manager.dart';
 
 class CourseMainScreen extends StatefulWidget {
   const CourseMainScreen({super.key});
@@ -46,12 +45,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
           decoration: BoxDecoration(
             color: Color.fromARGB(255, 245, 246, 248)
           ),
-          child: BlocConsumer<CourseBloc, CourseState>(
-            listener: (context, state) {
-              if (state.status == CourseStatus.error) {
-                GetIt.I<ToastManager>().error(message: state.errorMessage!);
-              }
-            },
+          child: BlocBuilder<CourseBloc, CourseState>(
             builder: (context, state) {
               return ListView(
                 physics: const ClampingScrollPhysics(),
@@ -65,42 +59,36 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 40),
-                          child: AchaAppbar(backgroundColor: Colors.white)
-                        ),
+                        AchaAppbar(backgroundColor: Colors.white),
+                        const SizedBox(height: 40),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 26),
                           child: Column(
                             children: [
-                              SizedBox(
-                                width: double.infinity,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      '${state.course.professor} 교수',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w400,
-                                        color: Color.fromARGB(255, 30, 30, 30)
-                                      )
-                                    ),
-                                    const SizedBox(height: 5),
-                                    Text(
-                                      state.course.name,
-                                      style: TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.w700,
-                                        color: Color.fromARGB(255, 30, 30, 30)
-                                      )
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Text(
+                                    '${state.course.professor} 교수',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                      color: Color.fromARGB(255, 30, 30, 30)
                                     )
-                                  ]
-                                )
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Text(
+                                    state.course.name,
+                                    style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w700,
+                                      color: Color.fromARGB(255, 30, 30, 30)
+                                    )
+                                  )
+                                ]
                               ),
                               const SizedBox(height: 25),
                               RowContainerButton(
-                                margin: EdgeInsets.only(bottom: 27),
                                 padding: EdgeInsets.symmetric(vertical: 17),
                                 onPressed: () => Navigator.push(context, NoticeScreen.route(course: state.course)),
                                 foregroundColor: Colors.white,
@@ -117,42 +105,39 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                                 ),
                                 widget: SvgPicture.asset('lib/assets/svgs/course/right_arrow.svg')
                               ),
+                              const SizedBox(height: 27),
                               Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
-                                  Container(
-                                    width: double.infinity,
-                                    margin: EdgeInsets.only(bottom: 15),
-                                    child: Row(
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(right: 4),
-                                          child: RichText(
-                                            text: TextSpan(
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                                color: Color.fromARGB(255, 30, 30, 30)
-                                              ),
-                                              children: [
-                                                TextSpan(
-                                                  text: '주차별 ',
-                                                  style: TextStyle(fontWeight: FontWeight.w700)
-                                                ),
-                                                TextSpan(
-                                                  text: '학습 활동',
-                                                  style: TextStyle(fontWeight: FontWeight.w500)
-                                                )
-                                              ]
+                                  Row(
+                                    children: [
+                                      RichText(
+                                        text: TextSpan(
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            color: Color.fromARGB(255, 30, 30, 30)
+                                          ),
+                                          children: [
+                                            TextSpan(
+                                              text: '주차별 ',
+                                              style: TextStyle(fontWeight: FontWeight.w700)
+                                            ),
+                                            TextSpan(
+                                              text: '학습 활동',
+                                              style: TextStyle(fontWeight: FontWeight.w500)
                                             )
-                                          )
-                                        ),
-                                        SvgPicture.asset('lib/assets/svgs/course/course.svg')
-                                      ],
-                                    ),
+                                          ]
+                                        )
+                                      ),
+                                      const SizedBox(width: 5),
+                                      SvgPicture.asset('lib/assets/svgs/course/course.svg')
+                                    ]
                                   ),
+                                  const SizedBox(height: 15),
                                   BlocBuilder<CourseBloc, CourseState>(
                                     builder: (context, state) {
                                       if (state.status == CourseStatus.loading) {
-                                        return const SizedBox(height: 165, child: Loader());
+                                        return _buildCarouselSkeleton();
                                       } else if (state.status == CourseStatus.loaded) {
                                         final CourseActivities courseActivities = state.course.courseActivities!;
                                         final containers = (courseActivities.courseActivities ?? []).expand((weekActivities) {
@@ -178,22 +163,27 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                                             )
                                           );
                                         } else {
-                                          return SizedBox.shrink();
+                                          return const SizedBox(
+                                            height: 160,
+                                            child: Center(
+                                              child: Text('등록된 활동이 없어요')
+                                            )
+                                          );
                                         }
                                       } else {
-                                        return SizedBox(
+                                        return const SizedBox(
                                           height: 165,
                                           child: Center(
                                             child: Text(
                                               '활동을 불러오지 못했어요',
                                               style: TextStyle(
                                                 fontSize: 15
-                                              ),
-                                            ),
+                                              )
+                                            )
                                           )
                                         );
                                       }
-                                    },
+                                    }
                                   )
                                 ]
                               )
@@ -207,7 +197,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                     const SizedBox.shrink()
                   else if (state.status == CourseStatus.loaded)
                     if (state.course.courseActivities!.courseActivities!.isEmpty)
-                      Container()
+                      const SizedBox.shrink()
                     else
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 32, vertical: 27),
@@ -218,9 +208,8 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                           itemBuilder: (context, index) {
                             final WeekActivities weekActivities = state.course.courseActivities!.courseActivities![index];
 
-                            return Container(
-                              width: double.infinity,
-                              margin: EdgeInsets.only(bottom: 10),
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 10),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(20),
                                 child: ExpansionPanelList.radio(
@@ -232,10 +221,10 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                                       value: '$index',
                                       headerBuilder:(context, isExpanded) {
                                         return Padding(
-                                          padding: EdgeInsets.symmetric(vertical: 7),
+                                          padding: const EdgeInsets.symmetric(vertical: 7),
                                           child: ListTile(
                                             leading: Padding(
-                                              padding: EdgeInsets.only(left: 4),
+                                              padding: const EdgeInsets.only(left: 4),
                                               child: Icon(Icons.circle, size: 15, color: Color.fromARGB(255, 255, 78, 107))
                                             ),
                                             title: Text(
@@ -275,13 +264,28 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                           }
                         )
                       )
-                  else
-                    Expanded(child: Center(child: Text('활동을 불러오지 못했어요')))
                 ]
               );
             }
           )
         )
+      )
+    );
+  }
+  
+  Widget _buildCarouselSkeleton() {
+    return Container(
+      height: 160,
+      margin: EdgeInsets.only(bottom: 5),
+      child: StackedListCarousel(
+        items: List.generate(3, (index) => const CarouselActivitySkeletonContainer()),
+        disableAutomaticLoop: true,
+        behavior: CarouselBehavior.loop,
+        cardBuilder: (context, item, size) => item,
+        outermostCardHeightFactor: 0.9,
+        itemGapHeightFactor: 0.03,
+        cardAspectRatio: MediaQuery.of(context).size.width / 160,
+        outermostCardAnimationDuration: Duration(milliseconds: 200),
       )
     );
   }

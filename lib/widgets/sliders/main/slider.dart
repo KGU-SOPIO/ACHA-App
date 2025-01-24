@@ -12,6 +12,7 @@ import 'package:acha/blocs/activity/index.dart';
 import 'package:acha/extensions/index.dart';
 
 import 'package:acha/widgets/containers/index.dart';
+import 'package:acha/widgets/sliders/index.dart';
 import 'package:acha/widgets/toast/toast_manager.dart';
 
 class SliderWidget extends StatefulWidget {
@@ -274,35 +275,6 @@ class _SliderWidgetState extends State<SliderWidget> {
             }
           )
         ]
-      )
-    );
-  }
-}
-
-class CarouselIndicator extends StatelessWidget {
-  const CarouselIndicator({super.key, required this.itemCount, required this.currentIndex});
-
-  final int itemCount;
-  final int currentIndex;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: List.generate(itemCount, (index) {
-          final isActive = currentIndex == index;
-          return Container(
-            width: 8,
-            height: 8,
-            margin: const EdgeInsets.symmetric(horizontal: 4),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: isActive ? Color.fromARGB(255, 0, 102, 255) : Color.fromARGB(255, 182, 182, 182)
-            )
-          );
-        })
       )
     );
   }

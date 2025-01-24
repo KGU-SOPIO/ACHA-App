@@ -8,14 +8,14 @@ class SplashScreen extends StatelessWidget {
 
   static Route<void> route() {
     return CupertinoPageRoute(
-      builder: (context) => const SplashScreen(),
+      builder: (context) => const SplashScreen()
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(child: Loader()),
+      body: Center(child: Loader())
     );
   }
 }

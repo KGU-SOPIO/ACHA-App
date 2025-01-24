@@ -6,8 +6,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:acha/blocs/auth/index.dart';
 
-import 'package:acha/screens/auth/index.dart';
-
 import 'package:acha/widgets/toast/toast_manager.dart';
 
 class CancelModal {
@@ -102,7 +100,6 @@ class CancelModal {
                             ),
                             onPressed: () {
                               context.read<AuthenticationBloc>().add(AuthenticationEvent.logout());
-                              Navigator.pushAndRemoveUntil(context, AuthStartScreen.route(), (route) => false);
                               GetIt.I<ToastManager>().success(message: '서비스를 탈퇴했어요');
                             },
                             child: Text(

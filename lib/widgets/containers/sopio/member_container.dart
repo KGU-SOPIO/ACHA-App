@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class MemberContainer extends StatelessWidget {
-  const MemberContainer({super.key, required this.name, required this.part, required this.department, required this.sns});
+  const MemberContainer({super.key, required this.name, required this.part, required this.department, required this.github});
 
   final String name;
   final String part;
   final String department;
-  final String sns;
+  final String github;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +55,7 @@ class MemberContainer extends StatelessWidget {
                 )
               ),
               Text(
-                sns,
+                github,
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w400

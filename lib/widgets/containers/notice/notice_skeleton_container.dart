@@ -1,0 +1,77 @@
+import 'package:flutter/material.dart';
+
+import 'package:skeletonizer/skeletonizer.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+class NoticeSkeletonContainer extends StatelessWidget {
+  const NoticeSkeletonContainer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Skeletonizer(
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.only(left: 10, top: 18, bottom: 15),
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(
+              color: Color.fromARGB(255, 228, 232, 241)
+            )
+          )
+        ),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Text(
+                  'N',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: Color.fromARGB(255, 151, 151, 151)
+                  )
+                ),
+                const SizedBox(width: 15),
+                Text(
+                  'Skeleton_Skeleton',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: Color.fromARGB(255, 60, 60, 60)
+                  )
+                )
+              ]
+            ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                SvgPicture.asset('lib/assets/svgs/notice/person.svg'),
+                const SizedBox(width: 7),
+                Text(
+                  'Skeleton',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    color: Color.fromARGB(255, 151, 151, 151)
+                  )
+                ),
+                const SizedBox(width: 20),
+                SvgPicture.asset('lib/assets/svgs/notice/clock.svg'),
+                const SizedBox(width: 7),
+                Text(
+                  'Skeleton',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    color: Color.fromARGB(255, 151, 151, 151)
+                  )
+                )
+              ]
+            )
+          ]
+        )
+      )
+    );
+  }
+}

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'package:get_it/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -10,7 +9,6 @@ import 'package:acha/blocs/course_list/index.dart';
 import 'package:acha/screens/course/course_main.dart';
 
 import 'package:acha/widgets/containers/index.dart';
-import 'package:acha/widgets/toast/toast_manager.dart';
 
 class CourseScreen extends StatefulWidget {
   const CourseScreen({super.key});
@@ -38,39 +36,28 @@ class _CourseScreenState extends State<CourseScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 20),
-                child: AchaAppbar()
-              ),
+              AchaAppbar(),
+              const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 26),
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 18),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 4),
-                            child: Text(
-                              '나의 강좌',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w700,
-                                color: Color.fromARGB(255, 30, 30, 30)
-                              ),
-                            )
+                    Row(
+                      children: [
+                        Text(
+                          '나의 강좌',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w700,
+                            color: Color.fromARGB(255, 30, 30, 30)
                           ),
-                          SvgPicture.asset('lib/assets/svgs/course/book.svg')
-                        ],
-                      )
+                        ),
+                        const SizedBox(width: 4),
+                        SvgPicture.asset('lib/assets/svgs/course/book.svg')
+                      ],
                     ),
-                    BlocConsumer<CourseListBloc, CourseListState>(
-                      listener: (context, state) {
-                        if (state.status == CourseListStatus.error) {
-                          GetIt.I<ToastManager>().error(message: state.errorMessage!);
-                        }
-                      },
+                    const SizedBox(height: 18),
+                    BlocBuilder<CourseListBloc, CourseListState>(
                       builder: (context, state) {
                         if (state.status == CourseListStatus.loading) {
                           return const Loader(height: 500);

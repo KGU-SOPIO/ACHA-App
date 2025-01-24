@@ -47,7 +47,6 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
             borderRadius: BorderRadius.circular(25)
           ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Row(
                 children: [
@@ -66,68 +65,74 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
                 ]
               ),
               const SizedBox(height: 24),
-              Text(
-                '알림 주기',
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w400
-                ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '강의와 과제 마감 알림은',
+                    '알림 주기',
                     style: TextStyle(
-                      height: 1.6,
                       fontSize: 15,
-                      fontWeight: FontWeight.w300,
-                      color: Color.fromARGB(255, 151, 151, 151)
+                      fontWeight: FontWeight.w400
                     ),
                   ),
-                  const SizedBox(height: 8),
-                  RichText(
-                    text: TextSpan(
-                      style: const TextStyle(
-                        height: 1.4,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w300,
-                        color: Color.fromARGB(255, 109, 109, 109)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        '강의와 과제 마감 알림은',
+                        style: TextStyle(
+                          height: 1.6,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w300,
+                          color: Color.fromARGB(255, 151, 151, 151)
+                        ),
                       ),
-                      children: [
-                        TextSpan(
-                          text: '3',
-                          style: TextStyle(fontWeight: FontWeight.w700, color: Color.fromARGB(255, 0, 102, 255))
-                        ),
-                        TextSpan(text: '일 전 / ', style: TextStyle(fontWeight: FontWeight.w500)),
-                        TextSpan(
-                          text: '1',
-                          style: TextStyle(fontWeight: FontWeight.w700, color: Color.fromARGB(255, 0, 102, 255))
-                        ),
-                        TextSpan(text: '일 전 / ', style: TextStyle(fontWeight: FontWeight.w500)),
-                        TextSpan(
-                          text: '1',
-                          style: TextStyle(fontWeight: FontWeight.w700, color: Color.fromARGB(255, 0, 102, 255))
-                        ),
-                        TextSpan(text: '시간 전', style: TextStyle(fontWeight: FontWeight.w500)),
-                        TextSpan(
-                          text: '에',
-                          style: TextStyle(fontWeight: FontWeight.w300)
+                      const SizedBox(height: 8),
+                      RichText(
+                        text: TextSpan(
+                          style: const TextStyle(
+                            height: 1.4,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w300,
+                            color: Color.fromARGB(255, 109, 109, 109)
+                          ),
+                          children: [
+                            TextSpan(
+                              text: '3',
+                              style: TextStyle(fontWeight: FontWeight.w700, color: Color.fromARGB(255, 0, 102, 255))
+                            ),
+                            TextSpan(text: '일 전 / ', style: TextStyle(fontWeight: FontWeight.w500)),
+                            TextSpan(
+                              text: '1',
+                              style: TextStyle(fontWeight: FontWeight.w700, color: Color.fromARGB(255, 0, 102, 255))
+                            ),
+                            TextSpan(text: '일 전 / ', style: TextStyle(fontWeight: FontWeight.w500)),
+                            TextSpan(
+                              text: '1',
+                              style: TextStyle(fontWeight: FontWeight.w700, color: Color.fromARGB(255, 0, 102, 255))
+                            ),
+                            TextSpan(text: '시간 전', style: TextStyle(fontWeight: FontWeight.w500)),
+                            TextSpan(
+                              text: '에',
+                              style: TextStyle(fontWeight: FontWeight.w300)
+                            )
+                          ]
                         )
-                      ]
-                    )
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    '전송됩니다',
-                    style: TextStyle(
-                      height: 1.4,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w300,
-                      color: Color.fromARGB(255, 151, 151, 151)
-                    ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        '전송됩니다',
+                        style: TextStyle(
+                          height: 1.4,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w300,
+                          color: Color.fromARGB(255, 151, 151, 151)
+                        )
+                      )
+                    ]
                   )
-                ],
+                ]
               ),
               const SizedBox(height: 24),
               Row(

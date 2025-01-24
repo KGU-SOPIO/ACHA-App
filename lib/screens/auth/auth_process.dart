@@ -16,7 +16,7 @@ class AuthProcessScreen extends StatefulWidget {
 
   static Route<void> route(BuildContext parentContext) {
     return CupertinoPageRoute(
-      builder: (_) => BlocProvider.value(
+      builder: (context) => BlocProvider.value(
         value: BlocProvider.of<SignInBloc>(parentContext),
         child: const AuthProcessScreen(),
       )
@@ -69,43 +69,46 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: 50),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SvgPicture.asset('lib/assets/svgs/auth/error.svg'),
-                            SizedBox(height: 30),
-                            Text(
-                              state.status.description,
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w700
-                              )
-                            ),
-                            SizedBox(height: 20),
-                            Text(
-                              state.errorMessage!,
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: Color.fromARGB(255, 109, 109, 109)
-                              )
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const SizedBox(height: 50),
+                          SvgPicture.asset('lib/assets/svgs/auth/error.svg'),
+                          const SizedBox(height: 30),
+                          Text(
+                            state.status.description,
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700
                             )
-                          ]
-                        )
+                          ),
+                          const SizedBox(height: 20),
+                          Text(
+                            state.errorMessage!,
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: Color.fromARGB(255, 109, 109, 109)
+                            )
+                          ),
+                          const SizedBox(height: 50),
+                        ]
                       ),
-                      ContainerButton(
-                        height: 56,
-                        margin: const EdgeInsets.only(bottom: 20),
-                        onPressed: () => Navigator.pushAndRemoveUntil(context, AuthStudentIdScreen.route(), (route) => false),
-                        backgroundColor: const Color.fromARGB(255, 0, 102, 255),
-                        text: '돌아가기',
-                        textStyle: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700
-                        )
+                      Column(
+                        children: [
+                          ContainerButton(
+                            height: 56,
+                            onPressed: () => Navigator.pushAndRemoveUntil(context, AuthStudentIdScreen.route(), (route) => false),
+                            backgroundColor: const Color.fromARGB(255, 0, 102, 255),
+                            text: '돌아가기',
+                            textStyle: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700
+                            )
+                          ),
+                          const SizedBox(height: 20)
+                        ]
                       )
                     ]
                   )
@@ -113,16 +116,16 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
               } else {
                 return Container(
                   width: double.infinity,
-                  padding: EdgeInsets.symmetric(horizontal: 24),
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SizedBox(height: 42),
+                      const SizedBox(height: 42),
                       Lottie.asset(
                         'lib/assets/lotties/auth/loading.json',
                         width: 45
                       ),
-                      SizedBox(height: 24),
+                      const SizedBox(height: 24),
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 22, vertical: 5),
                         decoration: BoxDecoration(
@@ -137,7 +140,23 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
                             color: Color.fromARGB(255, 0, 102, 255)
                           )
                         )
-                      )
+                      ),
+                      if (state.status == SignInStatus.signUpProgress)
+                        Column(
+                          children: [
+                            const SizedBox(height: 30),
+                            Text(
+                              '데이터를 가져오고 있어요\n시간이 조금 걸릴 수 있어요',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                height: 1.7,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: Color.fromARGB(255, 109, 109, 109)
+                              )
+                            )
+                          ]
+                        )
                     ]
                   )
                 );
