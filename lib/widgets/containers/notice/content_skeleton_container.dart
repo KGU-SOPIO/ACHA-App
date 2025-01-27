@@ -72,7 +72,12 @@ class ContentSkeletonContainer extends StatelessWidget {
               ]
             )
           ),
-          const SizedBox(height: 20)
+          const SizedBox(height: 20),
+          Text('Skeleton_Skeleton_Skeleton'),
+          const SizedBox(height: 10),
+          Text('Skeleton_Skeleton_Skeleton_Skeleton'),
+          const SizedBox(height: 10),
+          Text('Skeleton_Skeleton')
         ]
       )
     );

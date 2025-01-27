@@ -4,12 +4,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:stacked_list_carousel/stacked_list_carousel.dart';
 
 import 'package:acha/blocs/course/index.dart';
 
 import 'package:acha/models/index.dart';
 import 'package:acha/repository/index.dart';
+
+import 'package:acha/extensions/index.dart';
 
 import 'package:acha/screens/notice/notice.dart';
 
@@ -111,8 +114,8 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                                 children: [
                                   Row(
                                     children: [
-                                      RichText(
-                                        text: TextSpan(
+                                      Text.rich(
+                                        TextSpan(
                                           style: TextStyle(
                                             fontSize: 14,
                                             color: Color.fromARGB(255, 30, 30, 30)
@@ -140,7 +143,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                                         return _buildCarouselSkeleton();
                                       } else if (state.status == CourseStatus.loaded) {
                                         final CourseActivities courseActivities = state.course.courseActivities!;
-                                        final containers = (courseActivities.courseActivities ?? []).expand((weekActivities) {
+                                        final containers = (courseActivities.weekActivities ?? []).expand((weekActivities) {
                                           final week = weekActivities.week;
                                           return (weekActivities.activities ?? []).map((activity) {
                                             return CarouselActivityContainer(week: week!, activity: activity);
@@ -194,19 +197,20 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                     )
                   ),
                   if (state.status == CourseStatus.loading)
-                    const SizedBox.shrink()
+                    _buildPanelSkeleton()
                   else if (state.status == CourseStatus.loaded)
-                    if (state.course.courseActivities!.courseActivities!.isEmpty)
+                    if (state.course.courseActivities!.weekActivities!.isEmpty)
                       const SizedBox.shrink()
                     else
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 32, vertical: 27),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 27),
                         child: ListView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          itemCount: state.course.courseActivities!.courseActivities!.length,
+                          itemCount: state.course.courseActivities!.weekActivities!.length,
                           itemBuilder: (context, index) {
-                            final WeekActivities weekActivities = state.course.courseActivities!.courseActivities![index];
+                            final WeekActivities weekActivities = state.course.courseActivities!.weekActivities![index];
+                            final bool allCompleted = weekActivities.activities!.every((activity) => activity.attendance == true);
 
                             return Padding(
                               padding: const EdgeInsets.only(bottom: 10),
@@ -225,7 +229,11 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                                           child: ListTile(
                                             leading: Padding(
                                               padding: const EdgeInsets.only(left: 4),
-                                              child: Icon(Icons.circle, size: 15, color: Color.fromARGB(255, 255, 78, 107))
+                                              child: Icon(
+                                                Icons.circle,
+                                                size: 15,
+                                                color: allCompleted ? Color.fromARGB(255, 0, 102, 255) : Color.fromARGB(255, 255, 78, 107)
+                                              )
                                             ),
                                             title: Text(
                                               '${index + 1}주차',
@@ -243,7 +251,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                                           Divider(height: 1, color: Color.fromARGB(255, 245, 246, 248)),
                                           ...weekActivities.activities!.map((activity) {
                                             return ListTile(
-                                              leading: SvgPicture.asset('lib/assets/svgs/course/lecture.svg'),
+                                              leading: SvgPicture.asset(activity.type.svgPath),
                                               title: Text(
                                                 activity.name!,
                                                 style: TextStyle(
@@ -286,6 +294,26 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
         itemGapHeightFactor: 0.03,
         cardAspectRatio: MediaQuery.of(context).size.width / 160,
         outermostCardAnimationDuration: Duration(milliseconds: 200),
+      )
+    );
+  }
+
+  Widget _buildPanelSkeleton() {
+    return Skeletonizer(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 27),
+        child: Container(
+          height: 70,
+          padding: const EdgeInsets.only(left: 30),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20)
+          ),
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Text('Skeleton_Skeleton')
+          )
+        )
       )
     );
   }

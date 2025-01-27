@@ -40,8 +40,8 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              RichText(
-                text: TextSpan(
+              Text.rich(
+                TextSpan(
                   style: TextStyle(
                     fontSize: 16,
                     color: Color.fromARGB(255, 30, 30, 30)
@@ -103,42 +103,36 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
                               ),
                               borderRadius: BorderRadius.circular(20)
                             ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      '${course.professor} 교수',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400,
-                                        color: Color.fromARGB(255, 109, 109, 109)
-                                      )
-                                    ),
-                                    const SizedBox(height: 3),
-                                    AutoSizeText(
-                                      course.name,
-                                      maxLines: 1,
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.black
-                                      )
-                                    ),
-                                    const SizedBox(height: 2),
-                                    Text(
-                                      course.lectureRoom,
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.black
-                                      )
-                                    )
-                                  ]
+                                Text(
+                                  '${course.professor} 교수',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w400,
+                                    color: Color.fromARGB(255, 109, 109, 109)
+                                  )
                                 ),
-                                DDayBadge(deadline: course.deadline!)
+                                const SizedBox(height: 3),
+                                AutoSizeText(
+                                  course.name,
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black
+                                  )
+                                ),
+                                const SizedBox(height: 2),
+                                Text(
+                                  course.lectureRoom,
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black
+                                  )
+                                )
                               ]
                             )
                           )

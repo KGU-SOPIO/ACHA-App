@@ -6,12 +6,12 @@ part 'activity.g.dart';
 
 @JsonEnum(alwaysCreate: true)
 @HiveType(typeId: 0)
-enum ActivityType { @HiveField(0) file, @HiveField(1) lecture, @HiveField(2) assignment, @HiveField(3) url }
+enum ActivityType { @HiveField(0) lecture, @HiveField(1) assignment, @HiveField(2) url }
 
 @freezed
 class CourseActivities with _$CourseActivities {
   const factory CourseActivities({
-    @Default([]) List<WeekActivities>? courseActivities
+    @Default([]) List<WeekActivities>? weekActivities
   }) = _CourseActivities;
 
   factory CourseActivities.fromJson(Map<String, dynamic> json) => _$CourseActivitiesFromJson(json);

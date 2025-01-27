@@ -92,7 +92,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
                       },
                       builder: (context, state) {
                         if (state.status == NoticeListStatus.loading) {
-                          return Column(children: List.generate(3, (index) => NoticeSkeletonContainer()));
+                          return Column(children: List.generate(4, (index) => NoticeSkeletonContainer()));
                         } else if (state.status == NoticeListStatus.loaded) {
                           final List<Notice> noticeList = state.notices?.notices ?? [];
 

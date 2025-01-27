@@ -37,8 +37,8 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
     titleWidget: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        RichText(
-          text: TextSpan(
+        Text.rich(
+          TextSpan(
             style: TextStyle(
               fontSize: 16,
               color: Color.fromARGB(255, 30, 30, 30)
@@ -94,8 +94,8 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
                         const SizedBox(height: 24),
                         SizedBox(
                           width: double.infinity,
-                          child: RichText(
-                            text: TextSpan(
+                          child: Text.rich(
+                            TextSpan(
                               style: TextStyle(
                                 fontSize: 15,
                                 color: Color.fromARGB(255, 60, 60, 60)

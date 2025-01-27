@@ -20,8 +20,8 @@ class PhraseContainer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          RichText(
-            text: TextSpan(
+          Text.rich(
+            TextSpan(
               style: TextStyle(
                 fontSize: 16,
                 color: Color.fromARGB(255, 30, 30, 30)

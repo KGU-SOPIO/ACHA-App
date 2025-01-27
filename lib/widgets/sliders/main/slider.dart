@@ -77,8 +77,8 @@ class _SliderWidgetState extends State<SliderWidget> {
             children: [
               Row(
                 children: [
-                  RichText(
-                    text: const TextSpan(
+                  Text.rich(
+                    const TextSpan(
                       style: TextStyle(
                         fontSize: 16,
                         color: Color.fromARGB(255, 30, 30, 30),
@@ -183,8 +183,8 @@ class _SliderWidgetState extends State<SliderWidget> {
             children: [
               Row(
                 children: [
-                  RichText(
-                    text: const TextSpan(
+                  Text.rich(
+                    const TextSpan(
                       style: TextStyle(
                         fontSize: 16,
                         color: Color.fromARGB(255, 30, 30, 30),

@@ -9,7 +9,7 @@ class SopioScreen extends StatelessWidget {
   const SopioScreen({super.key});
 
   static Route<void> route() {
-    return CupertinoPageRoute(builder: (context) => const SopioScreen(),);
+    return CupertinoPageRoute(builder: (context) => const SopioScreen());
   }
 
   @override
@@ -38,33 +38,80 @@ class SopioScreen extends StatelessWidget {
                     Text(
                       'About',
                       style: TextStyle(
-                        fontWeight: FontWeight.w400
+                        fontWeight: FontWeight.w400,
+                        color: Color.fromARGB(255, 0, 102, 255)
                       )
                     ),
-                    const SizedBox(height: 5),
+                    const SizedBox(height: 8),
                     Text(
                       'SOPIO',
                       style: TextStyle(
                         fontSize: 24,
-                        fontWeight: FontWeight.w700
-                      )
-                    ),
-                    const SizedBox(height: 5),
-                    Text(
-                      'Software of Public Interest Organization'.replaceAllMapped(RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D'),
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500
+                        fontWeight: FontWeight.w700,
+                        color: Color.fromARGB(255, 30, 30, 30)
                       )
                     ),
                     const SizedBox(height: 20),
                     Text(
-                      '소프트웨어 기술을 활용하여 일상의 불편함을 해소하고, 누구나 쉽게 이용할 수 있는 편리한 서비스를 제공하는 것을 목표로 합니다.'.replaceAllMapped(RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D'),
+                      '\'Software of Public Interest Organization\'\n2023년에 2명으로 시작하여 현재는 5인으로 구성된 소프트웨어 개발팀입니다.'.replaceAllMapped(RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D'),
                       style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        height: 2
+                        height: 2,
+                        fontWeight: FontWeight.w300,
+                        color: Color.fromARGB(255, 60, 60, 60)
                       )
                     ),
-                    const SizedBox(height: 50),
+                    const SizedBox(height: 30),
+                    Text(
+                      '공익과 사용자 중심의 가치를 추구하며, 기술을 통해 일상의 불편함을 해소하고, 누구나 쉽게 접근할 수 있는 유용한 솔루션를 제공하는 것을 목표로 합니다.'.replaceAllMapped(RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D'),
+                      style: TextStyle(
+                        height: 2,
+                        fontWeight: FontWeight.w300,
+                        color: Color.fromARGB(255, 60, 60, 60)
+                      )
+                    ),
+                    const SizedBox(height: 30),
+                    Text.rich(
+                      TextSpan(
+                        style: const TextStyle(
+                          height: 2,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w300,
+                          color: Color.fromARGB(255, 60, 60, 60)
+                        ),
+                        children: [
+                          TextSpan(text: '첫 번째 프로젝트로 스마트한 학습 관리 서비스 '.replaceAllMapped(RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D')),
+                          TextSpan(
+                            text: '\'아차\''.replaceAllMapped(RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D'),
+                            style: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              color: Color.fromARGB(255, 0, 102, 255)
+                            )
+                          ),
+                          TextSpan(text: '를 선보입니다.'.replaceAllMapped(RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D'))
+                        ]
+                      )
+                    ),
+                    const SizedBox(height: 30),
+                    SizedBox(
+                      width: double.infinity,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset('lib/assets/svgs/mypage/sopio/team.svg'),
+                          const SizedBox(width: 8),
+                          Text(
+                            '개발팀',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                              color: Color.fromARGB(255, 30, 30, 30)
+                            )
+                          )
+                        ]
+                      )
+                    ),
+                    const SizedBox(height: 30),
                     MemberContainer(name: '홍준서', part: '앱', department: 'AI컴퓨터공학부', github: '@JunseoKR'),
                     const SizedBox(height: 21),
                     MemberContainer(name: '최수인', part: '웹', department: 'AI컴퓨터공학부', github: '@sooinice'),

@@ -121,32 +121,27 @@ class ActivityTypeAdapter extends TypeAdapter<ActivityType> {
   ActivityType read(BinaryReader reader) {
     switch (reader.readByte()) {
       case 0:
-        return ActivityType.file;
-      case 1:
         return ActivityType.lecture;
-      case 2:
+      case 1:
         return ActivityType.assignment;
-      case 3:
+      case 2:
         return ActivityType.url;
       default:
-        return ActivityType.file;
+        return ActivityType.lecture;
     }
   }
 
   @override
   void write(BinaryWriter writer, ActivityType obj) {
     switch (obj) {
-      case ActivityType.file:
+      case ActivityType.lecture:
         writer.writeByte(0);
         break;
-      case ActivityType.lecture:
+      case ActivityType.assignment:
         writer.writeByte(1);
         break;
-      case ActivityType.assignment:
-        writer.writeByte(2);
-        break;
       case ActivityType.url:
-        writer.writeByte(3);
+        writer.writeByte(2);
         break;
     }
   }
@@ -169,7 +164,7 @@ class ActivityTypeAdapter extends TypeAdapter<ActivityType> {
 _$CourseActivitiesImpl _$$CourseActivitiesImplFromJson(
         Map<String, dynamic> json) =>
     _$CourseActivitiesImpl(
-      courseActivities: (json['courseActivities'] as List<dynamic>?)
+      weekActivities: (json['weekActivities'] as List<dynamic>?)
               ?.map((e) => WeekActivities.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
@@ -178,7 +173,7 @@ _$CourseActivitiesImpl _$$CourseActivitiesImplFromJson(
 Map<String, dynamic> _$$CourseActivitiesImplToJson(
         _$CourseActivitiesImpl instance) =>
     <String, dynamic>{
-      'courseActivities': instance.courseActivities,
+      'weekActivities': instance.weekActivities,
     };
 
 _$WeekActivitiesImpl _$$WeekActivitiesImplFromJson(Map<String, dynamic> json) =>
@@ -234,7 +229,6 @@ Map<String, dynamic> _$$ActivityImplToJson(_$ActivityImpl instance) =>
     };
 
 const _$ActivityTypeEnumMap = {
-  ActivityType.file: 'file',
   ActivityType.lecture: 'lecture',
   ActivityType.assignment: 'assignment',
   ActivityType.url: 'url',

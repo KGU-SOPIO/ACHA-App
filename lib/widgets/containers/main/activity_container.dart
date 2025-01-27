@@ -50,8 +50,8 @@ class ActivityContainer extends StatelessWidget {
             )
           ),
           const SizedBox(height: 14),
-          RichText(
-            text: TextSpan(
+          Text.rich(
+            TextSpan(
               style: TextStyle(
                 color: Color.fromARGB(255, 151, 151, 151)
               ),

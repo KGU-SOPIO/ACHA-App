@@ -31,8 +31,8 @@ class _UserHeaderState extends State<UserHeader> {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              RichText(
-                text: TextSpan(
+              Text.rich(
+                TextSpan(
                   style: TextStyle(
                     fontSize: 24,
                     color: Color.fromARGB(255, 30, 30, 30)

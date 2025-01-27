@@ -52,8 +52,8 @@ class _AuthStartScreenState extends State<AuthStartScreen> {
                           child: Image.asset('lib/assets/images/auth/surprised.png', height: 180)
                         ),
                         const SizedBox(height: 35),
-                        RichText(
-                          text: TextSpan(
+                        Text.rich(
+                          TextSpan(
                             style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w700,
@@ -81,9 +81,9 @@ class _AuthStartScreenState extends State<AuthStartScreen> {
                           child: Image.asset('lib/assets/images/auth/calendar.png', height: 180)
                         ),
                         const SizedBox(height: 35),
-                        RichText(
+                        Text.rich(
                           textAlign: TextAlign.center,
-                          text: TextSpan(
+                          TextSpan(
                             style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w700,
@@ -116,9 +116,9 @@ class _AuthStartScreenState extends State<AuthStartScreen> {
                           child: SvgPicture.asset('lib/assets/images/auth/acha.svg')
                         ),
                         const SizedBox(height: 35),
-                        RichText(
+                        Text.rich(
                           textAlign: TextAlign.center,
-                          text: TextSpan(
+                          TextSpan(
                             style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w700,

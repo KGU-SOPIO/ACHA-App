@@ -20,7 +20,7 @@ CourseActivities _$CourseActivitiesFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CourseActivities {
-  List<WeekActivities>? get courseActivities =>
+  List<WeekActivities>? get weekActivities =>
       throw _privateConstructorUsedError;
 
   /// Serializes this CourseActivities to a JSON map.
@@ -39,7 +39,7 @@ abstract class $CourseActivitiesCopyWith<$Res> {
           CourseActivities value, $Res Function(CourseActivities) then) =
       _$CourseActivitiesCopyWithImpl<$Res, CourseActivities>;
   @useResult
-  $Res call({List<WeekActivities>? courseActivities});
+  $Res call({List<WeekActivities>? weekActivities});
 }
 
 /// @nodoc
@@ -57,12 +57,12 @@ class _$CourseActivitiesCopyWithImpl<$Res, $Val extends CourseActivities>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? courseActivities = freezed,
+    Object? weekActivities = freezed,
   }) {
     return _then(_value.copyWith(
-      courseActivities: freezed == courseActivities
-          ? _value.courseActivities
-          : courseActivities // ignore: cast_nullable_to_non_nullable
+      weekActivities: freezed == weekActivities
+          ? _value.weekActivities
+          : weekActivities // ignore: cast_nullable_to_non_nullable
               as List<WeekActivities>?,
     ) as $Val);
   }
@@ -76,7 +76,7 @@ abstract class _$$CourseActivitiesImplCopyWith<$Res>
       __$$CourseActivitiesImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<WeekActivities>? courseActivities});
+  $Res call({List<WeekActivities>? weekActivities});
 }
 
 /// @nodoc
@@ -92,12 +92,12 @@ class __$$CourseActivitiesImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? courseActivities = freezed,
+    Object? weekActivities = freezed,
   }) {
     return _then(_$CourseActivitiesImpl(
-      courseActivities: freezed == courseActivities
-          ? _value._courseActivities
-          : courseActivities // ignore: cast_nullable_to_non_nullable
+      weekActivities: freezed == weekActivities
+          ? _value._weekActivities
+          : weekActivities // ignore: cast_nullable_to_non_nullable
               as List<WeekActivities>?,
     ));
   }
@@ -107,27 +107,26 @@ class __$$CourseActivitiesImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CourseActivitiesImpl implements _CourseActivities {
   const _$CourseActivitiesImpl(
-      {final List<WeekActivities>? courseActivities = const []})
-      : _courseActivities = courseActivities;
+      {final List<WeekActivities>? weekActivities = const []})
+      : _weekActivities = weekActivities;
 
   factory _$CourseActivitiesImpl.fromJson(Map<String, dynamic> json) =>
       _$$CourseActivitiesImplFromJson(json);
 
-  final List<WeekActivities>? _courseActivities;
+  final List<WeekActivities>? _weekActivities;
   @override
   @JsonKey()
-  List<WeekActivities>? get courseActivities {
-    final value = _courseActivities;
+  List<WeekActivities>? get weekActivities {
+    final value = _weekActivities;
     if (value == null) return null;
-    if (_courseActivities is EqualUnmodifiableListView)
-      return _courseActivities;
+    if (_weekActivities is EqualUnmodifiableListView) return _weekActivities;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'CourseActivities(courseActivities: $courseActivities)';
+    return 'CourseActivities(weekActivities: $weekActivities)';
   }
 
   @override
@@ -136,13 +135,13 @@ class _$CourseActivitiesImpl implements _CourseActivities {
         (other.runtimeType == runtimeType &&
             other is _$CourseActivitiesImpl &&
             const DeepCollectionEquality()
-                .equals(other._courseActivities, _courseActivities));
+                .equals(other._weekActivities, _weekActivities));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_courseActivities));
+      runtimeType, const DeepCollectionEquality().hash(_weekActivities));
 
   /// Create a copy of CourseActivities
   /// with the given fields replaced by the non-null parameter values.
@@ -163,13 +162,13 @@ class _$CourseActivitiesImpl implements _CourseActivities {
 
 abstract class _CourseActivities implements CourseActivities {
   const factory _CourseActivities(
-      {final List<WeekActivities>? courseActivities}) = _$CourseActivitiesImpl;
+      {final List<WeekActivities>? weekActivities}) = _$CourseActivitiesImpl;
 
   factory _CourseActivities.fromJson(Map<String, dynamic> json) =
       _$CourseActivitiesImpl.fromJson;
 
   @override
-  List<WeekActivities>? get courseActivities;
+  List<WeekActivities>? get weekActivities;
 
   /// Create a copy of CourseActivities
   /// with the given fields replaced by the non-null parameter values.

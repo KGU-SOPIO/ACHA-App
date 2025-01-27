@@ -13,13 +13,14 @@ class ToastManager {
   Future _showToast({required String message, required String svgPath}) async {
     final Widget toastContainer = Container(
       width: double.infinity,
-      margin: const EdgeInsets.symmetric(horizontal: 29),
+      margin: const EdgeInsets.symmetric(horizontal: 40),
       padding: const EdgeInsets.only(left: 22, right: 10, top: 16, bottom: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: const Color.fromARGB(255, 223, 236, 255),
         border: Border.all(
-         color: Color.fromARGB(255, 166, 201, 255)
+          width: 1.5,
+          color: Color.fromARGB(255, 166, 201, 255)
         )
       ),
       child: Row(

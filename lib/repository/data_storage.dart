@@ -53,7 +53,7 @@ class DataStorage {
         );
       }).toList();
 
-      final updatedCourseActivities = CourseActivities(courseActivities: updatedWeekActivities);
+      final updatedCourseActivities = CourseActivities(weekActivities: updatedWeekActivities);
       final updatedCourse = course.copyWith(courseActivities: updatedCourseActivities);
       await box.put(courseCode, updatedCourse);
     }
@@ -87,7 +87,7 @@ class DataStorage {
     }
 
     final courseActivities = course.courseActivities;
-    final updatedWeekActivities = course.courseActivities!.courseActivities!.map((weekActivities) {
+    final updatedWeekActivities = course.courseActivities!.weekActivities!.map((weekActivities) {
       final updatedActivities = weekActivities.activities?.map((activity) {
         if (activity.type == ActivityType.assignment && activity.code == activityCode) {
           return activity.copyWith(
@@ -106,7 +106,7 @@ class DataStorage {
       return weekActivities.copyWith(activities: updatedActivities);
     }).toList();
 
-    final updatedCourseActivities = courseActivities!.copyWith(courseActivities: updatedWeekActivities);
+    final updatedCourseActivities = courseActivities!.copyWith(weekActivities: updatedWeekActivities);
     final updatedCourse = course.copyWith(courseActivities: updatedCourseActivities);
     await box.put(courseCode, updatedCourse);
   }

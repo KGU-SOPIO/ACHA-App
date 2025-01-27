@@ -144,15 +144,58 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
                       if (state.status == SignInStatus.signUpProgress)
                         Column(
                           children: [
-                            const SizedBox(height: 30),
-                            Text(
-                              '데이터를 가져오고 있어요\n시간이 조금 걸릴 수 있어요',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                height: 1.7,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: Color.fromARGB(255, 109, 109, 109)
+                            const SizedBox(height: 32),
+                            Container(
+                              width: double.infinity,
+                              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
+                              margin: const EdgeInsets.symmetric(horizontal: 8),
+                              decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 245, 246, 248),
+                                borderRadius: BorderRadius.circular(20)
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          SvgPicture.asset('lib/assets/svgs/auth/information.svg'),
+                                          const SizedBox(width: 5),
+                                          Text(
+                                            'Notice',
+                                            style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w400,
+                                              color: Color.fromARGB(255, 109, 109, 109)
+                                            )
+                                          )
+                                        ],
+                                      ),
+                                      const SizedBox(height: 12),
+                                      Text(
+                                        '데이터를 가져오고 있어요',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
+                                          color: Color.fromARGB(255, 109, 109, 109)
+                                        ),
+                                      ),
+                                      const SizedBox(height: 8),
+                                      Text(
+                                        '시간이 조금 걸릴 수 있어요',
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w400,
+                                          color: Color.fromARGB(255, 151, 151, 151)
+                                        )
+                                      )
+                                    ]
+                                  ),
+                                  SvgPicture.asset('lib/assets/svgs/auth/download.svg')
+                                ]
                               )
                             )
                           ]

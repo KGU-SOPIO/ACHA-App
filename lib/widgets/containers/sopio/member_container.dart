@@ -29,15 +29,24 @@ class MemberContainer extends StatelessWidget {
               Text(
                 name,
                 style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                  color: Color.fromARGB(255, 60, 60, 60)
                 )
               ),
-              Text(
-                part,
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w500
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 223, 236, 255),
+                  borderRadius: BorderRadius.circular(20)
+                ),
+                child: Text(
+                  part,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: Color.fromARGB(255, 0, 102, 255)
+                  )
                 )
               )
             ],
@@ -50,15 +59,17 @@ class MemberContainer extends StatelessWidget {
               Text(
                 department,
                 style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: Color.fromARGB(255, 109, 109, 109)
                 )
               ),
               Text(
                 github,
                 style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: Color.fromARGB(255, 109, 109, 109)
                 )
               )
             ]

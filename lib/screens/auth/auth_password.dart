@@ -54,8 +54,8 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
     titleWidget: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        RichText(
-          text: TextSpan(
+        Text.rich(
+          TextSpan(
             style: const TextStyle(
               fontSize: 16,
               color: Color.fromARGB(255, 30, 30, 30)
@@ -116,8 +116,8 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 54),
-                    RichText(
-                      text: TextSpan(
+                    Text.rich(
+                      TextSpan(
                         style: const TextStyle(
                           fontSize: 15,
                           color: Colors.black

@@ -62,13 +62,16 @@ flutter:
     - lib/assets/images/
     - lib/assets/images/auth/
     - lib/assets/images/modal/terms/
+    - lib/assets/images/modal/auth/
     - lib/assets/svgs/
     - lib/assets/svgs/auth/
     - lib/assets/svgs/modal/main/
+    - lib/assets/svgs/modal/auth/
     - lib/assets/svgs/modal/terms/
     - lib/assets/svgs/course/
     - lib/assets/svgs/notice/
     - lib/assets/svgs/mypage/
+    - lib/assets/svgs/mypage/sopio/
     - lib/assets/svgs/navigation/
     - lib/assets/svgs/toast/
     - lib/assets/lotties/auth/

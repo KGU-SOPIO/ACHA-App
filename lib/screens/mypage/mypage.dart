@@ -84,7 +84,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
                       border: BorderSide(
                         color: Color.fromARGB(255, 255, 78, 107)
                       ),
-                      text: '탈퇴',
+                      text: '계정 삭제',
                       textStyle: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w700,

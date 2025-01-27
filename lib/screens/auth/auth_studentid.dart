@@ -82,8 +82,8 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      RichText(
-                        text: TextSpan(
+                      Text.rich(
+                        TextSpan(
                           style: const TextStyle(
                             fontSize: 15,
                             color: Color.fromARGB(255, 60, 60, 60)

@@ -79,18 +79,8 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(
-                        '강의와 과제 마감 알림은',
-                        style: TextStyle(
-                          height: 1.6,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w300,
-                          color: Color.fromARGB(255, 151, 151, 151)
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      RichText(
-                        text: TextSpan(
+                      Text.rich(
+                        TextSpan(
                           style: const TextStyle(
                             height: 1.4,
                             fontSize: 15,
@@ -102,27 +92,23 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
                               text: '3',
                               style: TextStyle(fontWeight: FontWeight.w700, color: Color.fromARGB(255, 0, 102, 255))
                             ),
-                            TextSpan(text: '일 전 / ', style: TextStyle(fontWeight: FontWeight.w500)),
+                            TextSpan(text: '일 · ', style: TextStyle(fontWeight: FontWeight.w500)),
                             TextSpan(
                               text: '1',
                               style: TextStyle(fontWeight: FontWeight.w700, color: Color.fromARGB(255, 0, 102, 255))
                             ),
-                            TextSpan(text: '일 전 / ', style: TextStyle(fontWeight: FontWeight.w500)),
+                            TextSpan(text: '일 · ', style: TextStyle(fontWeight: FontWeight.w500)),
                             TextSpan(
                               text: '1',
                               style: TextStyle(fontWeight: FontWeight.w700, color: Color.fromARGB(255, 0, 102, 255))
                             ),
-                            TextSpan(text: '시간 전', style: TextStyle(fontWeight: FontWeight.w500)),
-                            TextSpan(
-                              text: '에',
-                              style: TextStyle(fontWeight: FontWeight.w300)
-                            )
+                            TextSpan(text: '시간 전', style: TextStyle(fontWeight: FontWeight.w500))
                           ]
                         )
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        '전송됩니다',
+                        '강의 / 과제 알림 발송',
                         style: TextStyle(
                           height: 1.4,
                           fontSize: 15,

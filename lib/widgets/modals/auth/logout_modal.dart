@@ -37,35 +37,39 @@ class LogoutModal {
                       )
                     ),
                     const SizedBox(height: 24),
-                    Container(
-                      width: double.infinity,
-                      margin: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          RichText(
-                            text: TextSpan(
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const SizedBox(height: 20),
+                        SvgPicture.asset('lib/assets/svgs/modal/auth/logout.svg'),
+                        const SizedBox(height: 20),
+                        Text(
+                          '로그아웃 할까요?',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w700,
+                            color: Color.fromARGB(255, 30, 30, 30)
+                          ),
+                        ),
+                        const SizedBox(height: 30),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              '기기의 정보들은 안전하게 삭제돼요',
                               style: TextStyle(
                                 fontSize: 16,
-                                color: Color.fromARGB(255, 30, 30, 30)
-                              ),
-                              children: [
-                                TextSpan(
-                                  text: '로그아웃할까요?\n',
-                                  style: TextStyle(fontWeight: FontWeight.w700)
-                                ),
-                                TextSpan(
-                                  text: '기기의 정보들은 안전하게 삭제돼요',
-                                  style: TextStyle(fontWeight: FontWeight.w500, height: 1.7)
-                                )
-                              ]
-                            )
-                          ),
-                          SvgPicture.asset('lib/assets/svgs/acha_logo.svg', width: 50)
-                        ]
-                      )
+                                fontWeight: FontWeight.w400,
+                                color: Color.fromARGB(255, 109, 109, 109)
+                              )
+                            ),
+                            const SizedBox(width: 10),
+                            Image.asset('lib/assets/images/modal/auth/check.png', width: 20)
+                          ]
+                        )
+                      ],
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 40),
                     Row(
                       children: [
                         Expanded(
@@ -75,11 +79,11 @@ class LogoutModal {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12)
                               ),
-                              backgroundColor: const Color.fromARGB(255, 242, 244, 246),
+                              backgroundColor: const Color.fromARGB(255, 237, 239, 242),
                             ),
                             onPressed: () => Navigator.pop(context),
                             child: Text(
-                              '아니요',
+                              '취소',
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
