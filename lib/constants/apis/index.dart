@@ -3,6 +3,7 @@ export 'package:acha/constants/apis/user.dart';
 export 'package:acha/constants/apis/course.dart';
 export 'package:acha/constants/apis/notice.dart';
 export 'package:acha/constants/apis/today_course.dart';
+export 'package:acha/constants/apis/token.dart';
 export 'package:acha/constants/apis/alert.dart';
 
 class BaseApiEndpoints {

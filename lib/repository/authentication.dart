@@ -1,7 +1,9 @@
+import 'dart:io';
 import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 import 'package:acha/models/index.dart';
 import 'package:acha/repository/index.dart';
@@ -70,9 +72,11 @@ class AuthenticationRepository {
   /// 로그인을 수행합니다.
   Future<AuthenticationResponse> signIn({required String studentId, required String password}) async {
     try {
+      final String? token = await _getDeviceToken();
+
       final response = await _dio.post(
         AuthenticationApiEndpoints.signIn,
-        data: {'studentId': studentId, 'password': password}
+        data: {'studentId': studentId, 'password': password, 'token': token}
       );
 
       final signInResponse = AuthenticationResponse.fromJson(response.data);
@@ -96,6 +100,8 @@ class AuthenticationRepository {
   /// 회원가입을 수행합니다.
   Future<AuthenticationResponse> signUp({required String studentId, required String name, required String college, required String department, required String? major}) async {
     try {
+      final String? token = await _getDeviceToken();
+
       final response = await _dio.post(
         AuthenticationApiEndpoints.signUp,
         data: {
@@ -105,6 +111,7 @@ class AuthenticationRepository {
           'department': department,
           if (major != null)
             'major': major,
+          'token': token
         }
       );
       
@@ -137,9 +144,10 @@ class AuthenticationRepository {
   Future<void> _refreshAccessToken() async {
     try {
       final refreshToken = await _secureStorage.readRefreshToken();
+      final deviceToken = await _getDeviceToken();
       final response = await _dio.post(
         AuthenticationApiEndpoints.refresh,
-        data: {'refreshToken': refreshToken}
+        data: {'refreshToken': refreshToken, 'deviceToken': deviceToken}
       );
 
       final refreshResponse = AuthenticationResponse.fromJson(response.data);
@@ -152,5 +160,12 @@ class AuthenticationRepository {
     } catch (e) {
       throw Exception('서비스 이용을 위한 인증에 실패했어요');
     }
+  }
+
+  /// FCM 토큰을 가져옵니다.
+  Future<String?> _getDeviceToken() async {
+    return Platform.isIOS
+      ? FirebaseMessaging.instance.getAPNSToken()
+      : FirebaseMessaging.instance.getToken();
   }
 }

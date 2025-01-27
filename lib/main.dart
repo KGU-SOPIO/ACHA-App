@@ -18,10 +18,10 @@ import 'package:acha/network/interceptor/index.dart';
 
 import 'package:acha/widgets/toast/toast_manager.dart';
 
-late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+late final TokenRepository _tokenRepository;
 
-late AndroidNotificationChannel channel;
-
+late final AndroidNotificationChannel channel;
+late final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 bool isFlutterLocalNotificationsInitialized = false;
 
 Future<void>setupFlutterNotifications() async {
@@ -29,22 +29,23 @@ Future<void>setupFlutterNotifications() async {
     return;
   }
 
+  flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
+  /// Flutter Local Notification 설정
+  const AndroidInitializationSettings initializationSettingsAndroid = AndroidInitializationSettings('@mipmap/launcher_icon');
+  const DarwinInitializationSettings initializationSettingsIOS = DarwinInitializationSettings(requestSoundPermission: false, requestBadgePermission: false, requestAlertPermission: false);
+  await flutterLocalNotificationsPlugin.initialize(InitializationSettings(android: initializationSettingsAndroid, iOS: initializationSettingsIOS));
+
+  /// Android Foregroud 알림 수신을 위해 알림 채널을 설정합니다.
   channel = const AndroidNotificationChannel(
     '아차',
     '알림',
     description: '강의 및 과제를 놓치지 않도록 알려드려요',
-    importance: Importance.high
+    importance: Importance.max
   );
-
-  flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-
-  const AndroidInitializationSettings initializationSettingsAndroid = AndroidInitializationSettings('@mipmap/launcher_icon');
-  const DarwinInitializationSettings initializationSettingsIOS = DarwinInitializationSettings(requestSoundPermission: false, requestBadgePermission: false, requestAlertPermission: false);
-  final InitializationSettings initializationSettings = InitializationSettings(android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
-  await flutterLocalNotificationsPlugin.initialize(initializationSettings);
-
   await flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.createNotificationChannel(channel);
 
+  /// iOS Foregroud 알림 수신을 위해 우선순위를 높게 설정합니다.
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
     alert: true,
     badge: true,
@@ -69,18 +70,18 @@ void showNotification(RemoteMessage message) {
   AndroidNotification? android = message.notification?.android;
   if (notification != null && android != null) {
     flutterLocalNotificationsPlugin.show(
-      notification.hashCode,
-      notification.title,
-      notification.body,
-      NotificationDetails(
-        android: AndroidNotificationDetails(
-          channel.id,
-          channel.name,
-          channelDescription: channel.description,
-          icon: 'launcher_icon'
-        )
+    notification.hashCode,
+    notification.title,
+    notification.body,
+    NotificationDetails(
+      android: AndroidNotificationDetails(
+        channel.id,
+        channel.name,
+        channelDescription: channel.description,
+        icon: android.smallIcon
       )
-    );
+    )
+  );
   }
 }
 
@@ -101,17 +102,16 @@ void main() async {
   /// Firebase Cloud Messaging
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   
+  // 메세지 수신
   FirebaseMessaging.onMessage.listen(_handleForegroundMessage);
   FirebaseMessaging.onBackgroundMessage(_handleBackgroundMessage);
 
   await setupFlutterNotifications();
 
-  debugPrint(await FirebaseMessaging.instance.getToken());
-
   /// 재설치 시 기존 데이터를 삭제합니다.
   _checkReinstall();
 
-  /// GetIt
+  /// GetIt 설정
   final GetIt getIt = GetIt.I;
   getIt.registerSingleton<SecureStorage>(SecureStorage());
   getIt.registerSingleton<DataStorage>(DataStorage());
@@ -133,8 +133,12 @@ void main() async {
   getIt.registerLazySingleton<AlertRepository>(() => AlertRepository());
   getIt.registerLazySingleton<ToastManager>(() => ToastManager());
 
-  /// HIVE
+  /// HIVE 설정
   await getIt<DataStorage>().init();
+
+  /// FCM 토큰 변경 시 재설정
+  _tokenRepository = TokenRepository();
+  FirebaseMessaging.instance.onTokenRefresh.listen(_tokenRepository.updateToken);
 
   runApp(const App());
 }

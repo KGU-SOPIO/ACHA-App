@@ -18,6 +18,13 @@ class AlertBloc extends Bloc<AlertEvent, AlertState> {
   /// 설정된 알림 상태를 요청합니다.
   Future<void> _onFetchAlert(Fetch event, Emitter<AlertState> emit) async {
     try {
+      FirebaseMessaging messaging = FirebaseMessaging.instance;
+      NotificationSettings settings = await messaging.getNotificationSettings();
+      if (settings.authorizationStatus == AuthorizationStatus.denied) {
+        emit(state.copyWith(status: AlertStatus.loaded, isEnabled: false));
+        return;
+      }
+
       final bool isEnabled = await alertRepository.fetchSetting();
       emit(state.copyWith(status: AlertStatus.loaded, isEnabled: isEnabled));
     } on DioException catch (e) {
@@ -27,18 +34,8 @@ class AlertBloc extends Bloc<AlertEvent, AlertState> {
     }
   }
 
-  /// 알림을 거부합니다.
-  Future<void> _onDenyAlert(Deny event, Emitter<AlertState> emit) async {
-    emit(state.copyWith(status: AlertStatus.loading));
-    try {
-      await alertRepository.updateSetting(isEnabled: false);
-      emit(state.copyWith(status: AlertStatus.denied, isEnabled: false, message: '강의와 과제 마감 알림을 받을 수 없어요'));
-    } on DioException catch (e) {
-      emit(state.copyWith(status: AlertStatus.error, isEnabled: false, message: e.error as String));
-    } catch (e) {
-      emit(state.copyWith(status: AlertStatus.error, isEnabled: false, message: '알림 상태를 변경하지 못했어요'));
-    }
-  }
+  /// 알림 거부 Toast를 띄웁니다.
+  void _onDenyAlert(Deny event, Emitter<AlertState> emit) => emit(state.copyWith(status: AlertStatus.denied, isEnabled: false, message: '강의와 과제 마감 알림을 받을 수 없어요'));
 
   /// 알림 상태 변경을 요청합니다.
   Future<void> _onStatusChanged(StatusChanged event, Emitter<AlertState> emit) async {
