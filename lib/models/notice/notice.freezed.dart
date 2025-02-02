@@ -175,29 +175,17 @@ Notice _$NoticeFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Notice {
-  @HiveField(0)
   int get id => throw _privateConstructorUsedError;
-  @HiveField(1)
   String get index => throw _privateConstructorUsedError;
-  @HiveField(2)
   String get title => throw _privateConstructorUsedError;
-  @HiveField(3)
   String get professor => throw _privateConstructorUsedError;
-  @HiveField(4)
   DateTime get date => throw _privateConstructorUsedError;
-  @HiveField(5)
   String? get link => throw _privateConstructorUsedError;
-  @HiveField(6)
   String? get content => throw _privateConstructorUsedError;
-  @HiveField(7)
   List<File>? get files => throw _privateConstructorUsedError;
-  @HiveField(8)
   int? get nextNoticeId => throw _privateConstructorUsedError;
-  @HiveField(9)
   String? get nextNoticeTitle => throw _privateConstructorUsedError;
-  @HiveField(10)
   int? get previousNoticeId => throw _privateConstructorUsedError;
-  @HiveField(11)
   String? get previousNoticeTitle => throw _privateConstructorUsedError;
 
   /// Serializes this Notice to a JSON map.
@@ -215,18 +203,18 @@ abstract class $NoticeCopyWith<$Res> {
       _$NoticeCopyWithImpl<$Res, Notice>;
   @useResult
   $Res call(
-      {@HiveField(0) int id,
-      @HiveField(1) String index,
-      @HiveField(2) String title,
-      @HiveField(3) String professor,
-      @HiveField(4) DateTime date,
-      @HiveField(5) String? link,
-      @HiveField(6) String? content,
-      @HiveField(7) List<File>? files,
-      @HiveField(8) int? nextNoticeId,
-      @HiveField(9) String? nextNoticeTitle,
-      @HiveField(10) int? previousNoticeId,
-      @HiveField(11) String? previousNoticeTitle});
+      {int id,
+      String index,
+      String title,
+      String professor,
+      DateTime date,
+      String? link,
+      String? content,
+      List<File>? files,
+      int? nextNoticeId,
+      String? nextNoticeTitle,
+      int? previousNoticeId,
+      String? previousNoticeTitle});
 }
 
 /// @nodoc
@@ -318,18 +306,18 @@ abstract class _$$NoticeImplCopyWith<$Res> implements $NoticeCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@HiveField(0) int id,
-      @HiveField(1) String index,
-      @HiveField(2) String title,
-      @HiveField(3) String professor,
-      @HiveField(4) DateTime date,
-      @HiveField(5) String? link,
-      @HiveField(6) String? content,
-      @HiveField(7) List<File>? files,
-      @HiveField(8) int? nextNoticeId,
-      @HiveField(9) String? nextNoticeTitle,
-      @HiveField(10) int? previousNoticeId,
-      @HiveField(11) String? previousNoticeTitle});
+      {int id,
+      String index,
+      String title,
+      String professor,
+      DateTime date,
+      String? link,
+      String? content,
+      List<File>? files,
+      int? nextNoticeId,
+      String? nextNoticeTitle,
+      int? previousNoticeId,
+      String? previousNoticeTitle});
 }
 
 /// @nodoc
@@ -415,47 +403,39 @@ class __$$NoticeImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$NoticeImpl implements _Notice {
   const _$NoticeImpl(
-      {@HiveField(0) required this.id,
-      @HiveField(1) required this.index,
-      @HiveField(2) required this.title,
-      @HiveField(3) required this.professor,
-      @HiveField(4) required this.date,
-      @HiveField(5) this.link,
-      @HiveField(6) this.content,
-      @HiveField(7) final List<File>? files,
-      @HiveField(8) this.nextNoticeId,
-      @HiveField(9) this.nextNoticeTitle,
-      @HiveField(10) this.previousNoticeId,
-      @HiveField(11) this.previousNoticeTitle})
+      {required this.id,
+      required this.index,
+      required this.title,
+      required this.professor,
+      required this.date,
+      this.link,
+      this.content,
+      final List<File>? files,
+      this.nextNoticeId,
+      this.nextNoticeTitle,
+      this.previousNoticeId,
+      this.previousNoticeTitle})
       : _files = files;
 
   factory _$NoticeImpl.fromJson(Map<String, dynamic> json) =>
       _$$NoticeImplFromJson(json);
 
   @override
-  @HiveField(0)
   final int id;
   @override
-  @HiveField(1)
   final String index;
   @override
-  @HiveField(2)
   final String title;
   @override
-  @HiveField(3)
   final String professor;
   @override
-  @HiveField(4)
   final DateTime date;
   @override
-  @HiveField(5)
   final String? link;
   @override
-  @HiveField(6)
   final String? content;
   final List<File>? _files;
   @override
-  @HiveField(7)
   List<File>? get files {
     final value = _files;
     if (value == null) return null;
@@ -465,16 +445,12 @@ class _$NoticeImpl implements _Notice {
   }
 
   @override
-  @HiveField(8)
   final int? nextNoticeId;
   @override
-  @HiveField(9)
   final String? nextNoticeTitle;
   @override
-  @HiveField(10)
   final int? previousNoticeId;
   @override
-  @HiveField(11)
   final String? previousNoticeTitle;
 
   @override
@@ -541,56 +517,44 @@ class _$NoticeImpl implements _Notice {
 
 abstract class _Notice implements Notice {
   const factory _Notice(
-      {@HiveField(0) required final int id,
-      @HiveField(1) required final String index,
-      @HiveField(2) required final String title,
-      @HiveField(3) required final String professor,
-      @HiveField(4) required final DateTime date,
-      @HiveField(5) final String? link,
-      @HiveField(6) final String? content,
-      @HiveField(7) final List<File>? files,
-      @HiveField(8) final int? nextNoticeId,
-      @HiveField(9) final String? nextNoticeTitle,
-      @HiveField(10) final int? previousNoticeId,
-      @HiveField(11) final String? previousNoticeTitle}) = _$NoticeImpl;
+      {required final int id,
+      required final String index,
+      required final String title,
+      required final String professor,
+      required final DateTime date,
+      final String? link,
+      final String? content,
+      final List<File>? files,
+      final int? nextNoticeId,
+      final String? nextNoticeTitle,
+      final int? previousNoticeId,
+      final String? previousNoticeTitle}) = _$NoticeImpl;
 
   factory _Notice.fromJson(Map<String, dynamic> json) = _$NoticeImpl.fromJson;
 
   @override
-  @HiveField(0)
   int get id;
   @override
-  @HiveField(1)
   String get index;
   @override
-  @HiveField(2)
   String get title;
   @override
-  @HiveField(3)
   String get professor;
   @override
-  @HiveField(4)
   DateTime get date;
   @override
-  @HiveField(5)
   String? get link;
   @override
-  @HiveField(6)
   String? get content;
   @override
-  @HiveField(7)
   List<File>? get files;
   @override
-  @HiveField(8)
   int? get nextNoticeId;
   @override
-  @HiveField(9)
   String? get nextNoticeTitle;
   @override
-  @HiveField(10)
   int? get previousNoticeId;
   @override
-  @HiveField(11)
   String? get previousNoticeTitle;
 
   /// Create a copy of Notice
@@ -607,9 +571,7 @@ File _$FileFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$File {
-  @HiveField(0)
   String get name => throw _privateConstructorUsedError;
-  @HiveField(1)
   String get link => throw _privateConstructorUsedError;
 
   /// Serializes this File to a JSON map.
@@ -626,7 +588,7 @@ abstract class $FileCopyWith<$Res> {
   factory $FileCopyWith(File value, $Res Function(File) then) =
       _$FileCopyWithImpl<$Res, File>;
   @useResult
-  $Res call({@HiveField(0) String name, @HiveField(1) String link});
+  $Res call({String name, String link});
 }
 
 /// @nodoc
@@ -667,7 +629,7 @@ abstract class _$$FileImplCopyWith<$Res> implements $FileCopyWith<$Res> {
       __$$FileImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@HiveField(0) String name, @HiveField(1) String link});
+  $Res call({String name, String link});
 }
 
 /// @nodoc
@@ -701,17 +663,14 @@ class __$$FileImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FileImpl implements _File {
-  const _$FileImpl(
-      {@HiveField(0) required this.name, @HiveField(1) required this.link});
+  const _$FileImpl({required this.name, required this.link});
 
   factory _$FileImpl.fromJson(Map<String, dynamic> json) =>
       _$$FileImplFromJson(json);
 
   @override
-  @HiveField(0)
   final String name;
   @override
-  @HiveField(1)
   final String link;
 
   @override
@@ -750,16 +709,13 @@ class _$FileImpl implements _File {
 
 abstract class _File implements File {
   const factory _File(
-      {@HiveField(0) required final String name,
-      @HiveField(1) required final String link}) = _$FileImpl;
+      {required final String name, required final String link}) = _$FileImpl;
 
   factory _File.fromJson(Map<String, dynamic> json) = _$FileImpl.fromJson;
 
   @override
-  @HiveField(0)
   String get name;
   @override
-  @HiveField(1)
   String get link;
 
   /// Create a copy of File

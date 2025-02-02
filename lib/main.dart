@@ -114,7 +114,6 @@ void main() async {
   /// GetIt 설정
   final GetIt getIt = GetIt.I;
   getIt.registerSingleton<SecureStorage>(SecureStorage());
-  getIt.registerSingleton<DataStorage>(DataStorage());
   getIt.registerSingleton(
     () {
       final Dio dio = Dio(BaseOptions(
@@ -132,9 +131,6 @@ void main() async {
   getIt.registerLazySingleton<CourseRepository>(() => CourseRepository());
   getIt.registerLazySingleton<AlertRepository>(() => AlertRepository());
   getIt.registerLazySingleton<ToastManager>(() => ToastManager());
-
-  /// HIVE 설정
-  await getIt<DataStorage>().init();
 
   /// FCM 토큰 변경 시 재설정
   _tokenRepository = TokenRepository();

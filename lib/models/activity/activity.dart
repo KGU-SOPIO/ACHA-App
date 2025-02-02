@@ -1,12 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 part 'activity.freezed.dart';
 part 'activity.g.dart';
 
 @JsonEnum(alwaysCreate: true)
-@HiveType(typeId: 0)
-enum ActivityType { @HiveField(0) lecture, @HiveField(1) assignment, @HiveField(2) url }
+enum ActivityType { lecture, assignment, url }
 
 @freezed
 class CourseActivities with _$CourseActivities {
@@ -18,33 +16,31 @@ class CourseActivities with _$CourseActivities {
 }
 
 @freezed
-@HiveType(typeId: 2)
 class WeekActivities with _$WeekActivities {
   const factory WeekActivities({
-    @HiveField(0) int? week,
-    @HiveField(1) @Default([]) List<Activity>? activities,
+    int? week,
+    @Default([]) List<Activity>? activities,
   }) = _WeekActivities;
 
   factory WeekActivities.fromJson(Map<String, dynamic> json) => _$WeekActivitiesFromJson(json);
 }
 
 @freezed
-@HiveType(typeId: 3)
 class Activity with _$Activity {
   const factory Activity({
-    @HiveField(0) required ActivityType type,
-    @HiveField(1) required bool available,
-    @HiveField(2) String? name,
-    @HiveField(3) String? link,
-    @HiveField(4) String? code,
-    @HiveField(5) DateTime? deadline,
-    @HiveField(6) String? lectureTime,
-    @HiveField(7) bool? attendance,
-    @HiveField(8) String? gradingStatus,
-    @HiveField(9) String? timeLeft,
-    @HiveField(10) String? lastModified,
-    @HiveField(11) String? description,
-    @HiveField(12) String? courseName,
+    required ActivityType type,
+    required bool available,
+    String? name,
+    String? link,
+    String? code,
+    DateTime? deadline,
+    String? lectureTime,
+    bool? attendance,
+    String? gradingStatus,
+    String? timeLeft,
+    String? lastModified,
+    String? description,
+    String? courseName,
   }) = _Activity;
 
   factory Activity.fromJson(Map<String, dynamic> json) => _$ActivityFromJson(json);

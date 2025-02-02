@@ -64,7 +64,7 @@ class CancelModal {
                           ),
                           const SizedBox(height: 30),
                           Text(
-                            '사용자의 정보는 안전하게 삭제돼요',
+                            '사용자 정보는 안전하게 삭제돼요',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w400,

@@ -22,7 +22,6 @@ class AuthenticationRepository {
     sendTimeout: const Duration(seconds: 5)
   ));
   final SecureStorage _secureStorage = GetIt.I<SecureStorage>();
-  final DataStorage _dataStorage = GetIt.I<DataStorage>();
 
   final StreamController<AuthenticationStatus> _authStreamController = StreamController<AuthenticationStatus>();
 
@@ -44,7 +43,6 @@ class AuthenticationRepository {
         case TokenStatus.expired:
           _authStreamController.add(AuthenticationStatus.unauthenticated);
           await _secureStorage.deleteAllData();
-          await _dataStorage.deleteAllData();
           GetIt.I<ToastManager>().error(message: '인증 상태가 만료되었어요\n로그인을 다시 진행해 주세요');
           break;
         case TokenStatus.valid:
@@ -136,7 +134,6 @@ class AuthenticationRepository {
   /// 로그아웃을 수행합니다.
   void logout() {
     _secureStorage.deleteAllData();
-    _dataStorage.deleteAllData();
     _authStreamController.add(AuthenticationStatus.unauthenticated);
   }
 

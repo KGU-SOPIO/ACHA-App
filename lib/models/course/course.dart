@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:acha/models/index.dart';
 
@@ -16,19 +15,18 @@ class Courses with _$Courses {
 }
 
 @freezed
-@HiveType(typeId: 1)
 class Course with _$Course {
   const Course._();
 
   const factory Course({
-    @HiveField(0) required String name,
-    @HiveField(1) required String professor,
-    @HiveField(2) required String lectureRoom,
-    @HiveField(3) required String code,
-    @HiveField(4) DateTime? deadline,
-    @HiveField(5) String? link,
-    @HiveField(6) CourseActivities? courseActivities,
-    @HiveField(7) List<Notice>? notices
+    required String name,
+    required String professor,
+    required String lectureRoom,
+    required String code,
+    DateTime? deadline,
+    String? link,
+    CourseActivities? courseActivities,
+    List<Notice>? notices
   }) = _Course;
 
   factory Course.fromJson(Map<String, dynamic> json) => _$CourseFromJson(json);

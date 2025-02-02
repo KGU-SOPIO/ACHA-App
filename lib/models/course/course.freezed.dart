@@ -175,21 +175,13 @@ Course _$CourseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Course {
-  @HiveField(0)
   String get name => throw _privateConstructorUsedError;
-  @HiveField(1)
   String get professor => throw _privateConstructorUsedError;
-  @HiveField(2)
   String get lectureRoom => throw _privateConstructorUsedError;
-  @HiveField(3)
   String get code => throw _privateConstructorUsedError;
-  @HiveField(4)
   DateTime? get deadline => throw _privateConstructorUsedError;
-  @HiveField(5)
   String? get link => throw _privateConstructorUsedError;
-  @HiveField(6)
   CourseActivities? get courseActivities => throw _privateConstructorUsedError;
-  @HiveField(7)
   List<Notice>? get notices => throw _privateConstructorUsedError;
 
   /// Serializes this Course to a JSON map.
@@ -207,14 +199,14 @@ abstract class $CourseCopyWith<$Res> {
       _$CourseCopyWithImpl<$Res, Course>;
   @useResult
   $Res call(
-      {@HiveField(0) String name,
-      @HiveField(1) String professor,
-      @HiveField(2) String lectureRoom,
-      @HiveField(3) String code,
-      @HiveField(4) DateTime? deadline,
-      @HiveField(5) String? link,
-      @HiveField(6) CourseActivities? courseActivities,
-      @HiveField(7) List<Notice>? notices});
+      {String name,
+      String professor,
+      String lectureRoom,
+      String code,
+      DateTime? deadline,
+      String? link,
+      CourseActivities? courseActivities,
+      List<Notice>? notices});
 
   $CourseActivitiesCopyWith<$Res>? get courseActivities;
 }
@@ -302,14 +294,14 @@ abstract class _$$CourseImplCopyWith<$Res> implements $CourseCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@HiveField(0) String name,
-      @HiveField(1) String professor,
-      @HiveField(2) String lectureRoom,
-      @HiveField(3) String code,
-      @HiveField(4) DateTime? deadline,
-      @HiveField(5) String? link,
-      @HiveField(6) CourseActivities? courseActivities,
-      @HiveField(7) List<Notice>? notices});
+      {String name,
+      String professor,
+      String lectureRoom,
+      String code,
+      DateTime? deadline,
+      String? link,
+      CourseActivities? courseActivities,
+      List<Notice>? notices});
 
   @override
   $CourseActivitiesCopyWith<$Res>? get courseActivities;
@@ -378,14 +370,14 @@ class __$$CourseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CourseImpl extends _Course {
   const _$CourseImpl(
-      {@HiveField(0) required this.name,
-      @HiveField(1) required this.professor,
-      @HiveField(2) required this.lectureRoom,
-      @HiveField(3) required this.code,
-      @HiveField(4) this.deadline,
-      @HiveField(5) this.link,
-      @HiveField(6) this.courseActivities,
-      @HiveField(7) final List<Notice>? notices})
+      {required this.name,
+      required this.professor,
+      required this.lectureRoom,
+      required this.code,
+      this.deadline,
+      this.link,
+      this.courseActivities,
+      final List<Notice>? notices})
       : _notices = notices,
         super._();
 
@@ -393,29 +385,21 @@ class _$CourseImpl extends _Course {
       _$$CourseImplFromJson(json);
 
   @override
-  @HiveField(0)
   final String name;
   @override
-  @HiveField(1)
   final String professor;
   @override
-  @HiveField(2)
   final String lectureRoom;
   @override
-  @HiveField(3)
   final String code;
   @override
-  @HiveField(4)
   final DateTime? deadline;
   @override
-  @HiveField(5)
   final String? link;
   @override
-  @HiveField(6)
   final CourseActivities? courseActivities;
   final List<Notice>? _notices;
   @override
-  @HiveField(7)
   List<Notice>? get notices {
     final value = _notices;
     if (value == null) return null;
@@ -479,41 +463,33 @@ class _$CourseImpl extends _Course {
 
 abstract class _Course extends Course {
   const factory _Course(
-      {@HiveField(0) required final String name,
-      @HiveField(1) required final String professor,
-      @HiveField(2) required final String lectureRoom,
-      @HiveField(3) required final String code,
-      @HiveField(4) final DateTime? deadline,
-      @HiveField(5) final String? link,
-      @HiveField(6) final CourseActivities? courseActivities,
-      @HiveField(7) final List<Notice>? notices}) = _$CourseImpl;
+      {required final String name,
+      required final String professor,
+      required final String lectureRoom,
+      required final String code,
+      final DateTime? deadline,
+      final String? link,
+      final CourseActivities? courseActivities,
+      final List<Notice>? notices}) = _$CourseImpl;
   const _Course._() : super._();
 
   factory _Course.fromJson(Map<String, dynamic> json) = _$CourseImpl.fromJson;
 
   @override
-  @HiveField(0)
   String get name;
   @override
-  @HiveField(1)
   String get professor;
   @override
-  @HiveField(2)
   String get lectureRoom;
   @override
-  @HiveField(3)
   String get code;
   @override
-  @HiveField(4)
   DateTime? get deadline;
   @override
-  @HiveField(5)
   String? get link;
   @override
-  @HiveField(6)
   CourseActivities? get courseActivities;
   @override
-  @HiveField(7)
   List<Notice>? get notices;
 
   /// Create a copy of Course

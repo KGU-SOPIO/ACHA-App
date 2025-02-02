@@ -184,9 +184,7 @@ WeekActivities _$WeekActivitiesFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$WeekActivities {
-  @HiveField(0)
   int? get week => throw _privateConstructorUsedError;
-  @HiveField(1)
   List<Activity>? get activities => throw _privateConstructorUsedError;
 
   /// Serializes this WeekActivities to a JSON map.
@@ -205,8 +203,7 @@ abstract class $WeekActivitiesCopyWith<$Res> {
           WeekActivities value, $Res Function(WeekActivities) then) =
       _$WeekActivitiesCopyWithImpl<$Res, WeekActivities>;
   @useResult
-  $Res call(
-      {@HiveField(0) int? week, @HiveField(1) List<Activity>? activities});
+  $Res call({int? week, List<Activity>? activities});
 }
 
 /// @nodoc
@@ -248,8 +245,7 @@ abstract class _$$WeekActivitiesImplCopyWith<$Res>
       __$$WeekActivitiesImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@HiveField(0) int? week, @HiveField(1) List<Activity>? activities});
+  $Res call({int? week, List<Activity>? activities});
 }
 
 /// @nodoc
@@ -285,20 +281,17 @@ class __$$WeekActivitiesImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$WeekActivitiesImpl implements _WeekActivities {
   const _$WeekActivitiesImpl(
-      {@HiveField(0) this.week,
-      @HiveField(1) final List<Activity>? activities = const []})
+      {this.week, final List<Activity>? activities = const []})
       : _activities = activities;
 
   factory _$WeekActivitiesImpl.fromJson(Map<String, dynamic> json) =>
       _$$WeekActivitiesImplFromJson(json);
 
   @override
-  @HiveField(0)
   final int? week;
   final List<Activity>? _activities;
   @override
   @JsonKey()
-  @HiveField(1)
   List<Activity>? get activities {
     final value = _activities;
     if (value == null) return null;
@@ -346,17 +339,15 @@ class _$WeekActivitiesImpl implements _WeekActivities {
 
 abstract class _WeekActivities implements WeekActivities {
   const factory _WeekActivities(
-      {@HiveField(0) final int? week,
-      @HiveField(1) final List<Activity>? activities}) = _$WeekActivitiesImpl;
+      {final int? week,
+      final List<Activity>? activities}) = _$WeekActivitiesImpl;
 
   factory _WeekActivities.fromJson(Map<String, dynamic> json) =
       _$WeekActivitiesImpl.fromJson;
 
   @override
-  @HiveField(0)
   int? get week;
   @override
-  @HiveField(1)
   List<Activity>? get activities;
 
   /// Create a copy of WeekActivities
@@ -373,31 +364,18 @@ Activity _$ActivityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Activity {
-  @HiveField(0)
   ActivityType get type => throw _privateConstructorUsedError;
-  @HiveField(1)
   bool get available => throw _privateConstructorUsedError;
-  @HiveField(2)
   String? get name => throw _privateConstructorUsedError;
-  @HiveField(3)
   String? get link => throw _privateConstructorUsedError;
-  @HiveField(4)
   String? get code => throw _privateConstructorUsedError;
-  @HiveField(5)
   DateTime? get deadline => throw _privateConstructorUsedError;
-  @HiveField(6)
   String? get lectureTime => throw _privateConstructorUsedError;
-  @HiveField(7)
   bool? get attendance => throw _privateConstructorUsedError;
-  @HiveField(8)
   String? get gradingStatus => throw _privateConstructorUsedError;
-  @HiveField(9)
   String? get timeLeft => throw _privateConstructorUsedError;
-  @HiveField(10)
   String? get lastModified => throw _privateConstructorUsedError;
-  @HiveField(11)
   String? get description => throw _privateConstructorUsedError;
-  @HiveField(12)
   String? get courseName => throw _privateConstructorUsedError;
 
   /// Serializes this Activity to a JSON map.
@@ -416,19 +394,19 @@ abstract class $ActivityCopyWith<$Res> {
       _$ActivityCopyWithImpl<$Res, Activity>;
   @useResult
   $Res call(
-      {@HiveField(0) ActivityType type,
-      @HiveField(1) bool available,
-      @HiveField(2) String? name,
-      @HiveField(3) String? link,
-      @HiveField(4) String? code,
-      @HiveField(5) DateTime? deadline,
-      @HiveField(6) String? lectureTime,
-      @HiveField(7) bool? attendance,
-      @HiveField(8) String? gradingStatus,
-      @HiveField(9) String? timeLeft,
-      @HiveField(10) String? lastModified,
-      @HiveField(11) String? description,
-      @HiveField(12) String? courseName});
+      {ActivityType type,
+      bool available,
+      String? name,
+      String? link,
+      String? code,
+      DateTime? deadline,
+      String? lectureTime,
+      bool? attendance,
+      String? gradingStatus,
+      String? timeLeft,
+      String? lastModified,
+      String? description,
+      String? courseName});
 }
 
 /// @nodoc
@@ -526,19 +504,19 @@ abstract class _$$ActivityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@HiveField(0) ActivityType type,
-      @HiveField(1) bool available,
-      @HiveField(2) String? name,
-      @HiveField(3) String? link,
-      @HiveField(4) String? code,
-      @HiveField(5) DateTime? deadline,
-      @HiveField(6) String? lectureTime,
-      @HiveField(7) bool? attendance,
-      @HiveField(8) String? gradingStatus,
-      @HiveField(9) String? timeLeft,
-      @HiveField(10) String? lastModified,
-      @HiveField(11) String? description,
-      @HiveField(12) String? courseName});
+      {ActivityType type,
+      bool available,
+      String? name,
+      String? link,
+      String? code,
+      DateTime? deadline,
+      String? lectureTime,
+      bool? attendance,
+      String? gradingStatus,
+      String? timeLeft,
+      String? lastModified,
+      String? description,
+      String? courseName});
 }
 
 /// @nodoc
@@ -629,61 +607,48 @@ class __$$ActivityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ActivityImpl implements _Activity {
   const _$ActivityImpl(
-      {@HiveField(0) required this.type,
-      @HiveField(1) required this.available,
-      @HiveField(2) this.name,
-      @HiveField(3) this.link,
-      @HiveField(4) this.code,
-      @HiveField(5) this.deadline,
-      @HiveField(6) this.lectureTime,
-      @HiveField(7) this.attendance,
-      @HiveField(8) this.gradingStatus,
-      @HiveField(9) this.timeLeft,
-      @HiveField(10) this.lastModified,
-      @HiveField(11) this.description,
-      @HiveField(12) this.courseName});
+      {required this.type,
+      required this.available,
+      this.name,
+      this.link,
+      this.code,
+      this.deadline,
+      this.lectureTime,
+      this.attendance,
+      this.gradingStatus,
+      this.timeLeft,
+      this.lastModified,
+      this.description,
+      this.courseName});
 
   factory _$ActivityImpl.fromJson(Map<String, dynamic> json) =>
       _$$ActivityImplFromJson(json);
 
   @override
-  @HiveField(0)
   final ActivityType type;
   @override
-  @HiveField(1)
   final bool available;
   @override
-  @HiveField(2)
   final String? name;
   @override
-  @HiveField(3)
   final String? link;
   @override
-  @HiveField(4)
   final String? code;
   @override
-  @HiveField(5)
   final DateTime? deadline;
   @override
-  @HiveField(6)
   final String? lectureTime;
   @override
-  @HiveField(7)
   final bool? attendance;
   @override
-  @HiveField(8)
   final String? gradingStatus;
   @override
-  @HiveField(9)
   final String? timeLeft;
   @override
-  @HiveField(10)
   final String? lastModified;
   @override
-  @HiveField(11)
   final String? description;
   @override
-  @HiveField(12)
   final String? courseName;
 
   @override
@@ -756,61 +721,48 @@ class _$ActivityImpl implements _Activity {
 
 abstract class _Activity implements Activity {
   const factory _Activity(
-      {@HiveField(0) required final ActivityType type,
-      @HiveField(1) required final bool available,
-      @HiveField(2) final String? name,
-      @HiveField(3) final String? link,
-      @HiveField(4) final String? code,
-      @HiveField(5) final DateTime? deadline,
-      @HiveField(6) final String? lectureTime,
-      @HiveField(7) final bool? attendance,
-      @HiveField(8) final String? gradingStatus,
-      @HiveField(9) final String? timeLeft,
-      @HiveField(10) final String? lastModified,
-      @HiveField(11) final String? description,
-      @HiveField(12) final String? courseName}) = _$ActivityImpl;
+      {required final ActivityType type,
+      required final bool available,
+      final String? name,
+      final String? link,
+      final String? code,
+      final DateTime? deadline,
+      final String? lectureTime,
+      final bool? attendance,
+      final String? gradingStatus,
+      final String? timeLeft,
+      final String? lastModified,
+      final String? description,
+      final String? courseName}) = _$ActivityImpl;
 
   factory _Activity.fromJson(Map<String, dynamic> json) =
       _$ActivityImpl.fromJson;
 
   @override
-  @HiveField(0)
   ActivityType get type;
   @override
-  @HiveField(1)
   bool get available;
   @override
-  @HiveField(2)
   String? get name;
   @override
-  @HiveField(3)
   String? get link;
   @override
-  @HiveField(4)
   String? get code;
   @override
-  @HiveField(5)
   DateTime? get deadline;
   @override
-  @HiveField(6)
   String? get lectureTime;
   @override
-  @HiveField(7)
   bool? get attendance;
   @override
-  @HiveField(8)
   String? get gradingStatus;
   @override
-  @HiveField(9)
   String? get timeLeft;
   @override
-  @HiveField(10)
   String? get lastModified;
   @override
-  @HiveField(11)
   String? get description;
   @override
-  @HiveField(12)
   String? get courseName;
 
   /// Create a copy of Activity
