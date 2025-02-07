@@ -8,10 +8,9 @@ part of 'course.dart';
 
 _$CoursesImpl _$$CoursesImplFromJson(Map<String, dynamic> json) =>
     _$CoursesImpl(
-      courses: (json['courses'] as List<dynamic>?)
-              ?.map((e) => Course.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
+      courses: (json['courses'] as List<dynamic>)
+          .map((e) => Course.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$CoursesImplToJson(_$CoursesImpl instance) =>
@@ -32,9 +31,9 @@ _$CourseImpl _$$CourseImplFromJson(Map<String, dynamic> json) => _$CourseImpl(
           ? null
           : CourseActivities.fromJson(
               json['courseActivities'] as Map<String, dynamic>),
-      notices: (json['notices'] as List<dynamic>?)
-          ?.map((e) => Notice.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      notices: json['notices'] == null
+          ? null
+          : Notices.fromJson(json['notices'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$CourseImplToJson(_$CourseImpl instance) =>

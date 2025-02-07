@@ -21,57 +21,37 @@ class NoticeSkeletonContainer extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Row(
-              children: [
-                Text(
-                  'N',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    color: Color.fromARGB(255, 151, 151, 151)
-                  )
-                ),
-                const SizedBox(width: 15),
-                Text(
-                  'Skeleton_Skeleton',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: Color.fromARGB(255, 60, 60, 60)
-                  )
-                )
-              ]
-            ),
+            _buildHeader(),
             const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                SvgPicture.asset('lib/assets/svgs/notice/person.svg'),
-                const SizedBox(width: 7),
-                Text(
-                  'Skeleton',
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    color: Color.fromARGB(255, 151, 151, 151)
-                  )
-                ),
-                const SizedBox(width: 20),
-                SvgPicture.asset('lib/assets/svgs/notice/clock.svg'),
-                const SizedBox(width: 7),
-                Text(
-                  'Skeleton',
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    color: Color.fromARGB(255, 151, 151, 151)
-                  )
-                )
-              ]
-            )
+            _buildInformation()
           ]
         )
       )
+    );
+  }
+
+  Widget _buildHeader() {
+    return Row(
+      children: [
+        Text('N', style: TextStyle(fontSize: 14)),
+        const SizedBox(width: 15),
+        Text('Skeleton_Skeleton', style: TextStyle(fontSize: 14))
+      ]
+    );
+  }
+
+  Widget _buildInformation() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        SvgPicture.asset('lib/assets/svgs/notice/person.svg'),
+        const SizedBox(width: 7),
+        Text('Skeleton', style: TextStyle(fontSize: 12)),
+        const SizedBox(width: 20),
+        SvgPicture.asset('lib/assets/svgs/notice/clock.svg'),
+        const SizedBox(width: 7),
+        Text('Skeleton', style: TextStyle(fontSize: 12))
+      ]
     );
   }
 }

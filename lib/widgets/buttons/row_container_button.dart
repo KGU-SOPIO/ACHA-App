@@ -28,25 +28,33 @@ class RowContainerButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        minimumSize: Size(double.infinity, 0),
-        shape: RoundedRectangleBorder(
-          side: border ?? BorderSide.none,
-          borderRadius: BorderRadius.circular(borderRadius)
-        ),
-        foregroundColor: foregroundColor,
-        backgroundColor: backgroundColor
-      ),
+      style: _buttonStyle(),
       child: Padding(
         padding: padding,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(text, style: textStyle),
-            widget
-          ]
-        )
+        child: _buildContent(),
       )
+    );
+  }
+
+  ButtonStyle _buttonStyle() {
+    return ElevatedButton.styleFrom(
+      minimumSize: const Size(double.infinity, 0),
+      shape: RoundedRectangleBorder(
+        side: border ?? BorderSide.none,
+        borderRadius: BorderRadius.circular(borderRadius),
+      ),
+      foregroundColor: foregroundColor,
+      backgroundColor: backgroundColor,
+    );
+  }
+
+  Widget _buildContent() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(text, style: textStyle),
+        widget,
+      ],
     );
   }
 }

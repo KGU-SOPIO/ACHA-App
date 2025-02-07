@@ -20,7 +20,7 @@ Notices _$NoticesFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Notices {
-  List<Notice>? get notices => throw _privateConstructorUsedError;
+  List<Notice> get notices => throw _privateConstructorUsedError;
 
   /// Serializes this Notices to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ abstract class $NoticesCopyWith<$Res> {
   factory $NoticesCopyWith(Notices value, $Res Function(Notices) then) =
       _$NoticesCopyWithImpl<$Res, Notices>;
   @useResult
-  $Res call({List<Notice>? notices});
+  $Res call({List<Notice> notices});
 }
 
 /// @nodoc
@@ -54,13 +54,13 @@ class _$NoticesCopyWithImpl<$Res, $Val extends Notices>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? notices = freezed,
+    Object? notices = null,
   }) {
     return _then(_value.copyWith(
-      notices: freezed == notices
+      notices: null == notices
           ? _value.notices
           : notices // ignore: cast_nullable_to_non_nullable
-              as List<Notice>?,
+              as List<Notice>,
     ) as $Val);
   }
 }
@@ -72,7 +72,7 @@ abstract class _$$NoticesImplCopyWith<$Res> implements $NoticesCopyWith<$Res> {
       __$$NoticesImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Notice>? notices});
+  $Res call({List<Notice> notices});
 }
 
 /// @nodoc
@@ -88,13 +88,13 @@ class __$$NoticesImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? notices = freezed,
+    Object? notices = null,
   }) {
     return _then(_$NoticesImpl(
-      notices: freezed == notices
+      notices: null == notices
           ? _value._notices
           : notices // ignore: cast_nullable_to_non_nullable
-              as List<Notice>?,
+              as List<Notice>,
     ));
   }
 }
@@ -102,21 +102,18 @@ class __$$NoticesImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$NoticesImpl implements _Notices {
-  const _$NoticesImpl({final List<Notice>? notices = const []})
+  const _$NoticesImpl({required final List<Notice> notices})
       : _notices = notices;
 
   factory _$NoticesImpl.fromJson(Map<String, dynamic> json) =>
       _$$NoticesImplFromJson(json);
 
-  final List<Notice>? _notices;
+  final List<Notice> _notices;
   @override
-  @JsonKey()
-  List<Notice>? get notices {
-    final value = _notices;
-    if (value == null) return null;
+  List<Notice> get notices {
     if (_notices is EqualUnmodifiableListView) return _notices;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_notices);
   }
 
   @override
@@ -154,12 +151,12 @@ class _$NoticesImpl implements _Notices {
 }
 
 abstract class _Notices implements Notices {
-  const factory _Notices({final List<Notice>? notices}) = _$NoticesImpl;
+  const factory _Notices({required final List<Notice> notices}) = _$NoticesImpl;
 
   factory _Notices.fromJson(Map<String, dynamic> json) = _$NoticesImpl.fromJson;
 
   @override
-  List<Notice>? get notices;
+  List<Notice> get notices;
 
   /// Create a copy of Notices
   /// with the given fields replaced by the non-null parameter values.

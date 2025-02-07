@@ -8,10 +8,9 @@ part of 'notice.dart';
 
 _$NoticesImpl _$$NoticesImplFromJson(Map<String, dynamic> json) =>
     _$NoticesImpl(
-      notices: (json['notices'] as List<dynamic>?)
-              ?.map((e) => Notice.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
+      notices: (json['notices'] as List<dynamic>)
+          .map((e) => Notice.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$NoticesImplToJson(_$NoticesImpl instance) =>

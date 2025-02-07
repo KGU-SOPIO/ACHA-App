@@ -6,7 +6,7 @@ part 'notice.g.dart';
 @freezed
 class Notices with _$Notices {
   const factory Notices({
-    @Default([]) List<Notice>? notices
+    required List<Notice> notices
   }) = _Notices;
 
   factory Notices.fromJson(Map<String, dynamic> json) => _$NoticesFromJson(json);

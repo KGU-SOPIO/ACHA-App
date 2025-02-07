@@ -111,7 +111,7 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
               SizedBox(height: 16),
               ...activities.map(
                 (activity) => ActivityContainer(
-                  title: activity.name!,
+                  title: activity.name,
                   course: activity.courseName!,
                   deadline: activity.deadline!.toTimeLeftFormattedTime(),
                   margin: EdgeInsets.only(bottom: 16),

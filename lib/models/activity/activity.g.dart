@@ -9,10 +9,9 @@ part of 'activity.dart';
 _$CourseActivitiesImpl _$$CourseActivitiesImplFromJson(
         Map<String, dynamic> json) =>
     _$CourseActivitiesImpl(
-      weekActivities: (json['weekActivities'] as List<dynamic>?)
-              ?.map((e) => WeekActivities.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
+      weekActivities: (json['weekActivities'] as List<dynamic>)
+          .map((e) => WeekActivities.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$CourseActivitiesImplToJson(
@@ -23,11 +22,10 @@ Map<String, dynamic> _$$CourseActivitiesImplToJson(
 
 _$WeekActivitiesImpl _$$WeekActivitiesImplFromJson(Map<String, dynamic> json) =>
     _$WeekActivitiesImpl(
-      week: (json['week'] as num?)?.toInt(),
-      activities: (json['activities'] as List<dynamic>?)
-              ?.map((e) => Activity.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
+      week: (json['week'] as num).toInt(),
+      activities: (json['activities'] as List<dynamic>)
+          .map((e) => Activity.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$WeekActivitiesImplToJson(
@@ -41,9 +39,9 @@ _$ActivityImpl _$$ActivityImplFromJson(Map<String, dynamic> json) =>
     _$ActivityImpl(
       type: $enumDecode(_$ActivityTypeEnumMap, json['type']),
       available: json['available'] as bool,
-      name: json['name'] as String?,
-      link: json['link'] as String?,
-      code: json['code'] as String?,
+      name: json['name'] as String,
+      link: json['link'] as String,
+      code: json['code'] as String,
       deadline: json['deadline'] == null
           ? null
           : DateTime.parse(json['deadline'] as String),
@@ -74,7 +72,8 @@ Map<String, dynamic> _$$ActivityImplToJson(_$ActivityImpl instance) =>
     };
 
 const _$ActivityTypeEnumMap = {
+  ActivityType.url: 'url',
+  ActivityType.file: 'file',
   ActivityType.lecture: 'lecture',
   ActivityType.assignment: 'assignment',
-  ActivityType.url: 'url',
 };

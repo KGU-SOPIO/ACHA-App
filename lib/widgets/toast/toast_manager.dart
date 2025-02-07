@@ -9,9 +9,35 @@ import 'package:acha/widgets/toast/toast.dart';
 class ToastManager {
   static const _toastDuration = Duration(milliseconds: 1700);
   static const _animationDuration = Duration(milliseconds: 700);
+  static final _overlayLifetime = Duration(milliseconds: _toastDuration.inMilliseconds + _animationDuration.inMilliseconds*2);
+
+  void success({required String message}) {
+    _showToast(message: message, svgPath: 'lib/assets/svgs/toast/success.svg');
+  }
+
+  void error({required String message}) {
+    _showToast(message: message, svgPath: 'lib/assets/svgs/toast/error.svg');
+  }
+
+  void show({required String message, required String svgPath}) {
+    _showToast(message: message, svgPath: svgPath);
+  }
 
   Future _showToast({required String message, required String svgPath}) async {
-    final Widget toastContainer = Container(
+    final toastContainer = _buildToastContainer(message: message, svgPath: svgPath);
+    final overlayEntry = _createOverlayEntry(toastContainer: toastContainer);
+
+    final overlay = Navigator.of(AppView.navigatorKey.currentContext!).overlay;
+    if (overlay == null) return;
+
+    overlay.insert(overlayEntry);
+
+    await Future.delayed(_overlayLifetime);
+    overlayEntry.remove();
+  }
+
+  Widget _buildToastContainer({required String message, required String svgPath}) {
+    return Container(
       width: double.infinity,
       margin: const EdgeInsets.symmetric(horizontal: 40),
       padding: const EdgeInsets.only(left: 22, right: 10, top: 16, bottom: 16),
@@ -43,35 +69,20 @@ class ToastManager {
                 fontWeight: FontWeight.w500,
                 color: Color.fromARGB(255, 0, 102, 255)
               )
-            ),
+            )
           )
-        ],
+        ]
       )
     );
+  }
 
-    final OverlayEntry overlayEntry = OverlayEntry(
+  OverlayEntry _createOverlayEntry({required Widget toastContainer}) {
+    return OverlayEntry(
       builder: (_) => Toast(
         toastContainer: toastContainer,
         toastDuration: _toastDuration,
-        animationDuration: _animationDuration,
-      ),
+        animationDuration: _animationDuration
+      )
     );
-
-    Navigator.of(AppView.navigatorKey.currentContext!).overlay!.insert(overlayEntry);
-
-    await Future.delayed(const Duration(milliseconds: 3100));
-    overlayEntry.remove();
-  }
-
-  void success({required String message}) {
-    _showToast(message: message, svgPath: 'lib/assets/svgs/toast/success.svg');
-  }
-
-  void error({required String message}) {
-    _showToast(message: message, svgPath: 'lib/assets/svgs/toast/error.svg');
-  }
-
-  void show({required String message, required String svgPath}) {
-    _showToast(message: message, svgPath: svgPath);
   }
 }

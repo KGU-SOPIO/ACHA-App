@@ -22,60 +22,66 @@ class MemberContainer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                name,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
-                  color: Color.fromARGB(255, 60, 60, 60)
-                )
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 223, 236, 255),
-                  borderRadius: BorderRadius.circular(20)
-                ),
-                child: Text(
-                  part,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: Color.fromARGB(255, 0, 102, 255)
-                  )
-                )
-              )
-            ],
-          ),
-          SizedBox(height: 25),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                department,
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  color: Color.fromARGB(255, 109, 109, 109)
-                )
-              ),
-              Text(
-                github,
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  color: Color.fromARGB(255, 109, 109, 109)
-                )
-              )
-            ]
-          )
+          _buildNameRow(),
+          const SizedBox(height: 25),
+          _buildDepartmentRow()
         ]
       )
+    );
+  }
+
+  Row _buildNameRow() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          name,
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+            color: Color.fromARGB(255, 60, 60, 60)
+          )
+        ),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          decoration: BoxDecoration(
+            color: Color.fromARGB(255, 223, 236, 255),
+            borderRadius: BorderRadius.circular(20)
+          ),
+          child: Text(
+            part,
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+              color: Color.fromARGB(255, 0, 102, 255)
+            )
+          )
+        )
+      ]
+    );
+  }
+
+  Row _buildDepartmentRow() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          department,
+          style: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
+            color: Color.fromARGB(255, 109, 109, 109)
+          )
+        ),
+        Text(
+          github,
+          style: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
+            color: Color.fromARGB(255, 109, 109, 109)
+          )
+        )
+      ]
     );
   }
 }

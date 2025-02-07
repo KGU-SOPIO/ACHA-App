@@ -20,7 +20,7 @@ Courses _$CoursesFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Courses {
-  List<Course>? get courses => throw _privateConstructorUsedError;
+  List<Course> get courses => throw _privateConstructorUsedError;
 
   /// Serializes this Courses to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ abstract class $CoursesCopyWith<$Res> {
   factory $CoursesCopyWith(Courses value, $Res Function(Courses) then) =
       _$CoursesCopyWithImpl<$Res, Courses>;
   @useResult
-  $Res call({List<Course>? courses});
+  $Res call({List<Course> courses});
 }
 
 /// @nodoc
@@ -54,13 +54,13 @@ class _$CoursesCopyWithImpl<$Res, $Val extends Courses>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? courses = freezed,
+    Object? courses = null,
   }) {
     return _then(_value.copyWith(
-      courses: freezed == courses
+      courses: null == courses
           ? _value.courses
           : courses // ignore: cast_nullable_to_non_nullable
-              as List<Course>?,
+              as List<Course>,
     ) as $Val);
   }
 }
@@ -72,7 +72,7 @@ abstract class _$$CoursesImplCopyWith<$Res> implements $CoursesCopyWith<$Res> {
       __$$CoursesImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Course>? courses});
+  $Res call({List<Course> courses});
 }
 
 /// @nodoc
@@ -88,13 +88,13 @@ class __$$CoursesImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? courses = freezed,
+    Object? courses = null,
   }) {
     return _then(_$CoursesImpl(
-      courses: freezed == courses
+      courses: null == courses
           ? _value._courses
           : courses // ignore: cast_nullable_to_non_nullable
-              as List<Course>?,
+              as List<Course>,
     ));
   }
 }
@@ -102,21 +102,18 @@ class __$$CoursesImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CoursesImpl implements _Courses {
-  const _$CoursesImpl({final List<Course>? courses = const []})
+  const _$CoursesImpl({required final List<Course> courses})
       : _courses = courses;
 
   factory _$CoursesImpl.fromJson(Map<String, dynamic> json) =>
       _$$CoursesImplFromJson(json);
 
-  final List<Course>? _courses;
+  final List<Course> _courses;
   @override
-  @JsonKey()
-  List<Course>? get courses {
-    final value = _courses;
-    if (value == null) return null;
+  List<Course> get courses {
     if (_courses is EqualUnmodifiableListView) return _courses;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_courses);
   }
 
   @override
@@ -154,12 +151,12 @@ class _$CoursesImpl implements _Courses {
 }
 
 abstract class _Courses implements Courses {
-  const factory _Courses({final List<Course>? courses}) = _$CoursesImpl;
+  const factory _Courses({required final List<Course> courses}) = _$CoursesImpl;
 
   factory _Courses.fromJson(Map<String, dynamic> json) = _$CoursesImpl.fromJson;
 
   @override
-  List<Course>? get courses;
+  List<Course> get courses;
 
   /// Create a copy of Courses
   /// with the given fields replaced by the non-null parameter values.
@@ -182,7 +179,7 @@ mixin _$Course {
   DateTime? get deadline => throw _privateConstructorUsedError;
   String? get link => throw _privateConstructorUsedError;
   CourseActivities? get courseActivities => throw _privateConstructorUsedError;
-  List<Notice>? get notices => throw _privateConstructorUsedError;
+  Notices? get notices => throw _privateConstructorUsedError;
 
   /// Serializes this Course to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -206,9 +203,10 @@ abstract class $CourseCopyWith<$Res> {
       DateTime? deadline,
       String? link,
       CourseActivities? courseActivities,
-      List<Notice>? notices});
+      Notices? notices});
 
   $CourseActivitiesCopyWith<$Res>? get courseActivities;
+  $NoticesCopyWith<$Res>? get notices;
 }
 
 /// @nodoc
@@ -267,7 +265,7 @@ class _$CourseCopyWithImpl<$Res, $Val extends Course>
       notices: freezed == notices
           ? _value.notices
           : notices // ignore: cast_nullable_to_non_nullable
-              as List<Notice>?,
+              as Notices?,
     ) as $Val);
   }
 
@@ -282,6 +280,20 @@ class _$CourseCopyWithImpl<$Res, $Val extends Course>
 
     return $CourseActivitiesCopyWith<$Res>(_value.courseActivities!, (value) {
       return _then(_value.copyWith(courseActivities: value) as $Val);
+    });
+  }
+
+  /// Create a copy of Course
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $NoticesCopyWith<$Res>? get notices {
+    if (_value.notices == null) {
+      return null;
+    }
+
+    return $NoticesCopyWith<$Res>(_value.notices!, (value) {
+      return _then(_value.copyWith(notices: value) as $Val);
     });
   }
 }
@@ -301,10 +313,12 @@ abstract class _$$CourseImplCopyWith<$Res> implements $CourseCopyWith<$Res> {
       DateTime? deadline,
       String? link,
       CourseActivities? courseActivities,
-      List<Notice>? notices});
+      Notices? notices});
 
   @override
   $CourseActivitiesCopyWith<$Res>? get courseActivities;
+  @override
+  $NoticesCopyWith<$Res>? get notices;
 }
 
 /// @nodoc
@@ -359,16 +373,16 @@ class __$$CourseImplCopyWithImpl<$Res>
           : courseActivities // ignore: cast_nullable_to_non_nullable
               as CourseActivities?,
       notices: freezed == notices
-          ? _value._notices
+          ? _value.notices
           : notices // ignore: cast_nullable_to_non_nullable
-              as List<Notice>?,
+              as Notices?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$CourseImpl extends _Course {
+class _$CourseImpl implements _Course {
   const _$CourseImpl(
       {required this.name,
       required this.professor,
@@ -377,9 +391,7 @@ class _$CourseImpl extends _Course {
       this.deadline,
       this.link,
       this.courseActivities,
-      final List<Notice>? notices})
-      : _notices = notices,
-        super._();
+      this.notices});
 
   factory _$CourseImpl.fromJson(Map<String, dynamic> json) =>
       _$$CourseImplFromJson(json);
@@ -398,15 +410,8 @@ class _$CourseImpl extends _Course {
   final String? link;
   @override
   final CourseActivities? courseActivities;
-  final List<Notice>? _notices;
   @override
-  List<Notice>? get notices {
-    final value = _notices;
-    if (value == null) return null;
-    if (_notices is EqualUnmodifiableListView) return _notices;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
+  final Notices? notices;
 
   @override
   String toString() {
@@ -429,21 +434,13 @@ class _$CourseImpl extends _Course {
             (identical(other.link, link) || other.link == link) &&
             (identical(other.courseActivities, courseActivities) ||
                 other.courseActivities == courseActivities) &&
-            const DeepCollectionEquality().equals(other._notices, _notices));
+            (identical(other.notices, notices) || other.notices == notices));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      name,
-      professor,
-      lectureRoom,
-      code,
-      deadline,
-      link,
-      courseActivities,
-      const DeepCollectionEquality().hash(_notices));
+  int get hashCode => Object.hash(runtimeType, name, professor, lectureRoom,
+      code, deadline, link, courseActivities, notices);
 
   /// Create a copy of Course
   /// with the given fields replaced by the non-null parameter values.
@@ -461,7 +458,7 @@ class _$CourseImpl extends _Course {
   }
 }
 
-abstract class _Course extends Course {
+abstract class _Course implements Course {
   const factory _Course(
       {required final String name,
       required final String professor,
@@ -470,8 +467,7 @@ abstract class _Course extends Course {
       final DateTime? deadline,
       final String? link,
       final CourseActivities? courseActivities,
-      final List<Notice>? notices}) = _$CourseImpl;
-  const _Course._() : super._();
+      final Notices? notices}) = _$CourseImpl;
 
   factory _Course.fromJson(Map<String, dynamic> json) = _$CourseImpl.fromJson;
 
@@ -490,7 +486,7 @@ abstract class _Course extends Course {
   @override
   CourseActivities? get courseActivities;
   @override
-  List<Notice>? get notices;
+  Notices? get notices;
 
   /// Create a copy of Course
   /// with the given fields replaced by the non-null parameter values.

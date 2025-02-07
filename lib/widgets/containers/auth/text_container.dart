@@ -11,37 +11,45 @@ class TextContainer extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          style: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w700,
-            color: Color.fromARGB(255, 60, 60, 60)
-          )
-        ),
+        _buildTitle(),
         const SizedBox(height: 16),
-        Container(
-          width: double.infinity,
-          height: 56,
-          alignment: Alignment.centerLeft,
-          padding: const EdgeInsets.only(left: 16),
-          decoration: BoxDecoration(
-            border: Border.all(
-              width: 1.5,
-              color: Color.fromARGB(255, 237, 239, 242),
-            ),
-            borderRadius: BorderRadius.circular(12)
-          ),
-          child: Text(
-            value,
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-              color: Color.fromARGB(255, 60, 60, 60)
-            )
-          )
-        )
+        _buildValue()
       ]
+    );
+  }
+
+  Widget _buildTitle() {
+    return Text(
+      title,
+      style: TextStyle(
+        fontSize: 15,
+        fontWeight: FontWeight.w700,
+        color: Color.fromARGB(255, 60, 60, 60)
+      )
+    );
+  }
+
+  Widget _buildValue() {
+    return Container(
+      width: double.infinity,
+      height: 56,
+      alignment: Alignment.centerLeft,
+      padding: const EdgeInsets.only(left: 16),
+      decoration: BoxDecoration(
+        border: Border.all(
+          width: 1.5,
+          color: Color.fromARGB(255, 237, 239, 242),
+        ),
+        borderRadius: BorderRadius.circular(12)
+      ),
+      child: Text(
+        value,
+        style: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w400,
+          color: Color.fromARGB(255, 60, 60, 60)
+        )
+      )
     );
   }
 }

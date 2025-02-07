@@ -36,7 +36,7 @@ mixin _$AuthenticationResponse {
   TResult when<TResult extends Object?>({
     required TResult Function(String accessToken, String refreshToken) success,
     required TResult Function(
-            String name, String college, String department, String? major)
+            String name, String college, String? department, String? major)
         signup,
     required TResult Function(String accessToken) refresh,
   }) =>
@@ -45,7 +45,7 @@ mixin _$AuthenticationResponse {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String accessToken, String refreshToken)? success,
     TResult? Function(
-            String name, String college, String department, String? major)?
+            String name, String college, String? department, String? major)?
         signup,
     TResult? Function(String accessToken)? refresh,
   }) =>
@@ -54,7 +54,7 @@ mixin _$AuthenticationResponse {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String accessToken, String refreshToken)? success,
     TResult Function(
-            String name, String college, String department, String? major)?
+            String name, String college, String? department, String? major)?
         signup,
     TResult Function(String accessToken)? refresh,
     required TResult orElse(),
@@ -207,7 +207,7 @@ class _$AuthenticationSuccessResponseImpl
   TResult when<TResult extends Object?>({
     required TResult Function(String accessToken, String refreshToken) success,
     required TResult Function(
-            String name, String college, String department, String? major)
+            String name, String college, String? department, String? major)
         signup,
     required TResult Function(String accessToken) refresh,
   }) {
@@ -219,7 +219,7 @@ class _$AuthenticationSuccessResponseImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String accessToken, String refreshToken)? success,
     TResult? Function(
-            String name, String college, String department, String? major)?
+            String name, String college, String? department, String? major)?
         signup,
     TResult? Function(String accessToken)? refresh,
   }) {
@@ -231,7 +231,7 @@ class _$AuthenticationSuccessResponseImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String accessToken, String refreshToken)? success,
     TResult Function(
-            String name, String college, String department, String? major)?
+            String name, String college, String? department, String? major)?
         signup,
     TResult Function(String accessToken)? refresh,
     required TResult orElse(),
@@ -311,7 +311,7 @@ abstract class _$$AuthenticationSignUpResponseImplCopyWith<$Res> {
           $Res Function(_$AuthenticationSignUpResponseImpl) then) =
       __$$AuthenticationSignUpResponseImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String name, String college, String department, String? major});
+  $Res call({String name, String college, String? department, String? major});
 }
 
 /// @nodoc
@@ -331,7 +331,7 @@ class __$$AuthenticationSignUpResponseImplCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? college = null,
-    Object? department = null,
+    Object? department = freezed,
     Object? major = freezed,
   }) {
     return _then(_$AuthenticationSignUpResponseImpl(
@@ -343,10 +343,10 @@ class __$$AuthenticationSignUpResponseImplCopyWithImpl<$Res>
           ? _value.college
           : college // ignore: cast_nullable_to_non_nullable
               as String,
-      department: null == department
+      department: freezed == department
           ? _value.department
           : department // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       major: freezed == major
           ? _value.major
           : major // ignore: cast_nullable_to_non_nullable
@@ -376,7 +376,7 @@ class _$AuthenticationSignUpResponseImpl
   @override
   final String college;
   @override
-  final String department;
+  final String? department;
   @override
   final String? major;
 
@@ -420,7 +420,7 @@ class _$AuthenticationSignUpResponseImpl
   TResult when<TResult extends Object?>({
     required TResult Function(String accessToken, String refreshToken) success,
     required TResult Function(
-            String name, String college, String department, String? major)
+            String name, String college, String? department, String? major)
         signup,
     required TResult Function(String accessToken) refresh,
   }) {
@@ -432,7 +432,7 @@ class _$AuthenticationSignUpResponseImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String accessToken, String refreshToken)? success,
     TResult? Function(
-            String name, String college, String department, String? major)?
+            String name, String college, String? department, String? major)?
         signup,
     TResult? Function(String accessToken)? refresh,
   }) {
@@ -444,7 +444,7 @@ class _$AuthenticationSignUpResponseImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String accessToken, String refreshToken)? success,
     TResult Function(
-            String name, String college, String department, String? major)?
+            String name, String college, String? department, String? major)?
         signup,
     TResult Function(String accessToken)? refresh,
     required TResult orElse(),
@@ -501,7 +501,7 @@ abstract class AuthenticationSignUpResponse implements AuthenticationResponse {
   const factory AuthenticationSignUpResponse(
       {required final String name,
       required final String college,
-      required final String department,
+      required final String? department,
       required final String? major}) = _$AuthenticationSignUpResponseImpl;
 
   factory AuthenticationSignUpResponse.fromJson(Map<String, dynamic> json) =
@@ -509,7 +509,7 @@ abstract class AuthenticationSignUpResponse implements AuthenticationResponse {
 
   String get name;
   String get college;
-  String get department;
+  String? get department;
   String? get major;
 
   /// Create a copy of AuthenticationResponse
@@ -607,7 +607,7 @@ class _$AuthenticationRefreshResponseImpl
   TResult when<TResult extends Object?>({
     required TResult Function(String accessToken, String refreshToken) success,
     required TResult Function(
-            String name, String college, String department, String? major)
+            String name, String college, String? department, String? major)
         signup,
     required TResult Function(String accessToken) refresh,
   }) {
@@ -619,7 +619,7 @@ class _$AuthenticationRefreshResponseImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String accessToken, String refreshToken)? success,
     TResult? Function(
-            String name, String college, String department, String? major)?
+            String name, String college, String? department, String? major)?
         signup,
     TResult? Function(String accessToken)? refresh,
   }) {
@@ -631,7 +631,7 @@ class _$AuthenticationRefreshResponseImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String accessToken, String refreshToken)? success,
     TResult Function(
-            String name, String college, String department, String? major)?
+            String name, String college, String? department, String? major)?
         signup,
     TResult Function(String accessToken)? refresh,
     required TResult orElse(),

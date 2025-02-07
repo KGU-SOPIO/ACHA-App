@@ -20,8 +20,7 @@ CourseActivities _$CourseActivitiesFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CourseActivities {
-  List<WeekActivities>? get weekActivities =>
-      throw _privateConstructorUsedError;
+  List<WeekActivities> get weekActivities => throw _privateConstructorUsedError;
 
   /// Serializes this CourseActivities to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +38,7 @@ abstract class $CourseActivitiesCopyWith<$Res> {
           CourseActivities value, $Res Function(CourseActivities) then) =
       _$CourseActivitiesCopyWithImpl<$Res, CourseActivities>;
   @useResult
-  $Res call({List<WeekActivities>? weekActivities});
+  $Res call({List<WeekActivities> weekActivities});
 }
 
 /// @nodoc
@@ -57,13 +56,13 @@ class _$CourseActivitiesCopyWithImpl<$Res, $Val extends CourseActivities>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? weekActivities = freezed,
+    Object? weekActivities = null,
   }) {
     return _then(_value.copyWith(
-      weekActivities: freezed == weekActivities
+      weekActivities: null == weekActivities
           ? _value.weekActivities
           : weekActivities // ignore: cast_nullable_to_non_nullable
-              as List<WeekActivities>?,
+              as List<WeekActivities>,
     ) as $Val);
   }
 }
@@ -76,7 +75,7 @@ abstract class _$$CourseActivitiesImplCopyWith<$Res>
       __$$CourseActivitiesImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<WeekActivities>? weekActivities});
+  $Res call({List<WeekActivities> weekActivities});
 }
 
 /// @nodoc
@@ -92,13 +91,13 @@ class __$$CourseActivitiesImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? weekActivities = freezed,
+    Object? weekActivities = null,
   }) {
     return _then(_$CourseActivitiesImpl(
-      weekActivities: freezed == weekActivities
+      weekActivities: null == weekActivities
           ? _value._weekActivities
           : weekActivities // ignore: cast_nullable_to_non_nullable
-              as List<WeekActivities>?,
+              as List<WeekActivities>,
     ));
   }
 }
@@ -107,21 +106,18 @@ class __$$CourseActivitiesImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CourseActivitiesImpl implements _CourseActivities {
   const _$CourseActivitiesImpl(
-      {final List<WeekActivities>? weekActivities = const []})
+      {required final List<WeekActivities> weekActivities})
       : _weekActivities = weekActivities;
 
   factory _$CourseActivitiesImpl.fromJson(Map<String, dynamic> json) =>
       _$$CourseActivitiesImplFromJson(json);
 
-  final List<WeekActivities>? _weekActivities;
+  final List<WeekActivities> _weekActivities;
   @override
-  @JsonKey()
-  List<WeekActivities>? get weekActivities {
-    final value = _weekActivities;
-    if (value == null) return null;
+  List<WeekActivities> get weekActivities {
     if (_weekActivities is EqualUnmodifiableListView) return _weekActivities;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_weekActivities);
   }
 
   @override
@@ -162,13 +158,14 @@ class _$CourseActivitiesImpl implements _CourseActivities {
 
 abstract class _CourseActivities implements CourseActivities {
   const factory _CourseActivities(
-      {final List<WeekActivities>? weekActivities}) = _$CourseActivitiesImpl;
+          {required final List<WeekActivities> weekActivities}) =
+      _$CourseActivitiesImpl;
 
   factory _CourseActivities.fromJson(Map<String, dynamic> json) =
       _$CourseActivitiesImpl.fromJson;
 
   @override
-  List<WeekActivities>? get weekActivities;
+  List<WeekActivities> get weekActivities;
 
   /// Create a copy of CourseActivities
   /// with the given fields replaced by the non-null parameter values.
@@ -184,8 +181,8 @@ WeekActivities _$WeekActivitiesFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$WeekActivities {
-  int? get week => throw _privateConstructorUsedError;
-  List<Activity>? get activities => throw _privateConstructorUsedError;
+  int get week => throw _privateConstructorUsedError;
+  List<Activity> get activities => throw _privateConstructorUsedError;
 
   /// Serializes this WeekActivities to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -203,7 +200,7 @@ abstract class $WeekActivitiesCopyWith<$Res> {
           WeekActivities value, $Res Function(WeekActivities) then) =
       _$WeekActivitiesCopyWithImpl<$Res, WeekActivities>;
   @useResult
-  $Res call({int? week, List<Activity>? activities});
+  $Res call({int week, List<Activity> activities});
 }
 
 /// @nodoc
@@ -221,18 +218,18 @@ class _$WeekActivitiesCopyWithImpl<$Res, $Val extends WeekActivities>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? week = freezed,
-    Object? activities = freezed,
+    Object? week = null,
+    Object? activities = null,
   }) {
     return _then(_value.copyWith(
-      week: freezed == week
+      week: null == week
           ? _value.week
           : week // ignore: cast_nullable_to_non_nullable
-              as int?,
-      activities: freezed == activities
+              as int,
+      activities: null == activities
           ? _value.activities
           : activities // ignore: cast_nullable_to_non_nullable
-              as List<Activity>?,
+              as List<Activity>,
     ) as $Val);
   }
 }
@@ -245,7 +242,7 @@ abstract class _$$WeekActivitiesImplCopyWith<$Res>
       __$$WeekActivitiesImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? week, List<Activity>? activities});
+  $Res call({int week, List<Activity> activities});
 }
 
 /// @nodoc
@@ -261,18 +258,18 @@ class __$$WeekActivitiesImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? week = freezed,
-    Object? activities = freezed,
+    Object? week = null,
+    Object? activities = null,
   }) {
     return _then(_$WeekActivitiesImpl(
-      week: freezed == week
+      week: null == week
           ? _value.week
           : week // ignore: cast_nullable_to_non_nullable
-              as int?,
-      activities: freezed == activities
+              as int,
+      activities: null == activities
           ? _value._activities
           : activities // ignore: cast_nullable_to_non_nullable
-              as List<Activity>?,
+              as List<Activity>,
     ));
   }
 }
@@ -281,23 +278,20 @@ class __$$WeekActivitiesImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$WeekActivitiesImpl implements _WeekActivities {
   const _$WeekActivitiesImpl(
-      {this.week, final List<Activity>? activities = const []})
+      {required this.week, required final List<Activity> activities})
       : _activities = activities;
 
   factory _$WeekActivitiesImpl.fromJson(Map<String, dynamic> json) =>
       _$$WeekActivitiesImplFromJson(json);
 
   @override
-  final int? week;
-  final List<Activity>? _activities;
+  final int week;
+  final List<Activity> _activities;
   @override
-  @JsonKey()
-  List<Activity>? get activities {
-    final value = _activities;
-    if (value == null) return null;
+  List<Activity> get activities {
     if (_activities is EqualUnmodifiableListView) return _activities;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_activities);
   }
 
   @override
@@ -339,16 +333,16 @@ class _$WeekActivitiesImpl implements _WeekActivities {
 
 abstract class _WeekActivities implements WeekActivities {
   const factory _WeekActivities(
-      {final int? week,
-      final List<Activity>? activities}) = _$WeekActivitiesImpl;
+      {required final int week,
+      required final List<Activity> activities}) = _$WeekActivitiesImpl;
 
   factory _WeekActivities.fromJson(Map<String, dynamic> json) =
       _$WeekActivitiesImpl.fromJson;
 
   @override
-  int? get week;
+  int get week;
   @override
-  List<Activity>? get activities;
+  List<Activity> get activities;
 
   /// Create a copy of WeekActivities
   /// with the given fields replaced by the non-null parameter values.
@@ -366,9 +360,9 @@ Activity _$ActivityFromJson(Map<String, dynamic> json) {
 mixin _$Activity {
   ActivityType get type => throw _privateConstructorUsedError;
   bool get available => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  String? get link => throw _privateConstructorUsedError;
-  String? get code => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get link => throw _privateConstructorUsedError;
+  String get code => throw _privateConstructorUsedError;
   DateTime? get deadline => throw _privateConstructorUsedError;
   String? get lectureTime => throw _privateConstructorUsedError;
   bool? get attendance => throw _privateConstructorUsedError;
@@ -396,9 +390,9 @@ abstract class $ActivityCopyWith<$Res> {
   $Res call(
       {ActivityType type,
       bool available,
-      String? name,
-      String? link,
-      String? code,
+      String name,
+      String link,
+      String code,
       DateTime? deadline,
       String? lectureTime,
       bool? attendance,
@@ -426,9 +420,9 @@ class _$ActivityCopyWithImpl<$Res, $Val extends Activity>
   $Res call({
     Object? type = null,
     Object? available = null,
-    Object? name = freezed,
-    Object? link = freezed,
-    Object? code = freezed,
+    Object? name = null,
+    Object? link = null,
+    Object? code = null,
     Object? deadline = freezed,
     Object? lectureTime = freezed,
     Object? attendance = freezed,
@@ -447,18 +441,18 @@ class _$ActivityCopyWithImpl<$Res, $Val extends Activity>
           ? _value.available
           : available // ignore: cast_nullable_to_non_nullable
               as bool,
-      name: freezed == name
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      link: freezed == link
+              as String,
+      link: null == link
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
-              as String?,
-      code: freezed == code
+              as String,
+      code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       deadline: freezed == deadline
           ? _value.deadline
           : deadline // ignore: cast_nullable_to_non_nullable
@@ -506,9 +500,9 @@ abstract class _$$ActivityImplCopyWith<$Res>
   $Res call(
       {ActivityType type,
       bool available,
-      String? name,
-      String? link,
-      String? code,
+      String name,
+      String link,
+      String code,
       DateTime? deadline,
       String? lectureTime,
       bool? attendance,
@@ -534,9 +528,9 @@ class __$$ActivityImplCopyWithImpl<$Res>
   $Res call({
     Object? type = null,
     Object? available = null,
-    Object? name = freezed,
-    Object? link = freezed,
-    Object? code = freezed,
+    Object? name = null,
+    Object? link = null,
+    Object? code = null,
     Object? deadline = freezed,
     Object? lectureTime = freezed,
     Object? attendance = freezed,
@@ -555,18 +549,18 @@ class __$$ActivityImplCopyWithImpl<$Res>
           ? _value.available
           : available // ignore: cast_nullable_to_non_nullable
               as bool,
-      name: freezed == name
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      link: freezed == link
+              as String,
+      link: null == link
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
-              as String?,
-      code: freezed == code
+              as String,
+      code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       deadline: freezed == deadline
           ? _value.deadline
           : deadline // ignore: cast_nullable_to_non_nullable
@@ -609,9 +603,9 @@ class _$ActivityImpl implements _Activity {
   const _$ActivityImpl(
       {required this.type,
       required this.available,
-      this.name,
-      this.link,
-      this.code,
+      required this.name,
+      required this.link,
+      required this.code,
       this.deadline,
       this.lectureTime,
       this.attendance,
@@ -629,11 +623,11 @@ class _$ActivityImpl implements _Activity {
   @override
   final bool available;
   @override
-  final String? name;
+  final String name;
   @override
-  final String? link;
+  final String link;
   @override
-  final String? code;
+  final String code;
   @override
   final DateTime? deadline;
   @override
@@ -723,9 +717,9 @@ abstract class _Activity implements Activity {
   const factory _Activity(
       {required final ActivityType type,
       required final bool available,
-      final String? name,
-      final String? link,
-      final String? code,
+      required final String name,
+      required final String link,
+      required final String code,
       final DateTime? deadline,
       final String? lectureTime,
       final bool? attendance,
@@ -743,11 +737,11 @@ abstract class _Activity implements Activity {
   @override
   bool get available;
   @override
-  String? get name;
+  String get name;
   @override
-  String? get link;
+  String get link;
   @override
-  String? get code;
+  String get code;
   @override
   DateTime? get deadline;
   @override

@@ -5,6 +5,8 @@ extension ActivityTypeExtension on ActivityType {
     switch (this) {
       case ActivityType.url:
         return 'lib/assets/svgs/course/url.svg';
+      case ActivityType.file:
+        return 'lib/assets/svgs/course/file.svg';
       case ActivityType.lecture:
         return 'lib/assets/svgs/course/lecture.svg';
       case ActivityType.assignment:

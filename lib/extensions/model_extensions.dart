@@ -26,7 +26,7 @@ extension ActivitiesExtension on WeekActivities {
 
   /// 조건에 따라 필터링된 활동 목록을 반환합니다.
   List<Activity> _filterActivities({required Set<ActivityType> types, required bool onlyWithDeadline}) {
-    return activities!.where((activity) => types.contains(activity.type) && onlyWithDeadline && activity.deadline != null && activity.deadline!.isAfter(DateTime.now())).toList();
+    return activities.where((activity) => types.contains(activity.type) && onlyWithDeadline && activity.deadline != null && activity.deadline!.isAfter(DateTime.now())).toList();
   }
 
   /// 조건에 따라 그룹화된 활동 목록을 반환합니다.

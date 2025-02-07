@@ -143,10 +143,10 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                                         return _buildCarouselSkeleton();
                                       } else if (state.status == CourseStatus.loaded) {
                                         final CourseActivities courseActivities = state.course.courseActivities!;
-                                        final containers = (courseActivities.weekActivities ?? []).expand((weekActivities) {
+                                        final containers = (courseActivities.weekActivities).expand((weekActivities) {
                                           final week = weekActivities.week;
-                                          return (weekActivities.activities ?? []).map((activity) {
-                                            return CarouselActivityContainer(week: week!, activity: activity);
+                                          return (weekActivities.activities).map((activity) {
+                                            return CarouselActivityContainer(week: week, activity: activity);
                                           });
                                         }).toList();
 
@@ -199,7 +199,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                   if (state.status == CourseStatus.loading)
                     _buildPanelSkeleton()
                   else if (state.status == CourseStatus.loaded)
-                    if (state.course.courseActivities!.weekActivities!.isEmpty)
+                    if (state.course.courseActivities!.weekActivities.isEmpty)
                       const SizedBox.shrink()
                     else
                       Padding(
@@ -207,10 +207,10 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                         child: ListView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          itemCount: state.course.courseActivities!.weekActivities!.length,
+                          itemCount: state.course.courseActivities!.weekActivities.length,
                           itemBuilder: (context, index) {
-                            final WeekActivities weekActivities = state.course.courseActivities!.weekActivities![index];
-                            final bool allCompleted = weekActivities.activities!.every((activity) => activity.attendance == true);
+                            final WeekActivities weekActivities = state.course.courseActivities!.weekActivities[index];
+                            final bool allCompleted = weekActivities.activities.every((activity) => activity.attendance == true);
 
                             return Padding(
                               padding: const EdgeInsets.only(bottom: 10),
@@ -249,11 +249,11 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                                       body: Column(
                                         children: [
                                           Divider(height: 1, color: Color.fromARGB(255, 245, 246, 248)),
-                                          ...weekActivities.activities!.map((activity) {
+                                          ...weekActivities.activities.map((activity) {
                                             return ListTile(
                                               leading: SvgPicture.asset(activity.type.svgPath),
                                               title: Text(
-                                                activity.name!,
+                                                activity.name,
                                                 style: TextStyle(
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w400,

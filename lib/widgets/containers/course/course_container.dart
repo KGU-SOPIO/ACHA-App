@@ -22,61 +22,71 @@ class CourseContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
-        width: double.infinity,
-        margin: EdgeInsets.only(bottom: 10),
-        padding: EdgeInsets.symmetric(horizontal: 26, vertical: 16),
-        decoration: BoxDecoration(
-          border: Border.all(
-            width: 1.5,
-            color: Color.fromARGB(255, 237, 239, 242)
-          ),
-          borderRadius: BorderRadius.circular(20),
-          color: Colors.white
+      child: _buildContainer()
+    );
+  }
+
+  Widget _buildContainer() {
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 16),
+      decoration: BoxDecoration(
+        border: Border.all(
+          width: 1.5,
+          color: Color.fromARGB(255, 237, 239, 242)
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(bottom: 3),
-                  child: Text(
-                    '$professorName 교수',
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
-                      color: Color.fromARGB(255, 109, 109, 109)
-                    )
-                  )
-                ),
-                Padding(
-                  padding: EdgeInsets.only(bottom: 2),
-                  child: Text(
-                    courseName,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.black
-                    )
-                  )
-                ),
-                Text(
-                  lectureRoom,
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black
-                  )
-                )
-              ],
-            ),
-            if (deadline != null)
-              DDayBadge(deadline: deadline!)
-          ]
-        )
+        borderRadius: BorderRadius.circular(20),
+        color: Colors.white
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          _buildCourseInformation(),
+          _buildDDayBadge()
+        ]
       )
     );
+  }
+
+  Widget _buildCourseInformation() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+       Text(
+          '$professorName 교수',
+          style: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w400,
+            color: Color.fromARGB(255, 109, 109, 109)
+          )
+        ),
+        const SizedBox(height: 3),
+        Text(
+          courseName,
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w400,
+            color: Colors.black
+          )
+        ),
+        const SizedBox(height: 2),
+        Text(
+          lectureRoom,
+          style: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w400,
+            color: Colors.black
+          )
+        )
+      ],
+    );
+  }
+
+  Widget _buildDDayBadge() {
+    if (deadline != null) {
+      return DDayBadge(deadline: deadline!);
+    }
+    return SizedBox.shrink();
   }
 }

@@ -8,7 +8,7 @@ part 'course.g.dart';
 @freezed
 class Courses with _$Courses {
   const factory Courses({
-    @Default([]) List<Course>? courses
+    required List<Course> courses
   }) = _Courses;
 
   factory Courses.fromJson(Map<String, dynamic> json) => _$CoursesFromJson(json);
@@ -16,8 +16,6 @@ class Courses with _$Courses {
 
 @freezed
 class Course with _$Course {
-  const Course._();
-
   const factory Course({
     required String name,
     required String professor,
@@ -26,7 +24,7 @@ class Course with _$Course {
     DateTime? deadline,
     String? link,
     CourseActivities? courseActivities,
-    List<Notice>? notices
+    Notices? notices
   }) = _Course;
 
   factory Course.fromJson(Map<String, dynamic> json) => _$CourseFromJson(json);

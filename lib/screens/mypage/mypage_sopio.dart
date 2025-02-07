@@ -53,7 +53,7 @@ class SopioScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     Text(
-                      '\'Software of Public Interest Organization\'\n2023년에 2명으로 시작하여 현재는 5인으로 구성된 소프트웨어 개발팀입니다.'.replaceAllMapped(RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D'),
+                      '\'Software of Public Interest Organization\'\n2023년에 2인으로 시작하여 현재는 5인으로 구성된 소프트웨어 개발팀입니다.'.replaceAllMapped(RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D'),
                       style: TextStyle(
                         height: 2,
                         fontWeight: FontWeight.w300,

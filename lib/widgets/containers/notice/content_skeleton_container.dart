@@ -12,74 +12,63 @@ class ContentSkeletonContainer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          DecoratedBox(
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: Color.fromARGB(255, 228, 232, 241)
-                )
-              )
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 30),
-                Text(
-                  'Skeleton_Skeleton',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    color: Color.fromARGB(255, 30, 30, 30)
-                  )
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  'Skeleton_Skeleton_Ske',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
-                    color: Color.fromARGB(255, 30, 30, 30)
-                  )
-                ),
-                const SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    SvgPicture.asset('lib/assets/svgs/notice/person.svg'),
-                    const SizedBox(width: 7),
-                    Text(
-                      'Skeleton',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                        color: Color.fromARGB(255, 151, 151, 151)
-                      )
-                    ),
-                    const SizedBox(width: 20),
-                    SvgPicture.asset('lib/assets/svgs/notice/clock.svg'),
-                    const SizedBox(width: 7),
-                    Text(
-                      'Skeleton',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                        color: Color.fromARGB(255, 151, 151, 151)
-                      )
-                    )
-                  ]
-                ),
-                const SizedBox(height: 20)
-              ]
-            )
-          ),
+          _buildHeader(),
           const SizedBox(height: 20),
-          Text('Skeleton_Skeleton_Skeleton'),
-          const SizedBox(height: 10),
-          Text('Skeleton_Skeleton_Skeleton_Skeleton'),
-          const SizedBox(height: 10),
-          Text('Skeleton_Skeleton')
+          _buildBody()
         ]
       )
+    );
+  }
+
+  Widget _buildHeader() {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: Color.fromARGB(255, 228, 232, 241)
+          )
+        )
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 30),
+          Text('Skeleton_Skeleton', style: TextStyle(fontSize: 14)),
+          const SizedBox(height: 10),
+          Text('Skeleton_Skeleton_Ske', style: TextStyle(fontSize: 20)),
+          const SizedBox(height: 20),
+          _buildInformation(),
+          const SizedBox(height: 20)
+        ]
+      )
+    );
+  }
+
+  Row _buildInformation() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        SvgPicture.asset('lib/assets/svgs/notice/person.svg'),
+        const SizedBox(width: 7),
+        Text('Skeleton', style: TextStyle(fontSize: 12)),
+        const SizedBox(width: 20),
+        SvgPicture.asset('lib/assets/svgs/notice/clock.svg'),
+        const SizedBox(width: 7),
+        Text('Skeleton', style: TextStyle(fontSize: 12))
+      ]
+    );
+  }
+
+  Widget _buildBody() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: const [
+          Text('Skeleton_Skeleton_Skeleton'),
+          SizedBox(height: 10),
+          Text('Skeleton_Skeleton_Skeleton_Skeleton'),
+          SizedBox(height: 10),
+          Text('Skeleton_Skeleton')
+      ],
     );
   }
 }

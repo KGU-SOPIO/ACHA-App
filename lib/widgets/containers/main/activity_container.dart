@@ -32,45 +32,57 @@ class ActivityContainer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AutoSizeText(
-            title,
-            maxLines: 1,
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-              color: Color.fromARGB(255, 60, 60, 60)
-            )
-          ),
-          Text(
-            course,
-            style: TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.w400,
-              color: Color.fromARGB(255, 60, 60, 60)
-            )
-          ),
+          _buildTitle(),
+          _buildCourse(),
           const SizedBox(height: 14),
-          Text.rich(
-            TextSpan(
-              style: TextStyle(
-                color: Color.fromARGB(255, 151, 151, 151)
-              ),
-              children: [
-                TextSpan(
-                  text: deadline,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500
-                  )
-                ),
-                TextSpan(
-                  text: '까지',
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500
-                  )
-                )
-              ]
+          _buildDeadline()
+        ]
+      )
+    );
+  }
+
+  Widget _buildTitle() {
+    return AutoSizeText(
+      title,
+      maxLines: 1,
+      style: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        color: Color.fromARGB(255, 60, 60, 60)
+      )
+    );
+  }
+
+  Widget _buildCourse() {
+    return Text(
+      course,
+      style: TextStyle(
+        fontSize: 13,
+        fontWeight: FontWeight.w400,
+        color: Color.fromARGB(255, 60, 60, 60)
+      )
+    );
+  }
+
+  Widget _buildDeadline() {
+    return Text.rich(
+      TextSpan(
+        style: TextStyle(
+          color: Color.fromARGB(255, 151, 151, 151)
+        ),
+        children: [
+          TextSpan(
+            text: deadline,
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w500
+            )
+          ),
+          TextSpan(
+            text: '까지',
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w500
             )
           )
         ]

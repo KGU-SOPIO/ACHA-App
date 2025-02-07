@@ -15,7 +15,7 @@ class AuthenticationResponse with _$AuthenticationResponse {
   const factory AuthenticationResponse.signup({
     required String name,
     required String college,
-    required String department,
+    required String? department,
     required String? major
   }) = AuthenticationSignUpResponse;
 

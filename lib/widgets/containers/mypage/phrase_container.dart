@@ -20,57 +20,70 @@ class PhraseContainer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text.rich(
-            TextSpan(
-              style: TextStyle(
-                fontSize: 16,
-                color: Color.fromARGB(255, 30, 30, 30)
-              ),
-              children: [
-                TextSpan(
-                  text: '오늘의 ',
-                  style: TextStyle(fontWeight: FontWeight.w500)
-                ),
-                TextSpan(
-                  text: '문구',
-                  style: TextStyle(fontWeight: FontWeight.w700)
-                )
-              ]
-            ),
+          _buildTitle(),
+          const SizedBox(height: 15),
+          _buildPhraseContainer()
+        ]
+      )
+    );
+  }
+
+  Widget _buildTitle() {
+    return Text.rich(
+      TextSpan(
+        style: TextStyle(
+          fontSize: 16,
+          color: Color.fromARGB(255, 30, 30, 30)
+        ),
+        children: [
+          TextSpan(
+            text: '오늘의 ',
+            style: TextStyle(fontWeight: FontWeight.w500)
           ),
-          Container(
-            width: double.infinity,
-            margin: EdgeInsets.only(top: 15, bottom: 10),
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: Center(
-              child: Stack(
-                children: [
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    child: SvgPicture.asset('lib/assets/svgs/mypage/left.svg'),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: SvgPicture.asset('lib/assets/svgs/mypage/right.svg'),
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
-                      child: Text(
-                      '평범하게 살고 싶지 않은데\n왜 평범하게 노력하는가?',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        color: Color.fromARGB(255, 0, 102, 255)
-                      )
-                    )
-                  )
-                ]
-              )
-            )
+          TextSpan(
+            text: '문구',
+            style: TextStyle(fontWeight: FontWeight.w700)
           )
         ]
+      ),
+    );
+  }
+
+  Widget _buildPhraseContainer() {
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Center(
+        child: Stack(
+          children: [
+            Positioned(
+              top: 0,
+              left: 0,
+              child: SvgPicture.asset('lib/assets/svgs/mypage/left.svg'),
+            ),
+            Positioned(
+              bottom: 0,
+              right: 0,
+              child: SvgPicture.asset('lib/assets/svgs/mypage/right.svg'),
+            ),
+            _buildPhrase()
+          ]
+        )
+      )
+    );
+  }
+
+  Widget _buildPhrase() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+        child: Text(
+        '평범하게 살고 싶지 않은데\n왜 평범하게 노력하는가?',
+        style: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w700,
+          color: Color.fromARGB(255, 0, 102, 255)
+        )
       )
     );
   }

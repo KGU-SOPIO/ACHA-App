@@ -52,7 +52,7 @@ class CarouselActivityContainer extends StatelessWidget {
                 const SizedBox(width: 10),
                 Expanded(
                   child: Text(
-                    activity.name!,
+                    activity.name,
                     maxLines: 1,
                     overflow: TextOverflow.fade,
                     softWrap: false,
