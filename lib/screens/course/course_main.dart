@@ -142,15 +142,15 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                                       if (state.status == CourseStatus.loading) {
                                         return _buildCarouselSkeleton();
                                       } else if (state.status == CourseStatus.loaded) {
-                                        final CourseActivities courseActivities = state.course.courseActivities!;
-                                        final containers = (courseActivities.weekActivities).expand((weekActivities) {
+                                        final CourseActivities? courseActivities = state.course.courseActivities;
+                                        final containers = (courseActivities?.weekActivities)?.expand((weekActivities) {
                                           final week = weekActivities.week;
                                           return (weekActivities.activities).map((activity) {
-                                            return CarouselActivityContainer(week: week, activity: activity);
+                                            return CarouselActivityContainer(week: week!, activity: activity);
                                           });
                                         }).toList();
 
-                                        if (containers.isNotEmpty) {
+                                        if (containers != null) {
                                           return Container(
                                             height: 160,
                                             margin: EdgeInsets.only(bottom: 5),
@@ -199,7 +199,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                   if (state.status == CourseStatus.loading)
                     _buildPanelSkeleton()
                   else if (state.status == CourseStatus.loaded)
-                    if (state.course.courseActivities!.weekActivities.isEmpty)
+                    if (state.course.courseActivities == null)
                       const SizedBox.shrink()
                     else
                       Padding(

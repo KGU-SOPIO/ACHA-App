@@ -18,7 +18,7 @@ class CourseActivities with _$CourseActivities {
 @freezed
 class WeekActivities with _$WeekActivities {
   const factory WeekActivities({
-    required int week,
+    int? week,
     required List<Activity> activities,
   }) = _WeekActivities;
 

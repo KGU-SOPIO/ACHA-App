@@ -55,7 +55,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
             ]
           )
         ),
-        SvgPicture.asset('lib/assets/svgs/acha_logo.svg', width: 50)
+        SvgPicture.asset('lib/assets/svgs/acha_small.svg', width: 50)
       ],
     ),
     url: TermsAndConditionsUrl.serviceTermsAndConditions,

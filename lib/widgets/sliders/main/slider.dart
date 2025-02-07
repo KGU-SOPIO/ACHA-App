@@ -85,7 +85,8 @@ class _SliderWidgetState extends State<SliderWidget> {
           const SizedBox(height: 18),
           _buildActivityBlocConsumer(
             loadedBuilder: (state) {
-              final lectures = state.weekActivities?.getLectureActivities(group: true);
+              final weekActivities = state.weekActivities;
+              final lectures = weekActivities?.getLectureActivities(group: true);
               return _buildLectureList(lectures: lectures, notExistMessage: '남은 강의가 없어요');
             },
             errorMessage: '우선 강의를 불러오지 못했어요'
@@ -104,7 +105,8 @@ class _SliderWidgetState extends State<SliderWidget> {
           const SizedBox(height: 18),
           _buildActivityBlocConsumer(
             loadedBuilder: (state) {
-              final assignments = state.weekActivities?.getAssignmentActivities(group: true);
+              final weekActivities = state.weekActivities;
+              final assignments = weekActivities?.getAssignmentActivities(group: true);
               return _buildAssignmentList(assignments: assignments, notExistMessage: '남은 과제가 없어요');
             },
             errorMessage: '우선 과제를 불러오지 못했어요'
@@ -184,8 +186,8 @@ class _SliderWidgetState extends State<SliderWidget> {
     );
   }
 
-  Widget _buildLectureList({required Map<DateTime, List<Activity>> lectures, required String notExistMessage}) {
-    if (lectures.isEmpty) {
+  Widget _buildLectureList({required Map<DateTime, List<Activity>>? lectures, required String notExistMessage}) {
+    if (lectures == null) {
       return Expanded(child: Center(child: Text(notExistMessage, style: const TextStyle(fontSize: 15))));
     }
 
@@ -217,8 +219,8 @@ class _SliderWidgetState extends State<SliderWidget> {
     );
   }
 
-  Widget _buildAssignmentList({required Map<DateTime, List<Activity>> assignments, required String notExistMessage}) {
-    if (assignments.isEmpty) {
+  Widget _buildAssignmentList({required Map<DateTime, List<Activity>>? assignments, required String notExistMessage}) {
+    if (assignments == null) {
       return Expanded(child: Center(child: Text(notExistMessage, style: const TextStyle(fontSize: 15))));
     }
 

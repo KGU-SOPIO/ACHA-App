@@ -45,7 +45,7 @@ class AlertBloc extends Bloc<AlertEvent, AlertState> {
       NotificationSettings settings = await messaging.getNotificationSettings();
       if (settings.authorizationStatus == AuthorizationStatus.denied) {
         emit(state.copyWith(status: AlertStatus.error, isEnabled: !event.isEnabled, message: '알림 권한을 허용해 주세요'));
-        await Future.delayed(const Duration(seconds: 1));
+        await Future.delayed(const Duration(milliseconds: 1500));
         await openAppSettings();
         return;
       }

@@ -98,7 +98,7 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
       case TodayCourseStatus.loading:
         return const Loader(height: 97);
       case TodayCourseStatus.loaded:
-        if (state.todayCourses?.courses.isEmpty ?? true) {
+        if (state.todayCourses == null) {
           return _buildEmptyCourse();
         }
         return _buildCourseList(state.todayCourses!);

@@ -15,7 +15,7 @@ class TodayCourseBloc extends Bloc<TodayCourseEvent, TodayCourseState> {
   /// 오늘의 강의 정보를 요청합니다.
   Future<void> _onFetchTodayCourses(Fetch event, Emitter<TodayCourseState> emit) async {
     try {
-      final Courses todayCourses = await courseRepository.fetchTodayCourses();
+      final Courses? todayCourses = await courseRepository.fetchTodayCourses();
       emit(state.copyWith(status: TodayCourseStatus.loaded, todayCourses: todayCourses));
     } on DioException catch (e) {
       emit(state.copyWith(status: TodayCourseStatus.error, errorMessage: e.error as String));

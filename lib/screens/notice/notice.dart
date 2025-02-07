@@ -94,9 +94,9 @@ class _NoticeScreenState extends State<NoticeScreen> {
                         if (state.status == NoticeListStatus.loading) {
                           return Column(children: List.generate(4, (index) => NoticeSkeletonContainer()));
                         } else if (state.status == NoticeListStatus.loaded) {
-                          final List<Notice> noticeList = state.notices?.notices ?? [];
+                          final notices = state.notices?.notices;
 
-                          if (noticeList.isEmpty) {
+                          if (notices == null) {
                             return const SizedBox(
                               height: 550,
                               child: Center(
@@ -108,9 +108,9 @@ class _NoticeScreenState extends State<NoticeScreen> {
                           return ListView.builder(
                             shrinkWrap: true,
                             physics: const ClampingScrollPhysics(),
-                            itemCount: noticeList.length,
+                            itemCount: notices.length,
                             itemBuilder: (context, index) {
-                              final Notice notice = noticeList[index];
+                              final Notice notice = notices[index];
 
                               return GestureDetector(
                                 onTap: () => Navigator.push(context, NoticeMainScreen.route(course: context.read<NoticeListBloc>().course, noticeId: notice.id)),

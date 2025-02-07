@@ -9,9 +9,10 @@ class CourseRepository {
   final Dio _dio = GetIt.I<Dio>();
 
   /// 오늘의 강좌 데이터를 요청합니다.
-  Future<Courses> fetchTodayCourses() async {
+  Future<Courses?> fetchTodayCourses() async {
     try {
       final response = await _dio.get(TodayCourseApiEndpoints.todayCourse);
+      if (response.statusCode == 404) return null;
       return Courses.fromJson(response.data);
     } on DioException {
       rethrow;
@@ -21,9 +22,10 @@ class CourseRepository {
   }
 
   /// 강좌 목록 데이터를 요청합니다.
-  Future<Courses> fetchCourses() async {
+  Future<Courses?> fetchCourses() async {
     try {
       final response = await _dio.get(CourseApiEndpoints.courses);
+      if (response.statusCode == 404) return null;
       return Courses.fromJson(response.data);
     } on DioException {
       rethrow;
@@ -33,9 +35,10 @@ class CourseRepository {
   }
 
   /// 전체 활동 데이터를 요청합니다.
-  Future<WeekActivities> fetchActivities() async {
+  Future<WeekActivities?> fetchActivities() async {
     try {
       final response = await _dio.get(CourseApiEndpoints.activity);
+      if (response.statusCode == 404) return null;
       return WeekActivities.fromJson(response.data);
     } on DioException {
       rethrow;
@@ -45,9 +48,10 @@ class CourseRepository {
   }
 
   /// 강좌 활동 데이터를 요청합니다.
-  Future<CourseActivities> fetchCourseActivities(String courseCode) async {
+  Future<CourseActivities?> fetchCourseActivities(String courseCode) async {
     try {
       final response = await _dio.get(CourseApiEndpoints.activityDetail(courseCode));
+      if (response.statusCode == 404) return null;
       return CourseActivities.fromJson(response.data);
     } on DioException {
       rethrow;
@@ -57,9 +61,10 @@ class CourseRepository {
   }
 
   /// 공지사항 목록 데이터를 요청합니다.
-  Future<Notices> fetchNoticeList(String courseCode) async {
+  Future<Notices?> fetchNoticeList(String courseCode) async {
     try {
       final response = await _dio.get(NoticeApiEndpoints.noticeListDetail(courseCode));
+      if (response.statusCode == 404) return null;
       return Notices.fromJson(response.data);
     } on DioException {
       rethrow;
@@ -69,9 +74,10 @@ class CourseRepository {
   }
 
   /// 공지사항 데이터를 요청합니다.
-  Future<Notice> fetchNotice(String courseCode, int noticeId) async {
+  Future<Notice?> fetchNotice(String courseCode, int noticeId) async {
     try {
       final response = await _dio.get(NoticeApiEndpoints.noticeDetail(courseCode, noticeId));
+      if (response.statusCode == 404) return null;
       return Notice.fromJson(response.data);
     } on DioException {
       rethrow;

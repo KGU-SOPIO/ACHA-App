@@ -9,7 +9,7 @@ import 'package:acha/models/index.dart';
 import 'package:acha/repository/index.dart';
 import 'package:acha/blocs/auth/index.dart';
 
-import 'package:acha/network/interceptor/index.dart';
+import 'package:acha/network/interceptors/index.dart';
 
 import 'package:acha/constants/apis/index.dart';
 

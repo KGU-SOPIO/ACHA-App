@@ -33,6 +33,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
         break;
       case AuthenticationStatus.registered:
         emit(const AuthenticationState.registered());
+        break;
       case AuthenticationStatus.unknown:
         emit(const AuthenticationState.unknown());
         break;

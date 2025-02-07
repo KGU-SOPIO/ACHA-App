@@ -63,14 +63,14 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
               if (state.status == ActivityStatus.loading) {
                 return Loader(height: MediaQuery.of(context).size.height);
               } else if (state.status == ActivityStatus.loaded) {
-                final WeekActivities activities = state.weekActivities!;
+                final WeekActivities? activities = state.weekActivities;
                 
                 return TabBarView(
                   controller: _tabController,
                   children: [
-                    _buildActivityListView(activities.getLectureAndAssignmentActivities(group: true)),
-                    _buildActivityListView(activities.getLectureActivities(group: true)),
-                    _buildActivityListView(activities.getAssignmentActivities(group: true))
+                    _buildActivityListView(activities?.getLectureAndAssignmentActivities(group: true)),
+                    _buildActivityListView(activities?.getLectureActivities(group: true)),
+                    _buildActivityListView(activities?.getAssignmentActivities(group: true))
                   ]
                 );
               } else {
@@ -90,8 +90,8 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
     );
   }
 
-  Widget _buildActivityListView(Map<DateTime, List<Activity>> groupedActivities) {
-    if (groupedActivities.isEmpty) {
+  Widget _buildActivityListView(Map<DateTime, List<Activity>>? groupedActivities) {
+    if (groupedActivities == null) {
       return Center(child: Text('다 끝내셨군요! 고생하셨어요'));
     }
 

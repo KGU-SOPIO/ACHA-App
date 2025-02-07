@@ -22,7 +22,7 @@ Map<String, dynamic> _$$CourseActivitiesImplToJson(
 
 _$WeekActivitiesImpl _$$WeekActivitiesImplFromJson(Map<String, dynamic> json) =>
     _$WeekActivitiesImpl(
-      week: (json['week'] as num).toInt(),
+      week: (json['week'] as num?)?.toInt(),
       activities: (json['activities'] as List<dynamic>)
           .map((e) => Activity.fromJson(e as Map<String, dynamic>))
           .toList(),

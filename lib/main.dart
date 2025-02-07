@@ -14,7 +14,7 @@ import 'package:acha/app.dart';
 
 import 'package:acha/repository/index.dart';
 
-import 'package:acha/network/interceptor/index.dart';
+import 'package:acha/network/interceptors/index.dart';
 
 import 'package:acha/widgets/toast/toast_manager.dart';
 

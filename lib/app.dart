@@ -111,34 +111,7 @@ class _AppViewState extends State<AppView> {
       scrollBehavior: Behavior(),
       builder: (context, child) => MultiBlocListener(
         listeners: [
-          BlocListener<AuthenticationBloc, AuthenticationState>(
-            listener: (context, state) => state.when(
-              authenticated: () {
-                context.read<UserBloc>().add(UserEvent.fetch());
-                context.read<TodayCourseBloc>().add(TodayCourseEvent.fetch());
-                _checkStates(context);
-                return;
-              },
-              registered: () {
-                context.read<UserBloc>().add(UserEvent.fetch());
-                context.read<TodayCourseBloc>().add(TodayCourseEvent.fetch());
-                requestPermission = true;
-                _checkStates(context);
-                return;
-              },
-              unauthenticated: () async {
-                final isConnected = await _connectivityChecker.isConnected();
-                if (!isConnected) {
-                  _navigator.pushAndRemoveUntil(ConnectErrorScreen.route(), (route) => false);
-                } else {
-                  _isNavigate = false;
-                  _navigator.pushAndRemoveUntil(AuthStartScreen.route(), (route) => false);
-                }
-                return;
-              },
-              unknown: () => null,
-            )
-          ),
+          BlocListener<AuthenticationBloc, AuthenticationState>(listener: _onAuthenticationStateChanged),
           BlocListener<UserBloc, UserState>(listener: (context, state) => _checkStates(context)),
           BlocListener<TodayCourseBloc, TodayCourseState>(listener: (context, state) => _checkStates(context))
         ],
@@ -146,6 +119,36 @@ class _AppViewState extends State<AppView> {
       ),
       onGenerateRoute: (context) => SplashScreen.route()
     );
+  }
+
+  /// 인증 상태 변화를 감지합니다.
+  void _onAuthenticationStateChanged(BuildContext context, AuthenticationState state) {
+    state.when(
+      authenticated: () {
+        _fetchData(context);
+      },
+      registered: () {
+        requestPermission = true;
+        _fetchData(context);
+      },
+      unauthenticated: () async {
+        final isConnected = await _connectivityChecker.isConnected();
+        if (!isConnected) {
+          _navigator.pushAndRemoveUntil(ConnectErrorScreen.route(), (route) => false);
+        } else {
+          _isNavigate = false;
+          _navigator.pushAndRemoveUntil(AuthStartScreen.route(), (route) => false);
+        }
+      },
+      unknown: () {}
+    );
+  }
+
+  /// 서버로부터 필수 데이터를 요청합니다.
+  void _fetchData(BuildContext context) {
+    context.read<UserBloc>().add(UserEvent.fetch());
+    context.read<TodayCourseBloc>().add(TodayCourseEvent.fetch());
+    _checkStates(context);
   }
 
   /// 상태 확인 후 화면을 전환합니다.
