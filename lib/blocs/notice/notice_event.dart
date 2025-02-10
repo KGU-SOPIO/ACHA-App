@@ -4,5 +4,5 @@ part 'notice_event.freezed.dart';
 
 @freezed
 class NoticeEvent with _$NoticeEvent {
-  const factory NoticeEvent.fetch() = Fetch;
+  const factory NoticeEvent.fetchNotice() = FetchNotice;
 }

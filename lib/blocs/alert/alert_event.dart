@@ -4,7 +4,7 @@ part 'alert_event.freezed.dart';
 
 @freezed
 class AlertEvent with _$AlertEvent {
-  const factory AlertEvent.fetch() = Fetch;
-  const factory AlertEvent.deny() = Deny;
-  const factory AlertEvent.statusChanged({required bool isEnabled}) = StatusChanged;
+  const factory AlertEvent.fetchAlertStatus() = FetchAlertStatus;
+  const factory AlertEvent.denyAlert() = DenyAlert;
+  const factory AlertEvent.changeAlertStatus({required bool isEnabled}) = ChangeAlertStatus;
 }

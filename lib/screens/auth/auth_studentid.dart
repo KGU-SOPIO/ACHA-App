@@ -131,7 +131,7 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
                         ),
                         onChanged: (value) {
                           if (value.length == 9) {
-                            context.read<SignInBloc>().add(StudentIdEntered(studentId: value));
+                            context.read<SignInBloc>().add(InputStudentId(studentId: value));
                             Navigator.push(context, AuthPasswordScreen.route(context));
                           }
                         }

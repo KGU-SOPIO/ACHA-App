@@ -25,7 +25,7 @@ class _CourseScreenState extends State<CourseScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<CourseListBloc>().add(CourseListEvent.fetch());
+    context.read<CourseListBloc>().add(CourseListEvent.fetchCourses());
   }
 
   @override
@@ -62,7 +62,7 @@ class _CourseScreenState extends State<CourseScreen> {
                         if (state.status == CourseListStatus.loading) {
                           return const Loader(height: 500);
                         } else if (state.status == CourseListStatus.loaded) {
-                          final courses = state.courses?.courses;
+                          final courses = state.courseList?.courses;
                           if (courses == null) {
                             return const SizedBox(height: 500, child: Center(child: Text('등록된 강좌가 없어요', style: TextStyle(fontSize: 15))));
                           }

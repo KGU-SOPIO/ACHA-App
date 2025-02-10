@@ -9,7 +9,8 @@ class TokenInterceptor extends Interceptor {
   final Dio _dio = Dio(BaseOptions(
     connectTimeout: const Duration(seconds: 3),
     receiveTimeout: const Duration(seconds: 15),
-    sendTimeout: const Duration(seconds: 5)
+    sendTimeout: const Duration(seconds: 5),
+    validateStatus: (status) => status != null && status < 500
   ));
   final SecureStorage _secureStorage = GetIt.I<SecureStorage>();
 

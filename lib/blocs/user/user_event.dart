@@ -4,5 +4,5 @@ part 'user_event.freezed.dart';
 
 @freezed
 class UserEvent with _$UserEvent {
-  const factory UserEvent.fetch() = Fetch;
+  const factory UserEvent.fetchUser() = FetchUser;
 }

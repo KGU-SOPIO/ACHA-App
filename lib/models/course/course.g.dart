@@ -6,14 +6,14 @@ part of 'course.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CoursesImpl _$$CoursesImplFromJson(Map<String, dynamic> json) =>
-    _$CoursesImpl(
+_$CourseListImpl _$$CourseListImplFromJson(Map<String, dynamic> json) =>
+    _$CourseListImpl(
       courses: (json['courses'] as List<dynamic>)
           .map((e) => Course.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$CoursesImplToJson(_$CoursesImpl instance) =>
+Map<String, dynamic> _$$CourseListImplToJson(_$CourseListImpl instance) =>
     <String, dynamic>{
       'courses': instance.courses,
     };
@@ -33,7 +33,7 @@ _$CourseImpl _$$CourseImplFromJson(Map<String, dynamic> json) => _$CourseImpl(
               json['courseActivities'] as Map<String, dynamic>),
       notices: json['notices'] == null
           ? null
-          : Notices.fromJson(json['notices'] as Map<String, dynamic>),
+          : NoticeList.fromJson(json['notices'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$CourseImplToJson(_$CourseImpl instance) =>

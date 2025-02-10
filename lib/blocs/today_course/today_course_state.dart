@@ -10,7 +10,7 @@ enum TodayCourseStatus { loading, loaded, error }
 class TodayCourseState with _$TodayCourseState {
   const factory TodayCourseState({
     required TodayCourseStatus status,
-    Courses? todayCourses,
+    CourseList? todayCourses,
     String? errorMessage
   }) = _TodayCourseState;
 }

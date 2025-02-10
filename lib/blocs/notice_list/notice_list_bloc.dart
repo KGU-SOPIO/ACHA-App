@@ -7,17 +7,17 @@ import 'package:acha/blocs/notice_list/index.dart';
 
 class NoticeListBloc extends Bloc<NoticeListEvent, NoticeListState> {
   NoticeListBloc({required this.courseRepository, required this.course}) : super(const NoticeListState(status: NoticeListStatus.loading)) {
-    on<Fetch>(_onFetchNoticeList);
+    on<FetchNoticeList>(_onFetchNoticeList);
   }
 
   final CourseRepository courseRepository;
   final Course course;
 
   /// 공지사항 목록 데이터를 요청합니다.
-  Future<void> _onFetchNoticeList(Fetch event, Emitter<NoticeListState> emit) async {
+  Future<void> _onFetchNoticeList(FetchNoticeList event, Emitter<NoticeListState> emit) async {
     try {
-      final Notices? notices = await courseRepository.fetchNoticeList(course.code);
-      emit(state.copyWith(status: NoticeListStatus.loaded, notices: notices));
+      final NoticeList? noticeList = await courseRepository.fetchNoticeList(course.code);
+      emit(state.copyWith(status: NoticeListStatus.loaded, noticeList: noticeList));
     } on DioException catch (e) {
       emit(state.copyWith(status: NoticeListStatus.error, errorMessage: e.error as String));
     } catch (e) {

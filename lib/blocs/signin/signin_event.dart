@@ -6,9 +6,10 @@ part 'signin_event.freezed.dart';
 
 @freezed
 class SignInEvent with _$SignInEvent {
-  const factory SignInEvent.statusChanged({required SignInStatus status}) = StatusChanged;
-  const factory SignInEvent.studentIdEntered({required String studentId}) = StudentIdEntered;
-  const factory SignInEvent.passwordEntered({required String password}) = PasswordEntered;
-  const factory SignInEvent.signInSubmitted() = SignInSubmitted;
-  const factory SignInEvent.signUpSubmitted() = SignUpSubmitted;
+  const factory SignInEvent.changeStatus({required SignInStatus status}) = ChangeStatus;
+  const factory SignInEvent.inputStudentId({required String studentId}) = InputStudentId;
+  const factory SignInEvent.inputPassword({required String password}) = InputPassword;
+  const factory SignInEvent.submitSignIn() = SubmitSignIn;
+  const factory SignInEvent.fetchUser() = FetchUser;
+  const factory SignInEvent.submitSignUp() = SubmitSignUp;
 }

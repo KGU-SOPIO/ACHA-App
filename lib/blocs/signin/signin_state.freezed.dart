@@ -19,10 +19,7 @@ mixin _$SignInState {
   SignInStatus get status => throw _privateConstructorUsedError;
   String? get studentId => throw _privateConstructorUsedError;
   String? get password => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  String? get college => throw _privateConstructorUsedError;
-  String? get department => throw _privateConstructorUsedError;
-  String? get major => throw _privateConstructorUsedError;
+  User? get user => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
 
   /// Create a copy of SignInState
@@ -42,11 +39,10 @@ abstract class $SignInStateCopyWith<$Res> {
       {SignInStatus status,
       String? studentId,
       String? password,
-      String? name,
-      String? college,
-      String? department,
-      String? major,
+      User? user,
       String? errorMessage});
+
+  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -67,10 +63,7 @@ class _$SignInStateCopyWithImpl<$Res, $Val extends SignInState>
     Object? status = null,
     Object? studentId = freezed,
     Object? password = freezed,
-    Object? name = freezed,
-    Object? college = freezed,
-    Object? department = freezed,
-    Object? major = freezed,
+    Object? user = freezed,
     Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
@@ -86,27 +79,29 @@ class _$SignInStateCopyWithImpl<$Res, $Val extends SignInState>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      college: freezed == college
-          ? _value.college
-          : college // ignore: cast_nullable_to_non_nullable
-              as String?,
-      department: freezed == department
-          ? _value.department
-          : department // ignore: cast_nullable_to_non_nullable
-              as String?,
-      major: freezed == major
-          ? _value.major
-          : major // ignore: cast_nullable_to_non_nullable
-              as String?,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
+  }
+
+  /// Create a copy of SignInState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $UserCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
   }
 }
 
@@ -122,11 +117,11 @@ abstract class _$$SignInStateImplCopyWith<$Res>
       {SignInStatus status,
       String? studentId,
       String? password,
-      String? name,
-      String? college,
-      String? department,
-      String? major,
+      User? user,
       String? errorMessage});
+
+  @override
+  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -145,10 +140,7 @@ class __$$SignInStateImplCopyWithImpl<$Res>
     Object? status = null,
     Object? studentId = freezed,
     Object? password = freezed,
-    Object? name = freezed,
-    Object? college = freezed,
-    Object? department = freezed,
-    Object? major = freezed,
+    Object? user = freezed,
     Object? errorMessage = freezed,
   }) {
     return _then(_$SignInStateImpl(
@@ -164,22 +156,10 @@ class __$$SignInStateImplCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      college: freezed == college
-          ? _value.college
-          : college // ignore: cast_nullable_to_non_nullable
-              as String?,
-      department: freezed == department
-          ? _value.department
-          : department // ignore: cast_nullable_to_non_nullable
-              as String?,
-      major: freezed == major
-          ? _value.major
-          : major // ignore: cast_nullable_to_non_nullable
-              as String?,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -195,10 +175,7 @@ class _$SignInStateImpl implements _SignInState {
       {this.status = SignInStatus.initial,
       this.studentId,
       this.password,
-      this.name,
-      this.college,
-      this.department,
-      this.major,
+      this.user,
       this.errorMessage});
 
   @override
@@ -209,19 +186,13 @@ class _$SignInStateImpl implements _SignInState {
   @override
   final String? password;
   @override
-  final String? name;
-  @override
-  final String? college;
-  @override
-  final String? department;
-  @override
-  final String? major;
+  final User? user;
   @override
   final String? errorMessage;
 
   @override
   String toString() {
-    return 'SignInState(status: $status, studentId: $studentId, password: $password, name: $name, college: $college, department: $department, major: $major, errorMessage: $errorMessage)';
+    return 'SignInState(status: $status, studentId: $studentId, password: $password, user: $user, errorMessage: $errorMessage)';
   }
 
   @override
@@ -234,18 +205,14 @@ class _$SignInStateImpl implements _SignInState {
                 other.studentId == studentId) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.college, college) || other.college == college) &&
-            (identical(other.department, department) ||
-                other.department == department) &&
-            (identical(other.major, major) || other.major == major) &&
+            (identical(other.user, user) || other.user == user) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, studentId, password,
-      name, college, department, major, errorMessage);
+  int get hashCode =>
+      Object.hash(runtimeType, status, studentId, password, user, errorMessage);
 
   /// Create a copy of SignInState
   /// with the given fields replaced by the non-null parameter values.
@@ -261,10 +228,7 @@ abstract class _SignInState implements SignInState {
       {final SignInStatus status,
       final String? studentId,
       final String? password,
-      final String? name,
-      final String? college,
-      final String? department,
-      final String? major,
+      final User? user,
       final String? errorMessage}) = _$SignInStateImpl;
 
   @override
@@ -274,13 +238,7 @@ abstract class _SignInState implements SignInState {
   @override
   String? get password;
   @override
-  String? get name;
-  @override
-  String? get college;
-  @override
-  String? get department;
-  @override
-  String? get major;
+  User? get user;
   @override
   String? get errorMessage;
 

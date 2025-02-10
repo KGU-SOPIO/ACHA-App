@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:acha/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'package:acha/app.dart';
@@ -15,10 +15,11 @@ import 'package:acha/app.dart';
 import 'package:acha/repository/index.dart';
 
 import 'package:acha/network/interceptors/index.dart';
+import 'package:acha/network/utils/index.dart';
 
 import 'package:acha/widgets/toast/toast_manager.dart';
 
-late final TokenRepository _tokenRepository;
+late final FCMTokenRepository _fcmTokenRepository;
 
 late final AndroidNotificationChannel channel;
 late final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
@@ -113,16 +114,18 @@ void main() async {
 
   /// GetIt 설정
   final GetIt getIt = GetIt.I;
-  getIt.registerSingleton<SecureStorage>(SecureStorage());
+  getIt.registerSingleton<SecureStorage>(SecureStorage(FlutterSecureStorage()));
+  getIt.registerSingleton<ConnectivityChecker>(ConnectivityChecker());
   getIt.registerSingleton(
     () {
       final Dio dio = Dio(BaseOptions(
         connectTimeout: const Duration(seconds: 3),
         receiveTimeout: const Duration(seconds: 15),
-        sendTimeout: const Duration(seconds: 5)
+        sendTimeout: const Duration(seconds: 5),
+        validateStatus: (status) => status != null && status < 500
       ));
       dio.interceptors.add(TokenInterceptor());
-      dio.interceptors.add(ErrorInterceptor());
+      dio.interceptors.add(ErrorInterceptor(GetIt.I<ConnectivityChecker>()));
       return dio;
     }()
   );
@@ -133,8 +136,8 @@ void main() async {
   getIt.registerLazySingleton<ToastManager>(() => ToastManager());
 
   /// FCM 토큰 변경 시 재설정
-  _tokenRepository = TokenRepository();
-  FirebaseMessaging.instance.onTokenRefresh.listen(_tokenRepository.updateToken);
+  _fcmTokenRepository = FCMTokenRepository();
+  FirebaseMessaging.instance.onTokenRefresh.listen(_fcmTokenRepository.updateToken);
 
   runApp(const App());
 }

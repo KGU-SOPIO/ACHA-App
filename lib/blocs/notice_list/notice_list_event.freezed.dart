@@ -18,33 +18,33 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$NoticeListEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function() fetchNoticeList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function()? fetchNoticeList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function()? fetchNoticeList,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Fetch value) fetch,
+    required TResult Function(FetchNoticeList value) fetchNoticeList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Fetch value)? fetch,
+    TResult? Function(FetchNoticeList value)? fetchNoticeList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Fetch value)? fetch,
+    TResult Function(FetchNoticeList value)? fetchNoticeList,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -72,18 +72,18 @@ class _$NoticeListEventCopyWithImpl<$Res, $Val extends NoticeListEvent>
 }
 
 /// @nodoc
-abstract class _$$FetchImplCopyWith<$Res> {
-  factory _$$FetchImplCopyWith(
-          _$FetchImpl value, $Res Function(_$FetchImpl) then) =
-      __$$FetchImplCopyWithImpl<$Res>;
+abstract class _$$FetchNoticeListImplCopyWith<$Res> {
+  factory _$$FetchNoticeListImplCopyWith(_$FetchNoticeListImpl value,
+          $Res Function(_$FetchNoticeListImpl) then) =
+      __$$FetchNoticeListImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$FetchImplCopyWithImpl<$Res>
-    extends _$NoticeListEventCopyWithImpl<$Res, _$FetchImpl>
-    implements _$$FetchImplCopyWith<$Res> {
-  __$$FetchImplCopyWithImpl(
-      _$FetchImpl _value, $Res Function(_$FetchImpl) _then)
+class __$$FetchNoticeListImplCopyWithImpl<$Res>
+    extends _$NoticeListEventCopyWithImpl<$Res, _$FetchNoticeListImpl>
+    implements _$$FetchNoticeListImplCopyWith<$Res> {
+  __$$FetchNoticeListImplCopyWithImpl(
+      _$FetchNoticeListImpl _value, $Res Function(_$FetchNoticeListImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of NoticeListEvent
@@ -92,18 +92,18 @@ class __$$FetchImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FetchImpl implements Fetch {
-  const _$FetchImpl();
+class _$FetchNoticeListImpl implements FetchNoticeList {
+  const _$FetchNoticeListImpl();
 
   @override
   String toString() {
-    return 'NoticeListEvent.fetch()';
+    return 'NoticeListEvent.fetchNoticeList()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$FetchImpl);
+        (other.runtimeType == runtimeType && other is _$FetchNoticeListImpl);
   }
 
   @override
@@ -112,27 +112,27 @@ class _$FetchImpl implements Fetch {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function() fetchNoticeList,
   }) {
-    return fetch();
+    return fetchNoticeList();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function()? fetchNoticeList,
   }) {
-    return fetch?.call();
+    return fetchNoticeList?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function()? fetchNoticeList,
     required TResult orElse(),
   }) {
-    if (fetch != null) {
-      return fetch();
+    if (fetchNoticeList != null) {
+      return fetchNoticeList();
     }
     return orElse();
   }
@@ -140,32 +140,32 @@ class _$FetchImpl implements Fetch {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Fetch value) fetch,
+    required TResult Function(FetchNoticeList value) fetchNoticeList,
   }) {
-    return fetch(this);
+    return fetchNoticeList(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Fetch value)? fetch,
+    TResult? Function(FetchNoticeList value)? fetchNoticeList,
   }) {
-    return fetch?.call(this);
+    return fetchNoticeList?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Fetch value)? fetch,
+    TResult Function(FetchNoticeList value)? fetchNoticeList,
     required TResult orElse(),
   }) {
-    if (fetch != null) {
-      return fetch(this);
+    if (fetchNoticeList != null) {
+      return fetchNoticeList(this);
     }
     return orElse();
   }
 }
 
-abstract class Fetch implements NoticeListEvent {
-  const factory Fetch() = _$FetchImpl;
+abstract class FetchNoticeList implements NoticeListEvent {
+  const factory FetchNoticeList() = _$FetchNoticeListImpl;
 }

@@ -4,12 +4,12 @@ part 'notice.freezed.dart';
 part 'notice.g.dart';
 
 @freezed
-class Notices with _$Notices {
-  const factory Notices({
+class NoticeList with _$NoticeList {
+  const factory NoticeList({
     required List<Notice> notices
-  }) = _Notices;
+  }) = _NoticeList;
 
-  factory Notices.fromJson(Map<String, dynamic> json) => _$NoticesFromJson(json);
+  factory NoticeList.fromJson(Map<String, dynamic> json) => _$NoticeListFromJson(json);
 }
 
 @freezed

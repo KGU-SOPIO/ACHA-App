@@ -27,7 +27,7 @@ class NoticeMainScreen extends StatefulWidget {
           courseRepository: GetIt.I<CourseRepository>(),
           course: course,
           noticeId: noticeId
-        )..add(NoticeEvent.fetch()),
+        )..add(NoticeEvent.fetchNotice()),
         child: const NoticeMainScreen()
       )
     );

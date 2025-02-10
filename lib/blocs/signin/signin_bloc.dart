@@ -8,24 +8,24 @@ import 'package:acha/blocs/signin/index.dart';
 
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   SignInBloc({required this.authenticationRepository}): super(const SignInState(status: SignInStatus.initial)) {
-    on<StudentIdEntered>((event, emit) => emit(state.copyWith(studentId: event.studentId)));
-    on<PasswordEntered>((event, emit) => emit(state.copyWith(password: event.password)));
-    on<SignInSubmitted>(_onSignInSubmitted);
-    on<SignUpSubmitted>(_onSignUpSubmitted);
+    on<InputStudentId>((event, emit) => emit(state.copyWith(studentId: event.studentId)));
+    on<InputPassword>((event, emit) => emit(state.copyWith(password: event.password)));
+    on<SubmitSignIn>(_onSignInSubmitted);
+    on<FetchUser>(_onFetchUser);
+    on<SubmitSignUp>(_onSignUpSubmitted);
   }
 
   final AuthenticationRepository authenticationRepository;
 
   /// 인증 정보로 로그인을 요청합니다.
-  Future<void> _onSignInSubmitted(SignInSubmitted event, Emitter<SignInState> emit) async {
+  Future<void> _onSignInSubmitted(SubmitSignIn event, Emitter<SignInState> emit) async {
     try {
       emit(state.copyWith(status: SignInStatus.signInProgress));
-      final response = await authenticationRepository.signIn(studentId: state.studentId!, password: state.password!);
 
-      response.maybeWhen(
+      final response = await authenticationRepository.signIn(studentId: state.studentId!, password: state.password!);
+      response.when(
         success: (accessToken, refreshToken) => emit(state.copyWith(status: SignInStatus.signInSuccess)),
-        signup: (name, college, department, major) => emit(state.copyWith(status: SignInStatus.inSignUp, name: name, college: college, department: department, major: major)),
-        orElse: () => emit(state.copyWith(status: SignInStatus.signInFailure)),
+        fetchUserData: (code) => emit(state.copyWith(status: SignInStatus.inFetchUser))
       );
     } on DioException catch (e) {
       emit(state.copyWith(status: SignInStatus.signInFailure, errorMessage: e.error as String));
@@ -34,16 +34,29 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     }
   }
 
+  /// 인증 정보로 학생 정보를 요청합니다.
+  Future<void> _onFetchUser(FetchUser event, Emitter<SignInState> emit) async {
+    try {
+      emit(state.copyWith(status: SignInStatus.fetchUserProgress));
+
+      final response = await authenticationRepository.fetchUserData(studentId: state.studentId!, password: state.password!);
+      response.when(
+        success: (user) => emit(state.copyWith(status: SignInStatus.inSignUp, user: user)),
+        error: (code) => emit(state.copyWith(status: SignInStatus.fetchUserFailure, errorMessage: code.message)),
+      );
+    } on DioException catch (e) {
+      emit(state.copyWith(status: SignInStatus.fetchUserFailure, errorMessage: e.error as String));
+    } catch (e) {
+      emit(state.copyWith(status: SignInStatus.fetchUserFailure, errorMessage: '문제가 발생해 학생 정보를 가져오지 못했어요'));
+    }
+  }
+
   /// 학생 정보로 회원가입을 요청합니다.
-  Future<void> _onSignUpSubmitted(SignUpSubmitted event, Emitter<SignInState> emit) async {
+  Future<void> _onSignUpSubmitted(SubmitSignUp event, Emitter<SignInState> emit) async {
     try {
       emit(state.copyWith(status: SignInStatus.signUpProgress));
-      final response = await authenticationRepository.signUp(studentId: state.studentId!, name: state.name!, college: state.college!, department: state.department!, major: state.major);
-
-      response.maybeWhen(
-        success: (accessToken, refreshToken) => emit(state.copyWith(status: SignInStatus.signUpSuccess)),
-        orElse: () => emit(state.copyWith(status: SignInStatus.signUpFailure)),
-      );
+      await authenticationRepository.signUp(studentId: state.studentId!, password: state.password!, user: state.user!);
+      emit(state.copyWith(status: SignInStatus.signUpSuccess));
     } on DioException catch (e) {
       emit(state.copyWith(status: SignInStatus.signUpFailure, errorMessage: e.error as String));
     } catch (e) {

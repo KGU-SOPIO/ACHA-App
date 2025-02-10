@@ -10,7 +10,7 @@ enum NoticeListStatus { loading, loaded, error }
 class NoticeListState with _$NoticeListState {
   const factory NoticeListState({
     required NoticeListStatus status,
-    Notices? notices,
+    NoticeList? noticeList,
     String? errorMessage
   }) = _NoticeListState;
 }

@@ -10,7 +10,7 @@ enum CourseListStatus { loading, loaded, error }
 class CourseListState with _$CourseListState {
   const factory CourseListState({
     required CourseListStatus status,
-    Courses? courses,
+    CourseList? courseList,
     String? errorMessage
   }) = _CourseListState;
 }

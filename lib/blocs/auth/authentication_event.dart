@@ -6,6 +6,6 @@ part 'authentication_event.freezed.dart';
 
 @freezed
 class AuthenticationEvent with _$AuthenticationEvent {
-  const factory AuthenticationEvent.statusChanged({required AuthenticationStatus status}) = StatusChanged;
+  const factory AuthenticationEvent.changeStatus({required AuthenticationStatus status}) = ChangeStatus;
   const factory AuthenticationEvent.logout() = Logout;
 }

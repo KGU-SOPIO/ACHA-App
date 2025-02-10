@@ -97,7 +97,7 @@ class _UserHeaderState extends State<UserHeader> {
             )
           ),
           child: Text(
-            state.user!.affiliation,
+            state.user!.major ?? state.user!.department!,
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w500,

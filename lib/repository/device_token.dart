@@ -6,29 +6,30 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 
 import 'package:acha/constants/apis/index.dart';
 
-class TokenRepository {
+class FCMTokenRepository {
   final Dio _dio = GetIt.I<Dio>();
 
+  /// 기기 고유 토큰을 가져옵니다.
   Future<String?> _getDeviceToken() async {
     return Platform.isIOS
       ? FirebaseMessaging.instance.getAPNSToken()
       : FirebaseMessaging.instance.getToken();
   }
 
-  /// FCM 토큰 설정 및 업데이트를 요청합니다.
+  /// FCM 토큰 업데이트를 요청합니다.
   Future<void> updateToken(String? newToken) async {
     if (newToken == null) return;
 
     try {
       await _dio.post(
-        TokenApiEndpoints.token,
+        FCMTokenApiEndpoints.fcmToken,
         data: {'deviceToken': newToken}
       );
     } catch (e) {
       try {
         final String? token = await _getDeviceToken();
         await _dio.post(
-          TokenApiEndpoints.token,
+          FCMTokenApiEndpoints.fcmToken,
           data: {'deviceToken': token}
         );
       } catch (e) {

@@ -6,14 +6,14 @@ part of 'notice.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$NoticesImpl _$$NoticesImplFromJson(Map<String, dynamic> json) =>
-    _$NoticesImpl(
+_$NoticeListImpl _$$NoticeListImplFromJson(Map<String, dynamic> json) =>
+    _$NoticeListImpl(
       notices: (json['notices'] as List<dynamic>)
           .map((e) => Notice.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$NoticesImplToJson(_$NoticesImpl instance) =>
+Map<String, dynamic> _$$NoticeListImplToJson(_$NoticeListImpl instance) =>
     <String, dynamic>{
       'notices': instance.notices,
     };

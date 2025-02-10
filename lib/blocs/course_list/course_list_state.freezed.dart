@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$CourseListState {
   CourseListStatus get status => throw _privateConstructorUsedError;
-  Courses? get courses => throw _privateConstructorUsedError;
+  CourseList? get courseList => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
 
   /// Create a copy of CourseListState
@@ -33,9 +33,10 @@ abstract class $CourseListStateCopyWith<$Res> {
           CourseListState value, $Res Function(CourseListState) then) =
       _$CourseListStateCopyWithImpl<$Res, CourseListState>;
   @useResult
-  $Res call({CourseListStatus status, Courses? courses, String? errorMessage});
+  $Res call(
+      {CourseListStatus status, CourseList? courseList, String? errorMessage});
 
-  $CoursesCopyWith<$Res>? get courses;
+  $CourseListCopyWith<$Res>? get courseList;
 }
 
 /// @nodoc
@@ -54,7 +55,7 @@ class _$CourseListStateCopyWithImpl<$Res, $Val extends CourseListState>
   @override
   $Res call({
     Object? status = null,
-    Object? courses = freezed,
+    Object? courseList = freezed,
     Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
@@ -62,10 +63,10 @@ class _$CourseListStateCopyWithImpl<$Res, $Val extends CourseListState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as CourseListStatus,
-      courses: freezed == courses
-          ? _value.courses
-          : courses // ignore: cast_nullable_to_non_nullable
-              as Courses?,
+      courseList: freezed == courseList
+          ? _value.courseList
+          : courseList // ignore: cast_nullable_to_non_nullable
+              as CourseList?,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -77,13 +78,13 @@ class _$CourseListStateCopyWithImpl<$Res, $Val extends CourseListState>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $CoursesCopyWith<$Res>? get courses {
-    if (_value.courses == null) {
+  $CourseListCopyWith<$Res>? get courseList {
+    if (_value.courseList == null) {
       return null;
     }
 
-    return $CoursesCopyWith<$Res>(_value.courses!, (value) {
-      return _then(_value.copyWith(courses: value) as $Val);
+    return $CourseListCopyWith<$Res>(_value.courseList!, (value) {
+      return _then(_value.copyWith(courseList: value) as $Val);
     });
   }
 }
@@ -96,10 +97,11 @@ abstract class _$$CourseListStateImplCopyWith<$Res>
       __$$CourseListStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({CourseListStatus status, Courses? courses, String? errorMessage});
+  $Res call(
+      {CourseListStatus status, CourseList? courseList, String? errorMessage});
 
   @override
-  $CoursesCopyWith<$Res>? get courses;
+  $CourseListCopyWith<$Res>? get courseList;
 }
 
 /// @nodoc
@@ -116,7 +118,7 @@ class __$$CourseListStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? courses = freezed,
+    Object? courseList = freezed,
     Object? errorMessage = freezed,
   }) {
     return _then(_$CourseListStateImpl(
@@ -124,10 +126,10 @@ class __$$CourseListStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as CourseListStatus,
-      courses: freezed == courses
-          ? _value.courses
-          : courses // ignore: cast_nullable_to_non_nullable
-              as Courses?,
+      courseList: freezed == courseList
+          ? _value.courseList
+          : courseList // ignore: cast_nullable_to_non_nullable
+              as CourseList?,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -140,18 +142,18 @@ class __$$CourseListStateImplCopyWithImpl<$Res>
 
 class _$CourseListStateImpl implements _CourseListState {
   const _$CourseListStateImpl(
-      {required this.status, this.courses, this.errorMessage});
+      {required this.status, this.courseList, this.errorMessage});
 
   @override
   final CourseListStatus status;
   @override
-  final Courses? courses;
+  final CourseList? courseList;
   @override
   final String? errorMessage;
 
   @override
   String toString() {
-    return 'CourseListState(status: $status, courses: $courses, errorMessage: $errorMessage)';
+    return 'CourseListState(status: $status, courseList: $courseList, errorMessage: $errorMessage)';
   }
 
   @override
@@ -160,13 +162,15 @@ class _$CourseListStateImpl implements _CourseListState {
         (other.runtimeType == runtimeType &&
             other is _$CourseListStateImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.courses, courses) || other.courses == courses) &&
+            (identical(other.courseList, courseList) ||
+                other.courseList == courseList) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, courses, errorMessage);
+  int get hashCode =>
+      Object.hash(runtimeType, status, courseList, errorMessage);
 
   /// Create a copy of CourseListState
   /// with the given fields replaced by the non-null parameter values.
@@ -181,13 +185,13 @@ class _$CourseListStateImpl implements _CourseListState {
 abstract class _CourseListState implements CourseListState {
   const factory _CourseListState(
       {required final CourseListStatus status,
-      final Courses? courses,
+      final CourseList? courseList,
       final String? errorMessage}) = _$CourseListStateImpl;
 
   @override
   CourseListStatus get status;
   @override
-  Courses? get courses;
+  CourseList? get courseList;
   @override
   String? get errorMessage;
 

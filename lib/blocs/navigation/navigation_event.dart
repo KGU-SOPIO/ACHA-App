@@ -7,10 +7,10 @@ sealed class TabEvent extends Equatable {
   List <Object?> get props => [];
 }
 
-class TabChanged extends TabEvent {
+class ChangeTab extends TabEvent {
   final int newIndex;
 
-  const TabChanged(this.newIndex);
+  const ChangeTab(this.newIndex);
 
   @override
   List<Object?> get props => [newIndex];

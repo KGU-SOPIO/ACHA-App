@@ -6,6 +6,6 @@ part 'navigation_state.dart';
 
 class NavigationBloc extends Bloc<TabEvent, TabState> {
   NavigationBloc() : super(const TabState(selectedIndex: 0)) {
-    on<TabChanged>((event, emit) => emit(TabState(selectedIndex: event.newIndex)));
+    on<ChangeTab>((event, emit) => emit(TabState(selectedIndex: event.newIndex)));
   }
 }

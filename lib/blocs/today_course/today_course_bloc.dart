@@ -7,15 +7,15 @@ import 'package:acha/blocs/today_course/index.dart';
 
 class TodayCourseBloc extends Bloc<TodayCourseEvent, TodayCourseState> {
   TodayCourseBloc({required this.courseRepository}) : super(const TodayCourseState(status: TodayCourseStatus.loading)) {
-    on<Fetch>(_onFetchTodayCourses);
+    on<FetchTodayCourses>(_onFetchTodayCourses);
   }
 
   final CourseRepository courseRepository;
 
   /// 오늘의 강의 정보를 요청합니다.
-  Future<void> _onFetchTodayCourses(Fetch event, Emitter<TodayCourseState> emit) async {
+  Future<void> _onFetchTodayCourses(FetchTodayCourses event, Emitter<TodayCourseState> emit) async {
     try {
-      final Courses? todayCourses = await courseRepository.fetchTodayCourses();
+      final CourseList? todayCourses = await courseRepository.fetchTodayCourses();
       emit(state.copyWith(status: TodayCourseStatus.loaded, todayCourses: todayCourses));
     } on DioException catch (e) {
       emit(state.copyWith(status: TodayCourseStatus.error, errorMessage: e.error as String));

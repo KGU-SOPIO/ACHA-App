@@ -31,7 +31,7 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
   @override
   void initState() {
     super.initState();
-    context.read<ActivityBloc>().add(ActivityEvent.fetch());
+    context.read<ActivityBloc>().add(ActivityEvent.fetchActivities());
     _tabController = TabController(length: 3, vsync: this);
   }
 

@@ -7,7 +7,7 @@ class AlertRepository {
   final Dio _dio = GetIt.I<Dio>();
   
   /// 설정된 알림 상태를 요청합니다.
-  Future<bool> fetchSetting() async {
+  Future<bool> fetchAlertStatus() async {
     try {
       final response = await _dio.get(AlertApiEndpoints.alert);
       return response.data['isEnabled'];
@@ -19,7 +19,7 @@ class AlertRepository {
   }
   
   /// 알림 상태 변경을 요청합니다.
-  Future<void> updateSetting({required bool isEnabled}) async {
+  Future<void> updateAlertStatus({required bool isEnabled}) async {
     try {
       await _dio.post(
         AlertApiEndpoints.alert,

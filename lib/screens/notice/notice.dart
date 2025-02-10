@@ -28,7 +28,7 @@ class NoticeScreen extends StatefulWidget {
         create: (context) => NoticeListBloc(
           courseRepository: GetIt.I<CourseRepository>(),
           course: course
-        )..add(NoticeListEvent.fetch()),
+        )..add(NoticeListEvent.fetchNoticeList()),
         child: const NoticeScreen()
       )
     );
@@ -94,7 +94,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
                         if (state.status == NoticeListStatus.loading) {
                           return Column(children: List.generate(4, (index) => NoticeSkeletonContainer()));
                         } else if (state.status == NoticeListStatus.loaded) {
-                          final notices = state.notices?.notices;
+                          final notices = state.noticeList?.notices;
 
                           if (notices == null) {
                             return const SizedBox(

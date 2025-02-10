@@ -114,14 +114,15 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
                           )
                         ),
                         const SizedBox(height: 30),
-                        TextContainer(title: '이름', value: state.name!),
+                        TextContainer(title: '이름', value: state.user!.name),
                         const SizedBox(height: 24),
-                        TextContainer(title: '대학', value: state.college!),
+                        TextContainer(title: '대학', value: state.user!.college),
                         const SizedBox(height: 24),
-                        TextContainer(title: '학부', value: state.department!),
+                        if (state.user!.department != null)
+                          TextContainer(title: '학부', value: state.user!.department!),
                         const SizedBox(height: 24),
-                        if (state.major != null)
-                          TextContainer(title: '전공', value: state.major!),
+                        if (state.user!.major != null)
+                          TextContainer(title: '전공', value: state.user!.major!),
                       ]
                     ),
                     Column(

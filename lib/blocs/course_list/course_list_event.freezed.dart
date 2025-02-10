@@ -18,33 +18,33 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CourseListEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function() fetchCourses,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function()? fetchCourses,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function()? fetchCourses,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Fetch value) fetch,
+    required TResult Function(FetchCourses value) fetchCourses,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Fetch value)? fetch,
+    TResult? Function(FetchCourses value)? fetchCourses,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Fetch value)? fetch,
+    TResult Function(FetchCourses value)? fetchCourses,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -72,18 +72,18 @@ class _$CourseListEventCopyWithImpl<$Res, $Val extends CourseListEvent>
 }
 
 /// @nodoc
-abstract class _$$FetchImplCopyWith<$Res> {
-  factory _$$FetchImplCopyWith(
-          _$FetchImpl value, $Res Function(_$FetchImpl) then) =
-      __$$FetchImplCopyWithImpl<$Res>;
+abstract class _$$FetchCoursesImplCopyWith<$Res> {
+  factory _$$FetchCoursesImplCopyWith(
+          _$FetchCoursesImpl value, $Res Function(_$FetchCoursesImpl) then) =
+      __$$FetchCoursesImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$FetchImplCopyWithImpl<$Res>
-    extends _$CourseListEventCopyWithImpl<$Res, _$FetchImpl>
-    implements _$$FetchImplCopyWith<$Res> {
-  __$$FetchImplCopyWithImpl(
-      _$FetchImpl _value, $Res Function(_$FetchImpl) _then)
+class __$$FetchCoursesImplCopyWithImpl<$Res>
+    extends _$CourseListEventCopyWithImpl<$Res, _$FetchCoursesImpl>
+    implements _$$FetchCoursesImplCopyWith<$Res> {
+  __$$FetchCoursesImplCopyWithImpl(
+      _$FetchCoursesImpl _value, $Res Function(_$FetchCoursesImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CourseListEvent
@@ -92,18 +92,18 @@ class __$$FetchImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FetchImpl implements Fetch {
-  const _$FetchImpl();
+class _$FetchCoursesImpl implements FetchCourses {
+  const _$FetchCoursesImpl();
 
   @override
   String toString() {
-    return 'CourseListEvent.fetch()';
+    return 'CourseListEvent.fetchCourses()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$FetchImpl);
+        (other.runtimeType == runtimeType && other is _$FetchCoursesImpl);
   }
 
   @override
@@ -112,27 +112,27 @@ class _$FetchImpl implements Fetch {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function() fetchCourses,
   }) {
-    return fetch();
+    return fetchCourses();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function()? fetchCourses,
   }) {
-    return fetch?.call();
+    return fetchCourses?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function()? fetchCourses,
     required TResult orElse(),
   }) {
-    if (fetch != null) {
-      return fetch();
+    if (fetchCourses != null) {
+      return fetchCourses();
     }
     return orElse();
   }
@@ -140,32 +140,32 @@ class _$FetchImpl implements Fetch {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Fetch value) fetch,
+    required TResult Function(FetchCourses value) fetchCourses,
   }) {
-    return fetch(this);
+    return fetchCourses(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Fetch value)? fetch,
+    TResult? Function(FetchCourses value)? fetchCourses,
   }) {
-    return fetch?.call(this);
+    return fetchCourses?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Fetch value)? fetch,
+    TResult Function(FetchCourses value)? fetchCourses,
     required TResult orElse(),
   }) {
-    if (fetch != null) {
-      return fetch(this);
+    if (fetchCourses != null) {
+      return fetchCourses(this);
     }
     return orElse();
   }
 }
 
-abstract class Fetch implements CourseListEvent {
-  const factory Fetch() = _$FetchImpl;
+abstract class FetchCourses implements CourseListEvent {
+  const factory FetchCourses() = _$FetchCoursesImpl;
 }

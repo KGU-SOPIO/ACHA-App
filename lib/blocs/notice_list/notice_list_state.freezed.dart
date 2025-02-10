@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$NoticeListState {
   NoticeListStatus get status => throw _privateConstructorUsedError;
-  Notices? get notices => throw _privateConstructorUsedError;
+  NoticeList? get noticeList => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
 
   /// Create a copy of NoticeListState
@@ -33,9 +33,10 @@ abstract class $NoticeListStateCopyWith<$Res> {
           NoticeListState value, $Res Function(NoticeListState) then) =
       _$NoticeListStateCopyWithImpl<$Res, NoticeListState>;
   @useResult
-  $Res call({NoticeListStatus status, Notices? notices, String? errorMessage});
+  $Res call(
+      {NoticeListStatus status, NoticeList? noticeList, String? errorMessage});
 
-  $NoticesCopyWith<$Res>? get notices;
+  $NoticeListCopyWith<$Res>? get noticeList;
 }
 
 /// @nodoc
@@ -54,7 +55,7 @@ class _$NoticeListStateCopyWithImpl<$Res, $Val extends NoticeListState>
   @override
   $Res call({
     Object? status = null,
-    Object? notices = freezed,
+    Object? noticeList = freezed,
     Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
@@ -62,10 +63,10 @@ class _$NoticeListStateCopyWithImpl<$Res, $Val extends NoticeListState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as NoticeListStatus,
-      notices: freezed == notices
-          ? _value.notices
-          : notices // ignore: cast_nullable_to_non_nullable
-              as Notices?,
+      noticeList: freezed == noticeList
+          ? _value.noticeList
+          : noticeList // ignore: cast_nullable_to_non_nullable
+              as NoticeList?,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -77,13 +78,13 @@ class _$NoticeListStateCopyWithImpl<$Res, $Val extends NoticeListState>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $NoticesCopyWith<$Res>? get notices {
-    if (_value.notices == null) {
+  $NoticeListCopyWith<$Res>? get noticeList {
+    if (_value.noticeList == null) {
       return null;
     }
 
-    return $NoticesCopyWith<$Res>(_value.notices!, (value) {
-      return _then(_value.copyWith(notices: value) as $Val);
+    return $NoticeListCopyWith<$Res>(_value.noticeList!, (value) {
+      return _then(_value.copyWith(noticeList: value) as $Val);
     });
   }
 }
@@ -96,10 +97,11 @@ abstract class _$$NoticeListStateImplCopyWith<$Res>
       __$$NoticeListStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({NoticeListStatus status, Notices? notices, String? errorMessage});
+  $Res call(
+      {NoticeListStatus status, NoticeList? noticeList, String? errorMessage});
 
   @override
-  $NoticesCopyWith<$Res>? get notices;
+  $NoticeListCopyWith<$Res>? get noticeList;
 }
 
 /// @nodoc
@@ -116,7 +118,7 @@ class __$$NoticeListStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? notices = freezed,
+    Object? noticeList = freezed,
     Object? errorMessage = freezed,
   }) {
     return _then(_$NoticeListStateImpl(
@@ -124,10 +126,10 @@ class __$$NoticeListStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as NoticeListStatus,
-      notices: freezed == notices
-          ? _value.notices
-          : notices // ignore: cast_nullable_to_non_nullable
-              as Notices?,
+      noticeList: freezed == noticeList
+          ? _value.noticeList
+          : noticeList // ignore: cast_nullable_to_non_nullable
+              as NoticeList?,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -140,18 +142,18 @@ class __$$NoticeListStateImplCopyWithImpl<$Res>
 
 class _$NoticeListStateImpl implements _NoticeListState {
   const _$NoticeListStateImpl(
-      {required this.status, this.notices, this.errorMessage});
+      {required this.status, this.noticeList, this.errorMessage});
 
   @override
   final NoticeListStatus status;
   @override
-  final Notices? notices;
+  final NoticeList? noticeList;
   @override
   final String? errorMessage;
 
   @override
   String toString() {
-    return 'NoticeListState(status: $status, notices: $notices, errorMessage: $errorMessage)';
+    return 'NoticeListState(status: $status, noticeList: $noticeList, errorMessage: $errorMessage)';
   }
 
   @override
@@ -160,13 +162,15 @@ class _$NoticeListStateImpl implements _NoticeListState {
         (other.runtimeType == runtimeType &&
             other is _$NoticeListStateImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.notices, notices) || other.notices == notices) &&
+            (identical(other.noticeList, noticeList) ||
+                other.noticeList == noticeList) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, notices, errorMessage);
+  int get hashCode =>
+      Object.hash(runtimeType, status, noticeList, errorMessage);
 
   /// Create a copy of NoticeListState
   /// with the given fields replaced by the non-null parameter values.
@@ -181,13 +185,13 @@ class _$NoticeListStateImpl implements _NoticeListState {
 abstract class _NoticeListState implements NoticeListState {
   const factory _NoticeListState(
       {required final NoticeListStatus status,
-      final Notices? notices,
+      final NoticeList? noticeList,
       final String? errorMessage}) = _$NoticeListStateImpl;
 
   @override
   NoticeListStatus get status;
   @override
-  Notices? get notices;
+  NoticeList? get noticeList;
   @override
   String? get errorMessage;
 

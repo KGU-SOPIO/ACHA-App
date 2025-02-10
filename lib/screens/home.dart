@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
       NotificationSettings settings = await messaging.requestPermission(announcement: true);
       if (settings.authorizationStatus == AuthorizationStatus.denied) {
         if (!mounted) return;
-        context.read<AlertBloc>().add(const AlertEvent.deny());
+        context.read<AlertBloc>().add(const AlertEvent.denyAlert());
       }
     }
   }
@@ -108,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 })
               ),
               child: NavigationBar(
-                onDestinationSelected: (index) => context.read<NavigationBloc>().add(TabChanged(index)),
+                onDestinationSelected: (index) => context.read<NavigationBloc>().add(ChangeTab(index)),
                 selectedIndex: state.selectedIndex,
                 destinations: [
                   NavigationDestination(

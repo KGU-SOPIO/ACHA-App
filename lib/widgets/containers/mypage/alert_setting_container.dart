@@ -20,7 +20,7 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
   @override
   void initState() {
     super.initState();
-    context.read<AlertBloc>().add(AlertEvent.fetch());
+    context.read<AlertBloc>().add(AlertEvent.fetchAlertStatus());
   }
 
   @override
@@ -166,7 +166,7 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
             fit: BoxFit.contain,
             child: CupertinoSwitch(
               value: state.isEnabled,
-              onChanged: (value) => context.read<AlertBloc>().add(AlertEvent.statusChanged(isEnabled: value)),
+              onChanged: (value) => context.read<AlertBloc>().add(AlertEvent.changeAlertStatus(isEnabled: value)),
               activeTrackColor: Color.fromARGB(255, 0, 102, 255)
             )
           )

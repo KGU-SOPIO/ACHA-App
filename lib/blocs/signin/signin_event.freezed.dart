@@ -18,57 +18,63 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SignInEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SignInStatus status) statusChanged,
-    required TResult Function(String studentId) studentIdEntered,
-    required TResult Function(String password) passwordEntered,
-    required TResult Function() signInSubmitted,
-    required TResult Function() signUpSubmitted,
+    required TResult Function(SignInStatus status) changeStatus,
+    required TResult Function(String studentId) inputStudentId,
+    required TResult Function(String password) inputPassword,
+    required TResult Function() submitSignIn,
+    required TResult Function() fetchUser,
+    required TResult Function() submitSignUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SignInStatus status)? statusChanged,
-    TResult? Function(String studentId)? studentIdEntered,
-    TResult? Function(String password)? passwordEntered,
-    TResult? Function()? signInSubmitted,
-    TResult? Function()? signUpSubmitted,
+    TResult? Function(SignInStatus status)? changeStatus,
+    TResult? Function(String studentId)? inputStudentId,
+    TResult? Function(String password)? inputPassword,
+    TResult? Function()? submitSignIn,
+    TResult? Function()? fetchUser,
+    TResult? Function()? submitSignUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SignInStatus status)? statusChanged,
-    TResult Function(String studentId)? studentIdEntered,
-    TResult Function(String password)? passwordEntered,
-    TResult Function()? signInSubmitted,
-    TResult Function()? signUpSubmitted,
+    TResult Function(SignInStatus status)? changeStatus,
+    TResult Function(String studentId)? inputStudentId,
+    TResult Function(String password)? inputPassword,
+    TResult Function()? submitSignIn,
+    TResult Function()? fetchUser,
+    TResult Function()? submitSignUp,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(StatusChanged value) statusChanged,
-    required TResult Function(StudentIdEntered value) studentIdEntered,
-    required TResult Function(PasswordEntered value) passwordEntered,
-    required TResult Function(SignInSubmitted value) signInSubmitted,
-    required TResult Function(SignUpSubmitted value) signUpSubmitted,
+    required TResult Function(ChangeStatus value) changeStatus,
+    required TResult Function(InputStudentId value) inputStudentId,
+    required TResult Function(InputPassword value) inputPassword,
+    required TResult Function(SubmitSignIn value) submitSignIn,
+    required TResult Function(FetchUser value) fetchUser,
+    required TResult Function(SubmitSignUp value) submitSignUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(StatusChanged value)? statusChanged,
-    TResult? Function(StudentIdEntered value)? studentIdEntered,
-    TResult? Function(PasswordEntered value)? passwordEntered,
-    TResult? Function(SignInSubmitted value)? signInSubmitted,
-    TResult? Function(SignUpSubmitted value)? signUpSubmitted,
+    TResult? Function(ChangeStatus value)? changeStatus,
+    TResult? Function(InputStudentId value)? inputStudentId,
+    TResult? Function(InputPassword value)? inputPassword,
+    TResult? Function(SubmitSignIn value)? submitSignIn,
+    TResult? Function(FetchUser value)? fetchUser,
+    TResult? Function(SubmitSignUp value)? submitSignUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(StatusChanged value)? statusChanged,
-    TResult Function(StudentIdEntered value)? studentIdEntered,
-    TResult Function(PasswordEntered value)? passwordEntered,
-    TResult Function(SignInSubmitted value)? signInSubmitted,
-    TResult Function(SignUpSubmitted value)? signUpSubmitted,
+    TResult Function(ChangeStatus value)? changeStatus,
+    TResult Function(InputStudentId value)? inputStudentId,
+    TResult Function(InputPassword value)? inputPassword,
+    TResult Function(SubmitSignIn value)? submitSignIn,
+    TResult Function(FetchUser value)? fetchUser,
+    TResult Function(SubmitSignUp value)? submitSignUp,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -96,20 +102,20 @@ class _$SignInEventCopyWithImpl<$Res, $Val extends SignInEvent>
 }
 
 /// @nodoc
-abstract class _$$StatusChangedImplCopyWith<$Res> {
-  factory _$$StatusChangedImplCopyWith(
-          _$StatusChangedImpl value, $Res Function(_$StatusChangedImpl) then) =
-      __$$StatusChangedImplCopyWithImpl<$Res>;
+abstract class _$$ChangeStatusImplCopyWith<$Res> {
+  factory _$$ChangeStatusImplCopyWith(
+          _$ChangeStatusImpl value, $Res Function(_$ChangeStatusImpl) then) =
+      __$$ChangeStatusImplCopyWithImpl<$Res>;
   @useResult
   $Res call({SignInStatus status});
 }
 
 /// @nodoc
-class __$$StatusChangedImplCopyWithImpl<$Res>
-    extends _$SignInEventCopyWithImpl<$Res, _$StatusChangedImpl>
-    implements _$$StatusChangedImplCopyWith<$Res> {
-  __$$StatusChangedImplCopyWithImpl(
-      _$StatusChangedImpl _value, $Res Function(_$StatusChangedImpl) _then)
+class __$$ChangeStatusImplCopyWithImpl<$Res>
+    extends _$SignInEventCopyWithImpl<$Res, _$ChangeStatusImpl>
+    implements _$$ChangeStatusImplCopyWith<$Res> {
+  __$$ChangeStatusImplCopyWithImpl(
+      _$ChangeStatusImpl _value, $Res Function(_$ChangeStatusImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of SignInEvent
@@ -119,7 +125,7 @@ class __$$StatusChangedImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
   }) {
-    return _then(_$StatusChangedImpl(
+    return _then(_$ChangeStatusImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -130,22 +136,22 @@ class __$$StatusChangedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$StatusChangedImpl implements StatusChanged {
-  const _$StatusChangedImpl({required this.status});
+class _$ChangeStatusImpl implements ChangeStatus {
+  const _$ChangeStatusImpl({required this.status});
 
   @override
   final SignInStatus status;
 
   @override
   String toString() {
-    return 'SignInEvent.statusChanged(status: $status)';
+    return 'SignInEvent.changeStatus(status: $status)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$StatusChangedImpl &&
+            other is _$ChangeStatusImpl &&
             (identical(other.status, status) || other.status == status));
   }
 
@@ -157,45 +163,48 @@ class _$StatusChangedImpl implements StatusChanged {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$StatusChangedImplCopyWith<_$StatusChangedImpl> get copyWith =>
-      __$$StatusChangedImplCopyWithImpl<_$StatusChangedImpl>(this, _$identity);
+  _$$ChangeStatusImplCopyWith<_$ChangeStatusImpl> get copyWith =>
+      __$$ChangeStatusImplCopyWithImpl<_$ChangeStatusImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SignInStatus status) statusChanged,
-    required TResult Function(String studentId) studentIdEntered,
-    required TResult Function(String password) passwordEntered,
-    required TResult Function() signInSubmitted,
-    required TResult Function() signUpSubmitted,
+    required TResult Function(SignInStatus status) changeStatus,
+    required TResult Function(String studentId) inputStudentId,
+    required TResult Function(String password) inputPassword,
+    required TResult Function() submitSignIn,
+    required TResult Function() fetchUser,
+    required TResult Function() submitSignUp,
   }) {
-    return statusChanged(status);
+    return changeStatus(status);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SignInStatus status)? statusChanged,
-    TResult? Function(String studentId)? studentIdEntered,
-    TResult? Function(String password)? passwordEntered,
-    TResult? Function()? signInSubmitted,
-    TResult? Function()? signUpSubmitted,
+    TResult? Function(SignInStatus status)? changeStatus,
+    TResult? Function(String studentId)? inputStudentId,
+    TResult? Function(String password)? inputPassword,
+    TResult? Function()? submitSignIn,
+    TResult? Function()? fetchUser,
+    TResult? Function()? submitSignUp,
   }) {
-    return statusChanged?.call(status);
+    return changeStatus?.call(status);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SignInStatus status)? statusChanged,
-    TResult Function(String studentId)? studentIdEntered,
-    TResult Function(String password)? passwordEntered,
-    TResult Function()? signInSubmitted,
-    TResult Function()? signUpSubmitted,
+    TResult Function(SignInStatus status)? changeStatus,
+    TResult Function(String studentId)? inputStudentId,
+    TResult Function(String password)? inputPassword,
+    TResult Function()? submitSignIn,
+    TResult Function()? fetchUser,
+    TResult Function()? submitSignUp,
     required TResult orElse(),
   }) {
-    if (statusChanged != null) {
-      return statusChanged(status);
+    if (changeStatus != null) {
+      return changeStatus(status);
     }
     return orElse();
   }
@@ -203,72 +212,75 @@ class _$StatusChangedImpl implements StatusChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(StatusChanged value) statusChanged,
-    required TResult Function(StudentIdEntered value) studentIdEntered,
-    required TResult Function(PasswordEntered value) passwordEntered,
-    required TResult Function(SignInSubmitted value) signInSubmitted,
-    required TResult Function(SignUpSubmitted value) signUpSubmitted,
+    required TResult Function(ChangeStatus value) changeStatus,
+    required TResult Function(InputStudentId value) inputStudentId,
+    required TResult Function(InputPassword value) inputPassword,
+    required TResult Function(SubmitSignIn value) submitSignIn,
+    required TResult Function(FetchUser value) fetchUser,
+    required TResult Function(SubmitSignUp value) submitSignUp,
   }) {
-    return statusChanged(this);
+    return changeStatus(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(StatusChanged value)? statusChanged,
-    TResult? Function(StudentIdEntered value)? studentIdEntered,
-    TResult? Function(PasswordEntered value)? passwordEntered,
-    TResult? Function(SignInSubmitted value)? signInSubmitted,
-    TResult? Function(SignUpSubmitted value)? signUpSubmitted,
+    TResult? Function(ChangeStatus value)? changeStatus,
+    TResult? Function(InputStudentId value)? inputStudentId,
+    TResult? Function(InputPassword value)? inputPassword,
+    TResult? Function(SubmitSignIn value)? submitSignIn,
+    TResult? Function(FetchUser value)? fetchUser,
+    TResult? Function(SubmitSignUp value)? submitSignUp,
   }) {
-    return statusChanged?.call(this);
+    return changeStatus?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(StatusChanged value)? statusChanged,
-    TResult Function(StudentIdEntered value)? studentIdEntered,
-    TResult Function(PasswordEntered value)? passwordEntered,
-    TResult Function(SignInSubmitted value)? signInSubmitted,
-    TResult Function(SignUpSubmitted value)? signUpSubmitted,
+    TResult Function(ChangeStatus value)? changeStatus,
+    TResult Function(InputStudentId value)? inputStudentId,
+    TResult Function(InputPassword value)? inputPassword,
+    TResult Function(SubmitSignIn value)? submitSignIn,
+    TResult Function(FetchUser value)? fetchUser,
+    TResult Function(SubmitSignUp value)? submitSignUp,
     required TResult orElse(),
   }) {
-    if (statusChanged != null) {
-      return statusChanged(this);
+    if (changeStatus != null) {
+      return changeStatus(this);
     }
     return orElse();
   }
 }
 
-abstract class StatusChanged implements SignInEvent {
-  const factory StatusChanged({required final SignInStatus status}) =
-      _$StatusChangedImpl;
+abstract class ChangeStatus implements SignInEvent {
+  const factory ChangeStatus({required final SignInStatus status}) =
+      _$ChangeStatusImpl;
 
   SignInStatus get status;
 
   /// Create a copy of SignInEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$StatusChangedImplCopyWith<_$StatusChangedImpl> get copyWith =>
+  _$$ChangeStatusImplCopyWith<_$ChangeStatusImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$StudentIdEnteredImplCopyWith<$Res> {
-  factory _$$StudentIdEnteredImplCopyWith(_$StudentIdEnteredImpl value,
-          $Res Function(_$StudentIdEnteredImpl) then) =
-      __$$StudentIdEnteredImplCopyWithImpl<$Res>;
+abstract class _$$InputStudentIdImplCopyWith<$Res> {
+  factory _$$InputStudentIdImplCopyWith(_$InputStudentIdImpl value,
+          $Res Function(_$InputStudentIdImpl) then) =
+      __$$InputStudentIdImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String studentId});
 }
 
 /// @nodoc
-class __$$StudentIdEnteredImplCopyWithImpl<$Res>
-    extends _$SignInEventCopyWithImpl<$Res, _$StudentIdEnteredImpl>
-    implements _$$StudentIdEnteredImplCopyWith<$Res> {
-  __$$StudentIdEnteredImplCopyWithImpl(_$StudentIdEnteredImpl _value,
-      $Res Function(_$StudentIdEnteredImpl) _then)
+class __$$InputStudentIdImplCopyWithImpl<$Res>
+    extends _$SignInEventCopyWithImpl<$Res, _$InputStudentIdImpl>
+    implements _$$InputStudentIdImplCopyWith<$Res> {
+  __$$InputStudentIdImplCopyWithImpl(
+      _$InputStudentIdImpl _value, $Res Function(_$InputStudentIdImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of SignInEvent
@@ -278,7 +290,7 @@ class __$$StudentIdEnteredImplCopyWithImpl<$Res>
   $Res call({
     Object? studentId = null,
   }) {
-    return _then(_$StudentIdEnteredImpl(
+    return _then(_$InputStudentIdImpl(
       studentId: null == studentId
           ? _value.studentId
           : studentId // ignore: cast_nullable_to_non_nullable
@@ -289,22 +301,22 @@ class __$$StudentIdEnteredImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$StudentIdEnteredImpl implements StudentIdEntered {
-  const _$StudentIdEnteredImpl({required this.studentId});
+class _$InputStudentIdImpl implements InputStudentId {
+  const _$InputStudentIdImpl({required this.studentId});
 
   @override
   final String studentId;
 
   @override
   String toString() {
-    return 'SignInEvent.studentIdEntered(studentId: $studentId)';
+    return 'SignInEvent.inputStudentId(studentId: $studentId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$StudentIdEnteredImpl &&
+            other is _$InputStudentIdImpl &&
             (identical(other.studentId, studentId) ||
                 other.studentId == studentId));
   }
@@ -317,46 +329,49 @@ class _$StudentIdEnteredImpl implements StudentIdEntered {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$StudentIdEnteredImplCopyWith<_$StudentIdEnteredImpl> get copyWith =>
-      __$$StudentIdEnteredImplCopyWithImpl<_$StudentIdEnteredImpl>(
+  _$$InputStudentIdImplCopyWith<_$InputStudentIdImpl> get copyWith =>
+      __$$InputStudentIdImplCopyWithImpl<_$InputStudentIdImpl>(
           this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SignInStatus status) statusChanged,
-    required TResult Function(String studentId) studentIdEntered,
-    required TResult Function(String password) passwordEntered,
-    required TResult Function() signInSubmitted,
-    required TResult Function() signUpSubmitted,
+    required TResult Function(SignInStatus status) changeStatus,
+    required TResult Function(String studentId) inputStudentId,
+    required TResult Function(String password) inputPassword,
+    required TResult Function() submitSignIn,
+    required TResult Function() fetchUser,
+    required TResult Function() submitSignUp,
   }) {
-    return studentIdEntered(studentId);
+    return inputStudentId(studentId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SignInStatus status)? statusChanged,
-    TResult? Function(String studentId)? studentIdEntered,
-    TResult? Function(String password)? passwordEntered,
-    TResult? Function()? signInSubmitted,
-    TResult? Function()? signUpSubmitted,
+    TResult? Function(SignInStatus status)? changeStatus,
+    TResult? Function(String studentId)? inputStudentId,
+    TResult? Function(String password)? inputPassword,
+    TResult? Function()? submitSignIn,
+    TResult? Function()? fetchUser,
+    TResult? Function()? submitSignUp,
   }) {
-    return studentIdEntered?.call(studentId);
+    return inputStudentId?.call(studentId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SignInStatus status)? statusChanged,
-    TResult Function(String studentId)? studentIdEntered,
-    TResult Function(String password)? passwordEntered,
-    TResult Function()? signInSubmitted,
-    TResult Function()? signUpSubmitted,
+    TResult Function(SignInStatus status)? changeStatus,
+    TResult Function(String studentId)? inputStudentId,
+    TResult Function(String password)? inputPassword,
+    TResult Function()? submitSignIn,
+    TResult Function()? fetchUser,
+    TResult Function()? submitSignUp,
     required TResult orElse(),
   }) {
-    if (studentIdEntered != null) {
-      return studentIdEntered(studentId);
+    if (inputStudentId != null) {
+      return inputStudentId(studentId);
     }
     return orElse();
   }
@@ -364,72 +379,75 @@ class _$StudentIdEnteredImpl implements StudentIdEntered {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(StatusChanged value) statusChanged,
-    required TResult Function(StudentIdEntered value) studentIdEntered,
-    required TResult Function(PasswordEntered value) passwordEntered,
-    required TResult Function(SignInSubmitted value) signInSubmitted,
-    required TResult Function(SignUpSubmitted value) signUpSubmitted,
+    required TResult Function(ChangeStatus value) changeStatus,
+    required TResult Function(InputStudentId value) inputStudentId,
+    required TResult Function(InputPassword value) inputPassword,
+    required TResult Function(SubmitSignIn value) submitSignIn,
+    required TResult Function(FetchUser value) fetchUser,
+    required TResult Function(SubmitSignUp value) submitSignUp,
   }) {
-    return studentIdEntered(this);
+    return inputStudentId(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(StatusChanged value)? statusChanged,
-    TResult? Function(StudentIdEntered value)? studentIdEntered,
-    TResult? Function(PasswordEntered value)? passwordEntered,
-    TResult? Function(SignInSubmitted value)? signInSubmitted,
-    TResult? Function(SignUpSubmitted value)? signUpSubmitted,
+    TResult? Function(ChangeStatus value)? changeStatus,
+    TResult? Function(InputStudentId value)? inputStudentId,
+    TResult? Function(InputPassword value)? inputPassword,
+    TResult? Function(SubmitSignIn value)? submitSignIn,
+    TResult? Function(FetchUser value)? fetchUser,
+    TResult? Function(SubmitSignUp value)? submitSignUp,
   }) {
-    return studentIdEntered?.call(this);
+    return inputStudentId?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(StatusChanged value)? statusChanged,
-    TResult Function(StudentIdEntered value)? studentIdEntered,
-    TResult Function(PasswordEntered value)? passwordEntered,
-    TResult Function(SignInSubmitted value)? signInSubmitted,
-    TResult Function(SignUpSubmitted value)? signUpSubmitted,
+    TResult Function(ChangeStatus value)? changeStatus,
+    TResult Function(InputStudentId value)? inputStudentId,
+    TResult Function(InputPassword value)? inputPassword,
+    TResult Function(SubmitSignIn value)? submitSignIn,
+    TResult Function(FetchUser value)? fetchUser,
+    TResult Function(SubmitSignUp value)? submitSignUp,
     required TResult orElse(),
   }) {
-    if (studentIdEntered != null) {
-      return studentIdEntered(this);
+    if (inputStudentId != null) {
+      return inputStudentId(this);
     }
     return orElse();
   }
 }
 
-abstract class StudentIdEntered implements SignInEvent {
-  const factory StudentIdEntered({required final String studentId}) =
-      _$StudentIdEnteredImpl;
+abstract class InputStudentId implements SignInEvent {
+  const factory InputStudentId({required final String studentId}) =
+      _$InputStudentIdImpl;
 
   String get studentId;
 
   /// Create a copy of SignInEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$StudentIdEnteredImplCopyWith<_$StudentIdEnteredImpl> get copyWith =>
+  _$$InputStudentIdImplCopyWith<_$InputStudentIdImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$PasswordEnteredImplCopyWith<$Res> {
-  factory _$$PasswordEnteredImplCopyWith(_$PasswordEnteredImpl value,
-          $Res Function(_$PasswordEnteredImpl) then) =
-      __$$PasswordEnteredImplCopyWithImpl<$Res>;
+abstract class _$$InputPasswordImplCopyWith<$Res> {
+  factory _$$InputPasswordImplCopyWith(
+          _$InputPasswordImpl value, $Res Function(_$InputPasswordImpl) then) =
+      __$$InputPasswordImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String password});
 }
 
 /// @nodoc
-class __$$PasswordEnteredImplCopyWithImpl<$Res>
-    extends _$SignInEventCopyWithImpl<$Res, _$PasswordEnteredImpl>
-    implements _$$PasswordEnteredImplCopyWith<$Res> {
-  __$$PasswordEnteredImplCopyWithImpl(
-      _$PasswordEnteredImpl _value, $Res Function(_$PasswordEnteredImpl) _then)
+class __$$InputPasswordImplCopyWithImpl<$Res>
+    extends _$SignInEventCopyWithImpl<$Res, _$InputPasswordImpl>
+    implements _$$InputPasswordImplCopyWith<$Res> {
+  __$$InputPasswordImplCopyWithImpl(
+      _$InputPasswordImpl _value, $Res Function(_$InputPasswordImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of SignInEvent
@@ -439,7 +457,7 @@ class __$$PasswordEnteredImplCopyWithImpl<$Res>
   $Res call({
     Object? password = null,
   }) {
-    return _then(_$PasswordEnteredImpl(
+    return _then(_$InputPasswordImpl(
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
@@ -450,22 +468,22 @@ class __$$PasswordEnteredImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$PasswordEnteredImpl implements PasswordEntered {
-  const _$PasswordEnteredImpl({required this.password});
+class _$InputPasswordImpl implements InputPassword {
+  const _$InputPasswordImpl({required this.password});
 
   @override
   final String password;
 
   @override
   String toString() {
-    return 'SignInEvent.passwordEntered(password: $password)';
+    return 'SignInEvent.inputPassword(password: $password)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PasswordEnteredImpl &&
+            other is _$InputPasswordImpl &&
             (identical(other.password, password) ||
                 other.password == password));
   }
@@ -478,46 +496,48 @@ class _$PasswordEnteredImpl implements PasswordEntered {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$PasswordEnteredImplCopyWith<_$PasswordEnteredImpl> get copyWith =>
-      __$$PasswordEnteredImplCopyWithImpl<_$PasswordEnteredImpl>(
-          this, _$identity);
+  _$$InputPasswordImplCopyWith<_$InputPasswordImpl> get copyWith =>
+      __$$InputPasswordImplCopyWithImpl<_$InputPasswordImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SignInStatus status) statusChanged,
-    required TResult Function(String studentId) studentIdEntered,
-    required TResult Function(String password) passwordEntered,
-    required TResult Function() signInSubmitted,
-    required TResult Function() signUpSubmitted,
+    required TResult Function(SignInStatus status) changeStatus,
+    required TResult Function(String studentId) inputStudentId,
+    required TResult Function(String password) inputPassword,
+    required TResult Function() submitSignIn,
+    required TResult Function() fetchUser,
+    required TResult Function() submitSignUp,
   }) {
-    return passwordEntered(password);
+    return inputPassword(password);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SignInStatus status)? statusChanged,
-    TResult? Function(String studentId)? studentIdEntered,
-    TResult? Function(String password)? passwordEntered,
-    TResult? Function()? signInSubmitted,
-    TResult? Function()? signUpSubmitted,
+    TResult? Function(SignInStatus status)? changeStatus,
+    TResult? Function(String studentId)? inputStudentId,
+    TResult? Function(String password)? inputPassword,
+    TResult? Function()? submitSignIn,
+    TResult? Function()? fetchUser,
+    TResult? Function()? submitSignUp,
   }) {
-    return passwordEntered?.call(password);
+    return inputPassword?.call(password);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SignInStatus status)? statusChanged,
-    TResult Function(String studentId)? studentIdEntered,
-    TResult Function(String password)? passwordEntered,
-    TResult Function()? signInSubmitted,
-    TResult Function()? signUpSubmitted,
+    TResult Function(SignInStatus status)? changeStatus,
+    TResult Function(String studentId)? inputStudentId,
+    TResult Function(String password)? inputPassword,
+    TResult Function()? submitSignIn,
+    TResult Function()? fetchUser,
+    TResult Function()? submitSignUp,
     required TResult orElse(),
   }) {
-    if (passwordEntered != null) {
-      return passwordEntered(password);
+    if (inputPassword != null) {
+      return inputPassword(password);
     }
     return orElse();
   }
@@ -525,70 +545,73 @@ class _$PasswordEnteredImpl implements PasswordEntered {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(StatusChanged value) statusChanged,
-    required TResult Function(StudentIdEntered value) studentIdEntered,
-    required TResult Function(PasswordEntered value) passwordEntered,
-    required TResult Function(SignInSubmitted value) signInSubmitted,
-    required TResult Function(SignUpSubmitted value) signUpSubmitted,
+    required TResult Function(ChangeStatus value) changeStatus,
+    required TResult Function(InputStudentId value) inputStudentId,
+    required TResult Function(InputPassword value) inputPassword,
+    required TResult Function(SubmitSignIn value) submitSignIn,
+    required TResult Function(FetchUser value) fetchUser,
+    required TResult Function(SubmitSignUp value) submitSignUp,
   }) {
-    return passwordEntered(this);
+    return inputPassword(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(StatusChanged value)? statusChanged,
-    TResult? Function(StudentIdEntered value)? studentIdEntered,
-    TResult? Function(PasswordEntered value)? passwordEntered,
-    TResult? Function(SignInSubmitted value)? signInSubmitted,
-    TResult? Function(SignUpSubmitted value)? signUpSubmitted,
+    TResult? Function(ChangeStatus value)? changeStatus,
+    TResult? Function(InputStudentId value)? inputStudentId,
+    TResult? Function(InputPassword value)? inputPassword,
+    TResult? Function(SubmitSignIn value)? submitSignIn,
+    TResult? Function(FetchUser value)? fetchUser,
+    TResult? Function(SubmitSignUp value)? submitSignUp,
   }) {
-    return passwordEntered?.call(this);
+    return inputPassword?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(StatusChanged value)? statusChanged,
-    TResult Function(StudentIdEntered value)? studentIdEntered,
-    TResult Function(PasswordEntered value)? passwordEntered,
-    TResult Function(SignInSubmitted value)? signInSubmitted,
-    TResult Function(SignUpSubmitted value)? signUpSubmitted,
+    TResult Function(ChangeStatus value)? changeStatus,
+    TResult Function(InputStudentId value)? inputStudentId,
+    TResult Function(InputPassword value)? inputPassword,
+    TResult Function(SubmitSignIn value)? submitSignIn,
+    TResult Function(FetchUser value)? fetchUser,
+    TResult Function(SubmitSignUp value)? submitSignUp,
     required TResult orElse(),
   }) {
-    if (passwordEntered != null) {
-      return passwordEntered(this);
+    if (inputPassword != null) {
+      return inputPassword(this);
     }
     return orElse();
   }
 }
 
-abstract class PasswordEntered implements SignInEvent {
-  const factory PasswordEntered({required final String password}) =
-      _$PasswordEnteredImpl;
+abstract class InputPassword implements SignInEvent {
+  const factory InputPassword({required final String password}) =
+      _$InputPasswordImpl;
 
   String get password;
 
   /// Create a copy of SignInEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PasswordEnteredImplCopyWith<_$PasswordEnteredImpl> get copyWith =>
+  _$$InputPasswordImplCopyWith<_$InputPasswordImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$SignInSubmittedImplCopyWith<$Res> {
-  factory _$$SignInSubmittedImplCopyWith(_$SignInSubmittedImpl value,
-          $Res Function(_$SignInSubmittedImpl) then) =
-      __$$SignInSubmittedImplCopyWithImpl<$Res>;
+abstract class _$$SubmitSignInImplCopyWith<$Res> {
+  factory _$$SubmitSignInImplCopyWith(
+          _$SubmitSignInImpl value, $Res Function(_$SubmitSignInImpl) then) =
+      __$$SubmitSignInImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SignInSubmittedImplCopyWithImpl<$Res>
-    extends _$SignInEventCopyWithImpl<$Res, _$SignInSubmittedImpl>
-    implements _$$SignInSubmittedImplCopyWith<$Res> {
-  __$$SignInSubmittedImplCopyWithImpl(
-      _$SignInSubmittedImpl _value, $Res Function(_$SignInSubmittedImpl) _then)
+class __$$SubmitSignInImplCopyWithImpl<$Res>
+    extends _$SignInEventCopyWithImpl<$Res, _$SubmitSignInImpl>
+    implements _$$SubmitSignInImplCopyWith<$Res> {
+  __$$SubmitSignInImplCopyWithImpl(
+      _$SubmitSignInImpl _value, $Res Function(_$SubmitSignInImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of SignInEvent
@@ -597,18 +620,18 @@ class __$$SignInSubmittedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SignInSubmittedImpl implements SignInSubmitted {
-  const _$SignInSubmittedImpl();
+class _$SubmitSignInImpl implements SubmitSignIn {
+  const _$SubmitSignInImpl();
 
   @override
   String toString() {
-    return 'SignInEvent.signInSubmitted()';
+    return 'SignInEvent.submitSignIn()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SignInSubmittedImpl);
+        (other.runtimeType == runtimeType && other is _$SubmitSignInImpl);
   }
 
   @override
@@ -617,39 +640,42 @@ class _$SignInSubmittedImpl implements SignInSubmitted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SignInStatus status) statusChanged,
-    required TResult Function(String studentId) studentIdEntered,
-    required TResult Function(String password) passwordEntered,
-    required TResult Function() signInSubmitted,
-    required TResult Function() signUpSubmitted,
+    required TResult Function(SignInStatus status) changeStatus,
+    required TResult Function(String studentId) inputStudentId,
+    required TResult Function(String password) inputPassword,
+    required TResult Function() submitSignIn,
+    required TResult Function() fetchUser,
+    required TResult Function() submitSignUp,
   }) {
-    return signInSubmitted();
+    return submitSignIn();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SignInStatus status)? statusChanged,
-    TResult? Function(String studentId)? studentIdEntered,
-    TResult? Function(String password)? passwordEntered,
-    TResult? Function()? signInSubmitted,
-    TResult? Function()? signUpSubmitted,
+    TResult? Function(SignInStatus status)? changeStatus,
+    TResult? Function(String studentId)? inputStudentId,
+    TResult? Function(String password)? inputPassword,
+    TResult? Function()? submitSignIn,
+    TResult? Function()? fetchUser,
+    TResult? Function()? submitSignUp,
   }) {
-    return signInSubmitted?.call();
+    return submitSignIn?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SignInStatus status)? statusChanged,
-    TResult Function(String studentId)? studentIdEntered,
-    TResult Function(String password)? passwordEntered,
-    TResult Function()? signInSubmitted,
-    TResult Function()? signUpSubmitted,
+    TResult Function(SignInStatus status)? changeStatus,
+    TResult Function(String studentId)? inputStudentId,
+    TResult Function(String password)? inputPassword,
+    TResult Function()? submitSignIn,
+    TResult Function()? fetchUser,
+    TResult Function()? submitSignUp,
     required TResult orElse(),
   }) {
-    if (signInSubmitted != null) {
-      return signInSubmitted();
+    if (submitSignIn != null) {
+      return submitSignIn();
     }
     return orElse();
   }
@@ -657,61 +683,64 @@ class _$SignInSubmittedImpl implements SignInSubmitted {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(StatusChanged value) statusChanged,
-    required TResult Function(StudentIdEntered value) studentIdEntered,
-    required TResult Function(PasswordEntered value) passwordEntered,
-    required TResult Function(SignInSubmitted value) signInSubmitted,
-    required TResult Function(SignUpSubmitted value) signUpSubmitted,
+    required TResult Function(ChangeStatus value) changeStatus,
+    required TResult Function(InputStudentId value) inputStudentId,
+    required TResult Function(InputPassword value) inputPassword,
+    required TResult Function(SubmitSignIn value) submitSignIn,
+    required TResult Function(FetchUser value) fetchUser,
+    required TResult Function(SubmitSignUp value) submitSignUp,
   }) {
-    return signInSubmitted(this);
+    return submitSignIn(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(StatusChanged value)? statusChanged,
-    TResult? Function(StudentIdEntered value)? studentIdEntered,
-    TResult? Function(PasswordEntered value)? passwordEntered,
-    TResult? Function(SignInSubmitted value)? signInSubmitted,
-    TResult? Function(SignUpSubmitted value)? signUpSubmitted,
+    TResult? Function(ChangeStatus value)? changeStatus,
+    TResult? Function(InputStudentId value)? inputStudentId,
+    TResult? Function(InputPassword value)? inputPassword,
+    TResult? Function(SubmitSignIn value)? submitSignIn,
+    TResult? Function(FetchUser value)? fetchUser,
+    TResult? Function(SubmitSignUp value)? submitSignUp,
   }) {
-    return signInSubmitted?.call(this);
+    return submitSignIn?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(StatusChanged value)? statusChanged,
-    TResult Function(StudentIdEntered value)? studentIdEntered,
-    TResult Function(PasswordEntered value)? passwordEntered,
-    TResult Function(SignInSubmitted value)? signInSubmitted,
-    TResult Function(SignUpSubmitted value)? signUpSubmitted,
+    TResult Function(ChangeStatus value)? changeStatus,
+    TResult Function(InputStudentId value)? inputStudentId,
+    TResult Function(InputPassword value)? inputPassword,
+    TResult Function(SubmitSignIn value)? submitSignIn,
+    TResult Function(FetchUser value)? fetchUser,
+    TResult Function(SubmitSignUp value)? submitSignUp,
     required TResult orElse(),
   }) {
-    if (signInSubmitted != null) {
-      return signInSubmitted(this);
+    if (submitSignIn != null) {
+      return submitSignIn(this);
     }
     return orElse();
   }
 }
 
-abstract class SignInSubmitted implements SignInEvent {
-  const factory SignInSubmitted() = _$SignInSubmittedImpl;
+abstract class SubmitSignIn implements SignInEvent {
+  const factory SubmitSignIn() = _$SubmitSignInImpl;
 }
 
 /// @nodoc
-abstract class _$$SignUpSubmittedImplCopyWith<$Res> {
-  factory _$$SignUpSubmittedImplCopyWith(_$SignUpSubmittedImpl value,
-          $Res Function(_$SignUpSubmittedImpl) then) =
-      __$$SignUpSubmittedImplCopyWithImpl<$Res>;
+abstract class _$$FetchUserImplCopyWith<$Res> {
+  factory _$$FetchUserImplCopyWith(
+          _$FetchUserImpl value, $Res Function(_$FetchUserImpl) then) =
+      __$$FetchUserImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SignUpSubmittedImplCopyWithImpl<$Res>
-    extends _$SignInEventCopyWithImpl<$Res, _$SignUpSubmittedImpl>
-    implements _$$SignUpSubmittedImplCopyWith<$Res> {
-  __$$SignUpSubmittedImplCopyWithImpl(
-      _$SignUpSubmittedImpl _value, $Res Function(_$SignUpSubmittedImpl) _then)
+class __$$FetchUserImplCopyWithImpl<$Res>
+    extends _$SignInEventCopyWithImpl<$Res, _$FetchUserImpl>
+    implements _$$FetchUserImplCopyWith<$Res> {
+  __$$FetchUserImplCopyWithImpl(
+      _$FetchUserImpl _value, $Res Function(_$FetchUserImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of SignInEvent
@@ -720,18 +749,18 @@ class __$$SignUpSubmittedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SignUpSubmittedImpl implements SignUpSubmitted {
-  const _$SignUpSubmittedImpl();
+class _$FetchUserImpl implements FetchUser {
+  const _$FetchUserImpl();
 
   @override
   String toString() {
-    return 'SignInEvent.signUpSubmitted()';
+    return 'SignInEvent.fetchUser()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SignUpSubmittedImpl);
+        (other.runtimeType == runtimeType && other is _$FetchUserImpl);
   }
 
   @override
@@ -740,39 +769,42 @@ class _$SignUpSubmittedImpl implements SignUpSubmitted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SignInStatus status) statusChanged,
-    required TResult Function(String studentId) studentIdEntered,
-    required TResult Function(String password) passwordEntered,
-    required TResult Function() signInSubmitted,
-    required TResult Function() signUpSubmitted,
+    required TResult Function(SignInStatus status) changeStatus,
+    required TResult Function(String studentId) inputStudentId,
+    required TResult Function(String password) inputPassword,
+    required TResult Function() submitSignIn,
+    required TResult Function() fetchUser,
+    required TResult Function() submitSignUp,
   }) {
-    return signUpSubmitted();
+    return fetchUser();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SignInStatus status)? statusChanged,
-    TResult? Function(String studentId)? studentIdEntered,
-    TResult? Function(String password)? passwordEntered,
-    TResult? Function()? signInSubmitted,
-    TResult? Function()? signUpSubmitted,
+    TResult? Function(SignInStatus status)? changeStatus,
+    TResult? Function(String studentId)? inputStudentId,
+    TResult? Function(String password)? inputPassword,
+    TResult? Function()? submitSignIn,
+    TResult? Function()? fetchUser,
+    TResult? Function()? submitSignUp,
   }) {
-    return signUpSubmitted?.call();
+    return fetchUser?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SignInStatus status)? statusChanged,
-    TResult Function(String studentId)? studentIdEntered,
-    TResult Function(String password)? passwordEntered,
-    TResult Function()? signInSubmitted,
-    TResult Function()? signUpSubmitted,
+    TResult Function(SignInStatus status)? changeStatus,
+    TResult Function(String studentId)? inputStudentId,
+    TResult Function(String password)? inputPassword,
+    TResult Function()? submitSignIn,
+    TResult Function()? fetchUser,
+    TResult Function()? submitSignUp,
     required TResult orElse(),
   }) {
-    if (signUpSubmitted != null) {
-      return signUpSubmitted();
+    if (fetchUser != null) {
+      return fetchUser();
     }
     return orElse();
   }
@@ -780,44 +812,176 @@ class _$SignUpSubmittedImpl implements SignUpSubmitted {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(StatusChanged value) statusChanged,
-    required TResult Function(StudentIdEntered value) studentIdEntered,
-    required TResult Function(PasswordEntered value) passwordEntered,
-    required TResult Function(SignInSubmitted value) signInSubmitted,
-    required TResult Function(SignUpSubmitted value) signUpSubmitted,
+    required TResult Function(ChangeStatus value) changeStatus,
+    required TResult Function(InputStudentId value) inputStudentId,
+    required TResult Function(InputPassword value) inputPassword,
+    required TResult Function(SubmitSignIn value) submitSignIn,
+    required TResult Function(FetchUser value) fetchUser,
+    required TResult Function(SubmitSignUp value) submitSignUp,
   }) {
-    return signUpSubmitted(this);
+    return fetchUser(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(StatusChanged value)? statusChanged,
-    TResult? Function(StudentIdEntered value)? studentIdEntered,
-    TResult? Function(PasswordEntered value)? passwordEntered,
-    TResult? Function(SignInSubmitted value)? signInSubmitted,
-    TResult? Function(SignUpSubmitted value)? signUpSubmitted,
+    TResult? Function(ChangeStatus value)? changeStatus,
+    TResult? Function(InputStudentId value)? inputStudentId,
+    TResult? Function(InputPassword value)? inputPassword,
+    TResult? Function(SubmitSignIn value)? submitSignIn,
+    TResult? Function(FetchUser value)? fetchUser,
+    TResult? Function(SubmitSignUp value)? submitSignUp,
   }) {
-    return signUpSubmitted?.call(this);
+    return fetchUser?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(StatusChanged value)? statusChanged,
-    TResult Function(StudentIdEntered value)? studentIdEntered,
-    TResult Function(PasswordEntered value)? passwordEntered,
-    TResult Function(SignInSubmitted value)? signInSubmitted,
-    TResult Function(SignUpSubmitted value)? signUpSubmitted,
+    TResult Function(ChangeStatus value)? changeStatus,
+    TResult Function(InputStudentId value)? inputStudentId,
+    TResult Function(InputPassword value)? inputPassword,
+    TResult Function(SubmitSignIn value)? submitSignIn,
+    TResult Function(FetchUser value)? fetchUser,
+    TResult Function(SubmitSignUp value)? submitSignUp,
     required TResult orElse(),
   }) {
-    if (signUpSubmitted != null) {
-      return signUpSubmitted(this);
+    if (fetchUser != null) {
+      return fetchUser(this);
     }
     return orElse();
   }
 }
 
-abstract class SignUpSubmitted implements SignInEvent {
-  const factory SignUpSubmitted() = _$SignUpSubmittedImpl;
+abstract class FetchUser implements SignInEvent {
+  const factory FetchUser() = _$FetchUserImpl;
+}
+
+/// @nodoc
+abstract class _$$SubmitSignUpImplCopyWith<$Res> {
+  factory _$$SubmitSignUpImplCopyWith(
+          _$SubmitSignUpImpl value, $Res Function(_$SubmitSignUpImpl) then) =
+      __$$SubmitSignUpImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SubmitSignUpImplCopyWithImpl<$Res>
+    extends _$SignInEventCopyWithImpl<$Res, _$SubmitSignUpImpl>
+    implements _$$SubmitSignUpImplCopyWith<$Res> {
+  __$$SubmitSignUpImplCopyWithImpl(
+      _$SubmitSignUpImpl _value, $Res Function(_$SubmitSignUpImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SignInEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$SubmitSignUpImpl implements SubmitSignUp {
+  const _$SubmitSignUpImpl();
+
+  @override
+  String toString() {
+    return 'SignInEvent.submitSignUp()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$SubmitSignUpImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(SignInStatus status) changeStatus,
+    required TResult Function(String studentId) inputStudentId,
+    required TResult Function(String password) inputPassword,
+    required TResult Function() submitSignIn,
+    required TResult Function() fetchUser,
+    required TResult Function() submitSignUp,
+  }) {
+    return submitSignUp();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(SignInStatus status)? changeStatus,
+    TResult? Function(String studentId)? inputStudentId,
+    TResult? Function(String password)? inputPassword,
+    TResult? Function()? submitSignIn,
+    TResult? Function()? fetchUser,
+    TResult? Function()? submitSignUp,
+  }) {
+    return submitSignUp?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(SignInStatus status)? changeStatus,
+    TResult Function(String studentId)? inputStudentId,
+    TResult Function(String password)? inputPassword,
+    TResult Function()? submitSignIn,
+    TResult Function()? fetchUser,
+    TResult Function()? submitSignUp,
+    required TResult orElse(),
+  }) {
+    if (submitSignUp != null) {
+      return submitSignUp();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ChangeStatus value) changeStatus,
+    required TResult Function(InputStudentId value) inputStudentId,
+    required TResult Function(InputPassword value) inputPassword,
+    required TResult Function(SubmitSignIn value) submitSignIn,
+    required TResult Function(FetchUser value) fetchUser,
+    required TResult Function(SubmitSignUp value) submitSignUp,
+  }) {
+    return submitSignUp(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ChangeStatus value)? changeStatus,
+    TResult? Function(InputStudentId value)? inputStudentId,
+    TResult? Function(InputPassword value)? inputPassword,
+    TResult? Function(SubmitSignIn value)? submitSignIn,
+    TResult? Function(FetchUser value)? fetchUser,
+    TResult? Function(SubmitSignUp value)? submitSignUp,
+  }) {
+    return submitSignUp?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ChangeStatus value)? changeStatus,
+    TResult Function(InputStudentId value)? inputStudentId,
+    TResult Function(InputPassword value)? inputPassword,
+    TResult Function(SubmitSignIn value)? submitSignIn,
+    TResult Function(FetchUser value)? fetchUser,
+    TResult Function(SubmitSignUp value)? submitSignUp,
+    required TResult orElse(),
+  }) {
+    if (submitSignUp != null) {
+      return submitSignUp(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SubmitSignUp implements SignInEvent {
+  const factory SubmitSignUp() = _$SubmitSignUpImpl;
 }

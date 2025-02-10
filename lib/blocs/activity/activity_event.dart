@@ -4,5 +4,5 @@ part 'activity_event.freezed.dart';
 
 @freezed
 class ActivityEvent with _$ActivityEvent {
-  const factory ActivityEvent.fetch() = Fetch;
+  const factory ActivityEvent.fetchActivities() = FetchActivities;
 }

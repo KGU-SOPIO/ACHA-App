@@ -32,9 +32,9 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
   void initState() {
     super.initState();
     if (context.read<SignInBloc>().state.status == SignInStatus.initial) {
-      context.read<SignInBloc>().add(const SignInSubmitted());
+      context.read<SignInBloc>().add(const SubmitSignIn());
     } else if (context.read<SignInBloc>().state.status == SignInStatus.inSignUp) {
-      context.read<SignInBloc>().add(const SignUpSubmitted());
+      context.read<SignInBloc>().add(const SubmitSignUp());
     }
   }
 
@@ -58,12 +58,15 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
         body: SafeArea(
           child: BlocConsumer<SignInBloc, SignInState>(
             listener: (context, state) {
-              if (state.status == SignInStatus.inSignUp) {
+              debugPrint(state.status.toString());
+              if (state.status == SignInStatus.inFetchUser) {
+                context.read<SignInBloc>().add(const FetchUser());
+              } else if (state.status == SignInStatus.inSignUp) {
                 Navigator.push(context, AuthSignUpScreen.route(context));
               }
             },
             builder: (context, state) {
-              if (state.status == SignInStatus.signInFailure || state.status == SignInStatus.signUpFailure) {
+              if (state.status == SignInStatus.signInFailure || state.status == SignInStatus.fetchUserFailure || state.status == SignInStatus.signUpFailure) {
                 return Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24),
                   child: Column(

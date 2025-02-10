@@ -14,42 +14,44 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Courses _$CoursesFromJson(Map<String, dynamic> json) {
-  return _Courses.fromJson(json);
+CourseList _$CourseListFromJson(Map<String, dynamic> json) {
+  return _CourseList.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Courses {
+mixin _$CourseList {
   List<Course> get courses => throw _privateConstructorUsedError;
 
-  /// Serializes this Courses to a JSON map.
+  /// Serializes this CourseList to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of Courses
+  /// Create a copy of CourseList
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $CoursesCopyWith<Courses> get copyWith => throw _privateConstructorUsedError;
+  $CourseListCopyWith<CourseList> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CoursesCopyWith<$Res> {
-  factory $CoursesCopyWith(Courses value, $Res Function(Courses) then) =
-      _$CoursesCopyWithImpl<$Res, Courses>;
+abstract class $CourseListCopyWith<$Res> {
+  factory $CourseListCopyWith(
+          CourseList value, $Res Function(CourseList) then) =
+      _$CourseListCopyWithImpl<$Res, CourseList>;
   @useResult
   $Res call({List<Course> courses});
 }
 
 /// @nodoc
-class _$CoursesCopyWithImpl<$Res, $Val extends Courses>
-    implements $CoursesCopyWith<$Res> {
-  _$CoursesCopyWithImpl(this._value, this._then);
+class _$CourseListCopyWithImpl<$Res, $Val extends CourseList>
+    implements $CourseListCopyWith<$Res> {
+  _$CourseListCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Courses
+  /// Create a copy of CourseList
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -66,31 +68,32 @@ class _$CoursesCopyWithImpl<$Res, $Val extends Courses>
 }
 
 /// @nodoc
-abstract class _$$CoursesImplCopyWith<$Res> implements $CoursesCopyWith<$Res> {
-  factory _$$CoursesImplCopyWith(
-          _$CoursesImpl value, $Res Function(_$CoursesImpl) then) =
-      __$$CoursesImplCopyWithImpl<$Res>;
+abstract class _$$CourseListImplCopyWith<$Res>
+    implements $CourseListCopyWith<$Res> {
+  factory _$$CourseListImplCopyWith(
+          _$CourseListImpl value, $Res Function(_$CourseListImpl) then) =
+      __$$CourseListImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<Course> courses});
 }
 
 /// @nodoc
-class __$$CoursesImplCopyWithImpl<$Res>
-    extends _$CoursesCopyWithImpl<$Res, _$CoursesImpl>
-    implements _$$CoursesImplCopyWith<$Res> {
-  __$$CoursesImplCopyWithImpl(
-      _$CoursesImpl _value, $Res Function(_$CoursesImpl) _then)
+class __$$CourseListImplCopyWithImpl<$Res>
+    extends _$CourseListCopyWithImpl<$Res, _$CourseListImpl>
+    implements _$$CourseListImplCopyWith<$Res> {
+  __$$CourseListImplCopyWithImpl(
+      _$CourseListImpl _value, $Res Function(_$CourseListImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Courses
+  /// Create a copy of CourseList
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? courses = null,
   }) {
-    return _then(_$CoursesImpl(
+    return _then(_$CourseListImpl(
       courses: null == courses
           ? _value._courses
           : courses // ignore: cast_nullable_to_non_nullable
@@ -101,12 +104,12 @@ class __$$CoursesImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$CoursesImpl implements _Courses {
-  const _$CoursesImpl({required final List<Course> courses})
+class _$CourseListImpl implements _CourseList {
+  const _$CourseListImpl({required final List<Course> courses})
       : _courses = courses;
 
-  factory _$CoursesImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CoursesImplFromJson(json);
+  factory _$CourseListImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CourseListImplFromJson(json);
 
   final List<Course> _courses;
   @override
@@ -118,14 +121,14 @@ class _$CoursesImpl implements _Courses {
 
   @override
   String toString() {
-    return 'Courses(courses: $courses)';
+    return 'CourseList(courses: $courses)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CoursesImpl &&
+            other is _$CourseListImpl &&
             const DeepCollectionEquality().equals(other._courses, _courses));
   }
 
@@ -134,35 +137,37 @@ class _$CoursesImpl implements _Courses {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_courses));
 
-  /// Create a copy of Courses
+  /// Create a copy of CourseList
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$CoursesImplCopyWith<_$CoursesImpl> get copyWith =>
-      __$$CoursesImplCopyWithImpl<_$CoursesImpl>(this, _$identity);
+  _$$CourseListImplCopyWith<_$CourseListImpl> get copyWith =>
+      __$$CourseListImplCopyWithImpl<_$CourseListImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CoursesImplToJson(
+    return _$$CourseListImplToJson(
       this,
     );
   }
 }
 
-abstract class _Courses implements Courses {
-  const factory _Courses({required final List<Course> courses}) = _$CoursesImpl;
+abstract class _CourseList implements CourseList {
+  const factory _CourseList({required final List<Course> courses}) =
+      _$CourseListImpl;
 
-  factory _Courses.fromJson(Map<String, dynamic> json) = _$CoursesImpl.fromJson;
+  factory _CourseList.fromJson(Map<String, dynamic> json) =
+      _$CourseListImpl.fromJson;
 
   @override
   List<Course> get courses;
 
-  /// Create a copy of Courses
+  /// Create a copy of CourseList
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CoursesImplCopyWith<_$CoursesImpl> get copyWith =>
+  _$$CourseListImplCopyWith<_$CourseListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -179,7 +184,7 @@ mixin _$Course {
   DateTime? get deadline => throw _privateConstructorUsedError;
   String? get link => throw _privateConstructorUsedError;
   CourseActivities? get courseActivities => throw _privateConstructorUsedError;
-  Notices? get notices => throw _privateConstructorUsedError;
+  NoticeList? get notices => throw _privateConstructorUsedError;
 
   /// Serializes this Course to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -203,10 +208,10 @@ abstract class $CourseCopyWith<$Res> {
       DateTime? deadline,
       String? link,
       CourseActivities? courseActivities,
-      Notices? notices});
+      NoticeList? notices});
 
   $CourseActivitiesCopyWith<$Res>? get courseActivities;
-  $NoticesCopyWith<$Res>? get notices;
+  $NoticeListCopyWith<$Res>? get notices;
 }
 
 /// @nodoc
@@ -265,7 +270,7 @@ class _$CourseCopyWithImpl<$Res, $Val extends Course>
       notices: freezed == notices
           ? _value.notices
           : notices // ignore: cast_nullable_to_non_nullable
-              as Notices?,
+              as NoticeList?,
     ) as $Val);
   }
 
@@ -287,12 +292,12 @@ class _$CourseCopyWithImpl<$Res, $Val extends Course>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $NoticesCopyWith<$Res>? get notices {
+  $NoticeListCopyWith<$Res>? get notices {
     if (_value.notices == null) {
       return null;
     }
 
-    return $NoticesCopyWith<$Res>(_value.notices!, (value) {
+    return $NoticeListCopyWith<$Res>(_value.notices!, (value) {
       return _then(_value.copyWith(notices: value) as $Val);
     });
   }
@@ -313,12 +318,12 @@ abstract class _$$CourseImplCopyWith<$Res> implements $CourseCopyWith<$Res> {
       DateTime? deadline,
       String? link,
       CourseActivities? courseActivities,
-      Notices? notices});
+      NoticeList? notices});
 
   @override
   $CourseActivitiesCopyWith<$Res>? get courseActivities;
   @override
-  $NoticesCopyWith<$Res>? get notices;
+  $NoticeListCopyWith<$Res>? get notices;
 }
 
 /// @nodoc
@@ -375,7 +380,7 @@ class __$$CourseImplCopyWithImpl<$Res>
       notices: freezed == notices
           ? _value.notices
           : notices // ignore: cast_nullable_to_non_nullable
-              as Notices?,
+              as NoticeList?,
     ));
   }
 }
@@ -411,7 +416,7 @@ class _$CourseImpl implements _Course {
   @override
   final CourseActivities? courseActivities;
   @override
-  final Notices? notices;
+  final NoticeList? notices;
 
   @override
   String toString() {
@@ -467,7 +472,7 @@ abstract class _Course implements Course {
       final DateTime? deadline,
       final String? link,
       final CourseActivities? courseActivities,
-      final Notices? notices}) = _$CourseImpl;
+      final NoticeList? notices}) = _$CourseImpl;
 
   factory _Course.fromJson(Map<String, dynamic> json) = _$CourseImpl.fromJson;
 
@@ -486,7 +491,7 @@ abstract class _Course implements Course {
   @override
   CourseActivities? get courseActivities;
   @override
-  Notices? get notices;
+  NoticeList? get notices;
 
   /// Create a copy of Course
   /// with the given fields replaced by the non-null parameter values.

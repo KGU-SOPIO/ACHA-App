@@ -7,13 +7,13 @@ import 'package:acha/blocs/activity/index.dart';
 
 class ActivityBloc extends Bloc<ActivityEvent, ActivityState> {
   ActivityBloc({required this.courseRepository}) : super(const ActivityState(status: ActivityStatus.loading)) {
-    on<Fetch>(_onFetchActivities);
+    on<FetchActivities>(_onFetchActivities);
   }
 
   final CourseRepository courseRepository;
 
   /// 활동 데이터를 요청합니다.
-  Future<void> _onFetchActivities(Fetch event, Emitter<ActivityState> emit) async {
+  Future<void> _onFetchActivities(FetchActivities event, Emitter<ActivityState> emit) async {
     try {
       final WeekActivities? weekActivities = await courseRepository.fetchActivities();
       emit(state.copyWith(status: ActivityStatus.loaded, weekActivities: weekActivities));

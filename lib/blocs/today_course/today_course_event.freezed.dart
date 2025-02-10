@@ -18,33 +18,33 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$TodayCourseEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function() fetchTodayCourses,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function()? fetchTodayCourses,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function()? fetchTodayCourses,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Fetch value) fetch,
+    required TResult Function(FetchTodayCourses value) fetchTodayCourses,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Fetch value)? fetch,
+    TResult? Function(FetchTodayCourses value)? fetchTodayCourses,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Fetch value)? fetch,
+    TResult Function(FetchTodayCourses value)? fetchTodayCourses,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -72,18 +72,18 @@ class _$TodayCourseEventCopyWithImpl<$Res, $Val extends TodayCourseEvent>
 }
 
 /// @nodoc
-abstract class _$$FetchImplCopyWith<$Res> {
-  factory _$$FetchImplCopyWith(
-          _$FetchImpl value, $Res Function(_$FetchImpl) then) =
-      __$$FetchImplCopyWithImpl<$Res>;
+abstract class _$$FetchTodayCoursesImplCopyWith<$Res> {
+  factory _$$FetchTodayCoursesImplCopyWith(_$FetchTodayCoursesImpl value,
+          $Res Function(_$FetchTodayCoursesImpl) then) =
+      __$$FetchTodayCoursesImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$FetchImplCopyWithImpl<$Res>
-    extends _$TodayCourseEventCopyWithImpl<$Res, _$FetchImpl>
-    implements _$$FetchImplCopyWith<$Res> {
-  __$$FetchImplCopyWithImpl(
-      _$FetchImpl _value, $Res Function(_$FetchImpl) _then)
+class __$$FetchTodayCoursesImplCopyWithImpl<$Res>
+    extends _$TodayCourseEventCopyWithImpl<$Res, _$FetchTodayCoursesImpl>
+    implements _$$FetchTodayCoursesImplCopyWith<$Res> {
+  __$$FetchTodayCoursesImplCopyWithImpl(_$FetchTodayCoursesImpl _value,
+      $Res Function(_$FetchTodayCoursesImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of TodayCourseEvent
@@ -92,18 +92,18 @@ class __$$FetchImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FetchImpl implements Fetch {
-  const _$FetchImpl();
+class _$FetchTodayCoursesImpl implements FetchTodayCourses {
+  const _$FetchTodayCoursesImpl();
 
   @override
   String toString() {
-    return 'TodayCourseEvent.fetch()';
+    return 'TodayCourseEvent.fetchTodayCourses()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$FetchImpl);
+        (other.runtimeType == runtimeType && other is _$FetchTodayCoursesImpl);
   }
 
   @override
@@ -112,27 +112,27 @@ class _$FetchImpl implements Fetch {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function() fetchTodayCourses,
   }) {
-    return fetch();
+    return fetchTodayCourses();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function()? fetchTodayCourses,
   }) {
-    return fetch?.call();
+    return fetchTodayCourses?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function()? fetchTodayCourses,
     required TResult orElse(),
   }) {
-    if (fetch != null) {
-      return fetch();
+    if (fetchTodayCourses != null) {
+      return fetchTodayCourses();
     }
     return orElse();
   }
@@ -140,32 +140,32 @@ class _$FetchImpl implements Fetch {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Fetch value) fetch,
+    required TResult Function(FetchTodayCourses value) fetchTodayCourses,
   }) {
-    return fetch(this);
+    return fetchTodayCourses(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Fetch value)? fetch,
+    TResult? Function(FetchTodayCourses value)? fetchTodayCourses,
   }) {
-    return fetch?.call(this);
+    return fetchTodayCourses?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Fetch value)? fetch,
+    TResult Function(FetchTodayCourses value)? fetchTodayCourses,
     required TResult orElse(),
   }) {
-    if (fetch != null) {
-      return fetch(this);
+    if (fetchTodayCourses != null) {
+      return fetchTodayCourses(this);
     }
     return orElse();
   }
 }
 
-abstract class Fetch implements TodayCourseEvent {
-  const factory Fetch() = _$FetchImpl;
+abstract class FetchTodayCourses implements TodayCourseEvent {
+  const factory FetchTodayCourses() = _$FetchTodayCoursesImpl;
 }

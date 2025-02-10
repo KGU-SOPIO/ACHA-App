@@ -4,5 +4,5 @@ part 'course_list_event.freezed.dart';
 
 @freezed
 class CourseListEvent with _$CourseListEvent {
-  const factory CourseListEvent.fetch() = Fetch;
+  const factory CourseListEvent.fetchCourses() = FetchCourses;
 }

@@ -14,42 +14,44 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Notices _$NoticesFromJson(Map<String, dynamic> json) {
-  return _Notices.fromJson(json);
+NoticeList _$NoticeListFromJson(Map<String, dynamic> json) {
+  return _NoticeList.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Notices {
+mixin _$NoticeList {
   List<Notice> get notices => throw _privateConstructorUsedError;
 
-  /// Serializes this Notices to a JSON map.
+  /// Serializes this NoticeList to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of Notices
+  /// Create a copy of NoticeList
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $NoticesCopyWith<Notices> get copyWith => throw _privateConstructorUsedError;
+  $NoticeListCopyWith<NoticeList> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $NoticesCopyWith<$Res> {
-  factory $NoticesCopyWith(Notices value, $Res Function(Notices) then) =
-      _$NoticesCopyWithImpl<$Res, Notices>;
+abstract class $NoticeListCopyWith<$Res> {
+  factory $NoticeListCopyWith(
+          NoticeList value, $Res Function(NoticeList) then) =
+      _$NoticeListCopyWithImpl<$Res, NoticeList>;
   @useResult
   $Res call({List<Notice> notices});
 }
 
 /// @nodoc
-class _$NoticesCopyWithImpl<$Res, $Val extends Notices>
-    implements $NoticesCopyWith<$Res> {
-  _$NoticesCopyWithImpl(this._value, this._then);
+class _$NoticeListCopyWithImpl<$Res, $Val extends NoticeList>
+    implements $NoticeListCopyWith<$Res> {
+  _$NoticeListCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Notices
+  /// Create a copy of NoticeList
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -66,31 +68,32 @@ class _$NoticesCopyWithImpl<$Res, $Val extends Notices>
 }
 
 /// @nodoc
-abstract class _$$NoticesImplCopyWith<$Res> implements $NoticesCopyWith<$Res> {
-  factory _$$NoticesImplCopyWith(
-          _$NoticesImpl value, $Res Function(_$NoticesImpl) then) =
-      __$$NoticesImplCopyWithImpl<$Res>;
+abstract class _$$NoticeListImplCopyWith<$Res>
+    implements $NoticeListCopyWith<$Res> {
+  factory _$$NoticeListImplCopyWith(
+          _$NoticeListImpl value, $Res Function(_$NoticeListImpl) then) =
+      __$$NoticeListImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<Notice> notices});
 }
 
 /// @nodoc
-class __$$NoticesImplCopyWithImpl<$Res>
-    extends _$NoticesCopyWithImpl<$Res, _$NoticesImpl>
-    implements _$$NoticesImplCopyWith<$Res> {
-  __$$NoticesImplCopyWithImpl(
-      _$NoticesImpl _value, $Res Function(_$NoticesImpl) _then)
+class __$$NoticeListImplCopyWithImpl<$Res>
+    extends _$NoticeListCopyWithImpl<$Res, _$NoticeListImpl>
+    implements _$$NoticeListImplCopyWith<$Res> {
+  __$$NoticeListImplCopyWithImpl(
+      _$NoticeListImpl _value, $Res Function(_$NoticeListImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Notices
+  /// Create a copy of NoticeList
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? notices = null,
   }) {
-    return _then(_$NoticesImpl(
+    return _then(_$NoticeListImpl(
       notices: null == notices
           ? _value._notices
           : notices // ignore: cast_nullable_to_non_nullable
@@ -101,12 +104,12 @@ class __$$NoticesImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$NoticesImpl implements _Notices {
-  const _$NoticesImpl({required final List<Notice> notices})
+class _$NoticeListImpl implements _NoticeList {
+  const _$NoticeListImpl({required final List<Notice> notices})
       : _notices = notices;
 
-  factory _$NoticesImpl.fromJson(Map<String, dynamic> json) =>
-      _$$NoticesImplFromJson(json);
+  factory _$NoticeListImpl.fromJson(Map<String, dynamic> json) =>
+      _$$NoticeListImplFromJson(json);
 
   final List<Notice> _notices;
   @override
@@ -118,14 +121,14 @@ class _$NoticesImpl implements _Notices {
 
   @override
   String toString() {
-    return 'Notices(notices: $notices)';
+    return 'NoticeList(notices: $notices)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$NoticesImpl &&
+            other is _$NoticeListImpl &&
             const DeepCollectionEquality().equals(other._notices, _notices));
   }
 
@@ -134,35 +137,37 @@ class _$NoticesImpl implements _Notices {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_notices));
 
-  /// Create a copy of Notices
+  /// Create a copy of NoticeList
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$NoticesImplCopyWith<_$NoticesImpl> get copyWith =>
-      __$$NoticesImplCopyWithImpl<_$NoticesImpl>(this, _$identity);
+  _$$NoticeListImplCopyWith<_$NoticeListImpl> get copyWith =>
+      __$$NoticeListImplCopyWithImpl<_$NoticeListImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$NoticesImplToJson(
+    return _$$NoticeListImplToJson(
       this,
     );
   }
 }
 
-abstract class _Notices implements Notices {
-  const factory _Notices({required final List<Notice> notices}) = _$NoticesImpl;
+abstract class _NoticeList implements NoticeList {
+  const factory _NoticeList({required final List<Notice> notices}) =
+      _$NoticeListImpl;
 
-  factory _Notices.fromJson(Map<String, dynamic> json) = _$NoticesImpl.fromJson;
+  factory _NoticeList.fromJson(Map<String, dynamic> json) =
+      _$NoticeListImpl.fromJson;
 
   @override
   List<Notice> get notices;
 
-  /// Create a copy of Notices
+  /// Create a copy of NoticeList
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$NoticesImplCopyWith<_$NoticesImpl> get copyWith =>
+  _$$NoticeListImplCopyWith<_$NoticeListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

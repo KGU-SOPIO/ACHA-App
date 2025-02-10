@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:acha/blocs/auth/index.dart';
 import 'package:acha/blocs/user/index.dart';
@@ -13,7 +13,7 @@ import 'package:acha/blocs/alert/index.dart';
 
 import 'package:acha/repository/index.dart';
 
-import 'package:acha/network/utils/connectivity_checker.dart';
+import 'package:acha/network/utils/index.dart';
 
 import 'package:acha/screens/splash.dart';
 import 'package:acha/screens/connect_error.dart';
@@ -94,7 +94,7 @@ class AppView extends StatefulWidget {
 }
 
 class _AppViewState extends State<AppView> {
-  final ConnectivityChecker _connectivityChecker = ConnectivityChecker();
+  final ConnectivityChecker _connectivityChecker = GetIt.I<ConnectivityChecker>();
   NavigatorState get _navigator => AppView.navigatorKey.currentState!;
   bool _isNavigate = false;
   bool requestPermission = false;
@@ -146,8 +146,8 @@ class _AppViewState extends State<AppView> {
 
   /// 서버로부터 필수 데이터를 요청합니다.
   void _fetchData(BuildContext context) {
-    context.read<UserBloc>().add(UserEvent.fetch());
-    context.read<TodayCourseBloc>().add(TodayCourseEvent.fetch());
+    context.read<UserBloc>().add(UserEvent.fetchUser());
+    context.read<TodayCourseBloc>().add(TodayCourseEvent.fetchTodayCourses());
     _checkStates(context);
   }
 

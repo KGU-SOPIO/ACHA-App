@@ -37,7 +37,7 @@ class _SliderWidgetState extends State<SliderWidget> {
   @override
   void initState() {
     super.initState();
-    context.read<ActivityBloc>().add(ActivityEvent.fetch());
+    context.read<ActivityBloc>().add(ActivityEvent.fetchActivities());
   }
 
   @override
@@ -145,7 +145,7 @@ class _SliderWidgetState extends State<SliderWidget> {
           ]
         ),
         GestureDetector(
-          onTap: () => context.read<NavigationBloc>().add(TabChanged(2)),
+          onTap: () => context.read<NavigationBloc>().add(ChangeTab(2)),
           child: Row(
             children: [
               const Padding(

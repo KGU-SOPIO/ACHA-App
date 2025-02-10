@@ -7,13 +7,13 @@ import 'package:acha/blocs/user/index.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
   UserBloc({required this.userRepository}) : super(const UserState(status: UserStatus.loading)) {
-    on<Fetch>(_onFetchUser);
+    on<FetchUser>(_onFetchUser);
   }
 
   final UserRepository userRepository;
 
   /// 학생 정보를 요청합니다.
-  Future<void> _onFetchUser(Fetch event, Emitter<UserState> emit) async {
+  Future<void> _onFetchUser(FetchUser event, Emitter<UserState> emit) async {
     try {
       final User user = await userRepository.fetchUser();
       emit(state.copyWith(status: UserStatus.loaded, user: user));

@@ -174,7 +174,7 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
                         ),
                       ),
                       onPressed: _isButtonEnabled ? () {
-                        context.read<SignInBloc>().add(PasswordEntered(password: _textEditingController.text));
+                        context.read<SignInBloc>().add(InputPassword(password: _textEditingController.text));
                         _showTermsModal();
                       } : null,
                       child: const Text(

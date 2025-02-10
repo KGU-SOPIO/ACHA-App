@@ -7,10 +7,10 @@ import 'package:acha/blocs/auth/index.dart';
 
 class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
   AuthenticationBloc({required this.authenticationRepository}) : super(const AuthenticationState.unknown()) {
-    on<StatusChanged>(_onAuthenticationStatusChanged);
-    on<Logout>(_onAuthenticationLogoutRequested);
+    on<ChangeStatus>(_onChangeAuthenticationStatus);
+    on<Logout>(_onLogout);
 
-    _authenticationStatusSubscription = authenticationRepository.authStream.listen((status) => add(StatusChanged(status: status)));
+    _authenticationStatusSubscription = authenticationRepository.authStream.listen((status) => add(ChangeStatus(status: status)));
   }
 
   final AuthenticationRepository authenticationRepository;
@@ -23,7 +23,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   }
 
   /// 인증 상태 변화를 감지합니다.
-  Future<void> _onAuthenticationStatusChanged(StatusChanged event, Emitter<AuthenticationState> emit) async {
+  Future<void> _onChangeAuthenticationStatus(ChangeStatus event, Emitter<AuthenticationState> emit) async {
     switch (event.status) {
       case AuthenticationStatus.unauthenticated:
         emit(const AuthenticationState.unauthenticated());
@@ -41,7 +41,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   }
 
   /// 로그아웃합니다.
-  void _onAuthenticationLogoutRequested(Logout event, Emitter<AuthenticationState> emit) {
+  void _onLogout(Logout event, Emitter<AuthenticationState> emit) {
     authenticationRepository.logout();
   }
 }
