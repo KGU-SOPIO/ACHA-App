@@ -7,12 +7,9 @@ class NotificationTabbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 43,
-      margin: const EdgeInsets.only(bottom: 18),
-      child: Align(
-        alignment: Alignment.center,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 18),
+      child: Center(
         child: _buildTabBarContainer()
       )
     );
@@ -21,6 +18,7 @@ class NotificationTabbar extends StatelessWidget {
   Widget _buildTabBarContainer() {
     return Container(
       width: 242,
+      height: 43,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
         color: const Color.fromARGB(255, 237, 239, 242),
@@ -31,7 +29,7 @@ class NotificationTabbar extends StatelessWidget {
         indicatorSize: TabBarIndicatorSize.tab,
         indicator: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
-          color: Colors.white,
+          color: Colors.white
         ),
         overlayColor: WidgetStateProperty.all(Colors.transparent),
         dividerColor: Colors.transparent,
