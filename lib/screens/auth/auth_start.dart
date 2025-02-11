@@ -146,7 +146,7 @@ class _AuthStartScreenState extends State<AuthStartScreen> {
       children: [
         SizedBox(
           height: 180,
-          child: SvgPicture.asset('lib/assets/svgs/acha_large.svg')
+          child: SvgPicture.asset('lib/assets/svgs/acha_medium.svg')
         ),
         const SizedBox(height: 35),
         Text.rich(

@@ -58,13 +58,12 @@ Future<void>setupFlutterNotifications() async {
 
 @pragma('vm:entry-point')
 Future<void> _handleBackgroundMessage(RemoteMessage message) async {
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await setupFlutterNotifications();
   showNotification(message);
 }
 
-void _handleForegroundMessage(RemoteMessage message) {
-  showNotification(message);
-}
+void _handleForegroundMessage(RemoteMessage message) => showNotification(message);
 
 void showNotification(RemoteMessage message) {
   RemoteNotification? notification = message.notification;
@@ -98,9 +97,7 @@ void _checkReinstall() async {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await initializeDateFormatting('ko_KR', null);
   
-  /// Firebase Cloud Messaging
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   
   // 메세지 수신
@@ -138,6 +135,8 @@ void main() async {
   /// FCM 토큰 변경 시 재설정
   _fcmTokenRepository = FCMTokenRepository();
   FirebaseMessaging.instance.onTokenRefresh.listen(_fcmTokenRepository.updateToken);
+
+  await initializeDateFormatting('ko_KR', null);
 
   runApp(const App());
 }
