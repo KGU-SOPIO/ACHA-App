@@ -10,15 +10,15 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   SignInBloc({required this.authenticationRepository}): super(const SignInState(status: SignInStatus.initial)) {
     on<InputStudentId>((event, emit) => emit(state.copyWith(studentId: event.studentId)));
     on<InputPassword>((event, emit) => emit(state.copyWith(password: event.password)));
-    on<SubmitSignIn>(_onSignInSubmitted);
+    on<SubmitSignIn>(_onSubmitSignIn);
     on<FetchUser>(_onFetchUser);
-    on<SubmitSignUp>(_onSignUpSubmitted);
+    on<SubmitSignUp>(_onSubmitSignUp);
   }
 
   final AuthenticationRepository authenticationRepository;
 
   /// 인증 정보로 로그인을 요청합니다.
-  Future<void> _onSignInSubmitted(SubmitSignIn event, Emitter<SignInState> emit) async {
+  Future<void> _onSubmitSignIn(SubmitSignIn event, Emitter<SignInState> emit) async {
     try {
       emit(state.copyWith(status: SignInStatus.signInProgress));
 
@@ -52,7 +52,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   }
 
   /// 학생 정보로 회원가입을 요청합니다.
-  Future<void> _onSignUpSubmitted(SubmitSignUp event, Emitter<SignInState> emit) async {
+  Future<void> _onSubmitSignUp(SubmitSignUp event, Emitter<SignInState> emit) async {
     try {
       emit(state.copyWith(status: SignInStatus.signUpProgress));
       await authenticationRepository.signUp(studentId: state.studentId!, password: state.password!, user: state.user!);

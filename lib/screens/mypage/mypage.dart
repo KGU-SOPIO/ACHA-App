@@ -31,73 +31,93 @@ class _MyPageScreenState extends State<MyPageScreen> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 245, 246, 248),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              AchaAppbar(),
-              const SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 26),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    UserHeader(),
-                    const SizedBox(height: 35),
-                    AlertSettingContainer(),
-                    const SizedBox(height: 20),
-                    PhraseContainer(),
-                    const SizedBox(height: 20),
-                    RowContainerButton(
-                      padding: EdgeInsets.symmetric(vertical: 22),
-                      onPressed: () => Navigator.push(context, SopioScreen.route()),
-                      foregroundColor: Colors.white,
-                      backgroundColor: Colors.white,
-                      border: BorderSide(
-                        color: Color.fromARGB(255, 228, 232, 241)
-                      ),
-                      borderRadius: 25,
-                      text: 'SOPIO',
-                      textStyle: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: Color.fromARGB(255, 30, 30, 30)
-                      ),
-                      widget: SvgPicture.asset('lib/assets/svgs/mypage/right_arrow.svg')
-                    ),
-                    const SizedBox(height: 34),
-                    ContainerButton(
-                      height: 56,
-                      onPressed: () => _showLogoutModal(),
-                      backgroundColor: const Color.fromARGB(255, 237, 239, 242),
-                      text: '로그아웃',
-                      textStyle: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w700,
-                        color: const Color.fromARGB(255, 109, 109, 109),
-                      )
-                    ),
-                    const SizedBox(height: 18),
-                    ContainerButton(
-                      height: 56,
-                      onPressed: () => _showCancelModal(),
-                      backgroundColor: const Color.fromARGB(25, 255, 78 , 107),
-                      border: BorderSide(
-                        color: Color.fromARGB(255, 255, 78, 107)
-                      ),
-                      text: '계정 삭제',
-                      textStyle: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w700,
-                        color: const Color.fromARGB(255, 255, 78, 107)
-                      )
-                    ),
-                    const SizedBox(height: 54)
-                  ]
-                )
-              )
-            ]
-          )
-        )
+        child: _buildBody()
+      )
+    );
+  }
+
+  Widget _buildBody() {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          AchaAppbar(),
+          const SizedBox(height: 20),
+          _buildContent()
+        ]
+      )
+    );
+  }
+
+  Widget _buildContent() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 26),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          UserHeader(),
+          const SizedBox(height: 35),
+          AlertSettingContainer(),
+          const SizedBox(height: 20),
+          PhraseContainer(),
+          const SizedBox(height: 20),
+          _buildSopioButton(),
+          const SizedBox(height: 34),
+          _buildLogoutButton(),
+          const SizedBox(height: 18),
+          _buildDeleteAccountButton(),
+          const SizedBox(height: 54)
+        ]
+      )
+    );
+  }
+
+  Widget _buildSopioButton() {
+    return RowContainerButton(
+      padding: EdgeInsets.symmetric(vertical: 22),
+      onPressed: () => Navigator.push(context, SopioScreen.route()),
+      foregroundColor: Colors.white,
+      backgroundColor: Colors.white,
+      border: BorderSide(
+        color: Color.fromARGB(255, 228, 232, 241)
+      ),
+      borderRadius: 25,
+      text: 'SOPIO',
+      textStyle: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        color: Color.fromARGB(255, 30, 30, 30)
+      ),
+      widget: SvgPicture.asset('lib/assets/svgs/mypage/right_arrow.svg')
+    );
+  }
+
+  Widget _buildLogoutButton() {
+    return ContainerButton(
+      height: 56,
+      onPressed: () => _showLogoutModal(),
+      backgroundColor: const Color.fromARGB(255, 237, 239, 242),
+      text: '로그아웃',
+      textStyle: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w700,
+        color: const Color.fromARGB(255, 109, 109, 109),
+      )
+    );
+  }
+
+  Widget _buildDeleteAccountButton() {
+    return ContainerButton(
+      height: 56,
+      onPressed: () => _showCancelModal(),
+      backgroundColor: const Color.fromARGB(25, 255, 78 , 107),
+      border: BorderSide(
+        color: Color.fromARGB(255, 255, 78, 107)
+      ),
+      text: '계정 삭제',
+      textStyle: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w700,
+        color: const Color.fromARGB(255, 255, 78, 107)
       )
     );
   }

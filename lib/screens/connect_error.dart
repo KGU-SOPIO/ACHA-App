@@ -25,24 +25,8 @@ class ConnectErrorScreen extends StatelessWidget {
           child: Column(
             children: [
               const AchaAppbar(backgroundColor: Colors.white),
-              _buildError(),
-              ContainerButton(
-                height: 56,
-                text: '확인',
-                textStyle: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700
-                ),
-                backgroundColor: const Color.fromARGB(255, 0, 102, 255),
-                onPressed: () {
-                  if (Platform.isAndroid) {
-                    SystemNavigator.pop();
-                  } else {
-                    GetIt.I<ToastManager>().error(message: '앱을 재실행해 주세요');
-                  }
-                }
-              ),
+              _buildContent(),
+              _buildButton(),
               const SizedBox(height: 20)
             ]
           )
@@ -51,7 +35,7 @@ class ConnectErrorScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildError() {
+  Widget _buildContent() {
     return Expanded(
       child: Center(
         child: Column(
@@ -79,6 +63,26 @@ class ConnectErrorScreen extends StatelessWidget {
           ]
         )
       )
+    );
+  }
+
+  Widget _buildButton() {
+    return ContainerButton(
+      height: 56,
+      text: '확인',
+      textStyle: TextStyle(
+        color: Colors.white,
+        fontSize: 16,
+        fontWeight: FontWeight.w700
+      ),
+      backgroundColor: const Color.fromARGB(255, 0, 102, 255),
+      onPressed: () {
+        if (Platform.isAndroid) {
+          SystemNavigator.pop();
+        } else {
+          GetIt.I<ToastManager>().error(message: '인터넷 연결 확인 후 앱을 재실행해 주세요');
+        }
+      }
     );
   }
 }

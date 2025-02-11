@@ -24,38 +24,50 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 245, 246, 248),
-      body: SafeArea(
-        child: Stack(
-          children: [
-            SingleChildScrollView(
-              child: Column(
-                children: [
-                  AchaAppbar(),
-                  const SizedBox(height: 20),
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.symmetric(horizontal: 26),
-                    color: Color.fromARGB(255, 245, 246, 248),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        UserHeader(),
-                        const SizedBox(height: 20),
-                        TodayCourseContainer()
-                      ]
-                    )
-                  )
-                ]
-              )
-            ),
-            BottomDraggableContainer(
-              carouselSliderController: _carouselSliderController,
-              currentSlide: currentSlide,
-              onPageChanged: (index) => setState(() => currentSlide = index)
-            )
-          ]
-        )
+      body: _buildBody()
+    );
+  }
+
+  Widget _buildBody() {
+    return SafeArea(
+      child: Stack(
+        children: [
+          _buildContent(),
+          _buildBottomDraggableContainer()
+        ]
       )
+    );
+  }
+
+  Widget _buildContent() {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          const AchaAppbar(),
+          const SizedBox(height: 20),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 26),
+            color: const Color.fromARGB(255, 245, 246, 248),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                UserHeader(),
+                const SizedBox(height: 20),
+                TodayCourseContainer()
+              ]
+            )
+          )
+        ]
+      )
+    );
+  }
+
+  Widget _buildBottomDraggableContainer() {
+    return BottomDraggableContainer(
+      carouselSliderController: _carouselSliderController,
+      currentSlide: currentSlide,
+      onPageChanged: (index) => setState(() => currentSlide = index)
     );
   }
 }

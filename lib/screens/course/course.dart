@@ -42,50 +42,9 @@ class _CourseScreenState extends State<CourseScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 26),
                 child: Column(
                   children: [
-                    Row(
-                      children: [
-                        Text(
-                          '나의 강좌',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700,
-                            color: Color.fromARGB(255, 30, 30, 30)
-                          ),
-                        ),
-                        const SizedBox(width: 4),
-                        SvgPicture.asset('lib/assets/svgs/course/book.svg')
-                      ],
-                    ),
+                    _buildHeader(),
                     const SizedBox(height: 18),
-                    BlocBuilder<CourseListBloc, CourseListState>(
-                      builder: (context, state) {
-                        if (state.status == CourseListStatus.loading) {
-                          return const Loader(height: 500);
-                        } else if (state.status == CourseListStatus.loaded) {
-                          final courses = state.courseList?.courses;
-                          if (courses == null) {
-                            return const SizedBox(height: 500, child: Center(child: Text('등록된 강좌가 없어요', style: TextStyle(fontSize: 15))));
-                          }
-                          
-                          return Column(
-                            children: [
-                              ...courses.map((course) {
-                                return CourseContainer(
-                                  professorName: course.professor,
-                                  courseName: course.name,
-                                  lectureRoom: course.lectureRoom,
-                                  deadline: course.deadline,
-                                  onTap: () => Navigator.push(context, CourseMainScreen.route(course: course)),
-                                );
-                              }),
-                              const SizedBox(height: 16)
-                            ]
-                          );
-                        } else {
-                          return SizedBox(height: 500, child: Center(child: Text(state.errorMessage!, style: TextStyle(fontSize: 15))));
-                        }
-                      }
-                    )
+                    _buildContent()
                   ]
                 )
               )
@@ -93,6 +52,59 @@ class _CourseScreenState extends State<CourseScreen> {
           )
         )
       )
+    );
+  }
+
+  Widget _buildHeader() {
+    return Row(
+      children: [
+        Text(
+          '나의 강좌',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+            color: Color.fromARGB(255, 30, 30, 30)
+          ),
+        ),
+        const SizedBox(width: 4),
+        SvgPicture.asset('lib/assets/svgs/course/book.svg')
+      ],
+    );
+  }
+
+  Widget _buildContent() {
+    return BlocBuilder<CourseListBloc, CourseListState>(
+      builder: (context, state) {
+        if (state.status == CourseListStatus.loading) {
+          return const Loader(height: 500);
+        } else if (state.status == CourseListStatus.loaded) {
+          return _buildLoadedContent(state);
+        } else {
+          return SizedBox(height: 500, child: Center(child: Text(state.errorMessage!, style: TextStyle(fontSize: 15))));
+        }
+      }
+    );
+  }
+  
+  Widget _buildLoadedContent(CourseListState state) {
+    final courseList = state.courseList?.courses;
+    if (courseList == null) {
+      return const SizedBox(height: 500, child: Center(child: Text('등록된 강좌가 없어요', style: TextStyle(fontSize: 15))));
+    }
+    
+    return Column(
+      children: [
+        ...courseList.map((course) {
+          return CourseContainer(
+            professorName: course.professor,
+            courseName: course.name,
+            lectureRoom: course.lectureRoom,
+            deadline: course.deadline,
+            onTap: () => Navigator.push(context, CourseMainScreen.route(course: course))
+          );
+        }),
+        const SizedBox(height: 16)
+      ]
     );
   }
 }

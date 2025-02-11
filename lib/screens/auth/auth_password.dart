@@ -83,6 +83,75 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        appBar: _buildAppBar(),
+        body: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24),
+            child: _buildContent()
+          )
+        )
+      )
+    );
+  }
+
+  PreferredSizeWidget _buildAppBar() {
+    return AppBar(
+      automaticallyImplyLeading: false,
+      backgroundColor: Colors.white,
+      centerTitle: true,
+      title: const Text(
+        '시작하기',
+        style: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.w500
+        ),
+      )
+    );
+  }
+
+  Widget _buildContent() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const SizedBox(height: 54),
+            _buildTitle(),
+            const SizedBox(height: 30),
+            _buildPasswordField()
+          ]
+        ),
+        _buildButtonSection(context)
+      ]
+    );
+  }
+
+  Widget _buildTitle() {
+    return Text.rich(
+      TextSpan(
+        style: const TextStyle(
+          fontSize: 15,
+          color: Colors.black
+        ),
+        children: [
+          TextSpan(
+            text: '비밀번호를 ',
+            style: TextStyle(fontWeight: FontWeight.w700)
+          ),
+          TextSpan(
+            text: '입력해 주세요',
+            style: TextStyle(fontWeight: FontWeight.w400)
+          )
+        ]
+      )
+    );
+  }
+
+  Widget _buildPasswordField() {
     final OutlineInputBorder textFieldBorder = OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
       borderSide: const BorderSide(
@@ -91,121 +160,78 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
       )
     );
 
-    return PopScope(
-      canPop: false,
-      child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: Colors.white,
-          centerTitle: true,
-          title: const Text(
-            '시작하기',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w500
-            ),
-          )
+    return TextFormField(
+      autofocus: true,
+      obscureText: true,
+      controller: _textEditingController,
+      decoration: InputDecoration(
+        hintText: '비밀번호',
+        hintStyle: const TextStyle(
+          color: Color.fromARGB(255, 186, 186, 186),
+          fontSize: 16,
+          fontWeight: FontWeight.w400
         ),
-        body: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 54),
-                    Text.rich(
-                      TextSpan(
-                        style: const TextStyle(
-                          fontSize: 15,
-                          color: Colors.black
-                        ),
-                        children: [
-                          TextSpan(
-                            text: '비밀번호를 ',
-                            style: TextStyle(fontWeight: FontWeight.w700)
-                          ),
-                          TextSpan(
-                            text: '입력해 주세요',
-                            style: TextStyle(fontWeight: FontWeight.w400)
-                          )
-                        ]
-                      )
-                    ),
-                    const SizedBox(height: 30),
-                    TextFormField(
-                      autofocus: true,
-                      obscureText: true,
-                      controller: _textEditingController,
-                      decoration: InputDecoration(
-                        hintText: '비밀번호',
-                        hintStyle: const TextStyle(
-                          color: Color.fromARGB(255, 186, 186, 186),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400
-                        ),
-                        filled: true,
-                        fillColor: const Color.fromARGB(255, 251, 251, 251),
-                        border: textFieldBorder,
-                        enabledBorder: textFieldBorder,
-                        focusedBorder: textFieldBorder
-                      )
-                    )
-                  ]
-                ),
-                Column(
-                  children: [
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        minimumSize: WidgetStateProperty.all(Size(double.infinity, 56)),
-                        backgroundColor: WidgetStateProperty.resolveWith((Set<WidgetState> states) {
-                            if (states.contains(WidgetState.disabled)) {
-                              return const Color.fromARGB(255, 199, 199, 199);
-                            }
-                            return const Color.fromARGB(255, 0, 102, 255);
-                          }
-                        ),
-                        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          )
-                        ),
-                      ),
-                      onPressed: _isButtonEnabled ? () {
-                        context.read<SignInBloc>().add(InputPassword(password: _textEditingController.text));
-                        _showTermsModal();
-                      } : null,
-                      child: const Text(
-                        '다음',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white
-                        )
-                      )
-                    ),
-                    const SizedBox(height: 5),
-                    TextButton(
-                      style: ButtonStyle(
-                        minimumSize: WidgetStateProperty.all(Size(double.infinity, 56))
-                      ),
-                      onPressed: () => Navigator.pop(context),
-                      child: const Text(
-                        '이전',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                          color: Color.fromARGB(255, 80, 80, 80)
-                        )
-                      )
-                    )
-                  ]
-                )
-              ]
-            )
-          )
+        filled: true,
+        fillColor: const Color.fromARGB(255, 251, 251, 251),
+        border: textFieldBorder,
+        enabledBorder: textFieldBorder,
+        focusedBorder: textFieldBorder
+      )
+    );
+  }
+
+  Widget _buildButtonSection(BuildContext context) {
+    return Column(
+      children: [
+        _buildNextButton(context),
+        const SizedBox(height: 5),
+        _buildPreviousButton(context)
+      ]
+    );
+  }
+
+  Widget _buildNextButton(BuildContext context) {
+    return ElevatedButton(
+      style: ButtonStyle(
+        minimumSize: WidgetStateProperty.all(Size(double.infinity, 56)),
+        backgroundColor: WidgetStateProperty.resolveWith((Set<WidgetState> states) {
+            if (states.contains(WidgetState.disabled)) {
+              return const Color.fromARGB(255, 199, 199, 199);
+            }
+            return const Color.fromARGB(255, 0, 102, 255);
+          }
+        ),
+        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
+        ),
+      ),
+      onPressed: _isButtonEnabled ? () {
+        context.read<SignInBloc>().add(InputPassword(password: _textEditingController.text));
+        _showTermsModal();
+      } : null,
+      child: const Text(
+        '다음',
+        style: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w700,
+          color: Colors.white
+        )
+      )
+    );
+  }
+
+  Widget _buildPreviousButton(BuildContext context) {
+    return TextButton(
+      style: ButtonStyle(
+        minimumSize: WidgetStateProperty.all(Size(double.infinity, 56))
+      ),
+      onPressed: () => Navigator.pop(context),
+      child: const Text(
+        '이전',
+        style: TextStyle(
+          fontSize: 15,
+          fontWeight: FontWeight.w500,
+          color: Color.fromARGB(255, 80, 80, 80)
         )
       )
     );

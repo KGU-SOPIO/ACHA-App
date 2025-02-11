@@ -46,47 +46,63 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 245, 246, 248),
       body: SafeArea(
-        child: NestedScrollView(
-          headerSliverBuilder: (context, innerBoxIsScrolled) {
-            return [
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
-                  child: AchaAppbar()
-                )
-              ),
-              SliverToBoxAdapter(child: NotificationTabbar(tabController: _tabController))
-            ];
-          },
-          body: BlocBuilder<ActivityBloc, ActivityState>(
-            builder: (context, state) {
-              if (state.status == ActivityStatus.loading) {
-                return Loader(height: MediaQuery.of(context).size.height);
-              } else if (state.status == ActivityStatus.loaded) {
-                final WeekActivities? activities = state.weekActivities;
-                
-                return TabBarView(
-                  controller: _tabController,
-                  children: [
-                    _buildActivityListView(activities?.getLectureAndAssignmentActivities(group: true)),
-                    _buildActivityListView(activities?.getLectureActivities(group: true)),
-                    _buildActivityListView(activities?.getAssignmentActivities(group: true))
-                  ]
-                );
-              } else {
-                return TabBarView(
-                  controller: _tabController,
-                  children: [
-                    const Center(child: Text('활동을 불러오지 못했어요', style: TextStyle(fontSize: 15))),
-                    const Center(child: Text('활동을 불러오지 못했어요', style: TextStyle(fontSize: 15))),
-                    const Center(child: Text('활동을 불러오지 못했어요', style: TextStyle(fontSize: 15)))
-                  ]
-                );
-              }
-            }
-          )
-        )
+        child: _buildContent()
       )
+    );
+  }
+
+  Widget _buildContent() {
+    return NestedScrollView(
+      headerSliverBuilder: (context, innerBoxIsScrolled) {
+        return [
+          SliverToBoxAdapter(child: _buildAppBar()),
+          SliverToBoxAdapter(child: NotificationTabbar(tabController: _tabController))
+        ];
+      },
+      body: BlocBuilder<ActivityBloc, ActivityState>(
+        builder: (context, state) {
+          if (state.status == ActivityStatus.loading) {
+            return _buildLoadingContent();
+          } else if (state.status == ActivityStatus.loaded) {
+            return _buildLoadedContent(state.weekActivities);
+          } else {
+            return _buildErrorContent();
+          }
+        }
+      )
+    );
+  }
+
+  Widget _buildAppBar() {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 20),
+      child: const AchaAppbar()
+    );
+  }
+
+  Widget _buildLoadingContent() {
+    return Loader(height: MediaQuery.of(context).size.height);
+  }
+
+  Widget _buildLoadedContent(WeekActivities? activities) {
+    return TabBarView(
+      controller: _tabController,
+      children: [
+        _buildActivityListView(activities?.getLectureAndAssignmentActivities(group: true)),
+        _buildActivityListView(activities?.getLectureActivities(group: true)),
+        _buildActivityListView(activities?.getAssignmentActivities(group: true))
+      ]
+    );
+  }
+
+  Widget _buildErrorContent() {
+    return TabBarView(
+      controller: _tabController,
+      children: [
+        const Center(child: Text('활동을 불러오지 못했어요', style: TextStyle(fontSize: 15))),
+        const Center(child: Text('활동을 불러오지 못했어요', style: TextStyle(fontSize: 15))),
+        const Center(child: Text('활동을 불러오지 못했어요', style: TextStyle(fontSize: 15)))
+      ]
     );
   }
 
@@ -108,7 +124,7 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               DDayContainer(deadline: date),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               ...activities.map(
                 (activity) => ActivityContainer(
                   title: activity.name,

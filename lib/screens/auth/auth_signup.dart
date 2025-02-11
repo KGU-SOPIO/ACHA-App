@@ -39,18 +39,18 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
       children: [
         Text.rich(
           TextSpan(
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16,
               color: Color.fromARGB(255, 30, 30, 30)
             ),
             children: [
               TextSpan(
                 text: '사용 약관에 동의',
-                style: TextStyle(fontWeight: FontWeight.w700)
+                style: const TextStyle(fontWeight: FontWeight.w700)
               ),
               TextSpan(
                 text: '하고\n회원가입을 진행합니다',
-                style: TextStyle(fontWeight: FontWeight.w500, height: 1.7)
+                style: const TextStyle(fontWeight: FontWeight.w500, height: 1.7)
               )
             ]
           )
@@ -64,116 +64,6 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
     onAgree: () => Navigator.push(context, AuthProcessScreen.route(context))
   ).show(context);
 
-  @override
-  Widget build(BuildContext context) {
-    return PopScope(
-      canPop: false,
-      child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: Colors.white,
-          centerTitle: true,
-          title: const Text(
-            '시작하기',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w500
-            )
-          )
-        ),
-        body: BlocBuilder<SignInBloc, SignInState>(
-          builder: (context, state) {
-            return SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      children: [
-                        const SizedBox(height: 24),
-                        SizedBox(
-                          width: double.infinity,
-                          child: Text.rich(
-                            TextSpan(
-                              style: TextStyle(
-                                fontSize: 15,
-                                color: Color.fromARGB(255, 60, 60, 60)
-                              ),
-                              children: [
-                                TextSpan(
-                                  text: '정보가 맞는지 ',
-                                  style: TextStyle(fontWeight: FontWeight.w700)
-                                ),
-                                TextSpan(
-                                  text: '확인해 주세요',
-                                  style: TextStyle(fontWeight: FontWeight.w400)
-                                )
-                              ]
-                            )
-                          )
-                        ),
-                        const SizedBox(height: 30),
-                        TextContainer(title: '이름', value: state.user!.name),
-                        const SizedBox(height: 24),
-                        TextContainer(title: '대학', value: state.user!.college),
-                        const SizedBox(height: 24),
-                        if (state.user!.department != null)
-                          TextContainer(title: '학부', value: state.user!.department!),
-                        const SizedBox(height: 24),
-                        if (state.user!.major != null)
-                          TextContainer(title: '전공', value: state.user!.major!),
-                      ]
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        TextButton(
-                          style: TextButton.styleFrom(
-                            tapTargetSize: MaterialTapTargetSize.shrinkWrap
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              SvgPicture.asset('lib/assets/svgs/auth/question.svg'),
-                              SizedBox(width: 5),
-                              Text(
-                                '정보가 다른가요?',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  color: Color.fromARGB(255, 131, 131, 131)
-                                )
-                              )
-                            ]
-                          ),
-                          onPressed: () => _openManualUrl()
-                        ),
-                        const SizedBox(height: 20),
-                        ContainerButton(
-                          height: 56,
-                          onPressed: () => _showTermsModal(),
-                          backgroundColor: const Color.fromARGB(255, 0, 102, 255),
-                          text: '다음',
-                          textStyle: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white
-                          )
-                        ),
-                        const SizedBox(height: 20)
-                      ]
-                    )
-                  ]
-                )
-              )
-            );
-          }
-        )
-      )
-    );
-  }
-
   Future<void> _openManualUrl() async {
     Uri url = Uri.parse(ManualUrl.myInformationIsDifferent);
     try {
@@ -183,5 +73,137 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
     } catch (e) {
       return;
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        appBar: _buildAppBar(),
+        body: BlocBuilder<SignInBloc, SignInState>(builder: _buildBody)
+      )
+    );
+  }
+
+  PreferredSizeWidget _buildAppBar() {
+    return AppBar(
+      automaticallyImplyLeading: false,
+      backgroundColor: Colors.white,
+      centerTitle: true,
+      title: const Text(
+        '시작하기',
+        style: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.w500
+        )
+      )
+    );
+  }
+
+  Widget _buildBody(BuildContext context, SignInState state) {
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            _buildUserInformationSection(state),
+            _buildButtonSection()
+          ]
+        )
+      )
+    );
+  }
+
+  Widget _buildUserInformationSection(SignInState state) {
+    return Column(
+      children: [
+        const SizedBox(height: 24),
+        _buildTitle(),
+        const SizedBox(height: 30),
+        TextContainer(title: '이름', value: state.user!.name),
+        const SizedBox(height: 24),
+        TextContainer(title: '대학', value: state.user!.college),
+        const SizedBox(height: 24),
+        if (state.user!.department != null)
+          TextContainer(title: '학부', value: state.user!.department!),
+        const SizedBox(height: 24),
+        if (state.user!.major != null)
+          TextContainer(title: '전공', value: state.user!.major!),
+      ]
+    );
+  }
+
+  Widget _buildTitle() {
+    return const SizedBox(
+      width: double.infinity,
+      child: Text.rich(
+        TextSpan(
+          style: TextStyle(
+            fontSize: 15,
+            color: Color.fromARGB(255, 60, 60, 60)
+          ),
+          children: [
+            TextSpan(
+              text: '정보가 맞는지 ',
+              style: TextStyle(fontWeight: FontWeight.w700)
+            ),
+            TextSpan(
+              text: '확인해 주세요',
+              style: TextStyle(fontWeight: FontWeight.w400)
+            )
+          ]
+        )
+      )
+    );
+  }
+
+  Widget _buildButtonSection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        _buildManualButton(),
+        const SizedBox(height: 20),
+        _buildNextButton(),
+        const SizedBox(height: 20)
+      ]
+    );
+  }
+
+  Widget _buildManualButton() {
+    return TextButton(
+      style: TextButton.styleFrom(tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+      onPressed: () => _openManualUrl(),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SvgPicture.asset('lib/assets/svgs/auth/question.svg'),
+          const SizedBox(width: 5),
+          const Text(
+            '정보가 다른가요?',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+              color: Color.fromARGB(255, 131, 131, 131)
+            )
+          )
+        ]
+      )
+    );
+  }
+
+  Widget _buildNextButton() {
+    return ContainerButton(
+      height: 56,
+      onPressed: () => _showTermsModal(),
+      backgroundColor: const Color.fromARGB(255, 0, 102, 255),
+      text: '다음',
+      textStyle: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w700,
+        color: Colors.white
+      )
+    );
   }
 }
