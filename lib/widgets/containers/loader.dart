@@ -11,7 +11,7 @@ class Loader extends StatelessWidget {
     return SizedBox(
       width: width,
       height: height,
-      child: Center(child: CupertinoActivityIndicator())
+      child: const Center(child: CupertinoActivityIndicator())
     );
   }
 }

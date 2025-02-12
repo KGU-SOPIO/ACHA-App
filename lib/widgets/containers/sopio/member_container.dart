@@ -16,7 +16,7 @@ class MemberContainer extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: Color.fromARGB(255, 228, 232, 241)
+          color: const Color.fromARGB(255, 228, 232, 241)
         )
       ),
       child: Column(
@@ -36,7 +36,7 @@ class MemberContainer extends StatelessWidget {
       children: [
         Text(
           name,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w500,
             color: Color.fromARGB(255, 60, 60, 60)
@@ -45,12 +45,12 @@ class MemberContainer extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           decoration: BoxDecoration(
-            color: Color.fromARGB(255, 223, 236, 255),
+            color: const Color.fromARGB(255, 223, 236, 255),
             borderRadius: BorderRadius.circular(20)
           ),
           child: Text(
             part,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w500,
               color: Color.fromARGB(255, 0, 102, 255)
@@ -67,7 +67,7 @@ class MemberContainer extends StatelessWidget {
       children: [
         Text(
           department,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w400,
             color: Color.fromARGB(255, 109, 109, 109)
@@ -75,7 +75,7 @@ class MemberContainer extends StatelessWidget {
         ),
         Text(
           github,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w400,
             color: Color.fromARGB(255, 109, 109, 109)

@@ -49,7 +49,7 @@ class LogoutModal {
         height: 6,
         width: 79,
         decoration: BoxDecoration(
-          color: Color.fromARGB(255, 228, 232, 241),
+          color: const Color.fromARGB(255, 228, 232, 241),
           borderRadius: BorderRadius.circular(7)
         )
       )
@@ -63,7 +63,7 @@ class LogoutModal {
         const SizedBox(height: 20),
         SvgPicture.asset('lib/assets/svgs/modal/auth/logout.svg'),
         const SizedBox(height: 20),
-        Text(
+        const Text(
           '로그아웃 할까요?',
           style: TextStyle(
             fontSize: 20,
@@ -75,7 +75,7 @@ class LogoutModal {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               '기기의 정보들은 안전하게 삭제돼요',
               style: TextStyle(
                 fontSize: 16,
@@ -97,16 +97,16 @@ class LogoutModal {
         Expanded(
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-              minimumSize: Size(0, 56),
+              minimumSize: const Size(0, 56),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12)
               ),
               backgroundColor: const Color.fromARGB(255, 237, 239, 242),
             ),
             onPressed: () => Navigator.pop(context),
-            child: Text(
+            child: const Text(
               '취소',
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 color: Color.fromARGB(255, 109, 109, 109)
@@ -118,19 +118,19 @@ class LogoutModal {
         Expanded(
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-              minimumSize: Size(0, 56),
+              minimumSize: const Size(0, 56),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12)
               ),
               backgroundColor: const Color.fromARGB(255, 0, 102, 255),
             ),
             onPressed: () {
-              context.read<AuthenticationBloc>().add(AuthenticationEvent.logout());
+              context.read<AuthenticationBloc>().add(const AuthenticationEvent.logout());
               GetIt.I<ToastManager>().show(message: '정상적으로 로그아웃했어요', svgPath: 'lib/assets/svgs/toast/logout.svg');
             },
-            child: Text(
+            child: const Text(
               '로그아웃',
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w700,
                 color: Colors.white

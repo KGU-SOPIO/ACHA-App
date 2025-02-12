@@ -36,7 +36,7 @@ class TermsBottomModalSheet {
         width: 79,
         margin: const EdgeInsets.only(bottom: 24),
         decoration: BoxDecoration(
-          color: Color.fromARGB(255, 228, 232, 241),
+          color: const Color.fromARGB(255, 228, 232, 241),
           borderRadius: BorderRadius.circular(7)
         )
       )
@@ -73,7 +73,7 @@ class TermsBottomModalSheet {
   Widget _buildTermsButton() {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        minimumSize: Size(double.infinity, 56),
+        minimumSize: const Size(double.infinity, 56),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12)
         ),
@@ -103,7 +103,7 @@ class TermsBottomModalSheet {
   Widget _buildAgreeButton() {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        minimumSize: Size(double.infinity, 56),
+        minimumSize: const Size(double.infinity, 56),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12)
         ),
@@ -115,7 +115,7 @@ class TermsBottomModalSheet {
         children: [
           SvgPicture.asset('lib/assets/svgs/modal/terms/check.svg'),
           Padding(
-            padding: EdgeInsets.only(left: 10),
+            padding: const EdgeInsets.only(left: 10),
             child: Text(
               agreeButtonText,
               style: const TextStyle(

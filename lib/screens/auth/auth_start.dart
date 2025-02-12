@@ -79,9 +79,9 @@ class _AuthStartScreenState extends State<AuthStartScreen> {
           child: Image.asset('lib/assets/images/auth/surprised.png', height: 180)
         ),
         const SizedBox(height: 35),
-        Text.rich(
+        const Text.rich(
           TextSpan(
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w700,
               color: Color.fromARGB(255, 0, 102, 255)
@@ -111,10 +111,10 @@ class _AuthStartScreenState extends State<AuthStartScreen> {
           child: Image.asset('lib/assets/images/auth/calendar.png', height: 180)
         ),
         const SizedBox(height: 35),
-        Text.rich(
+        const Text.rich(
           textAlign: TextAlign.center,
           TextSpan(
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w700,
             ),
@@ -149,10 +149,10 @@ class _AuthStartScreenState extends State<AuthStartScreen> {
           child: SvgPicture.asset('lib/assets/svgs/acha_medium.svg')
         ),
         const SizedBox(height: 35),
-        Text.rich(
+        const Text.rich(
           textAlign: TextAlign.center,
           TextSpan(
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w700,
             ),
@@ -184,7 +184,7 @@ class _AuthStartScreenState extends State<AuthStartScreen> {
         child: ContainerButton(
         height: 56,
         text: '지금 시작하기',
-        textStyle: TextStyle(
+        textStyle: const TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w700,
           color: Colors.white

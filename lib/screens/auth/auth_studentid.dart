@@ -97,9 +97,9 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
   }
 
   Widget _buildTitle() {
-    return Text.rich(
+    return const Text.rich(
       TextSpan(
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 15,
           color: Color.fromARGB(255, 60, 60, 60)
         ),
@@ -118,7 +118,7 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
   }
 
   Widget _buildStudentIdField(BuildContext context) {
-    final OutlineInputBorder textFieldBorder = OutlineInputBorder(
+    final textFieldBorder = OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
       borderSide: const BorderSide(
         width: 1.5,

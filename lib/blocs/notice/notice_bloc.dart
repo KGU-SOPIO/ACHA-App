@@ -17,7 +17,7 @@ class NoticeBloc extends Bloc<NoticeEvent, NoticeState> {
   /// 공지사항 데이터를 요청합니다.
   Future<void> _onFetchNotice(FetchNotice event, Emitter<NoticeState> emit) async {
     try {
-      final Notice? notice = await courseRepository.fetchNotice(course.code, noticeId);
+      final notice = await courseRepository.fetchNotice(course.code, noticeId);
       emit(state.copyWith(status: NoticeStatus.loaded, notice: notice));
     } on DioException catch (e) {
       emit(state.copyWith(status: NoticeStatus.error, errorMessage: e.error as String));

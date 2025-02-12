@@ -26,16 +26,14 @@ late final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 bool isFlutterLocalNotificationsInitialized = false;
 
 Future<void>setupFlutterNotifications() async {
-  if (isFlutterLocalNotificationsInitialized) {
-    return;
-  }
+  if (isFlutterLocalNotificationsInitialized) return;
 
   flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
   /// Flutter Local Notification 설정
-  const AndroidInitializationSettings initializationSettingsAndroid = AndroidInitializationSettings('@mipmap/launcher_icon');
-  const DarwinInitializationSettings initializationSettingsIOS = DarwinInitializationSettings(requestSoundPermission: false, requestBadgePermission: false, requestAlertPermission: false);
-  await flutterLocalNotificationsPlugin.initialize(InitializationSettings(android: initializationSettingsAndroid, iOS: initializationSettingsIOS));
+  const initializationSettingsAndroid = AndroidInitializationSettings('@mipmap/launcher_icon');
+  const initializationSettingsIOS = DarwinInitializationSettings(requestSoundPermission: false, requestBadgePermission: false, requestAlertPermission: false);
+  await flutterLocalNotificationsPlugin.initialize(const InitializationSettings(android: initializationSettingsAndroid, iOS: initializationSettingsIOS));
 
   /// Android Foregroud 알림 수신을 위해 알림 채널을 설정합니다.
   channel = const AndroidNotificationChannel(
@@ -66,8 +64,8 @@ Future<void> _handleBackgroundMessage(RemoteMessage message) async {
 void _handleForegroundMessage(RemoteMessage message) => showNotification(message);
 
 void showNotification(RemoteMessage message) {
-  RemoteNotification? notification = message.notification;
-  AndroidNotification? android = message.notification?.android;
+  var notification = message.notification;
+  var android = message.notification?.android;
   if (notification != null && android != null) {
     flutterLocalNotificationsPlugin.show(
     notification.hashCode,
@@ -85,44 +83,52 @@ void showNotification(RemoteMessage message) {
   }
 }
 
-void _checkReinstall() async {
-  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  final isFirstRun = sharedPreferences.getBool("isFirstRun") ?? true;
+Future<void> _checkReinstall() async {
+  var sharedPreferences = await SharedPreferences.getInstance();
+  final isFirstRun = sharedPreferences.getBool('isFirstRun') ?? true;
   if (isFirstRun) {
     const storage = FlutterSecureStorage();
     await storage.deleteAll();
-    sharedPreferences.setBool("isFirstRun", false);
+    await sharedPreferences.setBool('isFirstRun', false);
   }
 }
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  
-  // 메세지 수신
-  FirebaseMessaging.onMessage.listen(_handleForegroundMessage);
-  FirebaseMessaging.onBackgroundMessage(_handleBackgroundMessage);
+  await initializeDateFormatting('ko_KR', null);
 
-  await setupFlutterNotifications();
+  /// Firebase 서비스를 초기화합니다.
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   /// 재설치 시 기존 데이터를 삭제합니다.
-  _checkReinstall();
+  await _checkReinstall();
 
   /// GetIt 설정
-  final GetIt getIt = GetIt.I;
-  getIt.registerSingleton<SecureStorage>(SecureStorage(FlutterSecureStorage()));
+  final getIt = GetIt.I;
+  final baseOptions = BaseOptions(
+    connectTimeout: const Duration(seconds: 3),
+    receiveTimeout: const Duration(seconds: 15),
+    sendTimeout: const Duration(seconds: 5),
+    validateStatus: (status) => status != null && status < 500
+  );
+  final interceptorDio = Dio(baseOptions);
+  
+  getIt.registerSingleton<SecureStorage>(SecureStorage(const FlutterSecureStorage()));
   getIt.registerSingleton<ConnectivityChecker>(ConnectivityChecker());
-  getIt.registerSingleton(
+  getIt.registerSingleton<Dio>(
     () {
-      final Dio dio = Dio(BaseOptions(
-        connectTimeout: const Duration(seconds: 3),
-        receiveTimeout: const Duration(seconds: 15),
-        sendTimeout: const Duration(seconds: 5),
-        validateStatus: (status) => status != null && status < 500
-      ));
-      dio.interceptors.add(TokenInterceptor());
-      dio.interceptors.add(ErrorInterceptor(GetIt.I<ConnectivityChecker>()));
+      final dio = Dio(baseOptions)
+      ..interceptors.add(
+        TokenInterceptor(
+          dio: interceptorDio,
+          secureStorage: GetIt.I<SecureStorage>()
+        )
+      )
+      ..interceptors.add(
+        ErrorInterceptor(
+          connectivityChecker: GetIt.I<ConnectivityChecker>()
+          )
+        );
       return dio;
     }()
   );
@@ -132,11 +138,14 @@ void main() async {
   getIt.registerLazySingleton<AlertRepository>(() => AlertRepository());
   getIt.registerLazySingleton<ToastManager>(() => ToastManager());
 
-  /// FCM 토큰 변경 시 재설정
+  // Firebase Cloud Messaging를 설정합니다.
+  FirebaseMessaging.onMessage.listen(_handleForegroundMessage);
+  FirebaseMessaging.onBackgroundMessage(_handleBackgroundMessage);
+  await setupFlutterNotifications();
+
+  /// FCM 토큰 리스너를 등록합니다.
   _fcmTokenRepository = FCMTokenRepository();
   FirebaseMessaging.instance.onTokenRefresh.listen(_fcmTokenRepository.updateToken);
-
-  await initializeDateFormatting('ko_KR', null);
 
   runApp(const App());
 }

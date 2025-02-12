@@ -31,7 +31,7 @@ class CourseMainScreen extends StatefulWidget {
         create: (context) => CourseBloc(
           courseRepository: GetIt.I<CourseRepository>(),
           course: course
-        )..add(CourseEvent.fetchActivities()),
+        )..add(const CourseEvent.fetchActivities()),
         child: const CourseMainScreen()
       )
     );
@@ -45,7 +45,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
       body: SafeArea(
         bottom: false,
         child: DecoratedBox(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Color.fromARGB(255, 245, 246, 248)
           ),
           child: BlocBuilder<CourseBloc, CourseState>(
@@ -66,7 +66,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
 
   Widget _buildCourseSection(BuildContext context, CourseState state) {
     return DecoratedBox(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.vertical(bottom: Radius.circular(30))
       ),
@@ -99,7 +99,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
       children: [
         Text(
           '${state.course.professor} 교수',
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w400,
             color: Color.fromARGB(255, 30, 30, 30)
@@ -108,7 +108,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
         const SizedBox(height: 5),
         Text(
           state.course.name,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.w700,
             color: Color.fromARGB(255, 30, 30, 30)
@@ -120,16 +120,16 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
 
   Widget _buildNoticeButton(BuildContext context, CourseState state) {
     return RowContainerButton(
-      padding: EdgeInsets.symmetric(vertical: 17),
+      padding: const EdgeInsets.symmetric(vertical: 17),
       onPressed: () => Navigator.push(context, NoticeScreen.route(course: state.course)),
       foregroundColor: Colors.white,
       backgroundColor: Colors.white,
-      border: BorderSide(
+      border: const BorderSide(
         color: Color.fromARGB(255, 0, 102, 255)
       ),
       borderRadius: 20,
       text: '공지사항',
-      textStyle: TextStyle(
+      textStyle: const TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w500,
         color: Color.fromARGB(255, 0, 102, 255)
@@ -144,7 +144,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
       children: [
         Row(
           children: [
-            Text.rich(
+            const Text.rich(
               TextSpan(
                 style: TextStyle(
                   fontSize: 14,
@@ -176,10 +176,10 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
     if (state.status == CourseStatus.loading) {
       return _buildCarouselSkeleton();
     } else if (state.status == CourseStatus.loaded) {
-      final CourseActivities? courseActivities = state.course.courseActivities;
-      final containers = (courseActivities?.weekActivities)?.expand((weekActivities) {
+      final courseActivities = state.course.courseActivities;
+      final containers = courseActivities?.weekActivities.expand((weekActivities) {
         final week = weekActivities.week;
-        return (weekActivities.activities).map(
+        return weekActivities.activities.map(
           (activity) => CarouselActivityContainer(week: week!, activity: activity)
         );
       }).toList();
@@ -187,7 +187,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
       if (containers != null) {
         return Container(
           height: 160,
-          margin: EdgeInsets.only(bottom: 5),
+          margin: const EdgeInsets.only(bottom: 5),
           child: StackedListCarousel(
             items: containers,
             behavior: CarouselBehavior.loop,
@@ -195,8 +195,8 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
             outermostCardHeightFactor: 0.9,
             itemGapHeightFactor: 0.03,
             cardAspectRatio: MediaQuery.of(context).size.width / 160,
-            outermostCardAnimationDuration: Duration(milliseconds: 200),
-            autoSlideDuration: Duration(seconds: 5),
+            outermostCardAnimationDuration: const Duration(milliseconds: 200),
+            autoSlideDuration: const Duration(seconds: 5),
           )
         );
       } else {
@@ -236,7 +236,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
           physics: const NeverScrollableScrollPhysics(),
           itemCount: state.course.courseActivities!.weekActivities.length,
           itemBuilder: (context, index) {
-            final WeekActivities weekActivities = state.course.courseActivities!.weekActivities[index];
+            final weekActivities = state.course.courseActivities!.weekActivities[index];
             return _buildExpansionPanel(weekActivities, index);
           }
         )
@@ -269,7 +269,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                       child: Icon(
                         Icons.circle,
                         size: 15,
-                        color: allCompleted ? Color.fromARGB(255, 0, 102, 255) : Color.fromARGB(255, 255, 78, 107)
+                        color: allCompleted ? const Color.fromARGB(255, 0, 102, 255) : const Color.fromARGB(255, 255, 78, 107)
                       )
                     ),
                     title: Text(
@@ -285,13 +285,13 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
               },
               body: Column(
                 children: [
-                  Divider(height: 1, color: Color.fromARGB(255, 245, 246, 248)),
+                  const Divider(height: 1, color: Color.fromARGB(255, 245, 246, 248)),
                   ...weekActivities.activities.map((activity) {
                     return ListTile(
                       leading: SvgPicture.asset(activity.type.svgPath),
                       title: Text(
                         activity.name,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
                           color: Color.fromARGB(255, 60, 60, 60)
@@ -320,7 +320,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
         outermostCardHeightFactor: 0.9,
         itemGapHeightFactor: 0.03,
         cardAspectRatio: MediaQuery.of(context).size.width / 160,
-        outermostCardAnimationDuration: Duration(milliseconds: 200)
+        outermostCardAnimationDuration: const Duration(milliseconds: 200)
       )
     );
   }
@@ -336,7 +336,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
             color: Colors.white,
             borderRadius: BorderRadius.circular(20)
           ),
-          child: Align(
+          child: const Align(
             alignment: Alignment.centerLeft,
             child: Text('Skeleton_Skeleton')
           )

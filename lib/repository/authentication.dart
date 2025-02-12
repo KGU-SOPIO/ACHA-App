@@ -28,7 +28,7 @@ class AuthenticationRepository {
   final StreamController<AuthenticationStatus> _authStreamController = StreamController<AuthenticationStatus>();
 
   AuthenticationRepository() {
-    _dio.interceptors.add(ErrorInterceptor(GetIt.I<ConnectivityChecker>()));
+    _dio.interceptors.add(ErrorInterceptor(connectivityChecker: GetIt.I<ConnectivityChecker>()));
     _initAuthentication();
   }
 
@@ -162,11 +162,4 @@ class AuthenticationRepository {
       throw Exception('서비스 이용을 위한 인증에 실패했어요');
     }
   }
-
-  /// FCM 토큰을 가져옵니다.
-  // Future<String?> _getDeviceToken() async {
-  //   return Platform.isIOS
-  //     ? FirebaseMessaging.instance.getAPNSToken()
-  //     : FirebaseMessaging.instance.getToken();
-  // }
 }

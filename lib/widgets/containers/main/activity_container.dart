@@ -25,7 +25,7 @@ class ActivityContainer extends StatelessWidget {
       margin: margin,
       padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 16),
       decoration: BoxDecoration(
-        border: Border.all(color: Color.fromARGB(255, 228, 232, 241)),
+        border: Border.all(color: const Color.fromARGB(255, 228, 232, 241)),
         color: backgroundColor,
         borderRadius: BorderRadius.circular(20)
       ),
@@ -45,7 +45,7 @@ class ActivityContainer extends StatelessWidget {
     return AutoSizeText(
       title,
       maxLines: 1,
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w500,
         color: Color.fromARGB(255, 60, 60, 60)
@@ -56,7 +56,7 @@ class ActivityContainer extends StatelessWidget {
   Widget _buildCourse() {
     return Text(
       course,
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 13,
         fontWeight: FontWeight.w400,
         color: Color.fromARGB(255, 60, 60, 60)
@@ -67,18 +67,18 @@ class ActivityContainer extends StatelessWidget {
   Widget _buildDeadline() {
     return Text.rich(
       TextSpan(
-        style: TextStyle(
+        style: const TextStyle(
           color: Color.fromARGB(255, 151, 151, 151)
         ),
         children: [
           TextSpan(
             text: deadline,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w500
             )
           ),
-          TextSpan(
+          const TextSpan(
             text: '까지',
             style: TextStyle(
               fontSize: 12,

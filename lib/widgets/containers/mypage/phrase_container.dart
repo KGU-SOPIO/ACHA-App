@@ -12,10 +12,10 @@ class PhraseContainer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
       decoration: BoxDecoration(
         border: Border.all(
-          color: Color.fromARGB(255, 186, 186, 186),
+          color: const Color.fromARGB(255, 186, 186, 186),
         ),
         borderRadius: BorderRadius.circular(25),
-        color: Color.fromARGB(255, 237, 239, 242)
+        color: const Color.fromARGB(255, 237, 239, 242)
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,7 +29,7 @@ class PhraseContainer extends StatelessWidget {
   }
 
   Widget _buildTitle() {
-    return Text.rich(
+    return const Text.rich(
       TextSpan(
         style: TextStyle(
           fontSize: 16,
@@ -76,8 +76,8 @@ class PhraseContainer extends StatelessWidget {
 
   Widget _buildPhrase() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
-        child: Text(
+      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+        child: const Text(
         '평범하게 살고 싶지 않은데\n왜 평범하게 노력하는가?',
         style: TextStyle(
           fontSize: 16,

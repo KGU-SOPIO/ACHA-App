@@ -37,13 +37,13 @@ class _SliderWidgetState extends State<SliderWidget> {
   @override
   void initState() {
     super.initState();
-    context.read<ActivityBloc>().add(ActivityEvent.fetchActivities());
+    context.read<ActivityBloc>().add(const ActivityEvent.fetchActivities());
   }
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
+      builder: (context, constraints) {
         return SingleChildScrollView(
           controller: widget.scrollController,
           physics: const ClampingScrollPhysics(),
@@ -145,7 +145,7 @@ class _SliderWidgetState extends State<SliderWidget> {
           ]
         ),
         GestureDetector(
-          onTap: () => context.read<NavigationBloc>().add(ChangeTab(2)),
+          onTap: () => context.read<NavigationBloc>().add(const ChangeTab(2)),
           child: Row(
             children: [
               const Padding(
@@ -180,7 +180,7 @@ class _SliderWidgetState extends State<SliderWidget> {
         } else if (state.status == ActivityStatus.loaded) {
           return loadedBuilder(state);
         } else {
-          return Expanded(child: Center(child: Text(errorMessage, style: TextStyle(fontSize: 15))));
+          return Expanded(child: Center(child: Text(errorMessage, style: const TextStyle(fontSize: 15))));
         }
       }
     );

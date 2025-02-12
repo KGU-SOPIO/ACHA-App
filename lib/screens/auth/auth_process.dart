@@ -120,7 +120,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
                 onPressed: () => Navigator.pushAndRemoveUntil(context, AuthStudentIdScreen.route(), (route) => false),
                 backgroundColor: const Color.fromARGB(255, 0, 102, 255),
                 text: '돌아가기',
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                   color: Colors.white,
                   fontSize: 16,
                   fontWeight: FontWeight.w700
@@ -151,11 +151,11 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 5),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25),
-              color: Color.fromARGB(25, 0, 102, 255)
+              color: const Color.fromARGB(25, 0, 102, 255)
             ),
             child: Text(
               state.status.description,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
                 color: Color.fromARGB(255, 0, 102, 255)
@@ -169,7 +169,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
               margin: const EdgeInsets.symmetric(horizontal: 8),
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 245, 246, 248),
+                color: const Color.fromARGB(255, 245, 246, 248),
                 borderRadius: BorderRadius.circular(20)
               ),
               child: Row(

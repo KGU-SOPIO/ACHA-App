@@ -12,7 +12,7 @@ class NoticeSkeletonContainer extends StatelessWidget {
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.only(left: 10, top: 18, bottom: 15),
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           border: Border(
             bottom: BorderSide(
               color: Color.fromARGB(255, 228, 232, 241)
@@ -31,10 +31,10 @@ class NoticeSkeletonContainer extends StatelessWidget {
   }
 
   Widget _buildHeader() {
-    return Row(
+    return const Row(
       children: [
         Text('N', style: TextStyle(fontSize: 14)),
-        const SizedBox(width: 15),
+        SizedBox(width: 15),
         Text('Skeleton_Skeleton', style: TextStyle(fontSize: 14))
       ]
     );
@@ -46,11 +46,11 @@ class NoticeSkeletonContainer extends StatelessWidget {
       children: [
         SvgPicture.asset('lib/assets/svgs/notice/person.svg'),
         const SizedBox(width: 7),
-        Text('Skeleton', style: TextStyle(fontSize: 12)),
+        const Text('Skeleton', style: TextStyle(fontSize: 12)),
         const SizedBox(width: 20),
         SvgPicture.asset('lib/assets/svgs/notice/clock.svg'),
         const SizedBox(width: 7),
-        Text('Skeleton', style: TextStyle(fontSize: 12))
+        const Text('Skeleton', style: TextStyle(fontSize: 12))
       ]
     );
   }

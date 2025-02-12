@@ -9,8 +9,8 @@ class DDayContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isDDay = deadline.isDDay();
-    final Color primaryColor = const Color.fromARGB(255, 0, 102, 255);
+    final isDDay = deadline.isDDay();
+    final primaryColor = const Color.fromARGB(255, 0, 102, 255);
     
     return DecoratedBox(
       decoration: BoxDecoration(

@@ -44,7 +44,7 @@ class ConnectErrorScreen extends StatelessWidget {
           children: [
             SvgPicture.asset('lib/assets/svgs/auth/error.svg'),
             const SizedBox(height: 30),
-            Text(
+            const Text(
               '인터넷 연결 문제',
               style: TextStyle(
                 fontSize: 20,
@@ -52,7 +52,7 @@ class ConnectErrorScreen extends StatelessWidget {
               )
             ),
             const SizedBox(height: 20),
-            Text(
+            const Text(
               '인터넷 연결 확인 후 앱을 재실행해 주세요',
               style: TextStyle(
                 fontSize: 14,
@@ -70,7 +70,7 @@ class ConnectErrorScreen extends StatelessWidget {
     return ContainerButton(
       height: 56,
       text: '확인',
-      textStyle: TextStyle(
+      textStyle: const TextStyle(
         color: Colors.white,
         fontSize: 16,
         fontWeight: FontWeight.w700

@@ -41,8 +41,8 @@ class _HomeScreenState extends State<HomeScreen> {
   /// 기기 알림 권한을 확인하고 요청합니다.
   Future<void> _checkPermission() async {
     if (widget.requestPermission) {
-      FirebaseMessaging messaging = FirebaseMessaging.instance;
-      NotificationSettings settings = await messaging.requestPermission(announcement: true);
+      final messaging = FirebaseMessaging.instance;
+      final settings = await messaging.requestPermission(announcement: true);
       if (settings.authorizationStatus == AuthorizationStatus.denied) {
         if (!mounted) return;
         context.read<AlertBloc>().add(const AlertEvent.denyAlert());
@@ -66,10 +66,10 @@ class _HomeScreenState extends State<HomeScreen> {
     return IndexedStack(
       index: state.selectedIndex,
       children: [
-        MainScreen(),
-        CourseScreen(),
-        NotificationScreen(),
-        MyPageScreen()
+        const MainScreen(),
+        const CourseScreen(),
+        const NotificationScreen(),
+        const MyPageScreen()
       ]
     );
   }
@@ -81,15 +81,15 @@ class _HomeScreenState extends State<HomeScreen> {
         data: NavigationBarThemeData(
           backgroundColor: Colors.white,
           indicatorColor: Colors.transparent,
-          labelTextStyle: WidgetStateProperty.resolveWith((Set states) {
+          labelTextStyle: WidgetStateProperty.resolveWith((states) {
             if (states.contains(WidgetState.selected)) {
-              return TextStyle(
+              return const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w500,
                 color: Color.fromARGB(255, 0, 102, 255)
               );
             } else {
-              return TextStyle(
+              return const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w500,
                 color: Color.fromARGB(255, 181, 175, 175)
@@ -109,19 +109,19 @@ class _HomeScreenState extends State<HomeScreen> {
   List<BoxShadow> _buildBoxShadows() {
     return [
       BoxShadow(
-        color: Color(0XFF000066).withValues(alpha: 0.05),
+        color: const Color(0XFF000066).withValues(alpha: 0.05),
         blurRadius: 15,
         spreadRadius: 10,
         offset: const Offset(0, 10),
       ),
       BoxShadow(
-        color: Color(0XFF000066).withValues(alpha: 0.03),
+        color: const Color(0XFF000066).withValues(alpha: 0.03),
         blurRadius: 7.5,
         spreadRadius: 5,
         offset: const Offset(0, 5),
       ),
       BoxShadow(
-        color: Color(0XFF000066).withValues(alpha: 0.01),
+        color: const Color(0XFF000066).withValues(alpha: 0.01),
         blurRadius: 5,
         spreadRadius: 2.5,
         offset: const Offset(0, 2.5),

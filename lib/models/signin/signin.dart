@@ -10,7 +10,7 @@ class SignInResponse with _$SignInResponse {
   const factory SignInResponse.success({required String accessToken, required String refreshToken}) = SignInSuccess;
   const factory SignInResponse.fetchUserData({@ResponseCodeConverter() required ResponseCode code}) = FetchUserData;
 
-  factory SignInResponse.fromJson(Map<String, dynamic> json) => _SignInResponseConverter().fromJson(json);
+  factory SignInResponse.fromJson(Map<String, dynamic> json) => const _SignInResponseConverter().fromJson(json);
 }
 
 class _SignInResponseConverter implements JsonConverter<SignInResponse, Map<String, dynamic>> {

@@ -49,11 +49,11 @@ class _MainScreenState extends State<MainScreen> {
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 26),
             color: const Color.fromARGB(255, 245, 246, 248),
-            child: Column(
+            child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 UserHeader(),
-                const SizedBox(height: 20),
+                SizedBox(height: 20),
                 TodayCourseContainer()
               ]
             )

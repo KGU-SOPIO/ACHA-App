@@ -134,10 +134,10 @@ class _AppViewState extends State<AppView> {
       unauthenticated: () async {
         final isConnected = await _connectivityChecker.isConnected();
         if (!isConnected) {
-          _navigator.pushAndRemoveUntil(ConnectErrorScreen.route(), (route) => false);
+          await _navigator.pushAndRemoveUntil(ConnectErrorScreen.route(), (route) => false);
         } else {
           _isNavigate = false;
-          _navigator.pushAndRemoveUntil(AuthStartScreen.route(), (route) => false);
+          await _navigator.pushAndRemoveUntil(AuthStartScreen.route(), (route) => false);
         }
       },
       unknown: () {}
@@ -146,8 +146,8 @@ class _AppViewState extends State<AppView> {
 
   /// 서버로부터 필수 데이터를 요청합니다.
   void _fetchData(BuildContext context) {
-    context.read<UserBloc>().add(UserEvent.fetchUser());
-    context.read<TodayCourseBloc>().add(TodayCourseEvent.fetchTodayCourses());
+    context.read<UserBloc>().add(const UserEvent.fetchUser());
+    context.read<TodayCourseBloc>().add(const TodayCourseEvent.fetchTodayCourses());
     _checkStates(context);
   }
 

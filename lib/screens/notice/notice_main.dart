@@ -27,7 +27,7 @@ class NoticeMainScreen extends StatefulWidget {
           courseRepository: GetIt.I<CourseRepository>(),
           course: course,
           noticeId: noticeId
-        )..add(NoticeEvent.fetchNotice()),
+        )..add(const NoticeEvent.fetchNotice()),
         child: const NoticeMainScreen()
       )
     );
@@ -77,7 +77,7 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
       },
       builder: (context, state) {
         if (state.status == NoticeStatus.loading) {
-          return ContentSkeletonContainer();
+          return const ContentSkeletonContainer();
         } else if (state.status == NoticeStatus.loaded) {
           final notice = state.notice!;
           return _buildLoadedContent(context, state, notice);
@@ -106,7 +106,7 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
 
   Widget _buildHeader(BuildContext context, NoticeState state, Notice notice) {
     return DecoratedBox(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         border: Border(
           bottom: BorderSide(
             color: Color.fromARGB(255, 228, 232, 241)
@@ -119,7 +119,7 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
           const SizedBox(height: 30),
           Text(
             context.read<NoticeBloc>().course.name,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w400,
               color: Color.fromARGB(255, 30, 30, 30)
@@ -128,7 +128,7 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
           const SizedBox(height: 10),
           Text(
             notice.title,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w700,
               color: Color.fromARGB(255, 30, 30, 30)
@@ -150,7 +150,7 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
         const SizedBox(width: 7),
         Text(
           notice.professor,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w500,
             color: Color.fromARGB(255, 151, 151, 151)
@@ -161,7 +161,7 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
         const SizedBox(width: 7),
         Text(
           notice.date.formatDate(pattern: 'y년 M월 D일'),
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w500,
             color: Color.fromARGB(255, 151, 151, 151)
@@ -198,7 +198,7 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
         decoration: BoxDecoration(
           borderRadius: hasPrevious ? const BorderRadius.vertical(top: Radius.circular(20)) : BorderRadius.circular(20),
           border: Border.all(
-            color: Color.fromARGB(255, 237, 239, 242)
+            color: const Color.fromARGB(255, 237, 239, 242)
           )
         ),
         child: Row(
@@ -206,9 +206,9 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
           children: [
             Row(
               children: [
-                Text('다음글', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
+                const Text('다음글', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
                 const SizedBox(width: 10),
-                Text(notice.nextNoticeTitle!, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700))
+                Text(notice.nextNoticeTitle!, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700))
               ]
             ),
             SvgPicture.asset('lib/assets/svgs/notice/right_arrow.svg')
@@ -226,7 +226,7 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
         decoration: BoxDecoration(
           borderRadius: hasNext ? const BorderRadius.vertical(bottom: Radius.circular(20)) : BorderRadius.circular(20),
           border: Border.all(
-            color: Color.fromARGB(255, 237, 239, 242)
+            color: const Color.fromARGB(255, 237, 239, 242)
           )
         ),
         child: Row(
@@ -234,9 +234,9 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
           children: [
             Row(
               children: [
-                Text('이전글', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
+                const Text('이전글', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
                 const SizedBox(width: 10),
-                Text(notice.previousNoticeTitle!, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700))
+                Text(notice.previousNoticeTitle!, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700))
               ]
             ),
             SvgPicture.asset('lib/assets/svgs/notice/right_arrow.svg')

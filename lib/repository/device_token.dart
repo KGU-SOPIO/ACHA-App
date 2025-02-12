@@ -10,7 +10,7 @@ class FCMTokenRepository {
   final Dio _dio = GetIt.I<Dio>();
 
   /// 기기 고유 토큰을 가져옵니다.
-  Future<String?> _getDeviceToken() async {
+  static Future<String?> _getDeviceToken() async {
     return Platform.isIOS
       ? FirebaseMessaging.instance.getAPNSToken()
       : FirebaseMessaging.instance.getToken();
@@ -27,7 +27,7 @@ class FCMTokenRepository {
       );
     } catch (e) {
       try {
-        final String? token = await _getDeviceToken();
+        final token = await _getDeviceToken();
         await _dio.post(
           FCMTokenApiEndpoints.fcmToken,
           data: {'deviceToken': token}

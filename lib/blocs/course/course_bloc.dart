@@ -16,7 +16,7 @@ class CourseBloc extends Bloc<CourseEvent, CourseState> {
   /// 활동 데이터를 요청합니다.
   Future<void> _onFetchActivities(FetchActivities event, Emitter<CourseState> emit) async {
     try {
-      final CourseActivities? courseActivities = await courseRepository.fetchCourseActivities(course.code);
+      final courseActivities = await courseRepository.fetchCourseActivities(course.code);
       emit(state.copyWith(status: CourseStatus.loaded, course: course.copyWith(courseActivities: courseActivities)));
     } on DioException catch (e) {
       emit(state.copyWith(status: CourseStatus.error, errorMessage: e.error as String));

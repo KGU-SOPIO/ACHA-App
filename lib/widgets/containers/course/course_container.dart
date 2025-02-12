@@ -34,7 +34,7 @@ class CourseContainer extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           width: 1.5,
-          color: Color.fromARGB(255, 237, 239, 242)
+          color: const Color.fromARGB(255, 237, 239, 242)
         ),
         borderRadius: BorderRadius.circular(20),
         color: Colors.white
@@ -55,7 +55,7 @@ class CourseContainer extends StatelessWidget {
       children: [
        Text(
           '$professorName 교수',
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w400,
             color: Color.fromARGB(255, 109, 109, 109)
@@ -64,7 +64,7 @@ class CourseContainer extends StatelessWidget {
         const SizedBox(height: 3),
         Text(
           courseName,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w400,
             color: Colors.black
@@ -73,7 +73,7 @@ class CourseContainer extends StatelessWidget {
         const SizedBox(height: 2),
         Text(
           lectureRoom,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w400,
             color: Colors.black
@@ -87,6 +87,6 @@ class CourseContainer extends StatelessWidget {
     if (deadline != null) {
       return DDayBadge(deadline: deadline!);
     }
-    return SizedBox.shrink();
+    return const SizedBox.shrink();
   }
 }

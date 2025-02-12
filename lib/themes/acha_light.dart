@@ -10,7 +10,7 @@ ThemeData achaLight() {
       primary: Colors.black,
       secondary: Color.fromARGB(255, 0, 102, 255)
     ),
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       elevation: 0,
       color: Color.fromARGB(255, 245, 246, 248),
       surfaceTintColor: Colors.transparent

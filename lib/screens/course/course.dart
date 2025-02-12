@@ -25,18 +25,18 @@ class _CourseScreenState extends State<CourseScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<CourseListBloc>().add(CourseListEvent.fetchCourses());
+    context.read<CourseListBloc>().add(const CourseListEvent.fetchCourses());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 245, 246, 248),
+      backgroundColor: const Color.fromARGB(255, 245, 246, 248),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              AchaAppbar(),
+              const AchaAppbar(),
               const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 26),
@@ -58,7 +58,7 @@ class _CourseScreenState extends State<CourseScreen> {
   Widget _buildHeader() {
     return Row(
       children: [
-        Text(
+        const Text(
           '나의 강좌',
           style: TextStyle(
             fontSize: 20,
@@ -80,7 +80,7 @@ class _CourseScreenState extends State<CourseScreen> {
         } else if (state.status == CourseListStatus.loaded) {
           return _buildLoadedContent(state);
         } else {
-          return SizedBox(height: 500, child: Center(child: Text(state.errorMessage!, style: TextStyle(fontSize: 15))));
+          return SizedBox(height: 500, child: Center(child: Text(state.errorMessage!, style: const TextStyle(fontSize: 15))));
         }
       }
     );

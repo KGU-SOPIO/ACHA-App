@@ -31,7 +31,7 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
   @override
   void initState() {
     super.initState();
-    context.read<ActivityBloc>().add(ActivityEvent.fetchActivities());
+    context.read<ActivityBloc>().add(const ActivityEvent.fetchActivities());
     _tabController = TabController(length: 3, vsync: this);
   }
 
@@ -44,7 +44,7 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 245, 246, 248),
+      backgroundColor: const Color.fromARGB(255, 245, 246, 248),
       body: SafeArea(
         child: _buildContent()
       )
@@ -74,9 +74,9 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
   }
 
   Widget _buildAppBar() {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 20),
-      child: const AchaAppbar()
+    return const Padding(
+      padding: EdgeInsets.only(bottom: 20),
+      child: AchaAppbar()
     );
   }
 
@@ -108,7 +108,7 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
 
   Widget _buildActivityListView(Map<DateTime, List<Activity>>? groupedActivities) {
     if (groupedActivities == null) {
-      return Center(child: Text('다 끝내셨군요! 고생하셨어요'));
+      return const Center(child: Text('다 끝내셨군요! 고생하셨어요'));
     }
 
     return ListView.builder(
@@ -130,7 +130,7 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
                   title: activity.name,
                   course: activity.courseName!,
                   deadline: activity.deadline!.toTimeLeftFormattedTime(),
-                  margin: EdgeInsets.only(bottom: 16),
+                  margin: const EdgeInsets.only(bottom: 16),
                   backgroundColor: Colors.white
                 )
               )

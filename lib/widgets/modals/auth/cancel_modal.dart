@@ -106,30 +106,30 @@ class _CancelModalState extends State<CancelModal> {
         const SizedBox(height: 20),
         SvgPicture.asset('lib/assets/svgs/modal/auth/cancel.svg'),
         const SizedBox(height: 20),
-        Text(
+        const Text(
           '계정 삭제',
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w700,
-            color: const Color.fromARGB(255, 30, 30, 30)
+            color: Color.fromARGB(255, 30, 30, 30)
           )
         ),
         const SizedBox(height: 30),
-        Text(
+        const Text(
           '사용자 정보는 안전하게 삭제돼요',
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w400,
-            color: const Color.fromARGB(255, 109, 109, 109)
+            color: Color.fromARGB(255, 109, 109, 109)
           )
         ),
         const SizedBox(height: 40),
-        Text(
+        const Text(
           '비밀번호 확인',
           style: TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w500,
-            color: const Color.fromARGB(255, 30, 30, 30)
+            color: Color.fromARGB(255, 30, 30, 30)
           )
         ),
         const SizedBox(height: 20),
@@ -165,16 +165,16 @@ class _CancelModalState extends State<CancelModal> {
         Expanded(
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-              minimumSize: Size(0, 56),
+              minimumSize: const Size(0, 56),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
               backgroundColor: const Color.fromARGB(255, 237, 239, 242),
             ),
             onPressed: () => Navigator.pop(context),
-            child: Text(
+            child: const Text(
               '취소',
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 color: Color.fromARGB(255, 109, 109, 109),
@@ -186,8 +186,8 @@ class _CancelModalState extends State<CancelModal> {
         Expanded(
           child: ElevatedButton(
             style: ButtonStyle(
-              minimumSize: WidgetStateProperty.all(Size(0, 56)),
-              backgroundColor: WidgetStateProperty.resolveWith((Set<WidgetState> states) {
+              minimumSize: WidgetStateProperty.all(const Size(0, 56)),
+              backgroundColor: WidgetStateProperty.resolveWith((states) {
                   if (states.contains(WidgetState.disabled)) {
                     return const Color.fromARGB(255, 199, 199, 199);
                   }
@@ -201,12 +201,12 @@ class _CancelModalState extends State<CancelModal> {
               )
             ),
             onPressed: _isButtonEnabled ? () {
-              context.read<AuthenticationBloc>().add(AuthenticationEvent.logout());
+              context.read<AuthenticationBloc>().add(const AuthenticationEvent.logout());
               GetIt.I<ToastManager>().success(message: '서비스를 탈퇴했어요');
             } : null,
-            child: Text(
+            child: const Text(
               '삭제',
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w700,
                 color: Colors.white,

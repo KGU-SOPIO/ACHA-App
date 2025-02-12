@@ -58,16 +58,16 @@ class _UserHeaderState extends State<UserHeader> {
   Widget _buildName(UserState state) {
     return Text.rich(
       TextSpan(
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 24,
           color: Color.fromARGB(255, 30, 30, 30)
         ),
         children: [
           TextSpan(
             text: state.user!.name,
-            style: TextStyle(fontWeight: FontWeight.w700)
+            style: const TextStyle(fontWeight: FontWeight.w700)
           ),
-          TextSpan(
+          const TextSpan(
             text: ' 님',
             style: TextStyle(fontWeight: FontWeight.w500)
           )
@@ -81,16 +81,16 @@ class _UserHeaderState extends State<UserHeader> {
       children: [
         Text(
           state.user!.college,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w400,
             color: Color.fromARGB(255, 151, 151, 151)
           ),
         ),
         Container(
-          margin: EdgeInsets.only(left: 12),
-          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-          decoration: BoxDecoration(
+          margin: const EdgeInsets.only(left: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          decoration: const BoxDecoration(
             color: Color.fromARGB(255, 0, 102, 255),
             borderRadius: BorderRadius.all(
               Radius.circular(30)
@@ -98,7 +98,7 @@ class _UserHeaderState extends State<UserHeader> {
           ),
           child: Text(
             state.user!.major ?? state.user!.department!,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w500,
               color: Color.fromARGB(255, 255, 255, 255)

@@ -54,9 +54,9 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
     titleWidget: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text.rich(
+        const Text.rich(
           TextSpan(
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 16,
               color: Color.fromARGB(255, 30, 30, 30)
             ),
@@ -89,7 +89,7 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
         appBar: _buildAppBar(),
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24),
+            padding: const EdgeInsets.symmetric(horizontal: 24),
             child: _buildContent()
           )
         )
@@ -131,9 +131,9 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
   }
 
   Widget _buildTitle() {
-    return Text.rich(
+    return const Text.rich(
       TextSpan(
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 15,
           color: Colors.black
         ),
@@ -152,7 +152,7 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
   }
 
   Widget _buildPasswordField() {
-    final OutlineInputBorder textFieldBorder = OutlineInputBorder(
+    final textFieldBorder = OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
       borderSide: const BorderSide(
         width: 1.5,
@@ -193,8 +193,8 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
   Widget _buildNextButton(BuildContext context) {
     return ElevatedButton(
       style: ButtonStyle(
-        minimumSize: WidgetStateProperty.all(Size(double.infinity, 56)),
-        backgroundColor: WidgetStateProperty.resolveWith((Set<WidgetState> states) {
+        minimumSize: WidgetStateProperty.all(const Size(double.infinity, 56)),
+        backgroundColor: WidgetStateProperty.resolveWith((states) {
             if (states.contains(WidgetState.disabled)) {
               return const Color.fromARGB(255, 199, 199, 199);
             }
@@ -223,7 +223,7 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
   Widget _buildPreviousButton(BuildContext context) {
     return TextButton(
       style: ButtonStyle(
-        minimumSize: WidgetStateProperty.all(Size(double.infinity, 56))
+        minimumSize: WidgetStateProperty.all(const Size(double.infinity, 56))
       ),
       onPressed: () => Navigator.pop(context),
       child: const Text(

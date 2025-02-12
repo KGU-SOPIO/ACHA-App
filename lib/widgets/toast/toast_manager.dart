@@ -46,7 +46,7 @@ class ToastManager {
         color: const Color.fromARGB(255, 223, 236, 255),
         border: Border.all(
           width: 1.5,
-          color: Color.fromARGB(255, 166, 201, 255)
+          color: const Color.fromARGB(255, 166, 201, 255)
         )
       ),
       child: Row(
@@ -54,7 +54,7 @@ class ToastManager {
           Flexible(
               flex: 2,
               child: Padding(
-                  padding: EdgeInsets.only(right: 16),
+                  padding: const EdgeInsets.only(right: 16),
                   child: SvgPicture.asset(svgPath)
               )
           ),

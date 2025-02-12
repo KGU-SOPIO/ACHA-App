@@ -37,20 +37,20 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
     titleWidget: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text.rich(
+        const Text.rich(
           TextSpan(
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 16,
               color: Color.fromARGB(255, 30, 30, 30)
             ),
             children: [
               TextSpan(
                 text: '사용 약관에 동의',
-                style: const TextStyle(fontWeight: FontWeight.w700)
+                style: TextStyle(fontWeight: FontWeight.w700)
               ),
               TextSpan(
                 text: '하고\n회원가입을 진행합니다',
-                style: const TextStyle(fontWeight: FontWeight.w500, height: 1.7)
+                style: TextStyle(fontWeight: FontWeight.w500, height: 1.7)
               )
             ]
           )
@@ -65,7 +65,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
   ).show(context);
 
   Future<void> _openManualUrl() async {
-    Uri url = Uri.parse(ManualUrl.myInformationIsDifferent);
+    final url = Uri.parse(ManualUrl.myInformationIsDifferent);
     try {
       if (await canLaunchUrl(url)) {
         await launchUrl(url);
@@ -199,7 +199,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
       onPressed: () => _showTermsModal(),
       backgroundColor: const Color.fromARGB(255, 0, 102, 255),
       text: '다음',
-      textStyle: TextStyle(
+      textStyle: const TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w700,
         color: Colors.white

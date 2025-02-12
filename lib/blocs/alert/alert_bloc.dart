@@ -25,7 +25,7 @@ class AlertBloc extends Bloc<AlertEvent, AlertState> {
         return;
       }
 
-      final bool isEnabled = await alertRepository.fetchAlertStatus();
+      final isEnabled = await alertRepository.fetchAlertStatus();
       emit(state.copyWith(status: AlertStatus.loaded, isEnabled: isEnabled));
     } on DioException catch (e) {
       emit(state.copyWith(status: AlertStatus.error, message: e.error as String));

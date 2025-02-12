@@ -28,7 +28,7 @@ class NoticeScreen extends StatefulWidget {
         create: (context) => NoticeListBloc(
           courseRepository: GetIt.I<CourseRepository>(),
           course: course
-        )..add(NoticeListEvent.fetchNoticeList()),
+        )..add(const NoticeListEvent.fetchNoticeList()),
         child: const NoticeScreen()
       )
     );
@@ -81,7 +81,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
   Widget _buildCourseTitle(BuildContext context) {
     return Text(
       context.read<NoticeListBloc>().course.name,
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w400,
         color: Color.fromARGB(255, 30, 30, 30)
@@ -92,7 +92,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
   Widget _buildNoticeHeader() {
     return Row(
       children: [
-        Text(
+        const Text(
           '공지사항',
           style: TextStyle(
             fontSize: 20,
@@ -116,7 +116,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
       },
       builder: (context, state) {
         if (state.status == NoticeListStatus.loading) {
-          return Column(children: List.generate(4, (index) => NoticeSkeletonContainer()));
+          return Column(children: List.generate(4, (index) => const NoticeSkeletonContainer()));
         } else if (state.status == NoticeListStatus.loaded) {
           return _buildNoticeListContent(context, state.noticeList?.notices);
         } else {
@@ -152,7 +152,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
       onTap: () => Navigator.push(context, NoticeMainScreen.route(course: context.read<NoticeListBloc>().course, noticeId: notice.id)),
       child: Container(
         padding: const EdgeInsets.only(left: 10, top: 18, bottom: 15),
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           border: Border(
             bottom: BorderSide(
               color: Color.fromARGB(255, 228, 232, 241)
@@ -165,7 +165,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
               children: [
                 Text(
                   notice.index.toString(),
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                     color: Color.fromARGB(255, 151, 151, 151)
@@ -174,7 +174,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
                 const SizedBox(width: 15),
                 Text(
                   notice.title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
                     color: Color.fromARGB(255, 60, 60, 60)
@@ -190,7 +190,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
                 const SizedBox(width: 7),
                 Text(
                   context.read<NoticeListBloc>().course.professor,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
                     color: Color.fromARGB(255, 151, 151, 151)
@@ -201,7 +201,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
                 const SizedBox(width: 7),
                 Text(
                   notice.date.formatDate(pattern: 'y년 M월 D일'),
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
                     color: Color.fromARGB(255, 151, 151, 151)

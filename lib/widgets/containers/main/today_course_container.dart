@@ -29,9 +29,9 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(20)),
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
         border: Border.all(
-          color: Color.fromARGB(255, 228, 232, 241),
+          color: const Color.fromARGB(255, 228, 232, 241),
           width: 1.5
         )
       ),
@@ -53,7 +53,7 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text.rich(
+        const Text.rich(
           TextSpan(
             style: TextStyle(
               fontSize: 16,
@@ -73,7 +73,7 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
         ),
         Text(
           DateTime.now().formatDate(pattern: 'M월 d일'),
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,
             color: Color.fromARGB(255, 0, 102, 255)
@@ -140,7 +140,7 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
       children: [
         Text(
           '${course.professor} 교수',
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w400,
             color: Color.fromARGB(255, 109, 109, 109)
@@ -150,7 +150,7 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
         AutoSizeText(
           course.name,
           maxLines: 1,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w400,
             color: Colors.black
@@ -159,7 +159,7 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
         const SizedBox(height: 2),
         Text(
           course.lectureRoom,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w400,
             color: Colors.black

@@ -22,7 +22,7 @@ class UserResponse with _$UserResponse {
   const factory UserResponse.success({required User user}) = UserData;
   const factory UserResponse.error({@ResponseCodeConverter() required ResponseCode code}) = UserError;
 
-  factory UserResponse.fromJson(Map<String, dynamic> json) => _UserResponseConverter().fromJson(json);
+  factory UserResponse.fromJson(Map<String, dynamic> json) => const _UserResponseConverter().fromJson(json);
 }
 
 class _UserResponseConverter implements JsonConverter<UserResponse, Map<String, dynamic>> {

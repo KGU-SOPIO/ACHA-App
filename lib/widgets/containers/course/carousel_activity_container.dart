@@ -26,10 +26,10 @@ class CarouselActivityContainer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(bottom: 12),
+            padding: const EdgeInsets.only(bottom: 12),
             child: Text(
               '$week주차',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w700,
                 color: Color.fromARGB(255, 30, 30, 30)
@@ -38,10 +38,10 @@ class CarouselActivityContainer extends StatelessWidget {
           ),
           Container(
             width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
             decoration: BoxDecoration(
               border: Border.all(
-                color: Color.fromARGB(255, 237, 239, 242),
+                color: const Color.fromARGB(255, 237, 239, 242),
                 width: 1.5
               ),
               borderRadius: BorderRadius.circular(12)
@@ -56,7 +56,7 @@ class CarouselActivityContainer extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.fade,
                     softWrap: false,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
                       color: Color.fromARGB(255, 60, 60, 60)

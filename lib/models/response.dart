@@ -11,7 +11,7 @@ enum ResponseCode {
   static ResponseCode fromValue(String value) {
     return ResponseCode.values.firstWhere(
       (e) => e.value == value,
-      orElse: () => throw Exception("알 수 없는 응답코드입니다."),
+      orElse: () => throw Exception('알 수 없는 응답코드입니다.'),
     );
   }
 }

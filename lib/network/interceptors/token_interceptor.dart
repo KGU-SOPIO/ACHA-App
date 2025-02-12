@@ -1,76 +1,79 @@
 import 'package:dio/dio.dart';
-import 'package:get_it/get_it.dart';
 
 import 'package:acha/repository/index.dart';
 
 import 'package:acha/constants/apis/index.dart';
 
 class TokenInterceptor extends Interceptor {
-  final Dio _dio = Dio(BaseOptions(
-    connectTimeout: const Duration(seconds: 3),
-    receiveTimeout: const Duration(seconds: 15),
-    sendTimeout: const Duration(seconds: 5),
-    validateStatus: (status) => status != null && status < 500
-  ));
-  final SecureStorage _secureStorage = GetIt.I<SecureStorage>();
+  TokenInterceptor({required this.dio, required this.secureStorage});
 
-  /// 요청 시 AccessToken을 검증하고, 만료 시 재발급합니다.
+  final Dio dio;
+  final SecureStorage secureStorage;
+
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
     try {
-      String? accessToken = await _secureStorage.isAccessTokenExpiredOrReturn();
-      if (accessToken == null) {
-        String? refreshToken = await _secureStorage.isRefreshTokenExpiredOrReturn();
-        if (refreshToken == null) {
-          return _rejectRequest(handler: handler, options: options, message: '인증이 만료되었어요\n로그인을 다시 진행해 주세요');
-        }
-
-        try {
-          await _refreshAccessTokens(refreshToken: refreshToken);
-          accessToken = await _secureStorage.isAccessTokenExpiredOrReturn();
-        } catch (e) {
-          return handler.reject(e as DioException);
-        }
-      }
-
+      final accessToken = await _ensureAccessToken(options);
       options.headers['Authorization'] = accessToken;
-
-      return super.onRequest(options, handler);
-    } catch (e) {
-      rethrow;
+      handler.next(options);
+    } catch (error) {
+      if (error is DioException) {
+        handler.reject(error);
+      } else {
+        handler.reject(
+          DioException(
+            requestOptions: options,
+            error: error,
+            type: DioExceptionType.unknown
+          )
+        );
+      }
     }
   }
 
-  /// AccessToken을 재발급합니다.
-  Future<void> _refreshAccessTokens({required String refreshToken}) async {
-    final response = await _dio.post(
+  /// AccessToken이 만료되었다면 RefreshToken을 통해 재발급을 시도합니다.
+  Future<String> _ensureAccessToken(RequestOptions options) async {
+    var accessToken = await secureStorage.getValidAccessToken();
+    if (accessToken != null) return accessToken;
+
+    final refreshToken = await secureStorage.getValidRefreshToken();
+    if (refreshToken == null) {
+      throw DioException(
+        requestOptions: options,
+        error: '인증이 만료되었어요\n로그인을 다시 진행해 주세요',
+        type: DioExceptionType.cancel
+      );
+    }
+
+    await _reissueAccessTokens(refreshToken: refreshToken);
+
+    accessToken = await secureStorage.getValidAccessToken();
+    if (accessToken == null) {
+      throw DioException(
+        requestOptions: options,
+        error: '인증 정보를 불러오지 못했어요\n로그인을 다시 진행해 주세요',
+        type: DioExceptionType.cancel
+      );
+    }
+    return accessToken;
+  }
+
+  /// RefreshToken을 통해 AccessToken을 재발급합니다.
+  Future<void> _reissueAccessTokens({required String refreshToken}) async {
+    final response = await dio.post(
       AuthenticationApiEndpoints.refresh,
       data: {'refreshToken': refreshToken},
       options: Options(headers: {'Content-Type': 'application/json'})
     );
 
-    final newAccessToken = response.data['accessToken'];
-    final newRefreshToken = response.data['refreshToken'];
-
-    if (newAccessToken == null && newRefreshToken == null) {
+    final accessToken = response.data['accessToken'];
+    if (accessToken == null) {
       throw DioException(
         requestOptions: RequestOptions(path: AuthenticationApiEndpoints.refresh),
         error: '서비스 이용을 위한 인증에 실패했어요',
         type: DioExceptionType.badResponse
       );
     }
-
-    await _secureStorage.saveTokens(accessToken: newAccessToken, refreshToken: newRefreshToken);
-  }
-
-  /// 요청을 거부하고 DioException을 반환합니다.
-  void _rejectRequest({required RequestInterceptorHandler handler, required RequestOptions options, required String message}) {
-    handler.reject(
-      DioException(
-        requestOptions: options,
-        error: message,
-        type: DioExceptionType.cancel
-      )
-    );
+    await secureStorage.saveTokens(accessToken: accessToken);
   }
 }

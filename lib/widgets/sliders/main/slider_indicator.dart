@@ -22,14 +22,14 @@ class CarouselIndicator extends StatelessWidget {
   }
 
   Widget _buildIndicator(int index) {
-    final bool isActive = currentIndex == index;
+    final isActive = currentIndex == index;
     return Container(
       width: 7,
       height: 7,
       margin: const EdgeInsets.symmetric(horizontal: 3),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: isActive ? Color.fromARGB(255, 0, 102, 255) : Color.fromARGB(255, 182, 182, 182)
+        color: isActive ? const Color.fromARGB(255, 0, 102, 255) : const Color.fromARGB(255, 182, 182, 182)
       )
     );
   }

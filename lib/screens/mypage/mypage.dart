@@ -29,7 +29,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 245, 246, 248),
+      backgroundColor: const Color.fromARGB(255, 245, 246, 248),
       body: SafeArea(
         child: _buildBody()
       )
@@ -40,7 +40,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          AchaAppbar(),
+          const AchaAppbar(),
           const SizedBox(height: 20),
           _buildContent()
         ]
@@ -54,11 +54,11 @@ class _MyPageScreenState extends State<MyPageScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          UserHeader(),
+          const UserHeader(),
           const SizedBox(height: 35),
-          AlertSettingContainer(),
+          const AlertSettingContainer(),
           const SizedBox(height: 20),
-          PhraseContainer(),
+          const PhraseContainer(),
           const SizedBox(height: 20),
           _buildSopioButton(),
           const SizedBox(height: 34),
@@ -73,16 +73,16 @@ class _MyPageScreenState extends State<MyPageScreen> {
 
   Widget _buildSopioButton() {
     return RowContainerButton(
-      padding: EdgeInsets.symmetric(vertical: 22),
+      padding: const EdgeInsets.symmetric(vertical: 22),
       onPressed: () => Navigator.push(context, SopioScreen.route()),
       foregroundColor: Colors.white,
       backgroundColor: Colors.white,
-      border: BorderSide(
+      border: const BorderSide(
         color: Color.fromARGB(255, 228, 232, 241)
       ),
       borderRadius: 25,
       text: 'SOPIO',
-      textStyle: TextStyle(
+      textStyle: const TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w500,
         color: Color.fromARGB(255, 30, 30, 30)
@@ -97,10 +97,10 @@ class _MyPageScreenState extends State<MyPageScreen> {
       onPressed: () => _showLogoutModal(),
       backgroundColor: const Color.fromARGB(255, 237, 239, 242),
       text: '로그아웃',
-      textStyle: TextStyle(
+      textStyle: const TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w700,
-        color: const Color.fromARGB(255, 109, 109, 109),
+        color: Color.fromARGB(255, 109, 109, 109),
       )
     );
   }
@@ -110,14 +110,14 @@ class _MyPageScreenState extends State<MyPageScreen> {
       height: 56,
       onPressed: () => _showCancelModal(),
       backgroundColor: const Color.fromARGB(25, 255, 78 , 107),
-      border: BorderSide(
+      border: const BorderSide(
         color: Color.fromARGB(255, 255, 78, 107)
       ),
       text: '계정 삭제',
-      textStyle: TextStyle(
+      textStyle: const TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w700,
-        color: const Color.fromARGB(255, 255, 78, 107)
+        color: Color.fromARGB(255, 255, 78, 107)
       )
     );
   }

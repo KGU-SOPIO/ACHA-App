@@ -20,7 +20,7 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
   @override
   void initState() {
     super.initState();
-    context.read<AlertBloc>().add(AlertEvent.fetchAlertStatus());
+    context.read<AlertBloc>().add(const AlertEvent.fetchAlertStatus());
   }
 
   @override
@@ -54,7 +54,7 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(
-          color: Color.fromARGB(255, 228, 232, 241)
+          color: const Color.fromARGB(255, 228, 232, 241)
         ),
         borderRadius: BorderRadius.circular(25)
       ),
@@ -74,10 +74,10 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
     return Row(
       children: [
         Container(
-          margin: EdgeInsets.only(right: 9),
+          margin: const EdgeInsets.only(right: 9),
           child: SvgPicture.asset('lib/assets/svgs/mypage/bell.svg')
         ),
-        Text(
+        const Text(
           '알림',
           style: TextStyle(
             fontSize: 16,
@@ -90,7 +90,7 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
   }
 
   Widget _buildAlertPeriod() {
-    return Row(
+    return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -106,7 +106,7 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
           children: [
             Text.rich(
               TextSpan(
-                style: const TextStyle(
+                style: TextStyle(
                   height: 1.4,
                   fontSize: 15,
                   fontWeight: FontWeight.w300,
@@ -131,7 +131,7 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
                 ]
               )
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8),
             Text(
               '강의 / 과제 알림 발송',
               style: TextStyle(
@@ -152,7 +152,7 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(
+        const Text(
           '알림 설정',
           style: TextStyle(
             fontSize: 15,
@@ -167,7 +167,7 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
             child: CupertinoSwitch(
               value: state.isEnabled,
               onChanged: (value) => context.read<AlertBloc>().add(AlertEvent.changeAlertStatus(isEnabled: value)),
-              activeTrackColor: Color.fromARGB(255, 0, 102, 255)
+              activeTrackColor: const Color.fromARGB(255, 0, 102, 255)
             )
           )
         )

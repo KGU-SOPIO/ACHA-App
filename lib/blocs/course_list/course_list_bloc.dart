@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:acha/models/index.dart';
 import 'package:acha/repository/index.dart';
 import 'package:acha/blocs/course_list/index.dart';
 
@@ -15,7 +14,7 @@ class CourseListBloc extends Bloc<CourseListEvent, CourseListState> {
   /// 강좌 목록 데이터를 요청합니다.
   Future<void> _onFetchCourses(FetchCourses event, Emitter<CourseListState> emit) async {
     try {
-      final CourseList? courseList = await courseRepository.fetchCourseList();
+      final courseList = await courseRepository.fetchCourseList();
       emit(state.copyWith(status: CourseListStatus.loaded, courseList: courseList));
     } on DioException catch (e) {
       emit(state.copyWith(status: CourseListStatus.error, errorMessage: e.error as String));

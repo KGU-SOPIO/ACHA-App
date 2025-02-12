@@ -34,7 +34,7 @@ class CarouselActivitySkeletonContainer extends StatelessWidget {
   }
 
   Widget _buildTitle() {
-    return Text(
+    return const Text(
       'Skeleton',
       style: TextStyle(
         fontSize: 14,
@@ -50,7 +50,7 @@ class CarouselActivitySkeletonContainer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
       decoration: BoxDecoration(
         border: Border.all(
-          color: Color.fromARGB(255, 237, 239, 242),
+          color: const Color.fromARGB(255, 237, 239, 242),
           width: 1.5
         ),
         borderRadius: BorderRadius.circular(12)
@@ -59,7 +59,7 @@ class CarouselActivitySkeletonContainer extends StatelessWidget {
         children: [
           SvgPicture.asset('lib/assets/svgs/course/lecture.svg'),
           const SizedBox(width: 10),
-          Expanded(
+          const Expanded(
             child: Text(
               'Skeleton_Skeleton',
               style: TextStyle(

@@ -22,7 +22,7 @@ class ContentSkeletonContainer extends StatelessWidget {
 
   Widget _buildHeader() {
     return DecoratedBox(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         border: Border(
           bottom: BorderSide(
             color: Color.fromARGB(255, 228, 232, 241)
@@ -33,9 +33,9 @@ class ContentSkeletonContainer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 30),
-          Text('Skeleton_Skeleton', style: TextStyle(fontSize: 14)),
+          const Text('Skeleton_Skeleton', style: TextStyle(fontSize: 14)),
           const SizedBox(height: 10),
-          Text('Skeleton_Skeleton_Ske', style: TextStyle(fontSize: 20)),
+          const Text('Skeleton_Skeleton_Ske', style: TextStyle(fontSize: 20)),
           const SizedBox(height: 20),
           _buildInformation(),
           const SizedBox(height: 20)
@@ -50,19 +50,19 @@ class ContentSkeletonContainer extends StatelessWidget {
       children: [
         SvgPicture.asset('lib/assets/svgs/notice/person.svg'),
         const SizedBox(width: 7),
-        Text('Skeleton', style: TextStyle(fontSize: 12)),
+        const Text('Skeleton', style: TextStyle(fontSize: 12)),
         const SizedBox(width: 20),
         SvgPicture.asset('lib/assets/svgs/notice/clock.svg'),
         const SizedBox(width: 7),
-        Text('Skeleton', style: TextStyle(fontSize: 12))
+        const Text('Skeleton', style: TextStyle(fontSize: 12))
       ]
     );
   }
 
   Widget _buildBody() {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
+      children: [
           Text('Skeleton_Skeleton_Skeleton'),
           SizedBox(height: 10),
           Text('Skeleton_Skeleton_Skeleton_Skeleton'),

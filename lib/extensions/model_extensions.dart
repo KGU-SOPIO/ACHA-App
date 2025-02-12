@@ -8,7 +8,7 @@ extension ActivitiesExtension on WeekActivities {
   Map<DateTime, List<Activity>> _groupActivities(List<Activity> activities) {
     final grouped = groupBy(
       activities.where((activity) => activity.deadline != null),
-      (Activity activity) {
+      (activity) {
         return DateTime(
           activity.deadline!.year, 
           activity.deadline!.month, 
