@@ -14,7 +14,7 @@ class TokenInterceptor extends Interceptor {
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
     try {
       final accessToken = await _ensureAccessToken(options);
-      options.headers['Authorization'] = accessToken;
+      options.headers['Authorization'] = 'Bearer $accessToken';
       handler.next(options);
     } catch (error) {
       if (error is DioException) {
