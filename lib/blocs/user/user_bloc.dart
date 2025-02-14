@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:acha/repository/index.dart';
+import 'package:acha/repository/exceptions/index.dart';
 import 'package:acha/blocs/user/index.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
@@ -18,6 +19,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       emit(state.copyWith(status: UserStatus.loaded, user: user));
     } on DioException catch (e) {
       emit(state.copyWith(status: UserStatus.error, errorMessage: e.error as String));
+    } on RepositoryException catch (e) {
+      emit(state.copyWith(status: UserStatus.error, errorMessage: e.message));
     } catch (e) {
       emit(state.copyWith(status: UserStatus.error, errorMessage: '학생 정보를 불러오지 못했어요'));
     }

@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:acha/repository/index.dart';
+import 'package:acha/repository/exceptions/index.dart';
 import 'package:acha/blocs/today_course/index.dart';
 
 class TodayCourseBloc extends Bloc<TodayCourseEvent, TodayCourseState> {
@@ -18,6 +19,8 @@ class TodayCourseBloc extends Bloc<TodayCourseEvent, TodayCourseState> {
       emit(state.copyWith(status: TodayCourseStatus.loaded, todayCourses: todayCourses));
     } on DioException catch (e) {
       emit(state.copyWith(status: TodayCourseStatus.error, errorMessage: e.error as String));
+    } on RepositoryException catch (e) {
+      emit(state.copyWith(status: TodayCourseStatus.error, errorMessage: e.message));
     } catch (e) {
       emit(state.copyWith(status: TodayCourseStatus.error, errorMessage: '오늘의 강의 정보를 불러오지 못했어요'));
     }

@@ -12,4 +12,5 @@ class SignInEvent with _$SignInEvent {
   const factory SignInEvent.submitSignIn() = SubmitSignIn;
   const factory SignInEvent.fetchUser() = FetchUser;
   const factory SignInEvent.submitSignUp() = SubmitSignUp;
+  const factory SignInEvent.fetchData() = FetchData;
 }

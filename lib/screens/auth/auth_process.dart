@@ -52,6 +52,8 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
                 context.read<SignInBloc>().add(const FetchUser());
               } else if (state.status == SignInStatus.inSignUp) {
                 Navigator.push(context, AuthSignUpScreen.route(context));
+              } else if (state.status == SignInStatus.inFetchData) {
+                context.read<SignInBloc>().add(const FetchData());
               }
             },
             builder: (context, state) {

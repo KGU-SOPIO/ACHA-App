@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:acha/models/index.dart';
 import 'package:acha/repository/index.dart';
+import 'package:acha/repository/exceptions/index.dart';
 import 'package:acha/blocs/course/index.dart';
 
 class CourseBloc extends Bloc<CourseEvent, CourseState> {
@@ -20,6 +21,8 @@ class CourseBloc extends Bloc<CourseEvent, CourseState> {
       emit(state.copyWith(status: CourseStatus.loaded, course: course.copyWith(courseActivities: courseActivities)));
     } on DioException catch (e) {
       emit(state.copyWith(status: CourseStatus.error, errorMessage: e.error as String));
+    } on RepositoryException catch (e) {
+      emit(state.copyWith(status: CourseStatus.error, errorMessage: e.message));
     } catch (e) {
       emit(state.copyWith(status: CourseStatus.error, errorMessage: '활동을 불러오지 못했어요'));
     }

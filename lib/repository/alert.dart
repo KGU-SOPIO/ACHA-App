@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
+import 'package:acha/repository/exceptions/index.dart';
+
 import 'package:acha/constants/apis/index.dart';
 
 class AlertRepository {
@@ -14,7 +16,7 @@ class AlertRepository {
     } on DioException {
       rethrow;
     } catch (e) {
-      throw Exception('알림 상태를 불러오지 못했어요');
+      throw RepositoryException('알림 상태를 불러오지 못했어요');
     }
   }
   
@@ -28,7 +30,7 @@ class AlertRepository {
     } on DioException {
       rethrow;
     } catch (e) {
-      throw Exception('알림 상태를 변경하지 못했어요');
+      throw RepositoryException('알림 상태를 변경하지 못했어요');
     }
   }
 }

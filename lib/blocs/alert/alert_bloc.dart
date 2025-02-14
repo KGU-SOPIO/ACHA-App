@@ -4,6 +4,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import 'package:acha/repository/index.dart';
+import 'package:acha/repository/exceptions/index.dart';
 import 'package:acha/blocs/alert/index.dart';
 
 class AlertBloc extends Bloc<AlertEvent, AlertState> {
@@ -29,6 +30,8 @@ class AlertBloc extends Bloc<AlertEvent, AlertState> {
       emit(state.copyWith(status: AlertStatus.loaded, isEnabled: isEnabled));
     } on DioException catch (e) {
       emit(state.copyWith(status: AlertStatus.error, message: e.error as String));
+    } on RepositoryException catch (e) {
+      emit(state.copyWith(status: AlertStatus.error, message: e.message));
     } catch (e) {
       emit(state.copyWith(status: AlertStatus.error, message: '알림 상태를 불러오지 못했어요'));
     }
@@ -54,6 +57,8 @@ class AlertBloc extends Bloc<AlertEvent, AlertState> {
       emit(state.copyWith(status: AlertStatus.changed, isEnabled: event.isEnabled, message: '알림 상태를 변경했어요'));
     } on DioException catch (e) {
       emit(state.copyWith(status: AlertStatus.error, isEnabled: !event.isEnabled, message: e.error as String));
+    } on RepositoryException catch (e) {
+      emit(state.copyWith(status: AlertStatus.error, isEnabled: !event.isEnabled, message: e.message));
     } catch (e) {
       emit(state.copyWith(status: AlertStatus.error, isEnabled: !event.isEnabled, message: '알림 상태를 변경하지 못했어요'));
     }
