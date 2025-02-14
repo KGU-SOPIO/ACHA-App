@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 
+import 'package:url_launcher/url_launcher.dart';
+
 class MemberContainer extends StatelessWidget {
-  const MemberContainer({super.key, required this.name, required this.part, required this.department, required this.github});
+  const MemberContainer({
+    super.key,
+    required this.name,
+    required this.part,
+    required this.department,
+    required this.github
+  });
 
   final String name;
   final String part;
@@ -10,22 +18,25 @@ class MemberContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: const Color.fromARGB(255, 228, 232, 241)
+    return GestureDetector(
+      onTap: () => _openGithubUrl(),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: const Color.fromARGB(255, 228, 232, 241)
+          )
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildNameRow(),
+            const SizedBox(height: 25),
+            _buildDepartmentRow()
+          ]
         )
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildNameRow(),
-          const SizedBox(height: 25),
-          _buildDepartmentRow()
-        ]
       )
     );
   }
@@ -74,7 +85,7 @@ class MemberContainer extends StatelessWidget {
           )
         ),
         Text(
-          github,
+          '@$github',
           style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w400,
@@ -83,5 +94,16 @@ class MemberContainer extends StatelessWidget {
         )
       ]
     );
+  }
+
+  Future<void> _openGithubUrl() async {
+    try {
+      final url = Uri.parse('https://github.com/$github');
+      if (await canLaunchUrl(url)) {
+        await launchUrl(url, mode: LaunchMode.externalApplication);
+      }
+    } catch (e) {
+      return;
+    }
   }
 }

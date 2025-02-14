@@ -41,7 +41,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   }
 
   /// 로그아웃합니다.
-  void _onLogout(Logout event, Emitter<AuthenticationState> emit) {
-    authenticationRepository.logout();
+  Future<void> _onLogout(Logout event, Emitter<AuthenticationState> emit) async {
+    await authenticationRepository.logout();
   }
 }

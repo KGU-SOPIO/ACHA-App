@@ -24,6 +24,7 @@ mixin _$SignInEvent {
     required TResult Function() submitSignIn,
     required TResult Function() fetchUser,
     required TResult Function() submitSignUp,
+    required TResult Function() fetchData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -34,6 +35,7 @@ mixin _$SignInEvent {
     TResult? Function()? submitSignIn,
     TResult? Function()? fetchUser,
     TResult? Function()? submitSignUp,
+    TResult? Function()? fetchData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,6 +46,7 @@ mixin _$SignInEvent {
     TResult Function()? submitSignIn,
     TResult Function()? fetchUser,
     TResult Function()? submitSignUp,
+    TResult Function()? fetchData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -55,6 +58,7 @@ mixin _$SignInEvent {
     required TResult Function(SubmitSignIn value) submitSignIn,
     required TResult Function(FetchUser value) fetchUser,
     required TResult Function(SubmitSignUp value) submitSignUp,
+    required TResult Function(FetchData value) fetchData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,6 +69,7 @@ mixin _$SignInEvent {
     TResult? Function(SubmitSignIn value)? submitSignIn,
     TResult? Function(FetchUser value)? fetchUser,
     TResult? Function(SubmitSignUp value)? submitSignUp,
+    TResult? Function(FetchData value)? fetchData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,6 +80,7 @@ mixin _$SignInEvent {
     TResult Function(SubmitSignIn value)? submitSignIn,
     TResult Function(FetchUser value)? fetchUser,
     TResult Function(SubmitSignUp value)? submitSignUp,
+    TResult Function(FetchData value)? fetchData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -175,6 +181,7 @@ class _$ChangeStatusImpl implements ChangeStatus {
     required TResult Function() submitSignIn,
     required TResult Function() fetchUser,
     required TResult Function() submitSignUp,
+    required TResult Function() fetchData,
   }) {
     return changeStatus(status);
   }
@@ -188,6 +195,7 @@ class _$ChangeStatusImpl implements ChangeStatus {
     TResult? Function()? submitSignIn,
     TResult? Function()? fetchUser,
     TResult? Function()? submitSignUp,
+    TResult? Function()? fetchData,
   }) {
     return changeStatus?.call(status);
   }
@@ -201,6 +209,7 @@ class _$ChangeStatusImpl implements ChangeStatus {
     TResult Function()? submitSignIn,
     TResult Function()? fetchUser,
     TResult Function()? submitSignUp,
+    TResult Function()? fetchData,
     required TResult orElse(),
   }) {
     if (changeStatus != null) {
@@ -218,6 +227,7 @@ class _$ChangeStatusImpl implements ChangeStatus {
     required TResult Function(SubmitSignIn value) submitSignIn,
     required TResult Function(FetchUser value) fetchUser,
     required TResult Function(SubmitSignUp value) submitSignUp,
+    required TResult Function(FetchData value) fetchData,
   }) {
     return changeStatus(this);
   }
@@ -231,6 +241,7 @@ class _$ChangeStatusImpl implements ChangeStatus {
     TResult? Function(SubmitSignIn value)? submitSignIn,
     TResult? Function(FetchUser value)? fetchUser,
     TResult? Function(SubmitSignUp value)? submitSignUp,
+    TResult? Function(FetchData value)? fetchData,
   }) {
     return changeStatus?.call(this);
   }
@@ -244,6 +255,7 @@ class _$ChangeStatusImpl implements ChangeStatus {
     TResult Function(SubmitSignIn value)? submitSignIn,
     TResult Function(FetchUser value)? fetchUser,
     TResult Function(SubmitSignUp value)? submitSignUp,
+    TResult Function(FetchData value)? fetchData,
     required TResult orElse(),
   }) {
     if (changeStatus != null) {
@@ -342,6 +354,7 @@ class _$InputStudentIdImpl implements InputStudentId {
     required TResult Function() submitSignIn,
     required TResult Function() fetchUser,
     required TResult Function() submitSignUp,
+    required TResult Function() fetchData,
   }) {
     return inputStudentId(studentId);
   }
@@ -355,6 +368,7 @@ class _$InputStudentIdImpl implements InputStudentId {
     TResult? Function()? submitSignIn,
     TResult? Function()? fetchUser,
     TResult? Function()? submitSignUp,
+    TResult? Function()? fetchData,
   }) {
     return inputStudentId?.call(studentId);
   }
@@ -368,6 +382,7 @@ class _$InputStudentIdImpl implements InputStudentId {
     TResult Function()? submitSignIn,
     TResult Function()? fetchUser,
     TResult Function()? submitSignUp,
+    TResult Function()? fetchData,
     required TResult orElse(),
   }) {
     if (inputStudentId != null) {
@@ -385,6 +400,7 @@ class _$InputStudentIdImpl implements InputStudentId {
     required TResult Function(SubmitSignIn value) submitSignIn,
     required TResult Function(FetchUser value) fetchUser,
     required TResult Function(SubmitSignUp value) submitSignUp,
+    required TResult Function(FetchData value) fetchData,
   }) {
     return inputStudentId(this);
   }
@@ -398,6 +414,7 @@ class _$InputStudentIdImpl implements InputStudentId {
     TResult? Function(SubmitSignIn value)? submitSignIn,
     TResult? Function(FetchUser value)? fetchUser,
     TResult? Function(SubmitSignUp value)? submitSignUp,
+    TResult? Function(FetchData value)? fetchData,
   }) {
     return inputStudentId?.call(this);
   }
@@ -411,6 +428,7 @@ class _$InputStudentIdImpl implements InputStudentId {
     TResult Function(SubmitSignIn value)? submitSignIn,
     TResult Function(FetchUser value)? fetchUser,
     TResult Function(SubmitSignUp value)? submitSignUp,
+    TResult Function(FetchData value)? fetchData,
     required TResult orElse(),
   }) {
     if (inputStudentId != null) {
@@ -508,6 +526,7 @@ class _$InputPasswordImpl implements InputPassword {
     required TResult Function() submitSignIn,
     required TResult Function() fetchUser,
     required TResult Function() submitSignUp,
+    required TResult Function() fetchData,
   }) {
     return inputPassword(password);
   }
@@ -521,6 +540,7 @@ class _$InputPasswordImpl implements InputPassword {
     TResult? Function()? submitSignIn,
     TResult? Function()? fetchUser,
     TResult? Function()? submitSignUp,
+    TResult? Function()? fetchData,
   }) {
     return inputPassword?.call(password);
   }
@@ -534,6 +554,7 @@ class _$InputPasswordImpl implements InputPassword {
     TResult Function()? submitSignIn,
     TResult Function()? fetchUser,
     TResult Function()? submitSignUp,
+    TResult Function()? fetchData,
     required TResult orElse(),
   }) {
     if (inputPassword != null) {
@@ -551,6 +572,7 @@ class _$InputPasswordImpl implements InputPassword {
     required TResult Function(SubmitSignIn value) submitSignIn,
     required TResult Function(FetchUser value) fetchUser,
     required TResult Function(SubmitSignUp value) submitSignUp,
+    required TResult Function(FetchData value) fetchData,
   }) {
     return inputPassword(this);
   }
@@ -564,6 +586,7 @@ class _$InputPasswordImpl implements InputPassword {
     TResult? Function(SubmitSignIn value)? submitSignIn,
     TResult? Function(FetchUser value)? fetchUser,
     TResult? Function(SubmitSignUp value)? submitSignUp,
+    TResult? Function(FetchData value)? fetchData,
   }) {
     return inputPassword?.call(this);
   }
@@ -577,6 +600,7 @@ class _$InputPasswordImpl implements InputPassword {
     TResult Function(SubmitSignIn value)? submitSignIn,
     TResult Function(FetchUser value)? fetchUser,
     TResult Function(SubmitSignUp value)? submitSignUp,
+    TResult Function(FetchData value)? fetchData,
     required TResult orElse(),
   }) {
     if (inputPassword != null) {
@@ -646,6 +670,7 @@ class _$SubmitSignInImpl implements SubmitSignIn {
     required TResult Function() submitSignIn,
     required TResult Function() fetchUser,
     required TResult Function() submitSignUp,
+    required TResult Function() fetchData,
   }) {
     return submitSignIn();
   }
@@ -659,6 +684,7 @@ class _$SubmitSignInImpl implements SubmitSignIn {
     TResult? Function()? submitSignIn,
     TResult? Function()? fetchUser,
     TResult? Function()? submitSignUp,
+    TResult? Function()? fetchData,
   }) {
     return submitSignIn?.call();
   }
@@ -672,6 +698,7 @@ class _$SubmitSignInImpl implements SubmitSignIn {
     TResult Function()? submitSignIn,
     TResult Function()? fetchUser,
     TResult Function()? submitSignUp,
+    TResult Function()? fetchData,
     required TResult orElse(),
   }) {
     if (submitSignIn != null) {
@@ -689,6 +716,7 @@ class _$SubmitSignInImpl implements SubmitSignIn {
     required TResult Function(SubmitSignIn value) submitSignIn,
     required TResult Function(FetchUser value) fetchUser,
     required TResult Function(SubmitSignUp value) submitSignUp,
+    required TResult Function(FetchData value) fetchData,
   }) {
     return submitSignIn(this);
   }
@@ -702,6 +730,7 @@ class _$SubmitSignInImpl implements SubmitSignIn {
     TResult? Function(SubmitSignIn value)? submitSignIn,
     TResult? Function(FetchUser value)? fetchUser,
     TResult? Function(SubmitSignUp value)? submitSignUp,
+    TResult? Function(FetchData value)? fetchData,
   }) {
     return submitSignIn?.call(this);
   }
@@ -715,6 +744,7 @@ class _$SubmitSignInImpl implements SubmitSignIn {
     TResult Function(SubmitSignIn value)? submitSignIn,
     TResult Function(FetchUser value)? fetchUser,
     TResult Function(SubmitSignUp value)? submitSignUp,
+    TResult Function(FetchData value)? fetchData,
     required TResult orElse(),
   }) {
     if (submitSignIn != null) {
@@ -775,6 +805,7 @@ class _$FetchUserImpl implements FetchUser {
     required TResult Function() submitSignIn,
     required TResult Function() fetchUser,
     required TResult Function() submitSignUp,
+    required TResult Function() fetchData,
   }) {
     return fetchUser();
   }
@@ -788,6 +819,7 @@ class _$FetchUserImpl implements FetchUser {
     TResult? Function()? submitSignIn,
     TResult? Function()? fetchUser,
     TResult? Function()? submitSignUp,
+    TResult? Function()? fetchData,
   }) {
     return fetchUser?.call();
   }
@@ -801,6 +833,7 @@ class _$FetchUserImpl implements FetchUser {
     TResult Function()? submitSignIn,
     TResult Function()? fetchUser,
     TResult Function()? submitSignUp,
+    TResult Function()? fetchData,
     required TResult orElse(),
   }) {
     if (fetchUser != null) {
@@ -818,6 +851,7 @@ class _$FetchUserImpl implements FetchUser {
     required TResult Function(SubmitSignIn value) submitSignIn,
     required TResult Function(FetchUser value) fetchUser,
     required TResult Function(SubmitSignUp value) submitSignUp,
+    required TResult Function(FetchData value) fetchData,
   }) {
     return fetchUser(this);
   }
@@ -831,6 +865,7 @@ class _$FetchUserImpl implements FetchUser {
     TResult? Function(SubmitSignIn value)? submitSignIn,
     TResult? Function(FetchUser value)? fetchUser,
     TResult? Function(SubmitSignUp value)? submitSignUp,
+    TResult? Function(FetchData value)? fetchData,
   }) {
     return fetchUser?.call(this);
   }
@@ -844,6 +879,7 @@ class _$FetchUserImpl implements FetchUser {
     TResult Function(SubmitSignIn value)? submitSignIn,
     TResult Function(FetchUser value)? fetchUser,
     TResult Function(SubmitSignUp value)? submitSignUp,
+    TResult Function(FetchData value)? fetchData,
     required TResult orElse(),
   }) {
     if (fetchUser != null) {
@@ -904,6 +940,7 @@ class _$SubmitSignUpImpl implements SubmitSignUp {
     required TResult Function() submitSignIn,
     required TResult Function() fetchUser,
     required TResult Function() submitSignUp,
+    required TResult Function() fetchData,
   }) {
     return submitSignUp();
   }
@@ -917,6 +954,7 @@ class _$SubmitSignUpImpl implements SubmitSignUp {
     TResult? Function()? submitSignIn,
     TResult? Function()? fetchUser,
     TResult? Function()? submitSignUp,
+    TResult? Function()? fetchData,
   }) {
     return submitSignUp?.call();
   }
@@ -930,6 +968,7 @@ class _$SubmitSignUpImpl implements SubmitSignUp {
     TResult Function()? submitSignIn,
     TResult Function()? fetchUser,
     TResult Function()? submitSignUp,
+    TResult Function()? fetchData,
     required TResult orElse(),
   }) {
     if (submitSignUp != null) {
@@ -947,6 +986,7 @@ class _$SubmitSignUpImpl implements SubmitSignUp {
     required TResult Function(SubmitSignIn value) submitSignIn,
     required TResult Function(FetchUser value) fetchUser,
     required TResult Function(SubmitSignUp value) submitSignUp,
+    required TResult Function(FetchData value) fetchData,
   }) {
     return submitSignUp(this);
   }
@@ -960,6 +1000,7 @@ class _$SubmitSignUpImpl implements SubmitSignUp {
     TResult? Function(SubmitSignIn value)? submitSignIn,
     TResult? Function(FetchUser value)? fetchUser,
     TResult? Function(SubmitSignUp value)? submitSignUp,
+    TResult? Function(FetchData value)? fetchData,
   }) {
     return submitSignUp?.call(this);
   }
@@ -973,6 +1014,7 @@ class _$SubmitSignUpImpl implements SubmitSignUp {
     TResult Function(SubmitSignIn value)? submitSignIn,
     TResult Function(FetchUser value)? fetchUser,
     TResult Function(SubmitSignUp value)? submitSignUp,
+    TResult Function(FetchData value)? fetchData,
     required TResult orElse(),
   }) {
     if (submitSignUp != null) {
@@ -984,4 +1026,139 @@ class _$SubmitSignUpImpl implements SubmitSignUp {
 
 abstract class SubmitSignUp implements SignInEvent {
   const factory SubmitSignUp() = _$SubmitSignUpImpl;
+}
+
+/// @nodoc
+abstract class _$$FetchDataImplCopyWith<$Res> {
+  factory _$$FetchDataImplCopyWith(
+          _$FetchDataImpl value, $Res Function(_$FetchDataImpl) then) =
+      __$$FetchDataImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$FetchDataImplCopyWithImpl<$Res>
+    extends _$SignInEventCopyWithImpl<$Res, _$FetchDataImpl>
+    implements _$$FetchDataImplCopyWith<$Res> {
+  __$$FetchDataImplCopyWithImpl(
+      _$FetchDataImpl _value, $Res Function(_$FetchDataImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SignInEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$FetchDataImpl implements FetchData {
+  const _$FetchDataImpl();
+
+  @override
+  String toString() {
+    return 'SignInEvent.fetchData()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$FetchDataImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(SignInStatus status) changeStatus,
+    required TResult Function(String studentId) inputStudentId,
+    required TResult Function(String password) inputPassword,
+    required TResult Function() submitSignIn,
+    required TResult Function() fetchUser,
+    required TResult Function() submitSignUp,
+    required TResult Function() fetchData,
+  }) {
+    return fetchData();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(SignInStatus status)? changeStatus,
+    TResult? Function(String studentId)? inputStudentId,
+    TResult? Function(String password)? inputPassword,
+    TResult? Function()? submitSignIn,
+    TResult? Function()? fetchUser,
+    TResult? Function()? submitSignUp,
+    TResult? Function()? fetchData,
+  }) {
+    return fetchData?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(SignInStatus status)? changeStatus,
+    TResult Function(String studentId)? inputStudentId,
+    TResult Function(String password)? inputPassword,
+    TResult Function()? submitSignIn,
+    TResult Function()? fetchUser,
+    TResult Function()? submitSignUp,
+    TResult Function()? fetchData,
+    required TResult orElse(),
+  }) {
+    if (fetchData != null) {
+      return fetchData();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ChangeStatus value) changeStatus,
+    required TResult Function(InputStudentId value) inputStudentId,
+    required TResult Function(InputPassword value) inputPassword,
+    required TResult Function(SubmitSignIn value) submitSignIn,
+    required TResult Function(FetchUser value) fetchUser,
+    required TResult Function(SubmitSignUp value) submitSignUp,
+    required TResult Function(FetchData value) fetchData,
+  }) {
+    return fetchData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ChangeStatus value)? changeStatus,
+    TResult? Function(InputStudentId value)? inputStudentId,
+    TResult? Function(InputPassword value)? inputPassword,
+    TResult? Function(SubmitSignIn value)? submitSignIn,
+    TResult? Function(FetchUser value)? fetchUser,
+    TResult? Function(SubmitSignUp value)? submitSignUp,
+    TResult? Function(FetchData value)? fetchData,
+  }) {
+    return fetchData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ChangeStatus value)? changeStatus,
+    TResult Function(InputStudentId value)? inputStudentId,
+    TResult Function(InputPassword value)? inputPassword,
+    TResult Function(SubmitSignIn value)? submitSignIn,
+    TResult Function(FetchUser value)? fetchUser,
+    TResult Function(SubmitSignUp value)? submitSignUp,
+    TResult Function(FetchData value)? fetchData,
+    required TResult orElse(),
+  }) {
+    if (fetchData != null) {
+      return fetchData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class FetchData implements SignInEvent {
+  const factory FetchData() = _$FetchDataImpl;
 }

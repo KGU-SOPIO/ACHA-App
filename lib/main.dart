@@ -127,12 +127,27 @@ Future<void> main() async {
       ..interceptors.add(
         ErrorInterceptor(
           connectivityChecker: GetIt.I<ConnectivityChecker>()
-          )
-        );
+        )
+      );
       return dio;
     }()
   );
-  getIt.registerLazySingleton<AuthenticationRepository>(() => AuthenticationRepository());
+  getIt.registerLazySingleton<AuthenticationRepository>(() => AuthenticationRepository(
+    dio: () {
+      final dio = Dio(baseOptions)
+      ..interceptors.add(
+        ErrorInterceptor(
+          connectivityChecker: GetIt.I<ConnectivityChecker>()
+        )
+      );
+      return dio;
+    }(),
+    tokenInterceptor: TokenInterceptor(
+      dio: interceptorDio,
+      secureStorage: GetIt.I<SecureStorage>()
+    ),
+    secureStorage: GetIt.I<SecureStorage>()
+  ));
   getIt.registerLazySingleton<UserRepository>(() => UserRepository());
   getIt.registerLazySingleton<CourseRepository>(() => CourseRepository());
   getIt.registerLazySingleton<AlertRepository>(() => AlertRepository());

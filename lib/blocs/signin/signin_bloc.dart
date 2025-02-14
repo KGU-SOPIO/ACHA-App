@@ -13,6 +13,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     on<SubmitSignIn>(_onSubmitSignIn);
     on<FetchUser>(_onFetchUser);
     on<SubmitSignUp>(_onSubmitSignUp);
+    on<FetchData>(_onFetchData);
   }
 
   final AuthenticationRepository authenticationRepository;
@@ -56,11 +57,24 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     try {
       emit(state.copyWith(status: SignInStatus.signUpProgress));
       await authenticationRepository.signUp(studentId: state.studentId!, password: state.password!, user: state.user!);
-      emit(state.copyWith(status: SignInStatus.signUpSuccess));
+      emit(state.copyWith(status: SignInStatus.inFetchData));
     } on DioException catch (e) {
       emit(state.copyWith(status: SignInStatus.signUpFailure, errorMessage: e.error as String));
     } catch (e) {
       emit(state.copyWith(status: SignInStatus.signUpFailure, errorMessage: '문제가 발생해 회원가입에 실패했어요'));
+    }
+  }
+
+  /// 데이터 추출을 요청합니다.
+  Future<void> _onFetchData(FetchData event, Emitter<SignInState> emit) async {
+    try {
+      emit(state.copyWith(status: SignInStatus.fetchDataProgress));
+      await authenticationRepository.requestExtraction();
+      emit(state.copyWith(status: SignInStatus.fetchDataSuccess));
+    } on DioException catch (e) {
+      emit(state.copyWith(status: SignInStatus.fetchDataFailure, errorMessage: e.error as String));
+    } catch (e) {
+      emit(state.copyWith(status: SignInStatus.fetchDataFailure, errorMessage: '문제가 발생해 데이터를 불러오지 못했어요'));
     }
   }
 }

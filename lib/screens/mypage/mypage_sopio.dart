@@ -147,15 +147,15 @@ class SopioScreen extends StatelessWidget {
   Widget _buildMemberList() {
     return const Column(
       children: [
-        MemberContainer(name: '홍준서', part: '앱', department: 'AI컴퓨터공학부', github: '@JunseoKR'),
+        MemberContainer(name: '홍준서', part: '앱', department: 'AI컴퓨터공학부', github: 'JunseoKR'),
         SizedBox(height: 21),
-        MemberContainer(name: '최수인', part: '웹', department: 'AI컴퓨터공학부', github: '@sooinice'),
+        MemberContainer(name: '최수인', part: '웹', department: 'AI컴퓨터공학부', github: 'sooinice'),
         SizedBox(height: 21),
-        MemberContainer(name: '이한음', part: '서버', department: 'AI컴퓨터공학부', github: '@LeeHanEum'),
+        MemberContainer(name: '이한음', part: '서버', department: 'AI컴퓨터공학부', github: 'LeeHanEum'),
         SizedBox(height: 21),
-        MemberContainer(name: '권우진', part: '서버', department: 'AI컴퓨터공학부', github: '@kwj0175'),
+        MemberContainer(name: '권우진', part: '서버', department: 'AI컴퓨터공학부', github: 'kwj0175'),
         SizedBox(height: 21),
-        MemberContainer(name: '서민혁', part: '디자인', department: 'AI컴퓨터공학부', github: '@SOPIO'),
+        MemberContainer(name: '서민혁', part: '디자인', department: 'AI컴퓨터공학부', github: 'SOPIO'),
         SizedBox(height: 40)
       ]
     );
