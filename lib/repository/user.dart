@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
 import 'package:acha/models/index.dart';
+import 'package:acha/repository/exceptions/index.dart';
 
 import 'package:acha/constants/apis/index.dart';
 
@@ -16,7 +17,7 @@ class UserRepository {
     } on DioException {
       rethrow;
     } catch (e) {
-      throw Exception('학생 정보를 불러오지 못했어요');
+      throw RepositoryException('학생 정보를 불러오지 못했어요');
     }
   }
 }

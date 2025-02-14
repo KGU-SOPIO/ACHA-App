@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:acha/models/index.dart';
 import 'package:acha/repository/index.dart';
+import 'package:acha/repository/exceptions/index.dart';
 import 'package:acha/blocs/notice/index.dart';
 
 class NoticeBloc extends Bloc<NoticeEvent, NoticeState> {
@@ -21,6 +22,8 @@ class NoticeBloc extends Bloc<NoticeEvent, NoticeState> {
       emit(state.copyWith(status: NoticeStatus.loaded, notice: notice));
     } on DioException catch (e) {
       emit(state.copyWith(status: NoticeStatus.error, errorMessage: e.error as String));
+    } on RepositoryException catch (e) {
+      emit(state.copyWith(status: NoticeStatus.error, errorMessage: e.message));
     } catch (e) {
       emit(state.copyWith(status: NoticeStatus.error, errorMessage: '공지사항을 불러오지 못했어요'));
     }

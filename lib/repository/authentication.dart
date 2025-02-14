@@ -5,6 +5,7 @@ import 'package:get_it/get_it.dart';
 
 import 'package:acha/models/index.dart';
 import 'package:acha/repository/index.dart';
+import 'package:acha/repository/exceptions/index.dart';
 import 'package:acha/blocs/auth/index.dart';
 
 import 'package:acha/network/interceptors/index.dart';
@@ -83,7 +84,7 @@ class AuthenticationRepository {
       rethrow;
     } catch (e) {
       _authStreamController.add(AuthenticationStatus.unauthenticated);
-      throw Exception('문제가 발생해 로그인에 실패했어요');
+      throw RepositoryException('문제가 발생해 로그인에 실패했어요');
     }
   }
 
@@ -100,7 +101,7 @@ class AuthenticationRepository {
       rethrow;
     } catch (e) {
       _authStreamController.add(AuthenticationStatus.unauthenticated);
-      throw Exception('문제가 발생해 학생 정보를 가져오지 못했어요');
+      throw RepositoryException('문제가 발생해 학생 정보를 가져오지 못했어요');
     }
   }
 
@@ -126,7 +127,7 @@ class AuthenticationRepository {
       rethrow;
     } catch (e) {
       _authStreamController.add(AuthenticationStatus.unauthenticated);
-      throw Exception('문제가 발생해 회원가입에 실패했어요');
+      throw RepositoryException('문제가 발생해 회원가입에 실패했어요');
     }
   }
 
@@ -142,7 +143,7 @@ class AuthenticationRepository {
       rethrow;
     } catch (e) {
       _authStreamController.add(AuthenticationStatus.unauthenticated);
-      throw Exception('문제가 발생해 데이터를 가져오지 못했어요');
+      throw RepositoryException('문제가 발생해 데이터를 불러오지 못했어요');
     }
   }
 
@@ -160,13 +161,18 @@ class AuthenticationRepository {
     } on DioException {
       rethrow;
     } catch (e) {
-      throw Exception('서비스 이용을 위한 인증에 실패했어요');
+      throw RepositoryException('서비스 이용을 위한 인증에 실패했어요');
     }
   }
 
   /// 로그아웃을 수행합니다.
   Future<void> logout() async {
-    await secureStorage.deleteAllData();
-    _authStreamController.add(AuthenticationStatus.unauthenticated);
+    try {
+      await secureStorage.deleteAllData();
+      _authStreamController.add(AuthenticationStatus.unauthenticated);
+    } catch (e) {
+      // 오류 처리 검토 필요
+      return;
+    }
   }
 }

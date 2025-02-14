@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:acha/repository/index.dart';
+import 'package:acha/repository/exceptions/index.dart';
 import 'package:acha/blocs/activity/index.dart';
 
 class ActivityBloc extends Bloc<ActivityEvent, ActivityState> {
@@ -18,6 +19,8 @@ class ActivityBloc extends Bloc<ActivityEvent, ActivityState> {
       emit(state.copyWith(status: ActivityStatus.loaded, weekActivities: weekActivities));
     } on DioException catch (e) {
       emit(state.copyWith(status: ActivityStatus.error, errorMessage: e.error as String));
+    } on RepositoryException catch (e) {
+      emit(state.copyWith(status: ActivityStatus.error, errorMessage: e.message));
     } catch (e) {
       emit(state.copyWith(status: ActivityStatus.error, errorMessage: '활동을 불러오지 못했어요'));
     }

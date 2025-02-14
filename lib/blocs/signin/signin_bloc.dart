@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:acha/repository/index.dart';
+import 'package:acha/repository/exceptions/index.dart';
 import 'package:acha/blocs/signin/index.dart';
 
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
@@ -30,6 +31,8 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       );
     } on DioException catch (e) {
       emit(state.copyWith(status: SignInStatus.signInFailure, errorMessage: e.error as String));
+    } on RepositoryException catch (e) {
+      emit(state.copyWith(status: SignInStatus.signInFailure, errorMessage: e.message));
     } catch (e) {
       emit(state.copyWith(status: SignInStatus.signInFailure, errorMessage: '문제가 발생해 로그인에 실패했어요'));
     }
@@ -47,6 +50,8 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       );
     } on DioException catch (e) {
       emit(state.copyWith(status: SignInStatus.fetchUserFailure, errorMessage: e.error as String));
+    } on RepositoryException catch (e) {
+      emit(state.copyWith(status: SignInStatus.fetchUserFailure, errorMessage: e.message));
     } catch (e) {
       emit(state.copyWith(status: SignInStatus.fetchUserFailure, errorMessage: '문제가 발생해 학생 정보를 가져오지 못했어요'));
     }
@@ -60,6 +65,8 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       emit(state.copyWith(status: SignInStatus.inFetchData));
     } on DioException catch (e) {
       emit(state.copyWith(status: SignInStatus.signUpFailure, errorMessage: e.error as String));
+    } on RepositoryException catch (e) {
+      emit(state.copyWith(status: SignInStatus.signUpFailure, errorMessage: e.message));
     } catch (e) {
       emit(state.copyWith(status: SignInStatus.signUpFailure, errorMessage: '문제가 발생해 회원가입에 실패했어요'));
     }
@@ -73,6 +80,8 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       emit(state.copyWith(status: SignInStatus.fetchDataSuccess));
     } on DioException catch (e) {
       emit(state.copyWith(status: SignInStatus.fetchDataFailure, errorMessage: e.error as String));
+    } on RepositoryException catch (e) {
+      emit(state.copyWith(status: SignInStatus.fetchDataFailure, errorMessage: e.message));
     } catch (e) {
       emit(state.copyWith(status: SignInStatus.fetchDataFailure, errorMessage: '문제가 발생해 데이터를 불러오지 못했어요'));
     }

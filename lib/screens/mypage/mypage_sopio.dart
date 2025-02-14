@@ -155,7 +155,7 @@ class SopioScreen extends StatelessWidget {
         SizedBox(height: 21),
         MemberContainer(name: '권우진', part: '서버', department: 'AI컴퓨터공학부', github: 'kwj0175'),
         SizedBox(height: 21),
-        MemberContainer(name: '서민혁', part: '디자인', department: 'AI컴퓨터공학부', github: 'SOPIO'),
+        MemberContainer(name: '서민혁', part: '디자인', department: 'AI컴퓨터공학부', github: 'Seominhyeok05'),
         SizedBox(height: 40)
       ]
     );
