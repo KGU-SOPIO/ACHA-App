@@ -1,4 +1,4 @@
-class ManualUrl {
-  static const String baseUrl = 'https://manual.sopio.kr';
-  static const String myInformationIsDifferent = '$baseUrl/user/modify';
+class ManualUri {
+  static const String baseUri = 'https://manual.sopio.kr';
+  static const String myInformationIsDifferent = '$baseUri/user/modify';
 }

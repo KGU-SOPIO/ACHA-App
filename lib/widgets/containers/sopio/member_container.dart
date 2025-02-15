@@ -19,7 +19,7 @@ class MemberContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _openGithubUrl(),
+      onTap: () => _openGithubUri(),
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.all(20),
@@ -96,11 +96,11 @@ class MemberContainer extends StatelessWidget {
     );
   }
 
-  Future<void> _openGithubUrl() async {
+  Future<void> _openGithubUri() async {
     try {
-      final url = Uri.parse('https://github.com/$github');
-      if (await canLaunchUrl(url)) {
-        await launchUrl(url, mode: LaunchMode.externalApplication);
+      final uri = Uri.parse('https://github.com/$github');
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
       }
     } catch (e) {
       return;

@@ -58,17 +58,17 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
         SvgPicture.asset('lib/assets/svgs/acha_small.svg', width: 50)
       ],
     ),
-    url: TermsAndConditionsUrl.serviceTermsAndConditions,
+    uri: Uri.parse(TermsAndConditionsUri.serviceTermsAndConditions),
     termsButtonText: '아차 사용 약관',
     agreeButtonText: '동의하고 회원가입',
     onAgree: () => Navigator.push(context, AuthProcessScreen.route(context))
   ).show(context);
 
-  Future<void> _openManualUrl() async {
-    final url = Uri.parse(ManualUrl.myInformationIsDifferent);
+  Future<void> _openManualUri() async {
+    final uri = Uri.parse(ManualUri.myInformationIsDifferent);
     try {
-      if (await canLaunchUrl(url)) {
-        await launchUrl(url);
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri);
       }
     } catch (e) {
       return;
@@ -174,7 +174,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
   Widget _buildManualButton() {
     return TextButton(
       style: TextButton.styleFrom(tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-      onPressed: () => _openManualUrl(),
+      onPressed: () => _openManualUri(),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [

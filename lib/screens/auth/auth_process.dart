@@ -57,7 +57,10 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
               }
             },
             builder: (context, state) {
-              if (state.status == SignInStatus.signInFailure || state.status == SignInStatus.fetchUserFailure || state.status == SignInStatus.signUpFailure) {
+              if (state.status == SignInStatus.signInFailure ||
+                  state.status == SignInStatus.fetchUserFailure ||
+                  state.status == SignInStatus.signUpFailure ||
+                  state.status == SignInStatus.fetchDataFailure) {
                 return _buildErrorContent(context, state);
               } else {
                 return _buildLoadingContent(state);

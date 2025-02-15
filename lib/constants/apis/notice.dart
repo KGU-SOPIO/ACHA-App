@@ -1,7 +1,7 @@
 import 'package:acha/constants/apis/index.dart';
 
 class NoticeApiEndpoints {
-  static const String notice = '${BaseApiEndpoints.baseUrl}/notice';
+  static const String notice = '${BaseApiEndpoints.baseUri}/notice';
 
   static String noticeListDetail(String courseCode) {
     return '$notice/$courseCode';

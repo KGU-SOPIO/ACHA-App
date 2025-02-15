@@ -20,8 +20,7 @@ import 'package:acha/screens/connect_error.dart';
 import 'package:acha/screens/home.dart';
 import 'package:acha/screens/auth/index.dart';
 
-import 'package:acha/themes/acha_light.dart';
-import 'package:acha/themes/acha_dark.dart';
+import 'package:acha/themes/index.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -105,7 +104,7 @@ class _AppViewState extends State<AppView> {
       debugShowCheckedModeBanner: false,
       title: '아차',
       theme: achaLight(),
-      darkTheme: achaDark(),
+      darkTheme: achaLight(),
       themeMode: ThemeMode.system,
       navigatorKey: AppView.navigatorKey,
       scrollBehavior: Behavior(),

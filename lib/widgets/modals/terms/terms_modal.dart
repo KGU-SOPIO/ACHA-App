@@ -6,14 +6,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 class TermsBottomModalSheet {
   TermsBottomModalSheet({
     required this.titleWidget,
-    required String url,
+    required this.uri,
     required this.termsButtonText,
     required this.agreeButtonText,
     required this.onAgree
-  }) : url = Uri.parse(url);
+  });
 
   final Widget titleWidget;
-  final Uri url;
+  final Uri uri;
   final String termsButtonText;
   final String agreeButtonText;
   final VoidCallback onAgree;
@@ -79,7 +79,7 @@ class TermsBottomModalSheet {
         ),
         backgroundColor: const Color.fromARGB(255, 242, 244, 246),
       ),
-      onPressed: () => _openTermsUrl(url: url),
+      onPressed: () => _openTermsUri(uri: uri),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -130,10 +130,10 @@ class TermsBottomModalSheet {
     );
   }
 
-  Future<void> _openTermsUrl({required Uri url}) async {
+  Future<void> _openTermsUri({required Uri uri}) async {
     try {
-      if (await canLaunchUrl(url)) {
-        await launchUrl(url);
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri);
       }
     } catch (e) {
       return;

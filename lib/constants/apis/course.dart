@@ -1,11 +1,11 @@
 import 'package:acha/constants/apis/index.dart';
 
 class CourseApiEndpoints {
-  static const String extraction = '${BaseApiEndpoints.baseUrl}/extract';
-  static const String courses = '${BaseApiEndpoints.baseUrl}/courses';
-  static const String activity = '${BaseApiEndpoints.baseUrl}/activity';
-  static const String assignment = '${BaseApiEndpoints.baseUrl}/assignment';
-  static const String notice = '${BaseApiEndpoints.baseUrl}/notification';
+  static const String extraction = '${BaseApiEndpoints.baseUri}/lecture';
+  static const String courses = '${BaseApiEndpoints.baseUri}/courses';
+  static const String activity = '${BaseApiEndpoints.baseUri}/activity';
+  static const String assignment = '${BaseApiEndpoints.baseUri}/assignment';
+  static const String notice = '${BaseApiEndpoints.baseUri}/notification';
 
   static String activityDetail(String courseCode) {
     return '$activity/$courseCode';

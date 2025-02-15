@@ -75,7 +75,7 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
         Image.asset('lib/assets/images/modal/terms/school.png', width: 60)
       ]
     ),
-    url: TermsAndConditionsUrl.consentToUseStudentInformation,
+    uri: Uri.parse(TermsAndConditionsUri.consentToUseStudentInformation),
     termsButtonText: '개인정보 활용 동의',
     agreeButtonText: '동의하고 학생 인증',
     onAgree: () => Navigator.push(context, AuthProcessScreen.route(context))

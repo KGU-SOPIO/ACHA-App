@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
 
+import 'package:acha/models/index.dart';
+
 import 'package:auto_size_text/auto_size_text.dart';
 
 class ActivityContainer extends StatelessWidget {
   const ActivityContainer({
     super.key,
+    required this.type,
     required this.title,
     required this.course,
     required this.deadline,
+    required this.uri,
     this.margin,
     this.backgroundColor
   });
 
+  final ActivityType type;
   final String title;
   final String course;
   final String deadline;
+  final Uri uri;
   final EdgeInsets? margin;
   final Color? backgroundColor;
 

@@ -206,9 +206,11 @@ class _SliderWidgetState extends State<SliderWidget> {
               const SizedBox(height: 13),
               for (final lecture in activities)
                 ActivityContainer(
+                  type: lecture.type,
                   title: lecture.name,
                   course: lecture.courseName!,
                   deadline: lecture.deadline!.toTimeLeftFormattedTime(),
+                  uri: Uri.parse(lecture.link),
                   margin: const EdgeInsets.only(bottom: 13)
                 ),
               const SizedBox(height: 20),
@@ -239,9 +241,11 @@ class _SliderWidgetState extends State<SliderWidget> {
               const SizedBox(height: 13),
               for (final assignment in activities)
                 ActivityContainer(
+                  type: assignment.type,
                   title: assignment.name,
                   course: assignment.courseName!,
                   deadline: assignment.deadline!.toTimeLeftFormattedTime(),
+                  uri: Uri.parse(assignment.link),
                   margin: const EdgeInsets.only(bottom: 13),
                 ),
               const SizedBox(height: 20),
