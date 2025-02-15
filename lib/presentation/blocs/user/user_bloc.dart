@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:acha/domain/repositories/index.dart';
-import 'package:acha/domain/repositories/exceptions/index.dart';
+import 'package:acha/domain/exceptions/index.dart';
 import 'package:acha/presentation/blocs/index.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {

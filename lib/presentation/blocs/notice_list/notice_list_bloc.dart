@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:acha/data/models/index.dart';
 import 'package:acha/domain/repositories/index.dart';
-import 'package:acha/domain/repositories/exceptions/index.dart';
+import 'package:acha/domain/exceptions/index.dart';
 import 'package:acha/presentation/blocs/index.dart';
 
 class NoticeListBloc extends Bloc<NoticeListEvent, NoticeListState> {

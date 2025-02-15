@@ -7,7 +7,7 @@ import 'package:acha/core/network/interceptors/index.dart';
 import 'package:acha/data/models/index.dart';
 import 'package:acha/domain/apis/index.dart';
 import 'package:acha/domain/repositories/index.dart';
-import 'package:acha/domain/repositories/exceptions/index.dart';
+import 'package:acha/domain/exceptions/index.dart';
 import 'package:acha/presentation/blocs/index.dart';
 import 'package:acha/presentation/widgets/index.dart';
 

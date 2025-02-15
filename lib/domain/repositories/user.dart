@@ -3,7 +3,7 @@ import 'package:get_it/get_it.dart';
 
 import 'package:acha/data/models/index.dart';
 import 'package:acha/domain/apis/index.dart';
-import 'package:acha/domain/repositories/exceptions/index.dart';
+import 'package:acha/domain/exceptions/index.dart';
 
 class UserRepository {
   final Dio _dio = GetIt.I<Dio>();
