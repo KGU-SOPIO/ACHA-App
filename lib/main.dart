@@ -12,12 +12,10 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'package:acha/app.dart';
 
-import 'package:acha/repository/index.dart';
-
-import 'package:acha/network/interceptors/index.dart';
-import 'package:acha/network/utils/index.dart';
-
-import 'package:acha/widgets/toast/toast_manager.dart';
+import 'package:acha/core/utils/index.dart';
+import 'package:acha/core/network/interceptors/index.dart';
+import 'package:acha/domain/repositories/index.dart';
+import 'package:acha/presentation/widgets/index.dart';
 
 late final FCMTokenRepository _fcmTokenRepository;
 

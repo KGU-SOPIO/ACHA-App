@@ -4,23 +4,11 @@ import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:acha/blocs/auth/index.dart';
-import 'package:acha/blocs/user/index.dart';
-import 'package:acha/blocs/course_list/index.dart';
-import 'package:acha/blocs/today_course/index.dart';
-import 'package:acha/blocs/activity/index.dart';
-import 'package:acha/blocs/alert/index.dart';
-
-import 'package:acha/repository/index.dart';
-
-import 'package:acha/network/utils/index.dart';
-
-import 'package:acha/screens/splash.dart';
-import 'package:acha/screens/connect_error.dart';
-import 'package:acha/screens/home.dart';
-import 'package:acha/screens/auth/index.dart';
-
-import 'package:acha/themes/index.dart';
+import 'package:acha/core/utils/index.dart';
+import 'package:acha/core/themes/index.dart';
+import 'package:acha/domain/repositories/index.dart';
+import 'package:acha/presentation/blocs/index.dart';
+import 'package:acha/presentation/screens/index.dart';
 
 class App extends StatefulWidget {
   const App({super.key});

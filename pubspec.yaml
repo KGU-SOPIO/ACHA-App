@@ -61,6 +61,7 @@ flutter:
     - lib/assets/images/modal/terms/
     - lib/assets/images/modal/auth/
     - lib/assets/svgs/
+    - lib/assets/svgs/acha/
     - lib/assets/svgs/auth/
     - lib/assets/svgs/modal/main/
     - lib/assets/svgs/modal/auth/
