@@ -12,7 +12,7 @@ class CourseApiEndpoints {
   }
 
   static String assignmentDetail(String activityCode) {
-    return '$activity/$activityCode';
+    return '$assignment/$activityCode';
   }
 
   static String noticeDetail(String courseCode) {

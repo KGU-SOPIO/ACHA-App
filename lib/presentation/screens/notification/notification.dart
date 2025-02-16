@@ -72,7 +72,9 @@ class _NotificationScreenState extends State<NotificationScreen>
 
   Widget _buildAppBar() {
     return const Padding(
-        padding: EdgeInsets.only(bottom: 20), child: AchaAppbar());
+      padding: EdgeInsets.only(bottom: 20),
+      child: AchaAppbar(),
+    );
   }
 
   Widget _buildLoadingContent() {
@@ -124,7 +126,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                   title: activity.name,
                   course: activity.courseName!,
                   deadline: activity.deadline!.toTimeLeftFormattedTime(),
-                  uri: Uri.parse(activity.link),
+                  uri: Uri.tryParse(activity.link) ?? Uri(),
                   margin: const EdgeInsets.only(bottom: 16),
                   backgroundColor: Colors.white,
                 ),
