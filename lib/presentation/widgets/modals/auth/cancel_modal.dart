@@ -17,7 +17,7 @@ class CancelModal extends StatefulWidget {
       isScrollControlled: true,
       backgroundColor: Colors.white,
       barrierColor: Colors.black.withValues(alpha: 0.3),
-      builder: (context) => const CancelModal()
+      builder: (context) => const CancelModal(),
     );
   }
 
@@ -54,20 +54,22 @@ class _CancelModalState extends State<CancelModal> {
     borderSide: const BorderSide(
       width: 1.5,
       color: Color.fromARGB(255, 237, 239, 242),
-    )
+    ),
   );
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       physics: const NeverScrollableScrollPhysics(),
-      padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      padding:
+          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: Wrap(
         children: [
           Center(
             child: Container(
               width: double.infinity,
-              padding: const EdgeInsets.only(top: 12, bottom: 40, left: 24, right: 24),
+              padding: const EdgeInsets.only(
+                  top: 12, bottom: 40, left: 24, right: 24),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -75,13 +77,13 @@ class _CancelModalState extends State<CancelModal> {
                   const SizedBox(height: 24),
                   _buildModalBody(context),
                   const SizedBox(height: 40),
-                  _buildButtons(context)
-                ]
-              )
-            )
-          )
-        ]
-      )
+                  _buildButtons(context),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -92,9 +94,9 @@ class _CancelModalState extends State<CancelModal> {
         width: 79,
         decoration: BoxDecoration(
           color: const Color.fromARGB(255, 228, 232, 241),
-          borderRadius: BorderRadius.circular(7)
-        )
-      )
+          borderRadius: BorderRadius.circular(7),
+        ),
+      ),
     );
   }
 
@@ -110,8 +112,8 @@ class _CancelModalState extends State<CancelModal> {
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w700,
-            color: Color.fromARGB(255, 30, 30, 30)
-          )
+            color: Color.fromARGB(255, 30, 30, 30),
+          ),
         ),
         const SizedBox(height: 30),
         const Text(
@@ -119,8 +121,8 @@ class _CancelModalState extends State<CancelModal> {
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w400,
-            color: Color.fromARGB(255, 109, 109, 109)
-          )
+            color: Color.fromARGB(255, 109, 109, 109),
+          ),
         ),
         const SizedBox(height: 40),
         const Text(
@@ -128,12 +130,12 @@ class _CancelModalState extends State<CancelModal> {
           style: TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w500,
-            color: Color.fromARGB(255, 30, 30, 30)
-          )
+            color: Color.fromARGB(255, 30, 30, 30),
+          ),
         ),
         const SizedBox(height: 20),
-        _buildPasswordField()
-      ]
+        _buildPasswordField(),
+      ],
     );
   }
 
@@ -147,14 +149,14 @@ class _CancelModalState extends State<CancelModal> {
         hintStyle: const TextStyle(
           color: Color.fromARGB(255, 186, 186, 186),
           fontSize: 16,
-          fontWeight: FontWeight.w400
+          fontWeight: FontWeight.w400,
         ),
         filled: true,
         fillColor: const Color.fromARGB(255, 251, 251, 251),
         border: textFieldBorder,
         enabledBorder: textFieldBorder,
-        focusedBorder: textFieldBorder
-      )
+        focusedBorder: textFieldBorder,
+      ),
     );
   }
 
@@ -177,43 +179,48 @@ class _CancelModalState extends State<CancelModal> {
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 color: Color.fromARGB(255, 109, 109, 109),
-              )
-            )
-          )
+              ),
+            ),
+          ),
         ),
         const SizedBox(width: 20),
         Expanded(
           child: ElevatedButton(
             style: ButtonStyle(
               minimumSize: WidgetStateProperty.all(const Size(0, 56)),
-              backgroundColor: WidgetStateProperty.resolveWith((states) {
+              backgroundColor: WidgetStateProperty.resolveWith(
+                (states) {
                   if (states.contains(WidgetState.disabled)) {
                     return const Color.fromARGB(255, 199, 199, 199);
                   }
                   return const Color.fromARGB(255, 255, 78, 107);
-                }
+                },
               ),
               shape: WidgetStateProperty.all(
                 RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
-                )
-              )
+                ),
+              ),
             ),
-            onPressed: _isButtonEnabled ? () {
-              context.read<AuthenticationBloc>().add(const AuthenticationEvent.logout());
-              GetIt.I<ToastManager>().success(message: '서비스를 탈퇴했어요');
-            } : null,
+            onPressed: _isButtonEnabled
+                ? () {
+                    context
+                        .read<AuthenticationBloc>()
+                        .add(const AuthenticationEvent.logout());
+                    GetIt.I<ToastManager>().success(message: '서비스를 탈퇴했어요');
+                  }
+                : null,
             child: const Text(
               '삭제',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w700,
                 color: Colors.white,
-              )
-            )
-          )
-        )
-      ]
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

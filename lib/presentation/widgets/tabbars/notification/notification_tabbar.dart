@@ -10,8 +10,8 @@ class NotificationTabbar extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 18),
       child: Center(
-        child: _buildTabBarContainer()
-      )
+        child: _buildTabBarContainer(),
+      ),
     );
   }
 
@@ -29,14 +29,14 @@ class NotificationTabbar extends StatelessWidget {
         indicatorSize: TabBarIndicatorSize.tab,
         indicator: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
-          color: Colors.white
+          color: Colors.white,
         ),
         overlayColor: WidgetStateProperty.all(Colors.transparent),
         dividerColor: Colors.transparent,
         labelColor: Colors.black,
         unselectedLabelColor: const Color.fromARGB(255, 186, 186, 186),
-        tabs: _buildTabs()
-      )
+        tabs: _buildTabs(),
+      ),
     );
   }
 
@@ -50,9 +50,9 @@ class NotificationTabbar extends StatelessWidget {
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w500,
-            )
-          )
-        )
+            ),
+          ),
+        ),
       ),
       Tab(
         child: Align(
@@ -62,9 +62,9 @@ class NotificationTabbar extends StatelessWidget {
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w500,
-            )
-          )
-        )
+            ),
+          ),
+        ),
       ),
       Tab(
         child: Align(
@@ -74,10 +74,10 @@ class NotificationTabbar extends StatelessWidget {
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w500,
-            )
-          )
-        )
-      )
+            ),
+          ),
+        ),
+      ),
     ];
   }
 }

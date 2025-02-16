@@ -9,7 +9,7 @@ class TermsBottomModalSheet {
     required this.uri,
     required this.termsButtonText,
     required this.agreeButtonText,
-    required this.onAgree
+    required this.onAgree,
   });
 
   final Widget titleWidget;
@@ -25,7 +25,7 @@ class TermsBottomModalSheet {
       isScrollControlled: true,
       backgroundColor: Colors.white,
       barrierColor: Colors.black.withValues(alpha: 0.3),
-      builder: (context) => _buildContent(context)
+      builder: (context) => _buildContent(context),
     );
   }
 
@@ -37,9 +37,9 @@ class TermsBottomModalSheet {
         margin: const EdgeInsets.only(bottom: 24),
         decoration: BoxDecoration(
           color: const Color.fromARGB(255, 228, 232, 241),
-          borderRadius: BorderRadius.circular(7)
-        )
-      )
+          borderRadius: BorderRadius.circular(7),
+        ),
+      ),
     );
   }
 
@@ -49,24 +49,26 @@ class TermsBottomModalSheet {
         Center(
           child: Container(
             width: double.infinity,
-            padding: const EdgeInsets.only(top: 12, bottom: 40, left: 24, right: 24),
+            padding:
+                const EdgeInsets.only(top: 12, bottom: 40, left: 24, right: 24),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 _buildHandle(),
                 Container(
                   width: double.infinity,
-                  margin: const EdgeInsets.only(left: 16, right: 16, bottom: 20),
-                  child: titleWidget
+                  margin:
+                      const EdgeInsets.only(left: 16, right: 16, bottom: 20),
+                  child: titleWidget,
                 ),
                 _buildTermsButton(),
                 const SizedBox(height: 20),
-                _buildAgreeButton()
-              ]
-            )
-          )
-        )
-      ]
+                _buildAgreeButton(),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -75,7 +77,7 @@ class TermsBottomModalSheet {
       style: ElevatedButton.styleFrom(
         minimumSize: const Size(double.infinity, 56),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12)
+          borderRadius: BorderRadius.circular(12),
         ),
         backgroundColor: const Color.fromARGB(255, 242, 244, 246),
       ),
@@ -90,13 +92,13 @@ class TermsBottomModalSheet {
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
-                color: Color.fromARGB(255, 109, 109, 109)
-              )
-            )
+                color: Color.fromARGB(255, 109, 109, 109),
+              ),
+            ),
           ),
           SvgPicture.asset('lib/assets/svgs/modal/terms/document.svg')
-        ]
-      )
+        ],
+      ),
     );
   }
 
@@ -104,9 +106,7 @@ class TermsBottomModalSheet {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         minimumSize: const Size(double.infinity, 56),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12)
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         backgroundColor: const Color.fromARGB(255, 0, 102, 255),
       ),
       onPressed: onAgree,
@@ -121,12 +121,12 @@ class TermsBottomModalSheet {
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
-                color: Colors.white
-              )
-            )
-          )
-        ]
-      )
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 

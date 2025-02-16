@@ -11,11 +11,14 @@ class ErrorInterceptor extends Interceptor {
   Future<void> onError(
       DioException err, ErrorInterceptorHandler handler) async {
     final message = await _getErrorMessage(err);
-    handler.reject(DioException(
+    handler.reject(
+      DioException(
         requestOptions: err.requestOptions,
         error: message,
         type: err.type,
-        response: err.response));
+        response: err.response,
+      ),
+    );
   }
 
   Future<String> _getErrorMessage(DioException err) async {

@@ -13,10 +13,10 @@ class AuthPasswordScreen extends StatefulWidget {
 
   static Route<void> route(BuildContext parentContext) {
     return CupertinoPageRoute(
-        builder: (context) => BlocProvider.value(
-          value: BlocProvider.of<SignInBloc>(parentContext),
-          child: const AuthPasswordScreen(),
-        )
+      builder: (context) => BlocProvider.value(
+        value: BlocProvider.of<SignInBloc>(parentContext),
+        child: const AuthPasswordScreen(),
+      ),
     );
   }
 
@@ -49,35 +49,32 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
   }
 
   void _showTermsModal() => TermsBottomModalSheet(
-    titleWidget: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        const Text.rich(
-          TextSpan(
-            style: TextStyle(
-              fontSize: 16,
-              color: Color.fromARGB(255, 30, 30, 30)
+      titleWidget: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Text.rich(
+            TextSpan(
+              style: TextStyle(
+                  fontSize: 16, color: Color.fromARGB(255, 30, 30, 30)),
+              children: [
+                TextSpan(
+                    text: '학생 인증',
+                    style: TextStyle(fontWeight: FontWeight.w700)),
+                TextSpan(
+                  text: '을 위해\n경기대학교에 로그인합니다',
+                  style: TextStyle(fontWeight: FontWeight.w500, height: 1.7),
+                ),
+              ],
             ),
-            children: [
-              TextSpan(
-                text: '학생 인증',
-                style: TextStyle(fontWeight: FontWeight.w700)
-              ),
-              TextSpan(
-                text: '을 위해\n경기대학교에 로그인합니다',
-                style: TextStyle(fontWeight: FontWeight.w500, height: 1.7)
-              )
-            ]
-          )
-        ),
-        Image.asset('lib/assets/images/modal/terms/school.png', width: 60)
-      ]
-    ),
-    uri: Uri.parse(TermsAndConditionsUri.consentToUseStudentInformation),
-    termsButtonText: '개인정보 활용 동의',
-    agreeButtonText: '동의하고 학생 인증',
-    onAgree: () => Navigator.push(context, AuthProcessScreen.route(context))
-  ).show(context);
+          ),
+          Image.asset('lib/assets/images/modal/terms/school.png', width: 60)
+        ],
+      ),
+      uri: Uri.parse(TermsAndConditionsUri.consentToUseStudentInformation),
+      termsButtonText: '개인정보 활용 동의',
+      agreeButtonText: '동의하고 학생 인증',
+      onAgree: () => Navigator.push(
+          context, AuthProcessScreen.route(context))).show(context);
 
   @override
   Widget build(BuildContext context) {
@@ -88,10 +85,10 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: _buildContent()
-          )
-        )
-      )
+            child: _buildContent(),
+          ),
+        ),
+      ),
     );
   }
 
@@ -104,9 +101,9 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
         '시작하기',
         style: TextStyle(
           fontSize: 20,
-          fontWeight: FontWeight.w500
+          fontWeight: FontWeight.w500,
         ),
-      )
+      ),
     );
   }
 
@@ -120,32 +117,29 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
             const SizedBox(height: 54),
             _buildTitle(),
             const SizedBox(height: 30),
-            _buildPasswordField()
-          ]
+            _buildPasswordField(),
+          ],
         ),
         _buildButtonSection(context)
-      ]
+      ],
     );
   }
 
   Widget _buildTitle() {
     return const Text.rich(
       TextSpan(
-        style: TextStyle(
-          fontSize: 15,
-          color: Colors.black
-        ),
+        style: TextStyle(fontSize: 15, color: Colors.black),
         children: [
           TextSpan(
             text: '비밀번호를 ',
-            style: TextStyle(fontWeight: FontWeight.w700)
+            style: TextStyle(fontWeight: FontWeight.w700),
           ),
           TextSpan(
             text: '입력해 주세요',
-            style: TextStyle(fontWeight: FontWeight.w400)
+            style: TextStyle(fontWeight: FontWeight.w400),
           )
-        ]
-      )
+        ],
+      ),
     );
   }
 
@@ -155,7 +149,7 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
       borderSide: const BorderSide(
         width: 1.5,
         color: Color.fromARGB(255, 237, 239, 242),
-      )
+      ),
     );
 
     return TextFormField(
@@ -167,14 +161,14 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
         hintStyle: const TextStyle(
           color: Color.fromARGB(255, 186, 186, 186),
           fontSize: 16,
-          fontWeight: FontWeight.w400
+          fontWeight: FontWeight.w400,
         ),
         filled: true,
         fillColor: const Color.fromARGB(255, 251, 251, 251),
         border: textFieldBorder,
         enabledBorder: textFieldBorder,
-        focusedBorder: textFieldBorder
-      )
+        focusedBorder: textFieldBorder,
+      ),
     );
   }
 
@@ -183,8 +177,8 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
       children: [
         _buildNextButton(context),
         const SizedBox(height: 5),
-        _buildPreviousButton(context)
-      ]
+        _buildPreviousButton(context),
+      ],
     );
   }
 
@@ -193,35 +187,38 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
       style: ButtonStyle(
         minimumSize: WidgetStateProperty.all(const Size(double.infinity, 56)),
         backgroundColor: WidgetStateProperty.resolveWith((states) {
-            if (states.contains(WidgetState.disabled)) {
-              return const Color.fromARGB(255, 199, 199, 199);
-            }
-            return const Color.fromARGB(255, 0, 102, 255);
+          if (states.contains(WidgetState.disabled)) {
+            return const Color.fromARGB(255, 199, 199, 199);
           }
-        ),
+          return const Color.fromARGB(255, 0, 102, 255);
+        }),
         shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),
       ),
-      onPressed: _isButtonEnabled ? () {
-        context.read<SignInBloc>().add(InputPassword(password: _textEditingController.text));
-        _showTermsModal();
-      } : null,
+      onPressed: _isButtonEnabled
+          ? () {
+              context
+                  .read<SignInBloc>()
+                  .add(InputPassword(password: _textEditingController.text));
+              _showTermsModal();
+            }
+          : null,
       child: const Text(
         '다음',
         style: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w700,
-          color: Colors.white
-        )
-      )
+          color: Colors.white,
+        ),
+      ),
     );
   }
 
   Widget _buildPreviousButton(BuildContext context) {
     return TextButton(
       style: ButtonStyle(
-        minimumSize: WidgetStateProperty.all(const Size(double.infinity, 56))
+        minimumSize: WidgetStateProperty.all(const Size(double.infinity, 56)),
       ),
       onPressed: () => Navigator.pop(context),
       child: const Text(
@@ -229,9 +226,9 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
         style: TextStyle(
           fontSize: 15,
           fontWeight: FontWeight.w500,
-          color: Color.fromARGB(255, 80, 80, 80)
-        )
-      )
+          color: Color.fromARGB(255, 80, 80, 80),
+        ),
+      ),
     );
   }
 }

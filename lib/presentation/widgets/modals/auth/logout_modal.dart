@@ -15,7 +15,7 @@ class LogoutModal {
       isScrollControlled: true,
       backgroundColor: Colors.white,
       barrierColor: Colors.black.withValues(alpha: 0.3),
-      builder: (context) => _buildContent(context)
+      builder: (context) => _buildContent(context),
     );
   }
 
@@ -25,7 +25,8 @@ class LogoutModal {
         Center(
           child: Container(
             width: double.infinity,
-            padding: const EdgeInsets.only(top: 12, bottom: 40, left: 24, right: 24),
+            padding:
+                const EdgeInsets.only(top: 12, bottom: 40, left: 24, right: 24),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -33,12 +34,12 @@ class LogoutModal {
                 const SizedBox(height: 24),
                 _buildModalBody(context),
                 const SizedBox(height: 40),
-                _buildButtons(context)
-              ]
-            )
-          )
-        )
-      ]
+                _buildButtons(context),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -49,9 +50,9 @@ class LogoutModal {
         width: 79,
         decoration: BoxDecoration(
           color: const Color.fromARGB(255, 228, 232, 241),
-          borderRadius: BorderRadius.circular(7)
-        )
-      )
+          borderRadius: BorderRadius.circular(7),
+        ),
+      ),
     );
   }
 
@@ -67,7 +68,7 @@ class LogoutModal {
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w700,
-            color: Color.fromARGB(255, 30, 30, 30)
+            color: Color.fromARGB(255, 30, 30, 30),
           ),
         ),
         const SizedBox(height: 30),
@@ -79,14 +80,17 @@ class LogoutModal {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
-                color: Color.fromARGB(255, 109, 109, 109)
-              )
+                color: Color.fromARGB(255, 109, 109, 109),
+              ),
             ),
             const SizedBox(width: 10),
-            Image.asset('lib/assets/images/modal/auth/check.png', width: 20)
-          ]
-        )
-      ]
+            Image.asset(
+              'lib/assets/images/modal/auth/check.png',
+              width: 20,
+            ),
+          ],
+        ),
+      ],
     );
   }
 
@@ -98,7 +102,7 @@ class LogoutModal {
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(0, 56),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12)
+                borderRadius: BorderRadius.circular(12),
               ),
               backgroundColor: const Color.fromARGB(255, 237, 239, 242),
             ),
@@ -108,10 +112,10 @@ class LogoutModal {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
-                color: Color.fromARGB(255, 109, 109, 109)
-              )
-            )
-          )
+                color: Color.fromARGB(255, 109, 109, 109),
+              ),
+            ),
+          ),
         ),
         const SizedBox(width: 20),
         Expanded(
@@ -119,25 +123,29 @@ class LogoutModal {
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(0, 56),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12)
+                borderRadius: BorderRadius.circular(12),
               ),
               backgroundColor: const Color.fromARGB(255, 0, 102, 255),
             ),
             onPressed: () {
-              context.read<AuthenticationBloc>().add(const AuthenticationEvent.logout());
-              GetIt.I<ToastManager>().show(message: '정상적으로 로그아웃했어요', svgPath: 'lib/assets/svgs/toast/logout.svg');
+              context
+                  .read<AuthenticationBloc>()
+                  .add(const AuthenticationEvent.logout());
+              GetIt.I<ToastManager>().show(
+                  message: '정상적으로 로그아웃했어요',
+                  svgPath: 'lib/assets/svgs/toast/logout.svg');
             },
             child: const Text(
               '로그아웃',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w700,
-                color: Colors.white
-              )
-            )
-          )
-        )
-      ]
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

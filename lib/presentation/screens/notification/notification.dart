@@ -15,13 +15,12 @@ class NotificationScreen extends StatefulWidget {
   State<NotificationScreen> createState() => _NotificationScreenState();
 
   static Route<void> route() {
-    return CupertinoPageRoute(
-      builder: (context) => const NotificationScreen()
-    );
+    return CupertinoPageRoute(builder: (context) => const NotificationScreen());
   }
 }
 
-class _NotificationScreenState extends State<NotificationScreen> with SingleTickerProviderStateMixin {
+class _NotificationScreenState extends State<NotificationScreen>
+    with SingleTickerProviderStateMixin {
   late final TabController _tabController;
 
   @override
@@ -42,8 +41,8 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 245, 246, 248),
       body: SafeArea(
-        child: _buildContent()
-      )
+        child: _buildContent(),
+      ),
     );
   }
 
@@ -52,7 +51,9 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
       headerSliverBuilder: (context, innerBoxIsScrolled) {
         return [
           SliverToBoxAdapter(child: _buildAppBar()),
-          SliverToBoxAdapter(child: NotificationTabbar(tabController: _tabController))
+          SliverToBoxAdapter(
+            child: NotificationTabbar(tabController: _tabController),
+          ),
         ];
       },
       body: BlocBuilder<ActivityBloc, ActivityState>(
@@ -64,16 +65,14 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
           } else {
             return _buildErrorContent();
           }
-        }
-      )
+        },
+      ),
     );
   }
 
   Widget _buildAppBar() {
     return const Padding(
-      padding: EdgeInsets.only(bottom: 20),
-      child: AchaAppbar()
-    );
+        padding: EdgeInsets.only(bottom: 20), child: AchaAppbar());
   }
 
   Widget _buildLoadingContent() {
@@ -81,28 +80,26 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
   }
 
   Widget _buildLoadedContent(WeekActivities? activities) {
-    return TabBarView(
-      controller: _tabController,
-      children: [
-        _buildActivityListView(activities?.getLectureAndAssignmentActivities(group: true)),
-        _buildActivityListView(activities?.getLectureActivities(group: true)),
-        _buildActivityListView(activities?.getAssignmentActivities(group: true))
-      ]
-    );
+    return TabBarView(controller: _tabController, children: [
+      _buildActivityListView(
+          activities?.getLectureAndAssignmentActivities(group: true)),
+      _buildActivityListView(activities?.getLectureActivities(group: true)),
+      _buildActivityListView(activities?.getAssignmentActivities(group: true))
+    ]);
   }
 
   Widget _buildErrorContent() {
-    return TabBarView(
-      controller: _tabController,
-      children: [
-        const Center(child: Text('활동을 불러오지 못했어요', style: TextStyle(fontSize: 15))),
-        const Center(child: Text('활동을 불러오지 못했어요', style: TextStyle(fontSize: 15))),
-        const Center(child: Text('활동을 불러오지 못했어요', style: TextStyle(fontSize: 15)))
-      ]
-    );
+    return TabBarView(controller: _tabController, children: [
+      const Center(
+          child: Text('활동을 불러오지 못했어요', style: TextStyle(fontSize: 15))),
+      const Center(
+          child: Text('활동을 불러오지 못했어요', style: TextStyle(fontSize: 15))),
+      const Center(child: Text('활동을 불러오지 못했어요', style: TextStyle(fontSize: 15)))
+    ]);
   }
 
-  Widget _buildActivityListView(Map<DateTime, List<Activity>>? groupedActivities) {
+  Widget _buildActivityListView(
+      Map<DateTime, List<Activity>>? groupedActivities) {
     if (groupedActivities == null) {
       return const Center(child: Text('다 끝내셨군요! 고생하셨어요'));
     }
@@ -113,7 +110,7 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
         final entry = groupedActivities.entries.elementAt(index);
         final date = entry.key;
         final activities = entry.value;
-        
+
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 26),
           child: Column(
@@ -129,13 +126,13 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
                   deadline: activity.deadline!.toTimeLeftFormattedTime(),
                   uri: Uri.parse(activity.link),
                   margin: const EdgeInsets.only(bottom: 16),
-                  backgroundColor: Colors.white
-                )
+                  backgroundColor: Colors.white,
+                ),
               )
-            ]
-          )
+            ],
+          ),
         );
-      }
+      },
     );
   }
 }

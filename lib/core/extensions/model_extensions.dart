@@ -24,11 +24,13 @@ extension ActivitiesExtension on WeekActivities {
   List<Activity> _filterActivities(
       {required Set<ActivityType> types, required bool onlyWithDeadline}) {
     return activities
-        .where((activity) =>
-            types.contains(activity.type) &&
-            onlyWithDeadline &&
-            activity.deadline != null &&
-            activity.deadline!.isAfter(DateTime.now()))
+        .where(
+          (activity) =>
+              types.contains(activity.type) &&
+              onlyWithDeadline &&
+              activity.deadline != null &&
+              activity.deadline!.isAfter(DateTime.now()),
+        )
         .toList();
   }
 

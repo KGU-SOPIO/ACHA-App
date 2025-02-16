@@ -8,11 +8,13 @@ part 'signin.g.dart';
 
 @freezed
 class SignInResponse with _$SignInResponse {
-  const factory SignInResponse.success(
-      {required String accessToken,
-      required String refreshToken}) = SignInSuccess;
-  const factory SignInResponse.fetchUserData(
-      {@ErrorCodeConverter() required ErrorCode code}) = FetchUserData;
+  const factory SignInResponse.success({
+    required String accessToken,
+    required String refreshToken,
+  }) = SignInSuccess;
+  const factory SignInResponse.fetchUserData({
+    @ErrorCodeConverter() required ErrorCode code,
+  }) = FetchUserData;
 
   factory SignInResponse.fromJson(Map<String, dynamic> json) =>
       const _SignInResponseConverter().fromJson(json);

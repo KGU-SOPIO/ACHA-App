@@ -13,7 +13,9 @@ class AuthStudentIdScreen extends StatefulWidget {
   const AuthStudentIdScreen({super.key});
 
   static Route<void> route() {
-    return CupertinoPageRoute(builder: (context) => const AuthStudentIdScreen());
+    return CupertinoPageRoute(
+      builder: (context) => const AuthStudentIdScreen(),
+    );
   }
 
   @override
@@ -51,8 +53,8 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
       canPop: false,
       child: Scaffold(
         appBar: _buildAppBar(),
-        body: _buildBody(context)
-      )
+        body: _buildBody(context),
+      ),
     );
   }
 
@@ -63,18 +65,16 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
       centerTitle: true,
       title: const Text(
         '시작하기',
-        style: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.w500
-        ),
-      )
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+      ),
     );
   }
 
   Widget _buildBody(BuildContext context) {
     return SafeArea(
       child: BlocProvider(
-        create: (context) => SignInBloc(authenticationRepository: _authenticationRepository),
+        create: (context) =>
+            SignInBloc(authenticationRepository: _authenticationRepository),
         child: Builder(
           builder: (context) {
             return Padding(
@@ -85,34 +85,31 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
                   const SizedBox(height: 54),
                   _buildTitle(),
                   const SizedBox(height: 30),
-                  _buildStudentIdField(context)
-                ]
-              )
+                  _buildStudentIdField(context),
+                ],
+              ),
             );
-          }
-        )
-      )
+          },
+        ),
+      ),
     );
   }
 
   Widget _buildTitle() {
     return const Text.rich(
       TextSpan(
-        style: TextStyle(
-          fontSize: 15,
-          color: Color.fromARGB(255, 60, 60, 60)
-        ),
+        style: TextStyle(fontSize: 15, color: Color.fromARGB(255, 60, 60, 60)),
         children: [
           TextSpan(
-              text: '학번을 ',
-              style: TextStyle(fontWeight: FontWeight.w700)
+            text: '학번을 ',
+            style: TextStyle(fontWeight: FontWeight.w700),
           ),
           TextSpan(
             text: '입력해 주세요',
-            style: TextStyle(fontWeight: FontWeight.w400)
-          )
-        ]
-      )
+            style: TextStyle(fontWeight: FontWeight.w400),
+          ),
+        ],
+      ),
     );
   }
 
@@ -122,7 +119,7 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
       borderSide: const BorderSide(
         width: 1.5,
         color: Color.fromARGB(255, 237, 239, 242),
-      )
+      ),
     );
 
     return TextFormField(
@@ -131,34 +128,32 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
       focusNode: _focusNode,
       controller: _textEditingController,
       keyboardType: TextInputType.number,
-      inputFormatters: [
-        FilteringTextInputFormatter.digitsOnly
-      ],
+      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       decoration: InputDecoration(
         hintText: '학번',
         hintStyle: const TextStyle(
           color: Color.fromARGB(255, 186, 186, 186),
           fontSize: 16,
-          fontWeight: FontWeight.w400
+          fontWeight: FontWeight.w400,
         ),
         counterText: '',
         filled: true,
         fillColor: const Color.fromARGB(255, 251, 251, 251),
         border: textFieldBorder,
         enabledBorder: textFieldBorder,
-        focusedBorder: textFieldBorder
+        focusedBorder: textFieldBorder,
       ),
       style: const TextStyle(
         color: Colors.black,
         fontSize: 16,
-        fontWeight: FontWeight.w400
+        fontWeight: FontWeight.w400,
       ),
       onChanged: (value) {
         if (value.length == 9) {
           context.read<SignInBloc>().add(InputStudentId(studentId: value));
           Navigator.push(context, AuthPasswordScreen.route(context));
         }
-      }
+      },
     );
   }
 }

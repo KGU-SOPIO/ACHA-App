@@ -18,7 +18,7 @@ class AuthSignUpScreen extends StatefulWidget {
       builder: (context) => BlocProvider.value(
         value: BlocProvider.of<SignInBloc>(parentContext),
         child: const AuthSignUpScreen(),
-      )
+      ),
     );
   }
 
@@ -28,35 +28,34 @@ class AuthSignUpScreen extends StatefulWidget {
 
 class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
   void _showTermsModal() => TermsBottomModalSheet(
-    titleWidget: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        const Text.rich(
-          TextSpan(
-            style: TextStyle(
-              fontSize: 16,
-              color: Color.fromARGB(255, 30, 30, 30)
-            ),
-            children: [
+        titleWidget: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text.rich(
               TextSpan(
-                text: '사용 약관에 동의',
-                style: TextStyle(fontWeight: FontWeight.w700)
+                style: TextStyle(
+                    fontSize: 16, color: Color.fromARGB(255, 30, 30, 30)),
+                children: [
+                  TextSpan(
+                    text: '사용 약관에 동의',
+                    style: TextStyle(fontWeight: FontWeight.w700),
+                  ),
+                  TextSpan(
+                    text: '하고\n회원가입을 진행합니다',
+                    style: TextStyle(fontWeight: FontWeight.w500, height: 1.7),
+                  ),
+                ],
               ),
-              TextSpan(
-                text: '하고\n회원가입을 진행합니다',
-                style: TextStyle(fontWeight: FontWeight.w500, height: 1.7)
-              )
-            ]
-          )
+            ),
+            SvgPicture.asset('lib/assets/svgs/acha/small.svg', width: 50)
+          ],
         ),
-        SvgPicture.asset('lib/assets/svgs/acha/small.svg', width: 50)
-      ],
-    ),
-    uri: Uri.parse(TermsAndConditionsUri.serviceTermsAndConditions),
-    termsButtonText: '아차 사용 약관',
-    agreeButtonText: '동의하고 회원가입',
-    onAgree: () => Navigator.push(context, AuthProcessScreen.route(context))
-  ).show(context);
+        uri: Uri.parse(TermsAndConditionsUri.serviceTermsAndConditions),
+        termsButtonText: '아차 사용 약관',
+        agreeButtonText: '동의하고 회원가입',
+        onAgree: () =>
+            Navigator.push(context, AuthProcessScreen.route(context)),
+      ).show(context);
 
   Future<void> _openManualUri() async {
     final uri = Uri.parse(ManualUri.myInformationIsDifferent);
@@ -75,8 +74,10 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
       canPop: false,
       child: Scaffold(
         appBar: _buildAppBar(),
-        body: BlocBuilder<SignInBloc, SignInState>(builder: _buildBody)
-      )
+        body: BlocBuilder<SignInBloc, SignInState>(
+          builder: _buildBody,
+        ),
+      ),
     );
   }
 
@@ -89,9 +90,9 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
         '시작하기',
         style: TextStyle(
           fontSize: 20,
-          fontWeight: FontWeight.w500
-        )
-      )
+          fontWeight: FontWeight.w500,
+        ),
+      ),
     );
   }
 
@@ -103,10 +104,10 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             _buildUserInformationSection(state),
-            _buildButtonSection()
-          ]
-        )
-      )
+            _buildButtonSection(),
+          ],
+        ),
+      ),
     );
   }
 
@@ -125,7 +126,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
         const SizedBox(height: 24),
         if (state.user!.major != null)
           TextContainer(title: '전공', value: state.user!.major!),
-      ]
+      ],
     );
   }
 
@@ -134,22 +135,17 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
       width: double.infinity,
       child: Text.rich(
         TextSpan(
-          style: TextStyle(
-            fontSize: 15,
-            color: Color.fromARGB(255, 60, 60, 60)
-          ),
+          style:
+              TextStyle(fontSize: 15, color: Color.fromARGB(255, 60, 60, 60)),
           children: [
             TextSpan(
-              text: '정보가 맞는지 ',
-              style: TextStyle(fontWeight: FontWeight.w700)
-            ),
+                text: '정보가 맞는지 ',
+                style: TextStyle(fontWeight: FontWeight.w700)),
             TextSpan(
-              text: '확인해 주세요',
-              style: TextStyle(fontWeight: FontWeight.w400)
-            )
-          ]
-        )
-      )
+                text: '확인해 주세요', style: TextStyle(fontWeight: FontWeight.w400)),
+          ],
+        ),
+      ),
     );
   }
 
@@ -160,14 +156,15 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
         _buildManualButton(),
         const SizedBox(height: 20),
         _buildNextButton(),
-        const SizedBox(height: 20)
-      ]
+        const SizedBox(height: 20),
+      ],
     );
   }
 
   Widget _buildManualButton() {
     return TextButton(
-      style: TextButton.styleFrom(tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+      style:
+          TextButton.styleFrom(tapTargetSize: MaterialTapTargetSize.shrinkWrap),
       onPressed: () => _openManualUri(),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -179,11 +176,11 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w500,
-              color: Color.fromARGB(255, 131, 131, 131)
-            )
+              color: Color.fromARGB(255, 131, 131, 131),
+            ),
           )
-        ]
-      )
+        ],
+      ),
     );
   }
 
@@ -196,8 +193,8 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
       textStyle: const TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w700,
-        color: Colors.white
-      )
+        color: Colors.white,
+      ),
     );
   }
 }

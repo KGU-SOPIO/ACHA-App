@@ -15,36 +15,33 @@ class PhraseContainer extends StatelessWidget {
           color: const Color.fromARGB(255, 186, 186, 186),
         ),
         borderRadius: BorderRadius.circular(25),
-        color: const Color.fromARGB(255, 237, 239, 242)
+        color: const Color.fromARGB(255, 237, 239, 242),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildTitle(),
           const SizedBox(height: 15),
-          _buildPhraseContainer()
-        ]
-      )
+          _buildPhraseContainer(),
+        ],
+      ),
     );
   }
 
   Widget _buildTitle() {
     return const Text.rich(
       TextSpan(
-        style: TextStyle(
-          fontSize: 16,
-          color: Color.fromARGB(255, 30, 30, 30)
-        ),
+        style: TextStyle(fontSize: 16, color: Color.fromARGB(255, 30, 30, 30)),
         children: [
           TextSpan(
             text: '오늘의 ',
-            style: TextStyle(fontWeight: FontWeight.w500)
+            style: TextStyle(fontWeight: FontWeight.w500),
           ),
           TextSpan(
             text: '문구',
-            style: TextStyle(fontWeight: FontWeight.w700)
+            style: TextStyle(fontWeight: FontWeight.w700),
           )
-        ]
+        ],
       ),
     );
   }
@@ -67,24 +64,24 @@ class PhraseContainer extends StatelessWidget {
               right: 0,
               child: SvgPicture.asset('lib/assets/svgs/mypage/right.svg'),
             ),
-            _buildPhrase()
-          ]
-        )
-      )
+            _buildPhrase(),
+          ],
+        ),
+      ),
     );
   }
 
   Widget _buildPhrase() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
-        child: const Text(
+      child: const Text(
         '평범하게 살고 싶지 않은데\n왜 평범하게 노력하는가?',
         style: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w700,
-          color: Color.fromARGB(255, 0, 102, 255)
-        )
-      )
+          color: Color.fromARGB(255, 0, 102, 255),
+        ),
+      ),
     );
   }
 }

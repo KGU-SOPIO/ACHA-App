@@ -6,8 +6,9 @@ enum AlertStatus { loading, loaded, changed, denied, error }
 
 @freezed
 class AlertState with _$AlertState {
-  const factory AlertState(
-      {required AlertStatus status,
-      @Default(true) bool isEnabled,
-      String? message}) = _AlertState;
+  const factory AlertState({
+    required AlertStatus status,
+    @Default(true) bool isEnabled,
+    String? message,
+  }) = _AlertState;
 }

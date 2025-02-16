@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class Toast extends StatefulWidget {
-  const Toast({super.key, required this.toastContainer, required this.toastDuration, required this.animationDuration});
+  const Toast(
+      {super.key,
+      required this.toastContainer,
+      required this.toastDuration,
+      required this.animationDuration});
 
   final Widget toastContainer;
   final Duration toastDuration;
@@ -18,13 +22,14 @@ class _ToastState extends State<Toast> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(vsync: this, duration: widget.animationDuration);
+    _animationController =
+        AnimationController(vsync: this, duration: widget.animationDuration);
     _animation = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
         parent: _animationController,
         curve: const Interval(0.0, 0.5, curve: Curves.easeIn),
-        reverseCurve: const Interval(0.5, 1.0, curve: Curves.easeOut)
-      )
+        reverseCurve: const Interval(0.5, 1.0, curve: Curves.easeOut),
+      ),
     );
     _animate();
   }
@@ -37,7 +42,8 @@ class _ToastState extends State<Toast> with SingleTickerProviderStateMixin {
 
   void _animate() {
     _animationController.forward().whenCompleteOrCancel(() {
-      Future.delayed(widget.toastDuration, () => _animationController.reverse());
+      Future.delayed(
+          widget.toastDuration, () => _animationController.reverse());
     });
   }
 
@@ -52,7 +58,7 @@ class _ToastState extends State<Toast> with SingleTickerProviderStateMixin {
             opacity: _animation,
             child: Material(
               color: Colors.transparent,
-              child: widget.toastContainer
+              child: widget.toastContainer,
             ),
           ),
         ),

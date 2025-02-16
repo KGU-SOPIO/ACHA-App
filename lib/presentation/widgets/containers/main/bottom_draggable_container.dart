@@ -9,7 +9,7 @@ class BottomDraggableContainer extends StatelessWidget {
     super.key,
     required this.carouselSliderController,
     required this.currentSlide,
-    required this.onPageChanged
+    required this.onPageChanged,
   });
 
   final CarouselSliderController carouselSliderController;
@@ -24,11 +24,12 @@ class BottomDraggableContainer extends StatelessWidget {
       maxChildSize: 0.78,
       snap: true,
       snapSizes: const [0.1, 0.78],
-      builder: _buildContainer
+      builder: _buildContainer,
     );
   }
 
-  Widget _buildContainer(BuildContext context, ScrollController scrollController) {
+  Widget _buildContainer(
+      BuildContext context, ScrollController scrollController) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
@@ -51,8 +52,8 @@ class BottomDraggableContainer extends StatelessWidget {
             blurRadius: 5,
             spreadRadius: 2.5,
             offset: const Offset(0, 2.5),
-          )
-        ]
+          ),
+        ],
       ),
       child: Stack(
         children: [
@@ -62,9 +63,9 @@ class BottomDraggableContainer extends StatelessWidget {
             carouselSliderController: carouselSliderController,
             currentSlide: currentSlide,
             onPageChanged: onPageChanged,
-          )
-        ]
-      )
+          ),
+        ],
+      ),
     );
   }
 
@@ -80,10 +81,10 @@ class BottomDraggableContainer extends StatelessWidget {
             decoration: BoxDecoration(
               color: const Color.fromARGB(255, 228, 232, 241),
               borderRadius: BorderRadius.circular(7),
-            )
-          )
-        ]
-      )
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

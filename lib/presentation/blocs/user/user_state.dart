@@ -8,8 +8,9 @@ enum UserStatus { loading, loaded, error }
 
 @freezed
 class UserState with _$UserState {
-  const factory UserState(
-      {required UserStatus status,
-      User? user,
-      String? errorMessage}) = _UserState;
+  const factory UserState({
+    required UserStatus status,
+    User? user,
+    String? errorMessage,
+  }) = _UserState;
 }

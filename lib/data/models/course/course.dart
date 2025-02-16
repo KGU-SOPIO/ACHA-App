@@ -15,15 +15,16 @@ class CourseList with _$CourseList {
 
 @freezed
 class Course with _$Course {
-  const factory Course(
-      {required String name,
-      required String professor,
-      required String lectureRoom,
-      required String code,
-      DateTime? deadline,
-      String? link,
-      CourseActivities? courseActivities,
-      NoticeList? notices}) = _Course;
+  const factory Course({
+    required String name,
+    required String professor,
+    required String lectureRoom,
+    required String code,
+    DateTime? deadline,
+    String? link,
+    CourseActivities? courseActivities,
+    NoticeList? notices,
+  }) = _Course;
 
   factory Course.fromJson(Map<String, dynamic> json) => _$CourseFromJson(json);
 }

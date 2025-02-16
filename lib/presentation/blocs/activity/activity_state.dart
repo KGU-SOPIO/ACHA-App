@@ -8,8 +8,9 @@ enum ActivityStatus { loading, loaded, error }
 
 @freezed
 class ActivityState with _$ActivityState {
-  const factory ActivityState(
-      {required ActivityStatus status,
-      WeekActivities? weekActivities,
-      String? errorMessage}) = _ActivityState;
+  const factory ActivityState({
+    required ActivityStatus status,
+    WeekActivities? weekActivities,
+    String? errorMessage,
+  }) = _ActivityState;
 }

@@ -27,10 +27,11 @@ enum SignInStatus {
 
 @freezed
 class SignInState with _$SignInState {
-  const factory SignInState(
-      {@Default(SignInStatus.initial) SignInStatus status,
-      String? studentId,
-      String? password,
-      User? user,
-      String? errorMessage}) = _SignInState;
+  const factory SignInState({
+    @Default(SignInStatus.initial) SignInStatus status,
+    String? studentId,
+    String? password,
+    User? user,
+    String? errorMessage,
+  }) = _SignInState;
 }

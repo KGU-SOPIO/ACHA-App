@@ -2,20 +2,24 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:acha/data/models/index.dart';
+import 'package:acha/domain/usecases/index.dart';
 import 'package:acha/domain/repositories/index.dart';
 import 'package:acha/domain/exceptions/index.dart';
 import 'package:acha/presentation/blocs/index.dart';
 
 class NoticeBloc extends Bloc<NoticeEvent, NoticeState> {
-  NoticeBloc(
-      {required this.courseRepository,
-      required this.course,
-      required this.noticeId})
-      : super(const NoticeState(status: NoticeStatus.loading)) {
+  NoticeBloc({
+    required CourseRepository courseRepository,
+    required this.course,
+    required this.noticeId,
+  }) : super(const NoticeState(status: NoticeStatus.loading)) {
+    _fetchNoticeUseCase =
+        FetchNoticeUseCase(courseRepository: courseRepository);
+
     on<FetchNotice>(_onFetchNotice);
   }
 
-  final CourseRepository courseRepository;
+  late final FetchNoticeUseCase _fetchNoticeUseCase;
   final Course course;
   final int noticeId;
 
@@ -23,7 +27,7 @@ class NoticeBloc extends Bloc<NoticeEvent, NoticeState> {
   Future<void> _onFetchNotice(
       FetchNotice event, Emitter<NoticeState> emit) async {
     try {
-      final notice = await courseRepository.fetchNotice(course.code, noticeId);
+      final notice = await _fetchNoticeUseCase.call(course.code, noticeId);
       emit(state.copyWith(status: NoticeStatus.loaded, notice: notice));
     } on DioException catch (e) {
       emit(state.copyWith(

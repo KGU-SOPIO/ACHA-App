@@ -15,21 +15,19 @@ class CarouselActivitySkeletonContainer extends StatelessWidget {
         width: double.infinity,
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 22),
         decoration: BoxDecoration(
-          border: Border.all(
-            color: const Color.fromARGB(255, 237, 239, 242)
-          ),
+          border: Border.all(color: const Color.fromARGB(255, 237, 239, 242)),
           color: Colors.white,
-          borderRadius: BorderRadius.circular(25)
+          borderRadius: BorderRadius.circular(25),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildTitle(),
             const SizedBox(height: 12),
-            _buildPanel()
-          ]
-        )
-      )
+            _buildPanel(),
+          ],
+        ),
+      ),
     );
   }
 
@@ -39,8 +37,8 @@ class CarouselActivitySkeletonContainer extends StatelessWidget {
       style: TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w700,
-        color: Color.fromARGB(255, 30, 30, 30)
-      )
+        color: Color.fromARGB(255, 30, 30, 30),
+      ),
     );
   }
 
@@ -50,10 +48,8 @@ class CarouselActivitySkeletonContainer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
       decoration: BoxDecoration(
         border: Border.all(
-          color: const Color.fromARGB(255, 237, 239, 242),
-          width: 1.5
-        ),
-        borderRadius: BorderRadius.circular(12)
+            color: const Color.fromARGB(255, 237, 239, 242), width: 1.5),
+        borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
         children: [
@@ -65,12 +61,12 @@ class CarouselActivitySkeletonContainer extends StatelessWidget {
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
-                color: Color.fromARGB(255, 60, 60, 60)
-              )
-            )
-          )
-        ]
-      )
+                color: Color.fromARGB(255, 60, 60, 60),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

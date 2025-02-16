@@ -42,14 +42,14 @@ class _CourseScreenState extends State<CourseScreen> {
                   children: [
                     _buildHeader(),
                     const SizedBox(height: 18),
-                    _buildContent()
-                  ]
-                )
+                    _buildContent(),
+                  ],
+                ),
               )
-            ]
-          )
-        )
-      )
+            ],
+          ),
+        ),
+      ),
     );
   }
 
@@ -61,7 +61,7 @@ class _CourseScreenState extends State<CourseScreen> {
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w700,
-            color: Color.fromARGB(255, 30, 30, 30)
+            color: Color.fromARGB(255, 30, 30, 30),
           ),
         ),
         const SizedBox(width: 4),
@@ -78,31 +78,52 @@ class _CourseScreenState extends State<CourseScreen> {
         } else if (state.status == CourseListStatus.loaded) {
           return _buildLoadedContent(state);
         } else {
-          return SizedBox(height: 500, child: Center(child: Text(state.errorMessage!, style: const TextStyle(fontSize: 15))));
+          return SizedBox(
+            height: 500,
+            child: Center(
+              child: Text(
+                state.errorMessage!,
+                style: const TextStyle(fontSize: 15),
+              ),
+            ),
+          );
         }
-      }
+      },
     );
   }
-  
+
   Widget _buildLoadedContent(CourseListState state) {
     final courseList = state.courseList?.courses;
     if (courseList == null) {
-      return const SizedBox(height: 500, child: Center(child: Text('등록된 강좌가 없어요', style: TextStyle(fontSize: 15))));
+      return const SizedBox(
+        height: 500,
+        child: Center(
+          child: Text(
+            '등록된 강좌가 없어요',
+            style: TextStyle(fontSize: 15),
+          ),
+        ),
+      );
     }
-    
+
     return Column(
       children: [
-        ...courseList.map((course) {
-          return CourseContainer(
-            professorName: course.professor,
-            courseName: course.name,
-            lectureRoom: course.lectureRoom,
-            deadline: course.deadline,
-            onTap: () => Navigator.push(context, CourseMainScreen.route(course: course))
-          );
-        }),
+        ...courseList.map(
+          (course) {
+            return CourseContainer(
+              professorName: course.professor,
+              courseName: course.name,
+              lectureRoom: course.lectureRoom,
+              deadline: course.deadline,
+              onTap: () => Navigator.push(
+                context,
+                CourseMainScreen.route(course: course),
+              ),
+            );
+          },
+        ),
         const SizedBox(height: 16)
-      ]
+      ],
     );
   }
 }

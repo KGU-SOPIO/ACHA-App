@@ -7,9 +7,7 @@ class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
   static Route<void> route() {
-    return CupertinoPageRoute(
-      builder: (context) => const SplashScreen()
-    );
+    return CupertinoPageRoute(builder: (context) => const SplashScreen());
   }
 
   @override
@@ -18,7 +16,7 @@ class SplashScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Center(
         child: SvgPicture.asset('lib/assets/svgs/acha/large.svg'),
-      )
+      ),
     );
   }
 }

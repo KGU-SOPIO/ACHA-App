@@ -13,8 +13,8 @@ class TextContainer extends StatelessWidget {
       children: [
         _buildTitle(),
         const SizedBox(height: 16),
-        _buildValue()
-      ]
+        _buildValue(),
+      ],
     );
   }
 
@@ -24,8 +24,8 @@ class TextContainer extends StatelessWidget {
       style: const TextStyle(
         fontSize: 15,
         fontWeight: FontWeight.w700,
-        color: Color.fromARGB(255, 60, 60, 60)
-      )
+        color: Color.fromARGB(255, 60, 60, 60),
+      ),
     );
   }
 
@@ -40,16 +40,16 @@ class TextContainer extends StatelessWidget {
           width: 1.5,
           color: const Color.fromARGB(255, 237, 239, 242),
         ),
-        borderRadius: BorderRadius.circular(12)
+        borderRadius: BorderRadius.circular(12),
       ),
       child: Text(
         value,
         style: const TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w400,
-          color: Color.fromARGB(255, 60, 60, 60)
-        )
-      )
+          color: Color.fromARGB(255, 60, 60, 60),
+        ),
+      ),
     );
   }
 }

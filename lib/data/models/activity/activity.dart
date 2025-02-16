@@ -17,10 +17,8 @@ class CourseActivities with _$CourseActivities {
 
 @freezed
 class WeekActivities with _$WeekActivities {
-  const factory WeekActivities({
-    int? week,
-    required List<Activity> activities,
-  }) = _WeekActivities;
+  const factory WeekActivities(
+      {int? week, required List<Activity> activities}) = _WeekActivities;
 
   factory WeekActivities.fromJson(Map<String, dynamic> json) =>
       _$WeekActivitiesFromJson(json);

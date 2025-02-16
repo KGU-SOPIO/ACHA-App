@@ -17,14 +17,15 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final CarouselSliderController _carouselSliderController = CarouselSliderController();
+  final CarouselSliderController _carouselSliderController =
+      CarouselSliderController();
   int currentSlide = 0;
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 245, 246, 248),
-      body: _buildBody()
+      body: _buildBody(),
     );
   }
 
@@ -33,9 +34,9 @@ class _MainScreenState extends State<MainScreen> {
       child: Stack(
         children: [
           _buildContent(),
-          _buildBottomDraggableContainer()
-        ]
-      )
+          _buildBottomDraggableContainer(),
+        ],
+      ),
     );
   }
 
@@ -54,12 +55,12 @@ class _MainScreenState extends State<MainScreen> {
               children: [
                 UserHeader(),
                 SizedBox(height: 20),
-                TodayCourseContainer()
-              ]
-            )
-          )
-        ]
-      )
+                TodayCourseContainer(),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -67,7 +68,7 @@ class _MainScreenState extends State<MainScreen> {
     return BottomDraggableContainer(
       carouselSliderController: _carouselSliderController,
       currentSlide: currentSlide,
-      onPageChanged: (index) => setState(() => currentSlide = index)
+      onPageChanged: (index) => setState(() => currentSlide = index),
     );
   }
 }

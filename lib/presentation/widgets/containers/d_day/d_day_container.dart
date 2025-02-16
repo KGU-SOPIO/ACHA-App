@@ -11,19 +11,18 @@ class DDayContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDDay = deadline.isDDay();
     final primaryColor = const Color.fromARGB(255, 0, 102, 255);
-    
+
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: primaryColor.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(20)
-      ),
+          color: primaryColor.withValues(alpha: 0.1),
+          borderRadius: BorderRadius.circular(20)),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           _buildDDayContainer(isDDay, primaryColor),
-          _buildDateContainer(primaryColor)
-        ]
-      )
+          _buildDateContainer(primaryColor),
+        ],
+      ),
     );
   }
 
@@ -35,9 +34,7 @@ class DDayContainer extends StatelessWidget {
         color: isDDay ? primaryColor : Colors.white,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: isDDay ? Colors.transparent : primaryColor,
-          width: 1.5
-        )
+            color: isDDay ? Colors.transparent : primaryColor, width: 1.5),
       ),
       child: Center(
         child: Text(
@@ -45,10 +42,10 @@ class DDayContainer extends StatelessWidget {
           style: TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w700,
-            color: isDDay ? Colors.white : primaryColor
-          )
-        )
-      )
+            color: isDDay ? Colors.white : primaryColor,
+          ),
+        ),
+      ),
     );
   }
 
@@ -60,9 +57,9 @@ class DDayContainer extends StatelessWidget {
         style: TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.w700,
-          color: primaryColor
-        )
-      )
+          color: primaryColor,
+        ),
+      ),
     );
   }
 }

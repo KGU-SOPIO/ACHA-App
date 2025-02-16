@@ -3,13 +3,24 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:acha/domain/usecases/index.dart';
 import 'package:acha/domain/repositories/index.dart';
 import 'package:acha/domain/exceptions/index.dart';
 import 'package:acha/presentation/blocs/index.dart';
 
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
-  SignInBloc({required this.authenticationRepository})
-      : super(const SignInState(status: SignInStatus.initial)) {
+  SignInBloc({
+    required AuthenticationRepository authenticationRepository,
+  }) : super(const SignInState(status: SignInStatus.initial)) {
+    _signInUseCase =
+        SignInUseCase(authenticationRepository: authenticationRepository);
+    _fetchUserDataUseCase = FetchUserDataUseCase(
+        authenticationRepository: authenticationRepository);
+    _signUpUseCase =
+        SignUpUseCase(authenticationRepository: authenticationRepository);
+    _requestExtractionUseCas = RequestExtractionUseCase(
+        authenticationRepository: authenticationRepository);
+
     on<InputStudentId>(
         (event, emit) => emit(state.copyWith(studentId: event.studentId)));
     on<InputPassword>(
@@ -20,7 +31,10 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     on<FetchData>(_onFetchData);
   }
 
-  final AuthenticationRepository authenticationRepository;
+  late final SignInUseCase _signInUseCase;
+  late final FetchUserDataUseCase _fetchUserDataUseCase;
+  late final SignUpUseCase _signUpUseCase;
+  late final RequestExtractionUseCase _requestExtractionUseCas;
 
   /// 인증 정보로 로그인을 요청합니다.
   Future<void> _onSubmitSignIn(
@@ -28,13 +42,14 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     try {
       emit(state.copyWith(status: SignInStatus.signInProgress));
 
-      final response = await authenticationRepository.signIn(
+      final response = await _signInUseCase.call(
           studentId: state.studentId!, password: state.password!);
       response.when(
-          success: (accessToken, refreshToken) =>
-              emit(state.copyWith(status: SignInStatus.signInSuccess)),
-          fetchUserData: (code) =>
-              emit(state.copyWith(status: SignInStatus.inFetchUser)));
+        success: (accessToken, refreshToken) =>
+            emit(state.copyWith(status: SignInStatus.signInSuccess)),
+        fetchUserData: (code) =>
+            emit(state.copyWith(status: SignInStatus.inFetchUser)),
+      );
     } on DioException catch (e) {
       emit(state.copyWith(
           status: SignInStatus.signInFailure, errorMessage: e.error as String));
@@ -54,7 +69,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     try {
       emit(state.copyWith(status: SignInStatus.fetchUserProgress));
 
-      final response = await authenticationRepository.fetchUserData(
+      final response = await _fetchUserDataUseCase.call(
           studentId: state.studentId!, password: state.password!);
       response.when(
         success: (user) =>
@@ -81,7 +96,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       SubmitSignUp event, Emitter<SignInState> emit) async {
     try {
       emit(state.copyWith(status: SignInStatus.signUpProgress));
-      await authenticationRepository.signUp(
+      await _signUpUseCase.call(
           studentId: state.studentId!,
           password: state.password!,
           user: state.user!);
@@ -103,7 +118,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   Future<void> _onFetchData(FetchData event, Emitter<SignInState> emit) async {
     try {
       emit(state.copyWith(status: SignInStatus.fetchDataProgress));
-      await authenticationRepository.requestExtraction();
+      await _requestExtractionUseCas.call();
       emit(state.copyWith(status: SignInStatus.fetchDataSuccess));
     } on DioException catch (e) {
       emit(state.copyWith(

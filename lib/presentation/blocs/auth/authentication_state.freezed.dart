@@ -19,6 +19,8 @@ mixin _$AuthenticationState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
+    required TResult Function() error,
+    required TResult Function() expired,
     required TResult Function() registered,
     required TResult Function() authenticated,
     required TResult Function() unauthenticated,
@@ -27,6 +29,8 @@ mixin _$AuthenticationState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unknown,
+    TResult? Function()? error,
+    TResult? Function()? expired,
     TResult? Function()? registered,
     TResult? Function()? authenticated,
     TResult? Function()? unauthenticated,
@@ -35,6 +39,8 @@ mixin _$AuthenticationState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
+    TResult Function()? error,
+    TResult Function()? expired,
     TResult Function()? registered,
     TResult Function()? authenticated,
     TResult Function()? unauthenticated,
@@ -44,6 +50,8 @@ mixin _$AuthenticationState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Unknown value) unknown,
+    required TResult Function(Error value) error,
+    required TResult Function(Expired value) expired,
     required TResult Function(Registered value) registered,
     required TResult Function(Authenticated value) authenticated,
     required TResult Function(UnAuthenticated value) unauthenticated,
@@ -52,6 +60,8 @@ mixin _$AuthenticationState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Unknown value)? unknown,
+    TResult? Function(Error value)? error,
+    TResult? Function(Expired value)? expired,
     TResult? Function(Registered value)? registered,
     TResult? Function(Authenticated value)? authenticated,
     TResult? Function(UnAuthenticated value)? unauthenticated,
@@ -60,6 +70,8 @@ mixin _$AuthenticationState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Unknown value)? unknown,
+    TResult Function(Error value)? error,
+    TResult Function(Expired value)? expired,
     TResult Function(Registered value)? registered,
     TResult Function(Authenticated value)? authenticated,
     TResult Function(UnAuthenticated value)? unauthenticated,
@@ -131,6 +143,8 @@ class _$UnknownImpl implements Unknown {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
+    required TResult Function() error,
+    required TResult Function() expired,
     required TResult Function() registered,
     required TResult Function() authenticated,
     required TResult Function() unauthenticated,
@@ -142,6 +156,8 @@ class _$UnknownImpl implements Unknown {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unknown,
+    TResult? Function()? error,
+    TResult? Function()? expired,
     TResult? Function()? registered,
     TResult? Function()? authenticated,
     TResult? Function()? unauthenticated,
@@ -153,6 +169,8 @@ class _$UnknownImpl implements Unknown {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
+    TResult Function()? error,
+    TResult Function()? expired,
     TResult Function()? registered,
     TResult Function()? authenticated,
     TResult Function()? unauthenticated,
@@ -168,6 +186,8 @@ class _$UnknownImpl implements Unknown {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Unknown value) unknown,
+    required TResult Function(Error value) error,
+    required TResult Function(Expired value) expired,
     required TResult Function(Registered value) registered,
     required TResult Function(Authenticated value) authenticated,
     required TResult Function(UnAuthenticated value) unauthenticated,
@@ -179,6 +199,8 @@ class _$UnknownImpl implements Unknown {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Unknown value)? unknown,
+    TResult? Function(Error value)? error,
+    TResult? Function(Expired value)? expired,
     TResult? Function(Registered value)? registered,
     TResult? Function(Authenticated value)? authenticated,
     TResult? Function(UnAuthenticated value)? unauthenticated,
@@ -190,6 +212,8 @@ class _$UnknownImpl implements Unknown {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Unknown value)? unknown,
+    TResult Function(Error value)? error,
+    TResult Function(Expired value)? expired,
     TResult Function(Registered value)? registered,
     TResult Function(Authenticated value)? authenticated,
     TResult Function(UnAuthenticated value)? unauthenticated,
@@ -204,6 +228,264 @@ class _$UnknownImpl implements Unknown {
 
 abstract class Unknown implements AuthenticationState {
   const factory Unknown() = _$UnknownImpl;
+}
+
+/// @nodoc
+abstract class _$$ErrorImplCopyWith<$Res> {
+  factory _$$ErrorImplCopyWith(
+          _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
+      __$$ErrorImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ErrorImplCopyWithImpl<$Res>
+    extends _$AuthenticationStateCopyWithImpl<$Res, _$ErrorImpl>
+    implements _$$ErrorImplCopyWith<$Res> {
+  __$$ErrorImplCopyWithImpl(
+      _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AuthenticationState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ErrorImpl implements Error {
+  const _$ErrorImpl();
+
+  @override
+  String toString() {
+    return 'AuthenticationState.error()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ErrorImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unknown,
+    required TResult Function() error,
+    required TResult Function() expired,
+    required TResult Function() registered,
+    required TResult Function() authenticated,
+    required TResult Function() unauthenticated,
+  }) {
+    return error();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unknown,
+    TResult? Function()? error,
+    TResult? Function()? expired,
+    TResult? Function()? registered,
+    TResult? Function()? authenticated,
+    TResult? Function()? unauthenticated,
+  }) {
+    return error?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unknown,
+    TResult Function()? error,
+    TResult Function()? expired,
+    TResult Function()? registered,
+    TResult Function()? authenticated,
+    TResult Function()? unauthenticated,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Unknown value) unknown,
+    required TResult Function(Error value) error,
+    required TResult Function(Expired value) expired,
+    required TResult Function(Registered value) registered,
+    required TResult Function(Authenticated value) authenticated,
+    required TResult Function(UnAuthenticated value) unauthenticated,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Unknown value)? unknown,
+    TResult? Function(Error value)? error,
+    TResult? Function(Expired value)? expired,
+    TResult? Function(Registered value)? registered,
+    TResult? Function(Authenticated value)? authenticated,
+    TResult? Function(UnAuthenticated value)? unauthenticated,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Unknown value)? unknown,
+    TResult Function(Error value)? error,
+    TResult Function(Expired value)? expired,
+    TResult Function(Registered value)? registered,
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(UnAuthenticated value)? unauthenticated,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Error implements AuthenticationState {
+  const factory Error() = _$ErrorImpl;
+}
+
+/// @nodoc
+abstract class _$$ExpiredImplCopyWith<$Res> {
+  factory _$$ExpiredImplCopyWith(
+          _$ExpiredImpl value, $Res Function(_$ExpiredImpl) then) =
+      __$$ExpiredImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ExpiredImplCopyWithImpl<$Res>
+    extends _$AuthenticationStateCopyWithImpl<$Res, _$ExpiredImpl>
+    implements _$$ExpiredImplCopyWith<$Res> {
+  __$$ExpiredImplCopyWithImpl(
+      _$ExpiredImpl _value, $Res Function(_$ExpiredImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AuthenticationState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ExpiredImpl implements Expired {
+  const _$ExpiredImpl();
+
+  @override
+  String toString() {
+    return 'AuthenticationState.expired()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ExpiredImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unknown,
+    required TResult Function() error,
+    required TResult Function() expired,
+    required TResult Function() registered,
+    required TResult Function() authenticated,
+    required TResult Function() unauthenticated,
+  }) {
+    return expired();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unknown,
+    TResult? Function()? error,
+    TResult? Function()? expired,
+    TResult? Function()? registered,
+    TResult? Function()? authenticated,
+    TResult? Function()? unauthenticated,
+  }) {
+    return expired?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unknown,
+    TResult Function()? error,
+    TResult Function()? expired,
+    TResult Function()? registered,
+    TResult Function()? authenticated,
+    TResult Function()? unauthenticated,
+    required TResult orElse(),
+  }) {
+    if (expired != null) {
+      return expired();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Unknown value) unknown,
+    required TResult Function(Error value) error,
+    required TResult Function(Expired value) expired,
+    required TResult Function(Registered value) registered,
+    required TResult Function(Authenticated value) authenticated,
+    required TResult Function(UnAuthenticated value) unauthenticated,
+  }) {
+    return expired(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Unknown value)? unknown,
+    TResult? Function(Error value)? error,
+    TResult? Function(Expired value)? expired,
+    TResult? Function(Registered value)? registered,
+    TResult? Function(Authenticated value)? authenticated,
+    TResult? Function(UnAuthenticated value)? unauthenticated,
+  }) {
+    return expired?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Unknown value)? unknown,
+    TResult Function(Error value)? error,
+    TResult Function(Expired value)? expired,
+    TResult Function(Registered value)? registered,
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(UnAuthenticated value)? unauthenticated,
+    required TResult orElse(),
+  }) {
+    if (expired != null) {
+      return expired(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Expired implements AuthenticationState {
+  const factory Expired() = _$ExpiredImpl;
 }
 
 /// @nodoc
@@ -248,6 +530,8 @@ class _$RegisteredImpl implements Registered {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
+    required TResult Function() error,
+    required TResult Function() expired,
     required TResult Function() registered,
     required TResult Function() authenticated,
     required TResult Function() unauthenticated,
@@ -259,6 +543,8 @@ class _$RegisteredImpl implements Registered {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unknown,
+    TResult? Function()? error,
+    TResult? Function()? expired,
     TResult? Function()? registered,
     TResult? Function()? authenticated,
     TResult? Function()? unauthenticated,
@@ -270,6 +556,8 @@ class _$RegisteredImpl implements Registered {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
+    TResult Function()? error,
+    TResult Function()? expired,
     TResult Function()? registered,
     TResult Function()? authenticated,
     TResult Function()? unauthenticated,
@@ -285,6 +573,8 @@ class _$RegisteredImpl implements Registered {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Unknown value) unknown,
+    required TResult Function(Error value) error,
+    required TResult Function(Expired value) expired,
     required TResult Function(Registered value) registered,
     required TResult Function(Authenticated value) authenticated,
     required TResult Function(UnAuthenticated value) unauthenticated,
@@ -296,6 +586,8 @@ class _$RegisteredImpl implements Registered {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Unknown value)? unknown,
+    TResult? Function(Error value)? error,
+    TResult? Function(Expired value)? expired,
     TResult? Function(Registered value)? registered,
     TResult? Function(Authenticated value)? authenticated,
     TResult? Function(UnAuthenticated value)? unauthenticated,
@@ -307,6 +599,8 @@ class _$RegisteredImpl implements Registered {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Unknown value)? unknown,
+    TResult Function(Error value)? error,
+    TResult Function(Expired value)? expired,
     TResult Function(Registered value)? registered,
     TResult Function(Authenticated value)? authenticated,
     TResult Function(UnAuthenticated value)? unauthenticated,
@@ -365,6 +659,8 @@ class _$AuthenticatedImpl implements Authenticated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
+    required TResult Function() error,
+    required TResult Function() expired,
     required TResult Function() registered,
     required TResult Function() authenticated,
     required TResult Function() unauthenticated,
@@ -376,6 +672,8 @@ class _$AuthenticatedImpl implements Authenticated {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unknown,
+    TResult? Function()? error,
+    TResult? Function()? expired,
     TResult? Function()? registered,
     TResult? Function()? authenticated,
     TResult? Function()? unauthenticated,
@@ -387,6 +685,8 @@ class _$AuthenticatedImpl implements Authenticated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
+    TResult Function()? error,
+    TResult Function()? expired,
     TResult Function()? registered,
     TResult Function()? authenticated,
     TResult Function()? unauthenticated,
@@ -402,6 +702,8 @@ class _$AuthenticatedImpl implements Authenticated {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Unknown value) unknown,
+    required TResult Function(Error value) error,
+    required TResult Function(Expired value) expired,
     required TResult Function(Registered value) registered,
     required TResult Function(Authenticated value) authenticated,
     required TResult Function(UnAuthenticated value) unauthenticated,
@@ -413,6 +715,8 @@ class _$AuthenticatedImpl implements Authenticated {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Unknown value)? unknown,
+    TResult? Function(Error value)? error,
+    TResult? Function(Expired value)? expired,
     TResult? Function(Registered value)? registered,
     TResult? Function(Authenticated value)? authenticated,
     TResult? Function(UnAuthenticated value)? unauthenticated,
@@ -424,6 +728,8 @@ class _$AuthenticatedImpl implements Authenticated {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Unknown value)? unknown,
+    TResult Function(Error value)? error,
+    TResult Function(Expired value)? expired,
     TResult Function(Registered value)? registered,
     TResult Function(Authenticated value)? authenticated,
     TResult Function(UnAuthenticated value)? unauthenticated,
@@ -482,6 +788,8 @@ class _$UnAuthenticatedImpl implements UnAuthenticated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
+    required TResult Function() error,
+    required TResult Function() expired,
     required TResult Function() registered,
     required TResult Function() authenticated,
     required TResult Function() unauthenticated,
@@ -493,6 +801,8 @@ class _$UnAuthenticatedImpl implements UnAuthenticated {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unknown,
+    TResult? Function()? error,
+    TResult? Function()? expired,
     TResult? Function()? registered,
     TResult? Function()? authenticated,
     TResult? Function()? unauthenticated,
@@ -504,6 +814,8 @@ class _$UnAuthenticatedImpl implements UnAuthenticated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
+    TResult Function()? error,
+    TResult Function()? expired,
     TResult Function()? registered,
     TResult Function()? authenticated,
     TResult Function()? unauthenticated,
@@ -519,6 +831,8 @@ class _$UnAuthenticatedImpl implements UnAuthenticated {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Unknown value) unknown,
+    required TResult Function(Error value) error,
+    required TResult Function(Expired value) expired,
     required TResult Function(Registered value) registered,
     required TResult Function(Authenticated value) authenticated,
     required TResult Function(UnAuthenticated value) unauthenticated,
@@ -530,6 +844,8 @@ class _$UnAuthenticatedImpl implements UnAuthenticated {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Unknown value)? unknown,
+    TResult? Function(Error value)? error,
+    TResult? Function(Expired value)? expired,
     TResult? Function(Registered value)? registered,
     TResult? Function(Authenticated value)? authenticated,
     TResult? Function(UnAuthenticated value)? unauthenticated,
@@ -541,6 +857,8 @@ class _$UnAuthenticatedImpl implements UnAuthenticated {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Unknown value)? unknown,
+    TResult Function(Error value)? error,
+    TResult Function(Expired value)? expired,
     TResult Function(Registered value)? registered,
     TResult Function(Authenticated value)? authenticated,
     TResult Function(UnAuthenticated value)? unauthenticated,

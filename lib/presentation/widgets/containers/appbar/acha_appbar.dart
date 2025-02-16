@@ -16,9 +16,12 @@ class AchaAppbar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: backgroundColor,
       leading: Padding(
         padding: const EdgeInsets.only(left: 24),
-        child: SvgPicture.asset('lib/assets/svgs/acha/small.svg', alignment: Alignment.topLeft),
+        child: SvgPicture.asset(
+          'lib/assets/svgs/acha/small.svg',
+          alignment: Alignment.topLeft,
+        ),
       ),
-      leadingWidth: 80
+      leadingWidth: 80,
     );
   }
 }

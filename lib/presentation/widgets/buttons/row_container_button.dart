@@ -11,7 +11,7 @@ class RowContainerButton extends StatelessWidget {
     required this.borderRadius,
     required this.text,
     required this.textStyle,
-    required this.widget
+    required this.widget,
   });
 
   final EdgeInsets padding;
@@ -32,7 +32,7 @@ class RowContainerButton extends StatelessWidget {
       child: Padding(
         padding: padding,
         child: _buildContent(),
-      )
+      ),
     );
   }
 

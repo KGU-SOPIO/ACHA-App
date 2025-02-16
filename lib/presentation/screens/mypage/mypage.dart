@@ -13,9 +13,7 @@ class MyPageScreen extends StatefulWidget {
   State<MyPageScreen> createState() => _MyPageScreenState();
 
   static Route<void> route() {
-    return CupertinoPageRoute(
-      builder: (context) => const MyPageScreen()
-    );
+    return CupertinoPageRoute(builder: (context) => const MyPageScreen());
   }
 }
 
@@ -28,8 +26,8 @@ class _MyPageScreenState extends State<MyPageScreen> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 245, 246, 248),
       body: SafeArea(
-        child: _buildBody()
-      )
+        child: _buildBody(),
+      ),
     );
   }
 
@@ -39,9 +37,9 @@ class _MyPageScreenState extends State<MyPageScreen> {
         children: [
           const AchaAppbar(),
           const SizedBox(height: 20),
-          _buildContent()
-        ]
-      )
+          _buildContent(),
+        ],
+      ),
     );
   }
 
@@ -62,9 +60,9 @@ class _MyPageScreenState extends State<MyPageScreen> {
           _buildLogoutButton(),
           const SizedBox(height: 18),
           _buildDeleteAccountButton(),
-          const SizedBox(height: 54)
-        ]
-      )
+          const SizedBox(height: 54),
+        ],
+      ),
     );
   }
 
@@ -74,17 +72,15 @@ class _MyPageScreenState extends State<MyPageScreen> {
       onPressed: () => Navigator.push(context, SopioScreen.route()),
       foregroundColor: Colors.white,
       backgroundColor: Colors.white,
-      border: const BorderSide(
-        color: Color.fromARGB(255, 228, 232, 241)
-      ),
+      border: const BorderSide(color: Color.fromARGB(255, 228, 232, 241)),
       borderRadius: 25,
       text: 'SOPIO',
       textStyle: const TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w500,
-        color: Color.fromARGB(255, 30, 30, 30)
+        color: Color.fromARGB(255, 30, 30, 30),
       ),
-      widget: SvgPicture.asset('lib/assets/svgs/mypage/right_arrow.svg')
+      widget: SvgPicture.asset('lib/assets/svgs/mypage/right_arrow.svg'),
     );
   }
 
@@ -98,7 +94,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
         fontSize: 14,
         fontWeight: FontWeight.w700,
         color: Color.fromARGB(255, 109, 109, 109),
-      )
+      ),
     );
   }
 
@@ -106,16 +102,14 @@ class _MyPageScreenState extends State<MyPageScreen> {
     return ContainerButton(
       height: 56,
       onPressed: () => _showCancelModal(),
-      backgroundColor: const Color.fromARGB(25, 255, 78 , 107),
-      border: const BorderSide(
-        color: Color.fromARGB(255, 255, 78, 107)
-      ),
+      backgroundColor: const Color.fromARGB(25, 255, 78, 107),
+      border: const BorderSide(color: Color.fromARGB(255, 255, 78, 107)),
       text: '계정 삭제',
       textStyle: const TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w700,
-        color: Color.fromARGB(255, 255, 78, 107)
-      )
+        color: Color.fromARGB(255, 255, 78, 107),
+      ),
     );
   }
 }

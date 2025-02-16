@@ -21,12 +21,14 @@ class NoticeMainScreen extends StatefulWidget {
     return CupertinoPageRoute(
       builder: (context) => BlocProvider(
         create: (context) => NoticeBloc(
-          courseRepository: GetIt.I<CourseRepository>(),
-          course: course,
-          noticeId: noticeId
-        )..add(const NoticeEvent.fetchNotice()),
-        child: const NoticeMainScreen()
-      )
+            courseRepository: GetIt.I<CourseRepository>(),
+            course: course,
+            noticeId: noticeId)
+          ..add(
+            const NoticeEvent.fetchNotice(),
+          ),
+        child: const NoticeMainScreen(),
+      ),
     );
   }
 }
@@ -45,22 +47,22 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
               _buildBackButton(context),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32),
-                child: _buildBody(context)
-              )
-            ]
-          )
-        )
-      )
+                child: _buildBody(context),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 
   Widget _buildBackButton(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 20),
-        child: IconButton(
+      child: IconButton(
         onPressed: () => Navigator.of(context).pop(),
-        icon: SvgPicture.asset('lib/assets/svgs/mypage/back_arrow.svg')
-      )
+        icon: SvgPicture.asset('lib/assets/svgs/mypage/back_arrow.svg'),
+      ),
     );
   }
 
@@ -81,11 +83,12 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
         } else {
           return const SizedBox.shrink();
         }
-      }
+      },
     );
   }
 
-  Widget _buildLoadedContent(BuildContext context, NoticeState state, Notice notice) {
+  Widget _buildLoadedContent(
+      BuildContext context, NoticeState state, Notice notice) {
     final hasNext = notice.nextNoticeId != null;
     final hasPrevious = notice.previousNoticeId != null;
 
@@ -96,20 +99,16 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
         const SizedBox(height: 20),
         _buildNoticeContent(notice),
         const SizedBox(height: 30),
-        _buildNavigationSection(context, notice, hasNext, hasPrevious)
-      ]
+        _buildNavigationSection(context, notice, hasNext, hasPrevious),
+      ],
     );
   }
 
   Widget _buildHeader(BuildContext context, NoticeState state, Notice notice) {
     return DecoratedBox(
       decoration: const BoxDecoration(
-        border: Border(
-          bottom: BorderSide(
-            color: Color.fromARGB(255, 228, 232, 241)
-          )
-        )
-      ),
+          border: Border(
+              bottom: BorderSide(color: Color.fromARGB(255, 228, 232, 241)))),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -119,8 +118,8 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
             style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w400,
-              color: Color.fromARGB(255, 30, 30, 30)
-            )
+              color: Color.fromARGB(255, 30, 30, 30),
+            ),
           ),
           const SizedBox(height: 10),
           Text(
@@ -128,14 +127,14 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
             style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w700,
-              color: Color.fromARGB(255, 30, 30, 30)
+              color: Color.fromARGB(255, 30, 30, 30),
             ),
           ),
           const SizedBox(height: 20),
           _buildNoticeInformation(context, notice),
-          const SizedBox(height: 20)
-        ]
-      )
+          const SizedBox(height: 20),
+        ],
+      ),
     );
   }
 
@@ -150,7 +149,7 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
           style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w500,
-            color: Color.fromARGB(255, 151, 151, 151)
+            color: Color.fromARGB(255, 151, 151, 151),
           ),
         ),
         const SizedBox(width: 20),
@@ -161,85 +160,109 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
           style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w500,
-            color: Color.fromARGB(255, 151, 151, 151)
-          )
-        )
-      ]
+            color: Color.fromARGB(255, 151, 151, 151),
+          ),
+        ),
+      ],
     );
   }
 
   Widget _buildNoticeContent(Notice notice) {
     return Text(
-      notice.content!.replaceAllMapped(RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D'),
-      style: const TextStyle(
-        fontSize: 12,
-        height: 1.7
-      )
+      notice.content!
+          .replaceAllMapped(RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D'),
+      style: const TextStyle(fontSize: 12, height: 1.7),
     );
   }
 
-  Widget _buildNavigationSection(BuildContext context, Notice notice, bool hasNext, bool hasPrevious) {
+  Widget _buildNavigationSection(
+      BuildContext context, Notice notice, bool hasNext, bool hasPrevious) {
     return Column(
       children: [
         if (hasNext) _buildNextButton(context, notice, hasPrevious),
-        if (hasPrevious) _buildPreviousButton(context, notice, hasNext)
-      ]
+        if (hasPrevious) _buildPreviousButton(context, notice, hasNext),
+      ],
     );
   }
 
-  Widget _buildNextButton(BuildContext context, Notice notice, bool hasPrevious) {
+  Widget _buildNextButton(
+      BuildContext context, Notice notice, bool hasPrevious) {
     return GestureDetector(
-      onTap: () => Navigator.pushReplacement(context, NoticeMainScreen.route(course: context.read<NoticeBloc>().course, noticeId: notice.nextNoticeId!)),
+      onTap: () => Navigator.pushReplacement(
+          context,
+          NoticeMainScreen.route(
+              course: context.read<NoticeBloc>().course,
+              noticeId: notice.nextNoticeId!)),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 22),
         decoration: BoxDecoration(
-          borderRadius: hasPrevious ? const BorderRadius.vertical(top: Radius.circular(20)) : BorderRadius.circular(20),
+          borderRadius: hasPrevious
+              ? const BorderRadius.vertical(top: Radius.circular(20))
+              : BorderRadius.circular(20),
           border: Border.all(
-            color: const Color.fromARGB(255, 237, 239, 242)
-          )
+            color: const Color.fromARGB(255, 237, 239, 242),
+          ),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
               children: [
-                const Text('다음글', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
+                const Text(
+                  '다음글',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                ),
                 const SizedBox(width: 10),
-                Text(notice.nextNoticeTitle!, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700))
-              ]
+                Text(
+                  notice.nextNoticeTitle!,
+                  style: const TextStyle(
+                      fontSize: 14, fontWeight: FontWeight.w700),
+                )
+              ],
             ),
             SvgPicture.asset('lib/assets/svgs/notice/right_arrow.svg')
-          ]
-        )
-      )
+          ],
+        ),
+      ),
     );
   }
 
-  Widget _buildPreviousButton(BuildContext context, Notice notice, bool hasNext) {
+  Widget _buildPreviousButton(
+      BuildContext context, Notice notice, bool hasNext) {
     return GestureDetector(
-      onTap: () => Navigator.pushReplacement(context, NoticeMainScreen.route(course: context.read<NoticeBloc>().course, noticeId: notice.previousNoticeId!)),
-        child: Container(
+      onTap: () => Navigator.pushReplacement(
+          context,
+          NoticeMainScreen.route(
+              course: context.read<NoticeBloc>().course,
+              noticeId: notice.previousNoticeId!)),
+      child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 22),
         decoration: BoxDecoration(
-          borderRadius: hasNext ? const BorderRadius.vertical(bottom: Radius.circular(20)) : BorderRadius.circular(20),
+          borderRadius: hasNext
+              ? const BorderRadius.vertical(bottom: Radius.circular(20))
+              : BorderRadius.circular(20),
           border: Border.all(
-            color: const Color.fromARGB(255, 237, 239, 242)
-          )
+            color: const Color.fromARGB(255, 237, 239, 242),
+          ),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
               children: [
-                const Text('이전글', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
+                const Text('이전글',
+                    style:
+                        TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
                 const SizedBox(width: 10),
-                Text(notice.previousNoticeTitle!, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700))
-              ]
+                Text(notice.previousNoticeTitle!,
+                    style: const TextStyle(
+                        fontSize: 14, fontWeight: FontWeight.w700))
+              ],
             ),
             SvgPicture.asset('lib/assets/svgs/notice/right_arrow.svg')
-          ]
-        )
-      )
+          ],
+        ),
+      ),
     );
   }
 }

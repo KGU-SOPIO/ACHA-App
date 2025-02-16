@@ -26,7 +26,7 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
   Widget build(BuildContext context) {
     return BlocConsumer<AlertBloc, AlertState>(
       listener: _onAlertStatusChanged,
-      builder: _buildContent
+      builder: _buildContent,
     );
   }
 
@@ -36,7 +36,9 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
         GetIt.I<ToastManager>().error(message: state.message!);
         break;
       case AlertStatus.changed:
-        GetIt.I<ToastManager>().show(message: state.message!, svgPath: 'lib/assets/svgs/toast/alert.svg');
+        GetIt.I<ToastManager>().show(
+            message: state.message!,
+            svgPath: 'lib/assets/svgs/toast/alert.svg');
         break;
       case AlertStatus.denied:
         GetIt.I<ToastManager>().error(message: state.message!);
@@ -52,10 +54,8 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border.all(
-          color: const Color.fromARGB(255, 228, 232, 241)
-        ),
-        borderRadius: BorderRadius.circular(25)
+        border: Border.all(color: const Color.fromARGB(255, 228, 232, 241)),
+        borderRadius: BorderRadius.circular(25),
       ),
       child: Column(
         children: [
@@ -63,9 +63,9 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
           const SizedBox(height: 24),
           _buildAlertPeriod(),
           const SizedBox(height: 24),
-          _buildAlertToggle(state)
-        ]
-      )
+          _buildAlertToggle(state),
+        ],
+      ),
     );
   }
 
@@ -74,17 +74,17 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
       children: [
         Container(
           margin: const EdgeInsets.only(right: 9),
-          child: SvgPicture.asset('lib/assets/svgs/mypage/bell.svg')
+          child: SvgPicture.asset('lib/assets/svgs/mypage/bell.svg'),
         ),
         const Text(
           '알림',
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,
-            color: Color.fromARGB(255, 30, 30, 30)
-          )
-        )
-      ]
+            color: Color.fromARGB(255, 30, 30, 30),
+          ),
+        ),
+      ],
     );
   }
 
@@ -95,10 +95,7 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
       children: [
         Text(
           '알림 주기',
-          style: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w400
-          ),
+          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -106,29 +103,43 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
             Text.rich(
               TextSpan(
                 style: TextStyle(
-                  height: 1.4,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w300,
-                  color: Color.fromARGB(255, 109, 109, 109)
-                ),
+                    height: 1.4,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w300,
+                    color: Color.fromARGB(255, 109, 109, 109)),
                 children: [
                   TextSpan(
                     text: '3',
-                    style: TextStyle(fontWeight: FontWeight.w700, color: Color.fromARGB(255, 0, 102, 255))
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      color: Color.fromARGB(255, 0, 102, 255),
+                    ),
                   ),
-                  TextSpan(text: '일 · ', style: TextStyle(fontWeight: FontWeight.w500)),
+                  TextSpan(
+                      text: '일 · ',
+                      style: TextStyle(fontWeight: FontWeight.w500)),
                   TextSpan(
                     text: '1',
-                    style: TextStyle(fontWeight: FontWeight.w700, color: Color.fromARGB(255, 0, 102, 255))
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      color: Color.fromARGB(255, 0, 102, 255),
+                    ),
                   ),
-                  TextSpan(text: '일 · ', style: TextStyle(fontWeight: FontWeight.w500)),
+                  TextSpan(
+                      text: '일 · ',
+                      style: TextStyle(fontWeight: FontWeight.w500)),
                   TextSpan(
                     text: '1',
-                    style: TextStyle(fontWeight: FontWeight.w700, color: Color.fromARGB(255, 0, 102, 255))
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      color: Color.fromARGB(255, 0, 102, 255),
+                    ),
                   ),
-                  TextSpan(text: '시간 전', style: TextStyle(fontWeight: FontWeight.w500))
-                ]
-              )
+                  TextSpan(
+                      text: '시간 전',
+                      style: TextStyle(fontWeight: FontWeight.w500)),
+                ],
+              ),
             ),
             SizedBox(height: 8),
             Text(
@@ -137,12 +148,12 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
                 height: 1.4,
                 fontSize: 15,
                 fontWeight: FontWeight.w300,
-                color: Color.fromARGB(255, 151, 151, 151)
-              )
-            )
-          ]
-        )
-      ]
+                color: Color.fromARGB(255, 151, 151, 151),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 
@@ -156,8 +167,8 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
           style: TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w400,
-            color: Color.fromARGB(255, 30, 30, 30)
-          )
+            color: Color.fromARGB(255, 30, 30, 30),
+          ),
         ),
         SizedBox(
           height: 30,
@@ -165,12 +176,14 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
             fit: BoxFit.contain,
             child: CupertinoSwitch(
               value: state.isEnabled,
-              onChanged: (value) => context.read<AlertBloc>().add(AlertEvent.changeAlertStatus(isEnabled: value)),
-              activeTrackColor: const Color.fromARGB(255, 0, 102, 255)
-            )
-          )
-        )
-      ]
+              onChanged: (value) => context
+                  .read<AlertBloc>()
+                  .add(AlertEvent.changeAlertStatus(isEnabled: value)),
+              activeTrackColor: const Color.fromARGB(255, 0, 102, 255),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

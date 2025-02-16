@@ -5,7 +5,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:acha/data/models/index.dart';
 
 class CarouselActivityContainer extends StatelessWidget {
-  const CarouselActivityContainer({super.key, required this.week, required this.activity});
+  const CarouselActivityContainer(
+      {super.key, required this.week, required this.activity});
 
   final int week;
   final Activity activity;
@@ -16,12 +17,11 @@ class CarouselActivityContainer extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 22),
       decoration: BoxDecoration(
-        border: Border.all(
-          color: const Color.fromARGB(255, 237, 239, 242)
-        ),
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(25)
-      ),
+          border: Border.all(
+            color: const Color.fromARGB(255, 237, 239, 242),
+          ),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(25)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -32,9 +32,9 @@ class CarouselActivityContainer extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w700,
-                color: Color.fromARGB(255, 30, 30, 30)
-              )
-            )
+                color: Color.fromARGB(255, 30, 30, 30),
+              ),
+            ),
           ),
           Container(
             width: double.infinity,
@@ -42,9 +42,9 @@ class CarouselActivityContainer extends StatelessWidget {
             decoration: BoxDecoration(
               border: Border.all(
                 color: const Color.fromARGB(255, 237, 239, 242),
-                width: 1.5
+                width: 1.5,
               ),
-              borderRadius: BorderRadius.circular(12)
+              borderRadius: BorderRadius.circular(12),
             ),
             child: Row(
               children: [
@@ -59,15 +59,15 @@ class CarouselActivityContainer extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
-                      color: Color.fromARGB(255, 60, 60, 60)
-                    )
-                  )
-                )
-              ]
-            )
-          )
-        ]
-      )
+                      color: Color.fromARGB(255, 60, 60, 60),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

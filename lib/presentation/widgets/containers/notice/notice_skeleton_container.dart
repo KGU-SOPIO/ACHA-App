@@ -15,18 +15,18 @@ class NoticeSkeletonContainer extends StatelessWidget {
         decoration: const BoxDecoration(
           border: Border(
             bottom: BorderSide(
-              color: Color.fromARGB(255, 228, 232, 241)
-            )
-          )
+              color: Color.fromARGB(255, 228, 232, 241),
+            ),
+          ),
         ),
         child: Column(
           children: [
             _buildHeader(),
             const SizedBox(height: 20),
-            _buildInformation()
-          ]
-        )
-      )
+            _buildInformation(),
+          ],
+        ),
+      ),
     );
   }
 
@@ -35,8 +35,11 @@ class NoticeSkeletonContainer extends StatelessWidget {
       children: [
         Text('N', style: TextStyle(fontSize: 14)),
         SizedBox(width: 15),
-        Text('Skeleton_Skeleton', style: TextStyle(fontSize: 14))
-      ]
+        Text(
+          'Skeleton_Skeleton',
+          style: TextStyle(fontSize: 14),
+        ),
+      ],
     );
   }
 
@@ -51,7 +54,7 @@ class NoticeSkeletonContainer extends StatelessWidget {
         SvgPicture.asset('lib/assets/svgs/notice/clock.svg'),
         const SizedBox(width: 7),
         const Text('Skeleton', style: TextStyle(fontSize: 12))
-      ]
+      ],
     );
   }
 }

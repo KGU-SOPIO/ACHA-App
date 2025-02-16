@@ -20,8 +20,8 @@ class HomeScreen extends StatefulWidget {
     return CupertinoPageRoute(
       builder: (context) => BlocProvider(
         create: (context) => NavigationBloc(),
-        child: HomeScreen(requestPermission: requestPermission)
-      )
+        child: HomeScreen(requestPermission: requestPermission),
+      ),
     );
   }
 }
@@ -51,9 +51,9 @@ class _HomeScreenState extends State<HomeScreen> {
       builder: (context, state) {
         return Scaffold(
           body: _buildBody(state),
-          bottomNavigationBar: _buildBottomNavigationBar(context, state)
+          bottomNavigationBar: _buildBottomNavigationBar(context, state),
         );
-      }
+      },
     );
   }
 
@@ -64,8 +64,8 @@ class _HomeScreenState extends State<HomeScreen> {
         const MainScreen(),
         const CourseScreen(),
         const NotificationScreen(),
-        const MyPageScreen()
-      ]
+        const MyPageScreen(),
+      ],
     );
   }
 
@@ -76,28 +76,31 @@ class _HomeScreenState extends State<HomeScreen> {
         data: NavigationBarThemeData(
           backgroundColor: Colors.white,
           indicatorColor: Colors.transparent,
-          labelTextStyle: WidgetStateProperty.resolveWith((states) {
-            if (states.contains(WidgetState.selected)) {
-              return const TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
-                color: Color.fromARGB(255, 0, 102, 255)
-              );
-            } else {
-              return const TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
-                color: Color.fromARGB(255, 181, 175, 175)
-              );
-            }
-          })
+          labelTextStyle: WidgetStateProperty.resolveWith(
+            (states) {
+              if (states.contains(WidgetState.selected)) {
+                return const TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                  color: Color.fromARGB(255, 0, 102, 255),
+                );
+              } else {
+                return const TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                  color: Color.fromARGB(255, 181, 175, 175),
+                );
+              }
+            },
+          ),
         ),
         child: NavigationBar(
-          onDestinationSelected: (index) => context.read<NavigationBloc>().add(ChangeTab(index)),
+          onDestinationSelected: (index) =>
+              context.read<NavigationBloc>().add(ChangeTab(index)),
           selectedIndex: state.selectedIndex,
-          destinations: _buildDestinations()
-        )
-      )
+          destinations: _buildDestinations(),
+        ),
+      ),
     );
   }
 
@@ -120,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
         blurRadius: 5,
         spreadRadius: 2.5,
         offset: const Offset(0, 2.5),
-      )
+      ),
     ];
   }
 
@@ -137,15 +140,17 @@ class _HomeScreenState extends State<HomeScreen> {
         label: '강좌',
       ),
       NavigationDestination(
-        selectedIcon: SvgPicture.asset('lib/assets/svgs/navigation/notification.svg'),
-        icon: SvgPicture.asset('lib/assets/svgs/navigation/notification_outline.svg'),
+        selectedIcon:
+            SvgPicture.asset('lib/assets/svgs/navigation/notification.svg'),
+        icon: SvgPicture.asset(
+            'lib/assets/svgs/navigation/notification_outline.svg'),
         label: '알림',
       ),
       NavigationDestination(
         selectedIcon: SvgPicture.asset('lib/assets/svgs/navigation/user.svg'),
         icon: SvgPicture.asset('lib/assets/svgs/navigation/user_outline.svg'),
         label: '내 정보',
-      )
+      ),
     ];
   }
 }

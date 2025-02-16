@@ -28,8 +28,8 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
         borderRadius: const BorderRadius.all(Radius.circular(20)),
         border: Border.all(
           color: const Color.fromARGB(255, 228, 232, 241),
-          width: 1.5
-        )
+          width: 1.5,
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,10 +38,10 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
           const SizedBox(height: 15),
           BlocConsumer<TodayCourseBloc, TodayCourseState>(
             listener: _onTodayCourseStateChanged,
-            builder: _buildContent
-          )
-        ]
-      )
+            builder: _buildContent,
+          ),
+        ],
+      ),
     );
   }
 
@@ -51,35 +51,30 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
       children: [
         const Text.rich(
           TextSpan(
-            style: TextStyle(
-              fontSize: 16,
-              color: Color.fromARGB(255, 30, 30, 30)
-            ),
+            style:
+                TextStyle(fontSize: 16, color: Color.fromARGB(255, 30, 30, 30)),
             children: [
               TextSpan(
-                text: '오늘의 ',
-                style: TextStyle(fontWeight: FontWeight.w500)
-              ),
+                  text: '오늘의 ', style: TextStyle(fontWeight: FontWeight.w500)),
               TextSpan(
-                text: '강의',
-                style: TextStyle(fontWeight: FontWeight.w700)
-              )
-            ]
-          )
+                  text: '강의', style: TextStyle(fontWeight: FontWeight.w700)),
+            ],
+          ),
         ),
         Text(
           DateTime.now().formatDate(pattern: 'M월 d일'),
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,
-            color: Color.fromARGB(255, 0, 102, 255)
-          )
-        )
-      ]
+            color: Color.fromARGB(255, 0, 102, 255),
+          ),
+        ),
+      ],
     );
   }
 
-  void _onTodayCourseStateChanged(BuildContext context, TodayCourseState state) {
+  void _onTodayCourseStateChanged(
+      BuildContext context, TodayCourseState state) {
     switch (state.status) {
       case TodayCourseStatus.error:
         GetIt.I<ToastManager>().error(message: state.errorMessage!);
@@ -105,13 +100,16 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
 
   Widget _buildCourseList(CourseList courses) {
     return Column(
-      children: courses.courses.map((course) => _buildCourseContainer(course)).toList()
+      children: courses.courses
+          .map((course) => _buildCourseContainer(course))
+          .toList(),
     );
   }
 
   Widget _buildCourseContainer(Course course) {
     return GestureDetector(
-      onTap: () => Navigator.push(context, CourseMainScreen.route(course: course)),
+      onTap: () =>
+          Navigator.push(context, CourseMainScreen.route(course: course)),
       child: Padding(
         padding: const EdgeInsets.only(bottom: 10),
         child: Container(
@@ -119,14 +117,12 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           decoration: BoxDecoration(
             border: Border.all(
-              color: const Color.fromARGB(255, 237, 239, 242),
-              width: 1.5
-            ),
-            borderRadius: BorderRadius.circular(20)
+                color: const Color.fromARGB(255, 237, 239, 242), width: 1.5),
+            borderRadius: BorderRadius.circular(20),
           ),
-          child: _buildCourseInformation(course)
-        )
-      )
+          child: _buildCourseInformation(course),
+        ),
+      ),
     );
   }
 
@@ -139,8 +135,8 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
           style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w400,
-            color: Color.fromARGB(255, 109, 109, 109)
-          )
+            color: Color.fromARGB(255, 109, 109, 109),
+          ),
         ),
         const SizedBox(height: 3),
         AutoSizeText(
@@ -149,8 +145,8 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w400,
-            color: Colors.black
-          )
+            color: Colors.black,
+          ),
         ),
         const SizedBox(height: 2),
         Text(
@@ -158,10 +154,10 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
           style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w400,
-            color: Colors.black
-          )
+            color: Colors.black,
+          ),
         )
-      ]
+      ],
     );
   }
 
@@ -171,9 +167,9 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
       child: Center(
         child: Text(
           '오늘은 공강이에요',
-          style: TextStyle(fontSize: 15)
-        )
-      )
+          style: TextStyle(fontSize: 15),
+        ),
+      ),
     );
   }
 
@@ -183,9 +179,9 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
       child: Center(
         child: Text(
           '강의를 불러오지 못했어요',
-          style: TextStyle(fontSize: 15)
-        )
-      )
+          style: TextStyle(fontSize: 15),
+        ),
+      ),
     );
   }
 }

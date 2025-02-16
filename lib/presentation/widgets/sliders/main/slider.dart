@@ -16,7 +16,7 @@ class SliderWidget extends StatefulWidget {
     required this.scrollController,
     required this.carouselSliderController,
     required this.currentSlide,
-    required this.onPageChanged
+    required this.onPageChanged,
   });
 
   final ScrollController scrollController;
@@ -47,27 +47,27 @@ class _SliderWidgetState extends State<SliderWidget> {
               CarouselSlider(
                 carouselController: widget.carouselSliderController,
                 options: CarouselOptions(
-                  aspectRatio: 0.74,
-                  viewportFraction: 1,
-                  enableInfiniteScroll: false,
-                  onPageChanged: (index, reason) => widget.onPageChanged(index)
-                ),
+                    aspectRatio: 0.74,
+                    viewportFraction: 1,
+                    enableInfiniteScroll: false,
+                    onPageChanged: (index, reason) =>
+                        widget.onPageChanged(index)),
                 items: [
                   _buildLectureSection(context),
                   _buildAssignmentSection(context),
-                ]
+                ],
               ),
               Positioned(
                 bottom: 20,
                 child: CarouselIndicator(
                   itemCount: 2,
-                  currentIndex: widget.currentSlide
-                )
-              )
-            ]
-          )
+                  currentIndex: widget.currentSlide,
+                ),
+              ),
+            ],
+          ),
         );
-      }
+      },
     );
   }
 
@@ -76,18 +76,20 @@ class _SliderWidgetState extends State<SliderWidget> {
       padding: const EdgeInsets.only(left: 32, right: 32, top: 32),
       child: Column(
         children: [
-          _buildSectionTitle(title: '우선 강의', iconPath: 'lib/assets/svgs/modal/main/play.svg'),
+          _buildSectionTitle(
+              title: '우선 강의', iconPath: 'lib/assets/svgs/modal/main/play.svg'),
           const SizedBox(height: 18),
           _buildActivityBlocConsumer(
-            loadedBuilder: (state) {
-              final weekActivities = state.weekActivities;
-              final lectures = weekActivities?.getLectureActivities(group: true);
-              return _buildLectureList(lectures: lectures, notExistMessage: '남은 강의가 없어요');
-            },
-            errorMessage: '우선 강의를 불러오지 못했어요'
-          )
-        ]
-      )
+              loadedBuilder: (state) {
+                final weekActivities = state.weekActivities;
+                final lectures =
+                    weekActivities?.getLectureActivities(group: true);
+                return _buildLectureList(
+                    lectures: lectures, notExistMessage: '남은 강의가 없어요');
+              },
+              errorMessage: '우선 강의를 불러오지 못했어요'),
+        ],
+      ),
     );
   }
 
@@ -96,18 +98,21 @@ class _SliderWidgetState extends State<SliderWidget> {
       padding: const EdgeInsets.only(left: 32, right: 32, top: 32),
       child: Column(
         children: [
-          _buildSectionTitle(title: '우선 과제', iconPath: 'lib/assets/svgs/modal/main/list.svg'),
+          _buildSectionTitle(
+              title: '우선 과제', iconPath: 'lib/assets/svgs/modal/main/list.svg'),
           const SizedBox(height: 18),
           _buildActivityBlocConsumer(
             loadedBuilder: (state) {
               final weekActivities = state.weekActivities;
-              final assignments = weekActivities?.getAssignmentActivities(group: true);
-              return _buildAssignmentList(assignments: assignments, notExistMessage: '남은 과제가 없어요');
+              final assignments =
+                  weekActivities?.getAssignmentActivities(group: true);
+              return _buildAssignmentList(
+                  assignments: assignments, notExistMessage: '남은 과제가 없어요');
             },
-            errorMessage: '우선 과제를 불러오지 못했어요'
-          )
-        ]
-      )
+            errorMessage: '우선 과제를 불러오지 못했어요',
+          ),
+        ],
+      ),
     );
   }
 
@@ -131,13 +136,13 @@ class _SliderWidgetState extends State<SliderWidget> {
                   TextSpan(
                     text: title,
                     style: const TextStyle(fontWeight: FontWeight.w700),
-                  )
-                ]
-              )
+                  ),
+                ],
+              ),
             ),
             const SizedBox(width: 10),
             SvgPicture.asset(iconPath),
-          ]
+          ],
         ),
         GestureDetector(
           onTap: () => context.read<NavigationBloc>().add(const ChangeTab(2)),
@@ -151,18 +156,20 @@ class _SliderWidgetState extends State<SliderWidget> {
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                     color: Color.fromARGB(255, 151, 151, 151),
-                  )
-                )
+                  ),
+                ),
               ),
               SvgPicture.asset('lib/assets/svgs/modal/main/right_arrow.svg'),
-            ]
-          )
-        )
-      ]
+            ],
+          ),
+        ),
+      ],
     );
   }
 
-  Widget _buildActivityBlocConsumer({required Widget Function(ActivityState state) loadedBuilder, required String errorMessage}) {
+  Widget _buildActivityBlocConsumer(
+      {required Widget Function(ActivityState state) loadedBuilder,
+      required String errorMessage}) {
     return BlocConsumer<ActivityBloc, ActivityState>(
       listener: (context, state) {
         if (state.status == ActivityStatus.error) {
@@ -175,15 +182,31 @@ class _SliderWidgetState extends State<SliderWidget> {
         } else if (state.status == ActivityStatus.loaded) {
           return loadedBuilder(state);
         } else {
-          return Expanded(child: Center(child: Text(errorMessage, style: const TextStyle(fontSize: 15))));
+          return Expanded(
+            child: Center(
+              child: Text(
+                errorMessage,
+                style: const TextStyle(fontSize: 15),
+              ),
+            ),
+          );
         }
-      }
+      },
     );
   }
 
-  Widget _buildLectureList({required Map<DateTime, List<Activity>>? lectures, required String notExistMessage}) {
+  Widget _buildLectureList(
+      {required Map<DateTime, List<Activity>>? lectures,
+      required String notExistMessage}) {
     if (lectures == null) {
-      return Expanded(child: Center(child: Text(notExistMessage, style: const TextStyle(fontSize: 15))));
+      return Expanded(
+        child: Center(
+          child: Text(
+            notExistMessage,
+            style: const TextStyle(fontSize: 15),
+          ),
+        ),
+      );
     }
 
     return Expanded(
@@ -206,19 +229,28 @@ class _SliderWidgetState extends State<SliderWidget> {
                   course: lecture.courseName!,
                   deadline: lecture.deadline!.toTimeLeftFormattedTime(),
                   uri: Uri.parse(lecture.link),
-                  margin: const EdgeInsets.only(bottom: 13)
+                  margin: const EdgeInsets.only(bottom: 13),
                 ),
               const SizedBox(height: 20),
-            ]
+            ],
           );
-        }
-      )
+        },
+      ),
     );
   }
 
-  Widget _buildAssignmentList({required Map<DateTime, List<Activity>>? assignments, required String notExistMessage}) {
+  Widget _buildAssignmentList(
+      {required Map<DateTime, List<Activity>>? assignments,
+      required String notExistMessage}) {
     if (assignments == null) {
-      return Expanded(child: Center(child: Text(notExistMessage, style: const TextStyle(fontSize: 15))));
+      return Expanded(
+        child: Center(
+          child: Text(
+            notExistMessage,
+            style: const TextStyle(fontSize: 15),
+          ),
+        ),
+      );
     }
 
     return Expanded(
@@ -244,10 +276,10 @@ class _SliderWidgetState extends State<SliderWidget> {
                   margin: const EdgeInsets.only(bottom: 13),
                 ),
               const SizedBox(height: 20),
-            ]
+            ],
           );
-        }
-      )
+        },
+      ),
     );
   }
 }

@@ -14,9 +14,9 @@ class ContentSkeletonContainer extends StatelessWidget {
         children: [
           _buildHeader(),
           const SizedBox(height: 20),
-          _buildBody()
-        ]
-      )
+          _buildBody(),
+        ],
+      ),
     );
   }
 
@@ -25,9 +25,9 @@ class ContentSkeletonContainer extends StatelessWidget {
       decoration: const BoxDecoration(
         border: Border(
           bottom: BorderSide(
-            color: Color.fromARGB(255, 228, 232, 241)
-          )
-        )
+            color: Color.fromARGB(255, 228, 232, 241),
+          ),
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,9 +38,9 @@ class ContentSkeletonContainer extends StatelessWidget {
           const Text('Skeleton_Skeleton_Ske', style: TextStyle(fontSize: 20)),
           const SizedBox(height: 20),
           _buildInformation(),
-          const SizedBox(height: 20)
-        ]
-      )
+          const SizedBox(height: 20),
+        ],
+      ),
     );
   }
 
@@ -50,12 +50,18 @@ class ContentSkeletonContainer extends StatelessWidget {
       children: [
         SvgPicture.asset('lib/assets/svgs/notice/person.svg'),
         const SizedBox(width: 7),
-        const Text('Skeleton', style: TextStyle(fontSize: 12)),
+        const Text(
+          'Skeleton',
+          style: TextStyle(fontSize: 12),
+        ),
         const SizedBox(width: 20),
         SvgPicture.asset('lib/assets/svgs/notice/clock.svg'),
         const SizedBox(width: 7),
-        const Text('Skeleton', style: TextStyle(fontSize: 12))
-      ]
+        const Text(
+          'Skeleton',
+          style: TextStyle(fontSize: 12),
+        ),
+      ],
     );
   }
 
@@ -63,11 +69,11 @@ class ContentSkeletonContainer extends StatelessWidget {
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-          Text('Skeleton_Skeleton_Skeleton'),
-          SizedBox(height: 10),
-          Text('Skeleton_Skeleton_Skeleton_Skeleton'),
-          SizedBox(height: 10),
-          Text('Skeleton_Skeleton')
+        Text('Skeleton_Skeleton_Skeleton'),
+        SizedBox(height: 10),
+        Text('Skeleton_Skeleton_Skeleton_Skeleton'),
+        SizedBox(height: 10),
+        Text('Skeleton_Skeleton'),
       ],
     );
   }

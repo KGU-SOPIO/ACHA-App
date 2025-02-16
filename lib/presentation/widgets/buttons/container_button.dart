@@ -8,7 +8,7 @@ class ContainerButton extends StatelessWidget {
     required this.backgroundColor,
     required this.text,
     required this.textStyle,
-    this.border
+    this.border,
   });
 
   final double height;
@@ -23,18 +23,16 @@ class ContainerButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: _buttonStyle(),
-      child: Text(text, style: textStyle)
+      child: Text(text, style: textStyle),
     );
   }
 
   ButtonStyle _buttonStyle() {
     return ElevatedButton.styleFrom(
       minimumSize: Size(double.infinity, height),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12)
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       side: border ?? BorderSide.none,
-      backgroundColor: backgroundColor
+      backgroundColor: backgroundColor,
     );
   }
 }

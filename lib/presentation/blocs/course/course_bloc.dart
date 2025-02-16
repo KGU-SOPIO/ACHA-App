@@ -2,17 +2,23 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:acha/data/models/index.dart';
+import 'package:acha/domain/usecases/index.dart';
 import 'package:acha/domain/repositories/index.dart';
 import 'package:acha/domain/exceptions/index.dart';
 import 'package:acha/presentation/blocs/index.dart';
 
 class CourseBloc extends Bloc<CourseEvent, CourseState> {
-  CourseBloc({required this.courseRepository, required this.course})
-      : super(CourseState(status: CourseStatus.loading, course: course)) {
+  CourseBloc({
+    required CourseRepository courseRepository,
+    required this.course,
+  }) : super(CourseState(status: CourseStatus.loading, course: course)) {
+    _fetchCourseActivitiesUseCase =
+        FetchCourseActivitiesUseCase(courseRepository: courseRepository);
+
     on<FetchCourseActivities>(_onFetchCourseActivities);
   }
 
-  final CourseRepository courseRepository;
+  late final FetchCourseActivitiesUseCase _fetchCourseActivitiesUseCase;
   final Course course;
 
   /// 활동 데이터를 요청합니다.
@@ -20,7 +26,7 @@ class CourseBloc extends Bloc<CourseEvent, CourseState> {
       FetchCourseActivities event, Emitter<CourseState> emit) async {
     try {
       final courseActivities =
-          await courseRepository.fetchCourseActivities(course.code);
+          await _fetchCourseActivitiesUseCase.call(course.code);
       emit(state.copyWith(
           status: CourseStatus.loaded,
           course: course.copyWith(courseActivities: courseActivities)));

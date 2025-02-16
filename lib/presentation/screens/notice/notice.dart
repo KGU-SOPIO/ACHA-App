@@ -22,11 +22,12 @@ class NoticeScreen extends StatefulWidget {
     return CupertinoPageRoute(
       builder: (context) => BlocProvider(
         create: (context) => NoticeListBloc(
-          courseRepository: GetIt.I<CourseRepository>(),
-          course: course
-        )..add(const NoticeListEvent.fetchNoticeList()),
-        child: const NoticeScreen()
-      )
+            courseRepository: GetIt.I<CourseRepository>(), course: course)
+          ..add(
+            const NoticeListEvent.fetchNoticeList(),
+          ),
+        child: const NoticeScreen(),
+      ),
     );
   }
 }
@@ -53,24 +54,24 @@ class _NoticeScreenState extends State<NoticeScreen> {
                     const SizedBox(height: 10),
                     _buildNoticeHeader(),
                     const SizedBox(height: 10),
-                    _buildNoticeListSection(context)
-                  ]
-                )
-              )
-            ]
-          )
-        )
-      )
+                    _buildNoticeListSection(context),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 
   Widget _buildBackButton(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 20),
-        child: IconButton(
+      child: IconButton(
         onPressed: () => Navigator.of(context).pop(),
-        icon: SvgPicture.asset('lib/assets/svgs/mypage/back_arrow.svg')
-      )
+        icon: SvgPicture.asset('lib/assets/svgs/mypage/back_arrow.svg'),
+      ),
     );
   }
 
@@ -80,8 +81,8 @@ class _NoticeScreenState extends State<NoticeScreen> {
       style: const TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w400,
-        color: Color.fromARGB(255, 30, 30, 30)
-      )
+        color: Color.fromARGB(255, 30, 30, 30),
+      ),
     );
   }
 
@@ -93,12 +94,12 @@ class _NoticeScreenState extends State<NoticeScreen> {
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w700,
-            color: Color.fromARGB(255, 30, 30, 30)
+            color: Color.fromARGB(255, 30, 30, 30),
           ),
         ),
         const SizedBox(width: 10),
         SvgPicture.asset('lib/assets/svgs/notice/note.svg')
-      ]
+      ],
     );
   }
 
@@ -112,13 +113,15 @@ class _NoticeScreenState extends State<NoticeScreen> {
       },
       builder: (context, state) {
         if (state.status == NoticeListStatus.loading) {
-          return Column(children: List.generate(4, (index) => const NoticeSkeletonContainer()));
+          return Column(
+              children:
+                  List.generate(4, (index) => const NoticeSkeletonContainer()));
         } else if (state.status == NoticeListStatus.loaded) {
           return _buildNoticeListContent(context, state.noticeList?.notices);
         } else {
           return const SizedBox.shrink();
         }
-      }
+      },
     );
   }
 
@@ -129,9 +132,9 @@ class _NoticeScreenState extends State<NoticeScreen> {
         child: Center(
           child: Text(
             '등록된 공지사항이 없어요',
-            style: TextStyle(fontSize: 15)
-          )
-        )
+            style: TextStyle(fontSize: 15),
+          ),
+        ),
       );
     }
 
@@ -139,21 +142,26 @@ class _NoticeScreenState extends State<NoticeScreen> {
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),
       itemCount: notices.length,
-      itemBuilder: (context, index) => _buildNoticeItem(context, notices[index])
+      itemBuilder: (context, index) =>
+          _buildNoticeItem(context, notices[index]),
     );
   }
 
   Widget _buildNoticeItem(BuildContext context, Notice notice) {
     return GestureDetector(
-      onTap: () => Navigator.push(context, NoticeMainScreen.route(course: context.read<NoticeListBloc>().course, noticeId: notice.id)),
+      onTap: () => Navigator.push(
+        context,
+        NoticeMainScreen.route(
+            course: context.read<NoticeListBloc>().course, noticeId: notice.id),
+      ),
       child: Container(
         padding: const EdgeInsets.only(left: 10, top: 18, bottom: 15),
         decoration: const BoxDecoration(
           border: Border(
             bottom: BorderSide(
-              color: Color.fromARGB(255, 228, 232, 241)
-            )
-          )
+              color: Color.fromARGB(255, 228, 232, 241),
+            ),
+          ),
         ),
         child: Column(
           children: [
@@ -164,8 +172,8 @@ class _NoticeScreenState extends State<NoticeScreen> {
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
-                    color: Color.fromARGB(255, 151, 151, 151)
-                  )
+                    color: Color.fromARGB(255, 151, 151, 151),
+                  ),
                 ),
                 const SizedBox(width: 15),
                 Text(
@@ -173,10 +181,10 @@ class _NoticeScreenState extends State<NoticeScreen> {
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
-                    color: Color.fromARGB(255, 60, 60, 60)
-                  )
-                )
-              ]
+                    color: Color.fromARGB(255, 60, 60, 60),
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 20),
             Row(
@@ -189,8 +197,8 @@ class _NoticeScreenState extends State<NoticeScreen> {
                   style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
-                    color: Color.fromARGB(255, 151, 151, 151)
-                  )
+                    color: Color.fromARGB(255, 151, 151, 151),
+                  ),
                 ),
                 const SizedBox(width: 20),
                 SvgPicture.asset('lib/assets/svgs/notice/clock.svg'),
@@ -200,14 +208,14 @@ class _NoticeScreenState extends State<NoticeScreen> {
                   style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
-                    color: Color.fromARGB(255, 151, 151, 151)
-                  )
-                )
-              ]
-            )
-          ]
-        )
-      )
+                    color: Color.fromARGB(255, 151, 151, 151),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

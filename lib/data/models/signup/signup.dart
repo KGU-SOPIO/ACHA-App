@@ -5,9 +5,10 @@ part 'signup.g.dart';
 
 @freezed
 class SignUpResponse with _$SignUpResponse {
-  const factory SignUpResponse(
-      {required String accessToken,
-      required String refreshToken}) = _SignUpResponse;
+  const factory SignUpResponse({
+    required String accessToken,
+    required String refreshToken,
+  }) = _SignUpResponse;
 
   factory SignUpResponse.fromJson(Map<String, dynamic> json) =>
       _$SignUpResponseFromJson(json);

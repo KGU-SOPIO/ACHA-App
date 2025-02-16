@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:acha/presentation/widgets/index.dart';
 
 class CourseContainer extends StatelessWidget {
-  const CourseContainer({
-    super.key,
-    required this.professorName,
-    required this.courseName,
-    required this.lectureRoom,
-    this.deadline,
-    required this.onTap
-  });
+  const CourseContainer(
+      {super.key,
+      required this.professorName,
+      required this.courseName,
+      required this.lectureRoom,
+      this.deadline,
+      required this.onTap});
 
   final String professorName;
   final String courseName;
@@ -20,10 +19,7 @@ class CourseContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: _buildContainer()
-    );
+    return GestureDetector(onTap: onTap, child: _buildContainer());
   }
 
   Widget _buildContainer() {
@@ -34,18 +30,18 @@ class CourseContainer extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           width: 1.5,
-          color: const Color.fromARGB(255, 237, 239, 242)
+          color: const Color.fromARGB(255, 237, 239, 242),
         ),
         borderRadius: BorderRadius.circular(20),
-        color: Colors.white
+        color: Colors.white,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           _buildCourseInformation(),
-          _buildDDayBadge()
-        ]
-      )
+          _buildDDayBadge(),
+        ],
+      ),
     );
   }
 
@@ -53,32 +49,26 @@ class CourseContainer extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-       Text(
+        Text(
           '$professorName 교수',
           style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w400,
-            color: Color.fromARGB(255, 109, 109, 109)
-          )
+            color: Color.fromARGB(255, 109, 109, 109),
+          ),
         ),
         const SizedBox(height: 3),
         Text(
           courseName,
           style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w400,
-            color: Colors.black
-          )
+              fontSize: 16, fontWeight: FontWeight.w400, color: Colors.black),
         ),
         const SizedBox(height: 2),
         Text(
           lectureRoom,
           style: const TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w400,
-            color: Colors.black
-          )
-        )
+              fontSize: 12, fontWeight: FontWeight.w400, color: Colors.black),
+        ),
       ],
     );
   }

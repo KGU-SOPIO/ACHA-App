@@ -3,19 +3,27 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import 'package:acha/domain/usecases/index.dart';
 import 'package:acha/domain/repositories/index.dart';
 import 'package:acha/domain/exceptions/index.dart';
 import 'package:acha/presentation/blocs/index.dart';
 
 class AlertBloc extends Bloc<AlertEvent, AlertState> {
-  AlertBloc({required this.alertRepository})
-      : super(const AlertState(status: AlertStatus.loading)) {
+  AlertBloc({
+    required AlertRepository alertRepository,
+  }) : super(const AlertState(status: AlertStatus.loading)) {
+    _fetchAlertStatusUseCase =
+        FetchAlertStatusUseCase(alertRepository: alertRepository);
+    _updateAlertStatusUseCase =
+        UpdateAlertStatusUseCase(alertRepository: alertRepository);
+
     on<FetchAlertStatus>(_onFetchAlertStatus);
     on<DenyAlert>(_onDenyAlert);
     on<ChangeAlertStatus>(_onChangeAlertStatus);
   }
 
-  final AlertRepository alertRepository;
+  late final FetchAlertStatusUseCase _fetchAlertStatusUseCase;
+  late final UpdateAlertStatusUseCase _updateAlertStatusUseCase;
 
   /// 설정된 알림 상태를 요청합니다.
   Future<void> _onFetchAlertStatus(
@@ -28,7 +36,7 @@ class AlertBloc extends Bloc<AlertEvent, AlertState> {
         return;
       }
 
-      final isEnabled = await alertRepository.fetchAlertStatus();
+      final isEnabled = await _fetchAlertStatusUseCase.call();
       emit(state.copyWith(status: AlertStatus.loaded, isEnabled: isEnabled));
     } on DioException catch (e) {
       emit(state.copyWith(
@@ -42,11 +50,13 @@ class AlertBloc extends Bloc<AlertEvent, AlertState> {
   }
 
   /// 알림 거부 Toast를 띄웁니다.
-  void _onDenyAlert(DenyAlert event, Emitter<AlertState> emit) =>
-      emit(state.copyWith(
+  void _onDenyAlert(DenyAlert event, Emitter<AlertState> emit) => emit(
+        state.copyWith(
           status: AlertStatus.denied,
           isEnabled: false,
-          message: '강의와 과제 마감 알림을 받을 수 없어요'));
+          message: '강의와 과제 마감 알림을 받을 수 없어요',
+        ),
+      );
 
   /// 알림 상태 변경을 요청합니다.
   Future<void> _onChangeAlertStatus(
@@ -65,7 +75,7 @@ class AlertBloc extends Bloc<AlertEvent, AlertState> {
         return;
       }
 
-      await alertRepository.updateAlertStatus(isEnabled: event.isEnabled);
+      await _updateAlertStatusUseCase.call(isEnabled: event.isEnabled);
       emit(state.copyWith(
           status: AlertStatus.changed,
           isEnabled: event.isEnabled,

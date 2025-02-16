@@ -8,8 +8,9 @@ enum CourseStatus { loading, loaded, error }
 
 @freezed
 class CourseState with _$CourseState {
-  const factory CourseState(
-      {required CourseStatus status,
-      required Course course,
-      String? errorMessage}) = _CourseState;
+  const factory CourseState({
+    required CourseStatus status,
+    required Course course,
+    String? errorMessage,
+  }) = _CourseState;
 }

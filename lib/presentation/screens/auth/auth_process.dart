@@ -17,7 +17,7 @@ class AuthProcessScreen extends StatefulWidget {
       builder: (context) => BlocProvider.value(
         value: BlocProvider.of<SignInBloc>(parentContext),
         child: const AuthProcessScreen(),
-      )
+      ),
     );
   }
 
@@ -31,7 +31,8 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
     super.initState();
     if (context.read<SignInBloc>().state.status == SignInStatus.initial) {
       context.read<SignInBloc>().add(const SubmitSignIn());
-    } else if (context.read<SignInBloc>().state.status == SignInStatus.inSignUp) {
+    } else if (context.read<SignInBloc>().state.status ==
+        SignInStatus.inSignUp) {
       context.read<SignInBloc>().add(const SubmitSignUp());
     }
   }
@@ -63,10 +64,10 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
               } else {
                 return _buildLoadingContent(state);
               }
-            }
-          )
-        )
-      )
+            },
+          ),
+        ),
+      ),
     );
   }
 
@@ -79,9 +80,9 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
         '시작하기',
         style: TextStyle(
           fontSize: 20,
-          fontWeight: FontWeight.w500
-        )
-      )
+          fontWeight: FontWeight.w500,
+        ),
+      ),
     );
   }
 
@@ -97,43 +98,37 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
               const SizedBox(height: 50),
               SvgPicture.asset('lib/assets/svgs/auth/error.svg'),
               const SizedBox(height: 30),
-              Text(
-                state.status.description,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700
-                )
-              ),
+              Text(state.status.description,
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.w700)),
               const SizedBox(height: 20),
-              Text(
-                state.errorMessage!,
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  color: Color.fromARGB(255, 109, 109, 109)
-                )
-              ),
+              Text(state.errorMessage!,
+                  style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      color: Color.fromARGB(255, 109, 109, 109))),
               const SizedBox(height: 50),
-            ]
+            ],
           ),
           Column(
             children: [
               ContainerButton(
                 height: 56,
-                onPressed: () => Navigator.pushAndRemoveUntil(context, AuthStudentIdScreen.route(), (route) => false),
+                onPressed: () => Navigator.pushAndRemoveUntil(
+                    context, AuthStudentIdScreen.route(), (route) => false),
                 backgroundColor: const Color.fromARGB(255, 0, 102, 255),
                 text: '돌아가기',
                 textStyle: const TextStyle(
                   color: Colors.white,
                   fontSize: 16,
-                  fontWeight: FontWeight.w700
-                )
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               const SizedBox(height: 20)
-            ]
-          )
-        ]
-      )
+            ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -145,25 +140,21 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(height: 42),
-          Lottie.asset(
-            'lib/assets/lotties/auth/loading.json',
-            width: 45
-          ),
+          Lottie.asset('lib/assets/lotties/auth/loading.json', width: 45),
           const SizedBox(height: 24),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 5),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(25),
-              color: const Color.fromARGB(25, 0, 102, 255)
-            ),
+                borderRadius: BorderRadius.circular(25),
+                color: const Color.fromARGB(25, 0, 102, 255)),
             child: Text(
               state.status.description,
               style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
-                color: Color.fromARGB(255, 0, 102, 255)
-              )
-            )
+                color: Color.fromARGB(255, 0, 102, 255),
+              ),
+            ),
           ),
           if (state.status == SignInStatus.signUpProgress) ...[
             const SizedBox(height: 32),
@@ -172,21 +163,20 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
               margin: const EdgeInsets.symmetric(horizontal: 8),
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 245, 246, 248),
-                borderRadius: BorderRadius.circular(20)
-              ),
+                  color: const Color.fromARGB(255, 245, 246, 248),
+                  borderRadius: BorderRadius.circular(20)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   _buildSignUpInfoPanel(),
-                  SvgPicture.asset('lib/assets/svgs/auth/download.svg')
-                ]
-              )
+                  SvgPicture.asset('lib/assets/svgs/auth/download.svg'),
+                ],
+              ),
             )
-          ]
-        ]
-      )
+          ],
+        ],
+      ),
     );
   }
 
@@ -203,9 +193,9 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
-                color: Color.fromARGB(255, 109, 109, 109)
-              )
-            )
+                color: Color.fromARGB(255, 109, 109, 109),
+              ),
+            ),
           ],
         ),
         const SizedBox(height: 12),
@@ -214,7 +204,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
           style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w500,
-            color: Color.fromARGB(255, 109, 109, 109)
+            color: Color.fromARGB(255, 109, 109, 109),
           ),
         ),
         const SizedBox(height: 8),
@@ -223,10 +213,10 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
           style: TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w400,
-            color: Color.fromARGB(255, 151, 151, 151)
-          )
+            color: Color.fromARGB(255, 151, 151, 151),
+          ),
         )
-      ]
+      ],
     );
   }
 }

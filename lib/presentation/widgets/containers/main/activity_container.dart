@@ -13,7 +13,7 @@ class ActivityContainer extends StatelessWidget {
     required this.deadline,
     required this.uri,
     this.margin,
-    this.backgroundColor
+    this.backgroundColor,
   });
 
   final ActivityType type;
@@ -33,7 +33,7 @@ class ActivityContainer extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(color: const Color.fromARGB(255, 228, 232, 241)),
         color: backgroundColor,
-        borderRadius: BorderRadius.circular(20)
+        borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,9 +41,9 @@ class ActivityContainer extends StatelessWidget {
           _buildTitle(),
           _buildCourse(),
           const SizedBox(height: 14),
-          _buildDeadline()
-        ]
-      )
+          _buildDeadline(),
+        ],
+      ),
     );
   }
 
@@ -54,8 +54,8 @@ class ActivityContainer extends StatelessWidget {
       style: const TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w500,
-        color: Color.fromARGB(255, 60, 60, 60)
-      )
+        color: Color.fromARGB(255, 60, 60, 60),
+      ),
     );
   }
 
@@ -65,8 +65,8 @@ class ActivityContainer extends StatelessWidget {
       style: const TextStyle(
         fontSize: 13,
         fontWeight: FontWeight.w400,
-        color: Color.fromARGB(255, 60, 60, 60)
-      )
+        color: Color.fromARGB(255, 60, 60, 60),
+      ),
     );
   }
 
@@ -74,25 +74,25 @@ class ActivityContainer extends StatelessWidget {
     return Text.rich(
       TextSpan(
         style: const TextStyle(
-          color: Color.fromARGB(255, 151, 151, 151)
+          color: Color.fromARGB(255, 151, 151, 151),
         ),
         children: [
           TextSpan(
             text: deadline,
             style: const TextStyle(
               fontSize: 14,
-              fontWeight: FontWeight.w500
-            )
+              fontWeight: FontWeight.w500,
+            ),
           ),
           const TextSpan(
             text: '까지',
             style: TextStyle(
               fontSize: 12,
-              fontWeight: FontWeight.w500
-            )
-          )
-        ]
-      )
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
