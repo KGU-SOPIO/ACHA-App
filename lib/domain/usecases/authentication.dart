@@ -8,7 +8,7 @@ class SignInUseCase {
 
   final AuthenticationRepository authenticationRepository;
 
-  Future<Either<String, SignInSuccess>> call({
+  Future<Either<String, SignInResponseModel>> call({
     required String studentId,
     required String password,
   }) {
@@ -50,6 +50,16 @@ class SignUpUseCase {
       password: password,
       user: user,
     );
+  }
+}
+
+class WithdrawUseCase {
+  WithdrawUseCase({required this.authenticationRepository});
+
+  final AuthenticationRepository authenticationRepository;
+
+  Future<Either<String, Unit>> call({required String password}) {
+    return authenticationRepository.withdraw(password: password);
   }
 }
 

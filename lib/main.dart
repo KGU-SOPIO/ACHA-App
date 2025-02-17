@@ -30,19 +30,26 @@ Future<void> setupFlutterNotifications() async {
   flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
   /// Flutter Local Notification 설정
-  const initializationSettingsAndroid =
-      AndroidInitializationSettings('@mipmap/launcher_icon');
+  const initializationSettingsAndroid = AndroidInitializationSettings(
+    '@mipmap/launcher_icon',
+  );
   const initializationSettingsIOS = DarwinInitializationSettings(
     requestSoundPermission: false,
     requestBadgePermission: false,
     requestAlertPermission: false,
   );
   await flutterLocalNotificationsPlugin.initialize(const InitializationSettings(
-      android: initializationSettingsAndroid, iOS: initializationSettingsIOS));
+    android: initializationSettingsAndroid,
+    iOS: initializationSettingsIOS,
+  ));
 
   /// Android Foregroud 알림 수신을 위해 알림 채널을 설정합니다.
-  channel = const AndroidNotificationChannel('아차', '알림',
-      description: '강의 및 과제를 놓치지 않도록 알려드려요', importance: Importance.max);
+  channel = const AndroidNotificationChannel(
+    '아차',
+    '알림',
+    description: '강의 및 과제를 놓치지 않도록 알려드려요',
+    importance: Importance.max,
+  );
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
           AndroidFlutterLocalNotificationsPlugin>()
@@ -50,7 +57,10 @@ Future<void> setupFlutterNotifications() async {
 
   /// iOS Foregroud 알림 수신을 위해 우선순위를 높게 설정합니다.
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
-      alert: true, badge: true, sound: true);
+    alert: true,
+    badge: true,
+    sound: true,
+  );
 
   isFlutterLocalNotificationsInitialized = true;
 }
@@ -115,17 +125,20 @@ Future<void> main() async {
   );
   final interceptorDio = Dio(baseOptions);
 
-  getIt.registerSingleton<SecureStorageRepository>(
-      SecureStorageRepositoryImpl(secureStorage: const FlutterSecureStorage()));
+  getIt.registerSingleton<SecureStorageRepository>(SecureStorageRepositoryImpl(
+    secureStorage: const FlutterSecureStorage(),
+  ));
   getIt.registerSingleton<ConnectivityChecker>(ConnectivityChecker());
   getIt.registerSingleton<Dio>(
     () {
       final dio = Dio(baseOptions)
         ..interceptors.add(TokenInterceptor(
-            dio: interceptorDio,
-            secureStorageRepository: GetIt.I<SecureStorageRepository>()))
+          dio: interceptorDio,
+          secureStorageRepository: GetIt.I<SecureStorageRepository>(),
+        ))
         ..interceptors.add(ErrorInterceptor(
-            connectivityChecker: GetIt.I<ConnectivityChecker>()));
+          connectivityChecker: GetIt.I<ConnectivityChecker>(),
+        ));
       return dio;
     }(),
   );
@@ -134,21 +147,26 @@ Future<void> main() async {
       dio: () {
         final dio = Dio(baseOptions)
           ..interceptors.add(ErrorInterceptor(
-              connectivityChecker: GetIt.I<ConnectivityChecker>()));
+            connectivityChecker: GetIt.I<ConnectivityChecker>(),
+          ));
         return dio;
       }(),
       tokenInterceptor: TokenInterceptor(
-          dio: interceptorDio,
-          secureStorageRepository: GetIt.I<SecureStorageRepository>()),
+        dio: interceptorDio,
+        secureStorageRepository: GetIt.I<SecureStorageRepository>(),
+      ),
       secureStorageRepository: GetIt.I<SecureStorageRepository>(),
     ),
   );
   getIt.registerLazySingleton<UserRepository>(
-      () => UserRepositoryImpl(dio: GetIt.I<Dio>()));
+    () => UserRepositoryImpl(dio: GetIt.I<Dio>()),
+  );
   getIt.registerLazySingleton<CourseRepository>(
-      () => CourseRepositoryImpl(dio: GetIt.I<Dio>()));
+    () => CourseRepositoryImpl(dio: GetIt.I<Dio>()),
+  );
   getIt.registerLazySingleton<AlertRepository>(
-      () => AlertRepositoryImpl(dio: GetIt.I<Dio>()));
+    () => AlertRepositoryImpl(dio: GetIt.I<Dio>()),
+  );
   getIt.registerLazySingleton<ToastManager>(() => ToastManager());
 
   // Firebase Cloud Messaging를 설정합니다.

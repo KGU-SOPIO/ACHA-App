@@ -7,7 +7,7 @@ abstract class AuthenticationRepository {
   Stream<AuthenticationStatus> get authStream;
   Future disposeAuthStream();
 
-  Future<Either<String, SignInSuccess>> signIn({
+  Future<Either<String, SignInResponseModel>> signIn({
     required String studentId,
     required String password,
   });
@@ -21,6 +21,10 @@ abstract class AuthenticationRepository {
     required String studentId,
     required String password,
     required User user,
+  });
+
+  Future<Either<String, Unit>> withdraw({
+    required String password,
   });
 
   Future<Either<String, Unit>> requestExtraction();

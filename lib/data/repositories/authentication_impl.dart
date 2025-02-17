@@ -63,7 +63,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
 
   /// 인증 정보로 로그인을 요청합니다.
   @override
-  Future<Either<String, SignInSuccess>> signIn({
+  Future<Either<String, SignInResponseModel>> signIn({
     required String studentId,
     required String password,
   }) async {
@@ -78,15 +78,15 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
 
       final parsedData = SignInResponseModel.fromJson(response.data);
       return parsedData.map(
-        success: (signInResponse) async {
+        success: (value) async {
           await secureStorageRepository.saveTokens(
-            accessToken: signInResponse.accessToken,
-            refreshToken: signInResponse.refreshToken,
+            accessToken: value.accessToken,
+            refreshToken: value.refreshToken,
           );
           _authStreamController.add(AuthenticationStatus.authenticated);
-          return Right(signInResponse);
+          return Right(value);
         },
-        error: (value) => Left(value.code.message),
+        error: (value) => Right(value),
       );
     } on DioException catch (e) {
       return Left(e.error as String);
@@ -163,6 +163,33 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     }
   }
 
+  /// 계정 삭제를 요청합니다.
+  @override
+  Future<Either<String, Unit>> withdraw({required String password}) async {
+    try {
+      dio.interceptors.add(tokenInterceptor);
+
+      final response = await dio.post(
+        AuthenticationApiEndpoints.withdraw,
+        data: {'password': password},
+      );
+      if (response.statusCode != 200) {
+        final parsedData = const ErrorCodeConverter().fromJson(response.data);
+        return Left(parsedData.message);
+      }
+
+      await secureStorageRepository.deleteAllData();
+      _authStreamController.add(AuthenticationStatus.unauthenticated);
+      return const Right(unit);
+    } on DioException catch (e) {
+      return Left(e.error as String);
+    } catch (e) {
+      return const Left('문제가 발생해 계정을 삭제하지 못했어요');
+    } finally {
+      dio.interceptors.remove(tokenInterceptor);
+    }
+  }
+
   /// 데이터 추출을 요청합니다.
   @override
   Future<Either<String, Unit>> requestExtraction() async {
@@ -182,6 +209,8 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     } catch (e) {
       _authStreamController.add(AuthenticationStatus.unauthenticated);
       return const Left('문제가 발생해 데이터를 불러오지 못했어요');
+    } finally {
+      dio.interceptors.remove(tokenInterceptor);
     }
   }
 

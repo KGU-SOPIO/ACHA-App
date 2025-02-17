@@ -9,3 +9,4 @@ export 'package:acha/presentation/blocs/notice_list/index.dart';
 export 'package:acha/presentation/blocs/signin/index.dart';
 export 'package:acha/presentation/blocs/today_course/index.dart';
 export 'package:acha/presentation/blocs/user/index.dart';
+export 'package:acha/presentation/blocs/withdraw/index.dart';
