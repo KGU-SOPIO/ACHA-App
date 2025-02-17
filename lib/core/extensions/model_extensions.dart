@@ -67,7 +67,7 @@ extension ActivitiesExtension on ActivityList {
     bool flat = false,
     bool group = false,
   }) {
-    getActivities(
+    return getActivities(
       types: {ActivityType.lecture},
       onlyWithDeadline: onlyWithDeadline,
       flat: flat,
@@ -81,7 +81,7 @@ extension ActivitiesExtension on ActivityList {
     bool flat = false,
     bool group = false,
   }) {
-    getActivities(
+    return getActivities(
       types: {ActivityType.assignment},
       onlyWithDeadline: onlyWithDeadline,
       flat: flat,
@@ -95,7 +95,7 @@ extension ActivitiesExtension on ActivityList {
     bool flat = false,
     bool group = false,
   }) {
-    getActivities(
+    return getActivities(
       types: {ActivityType.lecture, ActivityType.assignment},
       onlyWithDeadline: onlyWithDeadline,
       flat: flat,
