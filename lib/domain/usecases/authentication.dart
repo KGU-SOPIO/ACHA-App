@@ -8,7 +8,7 @@ class SignInUseCase {
 
   final AuthenticationRepository authenticationRepository;
 
-  Future<Either<String, SignInSuccess>> call({
+  Future<Either<String, SignInResponseModel>> call({
     required String studentId,
     required String password,
   }) {
