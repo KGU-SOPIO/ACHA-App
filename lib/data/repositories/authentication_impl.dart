@@ -163,6 +163,31 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     }
   }
 
+  /// 계정 삭제를 요청합니다.
+  @override
+  Future<Either<String, Unit>> withdraw({required String password}) async {
+    try {
+      dio.interceptors.add(tokenInterceptor);
+
+      final response = await dio.post(
+        AuthenticationApiEndpoints.withdraw,
+        data: {'password': password},
+      );
+      if (response.statusCode != 200) {
+        final parsedData = const ErrorCodeConverter().fromJson(response.data);
+        return Left(parsedData.message);
+      }
+
+      await secureStorageRepository.deleteAllData();
+      _authStreamController.add(AuthenticationStatus.unauthenticated);
+      return const Right(unit);
+    } on DioException catch (e) {
+      return Left(e.error as String);
+    } catch (e) {
+      return const Left('문제가 발생해 계정을 삭제하지 못했어요');
+    }
+  }
+
   /// 데이터 추출을 요청합니다.
   @override
   Future<Either<String, Unit>> requestExtraction() async {

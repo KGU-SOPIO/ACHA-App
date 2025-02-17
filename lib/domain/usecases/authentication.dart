@@ -53,6 +53,16 @@ class SignUpUseCase {
   }
 }
 
+class WithdrawUseCase {
+  WithdrawUseCase({required this.authenticationRepository});
+
+  final AuthenticationRepository authenticationRepository;
+
+  Future<Either<String, Unit>> call({required String password}) {
+    return authenticationRepository.withdraw(password: password);
+  }
+}
+
 class RequestExtractionUseCase {
   RequestExtractionUseCase({required this.authenticationRepository});
 

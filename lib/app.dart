@@ -50,21 +50,35 @@ class _AppState extends State<App> {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
-              create: (context) => AuthenticationBloc(
-                  authenticationRepository: _authenticationRepository)),
+            create: (context) => AuthenticationBloc(
+              authenticationRepository: _authenticationRepository,
+            ),
+          ),
           BlocProvider(
-              create: (context) => UserBloc(userRepository: _userRepository)),
+            create: (context) => UserBloc(
+              userRepository: _userRepository,
+            ),
+          ),
           BlocProvider(
-              create: (context) =>
-                  ActivityBloc(courseRepository: _courseRepository)),
+            create: (context) => ActivityBloc(
+              courseRepository: _courseRepository,
+            ),
+          ),
           BlocProvider(
-              create: (context) =>
-                  CourseListBloc(courseRepository: _courseRepository)),
+            create: (context) => CourseListBloc(
+              courseRepository: _courseRepository,
+            ),
+          ),
           BlocProvider(
-              create: (context) =>
-                  TodayCourseBloc(courseRepository: _courseRepository)),
+            create: (context) => TodayCourseBloc(
+              courseRepository: _courseRepository,
+            ),
+          ),
           BlocProvider(
-              create: (context) => AlertBloc(alertRepository: _alertRepository))
+            create: (context) => AlertBloc(
+              alertRepository: _alertRepository,
+            ),
+          ),
         ],
         child: const AppView(),
       ),
@@ -75,7 +89,10 @@ class _AppState extends State<App> {
 class Behavior extends ScrollBehavior {
   @override
   Widget buildOverscrollIndicator(
-      BuildContext context, Widget child, ScrollableDetails details) {
+    BuildContext context,
+    Widget child,
+    ScrollableDetails details,
+  ) {
     return child;
   }
 }
@@ -110,11 +127,14 @@ class _AppViewState extends State<AppView> {
       builder: (context, child) => MultiBlocListener(
         listeners: [
           BlocListener<AuthenticationBloc, AuthenticationState>(
-              listener: _onAuthenticationStateChanged),
+            listener: _onAuthenticationStateChanged,
+          ),
           BlocListener<UserBloc, UserState>(
-              listener: (context, state) => _checkStates(context)),
+            listener: (context, state) => _checkStates(context),
+          ),
           BlocListener<TodayCourseBloc, TodayCourseState>(
-              listener: (context, state) => _checkStates(context))
+            listener: (context, state) => _checkStates(context),
+          ),
         ],
         child: child!,
       ),
@@ -124,7 +144,9 @@ class _AppViewState extends State<AppView> {
 
   /// 인증 상태 변화를 감지합니다.
   void _onAuthenticationStateChanged(
-      BuildContext context, AuthenticationState state) {
+    BuildContext context,
+    AuthenticationState state,
+  ) {
     state.when(
       authenticated: () {
         _fetchData(context);
@@ -136,13 +158,17 @@ class _AppViewState extends State<AppView> {
       error: () async {
         await _navigator.pushAndRemoveUntil(
             ErrorScreen.route(
-                title: '인증 문제', message: '사용자 인증 중 문제가 발생했어요\n다시 로그인해 주세요'),
+              title: '인증 문제',
+              message: '사용자 인증 중 문제가 발생했어요\n다시 로그인해 주세요',
+            ),
             (route) => false);
       },
       expired: () async {
         await _navigator.pushAndRemoveUntil(
             ErrorScreen.route(
-                title: '인증 만료', message: '인증 상태가 만료되었어요\n다시 로그인해 주세요'),
+              title: '인증 만료',
+              message: '인증 상태가 만료되었어요\n다시 로그인해 주세요',
+            ),
             (route) => false);
       },
       unauthenticated: () async {
@@ -150,14 +176,17 @@ class _AppViewState extends State<AppView> {
         if (!isConnected) {
           await _navigator.pushAndRemoveUntil(
               ErrorScreen.route(
-                  title: '인터넷 연결 문제',
-                  message: '인터넷 연결 확인 후 앱을 재실행해 주세요',
-                  connectionError: true),
+                title: '인터넷 연결 문제',
+                message: '인터넷 연결 확인 후 앱을 재실행해 주세요',
+                connectionError: true,
+              ),
               (route) => false);
         } else {
           _isNavigate = false;
           await _navigator.pushAndRemoveUntil(
-              AuthStartScreen.route(), (route) => false);
+            AuthStartScreen.route(),
+            (route) => false,
+          );
         }
       },
       unknown: () {},
@@ -167,9 +196,9 @@ class _AppViewState extends State<AppView> {
   /// 서버로부터 필수 데이터를 요청합니다.
   void _fetchData(BuildContext context) {
     context.read<UserBloc>().add(const UserEvent.fetchUser());
-    context
-        .read<TodayCourseBloc>()
-        .add(const TodayCourseEvent.fetchTodayCourses());
+    context.read<TodayCourseBloc>().add(
+          const TodayCourseEvent.fetchTodayCourses(),
+        );
     _checkStates(context);
   }
 
@@ -186,8 +215,9 @@ class _AppViewState extends State<AppView> {
     } else {
       _isNavigate = true;
       _navigator.pushAndRemoveUntil(
-          HomeScreen.route(requestPermission: requestPermission),
-          (route) => false);
+        HomeScreen.route(requestPermission: requestPermission),
+        (route) => false,
+      );
     }
   }
 }
