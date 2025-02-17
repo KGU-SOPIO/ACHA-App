@@ -6,33 +6,64 @@ part of 'activity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CourseActivitiesImpl _$$CourseActivitiesImplFromJson(
+_$CourseActivityListImpl _$$CourseActivityListImplFromJson(
         Map<String, dynamic> json) =>
-    _$CourseActivitiesImpl(
-      weekActivities: (json['weekActivities'] as List<dynamic>)
-          .map((e) => WeekActivities.fromJson(e as Map<String, dynamic>))
+    _$CourseActivityListImpl(
+      weekActivityList: (json['weekActivityList'] as List<dynamic>)
+          .map((e) => ActivityList.fromJson(e as Map<String, dynamic>))
           .toList(),
+      $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$CourseActivitiesImplToJson(
-        _$CourseActivitiesImpl instance) =>
+Map<String, dynamic> _$$CourseActivityListImplToJson(
+        _$CourseActivityListImpl instance) =>
     <String, dynamic>{
-      'weekActivities': instance.weekActivities,
+      'weekActivityList': instance.weekActivityList,
+      'runtimeType': instance.$type,
     };
 
-_$WeekActivitiesImpl _$$WeekActivitiesImplFromJson(Map<String, dynamic> json) =>
-    _$WeekActivitiesImpl(
-      week: (json['week'] as num?)?.toInt(),
-      activities: (json['activities'] as List<dynamic>)
-          .map((e) => Activity.fromJson(e as Map<String, dynamic>))
-          .toList(),
+_$CourseActivityListErrorImpl _$$CourseActivityListErrorImplFromJson(
+        Map<String, dynamic> json) =>
+    _$CourseActivityListErrorImpl(
+      code: const ErrorCodeConverter().fromJson(json['code'] as String),
+      $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$WeekActivitiesImplToJson(
-        _$WeekActivitiesImpl instance) =>
+Map<String, dynamic> _$$CourseActivityListErrorImplToJson(
+        _$CourseActivityListErrorImpl instance) =>
+    <String, dynamic>{
+      'code': const ErrorCodeConverter().toJson(instance.code),
+      'runtimeType': instance.$type,
+    };
+
+_$ActivityListImpl _$$ActivityListImplFromJson(Map<String, dynamic> json) =>
+    _$ActivityListImpl(
+      week: (json['week'] as num?)?.toInt(),
+      activitylist: (json['activitylist'] as List<dynamic>)
+          .map((e) => Activity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$ActivityListImplToJson(_$ActivityListImpl instance) =>
     <String, dynamic>{
       'week': instance.week,
-      'activities': instance.activities,
+      'activitylist': instance.activitylist,
+      'runtimeType': instance.$type,
+    };
+
+_$ActivityListErrorImpl _$$ActivityListErrorImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ActivityListErrorImpl(
+      code: const ErrorCodeConverter().fromJson(json['code'] as String),
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$ActivityListErrorImplToJson(
+        _$ActivityListErrorImpl instance) =>
+    <String, dynamic>{
+      'code': const ErrorCodeConverter().toJson(instance.code),
+      'runtimeType': instance.$type,
     };
 
 _$ActivityImpl _$$ActivityImplFromJson(Map<String, dynamic> json) =>

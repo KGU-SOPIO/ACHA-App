@@ -166,11 +166,11 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
     if (state.status == CourseStatus.loading) {
       return _buildCarouselSkeleton();
     } else if (state.status == CourseStatus.loaded) {
-      final courseActivities = state.course.courseActivities;
-      final containers = courseActivities?.weekActivities.expand(
+      final courseActivities = state.course.courseActivityList;
+      final containers = courseActivities?.weekActivityList.expand(
         (weekActivities) {
           final week = weekActivities.week;
-          return weekActivities.activities.map((activity) =>
+          return weekActivities.activitylist.map((activity) =>
               CarouselActivityContainer(week: week!, activity: activity));
         },
       ).toList();
@@ -215,7 +215,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
     if (state.status == CourseStatus.loading) {
       return _buildPanelSkeleton();
     } else if (state.status == CourseStatus.loaded) {
-      if (state.course.courseActivities == null) {
+      if (state.course.courseActivityList == null) {
         return const SizedBox.shrink();
       }
       return Padding(
@@ -223,10 +223,10 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
         child: ListView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          itemCount: state.course.courseActivities!.weekActivities.length,
+          itemCount: state.course.courseActivityList!.weekActivityList.length,
           itemBuilder: (context, index) {
             final weekActivities =
-                state.course.courseActivities!.weekActivities[index];
+                state.course.courseActivityList!.weekActivityList[index];
             return _buildExpansionPanel(weekActivities, index);
           },
         ),
@@ -236,9 +236,10 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
     }
   }
 
-  Widget _buildExpansionPanel(WeekActivities weekActivities, int index) {
-    final allCompleted = weekActivities.activities
-        .every((activity) => activity.attendance == true);
+  Widget _buildExpansionPanel(ActivityList weekActivities, int index) {
+    final allCompleted = weekActivities.activitylist.every(
+      (activity) => activity.attendance == true,
+    );
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
@@ -282,7 +283,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                     height: 1,
                     color: Color.fromARGB(255, 245, 246, 248),
                   ),
-                  ...weekActivities.activities.map(
+                  ...weekActivities.activitylist.map(
                     (activity) {
                       return ListTile(
                         leading: SvgPicture.asset(activity.type.svgPath),

@@ -1,13 +1,20 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'package:acha/data/models/index.dart';
+import 'package:acha/data/converters/index.dart';
+
 part 'token.freezed.dart';
 part 'token.g.dart';
 
 @freezed
-class TokenRefreshResponse with _$TokenRefreshResponse {
-  const factory TokenRefreshResponse({required String accessToken}) =
-      _TokenRefreshResponse;
+class TokenReissueResponseModel with _$TokenReissueResponseModel {
+  const factory TokenReissueResponseModel({required String accessToken}) =
+      TokenReissueResponse;
 
-  factory TokenRefreshResponse.fromJson(Map<String, dynamic> json) =>
-      _$TokenRefreshResponseFromJson(json);
+  const factory TokenReissueResponseModel.error({
+    @ErrorCodeConverter() required ErrorCode code,
+  }) = TokenReissueError;
+
+  factory TokenReissueResponseModel.fromJson(Map<String, dynamic> json) =>
+      const TokenReissueResponseConverter().fromJson(json);
 }

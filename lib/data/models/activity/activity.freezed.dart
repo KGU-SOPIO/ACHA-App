@@ -14,261 +14,541 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-CourseActivities _$CourseActivitiesFromJson(Map<String, dynamic> json) {
-  return _CourseActivities.fromJson(json);
+CourseActivityListModel _$CourseActivityListModelFromJson(
+    Map<String, dynamic> json) {
+  switch (json['runtimeType']) {
+    case 'default':
+      return CourseActivityList.fromJson(json);
+    case 'error':
+      return CourseActivityListError.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(
+          json,
+          'runtimeType',
+          'CourseActivityListModel',
+          'Invalid union type "${json['runtimeType']}"!');
+  }
 }
 
 /// @nodoc
-mixin _$CourseActivities {
-  List<WeekActivities> get weekActivities => throw _privateConstructorUsedError;
-
-  /// Serializes this CourseActivities to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CourseActivities
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $CourseActivitiesCopyWith<CourseActivities> get copyWith =>
+mixin _$CourseActivityListModel {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(List<ActivityList> weekActivityList) $default, {
+    required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
+  }) =>
       throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(List<ActivityList> weekActivityList)? $default, {
+    TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(List<ActivityList> weekActivityList)? $default, {
+    TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(CourseActivityList value) $default, {
+    required TResult Function(CourseActivityListError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(CourseActivityList value)? $default, {
+    TResult? Function(CourseActivityListError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(CourseActivityList value)? $default, {
+    TResult Function(CourseActivityListError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+
+  /// Serializes this CourseActivityListModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CourseActivitiesCopyWith<$Res> {
-  factory $CourseActivitiesCopyWith(
-          CourseActivities value, $Res Function(CourseActivities) then) =
-      _$CourseActivitiesCopyWithImpl<$Res, CourseActivities>;
-  @useResult
-  $Res call({List<WeekActivities> weekActivities});
+abstract class $CourseActivityListModelCopyWith<$Res> {
+  factory $CourseActivityListModelCopyWith(CourseActivityListModel value,
+          $Res Function(CourseActivityListModel) then) =
+      _$CourseActivityListModelCopyWithImpl<$Res, CourseActivityListModel>;
 }
 
 /// @nodoc
-class _$CourseActivitiesCopyWithImpl<$Res, $Val extends CourseActivities>
-    implements $CourseActivitiesCopyWith<$Res> {
-  _$CourseActivitiesCopyWithImpl(this._value, this._then);
+class _$CourseActivityListModelCopyWithImpl<$Res,
+        $Val extends CourseActivityListModel>
+    implements $CourseActivityListModelCopyWith<$Res> {
+  _$CourseActivityListModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CourseActivities
+  /// Create a copy of CourseActivityListModel
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? weekActivities = null,
-  }) {
-    return _then(_value.copyWith(
-      weekActivities: null == weekActivities
-          ? _value.weekActivities
-          : weekActivities // ignore: cast_nullable_to_non_nullable
-              as List<WeekActivities>,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$CourseActivitiesImplCopyWith<$Res>
-    implements $CourseActivitiesCopyWith<$Res> {
-  factory _$$CourseActivitiesImplCopyWith(_$CourseActivitiesImpl value,
-          $Res Function(_$CourseActivitiesImpl) then) =
-      __$$CourseActivitiesImplCopyWithImpl<$Res>;
-  @override
+abstract class _$$CourseActivityListImplCopyWith<$Res> {
+  factory _$$CourseActivityListImplCopyWith(_$CourseActivityListImpl value,
+          $Res Function(_$CourseActivityListImpl) then) =
+      __$$CourseActivityListImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<WeekActivities> weekActivities});
+  $Res call({List<ActivityList> weekActivityList});
 }
 
 /// @nodoc
-class __$$CourseActivitiesImplCopyWithImpl<$Res>
-    extends _$CourseActivitiesCopyWithImpl<$Res, _$CourseActivitiesImpl>
-    implements _$$CourseActivitiesImplCopyWith<$Res> {
-  __$$CourseActivitiesImplCopyWithImpl(_$CourseActivitiesImpl _value,
-      $Res Function(_$CourseActivitiesImpl) _then)
+class __$$CourseActivityListImplCopyWithImpl<$Res>
+    extends _$CourseActivityListModelCopyWithImpl<$Res,
+        _$CourseActivityListImpl>
+    implements _$$CourseActivityListImplCopyWith<$Res> {
+  __$$CourseActivityListImplCopyWithImpl(_$CourseActivityListImpl _value,
+      $Res Function(_$CourseActivityListImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CourseActivities
+  /// Create a copy of CourseActivityListModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? weekActivities = null,
+    Object? weekActivityList = null,
   }) {
-    return _then(_$CourseActivitiesImpl(
-      weekActivities: null == weekActivities
-          ? _value._weekActivities
-          : weekActivities // ignore: cast_nullable_to_non_nullable
-              as List<WeekActivities>,
+    return _then(_$CourseActivityListImpl(
+      weekActivityList: null == weekActivityList
+          ? _value._weekActivityList
+          : weekActivityList // ignore: cast_nullable_to_non_nullable
+              as List<ActivityList>,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$CourseActivitiesImpl implements _CourseActivities {
-  const _$CourseActivitiesImpl(
-      {required final List<WeekActivities> weekActivities})
-      : _weekActivities = weekActivities;
+class _$CourseActivityListImpl implements CourseActivityList {
+  const _$CourseActivityListImpl(
+      {required final List<ActivityList> weekActivityList, final String? $type})
+      : _weekActivityList = weekActivityList,
+        $type = $type ?? 'default';
 
-  factory _$CourseActivitiesImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CourseActivitiesImplFromJson(json);
+  factory _$CourseActivityListImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CourseActivityListImplFromJson(json);
 
-  final List<WeekActivities> _weekActivities;
+  final List<ActivityList> _weekActivityList;
   @override
-  List<WeekActivities> get weekActivities {
-    if (_weekActivities is EqualUnmodifiableListView) return _weekActivities;
+  List<ActivityList> get weekActivityList {
+    if (_weekActivityList is EqualUnmodifiableListView)
+      return _weekActivityList;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_weekActivities);
+    return EqualUnmodifiableListView(_weekActivityList);
   }
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
-    return 'CourseActivities(weekActivities: $weekActivities)';
+    return 'CourseActivityListModel(weekActivityList: $weekActivityList)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CourseActivitiesImpl &&
+            other is _$CourseActivityListImpl &&
             const DeepCollectionEquality()
-                .equals(other._weekActivities, _weekActivities));
+                .equals(other._weekActivityList, _weekActivityList));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_weekActivities));
+      runtimeType, const DeepCollectionEquality().hash(_weekActivityList));
 
-  /// Create a copy of CourseActivities
+  /// Create a copy of CourseActivityListModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$CourseActivitiesImplCopyWith<_$CourseActivitiesImpl> get copyWith =>
-      __$$CourseActivitiesImplCopyWithImpl<_$CourseActivitiesImpl>(
+  _$$CourseActivityListImplCopyWith<_$CourseActivityListImpl> get copyWith =>
+      __$$CourseActivityListImplCopyWithImpl<_$CourseActivityListImpl>(
           this, _$identity);
 
   @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(List<ActivityList> weekActivityList) $default, {
+    required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
+  }) {
+    return $default(weekActivityList);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(List<ActivityList> weekActivityList)? $default, {
+    TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
+  }) {
+    return $default?.call(weekActivityList);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(List<ActivityList> weekActivityList)? $default, {
+    TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(weekActivityList);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(CourseActivityList value) $default, {
+    required TResult Function(CourseActivityListError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(CourseActivityList value)? $default, {
+    TResult? Function(CourseActivityListError value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(CourseActivityList value)? $default, {
+    TResult Function(CourseActivityListError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+
+  @override
   Map<String, dynamic> toJson() {
-    return _$$CourseActivitiesImplToJson(
+    return _$$CourseActivityListImplToJson(
       this,
     );
   }
 }
 
-abstract class _CourseActivities implements CourseActivities {
-  const factory _CourseActivities(
-          {required final List<WeekActivities> weekActivities}) =
-      _$CourseActivitiesImpl;
+abstract class CourseActivityList implements CourseActivityListModel {
+  const factory CourseActivityList(
+          {required final List<ActivityList> weekActivityList}) =
+      _$CourseActivityListImpl;
 
-  factory _CourseActivities.fromJson(Map<String, dynamic> json) =
-      _$CourseActivitiesImpl.fromJson;
+  factory CourseActivityList.fromJson(Map<String, dynamic> json) =
+      _$CourseActivityListImpl.fromJson;
 
-  @override
-  List<WeekActivities> get weekActivities;
+  List<ActivityList> get weekActivityList;
 
-  /// Create a copy of CourseActivities
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CourseActivitiesImplCopyWith<_$CourseActivitiesImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-WeekActivities _$WeekActivitiesFromJson(Map<String, dynamic> json) {
-  return _WeekActivities.fromJson(json);
-}
-
-/// @nodoc
-mixin _$WeekActivities {
-  int? get week => throw _privateConstructorUsedError;
-  List<Activity> get activities => throw _privateConstructorUsedError;
-
-  /// Serializes this WeekActivities to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of WeekActivities
+  /// Create a copy of CourseActivityListModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $WeekActivitiesCopyWith<WeekActivities> get copyWith =>
+  _$$CourseActivityListImplCopyWith<_$CourseActivityListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $WeekActivitiesCopyWith<$Res> {
-  factory $WeekActivitiesCopyWith(
-          WeekActivities value, $Res Function(WeekActivities) then) =
-      _$WeekActivitiesCopyWithImpl<$Res, WeekActivities>;
+abstract class _$$CourseActivityListErrorImplCopyWith<$Res> {
+  factory _$$CourseActivityListErrorImplCopyWith(
+          _$CourseActivityListErrorImpl value,
+          $Res Function(_$CourseActivityListErrorImpl) then) =
+      __$$CourseActivityListErrorImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int? week, List<Activity> activities});
+  $Res call({@ErrorCodeConverter() ErrorCode code});
 }
 
 /// @nodoc
-class _$WeekActivitiesCopyWithImpl<$Res, $Val extends WeekActivities>
-    implements $WeekActivitiesCopyWith<$Res> {
-  _$WeekActivitiesCopyWithImpl(this._value, this._then);
+class __$$CourseActivityListErrorImplCopyWithImpl<$Res>
+    extends _$CourseActivityListModelCopyWithImpl<$Res,
+        _$CourseActivityListErrorImpl>
+    implements _$$CourseActivityListErrorImplCopyWith<$Res> {
+  __$$CourseActivityListErrorImplCopyWithImpl(
+      _$CourseActivityListErrorImpl _value,
+      $Res Function(_$CourseActivityListErrorImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CourseActivityListModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? code = null,
+  }) {
+    return _then(_$CourseActivityListErrorImpl(
+      code: null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as ErrorCode,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$CourseActivityListErrorImpl implements CourseActivityListError {
+  const _$CourseActivityListErrorImpl(
+      {@ErrorCodeConverter() required this.code, final String? $type})
+      : $type = $type ?? 'error';
+
+  factory _$CourseActivityListErrorImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CourseActivityListErrorImplFromJson(json);
+
+  @override
+  @ErrorCodeConverter()
+  final ErrorCode code;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'CourseActivityListModel.error(code: $code)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CourseActivityListErrorImpl &&
+            (identical(other.code, code) || other.code == code));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, code);
+
+  /// Create a copy of CourseActivityListModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CourseActivityListErrorImplCopyWith<_$CourseActivityListErrorImpl>
+      get copyWith => __$$CourseActivityListErrorImplCopyWithImpl<
+          _$CourseActivityListErrorImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(List<ActivityList> weekActivityList) $default, {
+    required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
+  }) {
+    return error(code);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(List<ActivityList> weekActivityList)? $default, {
+    TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
+  }) {
+    return error?.call(code);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(List<ActivityList> weekActivityList)? $default, {
+    TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(code);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(CourseActivityList value) $default, {
+    required TResult Function(CourseActivityListError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(CourseActivityList value)? $default, {
+    TResult? Function(CourseActivityListError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(CourseActivityList value)? $default, {
+    TResult Function(CourseActivityListError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$CourseActivityListErrorImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class CourseActivityListError implements CourseActivityListModel {
+  const factory CourseActivityListError(
+          {@ErrorCodeConverter() required final ErrorCode code}) =
+      _$CourseActivityListErrorImpl;
+
+  factory CourseActivityListError.fromJson(Map<String, dynamic> json) =
+      _$CourseActivityListErrorImpl.fromJson;
+
+  @ErrorCodeConverter()
+  ErrorCode get code;
+
+  /// Create a copy of CourseActivityListModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CourseActivityListErrorImplCopyWith<_$CourseActivityListErrorImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+ActivityListModel _$ActivityListModelFromJson(Map<String, dynamic> json) {
+  switch (json['runtimeType']) {
+    case 'default':
+      return ActivityList.fromJson(json);
+    case 'error':
+      return ActivityListError.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(json, 'runtimeType', 'ActivityListModel',
+          'Invalid union type "${json['runtimeType']}"!');
+  }
+}
+
+/// @nodoc
+mixin _$ActivityListModel {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int? week, List<Activity> activitylist) $default, {
+    required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int? week, List<Activity> activitylist)? $default, {
+    TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int? week, List<Activity> activitylist)? $default, {
+    TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(ActivityList value) $default, {
+    required TResult Function(ActivityListError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(ActivityList value)? $default, {
+    TResult? Function(ActivityListError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(ActivityList value)? $default, {
+    TResult Function(ActivityListError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+
+  /// Serializes this ActivityListModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ActivityListModelCopyWith<$Res> {
+  factory $ActivityListModelCopyWith(
+          ActivityListModel value, $Res Function(ActivityListModel) then) =
+      _$ActivityListModelCopyWithImpl<$Res, ActivityListModel>;
+}
+
+/// @nodoc
+class _$ActivityListModelCopyWithImpl<$Res, $Val extends ActivityListModel>
+    implements $ActivityListModelCopyWith<$Res> {
+  _$ActivityListModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of WeekActivities
+  /// Create a copy of ActivityListModel
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? week = freezed,
-    Object? activities = null,
-  }) {
-    return _then(_value.copyWith(
-      week: freezed == week
-          ? _value.week
-          : week // ignore: cast_nullable_to_non_nullable
-              as int?,
-      activities: null == activities
-          ? _value.activities
-          : activities // ignore: cast_nullable_to_non_nullable
-              as List<Activity>,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$WeekActivitiesImplCopyWith<$Res>
-    implements $WeekActivitiesCopyWith<$Res> {
-  factory _$$WeekActivitiesImplCopyWith(_$WeekActivitiesImpl value,
-          $Res Function(_$WeekActivitiesImpl) then) =
-      __$$WeekActivitiesImplCopyWithImpl<$Res>;
-  @override
+abstract class _$$ActivityListImplCopyWith<$Res> {
+  factory _$$ActivityListImplCopyWith(
+          _$ActivityListImpl value, $Res Function(_$ActivityListImpl) then) =
+      __$$ActivityListImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int? week, List<Activity> activities});
+  $Res call({int? week, List<Activity> activitylist});
 }
 
 /// @nodoc
-class __$$WeekActivitiesImplCopyWithImpl<$Res>
-    extends _$WeekActivitiesCopyWithImpl<$Res, _$WeekActivitiesImpl>
-    implements _$$WeekActivitiesImplCopyWith<$Res> {
-  __$$WeekActivitiesImplCopyWithImpl(
-      _$WeekActivitiesImpl _value, $Res Function(_$WeekActivitiesImpl) _then)
+class __$$ActivityListImplCopyWithImpl<$Res>
+    extends _$ActivityListModelCopyWithImpl<$Res, _$ActivityListImpl>
+    implements _$$ActivityListImplCopyWith<$Res> {
+  __$$ActivityListImplCopyWithImpl(
+      _$ActivityListImpl _value, $Res Function(_$ActivityListImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of WeekActivities
+  /// Create a copy of ActivityListModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? week = freezed,
-    Object? activities = null,
+    Object? activitylist = null,
   }) {
-    return _then(_$WeekActivitiesImpl(
+    return _then(_$ActivityListImpl(
       week: freezed == week
           ? _value.week
           : week // ignore: cast_nullable_to_non_nullable
               as int?,
-      activities: null == activities
-          ? _value._activities
-          : activities // ignore: cast_nullable_to_non_nullable
+      activitylist: null == activitylist
+          ? _value._activitylist
+          : activitylist // ignore: cast_nullable_to_non_nullable
               as List<Activity>,
     ));
   }
@@ -276,88 +556,316 @@ class __$$WeekActivitiesImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$WeekActivitiesImpl implements _WeekActivities {
-  const _$WeekActivitiesImpl(
-      {this.week, required final List<Activity> activities})
-      : _activities = activities;
+class _$ActivityListImpl implements ActivityList {
+  const _$ActivityListImpl(
+      {this.week,
+      required final List<Activity> activitylist,
+      final String? $type})
+      : _activitylist = activitylist,
+        $type = $type ?? 'default';
 
-  factory _$WeekActivitiesImpl.fromJson(Map<String, dynamic> json) =>
-      _$$WeekActivitiesImplFromJson(json);
+  factory _$ActivityListImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ActivityListImplFromJson(json);
 
   @override
   final int? week;
-  final List<Activity> _activities;
+  final List<Activity> _activitylist;
   @override
-  List<Activity> get activities {
-    if (_activities is EqualUnmodifiableListView) return _activities;
+  List<Activity> get activitylist {
+    if (_activitylist is EqualUnmodifiableListView) return _activitylist;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_activities);
+    return EqualUnmodifiableListView(_activitylist);
   }
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
-    return 'WeekActivities(week: $week, activities: $activities)';
+    return 'ActivityListModel(week: $week, activitylist: $activitylist)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$WeekActivitiesImpl &&
+            other is _$ActivityListImpl &&
             (identical(other.week, week) || other.week == week) &&
             const DeepCollectionEquality()
-                .equals(other._activities, _activities));
+                .equals(other._activitylist, _activitylist));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, week, const DeepCollectionEquality().hash(_activities));
+      runtimeType, week, const DeepCollectionEquality().hash(_activitylist));
 
-  /// Create a copy of WeekActivities
+  /// Create a copy of ActivityListModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$WeekActivitiesImplCopyWith<_$WeekActivitiesImpl> get copyWith =>
-      __$$WeekActivitiesImplCopyWithImpl<_$WeekActivitiesImpl>(
-          this, _$identity);
+  _$$ActivityListImplCopyWith<_$ActivityListImpl> get copyWith =>
+      __$$ActivityListImplCopyWithImpl<_$ActivityListImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int? week, List<Activity> activitylist) $default, {
+    required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
+  }) {
+    return $default(week, activitylist);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int? week, List<Activity> activitylist)? $default, {
+    TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
+  }) {
+    return $default?.call(week, activitylist);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int? week, List<Activity> activitylist)? $default, {
+    TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(week, activitylist);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(ActivityList value) $default, {
+    required TResult Function(ActivityListError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(ActivityList value)? $default, {
+    TResult? Function(ActivityListError value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(ActivityList value)? $default, {
+    TResult Function(ActivityListError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$WeekActivitiesImplToJson(
+    return _$$ActivityListImplToJson(
       this,
     );
   }
 }
 
-abstract class _WeekActivities implements WeekActivities {
-  const factory _WeekActivities(
+abstract class ActivityList implements ActivityListModel {
+  const factory ActivityList(
       {final int? week,
-      required final List<Activity> activities}) = _$WeekActivitiesImpl;
+      required final List<Activity> activitylist}) = _$ActivityListImpl;
 
-  factory _WeekActivities.fromJson(Map<String, dynamic> json) =
-      _$WeekActivitiesImpl.fromJson;
+  factory ActivityList.fromJson(Map<String, dynamic> json) =
+      _$ActivityListImpl.fromJson;
 
-  @override
   int? get week;
-  @override
-  List<Activity> get activities;
+  List<Activity> get activitylist;
 
-  /// Create a copy of WeekActivities
+  /// Create a copy of ActivityListModel
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$WeekActivitiesImplCopyWith<_$WeekActivitiesImpl> get copyWith =>
+  _$$ActivityListImplCopyWith<_$ActivityListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-Activity _$ActivityFromJson(Map<String, dynamic> json) {
-  return _Activity.fromJson(json);
+/// @nodoc
+abstract class _$$ActivityListErrorImplCopyWith<$Res> {
+  factory _$$ActivityListErrorImplCopyWith(_$ActivityListErrorImpl value,
+          $Res Function(_$ActivityListErrorImpl) then) =
+      __$$ActivityListErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({@ErrorCodeConverter() ErrorCode code});
 }
 
 /// @nodoc
-mixin _$Activity {
+class __$$ActivityListErrorImplCopyWithImpl<$Res>
+    extends _$ActivityListModelCopyWithImpl<$Res, _$ActivityListErrorImpl>
+    implements _$$ActivityListErrorImplCopyWith<$Res> {
+  __$$ActivityListErrorImplCopyWithImpl(_$ActivityListErrorImpl _value,
+      $Res Function(_$ActivityListErrorImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ActivityListModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? code = null,
+  }) {
+    return _then(_$ActivityListErrorImpl(
+      code: null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as ErrorCode,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ActivityListErrorImpl implements ActivityListError {
+  const _$ActivityListErrorImpl(
+      {@ErrorCodeConverter() required this.code, final String? $type})
+      : $type = $type ?? 'error';
+
+  factory _$ActivityListErrorImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ActivityListErrorImplFromJson(json);
+
+  @override
+  @ErrorCodeConverter()
+  final ErrorCode code;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'ActivityListModel.error(code: $code)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ActivityListErrorImpl &&
+            (identical(other.code, code) || other.code == code));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, code);
+
+  /// Create a copy of ActivityListModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ActivityListErrorImplCopyWith<_$ActivityListErrorImpl> get copyWith =>
+      __$$ActivityListErrorImplCopyWithImpl<_$ActivityListErrorImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int? week, List<Activity> activitylist) $default, {
+    required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
+  }) {
+    return error(code);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int? week, List<Activity> activitylist)? $default, {
+    TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
+  }) {
+    return error?.call(code);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int? week, List<Activity> activitylist)? $default, {
+    TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(code);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(ActivityList value) $default, {
+    required TResult Function(ActivityListError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(ActivityList value)? $default, {
+    TResult? Function(ActivityListError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(ActivityList value)? $default, {
+    TResult Function(ActivityListError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ActivityListErrorImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class ActivityListError implements ActivityListModel {
+  const factory ActivityListError(
+          {@ErrorCodeConverter() required final ErrorCode code}) =
+      _$ActivityListErrorImpl;
+
+  factory ActivityListError.fromJson(Map<String, dynamic> json) =
+      _$ActivityListErrorImpl.fromJson;
+
+  @ErrorCodeConverter()
+  ErrorCode get code;
+
+  /// Create a copy of ActivityListModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ActivityListErrorImplCopyWith<_$ActivityListErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ActivityModel _$ActivityModelFromJson(Map<String, dynamic> json) {
+  return Activity.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ActivityModel {
   ActivityType get type => throw _privateConstructorUsedError;
   bool get available => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
@@ -372,20 +880,21 @@ mixin _$Activity {
   String? get description => throw _privateConstructorUsedError;
   String? get courseName => throw _privateConstructorUsedError;
 
-  /// Serializes this Activity to a JSON map.
+  /// Serializes this ActivityModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of Activity
+  /// Create a copy of ActivityModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ActivityCopyWith<Activity> get copyWith =>
+  $ActivityModelCopyWith<ActivityModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ActivityCopyWith<$Res> {
-  factory $ActivityCopyWith(Activity value, $Res Function(Activity) then) =
-      _$ActivityCopyWithImpl<$Res, Activity>;
+abstract class $ActivityModelCopyWith<$Res> {
+  factory $ActivityModelCopyWith(
+          ActivityModel value, $Res Function(ActivityModel) then) =
+      _$ActivityModelCopyWithImpl<$Res, ActivityModel>;
   @useResult
   $Res call(
       {ActivityType type,
@@ -404,16 +913,16 @@ abstract class $ActivityCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ActivityCopyWithImpl<$Res, $Val extends Activity>
-    implements $ActivityCopyWith<$Res> {
-  _$ActivityCopyWithImpl(this._value, this._then);
+class _$ActivityModelCopyWithImpl<$Res, $Val extends ActivityModel>
+    implements $ActivityModelCopyWith<$Res> {
+  _$ActivityModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Activity
+  /// Create a copy of ActivityModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -491,7 +1000,7 @@ class _$ActivityCopyWithImpl<$Res, $Val extends Activity>
 
 /// @nodoc
 abstract class _$$ActivityImplCopyWith<$Res>
-    implements $ActivityCopyWith<$Res> {
+    implements $ActivityModelCopyWith<$Res> {
   factory _$$ActivityImplCopyWith(
           _$ActivityImpl value, $Res Function(_$ActivityImpl) then) =
       __$$ActivityImplCopyWithImpl<$Res>;
@@ -515,13 +1024,13 @@ abstract class _$$ActivityImplCopyWith<$Res>
 
 /// @nodoc
 class __$$ActivityImplCopyWithImpl<$Res>
-    extends _$ActivityCopyWithImpl<$Res, _$ActivityImpl>
+    extends _$ActivityModelCopyWithImpl<$Res, _$ActivityImpl>
     implements _$$ActivityImplCopyWith<$Res> {
   __$$ActivityImplCopyWithImpl(
       _$ActivityImpl _value, $Res Function(_$ActivityImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Activity
+  /// Create a copy of ActivityModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -599,7 +1108,7 @@ class __$$ActivityImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ActivityImpl implements _Activity {
+class _$ActivityImpl implements Activity {
   const _$ActivityImpl(
       {required this.type,
       required this.available,
@@ -647,7 +1156,7 @@ class _$ActivityImpl implements _Activity {
 
   @override
   String toString() {
-    return 'Activity(type: $type, available: $available, name: $name, link: $link, code: $code, deadline: $deadline, lectureTime: $lectureTime, attendance: $attendance, gradingStatus: $gradingStatus, timeLeft: $timeLeft, lastModified: $lastModified, description: $description, courseName: $courseName)';
+    return 'ActivityModel(type: $type, available: $available, name: $name, link: $link, code: $code, deadline: $deadline, lectureTime: $lectureTime, attendance: $attendance, gradingStatus: $gradingStatus, timeLeft: $timeLeft, lastModified: $lastModified, description: $description, courseName: $courseName)';
   }
 
   @override
@@ -697,7 +1206,7 @@ class _$ActivityImpl implements _Activity {
       description,
       courseName);
 
-  /// Create a copy of Activity
+  /// Create a copy of ActivityModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -713,8 +1222,8 @@ class _$ActivityImpl implements _Activity {
   }
 }
 
-abstract class _Activity implements Activity {
-  const factory _Activity(
+abstract class Activity implements ActivityModel {
+  const factory Activity(
       {required final ActivityType type,
       required final bool available,
       required final String name,
@@ -729,7 +1238,7 @@ abstract class _Activity implements Activity {
       final String? description,
       final String? courseName}) = _$ActivityImpl;
 
-  factory _Activity.fromJson(Map<String, dynamic> json) =
+  factory Activity.fromJson(Map<String, dynamic> json) =
       _$ActivityImpl.fromJson;
 
   @override
@@ -759,7 +1268,7 @@ abstract class _Activity implements Activity {
   @override
   String? get courseName;
 
-  /// Create a copy of Activity
+  /// Create a copy of ActivityModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)

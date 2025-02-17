@@ -1,10 +1,14 @@
+import 'package:dartz/dartz.dart';
+
 import 'package:acha/data/models/index.dart';
 
 abstract class CourseRepository {
-  Future<CourseList?> fetchTodayCourses();
-  Future<CourseList?> fetchCourseList();
-  Future<WeekActivities?> fetchActivities();
-  Future<CourseActivities?> fetchCourseActivities(String courseCode);
-  Future<NoticeList?> fetchNoticeList(String courseCode);
-  Future<Notice?> fetchNotice(String courseCode, int noticeId);
+  Future<Either<String, CourseList>> fetchTodayCourses();
+  Future<Either<String, CourseList>> fetchCourseList();
+  Future<Either<String, ActivityList>> fetchActivities();
+  Future<Either<String, CourseActivityList>> fetchCourseActivities(
+    String courseCode,
+  );
+  Future<Either<String, NoticeList>> fetchNoticeList(String courseCode);
+  Future<Either<String, Notice>> fetchNotice(String courseCode, int noticeId);
 }

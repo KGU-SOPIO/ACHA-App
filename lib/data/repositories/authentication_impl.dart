@@ -1,12 +1,13 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:dartz/dartz.dart';
 
 import 'package:acha/core/network/interceptors/index.dart';
 import 'package:acha/data/models/index.dart';
+import 'package:acha/data/converters/index.dart';
 import 'package:acha/domain/apis/index.dart';
 import 'package:acha/domain/repositories/index.dart';
-import 'package:acha/domain/exceptions/index.dart';
 import 'package:acha/presentation/blocs/index.dart';
 
 class AuthenticationRepositoryImpl implements AuthenticationRepository {
@@ -49,7 +50,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
           await secureStorageRepository.deleteAllData();
           break;
         case TokenStatus.valid:
-          await _refreshAccessToken();
+          await _reissueAccessToken();
           _authStreamController.add(AuthenticationStatus.authenticated);
           break;
       }
@@ -62,35 +63,45 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
 
   /// 인증 정보로 로그인을 요청합니다.
   @override
-  Future<SignInResponse> signIn(
-      {required String studentId, required String password}) async {
+  Future<Either<String, SignInSuccess>> signIn({
+    required String studentId,
+    required String password,
+  }) async {
     try {
-      final response = await dio.post(AuthenticationApiEndpoints.signIn,
-          data: {'studentId': studentId, 'password': password});
-
-      final signInResponse = SignInResponse.fromJson(response.data);
-      signInResponse.maybeWhen(
-        success: (accessToken, refreshToken) async {
-          await secureStorageRepository.saveTokens(
-              accessToken: accessToken, refreshToken: refreshToken);
-          _authStreamController.add(AuthenticationStatus.authenticated);
+      final response = await dio.post(
+        AuthenticationApiEndpoints.signIn,
+        data: {
+          'studentId': studentId,
+          'password': password,
         },
-        orElse: () => {},
       );
 
-      return signInResponse;
-    } on DioException {
-      rethrow;
+      final parsedData = SignInResponseModel.fromJson(response.data);
+      return parsedData.map(
+        success: (signInResponse) async {
+          await secureStorageRepository.saveTokens(
+            accessToken: signInResponse.accessToken,
+            refreshToken: signInResponse.refreshToken,
+          );
+          _authStreamController.add(AuthenticationStatus.authenticated);
+          return Right(signInResponse);
+        },
+        error: (value) => Left(value.code.message),
+      );
+    } on DioException catch (e) {
+      return Left(e.error as String);
     } catch (e) {
       _authStreamController.add(AuthenticationStatus.unauthenticated);
-      throw RepositoryException('문제가 발생해 로그인에 실패했어요');
+      return const Left('문제가 발생해 로그인에 실패했어요');
     }
   }
 
   /// 인증 정보로 사용자 정보를 요청합니다.
   @override
-  Future<UserResponse> fetchUserData(
-      {required String studentId, required String password}) async {
+  Future<Either<String, User>> fetchUserData({
+    required String studentId,
+    required String password,
+  }) async {
     try {
       final response = await dio.post(
         AuthenticationApiEndpoints.fetchUser,
@@ -100,21 +111,26 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
         },
       );
 
-      return UserResponse.fromJson(response.data);
-    } on DioException {
-      rethrow;
+      final parsedData = UserModel.fromJson(response.data);
+      return parsedData.map(
+        (user) => Right(user),
+        error: (value) => Left(value.code.message),
+      );
+    } on DioException catch (e) {
+      return Left(e.error as String);
     } catch (e) {
       _authStreamController.add(AuthenticationStatus.unauthenticated);
-      throw RepositoryException('문제가 발생해 학생 정보를 가져오지 못했어요');
+      return const Left('문제가 발생해 학생 정보를 가져오지 못했어요');
     }
   }
 
   /// 인증 정보로 회원가입을 요청합니다.
   @override
-  Future<SignUpResponse> signUp(
-      {required String studentId,
-      required String password,
-      required User user}) async {
+  Future<Either<String, SignUpResponse>> signUp({
+    required String studentId,
+    required String password,
+    required User user,
+  }) async {
     try {
       final response = await dio.post(
         AuthenticationApiEndpoints.signUp,
@@ -123,71 +139,81 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
           'password': password,
           'name': user.name,
           'college': user.college,
-          'department': user.college,
+          'department': user.department,
           'major': user.major
         },
       );
 
-      final signUpResponse = SignUpResponse.fromJson(response.data);
-      await secureStorageRepository.saveTokens(
-          accessToken: signUpResponse.accessToken,
-          refreshToken: signUpResponse.refreshToken);
-      return signUpResponse;
-    } on DioException {
-      rethrow;
+      final parsedData = SignUpResponseModel.fromJson(response.data);
+      return parsedData.map(
+        (signUpResponse) async {
+          await secureStorageRepository.saveTokens(
+            accessToken: signUpResponse.accessToken,
+            refreshToken: signUpResponse.refreshToken,
+          );
+          return Right(signUpResponse);
+        },
+        error: (value) => Left(value.code.message),
+      );
+    } on DioException catch (e) {
+      return Left(e.error as String);
     } catch (e) {
       _authStreamController.add(AuthenticationStatus.unauthenticated);
-      throw RepositoryException('문제가 발생해 회원가입에 실패했어요');
+      return const Left('문제가 발생해 회원가입에 실패했어요');
     }
   }
 
   /// 데이터 추출을 요청합니다.
   @override
-  Future<void> requestExtraction() async {
+  Future<Either<String, Unit>> requestExtraction() async {
     try {
       dio.interceptors.add(tokenInterceptor);
 
       final response = await dio.post(CourseApiEndpoints.extraction);
-      if (response.statusCode != 200) throw Exception();
+      if (response.statusCode != 200) {
+        final parsedData = const ErrorCodeConverter().fromJson(response.data);
+        return Left(parsedData.message);
+      }
+
       _authStreamController.add(AuthenticationStatus.registered);
-    } on DioException {
-      rethrow;
+      return const Right(unit);
+    } on DioException catch (e) {
+      return Left(e.error as String);
     } catch (e) {
       _authStreamController.add(AuthenticationStatus.unauthenticated);
-      throw RepositoryException('문제가 발생해 데이터를 불러오지 못했어요');
+      return const Left('문제가 발생해 데이터를 불러오지 못했어요');
     }
   }
 
   /// 로그아웃을 수행합니다.
   @override
-  Future<void> logout() async {
+  Future<Either<String, Unit>> logout() async {
     try {
       await secureStorageRepository.deleteAllData();
       _authStreamController.add(AuthenticationStatus.unauthenticated);
+      return const Right(unit);
     } catch (e) {
-      // 오류 처리 검토 필요
-      return;
+      return const Left('로그아웃에 실패했어요');
     }
   }
 
   /// AccessToken 재발급을 요청합니다.
-  Future<void> _refreshAccessToken() async {
+  Future<void> _reissueAccessToken() async {
     try {
       final refreshToken = await secureStorageRepository.readRefreshToken();
       final response = await dio.post(
-        AuthenticationApiEndpoints.refresh,
-        data: {
-          'refreshToken': refreshToken,
-        },
+        AuthenticationApiEndpoints.reissue,
+        data: {'refreshToken': refreshToken},
       );
 
-      final refreshResponse = TokenRefreshResponse.fromJson(response.data);
+      final reissueResponse = TokenReissueResponse.fromJson(response.data);
       await secureStorageRepository.saveTokens(
-          accessToken: refreshResponse.accessToken);
+        accessToken: reissueResponse.accessToken,
+      );
     } on DioException {
       rethrow;
     } catch (e) {
-      throw RepositoryException('서비스 이용을 위한 인증에 실패했어요');
+      throw Exception('서비스 이용을 위한 인증에 실패했어요');
     }
   }
 }

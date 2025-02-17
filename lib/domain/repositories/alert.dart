@@ -1,4 +1,6 @@
+import 'package:dartz/dartz.dart';
+
 abstract class AlertRepository {
-  Future<bool> fetchAlertStatus();
-  Future<void> updateAlertStatus({required bool isEnabled});
+  Future<Either<String, bool>> fetchAlertStatus();
+  Future<Either<String, Unit>> updateAlertStatus({required bool isEnabled});
 }

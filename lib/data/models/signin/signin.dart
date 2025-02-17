@@ -7,34 +7,16 @@ part 'signin.freezed.dart';
 part 'signin.g.dart';
 
 @freezed
-class SignInResponse with _$SignInResponse {
-  const factory SignInResponse.success({
+class SignInResponseModel with _$SignInResponseModel {
+  const factory SignInResponseModel.success({
     required String accessToken,
     required String refreshToken,
   }) = SignInSuccess;
-  const factory SignInResponse.fetchUserData({
+
+  const factory SignInResponseModel.error({
     @ErrorCodeConverter() required ErrorCode code,
-  }) = FetchUserData;
+  }) = SignInError;
 
-  factory SignInResponse.fromJson(Map<String, dynamic> json) =>
-      const _SignInResponseConverter().fromJson(json);
-}
-
-class _SignInResponseConverter
-    implements JsonConverter<SignInResponse, Map<String, dynamic>> {
-  const _SignInResponseConverter();
-
-  @override
-  SignInResponse fromJson(Map<String, dynamic> json) {
-    if (json.containsKey('accessToken')) {
-      return SignInSuccess.fromJson(json);
-    } else if (json.containsKey('code')) {
-      return FetchUserData.fromJson(json);
-    } else {
-      throw UnimplementedError();
-    }
-  }
-
-  @override
-  Map<String, dynamic> toJson(SignInResponse object) => object.toJson();
+  factory SignInResponseModel.fromJson(Map<String, dynamic> json) =>
+      const SignInResponseConverter().fromJson(json);
 }

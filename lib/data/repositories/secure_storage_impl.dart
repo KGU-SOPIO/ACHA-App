@@ -35,7 +35,7 @@ class SecureStorageRepositoryImpl implements SecureStorageRepository {
         if (accessToken != null)
           secureStorage.write(key: accessTokenKey, value: accessToken),
         if (refreshToken != null)
-          secureStorage.write(key: refreshTokenKey, value: refreshToken)
+          secureStorage.write(key: refreshTokenKey, value: refreshToken),
       ]);
     } catch (e) {
       rethrow;

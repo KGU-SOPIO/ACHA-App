@@ -34,8 +34,6 @@ abstract class $NoticeStateCopyWith<$Res> {
       _$NoticeStateCopyWithImpl<$Res, NoticeState>;
   @useResult
   $Res call({NoticeStatus status, Notice? notice, String? errorMessage});
-
-  $NoticeCopyWith<$Res>? get notice;
 }
 
 /// @nodoc
@@ -72,20 +70,6 @@ class _$NoticeStateCopyWithImpl<$Res, $Val extends NoticeState>
               as String?,
     ) as $Val);
   }
-
-  /// Create a copy of NoticeState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $NoticeCopyWith<$Res>? get notice {
-    if (_value.notice == null) {
-      return null;
-    }
-
-    return $NoticeCopyWith<$Res>(_value.notice!, (value) {
-      return _then(_value.copyWith(notice: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -97,9 +81,6 @@ abstract class _$$NoticeStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call({NoticeStatus status, Notice? notice, String? errorMessage});
-
-  @override
-  $NoticeCopyWith<$Res>? get notice;
 }
 
 /// @nodoc
@@ -160,13 +141,14 @@ class _$NoticeStateImpl implements _NoticeState {
         (other.runtimeType == runtimeType &&
             other is _$NoticeStateImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.notice, notice) || other.notice == notice) &&
+            const DeepCollectionEquality().equals(other.notice, notice) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, notice, errorMessage);
+  int get hashCode => Object.hash(runtimeType, status,
+      const DeepCollectionEquality().hash(notice), errorMessage);
 
   /// Create a copy of NoticeState
   /// with the given fields replaced by the non-null parameter values.

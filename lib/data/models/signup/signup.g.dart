@@ -10,6 +10,7 @@ _$SignUpResponseImpl _$$SignUpResponseImplFromJson(Map<String, dynamic> json) =>
     _$SignUpResponseImpl(
       accessToken: json['accessToken'] as String,
       refreshToken: json['refreshToken'] as String,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$SignUpResponseImplToJson(
@@ -17,4 +18,17 @@ Map<String, dynamic> _$$SignUpResponseImplToJson(
     <String, dynamic>{
       'accessToken': instance.accessToken,
       'refreshToken': instance.refreshToken,
+      'runtimeType': instance.$type,
+    };
+
+_$SignUpErrorImpl _$$SignUpErrorImplFromJson(Map<String, dynamic> json) =>
+    _$SignUpErrorImpl(
+      code: const ErrorCodeConverter().fromJson(json['code'] as String),
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$SignUpErrorImplToJson(_$SignUpErrorImpl instance) =>
+    <String, dynamic>{
+      'code': const ErrorCodeConverter().toJson(instance.code),
+      'runtimeType': instance.$type,
     };

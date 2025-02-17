@@ -14,83 +14,82 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-SignInResponse _$SignInResponseFromJson(Map<String, dynamic> json) {
+SignInResponseModel _$SignInResponseModelFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType']) {
     case 'success':
       return SignInSuccess.fromJson(json);
-    case 'fetchUserData':
-      return FetchUserData.fromJson(json);
+    case 'error':
+      return SignInError.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(json, 'runtimeType', 'SignInResponse',
+      throw CheckedFromJsonException(json, 'runtimeType', 'SignInResponseModel',
           'Invalid union type "${json['runtimeType']}"!');
   }
 }
 
 /// @nodoc
-mixin _$SignInResponse {
+mixin _$SignInResponseModel {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String accessToken, String refreshToken) success,
-    required TResult Function(@ErrorCodeConverter() ErrorCode code)
-        fetchUserData,
+    required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String accessToken, String refreshToken)? success,
-    TResult? Function(@ErrorCodeConverter() ErrorCode code)? fetchUserData,
+    TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String accessToken, String refreshToken)? success,
-    TResult Function(@ErrorCodeConverter() ErrorCode code)? fetchUserData,
+    TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SignInSuccess value) success,
-    required TResult Function(FetchUserData value) fetchUserData,
+    required TResult Function(SignInError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SignInSuccess value)? success,
-    TResult? Function(FetchUserData value)? fetchUserData,
+    TResult? Function(SignInError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SignInSuccess value)? success,
-    TResult Function(FetchUserData value)? fetchUserData,
+    TResult Function(SignInError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this SignInResponse to a JSON map.
+  /// Serializes this SignInResponseModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SignInResponseCopyWith<$Res> {
-  factory $SignInResponseCopyWith(
-          SignInResponse value, $Res Function(SignInResponse) then) =
-      _$SignInResponseCopyWithImpl<$Res, SignInResponse>;
+abstract class $SignInResponseModelCopyWith<$Res> {
+  factory $SignInResponseModelCopyWith(
+          SignInResponseModel value, $Res Function(SignInResponseModel) then) =
+      _$SignInResponseModelCopyWithImpl<$Res, SignInResponseModel>;
 }
 
 /// @nodoc
-class _$SignInResponseCopyWithImpl<$Res, $Val extends SignInResponse>
-    implements $SignInResponseCopyWith<$Res> {
-  _$SignInResponseCopyWithImpl(this._value, this._then);
+class _$SignInResponseModelCopyWithImpl<$Res, $Val extends SignInResponseModel>
+    implements $SignInResponseModelCopyWith<$Res> {
+  _$SignInResponseModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of SignInResponse
+  /// Create a copy of SignInResponseModel
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -105,13 +104,13 @@ abstract class _$$SignInSuccessImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$SignInSuccessImplCopyWithImpl<$Res>
-    extends _$SignInResponseCopyWithImpl<$Res, _$SignInSuccessImpl>
+    extends _$SignInResponseModelCopyWithImpl<$Res, _$SignInSuccessImpl>
     implements _$$SignInSuccessImplCopyWith<$Res> {
   __$$SignInSuccessImplCopyWithImpl(
       _$SignInSuccessImpl _value, $Res Function(_$SignInSuccessImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SignInResponse
+  /// Create a copy of SignInResponseModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -154,7 +153,7 @@ class _$SignInSuccessImpl implements SignInSuccess {
 
   @override
   String toString() {
-    return 'SignInResponse.success(accessToken: $accessToken, refreshToken: $refreshToken)';
+    return 'SignInResponseModel.success(accessToken: $accessToken, refreshToken: $refreshToken)';
   }
 
   @override
@@ -172,7 +171,7 @@ class _$SignInSuccessImpl implements SignInSuccess {
   @override
   int get hashCode => Object.hash(runtimeType, accessToken, refreshToken);
 
-  /// Create a copy of SignInResponse
+  /// Create a copy of SignInResponseModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -184,8 +183,7 @@ class _$SignInSuccessImpl implements SignInSuccess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String accessToken, String refreshToken) success,
-    required TResult Function(@ErrorCodeConverter() ErrorCode code)
-        fetchUserData,
+    required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
   }) {
     return success(accessToken, refreshToken);
   }
@@ -194,7 +192,7 @@ class _$SignInSuccessImpl implements SignInSuccess {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String accessToken, String refreshToken)? success,
-    TResult? Function(@ErrorCodeConverter() ErrorCode code)? fetchUserData,
+    TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
   }) {
     return success?.call(accessToken, refreshToken);
   }
@@ -203,7 +201,7 @@ class _$SignInSuccessImpl implements SignInSuccess {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String accessToken, String refreshToken)? success,
-    TResult Function(@ErrorCodeConverter() ErrorCode code)? fetchUserData,
+    TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -216,7 +214,7 @@ class _$SignInSuccessImpl implements SignInSuccess {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SignInSuccess value) success,
-    required TResult Function(FetchUserData value) fetchUserData,
+    required TResult Function(SignInError value) error,
   }) {
     return success(this);
   }
@@ -225,7 +223,7 @@ class _$SignInSuccessImpl implements SignInSuccess {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SignInSuccess value)? success,
-    TResult? Function(FetchUserData value)? fetchUserData,
+    TResult? Function(SignInError value)? error,
   }) {
     return success?.call(this);
   }
@@ -234,7 +232,7 @@ class _$SignInSuccessImpl implements SignInSuccess {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SignInSuccess value)? success,
-    TResult Function(FetchUserData value)? fetchUserData,
+    TResult Function(SignInError value)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -251,7 +249,7 @@ class _$SignInSuccessImpl implements SignInSuccess {
   }
 }
 
-abstract class SignInSuccess implements SignInResponse {
+abstract class SignInSuccess implements SignInResponseModel {
   const factory SignInSuccess(
       {required final String accessToken,
       required final String refreshToken}) = _$SignInSuccessImpl;
@@ -262,7 +260,7 @@ abstract class SignInSuccess implements SignInResponse {
   String get accessToken;
   String get refreshToken;
 
-  /// Create a copy of SignInResponse
+  /// Create a copy of SignInResponseModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SignInSuccessImplCopyWith<_$SignInSuccessImpl> get copyWith =>
@@ -270,30 +268,30 @@ abstract class SignInSuccess implements SignInResponse {
 }
 
 /// @nodoc
-abstract class _$$FetchUserDataImplCopyWith<$Res> {
-  factory _$$FetchUserDataImplCopyWith(
-          _$FetchUserDataImpl value, $Res Function(_$FetchUserDataImpl) then) =
-      __$$FetchUserDataImplCopyWithImpl<$Res>;
+abstract class _$$SignInErrorImplCopyWith<$Res> {
+  factory _$$SignInErrorImplCopyWith(
+          _$SignInErrorImpl value, $Res Function(_$SignInErrorImpl) then) =
+      __$$SignInErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({@ErrorCodeConverter() ErrorCode code});
 }
 
 /// @nodoc
-class __$$FetchUserDataImplCopyWithImpl<$Res>
-    extends _$SignInResponseCopyWithImpl<$Res, _$FetchUserDataImpl>
-    implements _$$FetchUserDataImplCopyWith<$Res> {
-  __$$FetchUserDataImplCopyWithImpl(
-      _$FetchUserDataImpl _value, $Res Function(_$FetchUserDataImpl) _then)
+class __$$SignInErrorImplCopyWithImpl<$Res>
+    extends _$SignInResponseModelCopyWithImpl<$Res, _$SignInErrorImpl>
+    implements _$$SignInErrorImplCopyWith<$Res> {
+  __$$SignInErrorImplCopyWithImpl(
+      _$SignInErrorImpl _value, $Res Function(_$SignInErrorImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SignInResponse
+  /// Create a copy of SignInResponseModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? code = null,
   }) {
-    return _then(_$FetchUserDataImpl(
+    return _then(_$SignInErrorImpl(
       code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -304,13 +302,13 @@ class __$$FetchUserDataImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$FetchUserDataImpl implements FetchUserData {
-  const _$FetchUserDataImpl(
+class _$SignInErrorImpl implements SignInError {
+  const _$SignInErrorImpl(
       {@ErrorCodeConverter() required this.code, final String? $type})
-      : $type = $type ?? 'fetchUserData';
+      : $type = $type ?? 'error';
 
-  factory _$FetchUserDataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$FetchUserDataImplFromJson(json);
+  factory _$SignInErrorImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SignInErrorImplFromJson(json);
 
   @override
   @ErrorCodeConverter()
@@ -321,14 +319,14 @@ class _$FetchUserDataImpl implements FetchUserData {
 
   @override
   String toString() {
-    return 'SignInResponse.fetchUserData(code: $code)';
+    return 'SignInResponseModel.error(code: $code)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FetchUserDataImpl &&
+            other is _$SignInErrorImpl &&
             (identical(other.code, code) || other.code == code));
   }
 
@@ -336,42 +334,41 @@ class _$FetchUserDataImpl implements FetchUserData {
   @override
   int get hashCode => Object.hash(runtimeType, code);
 
-  /// Create a copy of SignInResponse
+  /// Create a copy of SignInResponseModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$FetchUserDataImplCopyWith<_$FetchUserDataImpl> get copyWith =>
-      __$$FetchUserDataImplCopyWithImpl<_$FetchUserDataImpl>(this, _$identity);
+  _$$SignInErrorImplCopyWith<_$SignInErrorImpl> get copyWith =>
+      __$$SignInErrorImplCopyWithImpl<_$SignInErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String accessToken, String refreshToken) success,
-    required TResult Function(@ErrorCodeConverter() ErrorCode code)
-        fetchUserData,
+    required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
   }) {
-    return fetchUserData(code);
+    return error(code);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String accessToken, String refreshToken)? success,
-    TResult? Function(@ErrorCodeConverter() ErrorCode code)? fetchUserData,
+    TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
   }) {
-    return fetchUserData?.call(code);
+    return error?.call(code);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String accessToken, String refreshToken)? success,
-    TResult Function(@ErrorCodeConverter() ErrorCode code)? fetchUserData,
+    TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
     required TResult orElse(),
   }) {
-    if (fetchUserData != null) {
-      return fetchUserData(code);
+    if (error != null) {
+      return error(code);
     }
     return orElse();
   }
@@ -380,55 +377,55 @@ class _$FetchUserDataImpl implements FetchUserData {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SignInSuccess value) success,
-    required TResult Function(FetchUserData value) fetchUserData,
+    required TResult Function(SignInError value) error,
   }) {
-    return fetchUserData(this);
+    return error(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SignInSuccess value)? success,
-    TResult? Function(FetchUserData value)? fetchUserData,
+    TResult? Function(SignInError value)? error,
   }) {
-    return fetchUserData?.call(this);
+    return error?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SignInSuccess value)? success,
-    TResult Function(FetchUserData value)? fetchUserData,
+    TResult Function(SignInError value)? error,
     required TResult orElse(),
   }) {
-    if (fetchUserData != null) {
-      return fetchUserData(this);
+    if (error != null) {
+      return error(this);
     }
     return orElse();
   }
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$FetchUserDataImplToJson(
+    return _$$SignInErrorImplToJson(
       this,
     );
   }
 }
 
-abstract class FetchUserData implements SignInResponse {
-  const factory FetchUserData(
+abstract class SignInError implements SignInResponseModel {
+  const factory SignInError(
           {@ErrorCodeConverter() required final ErrorCode code}) =
-      _$FetchUserDataImpl;
+      _$SignInErrorImpl;
 
-  factory FetchUserData.fromJson(Map<String, dynamic> json) =
-      _$FetchUserDataImpl.fromJson;
+  factory SignInError.fromJson(Map<String, dynamic> json) =
+      _$SignInErrorImpl.fromJson;
 
   @ErrorCodeConverter()
   ErrorCode get code;
 
-  /// Create a copy of SignInResponse
+  /// Create a copy of SignInResponseModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FetchUserDataImplCopyWith<_$FetchUserDataImpl> get copyWith =>
+  _$$SignInErrorImplCopyWith<_$SignInErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

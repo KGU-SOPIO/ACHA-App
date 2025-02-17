@@ -93,7 +93,7 @@ class _CourseScreenState extends State<CourseScreen> {
   }
 
   Widget _buildLoadedContent(CourseListState state) {
-    final courseList = state.courseList?.courses;
+    final courseList = state.courseList?.courseList;
     if (courseList == null) {
       return const SizedBox(
         height: 500,

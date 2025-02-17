@@ -33,8 +33,6 @@ abstract class $UserStateCopyWith<$Res> {
       _$UserStateCopyWithImpl<$Res, UserState>;
   @useResult
   $Res call({UserStatus status, User? user, String? errorMessage});
-
-  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -71,20 +69,6 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
               as String?,
     ) as $Val);
   }
-
-  /// Create a copy of UserState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res>? get user {
-    if (_value.user == null) {
-      return null;
-    }
-
-    return $UserCopyWith<$Res>(_value.user!, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -96,9 +80,6 @@ abstract class _$$UserStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call({UserStatus status, User? user, String? errorMessage});
-
-  @override
-  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -158,13 +139,14 @@ class _$UserStateImpl implements _UserState {
         (other.runtimeType == runtimeType &&
             other is _$UserStateImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.user, user) || other.user == user) &&
+            const DeepCollectionEquality().equals(other.user, user) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, user, errorMessage);
+  int get hashCode => Object.hash(runtimeType, status,
+      const DeepCollectionEquality().hash(user), errorMessage);
 
   /// Create a copy of UserState
   /// with the given fields replaced by the non-null parameter values.

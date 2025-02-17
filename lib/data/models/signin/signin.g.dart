@@ -20,13 +20,13 @@ Map<String, dynamic> _$$SignInSuccessImplToJson(_$SignInSuccessImpl instance) =>
       'runtimeType': instance.$type,
     };
 
-_$FetchUserDataImpl _$$FetchUserDataImplFromJson(Map<String, dynamic> json) =>
-    _$FetchUserDataImpl(
+_$SignInErrorImpl _$$SignInErrorImplFromJson(Map<String, dynamic> json) =>
+    _$SignInErrorImpl(
       code: const ErrorCodeConverter().fromJson(json['code'] as String),
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$FetchUserDataImplToJson(_$FetchUserDataImpl instance) =>
+Map<String, dynamic> _$$SignInErrorImplToJson(_$SignInErrorImpl instance) =>
     <String, dynamic>{
       'code': const ErrorCodeConverter().toJson(instance.code),
       'runtimeType': instance.$type,

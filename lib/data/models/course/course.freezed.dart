@@ -14,301 +14,118 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-CourseList _$CourseListFromJson(Map<String, dynamic> json) {
-  return _CourseList.fromJson(json);
+CourseModel _$CourseModelFromJson(Map<String, dynamic> json) {
+  switch (json['runtimeType']) {
+    case 'default':
+      return Course.fromJson(json);
+    case 'error':
+      return CourseError.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(json, 'runtimeType', 'CourseModel',
+          'Invalid union type "${json['runtimeType']}"!');
+  }
 }
 
 /// @nodoc
-mixin _$CourseList {
-  List<Course> get courses => throw _privateConstructorUsedError;
-
-  /// Serializes this CourseList to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CourseList
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $CourseListCopyWith<CourseList> get copyWith =>
+mixin _$CourseModel {
+  Object get code => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            String name,
+            String professor,
+            String lectureRoom,
+            String code,
+            DateTime? deadline,
+            String? link,
+            CourseActivityList? courseActivityList,
+            NoticeList? noticeList)
+        $default, {
+    required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
+  }) =>
       throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            String name,
+            String professor,
+            String lectureRoom,
+            String code,
+            DateTime? deadline,
+            String? link,
+            CourseActivityList? courseActivityList,
+            NoticeList? noticeList)?
+        $default, {
+    TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            String name,
+            String professor,
+            String lectureRoom,
+            String code,
+            DateTime? deadline,
+            String? link,
+            CourseActivityList? courseActivityList,
+            NoticeList? noticeList)?
+        $default, {
+    TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(Course value) $default, {
+    required TResult Function(CourseError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(Course value)? $default, {
+    TResult? Function(CourseError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(Course value)? $default, {
+    TResult Function(CourseError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+
+  /// Serializes this CourseModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CourseListCopyWith<$Res> {
-  factory $CourseListCopyWith(
-          CourseList value, $Res Function(CourseList) then) =
-      _$CourseListCopyWithImpl<$Res, CourseList>;
-  @useResult
-  $Res call({List<Course> courses});
+abstract class $CourseModelCopyWith<$Res> {
+  factory $CourseModelCopyWith(
+          CourseModel value, $Res Function(CourseModel) then) =
+      _$CourseModelCopyWithImpl<$Res, CourseModel>;
 }
 
 /// @nodoc
-class _$CourseListCopyWithImpl<$Res, $Val extends CourseList>
-    implements $CourseListCopyWith<$Res> {
-  _$CourseListCopyWithImpl(this._value, this._then);
+class _$CourseModelCopyWithImpl<$Res, $Val extends CourseModel>
+    implements $CourseModelCopyWith<$Res> {
+  _$CourseModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CourseList
+  /// Create a copy of CourseModel
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? courses = null,
-  }) {
-    return _then(_value.copyWith(
-      courses: null == courses
-          ? _value.courses
-          : courses // ignore: cast_nullable_to_non_nullable
-              as List<Course>,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$CourseListImplCopyWith<$Res>
-    implements $CourseListCopyWith<$Res> {
-  factory _$$CourseListImplCopyWith(
-          _$CourseListImpl value, $Res Function(_$CourseListImpl) then) =
-      __$$CourseListImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({List<Course> courses});
-}
-
-/// @nodoc
-class __$$CourseListImplCopyWithImpl<$Res>
-    extends _$CourseListCopyWithImpl<$Res, _$CourseListImpl>
-    implements _$$CourseListImplCopyWith<$Res> {
-  __$$CourseListImplCopyWithImpl(
-      _$CourseListImpl _value, $Res Function(_$CourseListImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of CourseList
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? courses = null,
-  }) {
-    return _then(_$CourseListImpl(
-      courses: null == courses
-          ? _value._courses
-          : courses // ignore: cast_nullable_to_non_nullable
-              as List<Course>,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$CourseListImpl implements _CourseList {
-  const _$CourseListImpl({required final List<Course> courses})
-      : _courses = courses;
-
-  factory _$CourseListImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CourseListImplFromJson(json);
-
-  final List<Course> _courses;
-  @override
-  List<Course> get courses {
-    if (_courses is EqualUnmodifiableListView) return _courses;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_courses);
-  }
-
-  @override
-  String toString() {
-    return 'CourseList(courses: $courses)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CourseListImpl &&
-            const DeepCollectionEquality().equals(other._courses, _courses));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_courses));
-
-  /// Create a copy of CourseList
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$CourseListImplCopyWith<_$CourseListImpl> get copyWith =>
-      __$$CourseListImplCopyWithImpl<_$CourseListImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$CourseListImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _CourseList implements CourseList {
-  const factory _CourseList({required final List<Course> courses}) =
-      _$CourseListImpl;
-
-  factory _CourseList.fromJson(Map<String, dynamic> json) =
-      _$CourseListImpl.fromJson;
-
-  @override
-  List<Course> get courses;
-
-  /// Create a copy of CourseList
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CourseListImplCopyWith<_$CourseListImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-Course _$CourseFromJson(Map<String, dynamic> json) {
-  return _Course.fromJson(json);
-}
-
-/// @nodoc
-mixin _$Course {
-  String get name => throw _privateConstructorUsedError;
-  String get professor => throw _privateConstructorUsedError;
-  String get lectureRoom => throw _privateConstructorUsedError;
-  String get code => throw _privateConstructorUsedError;
-  DateTime? get deadline => throw _privateConstructorUsedError;
-  String? get link => throw _privateConstructorUsedError;
-  CourseActivities? get courseActivities => throw _privateConstructorUsedError;
-  NoticeList? get notices => throw _privateConstructorUsedError;
-
-  /// Serializes this Course to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Course
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $CourseCopyWith<Course> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $CourseCopyWith<$Res> {
-  factory $CourseCopyWith(Course value, $Res Function(Course) then) =
-      _$CourseCopyWithImpl<$Res, Course>;
-  @useResult
-  $Res call(
-      {String name,
-      String professor,
-      String lectureRoom,
-      String code,
-      DateTime? deadline,
-      String? link,
-      CourseActivities? courseActivities,
-      NoticeList? notices});
-
-  $CourseActivitiesCopyWith<$Res>? get courseActivities;
-  $NoticeListCopyWith<$Res>? get notices;
-}
-
-/// @nodoc
-class _$CourseCopyWithImpl<$Res, $Val extends Course>
-    implements $CourseCopyWith<$Res> {
-  _$CourseCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of Course
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? professor = null,
-    Object? lectureRoom = null,
-    Object? code = null,
-    Object? deadline = freezed,
-    Object? link = freezed,
-    Object? courseActivities = freezed,
-    Object? notices = freezed,
-  }) {
-    return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      professor: null == professor
-          ? _value.professor
-          : professor // ignore: cast_nullable_to_non_nullable
-              as String,
-      lectureRoom: null == lectureRoom
-          ? _value.lectureRoom
-          : lectureRoom // ignore: cast_nullable_to_non_nullable
-              as String,
-      code: null == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String,
-      deadline: freezed == deadline
-          ? _value.deadline
-          : deadline // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      link: freezed == link
-          ? _value.link
-          : link // ignore: cast_nullable_to_non_nullable
-              as String?,
-      courseActivities: freezed == courseActivities
-          ? _value.courseActivities
-          : courseActivities // ignore: cast_nullable_to_non_nullable
-              as CourseActivities?,
-      notices: freezed == notices
-          ? _value.notices
-          : notices // ignore: cast_nullable_to_non_nullable
-              as NoticeList?,
-    ) as $Val);
-  }
-
-  /// Create a copy of Course
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CourseActivitiesCopyWith<$Res>? get courseActivities {
-    if (_value.courseActivities == null) {
-      return null;
-    }
-
-    return $CourseActivitiesCopyWith<$Res>(_value.courseActivities!, (value) {
-      return _then(_value.copyWith(courseActivities: value) as $Val);
-    });
-  }
-
-  /// Create a copy of Course
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $NoticeListCopyWith<$Res>? get notices {
-    if (_value.notices == null) {
-      return null;
-    }
-
-    return $NoticeListCopyWith<$Res>(_value.notices!, (value) {
-      return _then(_value.copyWith(notices: value) as $Val);
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$$CourseImplCopyWith<$Res> implements $CourseCopyWith<$Res> {
+abstract class _$$CourseImplCopyWith<$Res> {
   factory _$$CourseImplCopyWith(
           _$CourseImpl value, $Res Function(_$CourseImpl) then) =
       __$$CourseImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call(
       {String name,
@@ -317,24 +134,19 @@ abstract class _$$CourseImplCopyWith<$Res> implements $CourseCopyWith<$Res> {
       String code,
       DateTime? deadline,
       String? link,
-      CourseActivities? courseActivities,
-      NoticeList? notices});
-
-  @override
-  $CourseActivitiesCopyWith<$Res>? get courseActivities;
-  @override
-  $NoticeListCopyWith<$Res>? get notices;
+      CourseActivityList? courseActivityList,
+      NoticeList? noticeList});
 }
 
 /// @nodoc
 class __$$CourseImplCopyWithImpl<$Res>
-    extends _$CourseCopyWithImpl<$Res, _$CourseImpl>
+    extends _$CourseModelCopyWithImpl<$Res, _$CourseImpl>
     implements _$$CourseImplCopyWith<$Res> {
   __$$CourseImplCopyWithImpl(
       _$CourseImpl _value, $Res Function(_$CourseImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Course
+  /// Create a copy of CourseModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -345,8 +157,8 @@ class __$$CourseImplCopyWithImpl<$Res>
     Object? code = null,
     Object? deadline = freezed,
     Object? link = freezed,
-    Object? courseActivities = freezed,
-    Object? notices = freezed,
+    Object? courseActivityList = freezed,
+    Object? noticeList = freezed,
   }) {
     return _then(_$CourseImpl(
       name: null == name
@@ -373,13 +185,13 @@ class __$$CourseImplCopyWithImpl<$Res>
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
               as String?,
-      courseActivities: freezed == courseActivities
-          ? _value.courseActivities
-          : courseActivities // ignore: cast_nullable_to_non_nullable
-              as CourseActivities?,
-      notices: freezed == notices
-          ? _value.notices
-          : notices // ignore: cast_nullable_to_non_nullable
+      courseActivityList: freezed == courseActivityList
+          ? _value.courseActivityList
+          : courseActivityList // ignore: cast_nullable_to_non_nullable
+              as CourseActivityList?,
+      noticeList: freezed == noticeList
+          ? _value.noticeList
+          : noticeList // ignore: cast_nullable_to_non_nullable
               as NoticeList?,
     ));
   }
@@ -387,7 +199,7 @@ class __$$CourseImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$CourseImpl implements _Course {
+class _$CourseImpl implements Course {
   const _$CourseImpl(
       {required this.name,
       required this.professor,
@@ -395,8 +207,10 @@ class _$CourseImpl implements _Course {
       required this.code,
       this.deadline,
       this.link,
-      this.courseActivities,
-      this.notices});
+      this.courseActivityList,
+      this.noticeList,
+      final String? $type})
+      : $type = $type ?? 'default';
 
   factory _$CourseImpl.fromJson(Map<String, dynamic> json) =>
       _$$CourseImplFromJson(json);
@@ -414,13 +228,16 @@ class _$CourseImpl implements _Course {
   @override
   final String? link;
   @override
-  final CourseActivities? courseActivities;
+  final CourseActivityList? courseActivityList;
   @override
-  final NoticeList? notices;
+  final NoticeList? noticeList;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
-    return 'Course(name: $name, professor: $professor, lectureRoom: $lectureRoom, code: $code, deadline: $deadline, link: $link, courseActivities: $courseActivities, notices: $notices)';
+    return 'CourseModel(name: $name, professor: $professor, lectureRoom: $lectureRoom, code: $code, deadline: $deadline, link: $link, courseActivityList: $courseActivityList, noticeList: $noticeList)';
   }
 
   @override
@@ -437,23 +254,124 @@ class _$CourseImpl implements _Course {
             (identical(other.deadline, deadline) ||
                 other.deadline == deadline) &&
             (identical(other.link, link) || other.link == link) &&
-            (identical(other.courseActivities, courseActivities) ||
-                other.courseActivities == courseActivities) &&
-            (identical(other.notices, notices) || other.notices == notices));
+            const DeepCollectionEquality()
+                .equals(other.courseActivityList, courseActivityList) &&
+            const DeepCollectionEquality()
+                .equals(other.noticeList, noticeList));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, name, professor, lectureRoom,
-      code, deadline, link, courseActivities, notices);
+  int get hashCode => Object.hash(
+      runtimeType,
+      name,
+      professor,
+      lectureRoom,
+      code,
+      deadline,
+      link,
+      const DeepCollectionEquality().hash(courseActivityList),
+      const DeepCollectionEquality().hash(noticeList));
 
-  /// Create a copy of Course
+  /// Create a copy of CourseModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CourseImplCopyWith<_$CourseImpl> get copyWith =>
       __$$CourseImplCopyWithImpl<_$CourseImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            String name,
+            String professor,
+            String lectureRoom,
+            String code,
+            DateTime? deadline,
+            String? link,
+            CourseActivityList? courseActivityList,
+            NoticeList? noticeList)
+        $default, {
+    required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
+  }) {
+    return $default(name, professor, lectureRoom, code, deadline, link,
+        courseActivityList, noticeList);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            String name,
+            String professor,
+            String lectureRoom,
+            String code,
+            DateTime? deadline,
+            String? link,
+            CourseActivityList? courseActivityList,
+            NoticeList? noticeList)?
+        $default, {
+    TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
+  }) {
+    return $default?.call(name, professor, lectureRoom, code, deadline, link,
+        courseActivityList, noticeList);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            String name,
+            String professor,
+            String lectureRoom,
+            String code,
+            DateTime? deadline,
+            String? link,
+            CourseActivityList? courseActivityList,
+            NoticeList? noticeList)?
+        $default, {
+    TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(name, professor, lectureRoom, code, deadline, link,
+          courseActivityList, noticeList);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(Course value) $default, {
+    required TResult Function(CourseError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(Course value)? $default, {
+    TResult? Function(CourseError value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(Course value)? $default, {
+    TResult Function(CourseError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -463,40 +381,223 @@ class _$CourseImpl implements _Course {
   }
 }
 
-abstract class _Course implements Course {
-  const factory _Course(
+abstract class Course implements CourseModel {
+  const factory Course(
       {required final String name,
       required final String professor,
       required final String lectureRoom,
       required final String code,
       final DateTime? deadline,
       final String? link,
-      final CourseActivities? courseActivities,
-      final NoticeList? notices}) = _$CourseImpl;
+      final CourseActivityList? courseActivityList,
+      final NoticeList? noticeList}) = _$CourseImpl;
 
-  factory _Course.fromJson(Map<String, dynamic> json) = _$CourseImpl.fromJson;
+  factory Course.fromJson(Map<String, dynamic> json) = _$CourseImpl.fromJson;
 
-  @override
   String get name;
-  @override
   String get professor;
-  @override
   String get lectureRoom;
   @override
   String get code;
-  @override
   DateTime? get deadline;
-  @override
   String? get link;
-  @override
-  CourseActivities? get courseActivities;
-  @override
-  NoticeList? get notices;
+  CourseActivityList? get courseActivityList;
+  NoticeList? get noticeList;
 
-  /// Create a copy of Course
+  /// Create a copy of CourseModel
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CourseImplCopyWith<_$CourseImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CourseErrorImplCopyWith<$Res> {
+  factory _$$CourseErrorImplCopyWith(
+          _$CourseErrorImpl value, $Res Function(_$CourseErrorImpl) then) =
+      __$$CourseErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({@ErrorCodeConverter() ErrorCode code});
+}
+
+/// @nodoc
+class __$$CourseErrorImplCopyWithImpl<$Res>
+    extends _$CourseModelCopyWithImpl<$Res, _$CourseErrorImpl>
+    implements _$$CourseErrorImplCopyWith<$Res> {
+  __$$CourseErrorImplCopyWithImpl(
+      _$CourseErrorImpl _value, $Res Function(_$CourseErrorImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CourseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? code = null,
+  }) {
+    return _then(_$CourseErrorImpl(
+      code: null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as ErrorCode,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$CourseErrorImpl implements CourseError {
+  const _$CourseErrorImpl(
+      {@ErrorCodeConverter() required this.code, final String? $type})
+      : $type = $type ?? 'error';
+
+  factory _$CourseErrorImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CourseErrorImplFromJson(json);
+
+  @override
+  @ErrorCodeConverter()
+  final ErrorCode code;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'CourseModel.error(code: $code)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CourseErrorImpl &&
+            (identical(other.code, code) || other.code == code));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, code);
+
+  /// Create a copy of CourseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CourseErrorImplCopyWith<_$CourseErrorImpl> get copyWith =>
+      __$$CourseErrorImplCopyWithImpl<_$CourseErrorImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            String name,
+            String professor,
+            String lectureRoom,
+            String code,
+            DateTime? deadline,
+            String? link,
+            CourseActivityList? courseActivityList,
+            NoticeList? noticeList)
+        $default, {
+    required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
+  }) {
+    return error(code);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            String name,
+            String professor,
+            String lectureRoom,
+            String code,
+            DateTime? deadline,
+            String? link,
+            CourseActivityList? courseActivityList,
+            NoticeList? noticeList)?
+        $default, {
+    TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
+  }) {
+    return error?.call(code);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            String name,
+            String professor,
+            String lectureRoom,
+            String code,
+            DateTime? deadline,
+            String? link,
+            CourseActivityList? courseActivityList,
+            NoticeList? noticeList)?
+        $default, {
+    TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(code);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(Course value) $default, {
+    required TResult Function(CourseError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(Course value)? $default, {
+    TResult? Function(CourseError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(Course value)? $default, {
+    TResult Function(CourseError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$CourseErrorImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class CourseError implements CourseModel {
+  const factory CourseError(
+          {@ErrorCodeConverter() required final ErrorCode code}) =
+      _$CourseErrorImpl;
+
+  factory CourseError.fromJson(Map<String, dynamic> json) =
+      _$CourseErrorImpl.fromJson;
+
+  @override
+  @ErrorCodeConverter()
+  ErrorCode get code;
+
+  /// Create a copy of CourseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CourseErrorImplCopyWith<_$CourseErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

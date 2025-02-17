@@ -35,8 +35,6 @@ abstract class $CourseListStateCopyWith<$Res> {
   @useResult
   $Res call(
       {CourseListStatus status, CourseList? courseList, String? errorMessage});
-
-  $CourseListCopyWith<$Res>? get courseList;
 }
 
 /// @nodoc
@@ -73,20 +71,6 @@ class _$CourseListStateCopyWithImpl<$Res, $Val extends CourseListState>
               as String?,
     ) as $Val);
   }
-
-  /// Create a copy of CourseListState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CourseListCopyWith<$Res>? get courseList {
-    if (_value.courseList == null) {
-      return null;
-    }
-
-    return $CourseListCopyWith<$Res>(_value.courseList!, (value) {
-      return _then(_value.copyWith(courseList: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -99,9 +83,6 @@ abstract class _$$CourseListStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {CourseListStatus status, CourseList? courseList, String? errorMessage});
-
-  @override
-  $CourseListCopyWith<$Res>? get courseList;
 }
 
 /// @nodoc
@@ -162,15 +143,15 @@ class _$CourseListStateImpl implements _CourseListState {
         (other.runtimeType == runtimeType &&
             other is _$CourseListStateImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.courseList, courseList) ||
-                other.courseList == courseList) &&
+            const DeepCollectionEquality()
+                .equals(other.courseList, courseList) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, status, courseList, errorMessage);
+  int get hashCode => Object.hash(runtimeType, status,
+      const DeepCollectionEquality().hash(courseList), errorMessage);
 
   /// Create a copy of CourseListState
   /// with the given fields replaced by the non-null parameter values.

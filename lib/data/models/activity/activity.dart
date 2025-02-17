@@ -1,5 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'package:acha/data/models/index.dart';
+import 'package:acha/data/converters/index.dart';
+
 part 'activity.freezed.dart';
 part 'activity.g.dart';
 
@@ -7,26 +10,37 @@ part 'activity.g.dart';
 enum ActivityType { url, file, lecture, assignment }
 
 @freezed
-class CourseActivities with _$CourseActivities {
-  const factory CourseActivities(
-      {required List<WeekActivities> weekActivities}) = _CourseActivities;
+class CourseActivityListModel with _$CourseActivityListModel {
+  const factory CourseActivityListModel({
+    required List<ActivityList> weekActivityList,
+  }) = CourseActivityList;
 
-  factory CourseActivities.fromJson(Map<String, dynamic> json) =>
-      _$CourseActivitiesFromJson(json);
+  const factory CourseActivityListModel.error({
+    @ErrorCodeConverter() required ErrorCode code,
+  }) = CourseActivityListError;
+
+  factory CourseActivityListModel.fromJson(Map<String, dynamic> json) =>
+      const CourseActivityListResponseConverter().fromJson(json);
 }
 
 @freezed
-class WeekActivities with _$WeekActivities {
-  const factory WeekActivities(
-      {int? week, required List<Activity> activities}) = _WeekActivities;
+class ActivityListModel with _$ActivityListModel {
+  const factory ActivityListModel({
+    int? week,
+    required List<Activity> activitylist,
+  }) = ActivityList;
 
-  factory WeekActivities.fromJson(Map<String, dynamic> json) =>
-      _$WeekActivitiesFromJson(json);
+  const factory ActivityListModel.error({
+    @ErrorCodeConverter() required ErrorCode code,
+  }) = ActivityListError;
+
+  factory ActivityListModel.fromJson(Map<String, dynamic> json) =>
+      const ActivityListResponseConverter().fromJson(json);
 }
 
 @freezed
-class Activity with _$Activity {
-  const factory Activity({
+class ActivityModel with _$ActivityModel {
+  const factory ActivityModel({
     required ActivityType type,
     required bool available,
     required String name,
@@ -40,8 +54,8 @@ class Activity with _$Activity {
     String? lastModified,
     String? description,
     String? courseName,
-  }) = _Activity;
+  }) = Activity;
 
-  factory Activity.fromJson(Map<String, dynamic> json) =>
-      _$ActivityFromJson(json);
+  factory ActivityModel.fromJson(Map<String, dynamic> json) =>
+      _$ActivityModelFromJson(json);
 }

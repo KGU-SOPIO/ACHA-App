@@ -117,7 +117,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
               children:
                   List.generate(4, (index) => const NoticeSkeletonContainer()));
         } else if (state.status == NoticeListStatus.loaded) {
-          return _buildNoticeListContent(context, state.noticeList?.notices);
+          return _buildNoticeListContent(context, state.noticeList?.noticeList);
         } else {
           return const SizedBox.shrink();
         }

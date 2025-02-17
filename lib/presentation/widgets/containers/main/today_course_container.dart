@@ -98,9 +98,9 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
     }
   }
 
-  Widget _buildCourseList(CourseList courses) {
+  Widget _buildCourseList(CourseList courseList) {
     return Column(
-      children: courses.courses
+      children: courseList.courseList
           .map((course) => _buildCourseContainer(course))
           .toList(),
     );

@@ -6,18 +6,6 @@ part of 'notice.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$NoticeListImpl _$$NoticeListImplFromJson(Map<String, dynamic> json) =>
-    _$NoticeListImpl(
-      notices: (json['notices'] as List<dynamic>)
-          .map((e) => Notice.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
-
-Map<String, dynamic> _$$NoticeListImplToJson(_$NoticeListImpl instance) =>
-    <String, dynamic>{
-      'notices': instance.notices,
-    };
-
 _$NoticeImpl _$$NoticeImplFromJson(Map<String, dynamic> json) => _$NoticeImpl(
       id: (json['id'] as num).toInt(),
       index: json['index'] as String,
@@ -33,6 +21,7 @@ _$NoticeImpl _$$NoticeImplFromJson(Map<String, dynamic> json) => _$NoticeImpl(
       nextNoticeTitle: json['nextNoticeTitle'] as String?,
       previousNoticeId: (json['previousNoticeId'] as num?)?.toInt(),
       previousNoticeTitle: json['previousNoticeTitle'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$NoticeImplToJson(_$NoticeImpl instance) =>
@@ -49,15 +38,17 @@ Map<String, dynamic> _$$NoticeImplToJson(_$NoticeImpl instance) =>
       'nextNoticeTitle': instance.nextNoticeTitle,
       'previousNoticeId': instance.previousNoticeId,
       'previousNoticeTitle': instance.previousNoticeTitle,
+      'runtimeType': instance.$type,
     };
 
-_$FileImpl _$$FileImplFromJson(Map<String, dynamic> json) => _$FileImpl(
-      name: json['name'] as String,
-      link: json['link'] as String,
+_$NoticeErrorImpl _$$NoticeErrorImplFromJson(Map<String, dynamic> json) =>
+    _$NoticeErrorImpl(
+      code: const ErrorCodeConverter().fromJson(json['code'] as String),
+      $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$FileImplToJson(_$FileImpl instance) =>
+Map<String, dynamic> _$$NoticeErrorImplToJson(_$NoticeErrorImpl instance) =>
     <String, dynamic>{
-      'name': instance.name,
-      'link': instance.link,
+      'code': const ErrorCodeConverter().toJson(instance.code),
+      'runtimeType': instance.$type,
     };

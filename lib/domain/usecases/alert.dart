@@ -1,3 +1,5 @@
+import 'package:dartz/dartz.dart';
+
 import 'package:acha/domain/repositories/index.dart';
 
 class FetchAlertStatusUseCase {
@@ -5,7 +7,7 @@ class FetchAlertStatusUseCase {
 
   final AlertRepository alertRepository;
 
-  Future<bool> call() async {
+  Future<Either<String, bool>> call() async {
     return await alertRepository.fetchAlertStatus();
   }
 }
@@ -15,7 +17,7 @@ class UpdateAlertStatusUseCase {
 
   final AlertRepository alertRepository;
 
-  Future<void> call({required bool isEnabled}) async {
-    await alertRepository.updateAlertStatus(isEnabled: isEnabled);
+  Future<Either<String, Unit>> call({required bool isEnabled}) async {
+    return await alertRepository.updateAlertStatus(isEnabled: isEnabled);
   }
 }

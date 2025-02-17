@@ -7,6 +7,6 @@ class AuthenticationApiEndpoints {
       '${BaseApiEndpoints.baseUri}/api/v1/member/signup';
   static const String fetchUser =
       '${BaseApiEndpoints.baseUri}/api/v1/member/data';
-  static const String refresh =
+  static const String reissue =
       '${BaseApiEndpoints.baseUri}/api/v1/member/reissue';
 }

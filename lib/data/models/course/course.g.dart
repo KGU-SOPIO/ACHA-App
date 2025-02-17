@@ -6,18 +6,6 @@ part of 'course.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CourseListImpl _$$CourseListImplFromJson(Map<String, dynamic> json) =>
-    _$CourseListImpl(
-      courses: (json['courses'] as List<dynamic>)
-          .map((e) => Course.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
-
-Map<String, dynamic> _$$CourseListImplToJson(_$CourseListImpl instance) =>
-    <String, dynamic>{
-      'courses': instance.courses,
-    };
-
 _$CourseImpl _$$CourseImplFromJson(Map<String, dynamic> json) => _$CourseImpl(
       name: json['name'] as String,
       professor: json['professor'] as String,
@@ -27,13 +15,14 @@ _$CourseImpl _$$CourseImplFromJson(Map<String, dynamic> json) => _$CourseImpl(
           ? null
           : DateTime.parse(json['deadline'] as String),
       link: json['link'] as String?,
-      courseActivities: json['courseActivities'] == null
+      courseActivityList: json['courseActivityList'] == null
           ? null
-          : CourseActivities.fromJson(
-              json['courseActivities'] as Map<String, dynamic>),
-      notices: json['notices'] == null
+          : CourseActivityList.fromJson(
+              json['courseActivityList'] as Map<String, dynamic>),
+      noticeList: json['noticeList'] == null
           ? null
-          : NoticeList.fromJson(json['notices'] as Map<String, dynamic>),
+          : NoticeList.fromJson(json['noticeList'] as Map<String, dynamic>),
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$CourseImplToJson(_$CourseImpl instance) =>
@@ -44,6 +33,19 @@ Map<String, dynamic> _$$CourseImplToJson(_$CourseImpl instance) =>
       'code': instance.code,
       'deadline': instance.deadline?.toIso8601String(),
       'link': instance.link,
-      'courseActivities': instance.courseActivities,
-      'notices': instance.notices,
+      'courseActivityList': instance.courseActivityList,
+      'noticeList': instance.noticeList,
+      'runtimeType': instance.$type,
+    };
+
+_$CourseErrorImpl _$$CourseErrorImplFromJson(Map<String, dynamic> json) =>
+    _$CourseErrorImpl(
+      code: const ErrorCodeConverter().fromJson(json['code'] as String),
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$CourseErrorImplToJson(_$CourseErrorImpl instance) =>
+    <String, dynamic>{
+      'code': const ErrorCodeConverter().toJson(instance.code),
+      'runtimeType': instance.$type,
     };

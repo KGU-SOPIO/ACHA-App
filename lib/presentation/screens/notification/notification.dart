@@ -81,7 +81,7 @@ class _NotificationScreenState extends State<NotificationScreen>
     return Loader(height: MediaQuery.of(context).size.height);
   }
 
-  Widget _buildLoadedContent(WeekActivities? activities) {
+  Widget _buildLoadedContent(ActivityList? activities) {
     return TabBarView(controller: _tabController, children: [
       _buildActivityListView(
           activities?.getLectureAndAssignmentActivities(group: true)),

@@ -1,3 +1,5 @@
+import 'package:dartz/dartz.dart';
+
 import 'package:acha/data/models/index.dart';
 import 'package:acha/domain/repositories/index.dart';
 
@@ -6,10 +8,14 @@ class SignInUseCase {
 
   final AuthenticationRepository authenticationRepository;
 
-  Future<SignInResponse> call(
-      {required String studentId, required String password}) {
+  Future<Either<String, SignInSuccess>> call({
+    required String studentId,
+    required String password,
+  }) {
     return authenticationRepository.signIn(
-        studentId: studentId, password: password);
+      studentId: studentId,
+      password: password,
+    );
   }
 }
 
@@ -18,10 +24,14 @@ class FetchUserDataUseCase {
 
   final AuthenticationRepository authenticationRepository;
 
-  Future<UserResponse> call(
-      {required String studentId, required String password}) {
+  Future<Either<String, User>> call({
+    required String studentId,
+    required String password,
+  }) {
     return authenticationRepository.fetchUserData(
-        studentId: studentId, password: password);
+      studentId: studentId,
+      password: password,
+    );
   }
 }
 
@@ -30,12 +40,16 @@ class SignUpUseCase {
 
   final AuthenticationRepository authenticationRepository;
 
-  Future<SignUpResponse> call(
-      {required String studentId,
-      required String password,
-      required User user}) {
+  Future<Either<String, SignUpResponse>> call({
+    required String studentId,
+    required String password,
+    required User user,
+  }) {
     return authenticationRepository.signUp(
-        studentId: studentId, password: password, user: user);
+      studentId: studentId,
+      password: password,
+      user: user,
+    );
   }
 }
 
@@ -44,7 +58,7 @@ class RequestExtractionUseCase {
 
   final AuthenticationRepository authenticationRepository;
 
-  Future<void> call() {
+  Future<Either<String, Unit>> call() {
     return authenticationRepository.requestExtraction();
   }
 }
@@ -54,7 +68,7 @@ class LogoutUseCase {
 
   final AuthenticationRepository authenticationRepository;
 
-  Future<void> call() {
+  Future<Either<String, Unit>> call() {
     return authenticationRepository.logout();
   }
 }

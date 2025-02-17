@@ -14,298 +14,129 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-NoticeList _$NoticeListFromJson(Map<String, dynamic> json) {
-  return _NoticeList.fromJson(json);
+NoticeModel _$NoticeModelFromJson(Map<String, dynamic> json) {
+  switch (json['runtimeType']) {
+    case 'default':
+      return Notice.fromJson(json);
+    case 'error':
+      return NoticeError.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(json, 'runtimeType', 'NoticeModel',
+          'Invalid union type "${json['runtimeType']}"!');
+  }
 }
 
 /// @nodoc
-mixin _$NoticeList {
-  List<Notice> get notices => throw _privateConstructorUsedError;
-
-  /// Serializes this NoticeList to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of NoticeList
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $NoticeListCopyWith<NoticeList> get copyWith =>
+mixin _$NoticeModel {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            int id,
+            String index,
+            String title,
+            String professor,
+            DateTime date,
+            String? link,
+            String? content,
+            List<File>? files,
+            int? nextNoticeId,
+            String? nextNoticeTitle,
+            int? previousNoticeId,
+            String? previousNoticeTitle)
+        $default, {
+    required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
+  }) =>
       throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            int id,
+            String index,
+            String title,
+            String professor,
+            DateTime date,
+            String? link,
+            String? content,
+            List<File>? files,
+            int? nextNoticeId,
+            String? nextNoticeTitle,
+            int? previousNoticeId,
+            String? previousNoticeTitle)?
+        $default, {
+    TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            int id,
+            String index,
+            String title,
+            String professor,
+            DateTime date,
+            String? link,
+            String? content,
+            List<File>? files,
+            int? nextNoticeId,
+            String? nextNoticeTitle,
+            int? previousNoticeId,
+            String? previousNoticeTitle)?
+        $default, {
+    TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(Notice value) $default, {
+    required TResult Function(NoticeError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(Notice value)? $default, {
+    TResult? Function(NoticeError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(Notice value)? $default, {
+    TResult Function(NoticeError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+
+  /// Serializes this NoticeModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $NoticeListCopyWith<$Res> {
-  factory $NoticeListCopyWith(
-          NoticeList value, $Res Function(NoticeList) then) =
-      _$NoticeListCopyWithImpl<$Res, NoticeList>;
-  @useResult
-  $Res call({List<Notice> notices});
+abstract class $NoticeModelCopyWith<$Res> {
+  factory $NoticeModelCopyWith(
+          NoticeModel value, $Res Function(NoticeModel) then) =
+      _$NoticeModelCopyWithImpl<$Res, NoticeModel>;
 }
 
 /// @nodoc
-class _$NoticeListCopyWithImpl<$Res, $Val extends NoticeList>
-    implements $NoticeListCopyWith<$Res> {
-  _$NoticeListCopyWithImpl(this._value, this._then);
+class _$NoticeModelCopyWithImpl<$Res, $Val extends NoticeModel>
+    implements $NoticeModelCopyWith<$Res> {
+  _$NoticeModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of NoticeList
+  /// Create a copy of NoticeModel
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? notices = null,
-  }) {
-    return _then(_value.copyWith(
-      notices: null == notices
-          ? _value.notices
-          : notices // ignore: cast_nullable_to_non_nullable
-              as List<Notice>,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$NoticeListImplCopyWith<$Res>
-    implements $NoticeListCopyWith<$Res> {
-  factory _$$NoticeListImplCopyWith(
-          _$NoticeListImpl value, $Res Function(_$NoticeListImpl) then) =
-      __$$NoticeListImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({List<Notice> notices});
-}
-
-/// @nodoc
-class __$$NoticeListImplCopyWithImpl<$Res>
-    extends _$NoticeListCopyWithImpl<$Res, _$NoticeListImpl>
-    implements _$$NoticeListImplCopyWith<$Res> {
-  __$$NoticeListImplCopyWithImpl(
-      _$NoticeListImpl _value, $Res Function(_$NoticeListImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of NoticeList
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? notices = null,
-  }) {
-    return _then(_$NoticeListImpl(
-      notices: null == notices
-          ? _value._notices
-          : notices // ignore: cast_nullable_to_non_nullable
-              as List<Notice>,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$NoticeListImpl implements _NoticeList {
-  const _$NoticeListImpl({required final List<Notice> notices})
-      : _notices = notices;
-
-  factory _$NoticeListImpl.fromJson(Map<String, dynamic> json) =>
-      _$$NoticeListImplFromJson(json);
-
-  final List<Notice> _notices;
-  @override
-  List<Notice> get notices {
-    if (_notices is EqualUnmodifiableListView) return _notices;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_notices);
-  }
-
-  @override
-  String toString() {
-    return 'NoticeList(notices: $notices)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$NoticeListImpl &&
-            const DeepCollectionEquality().equals(other._notices, _notices));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_notices));
-
-  /// Create a copy of NoticeList
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$NoticeListImplCopyWith<_$NoticeListImpl> get copyWith =>
-      __$$NoticeListImplCopyWithImpl<_$NoticeListImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$NoticeListImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _NoticeList implements NoticeList {
-  const factory _NoticeList({required final List<Notice> notices}) =
-      _$NoticeListImpl;
-
-  factory _NoticeList.fromJson(Map<String, dynamic> json) =
-      _$NoticeListImpl.fromJson;
-
-  @override
-  List<Notice> get notices;
-
-  /// Create a copy of NoticeList
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$NoticeListImplCopyWith<_$NoticeListImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-Notice _$NoticeFromJson(Map<String, dynamic> json) {
-  return _Notice.fromJson(json);
-}
-
-/// @nodoc
-mixin _$Notice {
-  int get id => throw _privateConstructorUsedError;
-  String get index => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
-  String get professor => throw _privateConstructorUsedError;
-  DateTime get date => throw _privateConstructorUsedError;
-  String? get link => throw _privateConstructorUsedError;
-  String? get content => throw _privateConstructorUsedError;
-  List<File>? get files => throw _privateConstructorUsedError;
-  int? get nextNoticeId => throw _privateConstructorUsedError;
-  String? get nextNoticeTitle => throw _privateConstructorUsedError;
-  int? get previousNoticeId => throw _privateConstructorUsedError;
-  String? get previousNoticeTitle => throw _privateConstructorUsedError;
-
-  /// Serializes this Notice to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Notice
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $NoticeCopyWith<Notice> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $NoticeCopyWith<$Res> {
-  factory $NoticeCopyWith(Notice value, $Res Function(Notice) then) =
-      _$NoticeCopyWithImpl<$Res, Notice>;
-  @useResult
-  $Res call(
-      {int id,
-      String index,
-      String title,
-      String professor,
-      DateTime date,
-      String? link,
-      String? content,
-      List<File>? files,
-      int? nextNoticeId,
-      String? nextNoticeTitle,
-      int? previousNoticeId,
-      String? previousNoticeTitle});
-}
-
-/// @nodoc
-class _$NoticeCopyWithImpl<$Res, $Val extends Notice>
-    implements $NoticeCopyWith<$Res> {
-  _$NoticeCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of Notice
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? index = null,
-    Object? title = null,
-    Object? professor = null,
-    Object? date = null,
-    Object? link = freezed,
-    Object? content = freezed,
-    Object? files = freezed,
-    Object? nextNoticeId = freezed,
-    Object? nextNoticeTitle = freezed,
-    Object? previousNoticeId = freezed,
-    Object? previousNoticeTitle = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      index: null == index
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      professor: null == professor
-          ? _value.professor
-          : professor // ignore: cast_nullable_to_non_nullable
-              as String,
-      date: null == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      link: freezed == link
-          ? _value.link
-          : link // ignore: cast_nullable_to_non_nullable
-              as String?,
-      content: freezed == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String?,
-      files: freezed == files
-          ? _value.files
-          : files // ignore: cast_nullable_to_non_nullable
-              as List<File>?,
-      nextNoticeId: freezed == nextNoticeId
-          ? _value.nextNoticeId
-          : nextNoticeId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      nextNoticeTitle: freezed == nextNoticeTitle
-          ? _value.nextNoticeTitle
-          : nextNoticeTitle // ignore: cast_nullable_to_non_nullable
-              as String?,
-      previousNoticeId: freezed == previousNoticeId
-          ? _value.previousNoticeId
-          : previousNoticeId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      previousNoticeTitle: freezed == previousNoticeTitle
-          ? _value.previousNoticeTitle
-          : previousNoticeTitle // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$NoticeImplCopyWith<$Res> implements $NoticeCopyWith<$Res> {
+abstract class _$$NoticeImplCopyWith<$Res> {
   factory _$$NoticeImplCopyWith(
           _$NoticeImpl value, $Res Function(_$NoticeImpl) then) =
       __$$NoticeImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call(
       {int id,
@@ -324,13 +155,13 @@ abstract class _$$NoticeImplCopyWith<$Res> implements $NoticeCopyWith<$Res> {
 
 /// @nodoc
 class __$$NoticeImplCopyWithImpl<$Res>
-    extends _$NoticeCopyWithImpl<$Res, _$NoticeImpl>
+    extends _$NoticeModelCopyWithImpl<$Res, _$NoticeImpl>
     implements _$$NoticeImplCopyWith<$Res> {
   __$$NoticeImplCopyWithImpl(
       _$NoticeImpl _value, $Res Function(_$NoticeImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Notice
+  /// Create a copy of NoticeModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -403,7 +234,7 @@ class __$$NoticeImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$NoticeImpl implements _Notice {
+class _$NoticeImpl implements Notice {
   const _$NoticeImpl(
       {required this.id,
       required this.index,
@@ -416,8 +247,10 @@ class _$NoticeImpl implements _Notice {
       this.nextNoticeId,
       this.nextNoticeTitle,
       this.previousNoticeId,
-      this.previousNoticeTitle})
-      : _files = files;
+      this.previousNoticeTitle,
+      final String? $type})
+      : _files = files,
+        $type = $type ?? 'default';
 
   factory _$NoticeImpl.fromJson(Map<String, dynamic> json) =>
       _$$NoticeImplFromJson(json);
@@ -455,9 +288,12 @@ class _$NoticeImpl implements _Notice {
   @override
   final String? previousNoticeTitle;
 
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
   @override
   String toString() {
-    return 'Notice(id: $id, index: $index, title: $title, professor: $professor, date: $date, link: $link, content: $content, files: $files, nextNoticeId: $nextNoticeId, nextNoticeTitle: $nextNoticeTitle, previousNoticeId: $previousNoticeId, previousNoticeTitle: $previousNoticeTitle)';
+    return 'NoticeModel(id: $id, index: $index, title: $title, professor: $professor, date: $date, link: $link, content: $content, files: $files, nextNoticeId: $nextNoticeId, nextNoticeTitle: $nextNoticeTitle, previousNoticeId: $previousNoticeId, previousNoticeTitle: $previousNoticeTitle)';
   }
 
   @override
@@ -501,13 +337,128 @@ class _$NoticeImpl implements _Notice {
       previousNoticeId,
       previousNoticeTitle);
 
-  /// Create a copy of Notice
+  /// Create a copy of NoticeModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$NoticeImplCopyWith<_$NoticeImpl> get copyWith =>
       __$$NoticeImplCopyWithImpl<_$NoticeImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            int id,
+            String index,
+            String title,
+            String professor,
+            DateTime date,
+            String? link,
+            String? content,
+            List<File>? files,
+            int? nextNoticeId,
+            String? nextNoticeTitle,
+            int? previousNoticeId,
+            String? previousNoticeTitle)
+        $default, {
+    required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
+  }) {
+    return $default(id, index, title, professor, date, link, content, files,
+        nextNoticeId, nextNoticeTitle, previousNoticeId, previousNoticeTitle);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            int id,
+            String index,
+            String title,
+            String professor,
+            DateTime date,
+            String? link,
+            String? content,
+            List<File>? files,
+            int? nextNoticeId,
+            String? nextNoticeTitle,
+            int? previousNoticeId,
+            String? previousNoticeTitle)?
+        $default, {
+    TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
+  }) {
+    return $default?.call(
+        id,
+        index,
+        title,
+        professor,
+        date,
+        link,
+        content,
+        files,
+        nextNoticeId,
+        nextNoticeTitle,
+        previousNoticeId,
+        previousNoticeTitle);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            int id,
+            String index,
+            String title,
+            String professor,
+            DateTime date,
+            String? link,
+            String? content,
+            List<File>? files,
+            int? nextNoticeId,
+            String? nextNoticeTitle,
+            int? previousNoticeId,
+            String? previousNoticeTitle)?
+        $default, {
+    TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(id, index, title, professor, date, link, content, files,
+          nextNoticeId, nextNoticeTitle, previousNoticeId, previousNoticeTitle);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(Notice value) $default, {
+    required TResult Function(NoticeError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(Notice value)? $default, {
+    TResult? Function(NoticeError value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(Notice value)? $default, {
+    TResult Function(NoticeError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -517,8 +468,8 @@ class _$NoticeImpl implements _Notice {
   }
 }
 
-abstract class _Notice implements Notice {
-  const factory _Notice(
+abstract class Notice implements NoticeModel {
+  const factory Notice(
       {required final int id,
       required final String index,
       required final String title,
@@ -532,198 +483,226 @@ abstract class _Notice implements Notice {
       final int? previousNoticeId,
       final String? previousNoticeTitle}) = _$NoticeImpl;
 
-  factory _Notice.fromJson(Map<String, dynamic> json) = _$NoticeImpl.fromJson;
+  factory Notice.fromJson(Map<String, dynamic> json) = _$NoticeImpl.fromJson;
 
-  @override
   int get id;
-  @override
   String get index;
-  @override
   String get title;
-  @override
   String get professor;
-  @override
   DateTime get date;
-  @override
   String? get link;
-  @override
   String? get content;
-  @override
   List<File>? get files;
-  @override
   int? get nextNoticeId;
-  @override
   String? get nextNoticeTitle;
-  @override
   int? get previousNoticeId;
-  @override
   String? get previousNoticeTitle;
 
-  /// Create a copy of Notice
+  /// Create a copy of NoticeModel
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$NoticeImplCopyWith<_$NoticeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-File _$FileFromJson(Map<String, dynamic> json) {
-  return _File.fromJson(json);
-}
-
 /// @nodoc
-mixin _$File {
-  String get name => throw _privateConstructorUsedError;
-  String get link => throw _privateConstructorUsedError;
-
-  /// Serializes this File to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of File
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $FileCopyWith<File> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $FileCopyWith<$Res> {
-  factory $FileCopyWith(File value, $Res Function(File) then) =
-      _$FileCopyWithImpl<$Res, File>;
+abstract class _$$NoticeErrorImplCopyWith<$Res> {
+  factory _$$NoticeErrorImplCopyWith(
+          _$NoticeErrorImpl value, $Res Function(_$NoticeErrorImpl) then) =
+      __$$NoticeErrorImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String name, String link});
+  $Res call({@ErrorCodeConverter() ErrorCode code});
 }
 
 /// @nodoc
-class _$FileCopyWithImpl<$Res, $Val extends File>
-    implements $FileCopyWith<$Res> {
-  _$FileCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of File
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? link = null,
-  }) {
-    return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      link: null == link
-          ? _value.link
-          : link // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$FileImplCopyWith<$Res> implements $FileCopyWith<$Res> {
-  factory _$$FileImplCopyWith(
-          _$FileImpl value, $Res Function(_$FileImpl) then) =
-      __$$FileImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String name, String link});
-}
-
-/// @nodoc
-class __$$FileImplCopyWithImpl<$Res>
-    extends _$FileCopyWithImpl<$Res, _$FileImpl>
-    implements _$$FileImplCopyWith<$Res> {
-  __$$FileImplCopyWithImpl(_$FileImpl _value, $Res Function(_$FileImpl) _then)
+class __$$NoticeErrorImplCopyWithImpl<$Res>
+    extends _$NoticeModelCopyWithImpl<$Res, _$NoticeErrorImpl>
+    implements _$$NoticeErrorImplCopyWith<$Res> {
+  __$$NoticeErrorImplCopyWithImpl(
+      _$NoticeErrorImpl _value, $Res Function(_$NoticeErrorImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of File
+  /// Create a copy of NoticeModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? link = null,
+    Object? code = null,
   }) {
-    return _then(_$FileImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      link: null == link
-          ? _value.link
-          : link // ignore: cast_nullable_to_non_nullable
-              as String,
+    return _then(_$NoticeErrorImpl(
+      code: null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as ErrorCode,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$FileImpl implements _File {
-  const _$FileImpl({required this.name, required this.link});
+class _$NoticeErrorImpl implements NoticeError {
+  const _$NoticeErrorImpl(
+      {@ErrorCodeConverter() required this.code, final String? $type})
+      : $type = $type ?? 'error';
 
-  factory _$FileImpl.fromJson(Map<String, dynamic> json) =>
-      _$$FileImplFromJson(json);
+  factory _$NoticeErrorImpl.fromJson(Map<String, dynamic> json) =>
+      _$$NoticeErrorImplFromJson(json);
 
   @override
-  final String name;
-  @override
-  final String link;
+  @ErrorCodeConverter()
+  final ErrorCode code;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
-    return 'File(name: $name, link: $link)';
+    return 'NoticeModel.error(code: $code)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FileImpl &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.link, link) || other.link == link));
+            other is _$NoticeErrorImpl &&
+            (identical(other.code, code) || other.code == code));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, name, link);
+  int get hashCode => Object.hash(runtimeType, code);
 
-  /// Create a copy of File
+  /// Create a copy of NoticeModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$FileImplCopyWith<_$FileImpl> get copyWith =>
-      __$$FileImplCopyWithImpl<_$FileImpl>(this, _$identity);
+  _$$NoticeErrorImplCopyWith<_$NoticeErrorImpl> get copyWith =>
+      __$$NoticeErrorImplCopyWithImpl<_$NoticeErrorImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            int id,
+            String index,
+            String title,
+            String professor,
+            DateTime date,
+            String? link,
+            String? content,
+            List<File>? files,
+            int? nextNoticeId,
+            String? nextNoticeTitle,
+            int? previousNoticeId,
+            String? previousNoticeTitle)
+        $default, {
+    required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
+  }) {
+    return error(code);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            int id,
+            String index,
+            String title,
+            String professor,
+            DateTime date,
+            String? link,
+            String? content,
+            List<File>? files,
+            int? nextNoticeId,
+            String? nextNoticeTitle,
+            int? previousNoticeId,
+            String? previousNoticeTitle)?
+        $default, {
+    TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
+  }) {
+    return error?.call(code);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            int id,
+            String index,
+            String title,
+            String professor,
+            DateTime date,
+            String? link,
+            String? content,
+            List<File>? files,
+            int? nextNoticeId,
+            String? nextNoticeTitle,
+            int? previousNoticeId,
+            String? previousNoticeTitle)?
+        $default, {
+    TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(code);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(Notice value) $default, {
+    required TResult Function(NoticeError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(Notice value)? $default, {
+    TResult? Function(NoticeError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(Notice value)? $default, {
+    TResult Function(NoticeError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$FileImplToJson(
+    return _$$NoticeErrorImplToJson(
       this,
     );
   }
 }
 
-abstract class _File implements File {
-  const factory _File(
-      {required final String name, required final String link}) = _$FileImpl;
+abstract class NoticeError implements NoticeModel {
+  const factory NoticeError(
+          {@ErrorCodeConverter() required final ErrorCode code}) =
+      _$NoticeErrorImpl;
 
-  factory _File.fromJson(Map<String, dynamic> json) = _$FileImpl.fromJson;
+  factory NoticeError.fromJson(Map<String, dynamic> json) =
+      _$NoticeErrorImpl.fromJson;
 
-  @override
-  String get name;
-  @override
-  String get link;
+  @ErrorCodeConverter()
+  ErrorCode get code;
 
-  /// Create a copy of File
+  /// Create a copy of NoticeModel
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FileImplCopyWith<_$FileImpl> get copyWith =>
+  _$$NoticeErrorImplCopyWith<_$NoticeErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

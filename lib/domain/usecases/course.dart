@@ -1,3 +1,5 @@
+import 'package:dartz/dartz.dart';
+
 import 'package:acha/data/models/index.dart';
 import 'package:acha/domain/repositories/index.dart';
 
@@ -6,7 +8,7 @@ class FetchTodayCoursesUseCase {
 
   final CourseRepository courseRepository;
 
-  Future<CourseList?> call() async {
+  Future<Either<String, CourseList>> call() async {
     return await courseRepository.fetchTodayCourses();
   }
 }
@@ -16,7 +18,7 @@ class FetchCourseListUseCase {
 
   final CourseRepository courseRepository;
 
-  Future<CourseList?> call() async {
+  Future<Either<String, CourseList>> call() async {
     return await courseRepository.fetchCourseList();
   }
 }
@@ -26,7 +28,7 @@ class FetchActivitiesUseCase {
 
   final CourseRepository courseRepository;
 
-  Future<WeekActivities?> call() async {
+  Future<Either<String, ActivityList>> call() async {
     return await courseRepository.fetchActivities();
   }
 }
@@ -36,7 +38,7 @@ class FetchCourseActivitiesUseCase {
 
   final CourseRepository courseRepository;
 
-  Future<CourseActivities?> call(String courseCode) async {
+  Future<Either<String, CourseActivityList>> call(String courseCode) async {
     return await courseRepository.fetchCourseActivities(courseCode);
   }
 }
@@ -46,7 +48,7 @@ class FetchNoticeListUseCase {
 
   final CourseRepository courseRepository;
 
-  Future<NoticeList?> call(String courseCode) async {
+  Future<Either<String, NoticeList>> call(String courseCode) async {
     return await courseRepository.fetchNoticeList(courseCode);
   }
 }
@@ -56,7 +58,7 @@ class FetchNoticeUseCase {
 
   final CourseRepository courseRepository;
 
-  Future<Notice?> call(String courseCode, int noticeId) async {
+  Future<Either<String, Notice>> call(String courseCode, int noticeId) async {
     return await courseRepository.fetchNotice(courseCode, noticeId);
   }
 }

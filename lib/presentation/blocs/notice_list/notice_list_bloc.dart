@@ -1,10 +1,8 @@
-import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:acha/data/models/index.dart';
 import 'package:acha/domain/usecases/index.dart';
 import 'package:acha/domain/repositories/index.dart';
-import 'package:acha/domain/exceptions/index.dart';
 import 'package:acha/presentation/blocs/index.dart';
 
 class NoticeListBloc extends Bloc<NoticeListEvent, NoticeListState> {
@@ -12,8 +10,9 @@ class NoticeListBloc extends Bloc<NoticeListEvent, NoticeListState> {
     required CourseRepository courseRepository,
     required this.course,
   }) : super(const NoticeListState(status: NoticeListStatus.loading)) {
-    _fetchNoticeListUseCase =
-        FetchNoticeListUseCase(courseRepository: courseRepository);
+    _fetchNoticeListUseCase = FetchNoticeListUseCase(
+      courseRepository: courseRepository,
+    );
 
     on<FetchNoticeList>(_onFetchNoticeList);
   }
@@ -23,20 +22,26 @@ class NoticeListBloc extends Bloc<NoticeListEvent, NoticeListState> {
 
   /// 공지사항 목록 데이터를 요청합니다.
   Future<void> _onFetchNoticeList(
-      FetchNoticeList event, Emitter<NoticeListState> emit) async {
+    FetchNoticeList event,
+    Emitter<NoticeListState> emit,
+  ) async {
     try {
-      final noticeList = await _fetchNoticeListUseCase.call(course.code);
-      emit(state.copyWith(
-          status: NoticeListStatus.loaded, noticeList: noticeList));
-    } on DioException catch (e) {
-      emit(state.copyWith(
-          status: NoticeListStatus.error, errorMessage: e.error as String));
-    } on RepositoryException catch (e) {
-      emit(state.copyWith(
-          status: NoticeListStatus.error, errorMessage: e.message));
+      final result = await _fetchNoticeListUseCase.call(course.code);
+      result.fold(
+        (errorMessage) => emit(state.copyWith(
+          status: NoticeListStatus.error,
+          errorMessage: errorMessage,
+        )),
+        (value) => emit(state.copyWith(
+          status: NoticeListStatus.loaded,
+          noticeList: value,
+        )),
+      );
     } catch (e) {
       emit(state.copyWith(
-          status: NoticeListStatus.error, errorMessage: '공지를 불러오지 못했어요'));
+        status: NoticeListStatus.error,
+        errorMessage: '공지를 불러오지 못했어요',
+      ));
     }
   }
 }

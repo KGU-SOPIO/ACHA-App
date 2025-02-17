@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ActivityState {
   ActivityStatus get status => throw _privateConstructorUsedError;
-  WeekActivities? get weekActivities => throw _privateConstructorUsedError;
+  ActivityList? get weekActivities => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
 
   /// Create a copy of ActivityState
@@ -35,10 +35,8 @@ abstract class $ActivityStateCopyWith<$Res> {
   @useResult
   $Res call(
       {ActivityStatus status,
-      WeekActivities? weekActivities,
+      ActivityList? weekActivities,
       String? errorMessage});
-
-  $WeekActivitiesCopyWith<$Res>? get weekActivities;
 }
 
 /// @nodoc
@@ -68,26 +66,12 @@ class _$ActivityStateCopyWithImpl<$Res, $Val extends ActivityState>
       weekActivities: freezed == weekActivities
           ? _value.weekActivities
           : weekActivities // ignore: cast_nullable_to_non_nullable
-              as WeekActivities?,
+              as ActivityList?,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
-  }
-
-  /// Create a copy of ActivityState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $WeekActivitiesCopyWith<$Res>? get weekActivities {
-    if (_value.weekActivities == null) {
-      return null;
-    }
-
-    return $WeekActivitiesCopyWith<$Res>(_value.weekActivities!, (value) {
-      return _then(_value.copyWith(weekActivities: value) as $Val);
-    });
   }
 }
 
@@ -101,11 +85,8 @@ abstract class _$$ActivityStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {ActivityStatus status,
-      WeekActivities? weekActivities,
+      ActivityList? weekActivities,
       String? errorMessage});
-
-  @override
-  $WeekActivitiesCopyWith<$Res>? get weekActivities;
 }
 
 /// @nodoc
@@ -133,7 +114,7 @@ class __$$ActivityStateImplCopyWithImpl<$Res>
       weekActivities: freezed == weekActivities
           ? _value.weekActivities
           : weekActivities // ignore: cast_nullable_to_non_nullable
-              as WeekActivities?,
+              as ActivityList?,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -151,7 +132,7 @@ class _$ActivityStateImpl implements _ActivityState {
   @override
   final ActivityStatus status;
   @override
-  final WeekActivities? weekActivities;
+  final ActivityList? weekActivities;
   @override
   final String? errorMessage;
 
@@ -166,15 +147,15 @@ class _$ActivityStateImpl implements _ActivityState {
         (other.runtimeType == runtimeType &&
             other is _$ActivityStateImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.weekActivities, weekActivities) ||
-                other.weekActivities == weekActivities) &&
+            const DeepCollectionEquality()
+                .equals(other.weekActivities, weekActivities) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, status, weekActivities, errorMessage);
+  int get hashCode => Object.hash(runtimeType, status,
+      const DeepCollectionEquality().hash(weekActivities), errorMessage);
 
   /// Create a copy of ActivityState
   /// with the given fields replaced by the non-null parameter values.
@@ -188,13 +169,13 @@ class _$ActivityStateImpl implements _ActivityState {
 abstract class _ActivityState implements ActivityState {
   const factory _ActivityState(
       {required final ActivityStatus status,
-      final WeekActivities? weekActivities,
+      final ActivityList? weekActivities,
       final String? errorMessage}) = _$ActivityStateImpl;
 
   @override
   ActivityStatus get status;
   @override
-  WeekActivities? get weekActivities;
+  ActivityList? get weekActivities;
   @override
   String? get errorMessage;
 

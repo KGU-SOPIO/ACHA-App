@@ -37,8 +37,6 @@ abstract class $TodayCourseStateCopyWith<$Res> {
       {TodayCourseStatus status,
       CourseList? todayCourses,
       String? errorMessage});
-
-  $CourseListCopyWith<$Res>? get todayCourses;
 }
 
 /// @nodoc
@@ -75,20 +73,6 @@ class _$TodayCourseStateCopyWithImpl<$Res, $Val extends TodayCourseState>
               as String?,
     ) as $Val);
   }
-
-  /// Create a copy of TodayCourseState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CourseListCopyWith<$Res>? get todayCourses {
-    if (_value.todayCourses == null) {
-      return null;
-    }
-
-    return $CourseListCopyWith<$Res>(_value.todayCourses!, (value) {
-      return _then(_value.copyWith(todayCourses: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -103,9 +87,6 @@ abstract class _$$TodayCourseStateImplCopyWith<$Res>
       {TodayCourseStatus status,
       CourseList? todayCourses,
       String? errorMessage});
-
-  @override
-  $CourseListCopyWith<$Res>? get todayCourses;
 }
 
 /// @nodoc
@@ -166,15 +147,15 @@ class _$TodayCourseStateImpl implements _TodayCourseState {
         (other.runtimeType == runtimeType &&
             other is _$TodayCourseStateImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.todayCourses, todayCourses) ||
-                other.todayCourses == todayCourses) &&
+            const DeepCollectionEquality()
+                .equals(other.todayCourses, todayCourses) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, status, todayCourses, errorMessage);
+  int get hashCode => Object.hash(runtimeType, status,
+      const DeepCollectionEquality().hash(todayCourses), errorMessage);
 
   /// Create a copy of TodayCourseState
   /// with the given fields replaced by the non-null parameter values.

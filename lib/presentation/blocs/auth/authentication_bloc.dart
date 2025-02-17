@@ -11,10 +11,13 @@ class AuthenticationBloc
   AuthenticationBloc({
     required this.authenticationRepository,
   }) : super(const AuthenticationState.unknown()) {
-    _authenticationStatusSubscription = authenticationRepository.authStream
-        .listen((status) => add(ChangeStatus(status: status)));
-    _logoutUseCase =
-        LogoutUseCase(authenticationRepository: authenticationRepository);
+    _authenticationStatusSubscription =
+        authenticationRepository.authStream.listen(
+      (status) => add(ChangeStatus(status: status)),
+    );
+    _logoutUseCase = LogoutUseCase(
+      authenticationRepository: authenticationRepository,
+    );
 
     on<ChangeStatus>(_onChangeAuthenticationStatus);
     on<Logout>(_onLogout);
@@ -33,7 +36,9 @@ class AuthenticationBloc
 
   /// 인증 상태 변화를 감지합니다.
   Future<void> _onChangeAuthenticationStatus(
-      ChangeStatus event, Emitter<AuthenticationState> emit) async {
+    ChangeStatus event,
+    Emitter<AuthenticationState> emit,
+  ) async {
     switch (event.status) {
       case AuthenticationStatus.unauthenticated:
         emit(const AuthenticationState.unauthenticated());
@@ -58,7 +63,9 @@ class AuthenticationBloc
 
   /// 로그아웃합니다.
   Future<void> _onLogout(
-      Logout event, Emitter<AuthenticationState> emit) async {
+    Logout event,
+    Emitter<AuthenticationState> emit,
+  ) async {
     await _logoutUseCase.call();
   }
 }

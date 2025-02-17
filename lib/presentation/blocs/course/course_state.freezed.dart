@@ -34,8 +34,6 @@ abstract class $CourseStateCopyWith<$Res> {
       _$CourseStateCopyWithImpl<$Res, CourseState>;
   @useResult
   $Res call({CourseStatus status, Course course, String? errorMessage});
-
-  $CourseCopyWith<$Res> get course;
 }
 
 /// @nodoc
@@ -54,7 +52,7 @@ class _$CourseStateCopyWithImpl<$Res, $Val extends CourseState>
   @override
   $Res call({
     Object? status = null,
-    Object? course = null,
+    Object? course = freezed,
     Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
@@ -62,7 +60,7 @@ class _$CourseStateCopyWithImpl<$Res, $Val extends CourseState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as CourseStatus,
-      course: null == course
+      course: freezed == course
           ? _value.course
           : course // ignore: cast_nullable_to_non_nullable
               as Course,
@@ -71,16 +69,6 @@ class _$CourseStateCopyWithImpl<$Res, $Val extends CourseState>
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
-  }
-
-  /// Create a copy of CourseState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CourseCopyWith<$Res> get course {
-    return $CourseCopyWith<$Res>(_value.course, (value) {
-      return _then(_value.copyWith(course: value) as $Val);
-    });
   }
 }
 
@@ -93,9 +81,6 @@ abstract class _$$CourseStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call({CourseStatus status, Course course, String? errorMessage});
-
-  @override
-  $CourseCopyWith<$Res> get course;
 }
 
 /// @nodoc
@@ -112,7 +97,7 @@ class __$$CourseStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? course = null,
+    Object? course = freezed,
     Object? errorMessage = freezed,
   }) {
     return _then(_$CourseStateImpl(
@@ -120,7 +105,7 @@ class __$$CourseStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as CourseStatus,
-      course: null == course
+      course: freezed == course
           ? _value.course
           : course // ignore: cast_nullable_to_non_nullable
               as Course,
@@ -156,13 +141,14 @@ class _$CourseStateImpl implements _CourseState {
         (other.runtimeType == runtimeType &&
             other is _$CourseStateImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.course, course) || other.course == course) &&
+            const DeepCollectionEquality().equals(other.course, course) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, course, errorMessage);
+  int get hashCode => Object.hash(runtimeType, status,
+      const DeepCollectionEquality().hash(course), errorMessage);
 
   /// Create a copy of CourseState
   /// with the given fields replaced by the non-null parameter values.

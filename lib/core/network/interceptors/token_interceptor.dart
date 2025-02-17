@@ -11,7 +11,9 @@ class TokenInterceptor extends Interceptor {
 
   @override
   void onRequest(
-      RequestOptions options, RequestInterceptorHandler handler) async {
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
     try {
       final accessToken = await _ensureAccessToken(options);
       options.headers['Authorization'] = 'Bearer $accessToken';
@@ -70,7 +72,7 @@ class TokenInterceptor extends Interceptor {
   Future<void> _reissueAccessTokens({required String refreshToken}) async {
     try {
       final response = await dio.post(
-        AuthenticationApiEndpoints.refresh,
+        AuthenticationApiEndpoints.reissue,
         data: {'refreshToken': refreshToken},
         options: Options(
           headers: {'Content-Type': 'application/json'},
@@ -80,8 +82,9 @@ class TokenInterceptor extends Interceptor {
       final accessToken = response.data['accessToken'];
       if (accessToken == null) {
         throw DioException(
-          requestOptions:
-              RequestOptions(path: AuthenticationApiEndpoints.refresh),
+          requestOptions: RequestOptions(
+            path: AuthenticationApiEndpoints.reissue,
+          ),
           error: '서비스 이용을 위한 인증에 실패했어요',
           type: DioExceptionType.badResponse,
         );

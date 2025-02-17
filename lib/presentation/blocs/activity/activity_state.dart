@@ -10,7 +10,7 @@ enum ActivityStatus { loading, loaded, error }
 class ActivityState with _$ActivityState {
   const factory ActivityState({
     required ActivityStatus status,
-    WeekActivities? weekActivities,
+    ActivityList? weekActivities,
     String? errorMessage,
   }) = _ActivityState;
 }

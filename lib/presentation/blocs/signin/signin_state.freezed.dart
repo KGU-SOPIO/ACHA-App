@@ -41,8 +41,6 @@ abstract class $SignInStateCopyWith<$Res> {
       String? password,
       User? user,
       String? errorMessage});
-
-  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -89,20 +87,6 @@ class _$SignInStateCopyWithImpl<$Res, $Val extends SignInState>
               as String?,
     ) as $Val);
   }
-
-  /// Create a copy of SignInState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res>? get user {
-    if (_value.user == null) {
-      return null;
-    }
-
-    return $UserCopyWith<$Res>(_value.user!, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -119,9 +103,6 @@ abstract class _$$SignInStateImplCopyWith<$Res>
       String? password,
       User? user,
       String? errorMessage});
-
-  @override
-  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -205,14 +186,14 @@ class _$SignInStateImpl implements _SignInState {
                 other.studentId == studentId) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.user, user) || other.user == user) &&
+            const DeepCollectionEquality().equals(other.user, user) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, status, studentId, password, user, errorMessage);
+  int get hashCode => Object.hash(runtimeType, status, studentId, password,
+      const DeepCollectionEquality().hash(user), errorMessage);
 
   /// Create a copy of SignInState
   /// with the given fields replaced by the non-null parameter values.
