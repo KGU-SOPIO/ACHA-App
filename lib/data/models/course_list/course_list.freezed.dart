@@ -31,19 +31,19 @@ CourseListModel _$CourseListModelFromJson(Map<String, dynamic> json) {
 mixin _$CourseListModel {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<Course> courseList) $default, {
+    TResult Function(List<Course> contents) $default, {
     required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<Course> courseList)? $default, {
+    TResult? Function(List<Course> contents)? $default, {
     TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<Course> courseList)? $default, {
+    TResult Function(List<Course> contents)? $default, {
     TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
     required TResult orElse(),
   }) =>
@@ -99,7 +99,7 @@ abstract class _$$CourseListImplCopyWith<$Res> {
           _$CourseListImpl value, $Res Function(_$CourseListImpl) then) =
       __$$CourseListImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Course> courseList});
+  $Res call({List<Course> contents});
 }
 
 /// @nodoc
@@ -115,12 +115,12 @@ class __$$CourseListImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? courseList = null,
+    Object? contents = null,
   }) {
     return _then(_$CourseListImpl(
-      courseList: null == courseList
-          ? _value._courseList
-          : courseList // ignore: cast_nullable_to_non_nullable
+      contents: null == contents
+          ? _value._contents
+          : contents // ignore: cast_nullable_to_non_nullable
               as List<Course>,
     ));
   }
@@ -130,19 +130,19 @@ class __$$CourseListImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CourseListImpl implements CourseList {
   const _$CourseListImpl(
-      {required final List<Course> courseList, final String? $type})
-      : _courseList = courseList,
+      {required final List<Course> contents, final String? $type})
+      : _contents = contents,
         $type = $type ?? 'default';
 
   factory _$CourseListImpl.fromJson(Map<String, dynamic> json) =>
       _$$CourseListImplFromJson(json);
 
-  final List<Course> _courseList;
+  final List<Course> _contents;
   @override
-  List<Course> get courseList {
-    if (_courseList is EqualUnmodifiableListView) return _courseList;
+  List<Course> get contents {
+    if (_contents is EqualUnmodifiableListView) return _contents;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_courseList);
+    return EqualUnmodifiableListView(_contents);
   }
 
   @JsonKey(name: 'runtimeType')
@@ -150,7 +150,7 @@ class _$CourseListImpl implements CourseList {
 
   @override
   String toString() {
-    return 'CourseListModel(courseList: $courseList)';
+    return 'CourseListModel(contents: $contents)';
   }
 
   @override
@@ -158,14 +158,13 @@ class _$CourseListImpl implements CourseList {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CourseListImpl &&
-            const DeepCollectionEquality()
-                .equals(other._courseList, _courseList));
+            const DeepCollectionEquality().equals(other._contents, _contents));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_courseList));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_contents));
 
   /// Create a copy of CourseListModel
   /// with the given fields replaced by the non-null parameter values.
@@ -178,30 +177,30 @@ class _$CourseListImpl implements CourseList {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<Course> courseList) $default, {
+    TResult Function(List<Course> contents) $default, {
     required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
   }) {
-    return $default(courseList);
+    return $default(contents);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<Course> courseList)? $default, {
+    TResult? Function(List<Course> contents)? $default, {
     TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
   }) {
-    return $default?.call(courseList);
+    return $default?.call(contents);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<Course> courseList)? $default, {
+    TResult Function(List<Course> contents)? $default, {
     TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(courseList);
+      return $default(contents);
     }
     return orElse();
   }
@@ -246,13 +245,13 @@ class _$CourseListImpl implements CourseList {
 }
 
 abstract class CourseList implements CourseListModel {
-  const factory CourseList({required final List<Course> courseList}) =
+  const factory CourseList({required final List<Course> contents}) =
       _$CourseListImpl;
 
   factory CourseList.fromJson(Map<String, dynamic> json) =
       _$CourseListImpl.fromJson;
 
-  List<Course> get courseList;
+  List<Course> get contents;
 
   /// Create a copy of CourseListModel
   /// with the given fields replaced by the non-null parameter values.
@@ -340,7 +339,7 @@ class _$CourseListErrorImpl implements CourseListError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<Course> courseList) $default, {
+    TResult Function(List<Course> contents) $default, {
     required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
   }) {
     return error(code);
@@ -349,7 +348,7 @@ class _$CourseListErrorImpl implements CourseListError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<Course> courseList)? $default, {
+    TResult? Function(List<Course> contents)? $default, {
     TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
   }) {
     return error?.call(code);
@@ -358,7 +357,7 @@ class _$CourseListErrorImpl implements CourseListError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<Course> courseList)? $default, {
+    TResult Function(List<Course> contents)? $default, {
     TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
     required TResult orElse(),
   }) {

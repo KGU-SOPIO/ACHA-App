@@ -9,10 +9,10 @@ part 'course.g.dart';
 @freezed
 class CourseModel with _$CourseModel {
   const factory CourseModel({
-    required String name,
+    required String title,
     required String professor,
     required String lectureRoom,
-    required String code,
+    required int id,
     DateTime? deadline,
     String? link,
     CourseActivityList? courseActivityList,

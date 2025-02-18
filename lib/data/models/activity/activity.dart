@@ -45,7 +45,7 @@ class ActivityModel with _$ActivityModel {
     required bool available,
     required String name,
     required String link,
-    required String code,
+    required int id,
     DateTime? deadline,
     String? lectureTime,
     bool? attendance,

@@ -111,6 +111,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   ) async {
     try {
       emit(state.copyWith(status: SignInStatus.signUpProgress));
+
       final result = await _signUpUseCase.call(
         studentId: state.studentId!,
         password: state.password!,
@@ -135,6 +136,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   Future<void> _onFetchData(FetchData event, Emitter<SignInState> emit) async {
     try {
       emit(state.copyWith(status: SignInStatus.fetchDataProgress));
+
       final result = await _requestExtractionUseCas.call();
       result.fold(
         (errorMessage) => emit(state.copyWith(

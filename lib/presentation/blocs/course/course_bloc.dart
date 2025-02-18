@@ -26,7 +26,7 @@ class CourseBloc extends Bloc<CourseEvent, CourseState> {
     Emitter<CourseState> emit,
   ) async {
     try {
-      final result = await _fetchCourseActivitiesUseCase.call(course.code);
+      final result = await _fetchCourseActivitiesUseCase.call(course.id);
       result.fold(
         (errorMessage) => emit(state.copyWith(
           status: CourseStatus.error,

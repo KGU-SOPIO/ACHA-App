@@ -22,10 +22,9 @@ class NoticeScreen extends StatefulWidget {
     return CupertinoPageRoute(
       builder: (context) => BlocProvider(
         create: (context) => NoticeListBloc(
-            courseRepository: GetIt.I<CourseRepository>(), course: course)
-          ..add(
-            const NoticeListEvent.fetchNoticeList(),
-          ),
+          courseRepository: GetIt.I<CourseRepository>(),
+          course: course,
+        )..add(const NoticeListEvent.fetchNoticeList()),
         child: const NoticeScreen(),
       ),
     );
@@ -77,7 +76,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
 
   Widget _buildCourseTitle(BuildContext context) {
     return Text(
-      context.read<NoticeListBloc>().course.name,
+      context.read<NoticeListBloc>().course.title,
       style: const TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w400,
@@ -114,8 +113,11 @@ class _NoticeScreenState extends State<NoticeScreen> {
       builder: (context, state) {
         if (state.status == NoticeListStatus.loading) {
           return Column(
-              children:
-                  List.generate(4, (index) => const NoticeSkeletonContainer()));
+            children: List.generate(
+              4,
+              (index) => const NoticeSkeletonContainer(),
+            ),
+          );
         } else if (state.status == NoticeListStatus.loaded) {
           return _buildNoticeListContent(context, state.noticeList?.noticeList);
         } else {
@@ -142,8 +144,10 @@ class _NoticeScreenState extends State<NoticeScreen> {
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),
       itemCount: notices.length,
-      itemBuilder: (context, index) =>
-          _buildNoticeItem(context, notices[index]),
+      itemBuilder: (context, index) => _buildNoticeItem(
+        context,
+        notices[index],
+      ),
     );
   }
 
@@ -152,7 +156,9 @@ class _NoticeScreenState extends State<NoticeScreen> {
       onTap: () => Navigator.push(
         context,
         NoticeMainScreen.route(
-            course: context.read<NoticeListBloc>().course, noticeId: notice.id),
+          course: context.read<NoticeListBloc>().course,
+          noticeId: notice.id,
+        ),
       ),
       child: Container(
         padding: const EdgeInsets.only(left: 10, top: 18, bottom: 15),

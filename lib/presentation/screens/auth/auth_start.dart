@@ -78,8 +78,10 @@ class _AuthStartScreenState extends State<AuthStartScreen> {
       children: [
         SizedBox(
           height: 180,
-          child:
-              Image.asset('lib/assets/images/auth/surprised.png', height: 180),
+          child: Image.asset(
+            'lib/assets/images/auth/surprised.png',
+            height: 180,
+          ),
         ),
         const SizedBox(height: 35),
         const Text.rich(
@@ -111,8 +113,10 @@ class _AuthStartScreenState extends State<AuthStartScreen> {
       children: [
         SizedBox(
           height: 180,
-          child:
-              Image.asset('lib/assets/images/auth/calendar.png', height: 180),
+          child: Image.asset(
+            'lib/assets/images/auth/calendar.png',
+            height: 180,
+          ),
         ),
         const SizedBox(height: 35),
         const Text.rich(

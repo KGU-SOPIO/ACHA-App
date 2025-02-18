@@ -7,10 +7,10 @@ part of 'course.dart';
 // **************************************************************************
 
 _$CourseImpl _$$CourseImplFromJson(Map<String, dynamic> json) => _$CourseImpl(
-      name: json['name'] as String,
+      title: json['title'] as String,
       professor: json['professor'] as String,
       lectureRoom: json['lectureRoom'] as String,
-      code: json['code'] as String,
+      id: (json['id'] as num).toInt(),
       deadline: json['deadline'] == null
           ? null
           : DateTime.parse(json['deadline'] as String),
@@ -27,10 +27,10 @@ _$CourseImpl _$$CourseImplFromJson(Map<String, dynamic> json) => _$CourseImpl(
 
 Map<String, dynamic> _$$CourseImplToJson(_$CourseImpl instance) =>
     <String, dynamic>{
-      'name': instance.name,
+      'title': instance.title,
       'professor': instance.professor,
       'lectureRoom': instance.lectureRoom,
-      'code': instance.code,
+      'id': instance.id,
       'deadline': instance.deadline?.toIso8601String(),
       'link': instance.link,
       'courseActivityList': instance.courseActivityList,

@@ -7,6 +7,10 @@ enum ErrorCode {
     'INVALID_STUDENT_ID_OR_PASSWORD',
     '학번 또는 비밀번호가 올바르지 않아요',
   ),
+  invalidPassword(
+    'INVALID_PASSWORD',
+    '비밀번호가 올바르지 않아요',
+  ),
   unknown(
     'UNKNOWN',
     '문제가 발생했어요',

@@ -8,8 +8,9 @@ part 'token.g.dart';
 
 @freezed
 class TokenReissueResponseModel with _$TokenReissueResponseModel {
-  const factory TokenReissueResponseModel({required String accessToken}) =
-      TokenReissueResponse;
+  const factory TokenReissueResponseModel({
+    required String accessToken,
+  }) = TokenReissueResponse;
 
   const factory TokenReissueResponseModel.error({
     @ErrorCodeConverter() required ErrorCode code,

@@ -8,7 +8,7 @@ part of 'course_list.dart';
 
 _$CourseListImpl _$$CourseListImplFromJson(Map<String, dynamic> json) =>
     _$CourseListImpl(
-      courseList: (json['courseList'] as List<dynamic>)
+      contents: (json['contents'] as List<dynamic>)
           .map((e) => Course.fromJson(e as Map<String, dynamic>))
           .toList(),
       $type: json['runtimeType'] as String?,
@@ -16,7 +16,7 @@ _$CourseListImpl _$$CourseListImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$CourseListImplToJson(_$CourseListImpl instance) =>
     <String, dynamic>{
-      'courseList': instance.courseList,
+      'contents': instance.contents,
       'runtimeType': instance.$type,
     };
 

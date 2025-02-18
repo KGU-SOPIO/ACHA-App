@@ -19,7 +19,7 @@ class MyPageScreen extends StatefulWidget {
 
 class _MyPageScreenState extends State<MyPageScreen> {
   void _showLogoutModal() => LogoutModal.show(context);
-  void _showWithdrawModal() => WithdrawModal.show(context);
+  void _showSignOutModal() => SignOutModal.show(context);
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +101,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
   Widget _buildDeleteAccountButton() {
     return ContainerButton(
       height: 56,
-      onPressed: () => _showWithdrawModal(),
+      onPressed: () => _showSignOutModal(),
       backgroundColor: const Color.fromARGB(25, 255, 78, 107),
       border: const BorderSide(color: Color.fromARGB(255, 255, 78, 107)),
       text: '계정 삭제',

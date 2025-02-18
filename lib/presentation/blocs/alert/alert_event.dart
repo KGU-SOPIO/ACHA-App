@@ -6,6 +6,7 @@ part 'alert_event.freezed.dart';
 class AlertEvent with _$AlertEvent {
   const factory AlertEvent.fetchAlertStatus() = FetchAlertStatus;
   const factory AlertEvent.denyAlert() = DenyAlert;
-  const factory AlertEvent.changeAlertStatus({required bool isEnabled}) =
-      ChangeAlertStatus;
+  const factory AlertEvent.changeAlertStatus({
+    required bool isEnabled,
+  }) = ChangeAlertStatus;
 }

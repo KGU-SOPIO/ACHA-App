@@ -48,7 +48,9 @@ class CarouselActivitySkeletonContainer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
       decoration: BoxDecoration(
         border: Border.all(
-            color: const Color.fromARGB(255, 237, 239, 242), width: 1.5),
+          color: const Color.fromARGB(255, 237, 239, 242),
+          width: 1.5,
+        ),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(

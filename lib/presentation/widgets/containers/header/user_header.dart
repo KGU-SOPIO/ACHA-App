@@ -63,11 +63,15 @@ class _UserHeaderState extends State<UserHeader> {
         children: [
           TextSpan(
             text: state.user!.name,
-            style: const TextStyle(fontWeight: FontWeight.w700),
+            style: const TextStyle(
+              fontWeight: FontWeight.w700,
+            ),
           ),
           const TextSpan(
             text: ' 님',
-            style: TextStyle(fontWeight: FontWeight.w500),
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ],
       ),
@@ -95,7 +99,7 @@ class _UserHeaderState extends State<UserHeader> {
             ),
           ),
           child: Text(
-            state.user!.major ?? state.user!.department!,
+            state.user!.affiliation!,
             style: const TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w500,

@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:acha/presentation/widgets/index.dart';
 
 class CourseContainer extends StatelessWidget {
-  const CourseContainer(
-      {super.key,
-      required this.professorName,
-      required this.courseName,
-      required this.lectureRoom,
-      this.deadline,
-      required this.onTap});
+  const CourseContainer({
+    super.key,
+    required this.professorName,
+    required this.courseName,
+    required this.lectureRoom,
+    this.deadline,
+    required this.onTap,
+  });
 
   final String professorName;
   final String courseName;
@@ -61,13 +62,19 @@ class CourseContainer extends StatelessWidget {
         Text(
           courseName,
           style: const TextStyle(
-              fontSize: 16, fontWeight: FontWeight.w400, color: Colors.black),
+            fontSize: 16,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ),
         ),
         const SizedBox(height: 2),
         Text(
           lectureRoom,
           style: const TextStyle(
-              fontSize: 12, fontWeight: FontWeight.w400, color: Colors.black),
+            fontSize: 12,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ),
         ),
       ],
     );

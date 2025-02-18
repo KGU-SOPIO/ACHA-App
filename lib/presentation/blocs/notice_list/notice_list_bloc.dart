@@ -26,7 +26,7 @@ class NoticeListBloc extends Bloc<NoticeListEvent, NoticeListState> {
     Emitter<NoticeListState> emit,
   ) async {
     try {
-      final result = await _fetchNoticeListUseCase.call(course.code);
+      final result = await _fetchNoticeListUseCase.call(course.id);
       result.fold(
         (errorMessage) => emit(state.copyWith(
           status: NoticeListStatus.error,

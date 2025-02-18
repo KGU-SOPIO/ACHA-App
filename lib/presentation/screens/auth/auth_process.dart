@@ -98,15 +98,22 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
               const SizedBox(height: 50),
               SvgPicture.asset('lib/assets/svgs/auth/error.svg'),
               const SizedBox(height: 30),
-              Text(state.status.description,
-                  style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.w700)),
+              Text(
+                state.status.description,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
               const SizedBox(height: 20),
-              Text(state.errorMessage!,
-                  style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: Color.fromARGB(255, 109, 109, 109))),
+              Text(
+                state.errorMessage!,
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: Color.fromARGB(255, 109, 109, 109),
+                ),
+              ),
               const SizedBox(height: 50),
             ],
           ),
@@ -115,7 +122,10 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
               ContainerButton(
                 height: 56,
                 onPressed: () => Navigator.pushAndRemoveUntil(
-                    context, AuthStudentIdScreen.route(), (route) => false),
+                  context,
+                  AuthStudentIdScreen.route(),
+                  (route) => false,
+                ),
                 backgroundColor: const Color.fromARGB(255, 0, 102, 255),
                 text: '돌아가기',
                 textStyle: const TextStyle(
@@ -156,20 +166,21 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
               ),
             ),
           ),
-          if (state.status == SignInStatus.signUpProgress) ...[
+          if (state.status == SignInStatus.fetchDataProgress) ...[
             const SizedBox(height: 32),
             Container(
               width: double.infinity,
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
               margin: const EdgeInsets.symmetric(horizontal: 8),
               decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 245, 246, 248),
-                  borderRadius: BorderRadius.circular(20)),
+                color: const Color.fromARGB(255, 245, 246, 248),
+                borderRadius: BorderRadius.circular(20),
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  _buildSignUpInfoPanel(),
+                  _buildExtractionInfoPanel(),
                   SvgPicture.asset('lib/assets/svgs/auth/download.svg'),
                 ],
               ),
@@ -180,7 +191,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
     );
   }
 
-  Widget _buildSignUpInfoPanel() {
+  Widget _buildExtractionInfoPanel() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

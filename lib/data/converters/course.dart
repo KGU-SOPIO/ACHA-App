@@ -8,7 +8,7 @@ class CourseResponseConverter
 
   @override
   CourseModel fromJson(Map<String, dynamic> json) {
-    if (json.containsKey('name')) {
+    if (json.containsKey('id')) {
       return Course.fromJson(json);
     } else {
       return CourseError.fromJson(json);

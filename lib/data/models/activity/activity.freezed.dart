@@ -870,7 +870,7 @@ mixin _$ActivityModel {
   bool get available => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get link => throw _privateConstructorUsedError;
-  String get code => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   DateTime? get deadline => throw _privateConstructorUsedError;
   String? get lectureTime => throw _privateConstructorUsedError;
   bool? get attendance => throw _privateConstructorUsedError;
@@ -901,7 +901,7 @@ abstract class $ActivityModelCopyWith<$Res> {
       bool available,
       String name,
       String link,
-      String code,
+      int id,
       DateTime? deadline,
       String? lectureTime,
       bool? attendance,
@@ -931,7 +931,7 @@ class _$ActivityModelCopyWithImpl<$Res, $Val extends ActivityModel>
     Object? available = null,
     Object? name = null,
     Object? link = null,
-    Object? code = null,
+    Object? id = null,
     Object? deadline = freezed,
     Object? lectureTime = freezed,
     Object? attendance = freezed,
@@ -958,10 +958,10 @@ class _$ActivityModelCopyWithImpl<$Res, $Val extends ActivityModel>
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
               as String,
-      code: null == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       deadline: freezed == deadline
           ? _value.deadline
           : deadline // ignore: cast_nullable_to_non_nullable
@@ -1011,7 +1011,7 @@ abstract class _$$ActivityImplCopyWith<$Res>
       bool available,
       String name,
       String link,
-      String code,
+      int id,
       DateTime? deadline,
       String? lectureTime,
       bool? attendance,
@@ -1039,7 +1039,7 @@ class __$$ActivityImplCopyWithImpl<$Res>
     Object? available = null,
     Object? name = null,
     Object? link = null,
-    Object? code = null,
+    Object? id = null,
     Object? deadline = freezed,
     Object? lectureTime = freezed,
     Object? attendance = freezed,
@@ -1066,10 +1066,10 @@ class __$$ActivityImplCopyWithImpl<$Res>
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
               as String,
-      code: null == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       deadline: freezed == deadline
           ? _value.deadline
           : deadline // ignore: cast_nullable_to_non_nullable
@@ -1114,7 +1114,7 @@ class _$ActivityImpl implements Activity {
       required this.available,
       required this.name,
       required this.link,
-      required this.code,
+      required this.id,
       this.deadline,
       this.lectureTime,
       this.attendance,
@@ -1136,7 +1136,7 @@ class _$ActivityImpl implements Activity {
   @override
   final String link;
   @override
-  final String code;
+  final int id;
   @override
   final DateTime? deadline;
   @override
@@ -1156,7 +1156,7 @@ class _$ActivityImpl implements Activity {
 
   @override
   String toString() {
-    return 'ActivityModel(type: $type, available: $available, name: $name, link: $link, code: $code, deadline: $deadline, lectureTime: $lectureTime, attendance: $attendance, gradingStatus: $gradingStatus, timeLeft: $timeLeft, lastModified: $lastModified, description: $description, courseName: $courseName)';
+    return 'ActivityModel(type: $type, available: $available, name: $name, link: $link, id: $id, deadline: $deadline, lectureTime: $lectureTime, attendance: $attendance, gradingStatus: $gradingStatus, timeLeft: $timeLeft, lastModified: $lastModified, description: $description, courseName: $courseName)';
   }
 
   @override
@@ -1169,7 +1169,7 @@ class _$ActivityImpl implements Activity {
                 other.available == available) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.link, link) || other.link == link) &&
-            (identical(other.code, code) || other.code == code) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.deadline, deadline) ||
                 other.deadline == deadline) &&
             (identical(other.lectureTime, lectureTime) ||
@@ -1196,7 +1196,7 @@ class _$ActivityImpl implements Activity {
       available,
       name,
       link,
-      code,
+      id,
       deadline,
       lectureTime,
       attendance,
@@ -1228,7 +1228,7 @@ abstract class Activity implements ActivityModel {
       required final bool available,
       required final String name,
       required final String link,
-      required final String code,
+      required final int id,
       final DateTime? deadline,
       final String? lectureTime,
       final bool? attendance,
@@ -1250,7 +1250,7 @@ abstract class Activity implements ActivityModel {
   @override
   String get link;
   @override
-  String get code;
+  int get id;
   @override
   DateTime? get deadline;
   @override

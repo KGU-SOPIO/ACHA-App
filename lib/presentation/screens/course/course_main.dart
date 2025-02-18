@@ -100,7 +100,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
         ),
         const SizedBox(height: 5),
         Text(
-          state.course.name,
+          state.course.title,
           style: const TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.w700,
@@ -114,11 +114,15 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
   Widget _buildNoticeButton(BuildContext context, CourseState state) {
     return RowContainerButton(
       padding: const EdgeInsets.symmetric(vertical: 17),
-      onPressed: () =>
-          Navigator.push(context, NoticeScreen.route(course: state.course)),
+      onPressed: () => Navigator.push(
+        context,
+        NoticeScreen.route(course: state.course),
+      ),
       foregroundColor: Colors.white,
       backgroundColor: Colors.white,
-      border: const BorderSide(color: Color.fromARGB(255, 0, 102, 255)),
+      border: const BorderSide(
+        color: Color.fromARGB(255, 0, 102, 255),
+      ),
       borderRadius: 20,
       text: '공지사항',
       textStyle: const TextStyle(
@@ -139,7 +143,9 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
             const Text.rich(
               TextSpan(
                 style: TextStyle(
-                    fontSize: 14, color: Color.fromARGB(255, 30, 30, 30)),
+                  fontSize: 14,
+                  color: Color.fromARGB(255, 30, 30, 30),
+                ),
                 children: [
                   TextSpan(
                     text: '주차별 ',
@@ -194,7 +200,13 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
         return const SizedBox(
           height: 160,
           child: Center(
-            child: Text('등록된 활동이 없어요'),
+            child: Text(
+              '등록된 활동이 없어요',
+              style: TextStyle(
+                fontSize: 15,
+                color: Color.fromARGB(255, 109, 109, 109),
+              ),
+            ),
           ),
         );
       }
@@ -204,7 +216,10 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
         child: Center(
           child: Text(
             '활동을 불러오지 못했어요',
-            style: TextStyle(fontSize: 15),
+            style: TextStyle(
+              fontSize: 15,
+              color: Color.fromARGB(255, 109, 109, 109),
+            ),
           ),
         ),
       );
@@ -313,7 +328,9 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
       margin: const EdgeInsets.only(bottom: 5),
       child: StackedListCarousel(
         items: List.generate(
-            3, (index) => const CarouselActivitySkeletonContainer()),
+          3,
+          (index) => const CarouselActivitySkeletonContainer(),
+        ),
         disableAutomaticLoop: true,
         behavior: CarouselBehavior.loop,
         cardBuilder: (context, item, size) => item,

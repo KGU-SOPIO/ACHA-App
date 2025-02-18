@@ -21,12 +21,10 @@ class NoticeMainScreen extends StatefulWidget {
     return CupertinoPageRoute(
       builder: (context) => BlocProvider(
         create: (context) => NoticeBloc(
-            courseRepository: GetIt.I<CourseRepository>(),
-            course: course,
-            noticeId: noticeId)
-          ..add(
-            const NoticeEvent.fetchNotice(),
-          ),
+          courseRepository: GetIt.I<CourseRepository>(),
+          course: course,
+          noticeId: noticeId,
+        )..add(const NoticeEvent.fetchNotice()),
         child: const NoticeMainScreen(),
       ),
     );
@@ -114,7 +112,7 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
         children: [
           const SizedBox(height: 30),
           Text(
-            context.read<NoticeBloc>().course.name,
+            context.read<NoticeBloc>().course.title,
             style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w400,
@@ -171,7 +169,10 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
     return Text(
       notice.content!
           .replaceAllMapped(RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D'),
-      style: const TextStyle(fontSize: 12, height: 1.7),
+      style: const TextStyle(
+        fontSize: 12,
+        height: 1.7,
+      ),
     );
   }
 
@@ -189,10 +190,12 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
       BuildContext context, Notice notice, bool hasPrevious) {
     return GestureDetector(
       onTap: () => Navigator.pushReplacement(
-          context,
-          NoticeMainScreen.route(
-              course: context.read<NoticeBloc>().course,
-              noticeId: notice.nextNoticeId!)),
+        context,
+        NoticeMainScreen.route(
+          course: context.read<NoticeBloc>().course,
+          noticeId: notice.nextNoticeId!,
+        ),
+      ),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 22),
         decoration: BoxDecoration(
@@ -216,7 +219,9 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
                 Text(
                   notice.nextNoticeTitle!,
                   style: const TextStyle(
-                      fontSize: 14, fontWeight: FontWeight.w700),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                  ),
                 )
               ],
             ),
@@ -231,10 +236,12 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
       BuildContext context, Notice notice, bool hasNext) {
     return GestureDetector(
       onTap: () => Navigator.pushReplacement(
-          context,
-          NoticeMainScreen.route(
-              course: context.read<NoticeBloc>().course,
-              noticeId: notice.previousNoticeId!)),
+        context,
+        NoticeMainScreen.route(
+          course: context.read<NoticeBloc>().course,
+          noticeId: notice.previousNoticeId!,
+        ),
+      ),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 22),
         decoration: BoxDecoration(
@@ -250,13 +257,21 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
           children: [
             Row(
               children: [
-                const Text('이전글',
-                    style:
-                        TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
+                const Text(
+                  '이전글',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
                 const SizedBox(width: 10),
-                Text(notice.previousNoticeTitle!,
-                    style: const TextStyle(
-                        fontSize: 14, fontWeight: FontWeight.w700))
+                Text(
+                  notice.previousNoticeTitle!,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
               ],
             ),
             SvgPicture.asset('lib/assets/svgs/notice/right_arrow.svg')

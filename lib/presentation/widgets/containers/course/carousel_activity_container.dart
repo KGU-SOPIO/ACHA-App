@@ -17,11 +17,12 @@ class CarouselActivityContainer extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 22),
       decoration: BoxDecoration(
-          border: Border.all(
-            color: const Color.fromARGB(255, 237, 239, 242),
-          ),
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(25)),
+        border: Border.all(
+          color: const Color.fromARGB(255, 237, 239, 242),
+        ),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(25),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

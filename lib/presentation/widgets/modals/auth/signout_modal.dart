@@ -8,8 +8,8 @@ import 'package:acha/domain/repositories/index.dart';
 import 'package:acha/presentation/blocs/index.dart';
 import 'package:acha/presentation/widgets/index.dart';
 
-class WithdrawModal extends StatefulWidget {
-  const WithdrawModal({super.key});
+class SignOutModal extends StatefulWidget {
+  const SignOutModal({super.key});
 
   static void show(BuildContext context) {
     showModalBottomSheet(
@@ -20,15 +20,15 @@ class WithdrawModal extends StatefulWidget {
       isScrollControlled: true,
       backgroundColor: Colors.white,
       barrierColor: Colors.black.withValues(alpha: 0.3),
-      builder: (context) => const WithdrawModal(),
+      builder: (context) => const SignOutModal(),
     );
   }
 
   @override
-  State<WithdrawModal> createState() => _WithdrawModalState();
+  State<SignOutModal> createState() => _SignOutModalState();
 }
 
-class _WithdrawModalState extends State<WithdrawModal> {
+class _SignOutModalState extends State<SignOutModal> {
   late final TextEditingController _textEditingController;
   bool _isButtonEnabled = false;
 
@@ -62,15 +62,15 @@ class _WithdrawModalState extends State<WithdrawModal> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<WithdrawBloc>(
-      create: (context) => WithdrawBloc(
+    return BlocProvider<SignOutBloc>(
+      create: (context) => SignOutBloc(
         authenticationRepository: GetIt.I<AuthenticationRepository>(),
       ),
-      child: BlocListener<WithdrawBloc, WithdrawState>(
+      child: BlocListener<SignOutBloc, SignOutState>(
         listener: (context, state) {
-          if (state.status == WithdrawStatus.complete) {
-            GetIt.I<ToastManager>().success(message: '계정을 삭제했어요');
-          } else if (state.status == WithdrawStatus.error) {
+          if (state.status == SignOutStatus.complete) {
+            GetIt.I<ToastManager>().success(message: '지금까지 아차를 이용해 주셔서 감사해요');
+          } else if (state.status == SignOutStatus.error) {
             Navigator.pop(context);
             GetIt.I<ToastManager>().success(message: state.errorMessage!);
           }
@@ -86,7 +86,11 @@ class _WithdrawModalState extends State<WithdrawModal> {
                 child: Container(
                   width: double.infinity,
                   padding: const EdgeInsets.only(
-                      top: 12, bottom: 40, left: 24, right: 24),
+                    top: 12,
+                    bottom: 40,
+                    left: 24,
+                    right: 24,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -159,9 +163,9 @@ class _WithdrawModalState extends State<WithdrawModal> {
   }
 
   Widget _buildPasswordField() {
-    return BlocBuilder<WithdrawBloc, WithdrawState>(
+    return BlocBuilder<SignOutBloc, SignOutState>(
       builder: (context, state) {
-        final isLoading = state.status == WithdrawStatus.loading;
+        final isLoading = state.status == SignOutStatus.loading;
         return TextFormField(
           autofocus: true,
           obscureText: true,
@@ -186,9 +190,9 @@ class _WithdrawModalState extends State<WithdrawModal> {
   }
 
   Widget _buildButtons(BuildContext context) {
-    return BlocBuilder<WithdrawBloc, WithdrawState>(
+    return BlocBuilder<SignOutBloc, SignOutState>(
       builder: (context, state) {
-        final isLoading = state.status == WithdrawStatus.loading;
+        final isLoading = state.status == SignOutStatus.loading;
         return Row(
           children: [
             Expanded(
@@ -200,7 +204,7 @@ class _WithdrawModalState extends State<WithdrawModal> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 237, 239, 242),
                 ),
-                onPressed: isLoading ? null : () => Navigator.pop(context),
+                onPressed: isLoading ? () {} : () => Navigator.pop(context),
                 child: const Text(
                   '취소',
                   style: TextStyle(
@@ -219,7 +223,9 @@ class _WithdrawModalState extends State<WithdrawModal> {
                   backgroundColor: WidgetStateProperty.resolveWith(
                     (states) {
                       if (states.contains(WidgetState.disabled)) {
-                        return const Color.fromARGB(255, 199, 199, 199);
+                        return isLoading
+                            ? const Color.fromARGB(255, 232, 165, 176)
+                            : const Color.fromARGB(255, 199, 199, 199);
                       }
                       return const Color.fromARGB(255, 255, 78, 107);
                     },
@@ -233,25 +239,23 @@ class _WithdrawModalState extends State<WithdrawModal> {
                 onPressed: (_isButtonEnabled && !isLoading)
                     ? () {
                         FocusScope.of(context).unfocus();
-                        context.read<WithdrawBloc>().add(
-                              WithdrawEvent.withdraw(
+                        context.read<SignOutBloc>().add(
+                              SignOutEvent.submitSignOut(
                                 password: _textEditingController.text,
                               ),
                             );
                       }
                     : null,
-                child: isLoading
-                    ? const CircularProgressIndicator(
-                        color: Colors.white,
-                      )
-                    : const Text(
-                        '삭제',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white,
-                        ),
-                      ),
+                child: Text(
+                  '삭제',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    color: isLoading
+                        ? const Color.fromARGB(255, 255, 231, 231)
+                        : Colors.white,
+                  ),
+                ),
               ),
             ),
           ],

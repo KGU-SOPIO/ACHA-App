@@ -9,6 +9,6 @@ class AuthenticationApiEndpoints {
       '${BaseApiEndpoints.baseUri}/api/v1/member/data';
   static const String reissue =
       '${BaseApiEndpoints.baseUri}/api/v1/member/reissue';
-  static const String withdraw =
-      '${BaseApiEndpoints.baseUri}/api/v1/member/withdraw';
+  static const String signout =
+      '${BaseApiEndpoints.baseUri}/api/v1/member/signout';
 }

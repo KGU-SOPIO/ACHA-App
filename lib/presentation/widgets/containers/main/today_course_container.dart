@@ -51,13 +51,19 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
       children: [
         const Text.rich(
           TextSpan(
-            style:
-                TextStyle(fontSize: 16, color: Color.fromARGB(255, 30, 30, 30)),
+            style: TextStyle(
+              fontSize: 16,
+              color: Color.fromARGB(255, 30, 30, 30),
+            ),
             children: [
               TextSpan(
-                  text: '오늘의 ', style: TextStyle(fontWeight: FontWeight.w500)),
+                text: '오늘의 ',
+                style: TextStyle(fontWeight: FontWeight.w500),
+              ),
               TextSpan(
-                  text: '강의', style: TextStyle(fontWeight: FontWeight.w700)),
+                text: '강좌',
+                style: TextStyle(fontWeight: FontWeight.w700),
+              ),
             ],
           ),
         ),
@@ -100,7 +106,7 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
 
   Widget _buildCourseList(CourseList courseList) {
     return Column(
-      children: courseList.courseList
+      children: courseList.contents
           .map((course) => _buildCourseContainer(course))
           .toList(),
     );
@@ -140,7 +146,7 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
         ),
         const SizedBox(height: 3),
         AutoSizeText(
-          course.name,
+          course.title,
           maxLines: 1,
           style: const TextStyle(
             fontSize: 16,
@@ -178,8 +184,11 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
       height: 97,
       child: Center(
         child: Text(
-          '강의를 불러오지 못했어요',
-          style: TextStyle(fontSize: 15),
+          '강좌를 불러오지 못했어요',
+          style: TextStyle(
+            fontSize: 15,
+            color: Color.fromARGB(255, 109, 109, 109),
+          ),
         ),
       ),
     );
