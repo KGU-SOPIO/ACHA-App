@@ -34,7 +34,9 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
             const Text.rich(
               TextSpan(
                 style: TextStyle(
-                    fontSize: 16, color: Color.fromARGB(255, 30, 30, 30)),
+                  fontSize: 16,
+                  color: Color.fromARGB(255, 30, 30, 30),
+                ),
                 children: [
                   TextSpan(
                     text: '사용 약관에 동의',
@@ -53,8 +55,10 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
         uri: Uri.parse(TermsAndConditionsUri.serviceTermsAndConditions),
         termsButtonText: '아차 사용 약관',
         agreeButtonText: '동의하고 회원가입',
-        onAgree: () =>
-            Navigator.push(context, AuthProcessScreen.route(context)),
+        onAgree: () => Navigator.push(
+          context,
+          AuthProcessScreen.route(context),
+        ),
       ).show(context);
 
   Future<void> _openManualUri() async {
@@ -135,14 +139,19 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
       width: double.infinity,
       child: Text.rich(
         TextSpan(
-          style:
-              TextStyle(fontSize: 15, color: Color.fromARGB(255, 60, 60, 60)),
+          style: TextStyle(
+            fontSize: 15,
+            color: Color.fromARGB(255, 60, 60, 60),
+          ),
           children: [
             TextSpan(
-                text: '정보가 맞는지 ',
-                style: TextStyle(fontWeight: FontWeight.w700)),
+              text: '정보가 맞는지 ',
+              style: TextStyle(fontWeight: FontWeight.w700),
+            ),
             TextSpan(
-                text: '확인해 주세요', style: TextStyle(fontWeight: FontWeight.w400)),
+              text: '확인해 주세요',
+              style: TextStyle(fontWeight: FontWeight.w400),
+            ),
           ],
         ),
       ),

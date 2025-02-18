@@ -9,7 +9,7 @@ part 'course_list.g.dart';
 @freezed
 class CourseListModel with _$CourseListModel {
   const factory CourseListModel({
-    required List<Course> courseList,
+    required List<Course> contents,
   }) = CourseList;
 
   const factory CourseListModel.error({

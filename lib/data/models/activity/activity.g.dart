@@ -72,7 +72,7 @@ _$ActivityImpl _$$ActivityImplFromJson(Map<String, dynamic> json) =>
       available: json['available'] as bool,
       name: json['name'] as String,
       link: json['link'] as String,
-      code: json['code'] as String,
+      id: (json['id'] as num).toInt(),
       deadline: json['deadline'] == null
           ? null
           : DateTime.parse(json['deadline'] as String),
@@ -91,7 +91,7 @@ Map<String, dynamic> _$$ActivityImplToJson(_$ActivityImpl instance) =>
       'available': instance.available,
       'name': instance.name,
       'link': instance.link,
-      'code': instance.code,
+      'id': instance.id,
       'deadline': instance.deadline?.toIso8601String(),
       'lectureTime': instance.lectureTime,
       'attendance': instance.attendance,

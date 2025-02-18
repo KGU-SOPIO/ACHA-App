@@ -49,16 +49,23 @@ class TermsBottomModalSheet {
         Center(
           child: Container(
             width: double.infinity,
-            padding:
-                const EdgeInsets.only(top: 12, bottom: 40, left: 24, right: 24),
+            padding: const EdgeInsets.only(
+              top: 12,
+              bottom: 40,
+              left: 24,
+              right: 24,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 _buildHandle(),
                 Container(
                   width: double.infinity,
-                  margin:
-                      const EdgeInsets.only(left: 16, right: 16, bottom: 20),
+                  margin: const EdgeInsets.only(
+                    left: 16,
+                    right: 16,
+                    bottom: 20,
+                  ),
                   child: titleWidget,
                 ),
                 _buildTermsButton(),
@@ -106,7 +113,9 @@ class TermsBottomModalSheet {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         minimumSize: const Size(double.infinity, 56),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
         backgroundColor: const Color.fromARGB(255, 0, 102, 255),
       ),
       onPressed: onAgree,

@@ -157,30 +157,33 @@ class _AppViewState extends State<AppView> {
       },
       error: () async {
         await _navigator.pushAndRemoveUntil(
-            ErrorScreen.route(
-              title: '인증 문제',
-              message: '사용자 인증 중 문제가 발생했어요\n다시 로그인해 주세요',
-            ),
-            (route) => false);
+          ErrorScreen.route(
+            title: '인증 문제',
+            message: '사용자 인증 중 문제가 발생했어요\n다시 로그인해 주세요',
+          ),
+          (route) => false,
+        );
       },
       expired: () async {
         await _navigator.pushAndRemoveUntil(
-            ErrorScreen.route(
-              title: '인증 만료',
-              message: '인증 상태가 만료되었어요\n다시 로그인해 주세요',
-            ),
-            (route) => false);
+          ErrorScreen.route(
+            title: '인증 만료',
+            message: '인증 상태가 만료되었어요\n다시 로그인해 주세요',
+          ),
+          (route) => false,
+        );
       },
       unauthenticated: () async {
         final isConnected = await _connectivityChecker.isConnected();
         if (!isConnected) {
           await _navigator.pushAndRemoveUntil(
-              ErrorScreen.route(
-                title: '인터넷 연결 문제',
-                message: '인터넷 연결 확인 후 앱을 재실행해 주세요',
-                connectionError: true,
-              ),
-              (route) => false);
+            ErrorScreen.route(
+              title: '인터넷 연결 문제',
+              message: '인터넷 연결 확인 후 앱을 재실행해 주세요',
+              connectionError: true,
+            ),
+            (route) => false,
+          );
         } else {
           _isNavigate = false;
           await _navigator.pushAndRemoveUntil(
@@ -209,7 +212,7 @@ class _AppViewState extends State<AppView> {
     final userState = context.read<UserBloc>().state;
     final courseState = context.read<TodayCourseBloc>().state;
 
-    if (courseState.status == TodayCourseStatus.loading &&
+    if (courseState.status == TodayCourseStatus.loading ||
         userState.status == UserStatus.loading) {
       return;
     } else {

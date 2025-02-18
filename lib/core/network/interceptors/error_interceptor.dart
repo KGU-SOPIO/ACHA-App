@@ -9,7 +9,9 @@ class ErrorInterceptor extends Interceptor {
 
   @override
   Future<void> onError(
-      DioException err, ErrorInterceptorHandler handler) async {
+    DioException err,
+    ErrorInterceptorHandler handler,
+  ) async {
     final message = await _getErrorMessage(err);
     handler.reject(
       DioException(

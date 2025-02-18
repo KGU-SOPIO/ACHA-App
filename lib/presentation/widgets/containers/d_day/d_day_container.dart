@@ -14,8 +14,9 @@ class DDayContainer extends StatelessWidget {
 
     return DecoratedBox(
       decoration: BoxDecoration(
-          color: primaryColor.withValues(alpha: 0.1),
-          borderRadius: BorderRadius.circular(20)),
+        color: primaryColor.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(20),
+      ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -34,7 +35,9 @@ class DDayContainer extends StatelessWidget {
         color: isDDay ? primaryColor : Colors.white,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-            color: isDDay ? Colors.transparent : primaryColor, width: 1.5),
+          color: isDDay ? Colors.transparent : primaryColor,
+          width: 1.5,
+        ),
       ),
       child: Center(
         child: Text(

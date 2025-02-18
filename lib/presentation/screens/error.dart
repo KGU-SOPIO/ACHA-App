@@ -18,10 +18,11 @@ class ErrorScreen extends StatelessWidget {
     this.connectionError,
   });
 
-  static Route<void> route(
-          {required String title,
-          required String message,
-          bool? connectionError}) =>
+  static Route<void> route({
+    required String title,
+    required String message,
+    bool? connectionError,
+  }) =>
       CupertinoPageRoute(
         builder: (context) => ErrorScreen(
           title: title,
@@ -62,8 +63,13 @@ class ErrorScreen extends StatelessWidget {
           children: [
             SvgPicture.asset('lib/assets/svgs/auth/error.svg'),
             const SizedBox(height: 30),
-            const Text('인터넷 연결 문제',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700)),
+            const Text(
+              '인터넷 연결 문제',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
             const SizedBox(height: 20),
             const Text(
               '인터넷 연결 확인 후 앱을 재실행해 주세요',
@@ -84,7 +90,10 @@ class ErrorScreen extends StatelessWidget {
       height: 56,
       text: '확인',
       textStyle: const TextStyle(
-          color: Colors.white, fontSize: 16, fontWeight: FontWeight.w700),
+        color: Colors.white,
+        fontSize: 16,
+        fontWeight: FontWeight.w700,
+      ),
       backgroundColor: const Color.fromARGB(255, 0, 102, 255),
       onPressed: () {
         if (connectionError == true) {
@@ -95,7 +104,10 @@ class ErrorScreen extends StatelessWidget {
           }
         } else {
           Navigator.pushAndRemoveUntil(
-              context, AuthStudentIdScreen.route(), (route) => false);
+            context,
+            AuthStudentIdScreen.route(),
+            (route) => false,
+          );
         }
       },
     );

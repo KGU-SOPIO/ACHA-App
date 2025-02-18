@@ -23,7 +23,10 @@ class ContainerButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: _buttonStyle(),
-      child: Text(text, style: textStyle),
+      child: Text(
+        text,
+        style: textStyle,
+      ),
     );
   }
 

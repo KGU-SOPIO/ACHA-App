@@ -119,7 +119,6 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     } on DioException catch (e) {
       return Left(e.error as String);
     } catch (e) {
-      _authStreamController.add(AuthenticationStatus.unauthenticated);
       return const Left('문제가 발생해 학생 정보를 가져오지 못했어요');
     }
   }
@@ -158,23 +157,23 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     } on DioException catch (e) {
       return Left(e.error as String);
     } catch (e) {
-      _authStreamController.add(AuthenticationStatus.unauthenticated);
       return const Left('문제가 발생해 회원가입에 실패했어요');
     }
   }
 
   /// 계정 삭제를 요청합니다.
   @override
-  Future<Either<String, Unit>> withdraw({required String password}) async {
+  Future<Either<String, Unit>> signout({required String password}) async {
     try {
       dio.interceptors.add(tokenInterceptor);
 
-      final response = await dio.post(
-        AuthenticationApiEndpoints.withdraw,
+      final response = await dio.patch(
+        AuthenticationApiEndpoints.signout,
         data: {'password': password},
       );
       if (response.statusCode != 200) {
-        final parsedData = const ErrorCodeConverter().fromJson(response.data);
+        final errorCode = response.data['code'] as String;
+        final parsedData = const ErrorCodeConverter().fromJson(errorCode);
         return Left(parsedData.message);
       }
 
@@ -198,7 +197,8 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
 
       final response = await dio.post(CourseApiEndpoints.extraction);
       if (response.statusCode != 200) {
-        final parsedData = const ErrorCodeConverter().fromJson(response.data);
+        final errorCode = response.data['code'] as String;
+        final parsedData = const ErrorCodeConverter().fromJson(errorCode);
         return Left(parsedData.message);
       }
 

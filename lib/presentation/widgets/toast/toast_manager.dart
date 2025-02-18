@@ -10,8 +10,9 @@ class ToastManager {
   static const _toastDuration = Duration(milliseconds: 1700);
   static const _animationDuration = Duration(milliseconds: 700);
   static final _overlayLifetime = Duration(
-      milliseconds: _toastDuration.inMilliseconds +
-          _animationDuration.inMilliseconds * 2);
+    milliseconds:
+        _toastDuration.inMilliseconds + _animationDuration.inMilliseconds * 2,
+  );
 
   void success({required String message}) {
     _showToast(
@@ -35,8 +36,10 @@ class ToastManager {
   }
 
   Future _showToast({required String message, required String svgPath}) async {
-    final toastContainer =
-        _buildToastContainer(message: message, svgPath: svgPath);
+    final toastContainer = _buildToastContainer(
+      message: message,
+      svgPath: svgPath,
+    );
     final overlayEntry = _createOverlayEntry(toastContainer: toastContainer);
 
     final overlay = Navigator.of(AppView.navigatorKey.currentContext!).overlay;
@@ -75,7 +78,9 @@ class ToastManager {
             flex: 8,
             child: Text(
               message.replaceAllMapped(
-                  RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D'),
+                RegExp(r'(\S)(?=\S)'),
+                (m) => '${m[1]}\u200D',
+              ),
               maxLines: 2,
               textAlign: TextAlign.left,
               style: const TextStyle(

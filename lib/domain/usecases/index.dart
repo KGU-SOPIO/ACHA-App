@@ -1,5 +1,9 @@
+export 'package:acha/domain/usecases/activity.dart';
 export 'package:acha/domain/usecases/alert.dart';
 export 'package:acha/domain/usecases/authentication.dart';
 export 'package:acha/domain/usecases/course.dart';
 export 'package:acha/domain/usecases/device_token.dart';
 export 'package:acha/domain/usecases/user.dart';
+export 'package:acha/domain/usecases/notice.dart';
+export 'package:acha/domain/usecases/notice_list.dart';
+export 'package:acha/domain/usecases/today_course.dart';

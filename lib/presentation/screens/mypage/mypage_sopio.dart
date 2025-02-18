@@ -62,16 +62,22 @@ class SopioScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('About',
-            style: TextStyle(
-                fontWeight: FontWeight.w400,
-                color: Color.fromARGB(255, 0, 102, 255))),
+        const Text(
+          'About',
+          style: TextStyle(
+            fontWeight: FontWeight.w400,
+            color: Color.fromARGB(255, 0, 102, 255),
+          ),
+        ),
         const SizedBox(height: 8),
-        const Text('SOPIO',
-            style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.w700,
-                color: Color.fromARGB(255, 30, 30, 30))),
+        const Text(
+          'SOPIO',
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.w700,
+            color: Color.fromARGB(255, 30, 30, 30),
+          ),
+        ),
         const SizedBox(height: 20),
         Text(
           "'Software of Public Interest Organization'\n2023년에 2인으로 시작하여 현재는 5인으로 구성된 소프트웨어 개발팀입니다."
@@ -151,26 +157,40 @@ class SopioScreen extends StatelessWidget {
     return const Column(
       children: [
         MemberContainer(
-            name: '홍준서', part: '앱', department: 'AI컴퓨터공학부', github: 'JunseoKR'),
+          name: '홍준서',
+          part: '앱',
+          department: 'AI컴퓨터공학부',
+          github: 'JunseoKR',
+        ),
         SizedBox(height: 21),
         MemberContainer(
-            name: '최수인', part: '웹', department: 'AI컴퓨터공학부', github: 'sooinice'),
+          name: '최수인',
+          part: '웹',
+          department: 'AI컴퓨터공학부',
+          github: 'sooinice',
+        ),
         SizedBox(height: 21),
         MemberContainer(
-            name: '이한음',
-            part: '서버',
-            department: 'AI컴퓨터공학부',
-            github: 'LeeHanEum'),
+          name: '이한음',
+          part: '서버',
+          department: 'AI컴퓨터공학부',
+          github: 'LeeHanEum',
+        ),
         SizedBox(height: 21),
         MemberContainer(
-            name: '권우진', part: '서버', department: 'AI컴퓨터공학부', github: 'kwj0175'),
+          name: '권우진',
+          part: '서버',
+          department: 'AI컴퓨터공학부',
+          github: 'kwj0175',
+        ),
         SizedBox(height: 21),
         MemberContainer(
-            name: '서민혁',
-            part: '디자인',
-            department: 'AI컴퓨터공학부',
-            github: 'Seominhyeok05'),
-        SizedBox(height: 40)
+          name: '서민혁',
+          part: '디자인',
+          department: 'AI컴퓨터공학부',
+          github: 'Seominhyeok05',
+        ),
+        SizedBox(height: 50),
       ],
     );
   }

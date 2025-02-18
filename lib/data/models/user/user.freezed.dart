@@ -31,24 +31,24 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 mixin _$UserModel {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(
-            String name, String college, String? department, String? major)
+    TResult Function(String name, String college, String? department,
+            String? major, String? affiliation)
         $default, {
     required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            String name, String college, String? department, String? major)?
+    TResult? Function(String name, String college, String? department,
+            String? major, String? affiliation)?
         $default, {
     TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            String name, String college, String? department, String? major)?
+    TResult Function(String name, String college, String? department,
+            String? major, String? affiliation)?
         $default, {
     TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
     required TResult orElse(),
@@ -104,7 +104,12 @@ abstract class _$$UserImplCopyWith<$Res> {
           _$UserImpl value, $Res Function(_$UserImpl) then) =
       __$$UserImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String name, String college, String? department, String? major});
+  $Res call(
+      {String name,
+      String college,
+      String? department,
+      String? major,
+      String? affiliation});
 }
 
 /// @nodoc
@@ -123,6 +128,7 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? college = null,
     Object? department = freezed,
     Object? major = freezed,
+    Object? affiliation = freezed,
   }) {
     return _then(_$UserImpl(
       name: null == name
@@ -141,6 +147,10 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.major
           : major // ignore: cast_nullable_to_non_nullable
               as String?,
+      affiliation: freezed == affiliation
+          ? _value.affiliation
+          : affiliation // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -153,6 +163,7 @@ class _$UserImpl implements User {
       required this.college,
       this.department,
       this.major,
+      this.affiliation,
       final String? $type})
       : $type = $type ?? 'default';
 
@@ -167,13 +178,15 @@ class _$UserImpl implements User {
   final String? department;
   @override
   final String? major;
+  @override
+  final String? affiliation;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'UserModel(name: $name, college: $college, department: $department, major: $major)';
+    return 'UserModel(name: $name, college: $college, department: $department, major: $major, affiliation: $affiliation)';
   }
 
   @override
@@ -185,13 +198,15 @@ class _$UserImpl implements User {
             (identical(other.college, college) || other.college == college) &&
             (identical(other.department, department) ||
                 other.department == department) &&
-            (identical(other.major, major) || other.major == major));
+            (identical(other.major, major) || other.major == major) &&
+            (identical(other.affiliation, affiliation) ||
+                other.affiliation == affiliation));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, name, college, department, major);
+      Object.hash(runtimeType, name, college, department, major, affiliation);
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.
@@ -204,36 +219,36 @@ class _$UserImpl implements User {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(
-            String name, String college, String? department, String? major)
+    TResult Function(String name, String college, String? department,
+            String? major, String? affiliation)
         $default, {
     required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
   }) {
-    return $default(name, college, department, major);
+    return $default(name, college, department, major, affiliation);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            String name, String college, String? department, String? major)?
+    TResult? Function(String name, String college, String? department,
+            String? major, String? affiliation)?
         $default, {
     TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
   }) {
-    return $default?.call(name, college, department, major);
+    return $default?.call(name, college, department, major, affiliation);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            String name, String college, String? department, String? major)?
+    TResult Function(String name, String college, String? department,
+            String? major, String? affiliation)?
         $default, {
     TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(name, college, department, major);
+      return $default(name, college, department, major, affiliation);
     }
     return orElse();
   }
@@ -282,7 +297,8 @@ abstract class User implements UserModel {
       {required final String name,
       required final String college,
       final String? department,
-      final String? major}) = _$UserImpl;
+      final String? major,
+      final String? affiliation}) = _$UserImpl;
 
   factory User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
@@ -290,6 +306,7 @@ abstract class User implements UserModel {
   String get college;
   String? get department;
   String? get major;
+  String? get affiliation;
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.
@@ -376,8 +393,8 @@ class _$UserErrorImpl implements UserError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(
-            String name, String college, String? department, String? major)
+    TResult Function(String name, String college, String? department,
+            String? major, String? affiliation)
         $default, {
     required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
   }) {
@@ -387,8 +404,8 @@ class _$UserErrorImpl implements UserError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            String name, String college, String? department, String? major)?
+    TResult? Function(String name, String college, String? department,
+            String? major, String? affiliation)?
         $default, {
     TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
   }) {
@@ -398,8 +415,8 @@ class _$UserErrorImpl implements UserError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            String name, String college, String? department, String? major)?
+    TResult Function(String name, String college, String? department,
+            String? major, String? affiliation)?
         $default, {
     TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
     required TResult orElse(),

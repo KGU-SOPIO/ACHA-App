@@ -13,6 +13,7 @@ class UserModel with _$UserModel {
     required String college,
     String? department,
     String? major,
+    String? affiliation,
   }) = User;
 
   const factory UserModel.error({

@@ -35,11 +35,15 @@ class PhraseContainer extends StatelessWidget {
         children: [
           TextSpan(
             text: '오늘의 ',
-            style: TextStyle(fontWeight: FontWeight.w500),
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+            ),
           ),
           TextSpan(
             text: '문구',
-            style: TextStyle(fontWeight: FontWeight.w700),
+            style: TextStyle(
+              fontWeight: FontWeight.w700,
+            ),
           )
         ],
       ),

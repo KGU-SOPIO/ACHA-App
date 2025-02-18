@@ -29,14 +29,13 @@ CourseModel _$CourseModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CourseModel {
-  Object get code => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            String name,
+            String title,
             String professor,
             String lectureRoom,
-            String code,
+            int id,
             DateTime? deadline,
             String? link,
             CourseActivityList? courseActivityList,
@@ -48,10 +47,10 @@ mixin _$CourseModel {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            String name,
+            String title,
             String professor,
             String lectureRoom,
-            String code,
+            int id,
             DateTime? deadline,
             String? link,
             CourseActivityList? courseActivityList,
@@ -63,10 +62,10 @@ mixin _$CourseModel {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            String name,
+            String title,
             String professor,
             String lectureRoom,
-            String code,
+            int id,
             DateTime? deadline,
             String? link,
             CourseActivityList? courseActivityList,
@@ -128,10 +127,10 @@ abstract class _$$CourseImplCopyWith<$Res> {
       __$$CourseImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
-      {String name,
+      {String title,
       String professor,
       String lectureRoom,
-      String code,
+      int id,
       DateTime? deadline,
       String? link,
       CourseActivityList? courseActivityList,
@@ -151,19 +150,19 @@ class __$$CourseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
+    Object? title = null,
     Object? professor = null,
     Object? lectureRoom = null,
-    Object? code = null,
+    Object? id = null,
     Object? deadline = freezed,
     Object? link = freezed,
     Object? courseActivityList = freezed,
     Object? noticeList = freezed,
   }) {
     return _then(_$CourseImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
       professor: null == professor
           ? _value.professor
@@ -173,10 +172,10 @@ class __$$CourseImplCopyWithImpl<$Res>
           ? _value.lectureRoom
           : lectureRoom // ignore: cast_nullable_to_non_nullable
               as String,
-      code: null == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       deadline: freezed == deadline
           ? _value.deadline
           : deadline // ignore: cast_nullable_to_non_nullable
@@ -201,10 +200,10 @@ class __$$CourseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CourseImpl implements Course {
   const _$CourseImpl(
-      {required this.name,
+      {required this.title,
       required this.professor,
       required this.lectureRoom,
-      required this.code,
+      required this.id,
       this.deadline,
       this.link,
       this.courseActivityList,
@@ -216,13 +215,13 @@ class _$CourseImpl implements Course {
       _$$CourseImplFromJson(json);
 
   @override
-  final String name;
+  final String title;
   @override
   final String professor;
   @override
   final String lectureRoom;
   @override
-  final String code;
+  final int id;
   @override
   final DateTime? deadline;
   @override
@@ -237,7 +236,7 @@ class _$CourseImpl implements Course {
 
   @override
   String toString() {
-    return 'CourseModel(name: $name, professor: $professor, lectureRoom: $lectureRoom, code: $code, deadline: $deadline, link: $link, courseActivityList: $courseActivityList, noticeList: $noticeList)';
+    return 'CourseModel(title: $title, professor: $professor, lectureRoom: $lectureRoom, id: $id, deadline: $deadline, link: $link, courseActivityList: $courseActivityList, noticeList: $noticeList)';
   }
 
   @override
@@ -245,12 +244,12 @@ class _$CourseImpl implements Course {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CourseImpl &&
-            (identical(other.name, name) || other.name == name) &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.professor, professor) ||
                 other.professor == professor) &&
             (identical(other.lectureRoom, lectureRoom) ||
                 other.lectureRoom == lectureRoom) &&
-            (identical(other.code, code) || other.code == code) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.deadline, deadline) ||
                 other.deadline == deadline) &&
             (identical(other.link, link) || other.link == link) &&
@@ -264,10 +263,10 @@ class _$CourseImpl implements Course {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      name,
+      title,
       professor,
       lectureRoom,
-      code,
+      id,
       deadline,
       link,
       const DeepCollectionEquality().hash(courseActivityList),
@@ -285,10 +284,10 @@ class _$CourseImpl implements Course {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            String name,
+            String title,
             String professor,
             String lectureRoom,
-            String code,
+            int id,
             DateTime? deadline,
             String? link,
             CourseActivityList? courseActivityList,
@@ -296,7 +295,7 @@ class _$CourseImpl implements Course {
         $default, {
     required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
   }) {
-    return $default(name, professor, lectureRoom, code, deadline, link,
+    return $default(title, professor, lectureRoom, id, deadline, link,
         courseActivityList, noticeList);
   }
 
@@ -304,10 +303,10 @@ class _$CourseImpl implements Course {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            String name,
+            String title,
             String professor,
             String lectureRoom,
-            String code,
+            int id,
             DateTime? deadline,
             String? link,
             CourseActivityList? courseActivityList,
@@ -315,7 +314,7 @@ class _$CourseImpl implements Course {
         $default, {
     TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
   }) {
-    return $default?.call(name, professor, lectureRoom, code, deadline, link,
+    return $default?.call(title, professor, lectureRoom, id, deadline, link,
         courseActivityList, noticeList);
   }
 
@@ -323,10 +322,10 @@ class _$CourseImpl implements Course {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            String name,
+            String title,
             String professor,
             String lectureRoom,
-            String code,
+            int id,
             DateTime? deadline,
             String? link,
             CourseActivityList? courseActivityList,
@@ -336,7 +335,7 @@ class _$CourseImpl implements Course {
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(name, professor, lectureRoom, code, deadline, link,
+      return $default(title, professor, lectureRoom, id, deadline, link,
           courseActivityList, noticeList);
     }
     return orElse();
@@ -383,10 +382,10 @@ class _$CourseImpl implements Course {
 
 abstract class Course implements CourseModel {
   const factory Course(
-      {required final String name,
+      {required final String title,
       required final String professor,
       required final String lectureRoom,
-      required final String code,
+      required final int id,
       final DateTime? deadline,
       final String? link,
       final CourseActivityList? courseActivityList,
@@ -394,11 +393,10 @@ abstract class Course implements CourseModel {
 
   factory Course.fromJson(Map<String, dynamic> json) = _$CourseImpl.fromJson;
 
-  String get name;
+  String get title;
   String get professor;
   String get lectureRoom;
-  @override
-  String get code;
+  int get id;
   DateTime? get deadline;
   String? get link;
   CourseActivityList? get courseActivityList;
@@ -490,10 +488,10 @@ class _$CourseErrorImpl implements CourseError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            String name,
+            String title,
             String professor,
             String lectureRoom,
-            String code,
+            int id,
             DateTime? deadline,
             String? link,
             CourseActivityList? courseActivityList,
@@ -508,10 +506,10 @@ class _$CourseErrorImpl implements CourseError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            String name,
+            String title,
             String professor,
             String lectureRoom,
-            String code,
+            int id,
             DateTime? deadline,
             String? link,
             CourseActivityList? courseActivityList,
@@ -526,10 +524,10 @@ class _$CourseErrorImpl implements CourseError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            String name,
+            String title,
             String professor,
             String lectureRoom,
-            String code,
+            int id,
             DateTime? deadline,
             String? link,
             CourseActivityList? courseActivityList,
@@ -591,7 +589,6 @@ abstract class CourseError implements CourseModel {
   factory CourseError.fromJson(Map<String, dynamic> json) =
       _$CourseErrorImpl.fromJson;
 
-  @override
   @ErrorCodeConverter()
   ErrorCode get code;
 

@@ -23,7 +23,7 @@ abstract class AuthenticationRepository {
     required User user,
   });
 
-  Future<Either<String, Unit>> withdraw({
+  Future<Either<String, Unit>> signout({
     required String password,
   });
 

@@ -83,7 +83,10 @@ class _CourseScreenState extends State<CourseScreen> {
             child: Center(
               child: Text(
                 state.errorMessage!,
-                style: const TextStyle(fontSize: 15),
+                style: const TextStyle(
+                  fontSize: 15,
+                  color: Color.fromARGB(255, 109, 109, 109),
+                ),
               ),
             ),
           );
@@ -93,7 +96,7 @@ class _CourseScreenState extends State<CourseScreen> {
   }
 
   Widget _buildLoadedContent(CourseListState state) {
-    final courseList = state.courseList?.courseList;
+    final courseList = state.courseList?.contents;
     if (courseList == null) {
       return const SizedBox(
         height: 500,
@@ -112,7 +115,7 @@ class _CourseScreenState extends State<CourseScreen> {
           (course) {
             return CourseContainer(
               professorName: course.professor,
-              courseName: course.name,
+              courseName: course.title,
               lectureRoom: course.lectureRoom,
               deadline: course.deadline,
               onTap: () => Navigator.push(

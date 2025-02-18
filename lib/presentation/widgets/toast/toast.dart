@@ -22,8 +22,10 @@ class _ToastState extends State<Toast> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _animationController =
-        AnimationController(vsync: this, duration: widget.animationDuration);
+    _animationController = AnimationController(
+      vsync: this,
+      duration: widget.animationDuration,
+    );
     _animation = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
         parent: _animationController,
@@ -43,7 +45,9 @@ class _ToastState extends State<Toast> with SingleTickerProviderStateMixin {
   void _animate() {
     _animationController.forward().whenCompleteOrCancel(() {
       Future.delayed(
-          widget.toastDuration, () => _animationController.reverse());
+        widget.toastDuration,
+        () => _animationController.reverse(),
+      );
     });
   }
 

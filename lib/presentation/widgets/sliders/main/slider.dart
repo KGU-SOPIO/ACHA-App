@@ -47,11 +47,11 @@ class _SliderWidgetState extends State<SliderWidget> {
               CarouselSlider(
                 carouselController: widget.carouselSliderController,
                 options: CarouselOptions(
-                    aspectRatio: 0.74,
-                    viewportFraction: 1,
-                    enableInfiniteScroll: false,
-                    onPageChanged: (index, reason) =>
-                        widget.onPageChanged(index)),
+                  aspectRatio: 0.74,
+                  viewportFraction: 1,
+                  enableInfiniteScroll: false,
+                  onPageChanged: (index, reason) => widget.onPageChanged(index),
+                ),
                 items: [
                   _buildLectureSection(context),
                   _buildAssignmentSection(context),
@@ -77,17 +77,22 @@ class _SliderWidgetState extends State<SliderWidget> {
       child: Column(
         children: [
           _buildSectionTitle(
-              title: '우선 강의', iconPath: 'lib/assets/svgs/modal/main/play.svg'),
+            title: '우선 강의',
+            iconPath: 'lib/assets/svgs/modal/main/play.svg',
+          ),
           const SizedBox(height: 18),
           _buildActivityBlocConsumer(
-              loadedBuilder: (state) {
-                final weekActivities = state.weekActivities;
-                final lectures =
-                    weekActivities?.getLectureActivities(group: true);
-                return _buildLectureList(
-                    lectures: lectures, notExistMessage: '남은 강의가 없어요');
-              },
-              errorMessage: '우선 강의를 불러오지 못했어요'),
+            loadedBuilder: (state) {
+              final weekActivities = state.weekActivities;
+              final lectures =
+                  weekActivities?.getLectureActivities(group: true);
+              return _buildLectureList(
+                lectures: lectures,
+                notExistMessage: '남은 강의가 없어요',
+              );
+            },
+            errorMessage: '우선 강의를 불러오지 못했어요',
+          ),
         ],
       ),
     );
@@ -99,7 +104,9 @@ class _SliderWidgetState extends State<SliderWidget> {
       child: Column(
         children: [
           _buildSectionTitle(
-              title: '우선 과제', iconPath: 'lib/assets/svgs/modal/main/list.svg'),
+            title: '우선 과제',
+            iconPath: 'lib/assets/svgs/modal/main/list.svg',
+          ),
           const SizedBox(height: 18),
           _buildActivityBlocConsumer(
             loadedBuilder: (state) {
@@ -107,7 +114,9 @@ class _SliderWidgetState extends State<SliderWidget> {
               final assignments =
                   weekActivities?.getAssignmentActivities(group: true);
               return _buildAssignmentList(
-                  assignments: assignments, notExistMessage: '남은 과제가 없어요');
+                assignments: assignments,
+                notExistMessage: '남은 과제가 없어요',
+              );
             },
             errorMessage: '우선 과제를 불러오지 못했어요',
           ),
@@ -131,11 +140,15 @@ class _SliderWidgetState extends State<SliderWidget> {
                 children: [
                   const TextSpan(
                     text: '나의 ',
-                    style: TextStyle(fontWeight: FontWeight.w500),
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                   TextSpan(
                     text: title,
-                    style: const TextStyle(fontWeight: FontWeight.w700),
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ],
               ),
@@ -186,7 +199,10 @@ class _SliderWidgetState extends State<SliderWidget> {
             child: Center(
               child: Text(
                 errorMessage,
-                style: const TextStyle(fontSize: 15),
+                style: const TextStyle(
+                  fontSize: 15,
+                  color: Color.fromARGB(255, 109, 109, 109),
+                ),
               ),
             ),
           );

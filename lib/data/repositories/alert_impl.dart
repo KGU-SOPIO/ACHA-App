@@ -24,8 +24,9 @@ class AlertRepositoryImpl implements AlertRepository {
 
   /// 알림 상태 변경을 요청합니다.
   @override
-  Future<Either<String, Unit>> updateAlertStatus(
-      {required bool isEnabled}) async {
+  Future<Either<String, Unit>> updateAlertStatus({
+    required bool isEnabled,
+  }) async {
     try {
       await dio.post(AlertApiEndpoints.alert, data: {'status': isEnabled});
       return const Right(unit);

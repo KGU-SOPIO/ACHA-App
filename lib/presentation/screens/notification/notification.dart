@@ -84,24 +84,33 @@ class _NotificationScreenState extends State<NotificationScreen>
   Widget _buildLoadedContent(ActivityList? activities) {
     return TabBarView(controller: _tabController, children: [
       _buildActivityListView(
-          activities?.getLectureAndAssignmentActivities(group: true)),
+        activities?.getLectureAndAssignmentActivities(group: true),
+      ),
       _buildActivityListView(activities?.getLectureActivities(group: true)),
       _buildActivityListView(activities?.getAssignmentActivities(group: true))
     ]);
   }
 
   Widget _buildErrorContent() {
-    return TabBarView(controller: _tabController, children: [
-      const Center(
-          child: Text('활동을 불러오지 못했어요', style: TextStyle(fontSize: 15))),
-      const Center(
-          child: Text('활동을 불러오지 못했어요', style: TextStyle(fontSize: 15))),
-      const Center(child: Text('활동을 불러오지 못했어요', style: TextStyle(fontSize: 15)))
-    ]);
+    const errorWidget = Center(
+      child: Text(
+        '활동을 불러오지 못했어요',
+        style: TextStyle(
+          fontSize: 15,
+          color: Color.fromARGB(255, 109, 109, 109),
+        ),
+      ),
+    );
+
+    return TabBarView(
+      controller: _tabController,
+      children: List.generate(3, (_) => errorWidget),
+    );
   }
 
   Widget _buildActivityListView(
-      Map<DateTime, List<Activity>>? groupedActivities) {
+    Map<DateTime, List<Activity>>? groupedActivities,
+  ) {
     if (groupedActivities == null) {
       return const Center(child: Text('다 끝내셨군요! 고생하셨어요'));
     }
