@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:get_it/get_it.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import 'package:acha/presentation/widgets/index.dart';
 
 class TermsBottomModalSheet {
   TermsBottomModalSheet({
@@ -145,7 +148,7 @@ class TermsBottomModalSheet {
         await launchUrl(uri);
       }
     } catch (e) {
-      return;
+      GetIt.I<ToastManager>().error(message: '약관 페이지를 열지 못했어요');
     }
   }
 }

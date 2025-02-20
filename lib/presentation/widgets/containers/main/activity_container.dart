@@ -20,7 +20,7 @@ class ActivityContainer extends StatelessWidget {
   final String title;
   final String course;
   final String deadline;
-  final Uri uri;
+  final Uri? uri;
   final EdgeInsets? margin;
   final Color? backgroundColor;
 

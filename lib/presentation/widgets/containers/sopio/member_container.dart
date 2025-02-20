@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:get_it/get_it.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'package:acha/presentation/widgets/index.dart';
 
 class MemberContainer extends StatelessWidget {
   const MemberContainer({
@@ -103,7 +106,7 @@ class MemberContainer extends StatelessWidget {
         await launchUrl(uri, mode: LaunchMode.externalApplication);
       }
     } catch (e) {
-      return;
+      GetIt.I<ToastManager>().error(message: 'GitHub 프로필을 열지 못했어요');
     }
   }
 }

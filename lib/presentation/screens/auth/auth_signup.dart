@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
+import 'package:get_it/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -68,7 +69,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
         await launchUrl(uri);
       }
     } catch (e) {
-      return;
+      GetIt.I<ToastManager>().error(message: '매뉴얼 페이지를 열지 못했어요');
     }
   }
 
@@ -172,8 +173,9 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
 
   Widget _buildManualButton() {
     return TextButton(
-      style:
-          TextButton.styleFrom(tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+      style: TextButton.styleFrom(
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      ),
       onPressed: () => _openManualUri(),
       child: Row(
         mainAxisSize: MainAxisSize.min,

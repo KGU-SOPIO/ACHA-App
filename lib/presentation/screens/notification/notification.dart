@@ -135,7 +135,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                   title: activity.name,
                   course: activity.courseName!,
                   deadline: activity.deadline!.toTimeLeftFormattedTime(),
-                  uri: Uri.tryParse(activity.link) ?? Uri(),
+                  uri: Uri.tryParse(activity.link),
                   margin: const EdgeInsets.only(bottom: 16),
                   backgroundColor: Colors.white,
                 ),

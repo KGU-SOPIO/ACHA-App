@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 import 'package:acha/core/extensions/index.dart';
@@ -33,6 +34,16 @@ class _SliderWidgetState extends State<SliderWidget> {
   void initState() {
     super.initState();
     context.read<ActivityBloc>().add(const ActivityEvent.fetchActivities());
+  }
+
+  Future<void> _openActivityUri({required Uri uri}) async {
+    try {
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      }
+    } catch (e) {
+      GetIt.I<ToastManager>().error(message: 'LMS 페이지를 열지 못했어요');
+    }
   }
 
   @override
@@ -244,7 +255,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                   title: lecture.name,
                   course: lecture.courseName!,
                   deadline: lecture.deadline!.toTimeLeftFormattedTime(),
-                  uri: Uri.tryParse(lecture.link) ?? Uri(),
+                  uri: Uri.tryParse(lecture.link),
                   margin: const EdgeInsets.only(bottom: 13),
                 ),
               const SizedBox(height: 20),
@@ -288,7 +299,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                   title: assignment.name,
                   course: assignment.courseName!,
                   deadline: assignment.deadline!.toTimeLeftFormattedTime(),
-                  uri: Uri.tryParse(assignment.link) ?? Uri(),
+                  uri: Uri.tryParse(assignment.link),
                   margin: const EdgeInsets.only(bottom: 13),
                 ),
               const SizedBox(height: 20),
