@@ -77,7 +77,7 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
           ],
         ),
         uri: Uri.parse(TermsAndConditionsUri.consentToUseStudentInformation),
-        termsButtonText: '개인정보 활용 동의',
+        termsButtonText: '개인정보 수집·이용 동의',
         agreeButtonText: '동의하고 학생 인증',
         onAgree: () => Navigator.push(
           context,

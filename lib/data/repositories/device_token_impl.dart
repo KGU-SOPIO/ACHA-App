@@ -38,6 +38,7 @@ class DeviceTokenRepositoryImpl implements DeviceTokenRepository {
     }
   }
 
+  /// 서버에 토큰 등록 POST 요청을 보냅니다.
   Future<void> _postToken({required String token}) async {
     await dio.post(
       FCMTokenApiEndpoints.fcmToken,

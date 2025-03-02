@@ -1,5 +1,5 @@
 class TermsAndConditionsUri {
-  static const String baseUri = 'https://terms.sopio.kr';
-  static const String consentToUseStudentInformation = '$baseUri/student';
-  static const String serviceTermsAndConditions = '$baseUri/service';
+  static const String baseUri = 'https://www.acha.team';
+  static const String consentToUseStudentInformation = '$baseUri/terms/privacy';
+  static const String serviceTermsAndConditions = '$baseUri/terms/service';
 }

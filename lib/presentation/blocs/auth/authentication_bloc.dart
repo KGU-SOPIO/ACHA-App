@@ -13,18 +13,18 @@ class AuthenticationBloc
   }) : super(const AuthenticationState.unknown()) {
     _authenticationStatusSubscription =
         authenticationRepository.authStream.listen(
-      (status) => add(ChangeStatus(status: status)),
+      (state) => add(ChangeState(state: state)),
     );
     _logoutUseCase = LogoutUseCase(
       authenticationRepository: authenticationRepository,
     );
 
-    on<ChangeStatus>(_onChangeAuthenticationStatus);
+    on<ChangeState>(_onChangeState);
     on<Logout>(_onLogout);
   }
 
   final AuthenticationRepository authenticationRepository;
-  late final StreamSubscription<AuthenticationStatus>
+  late final StreamSubscription<AuthenticationState>
       _authenticationStatusSubscription;
   late final LogoutUseCase _logoutUseCase;
 
@@ -34,34 +34,15 @@ class AuthenticationBloc
     return super.close();
   }
 
-  /// 인증 상태 변화를 감지합니다.
-  Future<void> _onChangeAuthenticationStatus(
-    ChangeStatus event,
+  /// 인증 상태를 변경합니다.
+  Future<void> _onChangeState(
+    ChangeState event,
     Emitter<AuthenticationState> emit,
   ) async {
-    switch (event.status) {
-      case AuthenticationStatus.unauthenticated:
-        emit(const AuthenticationState.unauthenticated());
-        break;
-      case AuthenticationStatus.authenticated:
-        emit(const AuthenticationState.authenticated());
-        break;
-      case AuthenticationStatus.registered:
-        emit(const AuthenticationState.registered());
-        break;
-      case AuthenticationStatus.expired:
-        emit(const AuthenticationState.expired());
-        break;
-      case AuthenticationStatus.error:
-        emit(const AuthenticationState.error());
-        break;
-      case AuthenticationStatus.unknown:
-        emit(const AuthenticationState.unknown());
-        break;
-    }
+    emit(event.state);
   }
 
-  /// 로그아웃합니다.
+  /// 로그아웃 Use Case를 호출합니다.
   Future<void> _onLogout(
     Logout event,
     Emitter<AuthenticationState> emit,

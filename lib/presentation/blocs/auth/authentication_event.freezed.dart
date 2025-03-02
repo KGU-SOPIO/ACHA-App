@@ -18,38 +18,38 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AuthenticationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(AuthenticationStatus status) changeStatus,
+    required TResult Function(AuthenticationState state) changeState,
     required TResult Function() logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(AuthenticationStatus status)? changeStatus,
+    TResult? Function(AuthenticationState state)? changeState,
     TResult? Function()? logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AuthenticationStatus status)? changeStatus,
+    TResult Function(AuthenticationState state)? changeState,
     TResult Function()? logout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ChangeStatus value) changeStatus,
+    required TResult Function(ChangeState value) changeState,
     required TResult Function(Logout value) logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ChangeStatus value)? changeStatus,
+    TResult? Function(ChangeState value)? changeState,
     TResult? Function(Logout value)? logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ChangeStatus value)? changeStatus,
+    TResult Function(ChangeState value)? changeState,
     TResult Function(Logout value)? logout,
     required TResult orElse(),
   }) =>
@@ -78,20 +78,22 @@ class _$AuthenticationEventCopyWithImpl<$Res, $Val extends AuthenticationEvent>
 }
 
 /// @nodoc
-abstract class _$$ChangeStatusImplCopyWith<$Res> {
-  factory _$$ChangeStatusImplCopyWith(
-          _$ChangeStatusImpl value, $Res Function(_$ChangeStatusImpl) then) =
-      __$$ChangeStatusImplCopyWithImpl<$Res>;
+abstract class _$$ChangeStateImplCopyWith<$Res> {
+  factory _$$ChangeStateImplCopyWith(
+          _$ChangeStateImpl value, $Res Function(_$ChangeStateImpl) then) =
+      __$$ChangeStateImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({AuthenticationStatus status});
+  $Res call({AuthenticationState state});
+
+  $AuthenticationStateCopyWith<$Res> get state;
 }
 
 /// @nodoc
-class __$$ChangeStatusImplCopyWithImpl<$Res>
-    extends _$AuthenticationEventCopyWithImpl<$Res, _$ChangeStatusImpl>
-    implements _$$ChangeStatusImplCopyWith<$Res> {
-  __$$ChangeStatusImplCopyWithImpl(
-      _$ChangeStatusImpl _value, $Res Function(_$ChangeStatusImpl) _then)
+class __$$ChangeStateImplCopyWithImpl<$Res>
+    extends _$AuthenticationEventCopyWithImpl<$Res, _$ChangeStateImpl>
+    implements _$$ChangeStateImplCopyWith<$Res> {
+  __$$ChangeStateImplCopyWithImpl(
+      _$ChangeStateImpl _value, $Res Function(_$ChangeStateImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AuthenticationEvent
@@ -99,76 +101,86 @@ class __$$ChangeStatusImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? state = null,
   }) {
-    return _then(_$ChangeStatusImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as AuthenticationStatus,
+    return _then(_$ChangeStateImpl(
+      state: null == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as AuthenticationState,
     ));
+  }
+
+  /// Create a copy of AuthenticationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AuthenticationStateCopyWith<$Res> get state {
+    return $AuthenticationStateCopyWith<$Res>(_value.state, (value) {
+      return _then(_value.copyWith(state: value));
+    });
   }
 }
 
 /// @nodoc
 
-class _$ChangeStatusImpl implements ChangeStatus {
-  const _$ChangeStatusImpl({required this.status});
+class _$ChangeStateImpl implements ChangeState {
+  const _$ChangeStateImpl({required this.state});
 
   @override
-  final AuthenticationStatus status;
+  final AuthenticationState state;
 
   @override
   String toString() {
-    return 'AuthenticationEvent.changeStatus(status: $status)';
+    return 'AuthenticationEvent.changeState(state: $state)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ChangeStatusImpl &&
-            (identical(other.status, status) || other.status == status));
+            other is _$ChangeStateImpl &&
+            (identical(other.state, state) || other.state == state));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status);
+  int get hashCode => Object.hash(runtimeType, state);
 
   /// Create a copy of AuthenticationEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ChangeStatusImplCopyWith<_$ChangeStatusImpl> get copyWith =>
-      __$$ChangeStatusImplCopyWithImpl<_$ChangeStatusImpl>(this, _$identity);
+  _$$ChangeStateImplCopyWith<_$ChangeStateImpl> get copyWith =>
+      __$$ChangeStateImplCopyWithImpl<_$ChangeStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(AuthenticationStatus status) changeStatus,
+    required TResult Function(AuthenticationState state) changeState,
     required TResult Function() logout,
   }) {
-    return changeStatus(status);
+    return changeState(state);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(AuthenticationStatus status)? changeStatus,
+    TResult? Function(AuthenticationState state)? changeState,
     TResult? Function()? logout,
   }) {
-    return changeStatus?.call(status);
+    return changeState?.call(state);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AuthenticationStatus status)? changeStatus,
+    TResult Function(AuthenticationState state)? changeState,
     TResult Function()? logout,
     required TResult orElse(),
   }) {
-    if (changeStatus != null) {
-      return changeStatus(status);
+    if (changeState != null) {
+      return changeState(state);
     }
     return orElse();
   }
@@ -176,45 +188,45 @@ class _$ChangeStatusImpl implements ChangeStatus {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ChangeStatus value) changeStatus,
+    required TResult Function(ChangeState value) changeState,
     required TResult Function(Logout value) logout,
   }) {
-    return changeStatus(this);
+    return changeState(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ChangeStatus value)? changeStatus,
+    TResult? Function(ChangeState value)? changeState,
     TResult? Function(Logout value)? logout,
   }) {
-    return changeStatus?.call(this);
+    return changeState?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ChangeStatus value)? changeStatus,
+    TResult Function(ChangeState value)? changeState,
     TResult Function(Logout value)? logout,
     required TResult orElse(),
   }) {
-    if (changeStatus != null) {
-      return changeStatus(this);
+    if (changeState != null) {
+      return changeState(this);
     }
     return orElse();
   }
 }
 
-abstract class ChangeStatus implements AuthenticationEvent {
-  const factory ChangeStatus({required final AuthenticationStatus status}) =
-      _$ChangeStatusImpl;
+abstract class ChangeState implements AuthenticationEvent {
+  const factory ChangeState({required final AuthenticationState state}) =
+      _$ChangeStateImpl;
 
-  AuthenticationStatus get status;
+  AuthenticationState get state;
 
   /// Create a copy of AuthenticationEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ChangeStatusImplCopyWith<_$ChangeStatusImpl> get copyWith =>
+  _$$ChangeStateImplCopyWith<_$ChangeStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -259,7 +271,7 @@ class _$LogoutImpl implements Logout {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(AuthenticationStatus status) changeStatus,
+    required TResult Function(AuthenticationState state) changeState,
     required TResult Function() logout,
   }) {
     return logout();
@@ -268,7 +280,7 @@ class _$LogoutImpl implements Logout {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(AuthenticationStatus status)? changeStatus,
+    TResult? Function(AuthenticationState state)? changeState,
     TResult? Function()? logout,
   }) {
     return logout?.call();
@@ -277,7 +289,7 @@ class _$LogoutImpl implements Logout {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AuthenticationStatus status)? changeStatus,
+    TResult Function(AuthenticationState state)? changeState,
     TResult Function()? logout,
     required TResult orElse(),
   }) {
@@ -290,7 +302,7 @@ class _$LogoutImpl implements Logout {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ChangeStatus value) changeStatus,
+    required TResult Function(ChangeState value) changeState,
     required TResult Function(Logout value) logout,
   }) {
     return logout(this);
@@ -299,7 +311,7 @@ class _$LogoutImpl implements Logout {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ChangeStatus value)? changeStatus,
+    TResult? Function(ChangeState value)? changeState,
     TResult? Function(Logout value)? logout,
   }) {
     return logout?.call(this);
@@ -308,7 +320,7 @@ class _$LogoutImpl implements Logout {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ChangeStatus value)? changeStatus,
+    TResult Function(ChangeState value)? changeState,
     TResult Function(Logout value)? logout,
     required TResult orElse(),
   }) {

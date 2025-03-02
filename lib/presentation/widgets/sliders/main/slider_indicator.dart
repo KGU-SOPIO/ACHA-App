@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 class CarouselIndicator extends StatelessWidget {
-  const CarouselIndicator(
-      {super.key, required this.itemCount, required this.currentIndex});
+  const CarouselIndicator({
+    super.key,
+    required this.itemCount,
+    required this.currentIndex,
+  });
 
   final int itemCount;
   final int currentIndex;

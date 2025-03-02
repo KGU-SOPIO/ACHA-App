@@ -19,31 +19,25 @@ mixin _$AuthenticationState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
-    required TResult Function() error,
-    required TResult Function() expired,
-    required TResult Function() registered,
-    required TResult Function() authenticated,
-    required TResult Function() unauthenticated,
+    required TResult Function(String title, String message) error,
+    required TResult Function(bool isSignedUp) authenticated,
+    required TResult Function(bool? isExpired) unauthenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unknown,
-    TResult? Function()? error,
-    TResult? Function()? expired,
-    TResult? Function()? registered,
-    TResult? Function()? authenticated,
-    TResult? Function()? unauthenticated,
+    TResult? Function(String title, String message)? error,
+    TResult? Function(bool isSignedUp)? authenticated,
+    TResult? Function(bool? isExpired)? unauthenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
-    TResult Function()? error,
-    TResult Function()? expired,
-    TResult Function()? registered,
-    TResult Function()? authenticated,
-    TResult Function()? unauthenticated,
+    TResult Function(String title, String message)? error,
+    TResult Function(bool isSignedUp)? authenticated,
+    TResult Function(bool? isExpired)? unauthenticated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,30 +45,24 @@ mixin _$AuthenticationState {
   TResult map<TResult extends Object?>({
     required TResult Function(Unknown value) unknown,
     required TResult Function(Error value) error,
-    required TResult Function(Expired value) expired,
-    required TResult Function(Registered value) registered,
     required TResult Function(Authenticated value) authenticated,
-    required TResult Function(UnAuthenticated value) unauthenticated,
+    required TResult Function(Unauthenticated value) unauthenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Unknown value)? unknown,
     TResult? Function(Error value)? error,
-    TResult? Function(Expired value)? expired,
-    TResult? Function(Registered value)? registered,
     TResult? Function(Authenticated value)? authenticated,
-    TResult? Function(UnAuthenticated value)? unauthenticated,
+    TResult? Function(Unauthenticated value)? unauthenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Unknown value)? unknown,
     TResult Function(Error value)? error,
-    TResult Function(Expired value)? expired,
-    TResult Function(Registered value)? registered,
     TResult Function(Authenticated value)? authenticated,
-    TResult Function(UnAuthenticated value)? unauthenticated,
+    TResult Function(Unauthenticated value)? unauthenticated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -143,11 +131,9 @@ class _$UnknownImpl implements Unknown {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
-    required TResult Function() error,
-    required TResult Function() expired,
-    required TResult Function() registered,
-    required TResult Function() authenticated,
-    required TResult Function() unauthenticated,
+    required TResult Function(String title, String message) error,
+    required TResult Function(bool isSignedUp) authenticated,
+    required TResult Function(bool? isExpired) unauthenticated,
   }) {
     return unknown();
   }
@@ -156,11 +142,9 @@ class _$UnknownImpl implements Unknown {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unknown,
-    TResult? Function()? error,
-    TResult? Function()? expired,
-    TResult? Function()? registered,
-    TResult? Function()? authenticated,
-    TResult? Function()? unauthenticated,
+    TResult? Function(String title, String message)? error,
+    TResult? Function(bool isSignedUp)? authenticated,
+    TResult? Function(bool? isExpired)? unauthenticated,
   }) {
     return unknown?.call();
   }
@@ -169,11 +153,9 @@ class _$UnknownImpl implements Unknown {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
-    TResult Function()? error,
-    TResult Function()? expired,
-    TResult Function()? registered,
-    TResult Function()? authenticated,
-    TResult Function()? unauthenticated,
+    TResult Function(String title, String message)? error,
+    TResult Function(bool isSignedUp)? authenticated,
+    TResult Function(bool? isExpired)? unauthenticated,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -187,10 +169,8 @@ class _$UnknownImpl implements Unknown {
   TResult map<TResult extends Object?>({
     required TResult Function(Unknown value) unknown,
     required TResult Function(Error value) error,
-    required TResult Function(Expired value) expired,
-    required TResult Function(Registered value) registered,
     required TResult Function(Authenticated value) authenticated,
-    required TResult Function(UnAuthenticated value) unauthenticated,
+    required TResult Function(Unauthenticated value) unauthenticated,
   }) {
     return unknown(this);
   }
@@ -200,10 +180,8 @@ class _$UnknownImpl implements Unknown {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Unknown value)? unknown,
     TResult? Function(Error value)? error,
-    TResult? Function(Expired value)? expired,
-    TResult? Function(Registered value)? registered,
     TResult? Function(Authenticated value)? authenticated,
-    TResult? Function(UnAuthenticated value)? unauthenticated,
+    TResult? Function(Unauthenticated value)? unauthenticated,
   }) {
     return unknown?.call(this);
   }
@@ -213,10 +191,8 @@ class _$UnknownImpl implements Unknown {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Unknown value)? unknown,
     TResult Function(Error value)? error,
-    TResult Function(Expired value)? expired,
-    TResult Function(Registered value)? registered,
     TResult Function(Authenticated value)? authenticated,
-    TResult Function(UnAuthenticated value)? unauthenticated,
+    TResult Function(Unauthenticated value)? unauthenticated,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -235,6 +211,8 @@ abstract class _$$ErrorImplCopyWith<$Res> {
   factory _$$ErrorImplCopyWith(
           _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
       __$$ErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String title, String message});
 }
 
 /// @nodoc
@@ -247,66 +225,93 @@ class __$$ErrorImplCopyWithImpl<$Res>
 
   /// Create a copy of AuthenticationState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? title = null,
+    Object? message = null,
+  }) {
+    return _then(_$ErrorImpl(
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ErrorImpl implements Error {
-  const _$ErrorImpl();
+  const _$ErrorImpl({required this.title, required this.message});
+
+  @override
+  final String title;
+  @override
+  final String message;
 
   @override
   String toString() {
-    return 'AuthenticationState.error()';
+    return 'AuthenticationState.error(title: $title, message: $message)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ErrorImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$ErrorImpl &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, title, message);
+
+  /// Create a copy of AuthenticationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+      __$$ErrorImplCopyWithImpl<_$ErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
-    required TResult Function() error,
-    required TResult Function() expired,
-    required TResult Function() registered,
-    required TResult Function() authenticated,
-    required TResult Function() unauthenticated,
+    required TResult Function(String title, String message) error,
+    required TResult Function(bool isSignedUp) authenticated,
+    required TResult Function(bool? isExpired) unauthenticated,
   }) {
-    return error();
+    return error(title, message);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unknown,
-    TResult? Function()? error,
-    TResult? Function()? expired,
-    TResult? Function()? registered,
-    TResult? Function()? authenticated,
-    TResult? Function()? unauthenticated,
+    TResult? Function(String title, String message)? error,
+    TResult? Function(bool isSignedUp)? authenticated,
+    TResult? Function(bool? isExpired)? unauthenticated,
   }) {
-    return error?.call();
+    return error?.call(title, message);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
-    TResult Function()? error,
-    TResult Function()? expired,
-    TResult Function()? registered,
-    TResult Function()? authenticated,
-    TResult Function()? unauthenticated,
+    TResult Function(String title, String message)? error,
+    TResult Function(bool isSignedUp)? authenticated,
+    TResult Function(bool? isExpired)? unauthenticated,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error();
+      return error(title, message);
     }
     return orElse();
   }
@@ -316,10 +321,8 @@ class _$ErrorImpl implements Error {
   TResult map<TResult extends Object?>({
     required TResult Function(Unknown value) unknown,
     required TResult Function(Error value) error,
-    required TResult Function(Expired value) expired,
-    required TResult Function(Registered value) registered,
     required TResult Function(Authenticated value) authenticated,
-    required TResult Function(UnAuthenticated value) unauthenticated,
+    required TResult Function(Unauthenticated value) unauthenticated,
   }) {
     return error(this);
   }
@@ -329,10 +332,8 @@ class _$ErrorImpl implements Error {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Unknown value)? unknown,
     TResult? Function(Error value)? error,
-    TResult? Function(Expired value)? expired,
-    TResult? Function(Registered value)? registered,
     TResult? Function(Authenticated value)? authenticated,
-    TResult? Function(UnAuthenticated value)? unauthenticated,
+    TResult? Function(Unauthenticated value)? unauthenticated,
   }) {
     return error?.call(this);
   }
@@ -342,10 +343,8 @@ class _$ErrorImpl implements Error {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Unknown value)? unknown,
     TResult Function(Error value)? error,
-    TResult Function(Expired value)? expired,
-    TResult Function(Registered value)? registered,
     TResult Function(Authenticated value)? authenticated,
-    TResult Function(UnAuthenticated value)? unauthenticated,
+    TResult Function(Unauthenticated value)? unauthenticated,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -356,265 +355,18 @@ class _$ErrorImpl implements Error {
 }
 
 abstract class Error implements AuthenticationState {
-  const factory Error() = _$ErrorImpl;
-}
+  const factory Error(
+      {required final String title,
+      required final String message}) = _$ErrorImpl;
 
-/// @nodoc
-abstract class _$$ExpiredImplCopyWith<$Res> {
-  factory _$$ExpiredImplCopyWith(
-          _$ExpiredImpl value, $Res Function(_$ExpiredImpl) then) =
-      __$$ExpiredImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ExpiredImplCopyWithImpl<$Res>
-    extends _$AuthenticationStateCopyWithImpl<$Res, _$ExpiredImpl>
-    implements _$$ExpiredImplCopyWith<$Res> {
-  __$$ExpiredImplCopyWithImpl(
-      _$ExpiredImpl _value, $Res Function(_$ExpiredImpl) _then)
-      : super(_value, _then);
+  String get title;
+  String get message;
 
   /// Create a copy of AuthenticationState
   /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$ExpiredImpl implements Expired {
-  const _$ExpiredImpl();
-
-  @override
-  String toString() {
-    return 'AuthenticationState.expired()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ExpiredImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() unknown,
-    required TResult Function() error,
-    required TResult Function() expired,
-    required TResult Function() registered,
-    required TResult Function() authenticated,
-    required TResult Function() unauthenticated,
-  }) {
-    return expired();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? unknown,
-    TResult? Function()? error,
-    TResult? Function()? expired,
-    TResult? Function()? registered,
-    TResult? Function()? authenticated,
-    TResult? Function()? unauthenticated,
-  }) {
-    return expired?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unknown,
-    TResult Function()? error,
-    TResult Function()? expired,
-    TResult Function()? registered,
-    TResult Function()? authenticated,
-    TResult Function()? unauthenticated,
-    required TResult orElse(),
-  }) {
-    if (expired != null) {
-      return expired();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Unknown value) unknown,
-    required TResult Function(Error value) error,
-    required TResult Function(Expired value) expired,
-    required TResult Function(Registered value) registered,
-    required TResult Function(Authenticated value) authenticated,
-    required TResult Function(UnAuthenticated value) unauthenticated,
-  }) {
-    return expired(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Unknown value)? unknown,
-    TResult? Function(Error value)? error,
-    TResult? Function(Expired value)? expired,
-    TResult? Function(Registered value)? registered,
-    TResult? Function(Authenticated value)? authenticated,
-    TResult? Function(UnAuthenticated value)? unauthenticated,
-  }) {
-    return expired?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Unknown value)? unknown,
-    TResult Function(Error value)? error,
-    TResult Function(Expired value)? expired,
-    TResult Function(Registered value)? registered,
-    TResult Function(Authenticated value)? authenticated,
-    TResult Function(UnAuthenticated value)? unauthenticated,
-    required TResult orElse(),
-  }) {
-    if (expired != null) {
-      return expired(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class Expired implements AuthenticationState {
-  const factory Expired() = _$ExpiredImpl;
-}
-
-/// @nodoc
-abstract class _$$RegisteredImplCopyWith<$Res> {
-  factory _$$RegisteredImplCopyWith(
-          _$RegisteredImpl value, $Res Function(_$RegisteredImpl) then) =
-      __$$RegisteredImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$RegisteredImplCopyWithImpl<$Res>
-    extends _$AuthenticationStateCopyWithImpl<$Res, _$RegisteredImpl>
-    implements _$$RegisteredImplCopyWith<$Res> {
-  __$$RegisteredImplCopyWithImpl(
-      _$RegisteredImpl _value, $Res Function(_$RegisteredImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of AuthenticationState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$RegisteredImpl implements Registered {
-  const _$RegisteredImpl();
-
-  @override
-  String toString() {
-    return 'AuthenticationState.registered()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RegisteredImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() unknown,
-    required TResult Function() error,
-    required TResult Function() expired,
-    required TResult Function() registered,
-    required TResult Function() authenticated,
-    required TResult Function() unauthenticated,
-  }) {
-    return registered();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? unknown,
-    TResult? Function()? error,
-    TResult? Function()? expired,
-    TResult? Function()? registered,
-    TResult? Function()? authenticated,
-    TResult? Function()? unauthenticated,
-  }) {
-    return registered?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unknown,
-    TResult Function()? error,
-    TResult Function()? expired,
-    TResult Function()? registered,
-    TResult Function()? authenticated,
-    TResult Function()? unauthenticated,
-    required TResult orElse(),
-  }) {
-    if (registered != null) {
-      return registered();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Unknown value) unknown,
-    required TResult Function(Error value) error,
-    required TResult Function(Expired value) expired,
-    required TResult Function(Registered value) registered,
-    required TResult Function(Authenticated value) authenticated,
-    required TResult Function(UnAuthenticated value) unauthenticated,
-  }) {
-    return registered(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Unknown value)? unknown,
-    TResult? Function(Error value)? error,
-    TResult? Function(Expired value)? expired,
-    TResult? Function(Registered value)? registered,
-    TResult? Function(Authenticated value)? authenticated,
-    TResult? Function(UnAuthenticated value)? unauthenticated,
-  }) {
-    return registered?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Unknown value)? unknown,
-    TResult Function(Error value)? error,
-    TResult Function(Expired value)? expired,
-    TResult Function(Registered value)? registered,
-    TResult Function(Authenticated value)? authenticated,
-    TResult Function(UnAuthenticated value)? unauthenticated,
-    required TResult orElse(),
-  }) {
-    if (registered != null) {
-      return registered(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class Registered implements AuthenticationState {
-  const factory Registered() = _$RegisteredImpl;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -622,6 +374,8 @@ abstract class _$$AuthenticatedImplCopyWith<$Res> {
   factory _$$AuthenticatedImplCopyWith(
           _$AuthenticatedImpl value, $Res Function(_$AuthenticatedImpl) then) =
       __$$AuthenticatedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isSignedUp});
 }
 
 /// @nodoc
@@ -634,66 +388,86 @@ class __$$AuthenticatedImplCopyWithImpl<$Res>
 
   /// Create a copy of AuthenticationState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isSignedUp = null,
+  }) {
+    return _then(_$AuthenticatedImpl(
+      isSignedUp: null == isSignedUp
+          ? _value.isSignedUp
+          : isSignedUp // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$AuthenticatedImpl implements Authenticated {
-  const _$AuthenticatedImpl();
+  const _$AuthenticatedImpl({required this.isSignedUp});
+
+  @override
+  final bool isSignedUp;
 
   @override
   String toString() {
-    return 'AuthenticationState.authenticated()';
+    return 'AuthenticationState.authenticated(isSignedUp: $isSignedUp)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$AuthenticatedImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$AuthenticatedImpl &&
+            (identical(other.isSignedUp, isSignedUp) ||
+                other.isSignedUp == isSignedUp));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, isSignedUp);
+
+  /// Create a copy of AuthenticationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AuthenticatedImplCopyWith<_$AuthenticatedImpl> get copyWith =>
+      __$$AuthenticatedImplCopyWithImpl<_$AuthenticatedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
-    required TResult Function() error,
-    required TResult Function() expired,
-    required TResult Function() registered,
-    required TResult Function() authenticated,
-    required TResult Function() unauthenticated,
+    required TResult Function(String title, String message) error,
+    required TResult Function(bool isSignedUp) authenticated,
+    required TResult Function(bool? isExpired) unauthenticated,
   }) {
-    return authenticated();
+    return authenticated(isSignedUp);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unknown,
-    TResult? Function()? error,
-    TResult? Function()? expired,
-    TResult? Function()? registered,
-    TResult? Function()? authenticated,
-    TResult? Function()? unauthenticated,
+    TResult? Function(String title, String message)? error,
+    TResult? Function(bool isSignedUp)? authenticated,
+    TResult? Function(bool? isExpired)? unauthenticated,
   }) {
-    return authenticated?.call();
+    return authenticated?.call(isSignedUp);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
-    TResult Function()? error,
-    TResult Function()? expired,
-    TResult Function()? registered,
-    TResult Function()? authenticated,
-    TResult Function()? unauthenticated,
+    TResult Function(String title, String message)? error,
+    TResult Function(bool isSignedUp)? authenticated,
+    TResult Function(bool? isExpired)? unauthenticated,
     required TResult orElse(),
   }) {
     if (authenticated != null) {
-      return authenticated();
+      return authenticated(isSignedUp);
     }
     return orElse();
   }
@@ -703,10 +477,8 @@ class _$AuthenticatedImpl implements Authenticated {
   TResult map<TResult extends Object?>({
     required TResult Function(Unknown value) unknown,
     required TResult Function(Error value) error,
-    required TResult Function(Expired value) expired,
-    required TResult Function(Registered value) registered,
     required TResult Function(Authenticated value) authenticated,
-    required TResult Function(UnAuthenticated value) unauthenticated,
+    required TResult Function(Unauthenticated value) unauthenticated,
   }) {
     return authenticated(this);
   }
@@ -716,10 +488,8 @@ class _$AuthenticatedImpl implements Authenticated {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Unknown value)? unknown,
     TResult? Function(Error value)? error,
-    TResult? Function(Expired value)? expired,
-    TResult? Function(Registered value)? registered,
     TResult? Function(Authenticated value)? authenticated,
-    TResult? Function(UnAuthenticated value)? unauthenticated,
+    TResult? Function(Unauthenticated value)? unauthenticated,
   }) {
     return authenticated?.call(this);
   }
@@ -729,10 +499,8 @@ class _$AuthenticatedImpl implements Authenticated {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Unknown value)? unknown,
     TResult Function(Error value)? error,
-    TResult Function(Expired value)? expired,
-    TResult Function(Registered value)? registered,
     TResult Function(Authenticated value)? authenticated,
-    TResult Function(UnAuthenticated value)? unauthenticated,
+    TResult Function(Unauthenticated value)? unauthenticated,
     required TResult orElse(),
   }) {
     if (authenticated != null) {
@@ -743,86 +511,118 @@ class _$AuthenticatedImpl implements Authenticated {
 }
 
 abstract class Authenticated implements AuthenticationState {
-  const factory Authenticated() = _$AuthenticatedImpl;
+  const factory Authenticated({required final bool isSignedUp}) =
+      _$AuthenticatedImpl;
+
+  bool get isSignedUp;
+
+  /// Create a copy of AuthenticationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AuthenticatedImplCopyWith<_$AuthenticatedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$UnAuthenticatedImplCopyWith<$Res> {
-  factory _$$UnAuthenticatedImplCopyWith(_$UnAuthenticatedImpl value,
-          $Res Function(_$UnAuthenticatedImpl) then) =
-      __$$UnAuthenticatedImplCopyWithImpl<$Res>;
+abstract class _$$UnauthenticatedImplCopyWith<$Res> {
+  factory _$$UnauthenticatedImplCopyWith(_$UnauthenticatedImpl value,
+          $Res Function(_$UnauthenticatedImpl) then) =
+      __$$UnauthenticatedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool? isExpired});
 }
 
 /// @nodoc
-class __$$UnAuthenticatedImplCopyWithImpl<$Res>
-    extends _$AuthenticationStateCopyWithImpl<$Res, _$UnAuthenticatedImpl>
-    implements _$$UnAuthenticatedImplCopyWith<$Res> {
-  __$$UnAuthenticatedImplCopyWithImpl(
-      _$UnAuthenticatedImpl _value, $Res Function(_$UnAuthenticatedImpl) _then)
+class __$$UnauthenticatedImplCopyWithImpl<$Res>
+    extends _$AuthenticationStateCopyWithImpl<$Res, _$UnauthenticatedImpl>
+    implements _$$UnauthenticatedImplCopyWith<$Res> {
+  __$$UnauthenticatedImplCopyWithImpl(
+      _$UnauthenticatedImpl _value, $Res Function(_$UnauthenticatedImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AuthenticationState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isExpired = freezed,
+  }) {
+    return _then(_$UnauthenticatedImpl(
+      isExpired: freezed == isExpired
+          ? _value.isExpired
+          : isExpired // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$UnAuthenticatedImpl implements UnAuthenticated {
-  const _$UnAuthenticatedImpl();
+class _$UnauthenticatedImpl implements Unauthenticated {
+  const _$UnauthenticatedImpl({this.isExpired});
+
+  @override
+  final bool? isExpired;
 
   @override
   String toString() {
-    return 'AuthenticationState.unauthenticated()';
+    return 'AuthenticationState.unauthenticated(isExpired: $isExpired)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$UnAuthenticatedImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$UnauthenticatedImpl &&
+            (identical(other.isExpired, isExpired) ||
+                other.isExpired == isExpired));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, isExpired);
+
+  /// Create a copy of AuthenticationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UnauthenticatedImplCopyWith<_$UnauthenticatedImpl> get copyWith =>
+      __$$UnauthenticatedImplCopyWithImpl<_$UnauthenticatedImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
-    required TResult Function() error,
-    required TResult Function() expired,
-    required TResult Function() registered,
-    required TResult Function() authenticated,
-    required TResult Function() unauthenticated,
+    required TResult Function(String title, String message) error,
+    required TResult Function(bool isSignedUp) authenticated,
+    required TResult Function(bool? isExpired) unauthenticated,
   }) {
-    return unauthenticated();
+    return unauthenticated(isExpired);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unknown,
-    TResult? Function()? error,
-    TResult? Function()? expired,
-    TResult? Function()? registered,
-    TResult? Function()? authenticated,
-    TResult? Function()? unauthenticated,
+    TResult? Function(String title, String message)? error,
+    TResult? Function(bool isSignedUp)? authenticated,
+    TResult? Function(bool? isExpired)? unauthenticated,
   }) {
-    return unauthenticated?.call();
+    return unauthenticated?.call(isExpired);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
-    TResult Function()? error,
-    TResult Function()? expired,
-    TResult Function()? registered,
-    TResult Function()? authenticated,
-    TResult Function()? unauthenticated,
+    TResult Function(String title, String message)? error,
+    TResult Function(bool isSignedUp)? authenticated,
+    TResult Function(bool? isExpired)? unauthenticated,
     required TResult orElse(),
   }) {
     if (unauthenticated != null) {
-      return unauthenticated();
+      return unauthenticated(isExpired);
     }
     return orElse();
   }
@@ -832,10 +632,8 @@ class _$UnAuthenticatedImpl implements UnAuthenticated {
   TResult map<TResult extends Object?>({
     required TResult Function(Unknown value) unknown,
     required TResult Function(Error value) error,
-    required TResult Function(Expired value) expired,
-    required TResult Function(Registered value) registered,
     required TResult Function(Authenticated value) authenticated,
-    required TResult Function(UnAuthenticated value) unauthenticated,
+    required TResult Function(Unauthenticated value) unauthenticated,
   }) {
     return unauthenticated(this);
   }
@@ -845,10 +643,8 @@ class _$UnAuthenticatedImpl implements UnAuthenticated {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Unknown value)? unknown,
     TResult? Function(Error value)? error,
-    TResult? Function(Expired value)? expired,
-    TResult? Function(Registered value)? registered,
     TResult? Function(Authenticated value)? authenticated,
-    TResult? Function(UnAuthenticated value)? unauthenticated,
+    TResult? Function(Unauthenticated value)? unauthenticated,
   }) {
     return unauthenticated?.call(this);
   }
@@ -858,10 +654,8 @@ class _$UnAuthenticatedImpl implements UnAuthenticated {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Unknown value)? unknown,
     TResult Function(Error value)? error,
-    TResult Function(Expired value)? expired,
-    TResult Function(Registered value)? registered,
     TResult Function(Authenticated value)? authenticated,
-    TResult Function(UnAuthenticated value)? unauthenticated,
+    TResult Function(Unauthenticated value)? unauthenticated,
     required TResult orElse(),
   }) {
     if (unauthenticated != null) {
@@ -871,6 +665,15 @@ class _$UnAuthenticatedImpl implements UnAuthenticated {
   }
 }
 
-abstract class UnAuthenticated implements AuthenticationState {
-  const factory UnAuthenticated() = _$UnAuthenticatedImpl;
+abstract class Unauthenticated implements AuthenticationState {
+  const factory Unauthenticated({final bool? isExpired}) =
+      _$UnauthenticatedImpl;
+
+  bool? get isExpired;
+
+  /// Create a copy of AuthenticationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UnauthenticatedImplCopyWith<_$UnauthenticatedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

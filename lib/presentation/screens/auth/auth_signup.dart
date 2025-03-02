@@ -40,7 +40,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
                 ),
                 children: [
                   TextSpan(
-                    text: '사용 약관에 동의',
+                    text: '이용 약관에 동의',
                     style: TextStyle(fontWeight: FontWeight.w700),
                   ),
                   TextSpan(
@@ -54,7 +54,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
           ],
         ),
         uri: Uri.parse(TermsAndConditionsUri.serviceTermsAndConditions),
-        termsButtonText: '아차 사용 약관',
+        termsButtonText: '아차 이용 약관',
         agreeButtonText: '동의하고 회원가입',
         onAgree: () => Navigator.push(
           context,
