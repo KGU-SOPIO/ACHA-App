@@ -5,6 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:acha/core/constants/index.dart';
 import 'package:acha/core/extensions/index.dart';
 import 'package:acha/data/models/index.dart';
 import 'package:acha/domain/repositories/index.dart';
@@ -80,7 +81,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
       style: const TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w400,
-        color: Color.fromARGB(255, 30, 30, 30),
+        color: AchaColors.gray30,
       ),
     );
   }
@@ -93,7 +94,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w700,
-            color: Color.fromARGB(255, 30, 30, 30),
+            color: AchaColors.gray30,
           ),
         ),
         const SizedBox(width: 10),
@@ -165,7 +166,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
         decoration: const BoxDecoration(
           border: Border(
             bottom: BorderSide(
-              color: Color.fromARGB(255, 228, 232, 241),
+              color: AchaColors.gray228_232_241,
             ),
           ),
         ),
@@ -178,7 +179,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
-                    color: Color.fromARGB(255, 151, 151, 151),
+                    color: AchaColors.gray151,
                   ),
                 ),
                 const SizedBox(width: 15),
@@ -187,7 +188,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
-                    color: Color.fromARGB(255, 60, 60, 60),
+                    color: AchaColors.gray60,
                   ),
                 ),
               ],
@@ -203,7 +204,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
                   style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
-                    color: Color.fromARGB(255, 151, 151, 151),
+                    color: AchaColors.gray151,
                   ),
                 ),
                 const SizedBox(width: 20),
@@ -214,7 +215,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
                   style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
-                    color: Color.fromARGB(255, 151, 151, 151),
+                    color: AchaColors.gray151,
                   ),
                 ),
               ],

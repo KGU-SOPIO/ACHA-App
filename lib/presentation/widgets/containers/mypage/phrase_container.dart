@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:acha/core/constants/index.dart';
+
 class PhraseContainer extends StatelessWidget {
   const PhraseContainer({super.key});
 
@@ -12,10 +14,10 @@ class PhraseContainer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
       decoration: BoxDecoration(
         border: Border.all(
-          color: const Color.fromARGB(255, 186, 186, 186),
+          color: AchaColors.gray186,
         ),
         borderRadius: BorderRadius.circular(25),
-        color: const Color.fromARGB(255, 237, 239, 242),
+        color: AchaColors.gray237_239_242,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,7 +33,7 @@ class PhraseContainer extends StatelessWidget {
   Widget _buildTitle() {
     return const Text.rich(
       TextSpan(
-        style: TextStyle(fontSize: 16, color: Color.fromARGB(255, 30, 30, 30)),
+        style: TextStyle(fontSize: 16, color: AchaColors.gray30),
         children: [
           TextSpan(
             text: '오늘의 ',
@@ -83,7 +85,7 @@ class PhraseContainer extends StatelessWidget {
         style: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w700,
-          color: Color.fromARGB(255, 0, 102, 255),
+          color: AchaColors.primaryBlue,
         ),
       ),
     );

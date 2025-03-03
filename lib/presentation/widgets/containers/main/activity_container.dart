@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:acha/data/models/index.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
+
+import 'package:acha/core/constants/index.dart';
+import 'package:acha/data/models/index.dart';
 
 class ActivityContainer extends StatelessWidget {
   const ActivityContainer({
@@ -31,7 +32,7 @@ class ActivityContainer extends StatelessWidget {
       margin: margin,
       padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 16),
       decoration: BoxDecoration(
-        border: Border.all(color: const Color.fromARGB(255, 228, 232, 241)),
+        border: Border.all(color: AchaColors.gray228_232_241),
         color: backgroundColor,
         borderRadius: BorderRadius.circular(20),
       ),
@@ -54,7 +55,7 @@ class ActivityContainer extends StatelessWidget {
       style: const TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w500,
-        color: Color.fromARGB(255, 60, 60, 60),
+        color: AchaColors.gray60,
       ),
     );
   }
@@ -65,7 +66,7 @@ class ActivityContainer extends StatelessWidget {
       style: const TextStyle(
         fontSize: 13,
         fontWeight: FontWeight.w400,
-        color: Color.fromARGB(255, 60, 60, 60),
+        color: AchaColors.gray60,
       ),
     );
   }
@@ -74,7 +75,7 @@ class ActivityContainer extends StatelessWidget {
     return Text.rich(
       TextSpan(
         style: const TextStyle(
-          color: Color.fromARGB(255, 151, 151, 151),
+          color: AchaColors.gray151,
         ),
         children: [
           TextSpan(

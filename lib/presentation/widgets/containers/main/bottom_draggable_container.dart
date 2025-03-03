@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:carousel_slider/carousel_slider.dart';
 
+import 'package:acha/core/constants/index.dart';
 import 'package:acha/presentation/widgets/index.dart';
 
 class BottomDraggableContainer extends StatelessWidget {
@@ -33,7 +34,7 @@ class BottomDraggableContainer extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
-        color: Colors.white,
+        color: AchaColors.white,
         boxShadow: [
           BoxShadow(
             color: const Color(0XFF000066).withValues(alpha: 0.03),
@@ -79,7 +80,7 @@ class BottomDraggableContainer extends StatelessWidget {
             height: 6,
             width: 79,
             decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 228, 232, 241),
+              color: AchaColors.gray228_232_241,
               borderRadius: BorderRadius.circular(7),
             ),
           ),

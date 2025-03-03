@@ -56,7 +56,7 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
               TextSpan(
                 style: TextStyle(
                   fontSize: 16,
-                  color: Color.fromARGB(255, 30, 30, 30),
+                  color: AchaColors.gray30,
                 ),
                 children: [
                   TextSpan(
@@ -76,7 +76,7 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
             Image.asset('lib/assets/images/modal/terms/school.png', width: 60)
           ],
         ),
-        uri: Uri.parse(TermsAndConditionsUri.consentToUseStudentInformation),
+        uri: Uri.parse(AchaUris.privacyTerms),
         termsButtonText: '개인정보 수집·이용 동의',
         agreeButtonText: '동의하고 학생 인증',
         onAgree: () => Navigator.push(
@@ -104,7 +104,7 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
   PreferredSizeWidget _buildAppBar() {
     return AppBar(
       automaticallyImplyLeading: false,
-      backgroundColor: Colors.white,
+      backgroundColor: AchaColors.white,
       centerTitle: true,
       title: const Text(
         '시작하기',
@@ -137,7 +137,7 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
   Widget _buildTitle() {
     return const Text.rich(
       TextSpan(
-        style: TextStyle(fontSize: 15, color: Colors.black),
+        style: TextStyle(fontSize: 15, color: AchaColors.black),
         children: [
           TextSpan(
             text: '비밀번호를 ',
@@ -157,7 +157,7 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
       borderRadius: BorderRadius.circular(12),
       borderSide: const BorderSide(
         width: 1.5,
-        color: Color.fromARGB(255, 237, 239, 242),
+        color: AchaColors.gray237_239_242,
       ),
     );
 
@@ -168,12 +168,12 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
       decoration: InputDecoration(
         hintText: '비밀번호',
         hintStyle: const TextStyle(
-          color: Color.fromARGB(255, 186, 186, 186),
+          color: AchaColors.gray186,
           fontSize: 16,
           fontWeight: FontWeight.w400,
         ),
         filled: true,
-        fillColor: const Color.fromARGB(255, 251, 251, 251),
+        fillColor: AchaColors.gray251,
         border: textFieldBorder,
         enabledBorder: textFieldBorder,
         focusedBorder: textFieldBorder,
@@ -197,9 +197,9 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
         minimumSize: WidgetStateProperty.all(const Size(double.infinity, 56)),
         backgroundColor: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.disabled)) {
-            return const Color.fromARGB(255, 199, 199, 199);
+            return AchaColors.gray199;
           }
-          return const Color.fromARGB(255, 0, 102, 255);
+          return AchaColors.primaryBlue;
         }),
         shape: WidgetStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -218,7 +218,7 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
         style: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w700,
-          color: Colors.white,
+          color: AchaColors.white,
         ),
       ),
     );
@@ -235,7 +235,7 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
         style: TextStyle(
           fontSize: 15,
           fontWeight: FontWeight.w500,
-          color: Color.fromARGB(255, 80, 80, 80),
+          color: AchaColors.gray80,
         ),
       ),
     );

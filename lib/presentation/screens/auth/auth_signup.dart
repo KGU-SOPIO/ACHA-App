@@ -36,7 +36,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
               TextSpan(
                 style: TextStyle(
                   fontSize: 16,
-                  color: Color.fromARGB(255, 30, 30, 30),
+                  color: AchaColors.gray30,
                 ),
                 children: [
                   TextSpan(
@@ -53,7 +53,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
             SvgPicture.asset('lib/assets/svgs/acha/small.svg', width: 50)
           ],
         ),
-        uri: Uri.parse(TermsAndConditionsUri.serviceTermsAndConditions),
+        uri: Uri.parse(AchaUris.serviceTerms),
         termsButtonText: '아차 이용 약관',
         agreeButtonText: '동의하고 회원가입',
         onAgree: () => Navigator.push(
@@ -63,7 +63,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
       ).show(context);
 
   Future<void> _openManualUri() async {
-    final uri = Uri.parse(ManualUri.myInformationIsDifferent);
+    final uri = Uri.parse(AchaUris.kutisInformationManual);
     try {
       if (await canLaunchUrl(uri)) {
         await launchUrl(uri);
@@ -89,7 +89,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
   PreferredSizeWidget _buildAppBar() {
     return AppBar(
       automaticallyImplyLeading: false,
-      backgroundColor: Colors.white,
+      backgroundColor: AchaColors.white,
       centerTitle: true,
       title: const Text(
         '시작하기',
@@ -142,7 +142,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
         TextSpan(
           style: TextStyle(
             fontSize: 15,
-            color: Color.fromARGB(255, 60, 60, 60),
+            color: AchaColors.gray60,
           ),
           children: [
             TextSpan(
@@ -187,7 +187,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w500,
-              color: Color.fromARGB(255, 131, 131, 131),
+              color: AchaColors.gray131,
             ),
           )
         ],
@@ -199,12 +199,12 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
     return ContainerButton(
       height: 56,
       onPressed: () => _showTermsModal(),
-      backgroundColor: const Color.fromARGB(255, 0, 102, 255),
+      backgroundColor: AchaColors.primaryBlue,
       text: '다음',
       textStyle: const TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w700,
-        color: Colors.white,
+        color: AchaColors.white,
       ),
     );
   }

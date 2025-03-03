@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:acha/core/constants/index.dart';
 import 'package:acha/presentation/blocs/index.dart';
 import 'package:acha/presentation/widgets/index.dart';
 
@@ -58,7 +59,7 @@ class _UserHeaderState extends State<UserHeader> {
       TextSpan(
         style: const TextStyle(
           fontSize: 24,
-          color: Color.fromARGB(255, 30, 30, 30),
+          color: AchaColors.gray30,
         ),
         children: [
           TextSpan(
@@ -86,14 +87,14 @@ class _UserHeaderState extends State<UserHeader> {
           style: const TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w400,
-            color: Color.fromARGB(255, 151, 151, 151),
+            color: AchaColors.gray151,
           ),
         ),
         Container(
           margin: const EdgeInsets.only(left: 12),
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 0, 102, 255),
+            color: AchaColors.primaryBlue,
             borderRadius: BorderRadius.all(
               Radius.circular(30),
             ),
@@ -103,7 +104,7 @@ class _UserHeaderState extends State<UserHeader> {
             style: const TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w500,
-              color: Color.fromARGB(255, 255, 255, 255),
+              color: AchaColors.gray255,
             ),
           ),
         ),

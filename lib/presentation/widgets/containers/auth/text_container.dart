@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:acha/core/constants/index.dart';
+
 class TextContainer extends StatelessWidget {
   const TextContainer({super.key, required this.title, required this.value});
 
@@ -24,7 +26,7 @@ class TextContainer extends StatelessWidget {
       style: const TextStyle(
         fontSize: 15,
         fontWeight: FontWeight.w700,
-        color: Color.fromARGB(255, 60, 60, 60),
+        color: AchaColors.gray60,
       ),
     );
   }
@@ -38,7 +40,7 @@ class TextContainer extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           width: 1.5,
-          color: const Color.fromARGB(255, 237, 239, 242),
+          color: AchaColors.gray237_239_242,
         ),
         borderRadius: BorderRadius.circular(12),
       ),
@@ -47,7 +49,7 @@ class TextContainer extends StatelessWidget {
         style: const TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w400,
-          color: Color.fromARGB(255, 60, 60, 60),
+          color: AchaColors.gray60,
         ),
       ),
     );

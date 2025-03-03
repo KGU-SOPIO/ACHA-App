@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
+import 'package:acha/core/constants/index.dart';
 import 'package:acha/presentation/screens/index.dart';
 import 'package:acha/presentation/widgets/index.dart';
 
@@ -89,14 +90,14 @@ class _AuthStartScreenState extends State<AuthStartScreen> {
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w700,
-              color: Color.fromARGB(255, 0, 102, 255),
+              color: AchaColors.primaryBlue,
             ),
             children: [
               TextSpan(
                 text: '너 ',
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
-                  color: Color.fromARGB(255, 30, 30, 30),
+                  color: AchaColors.gray30,
                 ),
               ),
               TextSpan(text: '과제 제출함?')
@@ -131,14 +132,14 @@ class _AuthStartScreenState extends State<AuthStartScreen> {
                 text: '곧 다가올 마감일,\n',
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
-                  color: Color.fromARGB(255, 30, 30, 30),
+                  color: AchaColors.gray30,
                 ),
               ),
               TextSpan(
                 text: '잊어버리시진 않으셨나요?',
                 style: TextStyle(
                   height: 1.7,
-                  color: Color.fromARGB(255, 0, 102, 255),
+                  color: AchaColors.primaryBlue,
                 ),
               )
             ],
@@ -168,7 +169,7 @@ class _AuthStartScreenState extends State<AuthStartScreen> {
               TextSpan(
                 text: '아차!\n',
                 style: TextStyle(
-                  color: Color.fromARGB(255, 0, 102, 255),
+                  color: AchaColors.primaryBlue,
                 ),
               ),
               TextSpan(
@@ -176,7 +177,7 @@ class _AuthStartScreenState extends State<AuthStartScreen> {
                 style: TextStyle(
                   height: 1.7,
                   fontWeight: FontWeight.w500,
-                  color: Color.fromARGB(255, 30, 30, 30),
+                  color: AchaColors.gray30,
                 ),
               )
             ],
@@ -193,8 +194,8 @@ class _AuthStartScreenState extends State<AuthStartScreen> {
         height: 56,
         text: '지금 시작하기',
         textStyle: const TextStyle(
-            fontSize: 16, fontWeight: FontWeight.w700, color: Colors.white),
-        backgroundColor: const Color.fromARGB(255, 0, 102, 255),
+            fontSize: 16, fontWeight: FontWeight.w700, color: AchaColors.white),
+        backgroundColor: AchaColors.primaryBlue,
         onPressed: () => Navigator.push(context, AuthStudentIdScreen.route()),
       ),
     );

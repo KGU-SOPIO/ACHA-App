@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
+import 'package:acha/core/constants/index.dart';
 import 'package:acha/core/extensions/index.dart';
 import 'package:acha/data/models/index.dart';
 import 'package:acha/presentation/blocs/index.dart';
@@ -146,7 +147,7 @@ class _SliderWidgetState extends State<SliderWidget> {
               TextSpan(
                 style: const TextStyle(
                   fontSize: 16,
-                  color: Color.fromARGB(255, 30, 30, 30),
+                  color: AchaColors.gray30,
                 ),
                 children: [
                   const TextSpan(
@@ -179,7 +180,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
-                    color: Color.fromARGB(255, 151, 151, 151),
+                    color: AchaColors.gray151,
                   ),
                 ),
               ),
@@ -212,7 +213,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                 errorMessage,
                 style: const TextStyle(
                   fontSize: 15,
-                  color: Color.fromARGB(255, 109, 109, 109),
+                  color: AchaColors.gray109,
                 ),
               ),
             ),

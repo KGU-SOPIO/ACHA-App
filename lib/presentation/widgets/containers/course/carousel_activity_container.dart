@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:acha/core/constants/index.dart';
 import 'package:acha/data/models/index.dart';
 
 class CarouselActivityContainer extends StatelessWidget {
@@ -18,9 +19,9 @@ class CarouselActivityContainer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 22),
       decoration: BoxDecoration(
         border: Border.all(
-          color: const Color.fromARGB(255, 237, 239, 242),
+          color: AchaColors.gray237_239_242,
         ),
-        color: Colors.white,
+        color: AchaColors.white,
         borderRadius: BorderRadius.circular(25),
       ),
       child: Column(
@@ -33,7 +34,7 @@ class CarouselActivityContainer extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w700,
-                color: Color.fromARGB(255, 30, 30, 30),
+                color: AchaColors.gray30,
               ),
             ),
           ),
@@ -42,7 +43,7 @@ class CarouselActivityContainer extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
             decoration: BoxDecoration(
               border: Border.all(
-                color: const Color.fromARGB(255, 237, 239, 242),
+                color: AchaColors.gray237_239_242,
                 width: 1.5,
               ),
               borderRadius: BorderRadius.circular(12),
@@ -60,7 +61,7 @@ class CarouselActivityContainer extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
-                      color: Color.fromARGB(255, 60, 60, 60),
+                      color: AchaColors.gray60,
                     ),
                   ),
                 ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:acha/core/constants/index.dart';
 import 'package:acha/presentation/widgets/index.dart';
 
 class CourseContainer extends StatelessWidget {
@@ -31,10 +32,10 @@ class CourseContainer extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           width: 1.5,
-          color: const Color.fromARGB(255, 237, 239, 242),
+          color: AchaColors.gray237_239_242,
         ),
         borderRadius: BorderRadius.circular(20),
-        color: Colors.white,
+        color: AchaColors.white,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -55,7 +56,7 @@ class CourseContainer extends StatelessWidget {
           style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w400,
-            color: Color.fromARGB(255, 109, 109, 109),
+            color: AchaColors.gray109,
           ),
         ),
         const SizedBox(height: 3),
@@ -64,7 +65,7 @@ class CourseContainer extends StatelessWidget {
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w400,
-            color: Colors.black,
+            color: AchaColors.black,
           ),
         ),
         const SizedBox(height: 2),
@@ -73,7 +74,7 @@ class CourseContainer extends StatelessWidget {
           style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w400,
-            color: Colors.black,
+            color: AchaColors.black,
           ),
         ),
       ],

@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:stacked_list_carousel/stacked_list_carousel.dart';
 
+import 'package:acha/core/constants/index.dart';
 import 'package:acha/core/extensions/index.dart';
 import 'package:acha/data/models/index.dart';
 import 'package:acha/domain/repositories/index.dart';
@@ -40,8 +41,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
       body: SafeArea(
         bottom: false,
         child: DecoratedBox(
-          decoration:
-              const BoxDecoration(color: Color.fromARGB(255, 245, 246, 248)),
+          decoration: const BoxDecoration(color: AchaColors.gray245_246_248),
           child: BlocBuilder<CourseBloc, CourseState>(
             builder: (context, state) {
               return ListView(
@@ -61,13 +61,13 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
   Widget _buildCourseSection(BuildContext context, CourseState state) {
     return DecoratedBox(
       decoration: const BoxDecoration(
-          color: Colors.white,
+          color: AchaColors.white,
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(30))),
       child: ListView(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         children: [
-          const AchaAppbar(backgroundColor: Colors.white),
+          const AchaAppbar(backgroundColor: AchaColors.white),
           const SizedBox(height: 40),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 26),
@@ -95,7 +95,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
           style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w400,
-            color: Color.fromARGB(255, 30, 30, 30),
+            color: AchaColors.gray30,
           ),
         ),
         const SizedBox(height: 5),
@@ -104,7 +104,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
           style: const TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.w700,
-            color: Color.fromARGB(255, 30, 30, 30),
+            color: AchaColors.gray30,
           ),
         ),
       ],
@@ -118,17 +118,17 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
         context,
         NoticeScreen.route(course: state.course),
       ),
-      foregroundColor: Colors.white,
-      backgroundColor: Colors.white,
+      foregroundColor: AchaColors.white,
+      backgroundColor: AchaColors.white,
       border: const BorderSide(
-        color: Color.fromARGB(255, 0, 102, 255),
+        color: AchaColors.primaryBlue,
       ),
       borderRadius: 20,
       text: '공지사항',
       textStyle: const TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w500,
-        color: Color.fromARGB(255, 0, 102, 255),
+        color: AchaColors.primaryBlue,
       ),
       widget: SvgPicture.asset('lib/assets/svgs/course/right_arrow.svg'),
     );
@@ -144,7 +144,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
               TextSpan(
                 style: TextStyle(
                   fontSize: 14,
-                  color: Color.fromARGB(255, 30, 30, 30),
+                  color: AchaColors.gray30,
                 ),
                 children: [
                   TextSpan(
@@ -204,7 +204,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
               '등록된 활동이 없어요',
               style: TextStyle(
                 fontSize: 15,
-                color: Color.fromARGB(255, 109, 109, 109),
+                color: AchaColors.gray109,
               ),
             ),
           ),
@@ -218,7 +218,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
             '활동을 불러오지 못했어요',
             style: TextStyle(
               fontSize: 15,
-              color: Color.fromARGB(255, 109, 109, 109),
+              color: AchaColors.gray109,
             ),
           ),
         ),
@@ -277,8 +277,8 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                         Icons.circle,
                         size: 15,
                         color: allCompleted
-                            ? const Color.fromARGB(255, 0, 102, 255)
-                            : const Color.fromARGB(255, 255, 78, 107),
+                            ? AchaColors.primaryBlue
+                            : AchaColors.primaryRed,
                       ),
                     ),
                     title: Text(
@@ -286,7 +286,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
-                        color: Color.fromARGB(255, 60, 60, 60),
+                        color: AchaColors.gray60,
                       ),
                     ),
                   ),
@@ -296,7 +296,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                 children: [
                   const Divider(
                     height: 1,
-                    color: Color.fromARGB(255, 245, 246, 248),
+                    color: AchaColors.gray245_246_248,
                   ),
                   ...weekActivities.activitylist.map(
                     (activity) {
@@ -307,7 +307,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                           style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
-                            color: Color.fromARGB(255, 60, 60, 60),
+                            color: AchaColors.gray60,
                           ),
                         ),
                       );
@@ -350,7 +350,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
           height: 70,
           padding: const EdgeInsets.only(left: 30),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: AchaColors.white,
             borderRadius: BorderRadius.circular(20),
           ),
           child: const Align(

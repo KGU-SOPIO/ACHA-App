@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:acha/core/constants/index.dart';
 import 'package:acha/presentation/blocs/index.dart';
 import 'package:acha/presentation/screens/index.dart';
 import 'package:acha/presentation/widgets/index.dart';
@@ -29,7 +30,7 @@ class _CourseScreenState extends State<CourseScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 245, 246, 248),
+      backgroundColor: AchaColors.gray245_246_248,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -61,7 +62,7 @@ class _CourseScreenState extends State<CourseScreen> {
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w700,
-            color: Color.fromARGB(255, 30, 30, 30),
+            color: AchaColors.gray30,
           ),
         ),
         const SizedBox(width: 4),
@@ -85,7 +86,7 @@ class _CourseScreenState extends State<CourseScreen> {
                 state.errorMessage!,
                 style: const TextStyle(
                   fontSize: 15,
-                  color: Color.fromARGB(255, 109, 109, 109),
+                  color: AchaColors.gray109,
                 ),
               ),
             ),

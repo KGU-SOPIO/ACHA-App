@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:acha/core/constants/index.dart';
 import 'package:acha/core/extensions/index.dart';
 import 'package:acha/data/models/index.dart';
 import 'package:acha/presentation/blocs/index.dart';
@@ -39,7 +40,7 @@ class _NotificationScreenState extends State<NotificationScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 245, 246, 248),
+      backgroundColor: AchaColors.gray245_246_248,
       body: SafeArea(
         child: _buildContent(),
       ),
@@ -97,7 +98,7 @@ class _NotificationScreenState extends State<NotificationScreen>
         '활동을 불러오지 못했어요',
         style: TextStyle(
           fontSize: 15,
-          color: Color.fromARGB(255, 109, 109, 109),
+          color: AchaColors.gray109,
         ),
       ),
     );
@@ -137,7 +138,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                   deadline: activity.deadline!.toTimeLeftFormattedTime(),
                   uri: Uri.tryParse(activity.link),
                   margin: const EdgeInsets.only(bottom: 16),
-                  backgroundColor: Colors.white,
+                  backgroundColor: AchaColors.white,
                 ),
               )
             ],

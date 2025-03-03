@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_svg/svg.dart';
 
+import 'package:acha/core/constants/index.dart';
 import 'package:acha/presentation/screens/index.dart';
 import 'package:acha/presentation/widgets/index.dart';
 
@@ -24,7 +25,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 245, 246, 248),
+      backgroundColor: AchaColors.gray245_246_248,
       body: SafeArea(
         child: _buildBody(),
       ),
@@ -70,15 +71,15 @@ class _MyPageScreenState extends State<MyPageScreen> {
     return RowContainerButton(
       padding: const EdgeInsets.symmetric(vertical: 22),
       onPressed: () => Navigator.push(context, SopioScreen.route()),
-      foregroundColor: Colors.white,
-      backgroundColor: Colors.white,
-      border: const BorderSide(color: Color.fromARGB(255, 228, 232, 241)),
+      foregroundColor: AchaColors.white,
+      backgroundColor: AchaColors.white,
+      border: const BorderSide(color: AchaColors.gray228_232_241),
       borderRadius: 25,
       text: 'SOPIO',
       textStyle: const TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w500,
-        color: Color.fromARGB(255, 30, 30, 30),
+        color: AchaColors.gray30,
       ),
       widget: SvgPicture.asset('lib/assets/svgs/mypage/right_arrow.svg'),
     );
@@ -88,12 +89,12 @@ class _MyPageScreenState extends State<MyPageScreen> {
     return ContainerButton(
       height: 56,
       onPressed: () => _showLogoutModal(),
-      backgroundColor: const Color.fromARGB(255, 237, 239, 242),
+      backgroundColor: AchaColors.gray237_239_242,
       text: '로그아웃',
       textStyle: const TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w700,
-        color: Color.fromARGB(255, 109, 109, 109),
+        color: AchaColors.gray109,
       ),
     );
   }
@@ -102,13 +103,13 @@ class _MyPageScreenState extends State<MyPageScreen> {
     return ContainerButton(
       height: 56,
       onPressed: () => _showSignOutModal(),
-      backgroundColor: const Color.fromARGB(25, 255, 78, 107),
-      border: const BorderSide(color: Color.fromARGB(255, 255, 78, 107)),
+      backgroundColor: AchaColors.primaryRed_10,
+      border: const BorderSide(color: AchaColors.primaryRed),
       text: '계정 삭제',
       textStyle: const TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w700,
-        color: Color.fromARGB(255, 255, 78, 107),
+        color: AchaColors.primaryRed,
       ),
     );
   }

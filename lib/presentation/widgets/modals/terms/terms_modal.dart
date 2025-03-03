@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:acha/core/constants/index.dart';
 import 'package:acha/presentation/widgets/index.dart';
 
 class TermsBottomModalSheet {
@@ -26,8 +27,8 @@ class TermsBottomModalSheet {
       context: context,
       useSafeArea: true,
       isScrollControlled: true,
-      backgroundColor: Colors.white,
-      barrierColor: Colors.black.withValues(alpha: 0.3),
+      backgroundColor: AchaColors.white,
+      barrierColor: AchaColors.black.withValues(alpha: 0.3),
       builder: (context) => _buildContent(context),
     );
   }
@@ -39,7 +40,7 @@ class TermsBottomModalSheet {
         width: 79,
         margin: const EdgeInsets.only(bottom: 24),
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 228, 232, 241),
+          color: AchaColors.gray228_232_241,
           borderRadius: BorderRadius.circular(7),
         ),
       ),
@@ -89,7 +90,7 @@ class TermsBottomModalSheet {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
-        backgroundColor: const Color.fromARGB(255, 242, 244, 246),
+        backgroundColor: AchaColors.gray242_244_246,
       ),
       onPressed: () => _openTermsUri(uri: uri),
       child: Row(
@@ -102,7 +103,7 @@ class TermsBottomModalSheet {
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
-                color: Color.fromARGB(255, 109, 109, 109),
+                color: AchaColors.gray109,
               ),
             ),
           ),
@@ -119,7 +120,7 @@ class TermsBottomModalSheet {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
-        backgroundColor: const Color.fromARGB(255, 0, 102, 255),
+        backgroundColor: AchaColors.primaryBlue,
       ),
       onPressed: onAgree,
       child: Row(
@@ -133,7 +134,7 @@ class TermsBottomModalSheet {
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
-                color: Colors.white,
+                color: AchaColors.white,
               ),
             ),
           ),

@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
+import 'package:acha/core/constants/index.dart';
 import 'package:acha/core/extensions/index.dart';
 import 'package:acha/data/models/index.dart';
 import 'package:acha/presentation/blocs/index.dart';
@@ -24,10 +25,10 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
       width: double.infinity,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AchaColors.white,
         borderRadius: const BorderRadius.all(Radius.circular(20)),
         border: Border.all(
-          color: const Color.fromARGB(255, 228, 232, 241),
+          color: AchaColors.gray228_232_241,
           width: 1.5,
         ),
       ),
@@ -53,7 +54,7 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
           TextSpan(
             style: TextStyle(
               fontSize: 16,
-              color: Color.fromARGB(255, 30, 30, 30),
+              color: AchaColors.gray30,
             ),
             children: [
               TextSpan(
@@ -72,7 +73,7 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,
-            color: Color.fromARGB(255, 0, 102, 255),
+            color: AchaColors.primaryBlue,
           ),
         ),
       ],
@@ -123,7 +124,9 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           decoration: BoxDecoration(
             border: Border.all(
-                color: const Color.fromARGB(255, 237, 239, 242), width: 1.5),
+              color: AchaColors.gray237_239_242,
+              width: 1.5,
+            ),
             borderRadius: BorderRadius.circular(20),
           ),
           child: _buildCourseInformation(course),
@@ -141,7 +144,7 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
           style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w400,
-            color: Color.fromARGB(255, 109, 109, 109),
+            color: AchaColors.gray109,
           ),
         ),
         const SizedBox(height: 3),
@@ -151,7 +154,7 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w400,
-            color: Colors.black,
+            color: AchaColors.black,
           ),
         ),
         const SizedBox(height: 2),
@@ -160,7 +163,7 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
           style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w400,
-            color: Colors.black,
+            color: AchaColors.black,
           ),
         )
       ],
@@ -187,7 +190,7 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
           '강좌를 불러오지 못했어요',
           style: TextStyle(
             fontSize: 15,
-            color: Color.fromARGB(255, 109, 109, 109),
+            color: AchaColors.gray109,
           ),
         ),
       ),

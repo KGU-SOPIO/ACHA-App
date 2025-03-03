@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:carousel_slider/carousel_slider.dart';
 
+import 'package:acha/core/constants/index.dart';
 import 'package:acha/presentation/widgets/index.dart';
 
 class MainScreen extends StatefulWidget {
@@ -24,7 +25,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 245, 246, 248),
+      backgroundColor: AchaColors.gray245_246_248,
       body: _buildBody(),
     );
   }
@@ -49,7 +50,7 @@ class _MainScreenState extends State<MainScreen> {
           Container(
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 26),
-            color: const Color.fromARGB(255, 245, 246, 248),
+            color: AchaColors.gray245_246_248,
             child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
