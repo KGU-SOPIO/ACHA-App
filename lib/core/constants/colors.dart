@@ -7,6 +7,7 @@ abstract class AchaColors {
   static const primaryBlue_10 = Color.fromARGB(25, 0, 102, 255);
   static const blue166_201_255 = Color.fromARGB(255, 166, 201, 255);
   static const blue233_236_255 = Color.fromARGB(255, 223, 236, 255);
+  static const blue228_232_241 = Color.fromARGB(255, 228, 232, 241);
 
   static const primaryRed = Color.fromARGB(255, 255, 78, 107);
   static const primaryRed_10 = Color.fromARGB(25, 255, 78, 107);

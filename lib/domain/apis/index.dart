@@ -7,9 +7,9 @@ export 'package:acha/domain/apis/fcm_token.dart';
 export 'package:acha/domain/apis/alert.dart';
 
 class BaseApiEndpoints {
-  static const String baseUri = 'https://api.sopio.kr';
-
   /// DEBUG
   /// iOS: 127.0.0.1
   /// Android: 10.0.2.2
+  static const String version = 'v1';
+  static const String baseUri = 'https://api.sopio.kr/api/$version';
 }

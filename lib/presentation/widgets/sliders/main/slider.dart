@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 import 'package:acha/core/constants/index.dart';
@@ -35,16 +34,6 @@ class _SliderWidgetState extends State<SliderWidget> {
   void initState() {
     super.initState();
     context.read<ActivityBloc>().add(const ActivityEvent.fetchActivities());
-  }
-
-  Future<void> _openActivityUri({required Uri uri}) async {
-    try {
-      if (await canLaunchUrl(uri)) {
-        await launchUrl(uri, mode: LaunchMode.externalApplication);
-      }
-    } catch (e) {
-      GetIt.I<ToastManager>().error(message: 'LMS 페이지를 열지 못했어요');
-    }
   }
 
   @override
@@ -96,8 +85,9 @@ class _SliderWidgetState extends State<SliderWidget> {
           _buildActivityBlocConsumer(
             loadedBuilder: (state) {
               final weekActivities = state.weekActivities;
-              final lectures =
-                  weekActivities?.getLectureActivities(group: true);
+              final lectures = weekActivities?.getLectureActivities(
+                group: true,
+              );
               return _buildLectureList(
                 lectures: lectures,
                 notExistMessage: '남은 강의가 없어요',
@@ -123,8 +113,9 @@ class _SliderWidgetState extends State<SliderWidget> {
           _buildActivityBlocConsumer(
             loadedBuilder: (state) {
               final weekActivities = state.weekActivities;
-              final assignments =
-                  weekActivities?.getAssignmentActivities(group: true);
+              final assignments = weekActivities?.getAssignmentActivities(
+                group: true,
+              );
               return _buildAssignmentList(
                 assignments: assignments,
                 notExistMessage: '남은 과제가 없어요',
@@ -192,9 +183,10 @@ class _SliderWidgetState extends State<SliderWidget> {
     );
   }
 
-  Widget _buildActivityBlocConsumer(
-      {required Widget Function(ActivityState state) loadedBuilder,
-      required String errorMessage}) {
+  Widget _buildActivityBlocConsumer({
+    required Widget Function(ActivityState state) loadedBuilder,
+    required String errorMessage,
+  }) {
     return BlocConsumer<ActivityBloc, ActivityState>(
       listener: (context, state) {
         if (state.status == ActivityStatus.error) {
@@ -267,9 +259,10 @@ class _SliderWidgetState extends State<SliderWidget> {
     );
   }
 
-  Widget _buildAssignmentList(
-      {required Map<DateTime, List<Activity>>? assignments,
-      required String notExistMessage}) {
+  Widget _buildAssignmentList({
+    required Map<DateTime, List<Activity>>? assignments,
+    required String notExistMessage,
+  }) {
     if (assignments == null) {
       return Expanded(
         child: Center(

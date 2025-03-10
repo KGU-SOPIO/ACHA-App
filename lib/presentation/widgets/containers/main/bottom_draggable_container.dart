@@ -30,7 +30,9 @@ class BottomDraggableContainer extends StatelessWidget {
   }
 
   Widget _buildContainer(
-      BuildContext context, ScrollController scrollController) {
+    BuildContext context,
+    ScrollController scrollController,
+  ) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),

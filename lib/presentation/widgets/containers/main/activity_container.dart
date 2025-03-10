@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'package:get_it/get_it.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
 import 'package:acha/core/constants/index.dart';
 import 'package:acha/data/models/index.dart';
+import 'package:acha/presentation/widgets/index.dart';
 
 class ActivityContainer extends StatelessWidget {
   const ActivityContainer({
@@ -42,10 +46,31 @@ class ActivityContainer extends StatelessWidget {
           _buildTitle(),
           _buildCourse(),
           const SizedBox(height: 14),
-          _buildDeadline(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _buildDeadline(),
+              _buildUri(),
+            ],
+          )
         ],
       ),
     );
+  }
+
+  Future<void> _openActivityUri() async {
+    if (uri == null) {
+      GetIt.I<ToastManager>().error(message: 'LMS 링크를 불러오지 못했어요');
+      return;
+    }
+
+    try {
+      if (await canLaunchUrl(uri!)) {
+        await launchUrl(uri!, mode: LaunchMode.externalApplication);
+      }
+    } catch (e) {
+      GetIt.I<ToastManager>().error(message: 'LMS 페이지를 열지 못했어요');
+    }
   }
 
   Widget _buildTitle() {
@@ -93,6 +118,41 @@ class ActivityContainer extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildUri() {
+    final svgPath = type == ActivityType.lecture
+        ? 'lib/assets/svgs/modal/main/lecture.svg'
+        : 'lib/assets/svgs/modal/main/assignment.svg';
+    final buttonText = type == ActivityType.lecture ? '강의 시청' : '과제 제출';
+
+    return GestureDetector(
+      onTap: () => _openActivityUri(),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: AchaColors.blue228_232_241,
+          ),
+          borderRadius: BorderRadius.circular(7),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SvgPicture.asset(svgPath),
+            const SizedBox(width: 5),
+            Text(
+              buttonText,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: AchaColors.gray60,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

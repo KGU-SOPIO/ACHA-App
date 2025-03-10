@@ -49,7 +49,7 @@ class _AuthStartScreenState extends State<AuthStartScreen> {
             CarouselIndicator(
               itemCount: 3,
               currentIndex: currentSlide,
-            ),
+            )
           ],
         ),
       ),
@@ -66,123 +66,100 @@ class _AuthStartScreenState extends State<AuthStartScreen> {
         onPageChanged: (index, reason) => setState(() => currentSlide = index),
       ),
       items: [
-        _buildFirstCarouselItem(),
-        _buildSecondCarouselItem(),
-        _buildThirdCarouselItem(),
+        _buildCarouselItem(
+          path: 'lib/assets/images/auth/surprised.png',
+          isSvg: false,
+          textSpans: const [
+            TextSpan(
+              text: '너 ',
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                color: AchaColors.gray30,
+              ),
+            ),
+            TextSpan(text: '과제 제출함?'),
+          ],
+          textStyle: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+            color: AchaColors.primaryBlue,
+          ),
+        ),
+        _buildCarouselItem(
+          path: 'lib/assets/images/auth/calendar.png',
+          isSvg: false,
+          textSpans: const [
+            TextSpan(
+              text: '곧 다가올 마감일,\n',
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                color: AchaColors.gray30,
+              ),
+            ),
+            TextSpan(
+              text: '잊어버리시진 않으셨나요?',
+              style: TextStyle(
+                height: 1.7,
+                color: AchaColors.primaryBlue,
+              ),
+            ),
+          ],
+          textStyle: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        _buildCarouselItem(
+          path: 'lib/assets/svgs/acha/medium.svg',
+          isSvg: true,
+          textSpans: const [
+            TextSpan(
+              text: '아차!\n',
+              style: TextStyle(
+                color: AchaColors.primaryBlue,
+              ),
+            ),
+            TextSpan(
+              text: '이젠 놓치지 마세요',
+              style: TextStyle(
+                height: 1.7,
+                fontWeight: FontWeight.w500,
+                color: AchaColors.gray30,
+              ),
+            ),
+          ],
+          textStyle: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
       ],
     );
   }
 
-  Widget _buildFirstCarouselItem() {
+  Widget _buildCarouselItem({
+    required bool isSvg,
+    required String path,
+    required List<TextSpan> textSpans,
+    TextStyle? textStyle,
+  }) {
+    final imageWidget =
+        isSvg ? SvgPicture.asset(path) : Image.asset(path, height: 180);
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(
           height: 180,
-          child: Image.asset(
-            'lib/assets/images/auth/surprised.png',
-            height: 180,
-          ),
+          child: imageWidget,
         ),
         const SizedBox(height: 35),
-        const Text.rich(
+        Text.rich(
+          textAlign: TextAlign.center,
           TextSpan(
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w700,
-              color: AchaColors.primaryBlue,
-            ),
-            children: [
-              TextSpan(
-                text: '너 ',
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  color: AchaColors.gray30,
-                ),
-              ),
-              TextSpan(text: '과제 제출함?')
-            ],
+            style: textStyle,
+            children: textSpans,
           ),
         )
-      ],
-    );
-  }
-
-  Widget _buildSecondCarouselItem() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(
-          height: 180,
-          child: Image.asset(
-            'lib/assets/images/auth/calendar.png',
-            height: 180,
-          ),
-        ),
-        const SizedBox(height: 35),
-        const Text.rich(
-          textAlign: TextAlign.center,
-          TextSpan(
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w700,
-            ),
-            children: [
-              TextSpan(
-                text: '곧 다가올 마감일,\n',
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  color: AchaColors.gray30,
-                ),
-              ),
-              TextSpan(
-                text: '잊어버리시진 않으셨나요?',
-                style: TextStyle(
-                  height: 1.7,
-                  color: AchaColors.primaryBlue,
-                ),
-              )
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildThirdCarouselItem() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(
-          height: 180,
-          child: SvgPicture.asset('lib/assets/svgs/acha/medium.svg'),
-        ),
-        const SizedBox(height: 35),
-        const Text.rich(
-          textAlign: TextAlign.center,
-          TextSpan(
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w700,
-            ),
-            children: [
-              TextSpan(
-                text: '아차!\n',
-                style: TextStyle(
-                  color: AchaColors.primaryBlue,
-                ),
-              ),
-              TextSpan(
-                text: '이젠 놓치지 마세요',
-                style: TextStyle(
-                  height: 1.7,
-                  fontWeight: FontWeight.w500,
-                  color: AchaColors.gray30,
-                ),
-              )
-            ],
-          ),
-        ),
       ],
     );
   }
@@ -194,7 +171,10 @@ class _AuthStartScreenState extends State<AuthStartScreen> {
         height: 56,
         text: '지금 시작하기',
         textStyle: const TextStyle(
-            fontSize: 16, fontWeight: FontWeight.w700, color: AchaColors.white),
+          fontSize: 16,
+          fontWeight: FontWeight.w700,
+          color: AchaColors.white,
+        ),
         backgroundColor: AchaColors.primaryBlue,
         onPressed: () => Navigator.push(context, AuthStudentIdScreen.route()),
       ),

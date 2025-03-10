@@ -1,9 +1,8 @@
 import 'package:acha/domain/apis/index.dart';
 
 class CourseApiEndpoints {
-  static const String extraction = '${BaseApiEndpoints.baseUri}/api/v1/lecture';
-  static const String courses =
-      '${BaseApiEndpoints.baseUri}/api/v1/member-lecture';
+  static const String extraction = '${BaseApiEndpoints.baseUri}/activities';
+  static const String courses = '${BaseApiEndpoints.baseUri}/member-courses';
   static const String activity = '${BaseApiEndpoints.baseUri}/activity';
   static const String assignment = '${BaseApiEndpoints.baseUri}/assignment';
   static const String notice = '${BaseApiEndpoints.baseUri}/notification';
