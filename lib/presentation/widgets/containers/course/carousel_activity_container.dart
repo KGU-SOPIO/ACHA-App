@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'package:get_it/get_it.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:acha/core/constants/index.dart';
 import 'package:acha/core/extensions/index.dart';
 import 'package:acha/data/models/index.dart';
+import 'package:acha/presentation/widgets/index.dart';
 
 class CarouselActivityContainer extends StatelessWidget {
   const CarouselActivityContainer({
@@ -42,38 +45,56 @@ class CarouselActivityContainer extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: AchaColors.gray237_239_242,
-                width: 1.5,
+          GestureDetector(
+            onTap: () => _openActivityUri(Uri.tryParse(activity.link)),
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: AchaColors.gray237_239_242,
+                  width: 1.5,
+                ),
+                borderRadius: BorderRadius.circular(12),
               ),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Row(
-              children: [
-                SvgPicture.asset(activity.type.svgPath),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Text(
-                    activity.title,
-                    maxLines: 1,
-                    overflow: TextOverflow.fade,
-                    softWrap: false,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: AchaColors.gray60,
+              child: Row(
+                children: [
+                  SvgPicture.asset(activity.type.svgPath),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                      activity.title,
+                      maxLines: 1,
+                      overflow: TextOverflow.fade,
+                      softWrap: false,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: AchaColors.gray60,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],
       ),
     );
+  }
+
+  Future<void> _openActivityUri(Uri? uri) async {
+    if (uri == null) {
+      GetIt.I<ToastManager>().error(message: 'LMS 링크를 불러오지 못했어요');
+      return;
+    }
+
+    try {
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      }
+    } catch (e) {
+      GetIt.I<ToastManager>().error(message: 'LMS 페이지를 열지 못했어요');
+    }
   }
 }

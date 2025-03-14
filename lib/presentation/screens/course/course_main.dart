@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:get_it/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -67,6 +68,21 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> _openActivityUri(Uri? uri) async {
+    if (uri == null) {
+      GetIt.I<ToastManager>().error(message: 'LMS 링크를 불러오지 못했어요');
+      return;
+    }
+
+    try {
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      }
+    } catch (e) {
+      GetIt.I<ToastManager>().error(message: 'LMS 페이지를 열지 못했어요');
+    }
   }
 
   Widget _buildCourseSection(BuildContext context, CourseState state) {
@@ -316,14 +332,19 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                   ),
                   ...weekActivities.contents.map(
                     (activity) {
-                      return ListTile(
-                        leading: SvgPicture.asset(activity.type.svgPath),
-                        title: Text(
-                          activity.title,
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: AchaColors.gray60,
+                      return GestureDetector(
+                        onTap: () => _openActivityUri(
+                          Uri.tryParse(activity.link),
+                        ),
+                        child: ListTile(
+                          leading: SvgPicture.asset(activity.type.svgPath),
+                          title: Text(
+                            activity.title,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: AchaColors.gray60,
+                            ),
                           ),
                         ),
                       );
