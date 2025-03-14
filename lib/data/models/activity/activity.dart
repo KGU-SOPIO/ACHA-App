@@ -12,7 +12,7 @@ enum ActivityType { url, file, lecture, assignment }
 @freezed
 class CourseActivityListModel with _$CourseActivityListModel {
   const factory CourseActivityListModel({
-    required List<ActivityList> weekActivityList,
+    required List<ActivityList> contents,
   }) = CourseActivityList;
 
   const factory CourseActivityListModel.error({
@@ -27,7 +27,7 @@ class CourseActivityListModel with _$CourseActivityListModel {
 class ActivityListModel with _$ActivityListModel {
   const factory ActivityListModel({
     int? week,
-    required List<Activity> activitylist,
+    required List<Activity> contents,
   }) = ActivityList;
 
   const factory ActivityListModel.error({
@@ -43,9 +43,9 @@ class ActivityModel with _$ActivityModel {
   const factory ActivityModel({
     required ActivityType type,
     required bool available,
-    required String name,
+    required String title,
     required String link,
-    required int id,
+    required String code,
     DateTime? deadline,
     String? lectureTime,
     bool? attendance,

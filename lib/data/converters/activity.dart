@@ -8,7 +8,7 @@ class CourseActivityListResponseConverter
 
   @override
   CourseActivityListModel fromJson(Map<String, dynamic> json) {
-    if (json.containsKey('courseActivityList')) {
+    if (json.containsKey('contents')) {
       return CourseActivityList.fromJson(json);
     } else {
       return CourseActivityListError.fromJson(json);
@@ -26,7 +26,7 @@ class ActivityListResponseConverter
 
   @override
   ActivityListModel fromJson(Map<String, dynamic> json) {
-    if (json.containsKey('activityList')) {
+    if (json.containsKey('contents')) {
       return ActivityList.fromJson(json);
     } else {
       return ActivityListError.fromJson(json);

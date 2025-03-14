@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:auto_size_text/auto_size_text.dart';
+
 import 'package:acha/core/constants/index.dart';
 import 'package:acha/presentation/widgets/index.dart';
 
@@ -60,8 +62,9 @@ class CourseContainer extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 3),
-        Text(
+        AutoSizeText(
           courseName,
+          maxLines: 1,
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w400,
@@ -69,8 +72,9 @@ class CourseContainer extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 2),
-        Text(
+        AutoSizeText(
           lectureRoom,
+          maxLines: 1,
           style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w400,

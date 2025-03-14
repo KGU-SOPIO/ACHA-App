@@ -11,6 +11,14 @@ enum ErrorCode {
     'INVALID_PASSWORD',
     '비밀번호가 올바르지 않아요',
   ),
+  kutisServerError(
+    'KUTIS_SERVER_Error',
+    'KUTIS에서 데이터를 불러오지 못했어요',
+  ),
+  lmsServerError(
+    'LMS_SERVER_ERROR',
+    'LMS에서 데이터를 불러오지 못했어요',
+  ),
   unknown(
     'UNKNOWN',
     '문제가 발생했어요',

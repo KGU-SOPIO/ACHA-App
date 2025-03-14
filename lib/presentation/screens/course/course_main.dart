@@ -5,6 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:stacked_list_carousel/stacked_list_carousel.dart';
 
 import 'package:acha/core/constants/index.dart';
@@ -61,8 +62,11 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
   Widget _buildCourseSection(BuildContext context, CourseState state) {
     return DecoratedBox(
       decoration: const BoxDecoration(
-          color: AchaColors.white,
-          borderRadius: BorderRadius.vertical(bottom: Radius.circular(30))),
+        color: AchaColors.white,
+        borderRadius: BorderRadius.vertical(
+          bottom: Radius.circular(30),
+        ),
+      ),
       child: ListView(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
@@ -99,8 +103,9 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
           ),
         ),
         const SizedBox(height: 5),
-        Text(
+        AutoSizeText(
           state.course.title,
+          maxLines: 1,
           style: const TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.w700,
@@ -172,16 +177,31 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
     if (state.status == CourseStatus.loading) {
       return _buildCarouselSkeleton();
     } else if (state.status == CourseStatus.loaded) {
-      final courseActivities = state.course.courseActivityList;
-      final containers = courseActivities?.weekActivityList.expand(
-        (weekActivities) {
-          final week = weekActivities.week;
-          return weekActivities.activitylist.map((activity) =>
-              CarouselActivityContainer(week: week!, activity: activity));
-        },
-      ).toList();
+      final activityList = state.course.courseActivityList!.contents;
+      final containers = activityList.expand((weekActivities) {
+        final week = weekActivities.week!;
+        return weekActivities.contents
+            .where((activity) =>
+                activity.type == ActivityType.lecture ||
+                activity.type == ActivityType.assignment)
+            .map((activity) =>
+                CarouselActivityContainer(week: week, activity: activity));
+      }).toList();
 
-      if (containers != null) {
+      if (containers.isEmpty) {
+        return const SizedBox(
+          height: 160,
+          child: Center(
+            child: Text(
+              '등록된 활동이 없어요',
+              style: TextStyle(
+                fontSize: 15,
+                color: AchaColors.gray109,
+              ),
+            ),
+          ),
+        );
+      } else {
         return Container(
           height: 160,
           margin: const EdgeInsets.only(bottom: 5),
@@ -194,19 +214,6 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
             cardAspectRatio: MediaQuery.of(context).size.width / 160,
             outermostCardAnimationDuration: const Duration(milliseconds: 200),
             autoSlideDuration: const Duration(seconds: 5),
-          ),
-        );
-      } else {
-        return const SizedBox(
-          height: 160,
-          child: Center(
-            child: Text(
-              '등록된 활동이 없어요',
-              style: TextStyle(
-                fontSize: 15,
-                color: AchaColors.gray109,
-              ),
-            ),
           ),
         );
       }
@@ -230,7 +237,8 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
     if (state.status == CourseStatus.loading) {
       return _buildPanelSkeleton();
     } else if (state.status == CourseStatus.loaded) {
-      if (state.course.courseActivityList == null) {
+      final activityList = state.course.courseActivityList!.contents;
+      if (activityList.isEmpty) {
         return const SizedBox.shrink();
       }
       return Padding(
@@ -238,10 +246,9 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
         child: ListView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          itemCount: state.course.courseActivityList!.weekActivityList.length,
+          itemCount: activityList.length,
           itemBuilder: (context, index) {
-            final weekActivities =
-                state.course.courseActivityList!.weekActivityList[index];
+            final weekActivities = activityList[index];
             return _buildExpansionPanel(weekActivities, index);
           },
         ),
@@ -252,7 +259,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
   }
 
   Widget _buildExpansionPanel(ActivityList weekActivities, int index) {
-    final allCompleted = weekActivities.activitylist.every(
+    final allCompleted = weekActivities.contents.every(
       (activity) => activity.attendance == true,
     );
 
@@ -298,12 +305,12 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                     height: 1,
                     color: AchaColors.gray245_246_248,
                   ),
-                  ...weekActivities.activitylist.map(
+                  ...weekActivities.contents.map(
                     (activity) {
                       return ListTile(
                         leading: SvgPicture.asset(activity.type.svgPath),
                         title: Text(
-                          activity.name,
+                          activity.title,
                           style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w400,

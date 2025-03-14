@@ -84,8 +84,8 @@ class _SliderWidgetState extends State<SliderWidget> {
           const SizedBox(height: 18),
           _buildActivityBlocConsumer(
             loadedBuilder: (state) {
-              final weekActivities = state.weekActivities;
-              final lectures = weekActivities?.getLectureActivities(
+              final activityList = state.activityList;
+              final lectures = activityList!.getLectureActivities(
                 group: true,
               );
               return _buildLectureList(
@@ -112,8 +112,8 @@ class _SliderWidgetState extends State<SliderWidget> {
           const SizedBox(height: 18),
           _buildActivityBlocConsumer(
             loadedBuilder: (state) {
-              final weekActivities = state.weekActivities;
-              final assignments = weekActivities?.getAssignmentActivities(
+              final activityList = state.activityList;
+              final assignments = activityList!.getAssignmentActivities(
                 group: true,
               );
               return _buildAssignmentList(
@@ -215,15 +215,19 @@ class _SliderWidgetState extends State<SliderWidget> {
     );
   }
 
-  Widget _buildLectureList(
-      {required Map<DateTime, List<Activity>>? lectures,
-      required String notExistMessage}) {
+  Widget _buildLectureList({
+    required Map<DateTime, List<Activity>>? lectures,
+    required String notExistMessage,
+  }) {
     if (lectures == null) {
       return Expanded(
         child: Center(
           child: Text(
             notExistMessage,
-            style: const TextStyle(fontSize: 15),
+            style: const TextStyle(
+              fontSize: 15,
+              color: AchaColors.gray109,
+            ),
           ),
         ),
       );
@@ -245,9 +249,9 @@ class _SliderWidgetState extends State<SliderWidget> {
               for (final lecture in activities)
                 ActivityContainer(
                   type: lecture.type,
-                  title: lecture.name,
+                  title: lecture.title,
                   course: lecture.courseName!,
-                  deadline: lecture.deadline!.toTimeLeftFormattedTime(),
+                  deadline: lecture.deadline!,
                   uri: Uri.tryParse(lecture.link),
                   margin: const EdgeInsets.only(bottom: 13),
                 ),
@@ -268,7 +272,10 @@ class _SliderWidgetState extends State<SliderWidget> {
         child: Center(
           child: Text(
             notExistMessage,
-            style: const TextStyle(fontSize: 15),
+            style: const TextStyle(
+              fontSize: 15,
+              color: AchaColors.gray109,
+            ),
           ),
         ),
       );
@@ -290,9 +297,9 @@ class _SliderWidgetState extends State<SliderWidget> {
               for (final assignment in activities)
                 ActivityContainer(
                   type: assignment.type,
-                  title: assignment.name,
+                  title: assignment.title,
                   course: assignment.courseName!,
-                  deadline: assignment.deadline!.toTimeLeftFormattedTime(),
+                  deadline: assignment.deadline!,
                   uri: Uri.tryParse(assignment.link),
                   margin: const EdgeInsets.only(bottom: 13),
                 ),

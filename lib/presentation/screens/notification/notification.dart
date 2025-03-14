@@ -62,7 +62,7 @@ class _NotificationScreenState extends State<NotificationScreen>
           if (state.status == ActivityStatus.loading) {
             return _buildLoadingContent();
           } else if (state.status == ActivityStatus.loaded) {
-            return _buildLoadedContent(state.weekActivities);
+            return _buildLoadedContent(state.activityList);
           } else {
             return _buildErrorContent();
           }
@@ -113,7 +113,15 @@ class _NotificationScreenState extends State<NotificationScreen>
     Map<DateTime, List<Activity>>? groupedActivities,
   ) {
     if (groupedActivities == null) {
-      return const Center(child: Text('다 끝내셨군요! 고생하셨어요'));
+      return const Center(
+        child: Text(
+          '다 끝내셨군요! 고생하셨어요',
+          style: TextStyle(
+            fontSize: 15,
+            color: AchaColors.gray109,
+          ),
+        ),
+      );
     }
 
     return ListView.builder(
@@ -133,9 +141,9 @@ class _NotificationScreenState extends State<NotificationScreen>
               ...activities.map(
                 (activity) => ActivityContainer(
                   type: activity.type,
-                  title: activity.name,
+                  title: activity.title,
                   course: activity.courseName!,
-                  deadline: activity.deadline!.toTimeLeftFormattedTime(),
+                  deadline: activity.deadline!,
                   uri: Uri.tryParse(activity.link),
                   margin: const EdgeInsets.only(bottom: 16),
                   backgroundColor: AchaColors.white,

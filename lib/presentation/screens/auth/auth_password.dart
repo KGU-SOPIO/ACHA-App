@@ -48,7 +48,7 @@ class _AuthPasswordScreenState extends State<AuthPasswordScreen> {
     });
   }
 
-  void _showTermsModal() => TermsBottomModalSheet(
+  void _showTermsModal() => TermsModal(
         titleWidget: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

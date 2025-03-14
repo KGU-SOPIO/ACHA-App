@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
 import 'package:acha/core/constants/index.dart';
+import 'package:acha/core/extensions/index.dart';
 import 'package:acha/data/models/index.dart';
 import 'package:acha/presentation/widgets/index.dart';
 
@@ -24,7 +25,7 @@ class ActivityContainer extends StatelessWidget {
   final ActivityType type;
   final String title;
   final String course;
-  final String deadline;
+  final DateTime deadline;
   final Uri? uri;
   final EdgeInsets? margin;
   final Color? backgroundColor;
@@ -34,7 +35,7 @@ class ActivityContainer extends StatelessWidget {
     return Container(
       width: double.infinity,
       margin: margin,
-      padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 12),
       decoration: BoxDecoration(
         border: Border.all(color: AchaColors.gray228_232_241),
         color: backgroundColor,
@@ -45,7 +46,7 @@ class ActivityContainer extends StatelessWidget {
         children: [
           _buildTitle(),
           _buildCourse(),
-          const SizedBox(height: 14),
+          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -104,7 +105,7 @@ class ActivityContainer extends StatelessWidget {
         ),
         children: [
           TextSpan(
-            text: deadline,
+            text: deadline.toTimeLeftFormattedTime(),
             style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w500,

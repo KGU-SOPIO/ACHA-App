@@ -81,7 +81,9 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
   }
 
   void _onTodayCourseStateChanged(
-      BuildContext context, TodayCourseState state) {
+    BuildContext context,
+    TodayCourseState state,
+  ) {
     switch (state.status) {
       case TodayCourseStatus.error:
         GetIt.I<ToastManager>().error(message: state.errorMessage!);
@@ -96,7 +98,7 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
       case TodayCourseStatus.loading:
         return const Loader(height: 97);
       case TodayCourseStatus.loaded:
-        if (state.todayCourses == null) {
+        if (state.todayCourses!.contents.isEmpty) {
           return _buildEmptyCourse();
         }
         return _buildCourseList(state.todayCourses!);
@@ -158,8 +160,9 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
           ),
         ),
         const SizedBox(height: 2),
-        Text(
+        AutoSizeText(
           course.lectureRoom,
+          maxLines: 1,
           style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w400,
@@ -176,7 +179,10 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
       child: Center(
         child: Text(
           '오늘은 공강이에요',
-          style: TextStyle(fontSize: 15),
+          style: TextStyle(
+            fontSize: 15,
+            color: AchaColors.gray109,
+          ),
         ),
       ),
     );

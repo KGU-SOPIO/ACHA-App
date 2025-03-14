@@ -3,11 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:acha/core/constants/index.dart';
+import 'package:acha/core/extensions/index.dart';
 import 'package:acha/data/models/index.dart';
 
 class CarouselActivityContainer extends StatelessWidget {
-  const CarouselActivityContainer(
-      {super.key, required this.week, required this.activity});
+  const CarouselActivityContainer({
+    super.key,
+    required this.week,
+    required this.activity,
+  });
 
   final int week;
   final Activity activity;
@@ -50,11 +54,11 @@ class CarouselActivityContainer extends StatelessWidget {
             ),
             child: Row(
               children: [
-                SvgPicture.asset('lib/assets/svgs/course/lecture.svg'),
+                SvgPicture.asset(activity.type.svgPath),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Text(
-                    activity.name,
+                    activity.title,
                     maxLines: 1,
                     overflow: TextOverflow.fade,
                     softWrap: false,

@@ -31,7 +31,7 @@ class ActivityBloc extends Bloc<ActivityEvent, ActivityState> {
         )),
         (value) => emit(state.copyWith(
           status: ActivityStatus.loaded,
-          weekActivities: value,
+          activityList: value,
         )),
       );
     } catch (e) {

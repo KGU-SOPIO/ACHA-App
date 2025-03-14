@@ -28,7 +28,7 @@ class AuthSignUpScreen extends StatefulWidget {
 }
 
 class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
-  void _showTermsModal() => TermsBottomModalSheet(
+  void _showTermsModal() => TermsModal(
         titleWidget: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -63,7 +63,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
       ).show(context);
 
   Future<void> _openManualUri() async {
-    final uri = Uri.parse(AchaUris.kutisInformationManual);
+    final uri = Uri.parse(AchaUris.differentManual);
     try {
       if (await canLaunchUrl(uri)) {
         await launchUrl(uri);

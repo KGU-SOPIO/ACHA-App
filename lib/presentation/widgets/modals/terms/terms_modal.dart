@@ -7,8 +7,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:acha/core/constants/index.dart';
 import 'package:acha/presentation/widgets/index.dart';
 
-class TermsBottomModalSheet {
-  TermsBottomModalSheet({
+class TermsModal {
+  TermsModal({
     required this.titleWidget,
     required this.uri,
     required this.termsButtonText,

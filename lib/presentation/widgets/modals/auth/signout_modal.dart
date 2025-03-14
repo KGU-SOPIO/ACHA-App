@@ -70,7 +70,7 @@ class _SignOutModalState extends State<SignOutModal> {
       child: BlocListener<SignOutBloc, SignOutState>(
         listener: (context, state) {
           if (state.status == SignOutStatus.complete) {
-            GetIt.I<ToastManager>().success(message: '지금까지 아차를 이용해 주셔서 감사해요');
+            GetIt.I<ToastManager>().success(message: '아차를 이용해 주셔서 감사해요');
           } else if (state.status == SignOutStatus.error) {
             Navigator.pop(context);
             GetIt.I<ToastManager>().success(message: state.errorMessage!);
