@@ -45,11 +45,21 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
           decoration: const BoxDecoration(color: AchaColors.gray245_246_248),
           child: BlocBuilder<CourseBloc, CourseState>(
             builder: (context, state) {
-              return ListView(
-                physics: const ClampingScrollPhysics(),
+              return Stack(
                 children: [
-                  _buildCourseSection(context, state),
-                  _buildActivitySection(state),
+                  ListView(
+                    physics: const ClampingScrollPhysics(),
+                    children: [
+                      _buildCourseSection(context, state),
+                      _buildActivitySection(state),
+                    ],
+                  ),
+                  Positioned(
+                    left: 26,
+                    right: 26,
+                    top: 265,
+                    child: _buildCarouselSection(context, state),
+                  )
                 ],
               );
             },
@@ -80,8 +90,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                 _buildCourseHeader(state),
                 const SizedBox(height: 25),
                 _buildNoticeButton(context, state),
-                const SizedBox(height: 27),
-                _buildCarouselSection(context, state),
+                const SizedBox(height: 227),
               ],
             ),
           )
