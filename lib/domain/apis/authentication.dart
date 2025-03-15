@@ -5,5 +5,6 @@ class AuthenticationApiEndpoints {
   static const String signUp = '${BaseApiEndpoints.baseUri}/members/signup';
   static const String fetchUser = '${BaseApiEndpoints.baseUri}/members/data';
   static const String reissue = '${BaseApiEndpoints.baseUri}/members/reissue';
+  static const String logout = '${BaseApiEndpoints.baseUri}/members/logout';
   static const String signout = '${BaseApiEndpoints.baseUri}/members/signout';
 }

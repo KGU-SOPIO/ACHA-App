@@ -14,19 +14,21 @@ class ActivityContainer extends StatelessWidget {
   const ActivityContainer({
     super.key,
     required this.type,
+    required this.available,
     required this.title,
     required this.course,
     required this.deadline,
-    required this.uri,
+    required this.link,
     this.margin,
     this.backgroundColor,
   });
 
   final ActivityType type;
+  final bool available;
   final String title;
   final String course;
   final DateTime deadline;
-  final Uri? uri;
+  final String? link;
   final EdgeInsets? margin;
   final Color? backgroundColor;
 
@@ -60,14 +62,15 @@ class ActivityContainer extends StatelessWidget {
   }
 
   Future<void> _openActivityUri() async {
-    if (uri == null) {
-      GetIt.I<ToastManager>().error(message: 'LMS 링크를 불러오지 못했어요');
+    if (link == null) {
+      GetIt.I<ToastManager>().error(message: '활동이 비활성화 되어있어요');
       return;
     }
 
     try {
-      if (await canLaunchUrl(uri!)) {
-        await launchUrl(uri!, mode: LaunchMode.externalApplication);
+      final uri = Uri.parse(link!);
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
       }
     } catch (e) {
       GetIt.I<ToastManager>().error(message: 'LMS 페이지를 열지 못했어요');
@@ -128,6 +131,10 @@ class ActivityContainer extends StatelessWidget {
         ? 'lib/assets/svgs/modal/main/lecture.svg'
         : 'lib/assets/svgs/modal/main/assignment.svg';
     final buttonText = type == ActivityType.lecture ? '강의 시청' : '과제 제출';
+
+    if (available == false || link == null) {
+      return const SizedBox.shrink();
+    }
 
     return GestureDetector(
       onTap: () => _openActivityUri(),

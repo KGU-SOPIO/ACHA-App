@@ -104,13 +104,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
   }
 
   Widget _buildNoticeListSection(BuildContext context) {
-    return BlocConsumer<NoticeListBloc, NoticeListState>(
-      listener: (context, state) {
-        if (state.status == NoticeListStatus.error) {
-          Navigator.pop(context);
-          GetIt.I<ToastManager>().error(message: state.errorMessage!);
-        }
-      },
+    return BlocBuilder<NoticeListBloc, NoticeListState>(
       builder: (context, state) {
         if (state.status == NoticeListStatus.loading) {
           return Column(
@@ -120,9 +114,20 @@ class _NoticeScreenState extends State<NoticeScreen> {
             ),
           );
         } else if (state.status == NoticeListStatus.loaded) {
-          return _buildNoticeListContent(context, state.noticeList?.noticeList);
+          return _buildNoticeListContent(context, state.noticeList?.contents);
         } else {
-          return const SizedBox.shrink();
+          return SizedBox(
+            height: 500,
+            child: Center(
+              child: Text(
+                state.errorMessage!,
+                style: const TextStyle(
+                  fontSize: 15,
+                  color: AchaColors.gray109,
+                ),
+              ),
+            ),
+          );
         }
       },
     );

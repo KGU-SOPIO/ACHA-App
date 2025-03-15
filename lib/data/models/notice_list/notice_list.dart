@@ -9,7 +9,7 @@ part 'notice_list.g.dart';
 @freezed
 class NoticeListModel with _$NoticeListModel {
   const factory NoticeListModel({
-    required List<Notice> noticeList,
+    required List<Notice> contents,
   }) = NoticeList;
 
   const factory NoticeListModel.error({

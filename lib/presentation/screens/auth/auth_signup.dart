@@ -63,8 +63,8 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
       ).show(context);
 
   Future<void> _openManualUri() async {
-    final uri = Uri.parse(AchaUris.differentManual);
     try {
+      final uri = Uri.parse(AchaUris.differentManual);
       if (await canLaunchUrl(uri)) {
         await launchUrl(uri);
       }

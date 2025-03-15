@@ -99,11 +99,11 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
         return const Loader(height: 97);
       case TodayCourseStatus.loaded:
         if (state.todayCourses!.contents.isEmpty) {
-          return _buildEmptyCourse();
+          return _buildMessage('오늘은 공강이에요');
         }
         return _buildCourseList(state.todayCourses!);
       case TodayCourseStatus.error:
-        return _buildError();
+        return _buildMessage(state.errorMessage ?? '강좌를 불러오지 못했어요');
     }
   }
 
@@ -173,28 +173,13 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
     );
   }
 
-  Widget _buildEmptyCourse() {
-    return const SizedBox(
+  Widget _buildMessage(String message) {
+    return SizedBox(
       height: 97,
       child: Center(
         child: Text(
-          '오늘은 공강이에요',
-          style: TextStyle(
-            fontSize: 15,
-            color: AchaColors.gray109,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildError() {
-    return const SizedBox(
-      height: 97,
-      child: Center(
-        child: Text(
-          '강좌를 불러오지 못했어요',
-          style: TextStyle(
+          message,
+          style: const TextStyle(
             fontSize: 15,
             color: AchaColors.gray109,
           ),

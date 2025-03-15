@@ -8,5 +8,5 @@ abstract class CourseRepository {
   Future<Either<String, ActivityList>> fetchActivities();
   Future<Either<String, CourseActivityList>> fetchCourseActivities(String code);
   Future<Either<String, NoticeList>> fetchNoticeList(String code);
-  Future<Either<String, Notice>> fetchNotice(String courseCode, int noticeId);
+  Future<Either<String, Notice>> fetchNotice(int noticeId);
 }

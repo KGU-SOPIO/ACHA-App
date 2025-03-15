@@ -31,19 +31,19 @@ NoticeListModel _$NoticeListModelFromJson(Map<String, dynamic> json) {
 mixin _$NoticeListModel {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<Notice> noticeList) $default, {
+    TResult Function(List<Notice> contents) $default, {
     required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<Notice> noticeList)? $default, {
+    TResult? Function(List<Notice> contents)? $default, {
     TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<Notice> noticeList)? $default, {
+    TResult Function(List<Notice> contents)? $default, {
     TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
     required TResult orElse(),
   }) =>
@@ -99,7 +99,7 @@ abstract class _$$NoticeListImplCopyWith<$Res> {
           _$NoticeListImpl value, $Res Function(_$NoticeListImpl) then) =
       __$$NoticeListImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Notice> noticeList});
+  $Res call({List<Notice> contents});
 }
 
 /// @nodoc
@@ -115,12 +115,12 @@ class __$$NoticeListImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? noticeList = null,
+    Object? contents = null,
   }) {
     return _then(_$NoticeListImpl(
-      noticeList: null == noticeList
-          ? _value._noticeList
-          : noticeList // ignore: cast_nullable_to_non_nullable
+      contents: null == contents
+          ? _value._contents
+          : contents // ignore: cast_nullable_to_non_nullable
               as List<Notice>,
     ));
   }
@@ -130,19 +130,19 @@ class __$$NoticeListImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$NoticeListImpl implements NoticeList {
   const _$NoticeListImpl(
-      {required final List<Notice> noticeList, final String? $type})
-      : _noticeList = noticeList,
+      {required final List<Notice> contents, final String? $type})
+      : _contents = contents,
         $type = $type ?? 'default';
 
   factory _$NoticeListImpl.fromJson(Map<String, dynamic> json) =>
       _$$NoticeListImplFromJson(json);
 
-  final List<Notice> _noticeList;
+  final List<Notice> _contents;
   @override
-  List<Notice> get noticeList {
-    if (_noticeList is EqualUnmodifiableListView) return _noticeList;
+  List<Notice> get contents {
+    if (_contents is EqualUnmodifiableListView) return _contents;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_noticeList);
+    return EqualUnmodifiableListView(_contents);
   }
 
   @JsonKey(name: 'runtimeType')
@@ -150,7 +150,7 @@ class _$NoticeListImpl implements NoticeList {
 
   @override
   String toString() {
-    return 'NoticeListModel(noticeList: $noticeList)';
+    return 'NoticeListModel(contents: $contents)';
   }
 
   @override
@@ -158,14 +158,13 @@ class _$NoticeListImpl implements NoticeList {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$NoticeListImpl &&
-            const DeepCollectionEquality()
-                .equals(other._noticeList, _noticeList));
+            const DeepCollectionEquality().equals(other._contents, _contents));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_noticeList));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_contents));
 
   /// Create a copy of NoticeListModel
   /// with the given fields replaced by the non-null parameter values.
@@ -178,30 +177,30 @@ class _$NoticeListImpl implements NoticeList {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<Notice> noticeList) $default, {
+    TResult Function(List<Notice> contents) $default, {
     required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
   }) {
-    return $default(noticeList);
+    return $default(contents);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<Notice> noticeList)? $default, {
+    TResult? Function(List<Notice> contents)? $default, {
     TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
   }) {
-    return $default?.call(noticeList);
+    return $default?.call(contents);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<Notice> noticeList)? $default, {
+    TResult Function(List<Notice> contents)? $default, {
     TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(noticeList);
+      return $default(contents);
     }
     return orElse();
   }
@@ -246,13 +245,13 @@ class _$NoticeListImpl implements NoticeList {
 }
 
 abstract class NoticeList implements NoticeListModel {
-  const factory NoticeList({required final List<Notice> noticeList}) =
+  const factory NoticeList({required final List<Notice> contents}) =
       _$NoticeListImpl;
 
   factory NoticeList.fromJson(Map<String, dynamic> json) =
       _$NoticeListImpl.fromJson;
 
-  List<Notice> get noticeList;
+  List<Notice> get contents;
 
   /// Create a copy of NoticeListModel
   /// with the given fields replaced by the non-null parameter values.
@@ -340,7 +339,7 @@ class _$NoticeListErrorImpl implements NoticeListError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<Notice> noticeList) $default, {
+    TResult Function(List<Notice> contents) $default, {
     required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
   }) {
     return error(code);
@@ -349,7 +348,7 @@ class _$NoticeListErrorImpl implements NoticeListError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<Notice> noticeList)? $default, {
+    TResult? Function(List<Notice> contents)? $default, {
     TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
   }) {
     return error?.call(code);
@@ -358,7 +357,7 @@ class _$NoticeListErrorImpl implements NoticeListError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<Notice> noticeList)? $default, {
+    TResult Function(List<Notice> contents)? $default, {
     TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
     required TResult orElse(),
   }) {

@@ -141,10 +141,11 @@ class _NotificationScreenState extends State<NotificationScreen>
               ...activities.map(
                 (activity) => ActivityContainer(
                   type: activity.type,
+                  available: activity.available,
                   title: activity.title,
                   course: activity.courseName!,
                   deadline: activity.deadline!,
-                  uri: Uri.tryParse(activity.link),
+                  link: activity.link,
                   margin: const EdgeInsets.only(bottom: 16),
                   backgroundColor: AchaColors.white,
                 ),

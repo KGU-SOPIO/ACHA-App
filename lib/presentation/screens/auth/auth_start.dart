@@ -60,6 +60,7 @@ class _AuthStartScreenState extends State<AuthStartScreen> {
     return CarouselSlider(
       carouselController: _carouselSliderController,
       options: CarouselOptions(
+        autoPlay: true,
         height: MediaQuery.of(context).size.height - 300,
         viewportFraction: 1,
         enableInfiniteScroll: true,

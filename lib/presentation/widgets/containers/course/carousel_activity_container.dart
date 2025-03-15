@@ -46,7 +46,7 @@ class CarouselActivityContainer extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () => _openActivityUri(Uri.tryParse(activity.link)),
+            onTap: () => _openActivityUri(activity.link),
             child: Container(
               width: double.infinity,
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
@@ -83,13 +83,14 @@ class CarouselActivityContainer extends StatelessWidget {
     );
   }
 
-  Future<void> _openActivityUri(Uri? uri) async {
-    if (uri == null) {
-      GetIt.I<ToastManager>().error(message: 'LMS 링크를 불러오지 못했어요');
+  Future<void> _openActivityUri(String? link) async {
+    if (link == null) {
+      GetIt.I<ToastManager>().error(message: '활동이 비활성화 되어있어요');
       return;
     }
 
     try {
+      final uri = Uri.parse(link);
       if (await canLaunchUrl(uri)) {
         await launchUrl(uri, mode: LaunchMode.externalApplication);
       }

@@ -863,8 +863,8 @@ mixin _$ActivityModel {
   ActivityType get type => throw _privateConstructorUsedError;
   bool get available => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
-  String get link => throw _privateConstructorUsedError;
-  String get code => throw _privateConstructorUsedError;
+  String? get link => throw _privateConstructorUsedError;
+  String? get code => throw _privateConstructorUsedError;
   DateTime? get deadline => throw _privateConstructorUsedError;
   String? get lectureTime => throw _privateConstructorUsedError;
   bool? get attendance => throw _privateConstructorUsedError;
@@ -894,8 +894,8 @@ abstract class $ActivityModelCopyWith<$Res> {
       {ActivityType type,
       bool available,
       String title,
-      String link,
-      String code,
+      String? link,
+      String? code,
       DateTime? deadline,
       String? lectureTime,
       bool? attendance,
@@ -924,8 +924,8 @@ class _$ActivityModelCopyWithImpl<$Res, $Val extends ActivityModel>
     Object? type = null,
     Object? available = null,
     Object? title = null,
-    Object? link = null,
-    Object? code = null,
+    Object? link = freezed,
+    Object? code = freezed,
     Object? deadline = freezed,
     Object? lectureTime = freezed,
     Object? attendance = freezed,
@@ -948,14 +948,14 @@ class _$ActivityModelCopyWithImpl<$Res, $Val extends ActivityModel>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      link: null == link
+      link: freezed == link
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
-              as String,
-      code: null == code
+              as String?,
+      code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       deadline: freezed == deadline
           ? _value.deadline
           : deadline // ignore: cast_nullable_to_non_nullable
@@ -1004,8 +1004,8 @@ abstract class _$$ActivityImplCopyWith<$Res>
       {ActivityType type,
       bool available,
       String title,
-      String link,
-      String code,
+      String? link,
+      String? code,
       DateTime? deadline,
       String? lectureTime,
       bool? attendance,
@@ -1032,8 +1032,8 @@ class __$$ActivityImplCopyWithImpl<$Res>
     Object? type = null,
     Object? available = null,
     Object? title = null,
-    Object? link = null,
-    Object? code = null,
+    Object? link = freezed,
+    Object? code = freezed,
     Object? deadline = freezed,
     Object? lectureTime = freezed,
     Object? attendance = freezed,
@@ -1056,14 +1056,14 @@ class __$$ActivityImplCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      link: null == link
+      link: freezed == link
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
-              as String,
-      code: null == code
+              as String?,
+      code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       deadline: freezed == deadline
           ? _value.deadline
           : deadline // ignore: cast_nullable_to_non_nullable
@@ -1107,8 +1107,8 @@ class _$ActivityImpl implements Activity {
       {required this.type,
       required this.available,
       required this.title,
-      required this.link,
-      required this.code,
+      this.link,
+      this.code,
       this.deadline,
       this.lectureTime,
       this.attendance,
@@ -1128,9 +1128,9 @@ class _$ActivityImpl implements Activity {
   @override
   final String title;
   @override
-  final String link;
+  final String? link;
   @override
-  final String code;
+  final String? code;
   @override
   final DateTime? deadline;
   @override
@@ -1221,8 +1221,8 @@ abstract class Activity implements ActivityModel {
       {required final ActivityType type,
       required final bool available,
       required final String title,
-      required final String link,
-      required final String code,
+      final String? link,
+      final String? code,
       final DateTime? deadline,
       final String? lectureTime,
       final bool? attendance,
@@ -1242,9 +1242,9 @@ abstract class Activity implements ActivityModel {
   @override
   String get title;
   @override
-  String get link;
+  String? get link;
   @override
-  String get code;
+  String? get code;
   @override
   DateTime? get deadline;
   @override

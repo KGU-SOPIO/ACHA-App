@@ -46,21 +46,15 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
           decoration: const BoxDecoration(color: AchaColors.gray245_246_248),
           child: BlocBuilder<CourseBloc, CourseState>(
             builder: (context, state) {
-              return Stack(
-                children: [
-                  ListView(
-                    physics: const ClampingScrollPhysics(),
-                    children: [
-                      _buildCourseSection(context, state),
-                      _buildActivitySection(state),
-                    ],
+              return CustomScrollView(
+                physics: const ClampingScrollPhysics(),
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: _buildCourseSection(context, state),
                   ),
-                  Positioned(
-                    left: 26,
-                    right: 26,
-                    top: 265,
-                    child: _buildCarouselSection(context, state),
-                  )
+                  SliverToBoxAdapter(
+                    child: _buildActivitySection(state),
+                  ),
                 ],
               );
             },
@@ -70,13 +64,14 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
     );
   }
 
-  Future<void> _openActivityUri(Uri? uri) async {
-    if (uri == null) {
-      GetIt.I<ToastManager>().error(message: 'LMS 링크를 불러오지 못했어요');
+  Future<void> _openActivityUri(String? link) async {
+    if (link == null) {
+      GetIt.I<ToastManager>().error(message: '활동이 비활성화 되어있어요');
       return;
     }
 
     try {
+      final uri = Uri.parse(link);
       if (await canLaunchUrl(uri)) {
         await launchUrl(uri, mode: LaunchMode.externalApplication);
       }
@@ -86,7 +81,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
   }
 
   Widget _buildCourseSection(BuildContext context, CourseState state) {
-    return DecoratedBox(
+    return Container(
       decoration: const BoxDecoration(
         color: AchaColors.white,
         borderRadius: BorderRadius.vertical(
@@ -106,7 +101,8 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                 _buildCourseHeader(state),
                 const SizedBox(height: 25),
                 _buildNoticeButton(context, state),
-                const SizedBox(height: 227),
+                const SizedBox(height: 27),
+                _buildCarouselSection(context, state),
               ],
             ),
           )
@@ -227,9 +223,8 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
           ),
         );
       } else {
-        return Container(
-          height: 160,
-          margin: const EdgeInsets.only(bottom: 5),
+        return SizedBox(
+          height: 140,
           child: StackedListCarousel(
             items: containers,
             behavior: CarouselBehavior.loop,
@@ -333,9 +328,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                   ...weekActivities.contents.map(
                     (activity) {
                       return GestureDetector(
-                        onTap: () => _openActivityUri(
-                          Uri.tryParse(activity.link),
-                        ),
+                        onTap: () => _openActivityUri(activity.link),
                         child: ListTile(
                           leading: SvgPicture.asset(activity.type.svgPath),
                           title: Text(

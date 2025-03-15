@@ -19,6 +19,10 @@ enum ErrorCode {
     'LMS_SERVER_ERROR',
     'LMS에서 데이터를 불러오지 못했어요',
   ),
+  notificationNotFound(
+    'NOTIFICATION_NOT_FOUND',
+    '공지사항이 없어요',
+  ),
   unknown(
     'UNKNOWN',
     '문제가 발생했어요',

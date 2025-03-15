@@ -8,7 +8,7 @@ part of 'notice_list.dart';
 
 _$NoticeListImpl _$$NoticeListImplFromJson(Map<String, dynamic> json) =>
     _$NoticeListImpl(
-      noticeList: (json['noticeList'] as List<dynamic>)
+      contents: (json['contents'] as List<dynamic>)
           .map((e) => Notice.fromJson(e as Map<String, dynamic>))
           .toList(),
       $type: json['runtimeType'] as String?,
@@ -16,7 +16,7 @@ _$NoticeListImpl _$$NoticeListImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$NoticeListImplToJson(_$NoticeListImpl instance) =>
     <String, dynamic>{
-      'noticeList': instance.noticeList,
+      'contents': instance.contents,
       'runtimeType': instance.$type,
     };
 

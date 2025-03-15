@@ -6,6 +6,7 @@ import 'package:dartz/dartz.dart';
 import 'package:acha/core/network/interceptors/index.dart';
 import 'package:acha/data/models/index.dart';
 import 'package:acha/data/converters/index.dart';
+import 'package:acha/data/repositories/index.dart';
 import 'package:acha/domain/apis/index.dart';
 import 'package:acha/domain/repositories/index.dart';
 import 'package:acha/presentation/blocs/index.dart';
@@ -177,6 +178,35 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     }
   }
 
+  /// 로그아웃을 수행합니다.
+  @override
+  Future<Either<String, Unit>> logout() async {
+    try {
+      dio.interceptors.add(tokenInterceptor);
+
+      final deviceToken = DeviceTokenRepositoryImpl.getDeviceToken();
+      final response = await dio.post(
+        AuthenticationApiEndpoints.logout,
+        data: {'deviceToken': deviceToken},
+      );
+      if (response.statusCode != 200) {
+        final errorCode = response.data['code'] as String;
+        final parsedData = const ErrorCodeConverter().fromJson(errorCode);
+        return Left(parsedData.message);
+      }
+
+      await secureStorageRepository.deleteAllData();
+      _authStreamController.add(const AuthenticationState.unauthenticated());
+      return const Right(unit);
+    } on DioException catch (e) {
+      return Left(e.error as String);
+    } catch (e) {
+      return const Left('로그아웃에 실패했어요');
+    } finally {
+      dio.interceptors.remove(tokenInterceptor);
+    }
+  }
+
   /// 계정 삭제를 요청합니다.
   @override
   Future<Either<String, Unit>> signOut({required String password}) async {
@@ -211,9 +241,20 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     try {
       dio.interceptors.add(tokenInterceptor);
 
-      final response = await dio.post(CourseApiEndpoints.extraction);
-      if (response.statusCode != 200) {
-        final errorCode = response.data['code'] as String;
+      final courseExtractResponse = await dio.post(
+        CourseApiEndpoints.courseExtraction,
+      );
+      if (courseExtractResponse.statusCode != 200) {
+        final errorCode = courseExtractResponse.data['code'] as String;
+        final parsedData = const ErrorCodeConverter().fromJson(errorCode);
+        return Left(parsedData.message);
+      }
+
+      final activityExtractResponse = await dio.post(
+        CourseApiEndpoints.activityExtraction,
+      );
+      if (activityExtractResponse.statusCode != 200) {
+        final errorCode = activityExtractResponse.data['code'] as String;
         final parsedData = const ErrorCodeConverter().fromJson(errorCode);
         return Left(parsedData.message);
       }
@@ -229,18 +270,6 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
       return const Left('문제가 발생해 데이터를 불러오지 못했어요');
     } finally {
       dio.interceptors.remove(tokenInterceptor);
-    }
-  }
-
-  /// 로그아웃을 수행합니다.
-  @override
-  Future<Either<String, Unit>> logout() async {
-    try {
-      await secureStorageRepository.deleteAllData();
-      _authStreamController.add(const AuthenticationState.unauthenticated());
-      return const Right(unit);
-    } catch (e) {
-      return const Left('로그아웃에 실패했어요');
     }
   }
 

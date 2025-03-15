@@ -14,6 +14,11 @@ class CourseRepositoryImpl implements CourseRepository {
   @override
   Future<Either<String, CourseList>> fetchTodayCourses() async {
     try {
+      final weekday = DateTime.now().weekday;
+      if (weekday == DateTime.saturday || weekday == DateTime.sunday) {
+        return const Left('오늘은 주말이에요');
+      }
+
       final response = await dio.get(TodayCourseApiEndpoints.todayCourse);
 
       final parsedData = CourseListModel.fromJson(response.data);
@@ -108,13 +113,10 @@ class CourseRepositoryImpl implements CourseRepository {
 
   /// 공지사항 데이터를 요청합니다.
   @override
-  Future<Either<String, Notice>> fetchNotice(
-    String courseCode,
-    int noticeId,
-  ) async {
+  Future<Either<String, Notice>> fetchNotice(int noticeId) async {
     try {
       final response = await dio.get(
-        NoticeApiEndpoints.noticeDetail(courseCode, noticeId),
+        NoticeApiEndpoints.noticeDetail(noticeId),
       );
 
       final parsedData = NoticeModel.fromJson(response.data);

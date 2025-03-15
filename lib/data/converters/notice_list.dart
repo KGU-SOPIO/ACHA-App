@@ -8,7 +8,7 @@ class NoticeListResponseConverter
 
   @override
   NoticeListModel fromJson(Map<String, dynamic> json) {
-    if (json.containsKey('noticeList')) {
+    if (json.containsKey('contents')) {
       return NoticeList.fromJson(json);
     } else {
       return NoticeListError.fromJson(json);

@@ -71,8 +71,8 @@ _$ActivityImpl _$$ActivityImplFromJson(Map<String, dynamic> json) =>
       type: $enumDecode(_$ActivityTypeEnumMap, json['type']),
       available: json['available'] as bool,
       title: json['title'] as String,
-      link: json['link'] as String,
-      code: json['code'] as String,
+      link: json['link'] as String?,
+      code: json['code'] as String?,
       deadline: json['deadline'] == null
           ? null
           : DateTime.parse(json['deadline'] as String),
