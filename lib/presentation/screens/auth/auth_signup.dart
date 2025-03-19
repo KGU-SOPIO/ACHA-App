@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
+import 'package:get_it/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -27,7 +28,7 @@ class AuthSignUpScreen extends StatefulWidget {
 }
 
 class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
-  void _showTermsModal() => TermsBottomModalSheet(
+  void _showTermsModal() => TermsModal(
         titleWidget: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -35,11 +36,11 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
               TextSpan(
                 style: TextStyle(
                   fontSize: 16,
-                  color: Color.fromARGB(255, 30, 30, 30),
+                  color: AchaColors.gray30,
                 ),
                 children: [
                   TextSpan(
-                    text: '사용 약관에 동의',
+                    text: '이용 약관에 동의',
                     style: TextStyle(fontWeight: FontWeight.w700),
                   ),
                   TextSpan(
@@ -52,8 +53,8 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
             SvgPicture.asset('lib/assets/svgs/acha/small.svg', width: 50)
           ],
         ),
-        uri: Uri.parse(TermsAndConditionsUri.serviceTermsAndConditions),
-        termsButtonText: '아차 사용 약관',
+        uri: Uri.parse(AchaUris.serviceTerms),
+        termsButtonText: '아차 이용 약관',
         agreeButtonText: '동의하고 회원가입',
         onAgree: () => Navigator.push(
           context,
@@ -62,13 +63,13 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
       ).show(context);
 
   Future<void> _openManualUri() async {
-    final uri = Uri.parse(ManualUri.myInformationIsDifferent);
     try {
+      final uri = Uri.parse(AchaUris.differentManual);
       if (await canLaunchUrl(uri)) {
         await launchUrl(uri);
       }
     } catch (e) {
-      return;
+      GetIt.I<ToastManager>().error(message: '매뉴얼 페이지를 열지 못했어요');
     }
   }
 
@@ -88,7 +89,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
   PreferredSizeWidget _buildAppBar() {
     return AppBar(
       automaticallyImplyLeading: false,
-      backgroundColor: Colors.white,
+      backgroundColor: AchaColors.white,
       centerTitle: true,
       title: const Text(
         '시작하기',
@@ -141,7 +142,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
         TextSpan(
           style: TextStyle(
             fontSize: 15,
-            color: Color.fromARGB(255, 60, 60, 60),
+            color: AchaColors.gray60,
           ),
           children: [
             TextSpan(
@@ -172,8 +173,9 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
 
   Widget _buildManualButton() {
     return TextButton(
-      style:
-          TextButton.styleFrom(tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+      style: TextButton.styleFrom(
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      ),
       onPressed: () => _openManualUri(),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -185,7 +187,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w500,
-              color: Color.fromARGB(255, 131, 131, 131),
+              color: AchaColors.gray131,
             ),
           )
         ],
@@ -197,12 +199,12 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
     return ContainerButton(
       height: 56,
       onPressed: () => _showTermsModal(),
-      backgroundColor: const Color.fromARGB(255, 0, 102, 255),
+      backgroundColor: AchaColors.primaryBlue,
       text: '다음',
       textStyle: const TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w700,
-        color: Colors.white,
+        color: AchaColors.white,
       ),
     );
   }

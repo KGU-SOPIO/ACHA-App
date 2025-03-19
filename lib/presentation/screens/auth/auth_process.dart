@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
 
+import 'package:acha/core/constants/index.dart';
 import 'package:acha/presentation/blocs/index.dart';
 import 'package:acha/presentation/screens/index.dart';
 import 'package:acha/presentation/widgets/index.dart';
@@ -74,7 +75,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
   PreferredSizeWidget _buildAppBar() {
     return AppBar(
       automaticallyImplyLeading: false,
-      backgroundColor: Colors.white,
+      backgroundColor: AchaColors.white,
       centerTitle: true,
       title: const Text(
         '시작하기',
@@ -111,7 +112,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
                 style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
-                  color: Color.fromARGB(255, 109, 109, 109),
+                  color: AchaColors.gray109,
                 ),
               ),
               const SizedBox(height: 50),
@@ -126,10 +127,10 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
                   AuthStudentIdScreen.route(),
                   (route) => false,
                 ),
-                backgroundColor: const Color.fromARGB(255, 0, 102, 255),
+                backgroundColor: AchaColors.primaryBlue,
                 text: '돌아가기',
                 textStyle: const TextStyle(
-                  color: Colors.white,
+                  color: AchaColors.white,
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
                 ),
@@ -156,13 +157,13 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 5),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
-                color: const Color.fromARGB(25, 0, 102, 255)),
+                color: AchaColors.primaryBlue_10),
             child: Text(
               state.status.description,
               style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
-                color: Color.fromARGB(255, 0, 102, 255),
+                color: AchaColors.primaryBlue,
               ),
             ),
           ),
@@ -173,7 +174,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
               margin: const EdgeInsets.symmetric(horizontal: 8),
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 245, 246, 248),
+                color: AchaColors.gray245_246_248,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Row(
@@ -204,7 +205,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
-                color: Color.fromARGB(255, 109, 109, 109),
+                color: AchaColors.gray109,
               ),
             ),
           ],
@@ -215,7 +216,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
           style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w500,
-            color: Color.fromARGB(255, 109, 109, 109),
+            color: AchaColors.gray109,
           ),
         ),
         const SizedBox(height: 8),
@@ -224,7 +225,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
           style: TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w400,
-            color: Color.fromARGB(255, 151, 151, 151),
+            color: AchaColors.gray151,
           ),
         )
       ],

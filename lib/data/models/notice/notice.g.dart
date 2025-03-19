@@ -7,7 +7,7 @@ part of 'notice.dart';
 // **************************************************************************
 
 _$NoticeImpl _$$NoticeImplFromJson(Map<String, dynamic> json) => _$NoticeImpl(
-      id: (json['id'] as num).toInt(),
+      id: json['id'] as String,
       index: json['index'] as String,
       title: json['title'] as String,
       professor: json['professor'] as String,
@@ -17,9 +17,9 @@ _$NoticeImpl _$$NoticeImplFromJson(Map<String, dynamic> json) => _$NoticeImpl(
       files: (json['files'] as List<dynamic>?)
           ?.map((e) => File.fromJson(e as Map<String, dynamic>))
           .toList(),
-      nextNoticeId: (json['nextNoticeId'] as num?)?.toInt(),
+      nextNoticeId: json['nextNoticeId'] as String?,
       nextNoticeTitle: json['nextNoticeTitle'] as String?,
-      previousNoticeId: (json['previousNoticeId'] as num?)?.toInt(),
+      previousNoticeId: json['previousNoticeId'] as String?,
       previousNoticeTitle: json['previousNoticeTitle'] as String?,
       $type: json['runtimeType'] as String?,
     );

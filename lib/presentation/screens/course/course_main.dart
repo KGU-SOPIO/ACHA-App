@@ -3,10 +3,13 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:get_it/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:stacked_list_carousel/stacked_list_carousel.dart';
 
+import 'package:acha/core/constants/index.dart';
 import 'package:acha/core/extensions/index.dart';
 import 'package:acha/data/models/index.dart';
 import 'package:acha/domain/repositories/index.dart';
@@ -40,15 +43,18 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
       body: SafeArea(
         bottom: false,
         child: DecoratedBox(
-          decoration:
-              const BoxDecoration(color: Color.fromARGB(255, 245, 246, 248)),
+          decoration: const BoxDecoration(color: AchaColors.gray245_246_248),
           child: BlocBuilder<CourseBloc, CourseState>(
             builder: (context, state) {
-              return ListView(
+              return CustomScrollView(
                 physics: const ClampingScrollPhysics(),
-                children: [
-                  _buildCourseSection(context, state),
-                  _buildActivitySection(state),
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: _buildCourseSection(context, state),
+                  ),
+                  SliverToBoxAdapter(
+                    child: _buildActivitySection(state),
+                  ),
                 ],
               );
             },
@@ -58,16 +64,35 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
     );
   }
 
+  Future<void> _openActivityUri(String? link) async {
+    if (link == null) {
+      GetIt.I<ToastManager>().error(message: '활동이 비활성화 되어있어요');
+      return;
+    }
+
+    try {
+      final uri = Uri.parse(link);
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      }
+    } catch (e) {
+      GetIt.I<ToastManager>().error(message: 'LMS 페이지를 열지 못했어요');
+    }
+  }
+
   Widget _buildCourseSection(BuildContext context, CourseState state) {
-    return DecoratedBox(
+    return Container(
       decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.vertical(bottom: Radius.circular(30))),
+        color: AchaColors.white,
+        borderRadius: BorderRadius.vertical(
+          bottom: Radius.circular(30),
+        ),
+      ),
       child: ListView(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         children: [
-          const AchaAppbar(backgroundColor: Colors.white),
+          const AchaAppbar(backgroundColor: AchaColors.white),
           const SizedBox(height: 40),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 26),
@@ -95,16 +120,17 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
           style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w400,
-            color: Color.fromARGB(255, 30, 30, 30),
+            color: AchaColors.gray30,
           ),
         ),
         const SizedBox(height: 5),
-        Text(
+        AutoSizeText(
           state.course.title,
+          maxLines: 1,
           style: const TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.w700,
-            color: Color.fromARGB(255, 30, 30, 30),
+            color: AchaColors.gray30,
           ),
         ),
       ],
@@ -118,17 +144,17 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
         context,
         NoticeScreen.route(course: state.course),
       ),
-      foregroundColor: Colors.white,
-      backgroundColor: Colors.white,
+      foregroundColor: AchaColors.white,
+      backgroundColor: AchaColors.white,
       border: const BorderSide(
-        color: Color.fromARGB(255, 0, 102, 255),
+        color: AchaColors.primaryBlue,
       ),
       borderRadius: 20,
       text: '공지사항',
       textStyle: const TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w500,
-        color: Color.fromARGB(255, 0, 102, 255),
+        color: AchaColors.primaryBlue,
       ),
       widget: SvgPicture.asset('lib/assets/svgs/course/right_arrow.svg'),
     );
@@ -144,7 +170,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
               TextSpan(
                 style: TextStyle(
                   fontSize: 14,
-                  color: Color.fromARGB(255, 30, 30, 30),
+                  color: AchaColors.gray30,
                 ),
                 children: [
                   TextSpan(
@@ -172,19 +198,33 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
     if (state.status == CourseStatus.loading) {
       return _buildCarouselSkeleton();
     } else if (state.status == CourseStatus.loaded) {
-      final courseActivities = state.course.courseActivityList;
-      final containers = courseActivities?.weekActivityList.expand(
-        (weekActivities) {
-          final week = weekActivities.week;
-          return weekActivities.activitylist.map((activity) =>
-              CarouselActivityContainer(week: week!, activity: activity));
-        },
-      ).toList();
+      final activityList = state.course.courseActivityList!.contents;
+      final containers = activityList.expand((weekActivities) {
+        final week = weekActivities.week!;
+        return weekActivities.contents
+            .where((activity) =>
+                activity.type == ActivityType.lecture ||
+                activity.type == ActivityType.assignment)
+            .map((activity) =>
+                CarouselActivityContainer(week: week, activity: activity));
+      }).toList();
 
-      if (containers != null) {
-        return Container(
+      if (containers.isEmpty) {
+        return const SizedBox(
           height: 160,
-          margin: const EdgeInsets.only(bottom: 5),
+          child: Center(
+            child: Text(
+              '등록된 활동이 없어요',
+              style: TextStyle(
+                fontSize: 15,
+                color: AchaColors.gray109,
+              ),
+            ),
+          ),
+        );
+      } else {
+        return SizedBox(
+          height: 140,
           child: StackedListCarousel(
             items: containers,
             behavior: CarouselBehavior.loop,
@@ -196,19 +236,6 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
             autoSlideDuration: const Duration(seconds: 5),
           ),
         );
-      } else {
-        return const SizedBox(
-          height: 160,
-          child: Center(
-            child: Text(
-              '등록된 활동이 없어요',
-              style: TextStyle(
-                fontSize: 15,
-                color: Color.fromARGB(255, 109, 109, 109),
-              ),
-            ),
-          ),
-        );
       }
     } else {
       return const SizedBox(
@@ -218,7 +245,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
             '활동을 불러오지 못했어요',
             style: TextStyle(
               fontSize: 15,
-              color: Color.fromARGB(255, 109, 109, 109),
+              color: AchaColors.gray109,
             ),
           ),
         ),
@@ -230,7 +257,8 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
     if (state.status == CourseStatus.loading) {
       return _buildPanelSkeleton();
     } else if (state.status == CourseStatus.loaded) {
-      if (state.course.courseActivityList == null) {
+      final activityList = state.course.courseActivityList!.contents;
+      if (activityList.isEmpty) {
         return const SizedBox.shrink();
       }
       return Padding(
@@ -238,10 +266,9 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
         child: ListView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          itemCount: state.course.courseActivityList!.weekActivityList.length,
+          itemCount: activityList.length,
           itemBuilder: (context, index) {
-            final weekActivities =
-                state.course.courseActivityList!.weekActivityList[index];
+            final weekActivities = activityList[index];
             return _buildExpansionPanel(weekActivities, index);
           },
         ),
@@ -252,7 +279,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
   }
 
   Widget _buildExpansionPanel(ActivityList weekActivities, int index) {
-    final allCompleted = weekActivities.activitylist.every(
+    final allCompleted = weekActivities.contents.every(
       (activity) => activity.attendance == true,
     );
 
@@ -277,16 +304,16 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                         Icons.circle,
                         size: 15,
                         color: allCompleted
-                            ? const Color.fromARGB(255, 0, 102, 255)
-                            : const Color.fromARGB(255, 255, 78, 107),
+                            ? AchaColors.primaryBlue
+                            : AchaColors.primaryRed,
                       ),
                     ),
                     title: Text(
-                      '${index + 1}주차',
+                      '${weekActivities.week}주차',
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
-                        color: Color.fromARGB(255, 60, 60, 60),
+                        color: AchaColors.gray60,
                       ),
                     ),
                   ),
@@ -296,18 +323,21 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                 children: [
                   const Divider(
                     height: 1,
-                    color: Color.fromARGB(255, 245, 246, 248),
+                    color: AchaColors.gray245_246_248,
                   ),
-                  ...weekActivities.activitylist.map(
+                  ...weekActivities.contents.map(
                     (activity) {
-                      return ListTile(
-                        leading: SvgPicture.asset(activity.type.svgPath),
-                        title: Text(
-                          activity.name,
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: Color.fromARGB(255, 60, 60, 60),
+                      return GestureDetector(
+                        onTap: () => _openActivityUri(activity.link),
+                        child: ListTile(
+                          leading: SvgPicture.asset(activity.type.svgPath),
+                          title: Text(
+                            activity.title,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: AchaColors.gray60,
+                            ),
                           ),
                         ),
                       );
@@ -350,7 +380,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
           height: 70,
           padding: const EdgeInsets.only(left: 30),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: AchaColors.white,
             borderRadius: BorderRadius.circular(20),
           ),
           child: const Align(

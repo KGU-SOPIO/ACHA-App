@@ -35,19 +35,19 @@ CourseActivityListModel _$CourseActivityListModelFromJson(
 mixin _$CourseActivityListModel {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<ActivityList> weekActivityList) $default, {
+    TResult Function(List<ActivityList> contents) $default, {
     required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<ActivityList> weekActivityList)? $default, {
+    TResult? Function(List<ActivityList> contents)? $default, {
     TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<ActivityList> weekActivityList)? $default, {
+    TResult Function(List<ActivityList> contents)? $default, {
     TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
     required TResult orElse(),
   }) =>
@@ -104,7 +104,7 @@ abstract class _$$CourseActivityListImplCopyWith<$Res> {
           $Res Function(_$CourseActivityListImpl) then) =
       __$$CourseActivityListImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<ActivityList> weekActivityList});
+  $Res call({List<ActivityList> contents});
 }
 
 /// @nodoc
@@ -121,12 +121,12 @@ class __$$CourseActivityListImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? weekActivityList = null,
+    Object? contents = null,
   }) {
     return _then(_$CourseActivityListImpl(
-      weekActivityList: null == weekActivityList
-          ? _value._weekActivityList
-          : weekActivityList // ignore: cast_nullable_to_non_nullable
+      contents: null == contents
+          ? _value._contents
+          : contents // ignore: cast_nullable_to_non_nullable
               as List<ActivityList>,
     ));
   }
@@ -136,20 +136,19 @@ class __$$CourseActivityListImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CourseActivityListImpl implements CourseActivityList {
   const _$CourseActivityListImpl(
-      {required final List<ActivityList> weekActivityList, final String? $type})
-      : _weekActivityList = weekActivityList,
+      {required final List<ActivityList> contents, final String? $type})
+      : _contents = contents,
         $type = $type ?? 'default';
 
   factory _$CourseActivityListImpl.fromJson(Map<String, dynamic> json) =>
       _$$CourseActivityListImplFromJson(json);
 
-  final List<ActivityList> _weekActivityList;
+  final List<ActivityList> _contents;
   @override
-  List<ActivityList> get weekActivityList {
-    if (_weekActivityList is EqualUnmodifiableListView)
-      return _weekActivityList;
+  List<ActivityList> get contents {
+    if (_contents is EqualUnmodifiableListView) return _contents;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_weekActivityList);
+    return EqualUnmodifiableListView(_contents);
   }
 
   @JsonKey(name: 'runtimeType')
@@ -157,7 +156,7 @@ class _$CourseActivityListImpl implements CourseActivityList {
 
   @override
   String toString() {
-    return 'CourseActivityListModel(weekActivityList: $weekActivityList)';
+    return 'CourseActivityListModel(contents: $contents)';
   }
 
   @override
@@ -165,14 +164,13 @@ class _$CourseActivityListImpl implements CourseActivityList {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CourseActivityListImpl &&
-            const DeepCollectionEquality()
-                .equals(other._weekActivityList, _weekActivityList));
+            const DeepCollectionEquality().equals(other._contents, _contents));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_weekActivityList));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_contents));
 
   /// Create a copy of CourseActivityListModel
   /// with the given fields replaced by the non-null parameter values.
@@ -186,30 +184,30 @@ class _$CourseActivityListImpl implements CourseActivityList {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<ActivityList> weekActivityList) $default, {
+    TResult Function(List<ActivityList> contents) $default, {
     required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
   }) {
-    return $default(weekActivityList);
+    return $default(contents);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<ActivityList> weekActivityList)? $default, {
+    TResult? Function(List<ActivityList> contents)? $default, {
     TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
   }) {
-    return $default?.call(weekActivityList);
+    return $default?.call(contents);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<ActivityList> weekActivityList)? $default, {
+    TResult Function(List<ActivityList> contents)? $default, {
     TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(weekActivityList);
+      return $default(contents);
     }
     return orElse();
   }
@@ -255,13 +253,12 @@ class _$CourseActivityListImpl implements CourseActivityList {
 
 abstract class CourseActivityList implements CourseActivityListModel {
   const factory CourseActivityList(
-          {required final List<ActivityList> weekActivityList}) =
-      _$CourseActivityListImpl;
+      {required final List<ActivityList> contents}) = _$CourseActivityListImpl;
 
   factory CourseActivityList.fromJson(Map<String, dynamic> json) =
       _$CourseActivityListImpl.fromJson;
 
-  List<ActivityList> get weekActivityList;
+  List<ActivityList> get contents;
 
   /// Create a copy of CourseActivityListModel
   /// with the given fields replaced by the non-null parameter values.
@@ -352,7 +349,7 @@ class _$CourseActivityListErrorImpl implements CourseActivityListError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<ActivityList> weekActivityList) $default, {
+    TResult Function(List<ActivityList> contents) $default, {
     required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
   }) {
     return error(code);
@@ -361,7 +358,7 @@ class _$CourseActivityListErrorImpl implements CourseActivityListError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<ActivityList> weekActivityList)? $default, {
+    TResult? Function(List<ActivityList> contents)? $default, {
     TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
   }) {
     return error?.call(code);
@@ -370,7 +367,7 @@ class _$CourseActivityListErrorImpl implements CourseActivityListError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<ActivityList> weekActivityList)? $default, {
+    TResult Function(List<ActivityList> contents)? $default, {
     TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
     required TResult orElse(),
   }) {
@@ -454,19 +451,19 @@ ActivityListModel _$ActivityListModelFromJson(Map<String, dynamic> json) {
 mixin _$ActivityListModel {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int? week, List<Activity> activitylist) $default, {
+    TResult Function(int? week, List<Activity> contents) $default, {
     required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(int? week, List<Activity> activitylist)? $default, {
+    TResult? Function(int? week, List<Activity> contents)? $default, {
     TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int? week, List<Activity> activitylist)? $default, {
+    TResult Function(int? week, List<Activity> contents)? $default, {
     TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
     required TResult orElse(),
   }) =>
@@ -522,7 +519,7 @@ abstract class _$$ActivityListImplCopyWith<$Res> {
           _$ActivityListImpl value, $Res Function(_$ActivityListImpl) then) =
       __$$ActivityListImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int? week, List<Activity> activitylist});
+  $Res call({int? week, List<Activity> contents});
 }
 
 /// @nodoc
@@ -539,16 +536,16 @@ class __$$ActivityListImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? week = freezed,
-    Object? activitylist = null,
+    Object? contents = null,
   }) {
     return _then(_$ActivityListImpl(
       week: freezed == week
           ? _value.week
           : week // ignore: cast_nullable_to_non_nullable
               as int?,
-      activitylist: null == activitylist
-          ? _value._activitylist
-          : activitylist // ignore: cast_nullable_to_non_nullable
+      contents: null == contents
+          ? _value._contents
+          : contents // ignore: cast_nullable_to_non_nullable
               as List<Activity>,
     ));
   }
@@ -558,10 +555,8 @@ class __$$ActivityListImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ActivityListImpl implements ActivityList {
   const _$ActivityListImpl(
-      {this.week,
-      required final List<Activity> activitylist,
-      final String? $type})
-      : _activitylist = activitylist,
+      {this.week, required final List<Activity> contents, final String? $type})
+      : _contents = contents,
         $type = $type ?? 'default';
 
   factory _$ActivityListImpl.fromJson(Map<String, dynamic> json) =>
@@ -569,12 +564,12 @@ class _$ActivityListImpl implements ActivityList {
 
   @override
   final int? week;
-  final List<Activity> _activitylist;
+  final List<Activity> _contents;
   @override
-  List<Activity> get activitylist {
-    if (_activitylist is EqualUnmodifiableListView) return _activitylist;
+  List<Activity> get contents {
+    if (_contents is EqualUnmodifiableListView) return _contents;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_activitylist);
+    return EqualUnmodifiableListView(_contents);
   }
 
   @JsonKey(name: 'runtimeType')
@@ -582,7 +577,7 @@ class _$ActivityListImpl implements ActivityList {
 
   @override
   String toString() {
-    return 'ActivityListModel(week: $week, activitylist: $activitylist)';
+    return 'ActivityListModel(week: $week, contents: $contents)';
   }
 
   @override
@@ -591,14 +586,13 @@ class _$ActivityListImpl implements ActivityList {
         (other.runtimeType == runtimeType &&
             other is _$ActivityListImpl &&
             (identical(other.week, week) || other.week == week) &&
-            const DeepCollectionEquality()
-                .equals(other._activitylist, _activitylist));
+            const DeepCollectionEquality().equals(other._contents, _contents));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, week, const DeepCollectionEquality().hash(_activitylist));
+      runtimeType, week, const DeepCollectionEquality().hash(_contents));
 
   /// Create a copy of ActivityListModel
   /// with the given fields replaced by the non-null parameter values.
@@ -611,30 +605,30 @@ class _$ActivityListImpl implements ActivityList {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int? week, List<Activity> activitylist) $default, {
+    TResult Function(int? week, List<Activity> contents) $default, {
     required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
   }) {
-    return $default(week, activitylist);
+    return $default(week, contents);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(int? week, List<Activity> activitylist)? $default, {
+    TResult? Function(int? week, List<Activity> contents)? $default, {
     TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
   }) {
-    return $default?.call(week, activitylist);
+    return $default?.call(week, contents);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int? week, List<Activity> activitylist)? $default, {
+    TResult Function(int? week, List<Activity> contents)? $default, {
     TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(week, activitylist);
+      return $default(week, contents);
     }
     return orElse();
   }
@@ -681,13 +675,13 @@ class _$ActivityListImpl implements ActivityList {
 abstract class ActivityList implements ActivityListModel {
   const factory ActivityList(
       {final int? week,
-      required final List<Activity> activitylist}) = _$ActivityListImpl;
+      required final List<Activity> contents}) = _$ActivityListImpl;
 
   factory ActivityList.fromJson(Map<String, dynamic> json) =
       _$ActivityListImpl.fromJson;
 
   int? get week;
-  List<Activity> get activitylist;
+  List<Activity> get contents;
 
   /// Create a copy of ActivityListModel
   /// with the given fields replaced by the non-null parameter values.
@@ -775,7 +769,7 @@ class _$ActivityListErrorImpl implements ActivityListError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int? week, List<Activity> activitylist) $default, {
+    TResult Function(int? week, List<Activity> contents) $default, {
     required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
   }) {
     return error(code);
@@ -784,7 +778,7 @@ class _$ActivityListErrorImpl implements ActivityListError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(int? week, List<Activity> activitylist)? $default, {
+    TResult? Function(int? week, List<Activity> contents)? $default, {
     TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
   }) {
     return error?.call(code);
@@ -793,7 +787,7 @@ class _$ActivityListErrorImpl implements ActivityListError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int? week, List<Activity> activitylist)? $default, {
+    TResult Function(int? week, List<Activity> contents)? $default, {
     TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
     required TResult orElse(),
   }) {
@@ -868,9 +862,9 @@ ActivityModel _$ActivityModelFromJson(Map<String, dynamic> json) {
 mixin _$ActivityModel {
   ActivityType get type => throw _privateConstructorUsedError;
   bool get available => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get link => throw _privateConstructorUsedError;
-  int get id => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  String? get link => throw _privateConstructorUsedError;
+  String? get code => throw _privateConstructorUsedError;
   DateTime? get deadline => throw _privateConstructorUsedError;
   String? get lectureTime => throw _privateConstructorUsedError;
   bool? get attendance => throw _privateConstructorUsedError;
@@ -899,9 +893,9 @@ abstract class $ActivityModelCopyWith<$Res> {
   $Res call(
       {ActivityType type,
       bool available,
-      String name,
-      String link,
-      int id,
+      String title,
+      String? link,
+      String? code,
       DateTime? deadline,
       String? lectureTime,
       bool? attendance,
@@ -929,9 +923,9 @@ class _$ActivityModelCopyWithImpl<$Res, $Val extends ActivityModel>
   $Res call({
     Object? type = null,
     Object? available = null,
-    Object? name = null,
-    Object? link = null,
-    Object? id = null,
+    Object? title = null,
+    Object? link = freezed,
+    Object? code = freezed,
     Object? deadline = freezed,
     Object? lectureTime = freezed,
     Object? attendance = freezed,
@@ -950,18 +944,18 @@ class _$ActivityModelCopyWithImpl<$Res, $Val extends ActivityModel>
           ? _value.available
           : available // ignore: cast_nullable_to_non_nullable
               as bool,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
-      link: null == link
+      link: freezed == link
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
-              as String,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
       deadline: freezed == deadline
           ? _value.deadline
           : deadline // ignore: cast_nullable_to_non_nullable
@@ -1009,9 +1003,9 @@ abstract class _$$ActivityImplCopyWith<$Res>
   $Res call(
       {ActivityType type,
       bool available,
-      String name,
-      String link,
-      int id,
+      String title,
+      String? link,
+      String? code,
       DateTime? deadline,
       String? lectureTime,
       bool? attendance,
@@ -1037,9 +1031,9 @@ class __$$ActivityImplCopyWithImpl<$Res>
   $Res call({
     Object? type = null,
     Object? available = null,
-    Object? name = null,
-    Object? link = null,
-    Object? id = null,
+    Object? title = null,
+    Object? link = freezed,
+    Object? code = freezed,
     Object? deadline = freezed,
     Object? lectureTime = freezed,
     Object? attendance = freezed,
@@ -1058,18 +1052,18 @@ class __$$ActivityImplCopyWithImpl<$Res>
           ? _value.available
           : available // ignore: cast_nullable_to_non_nullable
               as bool,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
-      link: null == link
+      link: freezed == link
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
-              as String,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
       deadline: freezed == deadline
           ? _value.deadline
           : deadline // ignore: cast_nullable_to_non_nullable
@@ -1112,9 +1106,9 @@ class _$ActivityImpl implements Activity {
   const _$ActivityImpl(
       {required this.type,
       required this.available,
-      required this.name,
-      required this.link,
-      required this.id,
+      required this.title,
+      this.link,
+      this.code,
       this.deadline,
       this.lectureTime,
       this.attendance,
@@ -1132,11 +1126,11 @@ class _$ActivityImpl implements Activity {
   @override
   final bool available;
   @override
-  final String name;
+  final String title;
   @override
-  final String link;
+  final String? link;
   @override
-  final int id;
+  final String? code;
   @override
   final DateTime? deadline;
   @override
@@ -1156,7 +1150,7 @@ class _$ActivityImpl implements Activity {
 
   @override
   String toString() {
-    return 'ActivityModel(type: $type, available: $available, name: $name, link: $link, id: $id, deadline: $deadline, lectureTime: $lectureTime, attendance: $attendance, gradingStatus: $gradingStatus, timeLeft: $timeLeft, lastModified: $lastModified, description: $description, courseName: $courseName)';
+    return 'ActivityModel(type: $type, available: $available, title: $title, link: $link, code: $code, deadline: $deadline, lectureTime: $lectureTime, attendance: $attendance, gradingStatus: $gradingStatus, timeLeft: $timeLeft, lastModified: $lastModified, description: $description, courseName: $courseName)';
   }
 
   @override
@@ -1167,9 +1161,9 @@ class _$ActivityImpl implements Activity {
             (identical(other.type, type) || other.type == type) &&
             (identical(other.available, available) ||
                 other.available == available) &&
-            (identical(other.name, name) || other.name == name) &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.link, link) || other.link == link) &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.code, code) || other.code == code) &&
             (identical(other.deadline, deadline) ||
                 other.deadline == deadline) &&
             (identical(other.lectureTime, lectureTime) ||
@@ -1194,9 +1188,9 @@ class _$ActivityImpl implements Activity {
       runtimeType,
       type,
       available,
-      name,
+      title,
       link,
-      id,
+      code,
       deadline,
       lectureTime,
       attendance,
@@ -1226,9 +1220,9 @@ abstract class Activity implements ActivityModel {
   const factory Activity(
       {required final ActivityType type,
       required final bool available,
-      required final String name,
-      required final String link,
-      required final int id,
+      required final String title,
+      final String? link,
+      final String? code,
       final DateTime? deadline,
       final String? lectureTime,
       final bool? attendance,
@@ -1246,11 +1240,11 @@ abstract class Activity implements ActivityModel {
   @override
   bool get available;
   @override
-  String get name;
+  String get title;
   @override
-  String get link;
+  String? get link;
   @override
-  int get id;
+  String? get code;
   @override
   DateTime? get deadline;
   @override

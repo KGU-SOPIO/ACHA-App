@@ -4,11 +4,13 @@ import 'package:acha/data/models/index.dart';
 
 class SignUpResponseConverter
     implements JsonConverter<SignUpResponseModel, Map<String, dynamic>> {
-  const SignUpResponseConverter();
+  const SignUpResponseConverter({required this.field});
+
+  final String field;
 
   @override
   SignUpResponseModel fromJson(Map<String, dynamic> json) {
-    if (json.containsKey('accessToken')) {
+    if (json.containsKey(field)) {
       return SignUpResponse.fromJson(json);
     } else {
       return SignUpError.fromJson(json);

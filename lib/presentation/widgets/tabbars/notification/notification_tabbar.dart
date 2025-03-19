@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:acha/core/constants/index.dart';
+
 class NotificationTabbar extends StatelessWidget {
   const NotificationTabbar({super.key, required this.tabController});
 
@@ -21,7 +23,7 @@ class NotificationTabbar extends StatelessWidget {
       height: 43,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
-        color: const Color.fromARGB(255, 237, 239, 242),
+        color: AchaColors.gray237_239_242,
       ),
       child: TabBar(
         controller: tabController,
@@ -29,12 +31,12 @@ class NotificationTabbar extends StatelessWidget {
         indicatorSize: TabBarIndicatorSize.tab,
         indicator: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
-          color: Colors.white,
+          color: AchaColors.white,
         ),
         overlayColor: WidgetStateProperty.all(Colors.transparent),
         dividerColor: Colors.transparent,
-        labelColor: Colors.black,
-        unselectedLabelColor: const Color.fromARGB(255, 186, 186, 186),
+        labelColor: AchaColors.black,
+        unselectedLabelColor: AchaColors.gray186,
         tabs: _buildTabs(),
       ),
     );

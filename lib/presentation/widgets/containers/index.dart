@@ -7,7 +7,7 @@ export 'package:acha/presentation/widgets/containers/auth/text_container.dart';
 export 'package:acha/presentation/widgets/containers/course/carousel_activity_container.dart';
 export 'package:acha/presentation/widgets/containers/course/carousel_activity_skeleton_container.dart';
 export 'package:acha/presentation/widgets/containers/course/course_container.dart';
-export 'package:acha/presentation/widgets/containers/main/activity_container.dart';
+export 'package:acha/presentation/widgets/containers/activity_container.dart';
 export 'package:acha/presentation/widgets/containers/main/bottom_draggable_container.dart';
 export 'package:acha/presentation/widgets/containers/main/today_course_container.dart';
 export 'package:acha/presentation/widgets/containers/notice/notice_skeleton_container.dart';

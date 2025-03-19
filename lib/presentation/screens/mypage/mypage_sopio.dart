@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:acha/core/constants/index.dart';
 import 'package:acha/presentation/widgets/index.dart';
 
 class SopioScreen extends StatelessWidget {
@@ -66,7 +67,7 @@ class SopioScreen extends StatelessWidget {
           'About',
           style: TextStyle(
             fontWeight: FontWeight.w400,
-            color: Color.fromARGB(255, 0, 102, 255),
+            color: AchaColors.primaryBlue,
           ),
         ),
         const SizedBox(height: 8),
@@ -75,7 +76,7 @@ class SopioScreen extends StatelessWidget {
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.w700,
-            color: Color.fromARGB(255, 30, 30, 30),
+            color: AchaColors.gray30,
           ),
         ),
         const SizedBox(height: 20),
@@ -85,7 +86,7 @@ class SopioScreen extends StatelessWidget {
           style: const TextStyle(
             height: 2,
             fontWeight: FontWeight.w300,
-            color: Color.fromARGB(255, 60, 60, 60),
+            color: AchaColors.gray60,
           ),
         ),
         const SizedBox(height: 30),
@@ -95,7 +96,7 @@ class SopioScreen extends StatelessWidget {
           style: const TextStyle(
             height: 2,
             fontWeight: FontWeight.w300,
-            color: Color.fromARGB(255, 60, 60, 60),
+            color: AchaColors.gray60,
           ),
         ),
         const SizedBox(height: 30),
@@ -105,7 +106,7 @@ class SopioScreen extends StatelessWidget {
               height: 2,
               fontSize: 14,
               fontWeight: FontWeight.w300,
-              color: Color.fromARGB(255, 60, 60, 60),
+              color: AchaColors.gray60,
             ),
             children: [
               TextSpan(
@@ -117,7 +118,7 @@ class SopioScreen extends StatelessWidget {
                     RegExp(r'(\S)(?=\S)'), (m) => '${m[1]}\u200D'),
                 style: const TextStyle(
                   fontWeight: FontWeight.w900,
-                  color: Color.fromARGB(255, 0, 102, 255),
+                  color: AchaColors.primaryBlue,
                 ),
               ),
               TextSpan(
@@ -145,7 +146,7 @@ class SopioScreen extends StatelessWidget {
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w700,
-              color: Color.fromARGB(255, 30, 30, 30),
+              color: AchaColors.gray30,
             ),
           )
         ],

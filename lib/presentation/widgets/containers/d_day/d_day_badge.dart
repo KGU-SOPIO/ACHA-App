@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:acha/core/constants/index.dart';
 import 'package:acha/core/extensions/index.dart';
 
 class DDayBadge extends StatelessWidget {
@@ -19,17 +20,15 @@ class DDayBadge extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: isWithin3Days
-            ? const Color.fromARGB(25, 255, 78, 107)
-            : const Color.fromARGB(25, 0, 102, 255),
+            ? AchaColors.primaryRed_10
+            : AchaColors.primaryBlue_10,
       ),
       child: Text(
         deadline.toDDay(),
         style: TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w700,
-          color: isWithin3Days
-              ? const Color.fromARGB(255, 255, 78, 107)
-              : const Color.fromARGB(255, 0, 102, 255),
+          color: isWithin3Days ? AchaColors.primaryRed : AchaColors.primaryBlue,
         ),
       ),
     );

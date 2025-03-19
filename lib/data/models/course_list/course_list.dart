@@ -17,5 +17,5 @@ class CourseListModel with _$CourseListModel {
   }) = CourseListError;
 
   factory CourseListModel.fromJson(Map<String, dynamic> json) =>
-      const CourseListResponseConverter().fromJson(json);
+      const CourseListResponseConverter(field: 'contents').fromJson(json);
 }

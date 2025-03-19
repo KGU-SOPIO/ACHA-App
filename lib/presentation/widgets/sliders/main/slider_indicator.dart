@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'package:acha/core/constants/index.dart';
+
 class CarouselIndicator extends StatelessWidget {
-  const CarouselIndicator(
-      {super.key, required this.itemCount, required this.currentIndex});
+  const CarouselIndicator({
+    super.key,
+    required this.itemCount,
+    required this.currentIndex,
+  });
 
   final int itemCount;
   final int currentIndex;
@@ -29,9 +34,7 @@ class CarouselIndicator extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 3),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: isActive
-            ? const Color.fromARGB(255, 0, 102, 255)
-            : const Color.fromARGB(255, 182, 182, 182),
+        color: isActive ? AchaColors.primaryBlue : AchaColors.gray182,
       ),
     );
   }

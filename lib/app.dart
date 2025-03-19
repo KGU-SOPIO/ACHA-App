@@ -146,53 +146,48 @@ class _AppViewState extends State<AppView> {
   void _onAuthenticationStateChanged(
     BuildContext context,
     AuthenticationState state,
-  ) {
-    state.when(
-      authenticated: () {
-        _fetchData(context);
-      },
-      registered: () {
-        requestPermission = true;
-        _fetchData(context);
-      },
-      error: () async {
+  ) async {
+    final isConnected = await _connectivityChecker.isConnected();
+    if (!isConnected) {
+      await _navigator.pushAndRemoveUntil(
+        ErrorScreen.route(
+          title: '인터넷 연결 문제',
+          message: '인터넷 연결 확인 후 앱을 재실행해 주세요',
+          connectionError: true,
+        ),
+        (route) => false,
+      );
+    }
+
+    await state.when(
+      unknown: () {},
+      error: (title, message) async {
         await _navigator.pushAndRemoveUntil(
-          ErrorScreen.route(
-            title: '인증 문제',
-            message: '사용자 인증 중 문제가 발생했어요\n다시 로그인해 주세요',
-          ),
+          ErrorScreen.route(title: title, message: message),
           (route) => false,
         );
       },
-      expired: () async {
-        await _navigator.pushAndRemoveUntil(
-          ErrorScreen.route(
-            title: '인증 만료',
-            message: '인증 상태가 만료되었어요\n다시 로그인해 주세요',
-          ),
-          (route) => false,
-        );
+      authenticated: (isSignedUp) {
+        if (requestPermission == true) requestPermission = true;
+        _fetchData(context);
       },
-      unauthenticated: () async {
-        final isConnected = await _connectivityChecker.isConnected();
-        if (!isConnected) {
+      unauthenticated: (isExpired) async {
+        _isNavigate = false;
+        if (isExpired == true) {
           await _navigator.pushAndRemoveUntil(
             ErrorScreen.route(
-              title: '인터넷 연결 문제',
-              message: '인터넷 연결 확인 후 앱을 재실행해 주세요',
-              connectionError: true,
+              title: '인증 만료',
+              message: '인증 상태가 만료되었어요\n다시 로그인해 주세요',
             ),
             (route) => false,
           );
         } else {
-          _isNavigate = false;
           await _navigator.pushAndRemoveUntil(
             AuthStartScreen.route(),
             (route) => false,
           );
         }
       },
-      unknown: () {},
     );
   }
 

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
+import 'package:acha/core/constants/index.dart';
 import 'package:acha/core/extensions/index.dart';
 import 'package:acha/data/models/index.dart';
 import 'package:acha/presentation/blocs/index.dart';
@@ -83,9 +84,10 @@ class _SliderWidgetState extends State<SliderWidget> {
           const SizedBox(height: 18),
           _buildActivityBlocConsumer(
             loadedBuilder: (state) {
-              final weekActivities = state.weekActivities;
-              final lectures =
-                  weekActivities?.getLectureActivities(group: true);
+              final activityList = state.activityList;
+              final lectures = activityList!.getLectureActivities(
+                group: true,
+              );
               return _buildLectureList(
                 lectures: lectures,
                 notExistMessage: '남은 강의가 없어요',
@@ -110,9 +112,10 @@ class _SliderWidgetState extends State<SliderWidget> {
           const SizedBox(height: 18),
           _buildActivityBlocConsumer(
             loadedBuilder: (state) {
-              final weekActivities = state.weekActivities;
-              final assignments =
-                  weekActivities?.getAssignmentActivities(group: true);
+              final activityList = state.activityList;
+              final assignments = activityList!.getAssignmentActivities(
+                group: true,
+              );
               return _buildAssignmentList(
                 assignments: assignments,
                 notExistMessage: '남은 과제가 없어요',
@@ -135,7 +138,7 @@ class _SliderWidgetState extends State<SliderWidget> {
               TextSpan(
                 style: const TextStyle(
                   fontSize: 16,
-                  color: Color.fromARGB(255, 30, 30, 30),
+                  color: AchaColors.gray30,
                 ),
                 children: [
                   const TextSpan(
@@ -168,7 +171,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
-                    color: Color.fromARGB(255, 151, 151, 151),
+                    color: AchaColors.gray151,
                   ),
                 ),
               ),
@@ -180,9 +183,10 @@ class _SliderWidgetState extends State<SliderWidget> {
     );
   }
 
-  Widget _buildActivityBlocConsumer(
-      {required Widget Function(ActivityState state) loadedBuilder,
-      required String errorMessage}) {
+  Widget _buildActivityBlocConsumer({
+    required Widget Function(ActivityState state) loadedBuilder,
+    required String errorMessage,
+  }) {
     return BlocConsumer<ActivityBloc, ActivityState>(
       listener: (context, state) {
         if (state.status == ActivityStatus.error) {
@@ -201,7 +205,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                 errorMessage,
                 style: const TextStyle(
                   fontSize: 15,
-                  color: Color.fromARGB(255, 109, 109, 109),
+                  color: AchaColors.gray109,
                 ),
               ),
             ),
@@ -211,15 +215,19 @@ class _SliderWidgetState extends State<SliderWidget> {
     );
   }
 
-  Widget _buildLectureList(
-      {required Map<DateTime, List<Activity>>? lectures,
-      required String notExistMessage}) {
+  Widget _buildLectureList({
+    required Map<DateTime, List<Activity>>? lectures,
+    required String notExistMessage,
+  }) {
     if (lectures == null) {
       return Expanded(
         child: Center(
           child: Text(
             notExistMessage,
-            style: const TextStyle(fontSize: 15),
+            style: const TextStyle(
+              fontSize: 15,
+              color: AchaColors.gray109,
+            ),
           ),
         ),
       );
@@ -241,10 +249,11 @@ class _SliderWidgetState extends State<SliderWidget> {
               for (final lecture in activities)
                 ActivityContainer(
                   type: lecture.type,
-                  title: lecture.name,
+                  available: lecture.available,
+                  title: lecture.title,
                   course: lecture.courseName!,
-                  deadline: lecture.deadline!.toTimeLeftFormattedTime(),
-                  uri: Uri.tryParse(lecture.link) ?? Uri(),
+                  deadline: lecture.deadline!,
+                  link: lecture.link,
                   margin: const EdgeInsets.only(bottom: 13),
                 ),
               const SizedBox(height: 20),
@@ -255,15 +264,19 @@ class _SliderWidgetState extends State<SliderWidget> {
     );
   }
 
-  Widget _buildAssignmentList(
-      {required Map<DateTime, List<Activity>>? assignments,
-      required String notExistMessage}) {
+  Widget _buildAssignmentList({
+    required Map<DateTime, List<Activity>>? assignments,
+    required String notExistMessage,
+  }) {
     if (assignments == null) {
       return Expanded(
         child: Center(
           child: Text(
             notExistMessage,
-            style: const TextStyle(fontSize: 15),
+            style: const TextStyle(
+              fontSize: 15,
+              color: AchaColors.gray109,
+            ),
           ),
         ),
       );
@@ -285,10 +298,11 @@ class _SliderWidgetState extends State<SliderWidget> {
               for (final assignment in activities)
                 ActivityContainer(
                   type: assignment.type,
-                  title: assignment.name,
+                  available: assignment.available,
+                  title: assignment.title,
                   course: assignment.courseName!,
-                  deadline: assignment.deadline!.toTimeLeftFormattedTime(),
-                  uri: Uri.tryParse(assignment.link) ?? Uri(),
+                  deadline: assignment.deadline!,
+                  link: assignment.link,
                   margin: const EdgeInsets.only(bottom: 13),
                 ),
               const SizedBox(height: 20),

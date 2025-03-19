@@ -5,6 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:acha/core/constants/index.dart';
 import 'package:acha/core/extensions/index.dart';
 import 'package:acha/data/models/index.dart';
 import 'package:acha/domain/repositories/index.dart';
@@ -17,7 +18,7 @@ class NoticeMainScreen extends StatefulWidget {
   @override
   State<NoticeMainScreen> createState() => _NoticeMainScreenState();
 
-  static Route<void> route({required Course course, required int noticeId}) {
+  static Route<void> route({required Course course, required String noticeId}) {
     return CupertinoPageRoute(
       builder: (context) => BlocProvider(
         create: (context) => NoticeBloc(
@@ -105,8 +106,8 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
   Widget _buildHeader(BuildContext context, NoticeState state, Notice notice) {
     return DecoratedBox(
       decoration: const BoxDecoration(
-          border: Border(
-              bottom: BorderSide(color: Color.fromARGB(255, 228, 232, 241)))),
+          border:
+              Border(bottom: BorderSide(color: AchaColors.gray228_232_241))),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -116,7 +117,7 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
             style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w400,
-              color: Color.fromARGB(255, 30, 30, 30),
+              color: AchaColors.gray30,
             ),
           ),
           const SizedBox(height: 10),
@@ -125,7 +126,7 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
             style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w700,
-              color: Color.fromARGB(255, 30, 30, 30),
+              color: AchaColors.gray30,
             ),
           ),
           const SizedBox(height: 20),
@@ -147,7 +148,7 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
           style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w500,
-            color: Color.fromARGB(255, 151, 151, 151),
+            color: AchaColors.gray151,
           ),
         ),
         const SizedBox(width: 20),
@@ -158,7 +159,7 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
           style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w500,
-            color: Color.fromARGB(255, 151, 151, 151),
+            color: AchaColors.gray151,
           ),
         ),
       ],
@@ -203,7 +204,7 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
               ? const BorderRadius.vertical(top: Radius.circular(20))
               : BorderRadius.circular(20),
           border: Border.all(
-            color: const Color.fromARGB(255, 237, 239, 242),
+            color: AchaColors.gray237_239_242,
           ),
         ),
         child: Row(
@@ -249,7 +250,7 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
               ? const BorderRadius.vertical(bottom: Radius.circular(20))
               : BorderRadius.circular(20),
           border: Border.all(
-            color: const Color.fromARGB(255, 237, 239, 242),
+            color: AchaColors.gray237_239_242,
           ),
         ),
         child: Row(

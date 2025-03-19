@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:acha/core/constants/index.dart';
 import 'package:acha/core/extensions/index.dart';
 
 class DDayContainer extends StatelessWidget {
@@ -10,7 +11,7 @@ class DDayContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDDay = deadline.isDDay();
-    final primaryColor = const Color.fromARGB(255, 0, 102, 255);
+    final primaryColor = AchaColors.primaryBlue;
 
     return DecoratedBox(
       decoration: BoxDecoration(
@@ -32,7 +33,7 @@ class DDayContainer extends StatelessWidget {
       width: 72,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
-        color: isDDay ? primaryColor : Colors.white,
+        color: isDDay ? primaryColor : AchaColors.white,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
           color: isDDay ? Colors.transparent : primaryColor,
@@ -45,7 +46,7 @@ class DDayContainer extends StatelessWidget {
           style: TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w700,
-            color: isDDay ? Colors.white : primaryColor,
+            color: isDDay ? AchaColors.white : primaryColor,
           ),
         ),
       ),

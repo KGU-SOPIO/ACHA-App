@@ -21,5 +21,5 @@ class UserModel with _$UserModel {
   }) = UserError;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
-      const UserResponseConverter().fromJson(json);
+      const UserResponseConverter(field: 'name').fromJson(json);
 }

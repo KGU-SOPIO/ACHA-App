@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:get_it/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:acha/core/constants/index.dart';
 import 'package:acha/presentation/blocs/index.dart';
 import 'package:acha/presentation/widgets/index.dart';
 
@@ -19,7 +19,7 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
   @override
   void initState() {
     super.initState();
-    context.read<AlertBloc>().add(const AlertEvent.fetchAlertStatus());
+    // context.read<AlertBloc>().add(const AlertEvent.fetchAlertStatus());
   }
 
   @override
@@ -53,8 +53,8 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
       width: double.infinity,
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(color: const Color.fromARGB(255, 228, 232, 241)),
+        color: AchaColors.white,
+        border: Border.all(color: AchaColors.gray228_232_241),
         borderRadius: BorderRadius.circular(25),
       ),
       child: Column(
@@ -62,8 +62,8 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
           _buildTitle(),
           const SizedBox(height: 24),
           _buildAlertPeriod(),
-          const SizedBox(height: 24),
-          _buildAlertToggle(state),
+          // const SizedBox(height: 24),
+          // _buildAlertToggle(state),
         ],
       ),
     );
@@ -81,7 +81,7 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,
-            color: Color.fromARGB(255, 30, 30, 30),
+            color: AchaColors.gray30,
           ),
         ),
       ],
@@ -106,13 +106,13 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
                     height: 1.4,
                     fontSize: 15,
                     fontWeight: FontWeight.w300,
-                    color: Color.fromARGB(255, 109, 109, 109)),
+                    color: AchaColors.gray109),
                 children: [
                   TextSpan(
                     text: '3',
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
-                      color: Color.fromARGB(255, 0, 102, 255),
+                      color: AchaColors.primaryBlue,
                     ),
                   ),
                   TextSpan(
@@ -122,7 +122,7 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
                     text: '1',
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
-                      color: Color.fromARGB(255, 0, 102, 255),
+                      color: AchaColors.primaryBlue,
                     ),
                   ),
                   TextSpan(
@@ -132,7 +132,7 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
                     text: '1',
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
-                      color: Color.fromARGB(255, 0, 102, 255),
+                      color: AchaColors.primaryBlue,
                     ),
                   ),
                   TextSpan(
@@ -148,7 +148,7 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
                 height: 1.4,
                 fontSize: 15,
                 fontWeight: FontWeight.w300,
-                color: Color.fromARGB(255, 151, 151, 151),
+                color: AchaColors.gray151,
               ),
             ),
           ],
@@ -167,7 +167,7 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
           style: TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w400,
-            color: Color.fromARGB(255, 30, 30, 30),
+            color: AchaColors.gray30,
           ),
         ),
         SizedBox(
@@ -179,7 +179,7 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
               onChanged: (value) => context
                   .read<AlertBloc>()
                   .add(AlertEvent.changeAlertStatus(isEnabled: value)),
-              activeTrackColor: const Color.fromARGB(255, 0, 102, 255),
+              activeTrackColor: AchaColors.primaryBlue,
             ),
           ),
         ),

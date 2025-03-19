@@ -12,7 +12,7 @@ enum ActivityType { url, file, lecture, assignment }
 @freezed
 class CourseActivityListModel with _$CourseActivityListModel {
   const factory CourseActivityListModel({
-    required List<ActivityList> weekActivityList,
+    required List<ActivityList> contents,
   }) = CourseActivityList;
 
   const factory CourseActivityListModel.error({
@@ -20,14 +20,15 @@ class CourseActivityListModel with _$CourseActivityListModel {
   }) = CourseActivityListError;
 
   factory CourseActivityListModel.fromJson(Map<String, dynamic> json) =>
-      const CourseActivityListResponseConverter().fromJson(json);
+      const CourseActivityListResponseConverter(field: 'contents')
+          .fromJson(json);
 }
 
 @freezed
 class ActivityListModel with _$ActivityListModel {
   const factory ActivityListModel({
     int? week,
-    required List<Activity> activitylist,
+    required List<Activity> contents,
   }) = ActivityList;
 
   const factory ActivityListModel.error({
@@ -35,7 +36,7 @@ class ActivityListModel with _$ActivityListModel {
   }) = ActivityListError;
 
   factory ActivityListModel.fromJson(Map<String, dynamic> json) =>
-      const ActivityListResponseConverter().fromJson(json);
+      const ActivityListResponseConverter(field: 'contents').fromJson(json);
 }
 
 @freezed
@@ -43,9 +44,9 @@ class ActivityModel with _$ActivityModel {
   const factory ActivityModel({
     required ActivityType type,
     required bool available,
-    required String name,
-    required String link,
-    required int id,
+    required String title,
+    String? link,
+    String? code,
     DateTime? deadline,
     String? lectureTime,
     bool? attendance,

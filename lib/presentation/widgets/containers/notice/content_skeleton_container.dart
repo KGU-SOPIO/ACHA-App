@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:acha/core/constants/index.dart';
+
 class ContentSkeletonContainer extends StatelessWidget {
   const ContentSkeletonContainer({super.key});
 
@@ -25,7 +27,7 @@ class ContentSkeletonContainer extends StatelessWidget {
       decoration: const BoxDecoration(
         border: Border(
           bottom: BorderSide(
-            color: Color.fromARGB(255, 228, 232, 241),
+            color: AchaColors.gray228_232_241,
           ),
         ),
       ),

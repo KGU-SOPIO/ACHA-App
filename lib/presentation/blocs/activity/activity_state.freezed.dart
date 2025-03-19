@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ActivityState {
   ActivityStatus get status => throw _privateConstructorUsedError;
-  ActivityList? get weekActivities => throw _privateConstructorUsedError;
+  ActivityList? get activityList => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
 
   /// Create a copy of ActivityState
@@ -35,7 +35,7 @@ abstract class $ActivityStateCopyWith<$Res> {
   @useResult
   $Res call(
       {ActivityStatus status,
-      ActivityList? weekActivities,
+      ActivityList? activityList,
       String? errorMessage});
 }
 
@@ -55,7 +55,7 @@ class _$ActivityStateCopyWithImpl<$Res, $Val extends ActivityState>
   @override
   $Res call({
     Object? status = null,
-    Object? weekActivities = freezed,
+    Object? activityList = freezed,
     Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
@@ -63,9 +63,9 @@ class _$ActivityStateCopyWithImpl<$Res, $Val extends ActivityState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ActivityStatus,
-      weekActivities: freezed == weekActivities
-          ? _value.weekActivities
-          : weekActivities // ignore: cast_nullable_to_non_nullable
+      activityList: freezed == activityList
+          ? _value.activityList
+          : activityList // ignore: cast_nullable_to_non_nullable
               as ActivityList?,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
@@ -85,7 +85,7 @@ abstract class _$$ActivityStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {ActivityStatus status,
-      ActivityList? weekActivities,
+      ActivityList? activityList,
       String? errorMessage});
 }
 
@@ -103,7 +103,7 @@ class __$$ActivityStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? weekActivities = freezed,
+    Object? activityList = freezed,
     Object? errorMessage = freezed,
   }) {
     return _then(_$ActivityStateImpl(
@@ -111,9 +111,9 @@ class __$$ActivityStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ActivityStatus,
-      weekActivities: freezed == weekActivities
-          ? _value.weekActivities
-          : weekActivities // ignore: cast_nullable_to_non_nullable
+      activityList: freezed == activityList
+          ? _value.activityList
+          : activityList // ignore: cast_nullable_to_non_nullable
               as ActivityList?,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
@@ -127,18 +127,18 @@ class __$$ActivityStateImplCopyWithImpl<$Res>
 
 class _$ActivityStateImpl implements _ActivityState {
   const _$ActivityStateImpl(
-      {required this.status, this.weekActivities, this.errorMessage});
+      {required this.status, this.activityList, this.errorMessage});
 
   @override
   final ActivityStatus status;
   @override
-  final ActivityList? weekActivities;
+  final ActivityList? activityList;
   @override
   final String? errorMessage;
 
   @override
   String toString() {
-    return 'ActivityState(status: $status, weekActivities: $weekActivities, errorMessage: $errorMessage)';
+    return 'ActivityState(status: $status, activityList: $activityList, errorMessage: $errorMessage)';
   }
 
   @override
@@ -148,14 +148,14 @@ class _$ActivityStateImpl implements _ActivityState {
             other is _$ActivityStateImpl &&
             (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality()
-                .equals(other.weekActivities, weekActivities) &&
+                .equals(other.activityList, activityList) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, status,
-      const DeepCollectionEquality().hash(weekActivities), errorMessage);
+      const DeepCollectionEquality().hash(activityList), errorMessage);
 
   /// Create a copy of ActivityState
   /// with the given fields replaced by the non-null parameter values.
@@ -169,13 +169,13 @@ class _$ActivityStateImpl implements _ActivityState {
 abstract class _ActivityState implements ActivityState {
   const factory _ActivityState(
       {required final ActivityStatus status,
-      final ActivityList? weekActivities,
+      final ActivityList? activityList,
       final String? errorMessage}) = _$ActivityStateImpl;
 
   @override
   ActivityStatus get status;
   @override
-  ActivityList? get weekActivities;
+  ActivityList? get activityList;
   @override
   String? get errorMessage;
 

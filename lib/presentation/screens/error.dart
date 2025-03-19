@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:acha/core/constants/index.dart';
 import 'package:acha/presentation/screens/index.dart';
 import 'package:acha/presentation/widgets/index.dart';
 
@@ -43,7 +44,7 @@ class ErrorScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
             children: [
-              const AchaAppbar(backgroundColor: Colors.white),
+              const AchaAppbar(backgroundColor: AchaColors.white),
               _buildContent(),
               _buildButton(context),
               const SizedBox(height: 20),
@@ -76,7 +77,7 @@ class ErrorScreen extends StatelessWidget {
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
-                color: Color.fromARGB(255, 109, 109, 109),
+                color: AchaColors.gray109,
               ),
             ),
           ],
@@ -90,11 +91,11 @@ class ErrorScreen extends StatelessWidget {
       height: 56,
       text: '확인',
       textStyle: const TextStyle(
-        color: Colors.white,
+        color: AchaColors.white,
         fontSize: 16,
         fontWeight: FontWeight.w700,
       ),
-      backgroundColor: const Color.fromARGB(255, 0, 102, 255),
+      backgroundColor: AchaColors.primaryBlue,
       onPressed: () {
         if (connectionError == true) {
           if (Platform.isAndroid) {

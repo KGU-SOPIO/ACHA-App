@@ -9,7 +9,7 @@ part 'notice_list.g.dart';
 @freezed
 class NoticeListModel with _$NoticeListModel {
   const factory NoticeListModel({
-    required List<Notice> noticeList,
+    required List<Notice> contents,
   }) = NoticeList;
 
   const factory NoticeListModel.error({
@@ -17,5 +17,5 @@ class NoticeListModel with _$NoticeListModel {
   }) = NoticeListError;
 
   factory NoticeListModel.fromJson(Map<String, dynamic> json) =>
-      const NoticeListResponseConverter().fromJson(json);
+      const NoticeListResponseConverter(field: 'contents').fromJson(json);
 }

@@ -4,11 +4,13 @@ import 'package:acha/data/models/index.dart';
 
 class CourseActivityListResponseConverter
     implements JsonConverter<CourseActivityListModel, Map<String, dynamic>> {
-  const CourseActivityListResponseConverter();
+  const CourseActivityListResponseConverter({required this.field});
+
+  final String field;
 
   @override
   CourseActivityListModel fromJson(Map<String, dynamic> json) {
-    if (json.containsKey('courseActivityList')) {
+    if (json.containsKey(field)) {
       return CourseActivityList.fromJson(json);
     } else {
       return CourseActivityListError.fromJson(json);
@@ -22,11 +24,13 @@ class CourseActivityListResponseConverter
 
 class ActivityListResponseConverter
     implements JsonConverter<ActivityListModel, Map<String, dynamic>> {
-  const ActivityListResponseConverter();
+  const ActivityListResponseConverter({required this.field});
+
+  final String field;
 
   @override
   ActivityListModel fromJson(Map<String, dynamic> json) {
-    if (json.containsKey('activityList')) {
+    if (json.containsKey(field)) {
       return ActivityList.fromJson(json);
     } else {
       return ActivityListError.fromJson(json);

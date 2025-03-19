@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:acha/core/constants/index.dart';
 import 'package:acha/domain/repositories/index.dart';
 import 'package:acha/presentation/blocs/index.dart';
 import 'package:acha/presentation/widgets/index.dart';
@@ -18,8 +19,8 @@ class SignOutModal extends StatefulWidget {
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
-      backgroundColor: Colors.white,
-      barrierColor: Colors.black.withValues(alpha: 0.3),
+      backgroundColor: AchaColors.white,
+      barrierColor: AchaColors.black.withValues(alpha: 0.3),
       builder: (context) => const SignOutModal(),
     );
   }
@@ -56,7 +57,7 @@ class _SignOutModalState extends State<SignOutModal> {
     borderRadius: BorderRadius.circular(12),
     borderSide: const BorderSide(
       width: 1.5,
-      color: Color.fromARGB(255, 237, 239, 242),
+      color: AchaColors.gray237_239_242,
     ),
   );
 
@@ -69,7 +70,7 @@ class _SignOutModalState extends State<SignOutModal> {
       child: BlocListener<SignOutBloc, SignOutState>(
         listener: (context, state) {
           if (state.status == SignOutStatus.complete) {
-            GetIt.I<ToastManager>().success(message: '지금까지 아차를 이용해 주셔서 감사해요');
+            GetIt.I<ToastManager>().success(message: '아차를 이용해 주셔서 감사해요');
           } else if (state.status == SignOutStatus.error) {
             Navigator.pop(context);
             GetIt.I<ToastManager>().success(message: state.errorMessage!);
@@ -116,7 +117,7 @@ class _SignOutModalState extends State<SignOutModal> {
         height: 6,
         width: 79,
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 228, 232, 241),
+          color: AchaColors.gray228_232_241,
           borderRadius: BorderRadius.circular(7),
         ),
       ),
@@ -135,7 +136,7 @@ class _SignOutModalState extends State<SignOutModal> {
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w700,
-            color: Color.fromARGB(255, 30, 30, 30),
+            color: AchaColors.gray30,
           ),
         ),
         const SizedBox(height: 30),
@@ -144,7 +145,7 @@ class _SignOutModalState extends State<SignOutModal> {
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w400,
-            color: Color.fromARGB(255, 109, 109, 109),
+            color: AchaColors.gray109,
           ),
         ),
         const SizedBox(height: 40),
@@ -153,7 +154,7 @@ class _SignOutModalState extends State<SignOutModal> {
           style: TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w500,
-            color: Color.fromARGB(255, 30, 30, 30),
+            color: AchaColors.gray30,
           ),
         ),
         const SizedBox(height: 20),
@@ -174,12 +175,12 @@ class _SignOutModalState extends State<SignOutModal> {
           decoration: InputDecoration(
             hintText: '비밀번호',
             hintStyle: const TextStyle(
-              color: Color.fromARGB(255, 186, 186, 186),
+              color: AchaColors.gray186,
               fontSize: 16,
               fontWeight: FontWeight.w400,
             ),
             filled: true,
-            fillColor: const Color.fromARGB(255, 251, 251, 251),
+            fillColor: AchaColors.gray251,
             border: textFieldBorder,
             enabledBorder: textFieldBorder,
             focusedBorder: textFieldBorder,
@@ -202,7 +203,7 @@ class _SignOutModalState extends State<SignOutModal> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  backgroundColor: const Color.fromARGB(255, 237, 239, 242),
+                  backgroundColor: AchaColors.gray237_239_242,
                 ),
                 onPressed: isLoading ? () {} : () => Navigator.pop(context),
                 child: const Text(
@@ -210,7 +211,7 @@ class _SignOutModalState extends State<SignOutModal> {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
-                    color: Color.fromARGB(255, 109, 109, 109),
+                    color: AchaColors.gray109,
                   ),
                 ),
               ),
@@ -224,10 +225,10 @@ class _SignOutModalState extends State<SignOutModal> {
                     (states) {
                       if (states.contains(WidgetState.disabled)) {
                         return isLoading
-                            ? const Color.fromARGB(255, 232, 165, 176)
-                            : const Color.fromARGB(255, 199, 199, 199);
+                            ? AchaColors.red232_165_176
+                            : AchaColors.gray199;
                       }
-                      return const Color.fromARGB(255, 255, 78, 107);
+                      return AchaColors.primaryRed;
                     },
                   ),
                   shape: WidgetStateProperty.all(
@@ -252,8 +253,8 @@ class _SignOutModalState extends State<SignOutModal> {
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                     color: isLoading
-                        ? const Color.fromARGB(255, 255, 231, 231)
-                        : Colors.white,
+                        ? AchaColors.red255_231_231
+                        : AchaColors.white,
                   ),
                 ),
               ),

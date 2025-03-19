@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:acha/core/constants/index.dart';
 import 'package:acha/domain/repositories/index.dart';
 import 'package:acha/presentation/blocs/index.dart';
 import 'package:acha/presentation/screens/index.dart';
@@ -61,7 +62,7 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
   PreferredSizeWidget _buildAppBar() {
     return AppBar(
       automaticallyImplyLeading: false,
-      backgroundColor: Colors.white,
+      backgroundColor: AchaColors.white,
       centerTitle: true,
       title: const Text(
         '시작하기',
@@ -98,7 +99,7 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
   Widget _buildTitle() {
     return const Text.rich(
       TextSpan(
-        style: TextStyle(fontSize: 15, color: Color.fromARGB(255, 60, 60, 60)),
+        style: TextStyle(fontSize: 15, color: AchaColors.gray60),
         children: [
           TextSpan(
             text: '학번을 ',
@@ -118,7 +119,7 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
       borderRadius: BorderRadius.circular(12),
       borderSide: const BorderSide(
         width: 1.5,
-        color: Color.fromARGB(255, 237, 239, 242),
+        color: AchaColors.gray237_239_242,
       ),
     );
 
@@ -132,19 +133,19 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
       decoration: InputDecoration(
         hintText: '학번',
         hintStyle: const TextStyle(
-          color: Color.fromARGB(255, 186, 186, 186),
+          color: AchaColors.gray186,
           fontSize: 16,
           fontWeight: FontWeight.w400,
         ),
         counterText: '',
         filled: true,
-        fillColor: const Color.fromARGB(255, 251, 251, 251),
+        fillColor: AchaColors.gray251,
         border: textFieldBorder,
         enabledBorder: textFieldBorder,
         focusedBorder: textFieldBorder,
       ),
       style: const TextStyle(
-        color: Colors.black,
+        color: AchaColors.black,
         fontSize: 16,
         fontWeight: FontWeight.w400,
       ),

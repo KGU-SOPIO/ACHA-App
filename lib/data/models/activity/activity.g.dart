@@ -9,7 +9,7 @@ part of 'activity.dart';
 _$CourseActivityListImpl _$$CourseActivityListImplFromJson(
         Map<String, dynamic> json) =>
     _$CourseActivityListImpl(
-      weekActivityList: (json['weekActivityList'] as List<dynamic>)
+      contents: (json['contents'] as List<dynamic>)
           .map((e) => ActivityList.fromJson(e as Map<String, dynamic>))
           .toList(),
       $type: json['runtimeType'] as String?,
@@ -18,7 +18,7 @@ _$CourseActivityListImpl _$$CourseActivityListImplFromJson(
 Map<String, dynamic> _$$CourseActivityListImplToJson(
         _$CourseActivityListImpl instance) =>
     <String, dynamic>{
-      'weekActivityList': instance.weekActivityList,
+      'contents': instance.contents,
       'runtimeType': instance.$type,
     };
 
@@ -39,7 +39,7 @@ Map<String, dynamic> _$$CourseActivityListErrorImplToJson(
 _$ActivityListImpl _$$ActivityListImplFromJson(Map<String, dynamic> json) =>
     _$ActivityListImpl(
       week: (json['week'] as num?)?.toInt(),
-      activitylist: (json['activitylist'] as List<dynamic>)
+      contents: (json['contents'] as List<dynamic>)
           .map((e) => Activity.fromJson(e as Map<String, dynamic>))
           .toList(),
       $type: json['runtimeType'] as String?,
@@ -48,7 +48,7 @@ _$ActivityListImpl _$$ActivityListImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$ActivityListImplToJson(_$ActivityListImpl instance) =>
     <String, dynamic>{
       'week': instance.week,
-      'activitylist': instance.activitylist,
+      'contents': instance.contents,
       'runtimeType': instance.$type,
     };
 
@@ -70,9 +70,9 @@ _$ActivityImpl _$$ActivityImplFromJson(Map<String, dynamic> json) =>
     _$ActivityImpl(
       type: $enumDecode(_$ActivityTypeEnumMap, json['type']),
       available: json['available'] as bool,
-      name: json['name'] as String,
-      link: json['link'] as String,
-      id: (json['id'] as num).toInt(),
+      title: json['title'] as String,
+      link: json['link'] as String?,
+      code: json['code'] as String?,
       deadline: json['deadline'] == null
           ? null
           : DateTime.parse(json['deadline'] as String),
@@ -89,9 +89,9 @@ Map<String, dynamic> _$$ActivityImplToJson(_$ActivityImpl instance) =>
     <String, dynamic>{
       'type': _$ActivityTypeEnumMap[instance.type]!,
       'available': instance.available,
-      'name': instance.name,
+      'title': instance.title,
       'link': instance.link,
-      'id': instance.id,
+      'code': instance.code,
       'deadline': instance.deadline?.toIso8601String(),
       'lectureTime': instance.lectureTime,
       'attendance': instance.attendance,

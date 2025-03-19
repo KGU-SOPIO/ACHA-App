@@ -1,11 +1,11 @@
 import 'package:intl/intl.dart';
 
 extension DateTimeExtensions on DateTime {
-  /// 날짜를 패턴과 로케일을 사용하여 문자열로 변환합니다.
+  /// 날짜를 주어진 패턴에 맞게 문자열로 변환합니다.
   String formatDate({required String pattern}) =>
       DateFormat(pattern, 'ko').format(this);
 
-  /// 날짜를 패턴에 맞게 포맷하여 반환합니다.
+  /// 날짜를 지정한 패턴에 맞게 포맷하여 반환합니다.
   String toTimeLeftFormattedTime() => formatDate(pattern: 'a hh:mm');
 
   /// 오늘을 기준으로 D-Day 문자열로 변환하여 반환합니다.

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:acha/core/constants/index.dart';
 import 'package:acha/presentation/blocs/index.dart';
 import 'package:acha/presentation/screens/index.dart';
 
@@ -74,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
       decoration: BoxDecoration(boxShadow: _buildBoxShadows()),
       child: NavigationBarTheme(
         data: NavigationBarThemeData(
-          backgroundColor: Colors.white,
+          backgroundColor: AchaColors.white,
           indicatorColor: Colors.transparent,
           labelTextStyle: WidgetStateProperty.resolveWith(
             (states) {
@@ -82,13 +83,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 return const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w500,
-                  color: Color.fromARGB(255, 0, 102, 255),
+                  color: AchaColors.primaryBlue,
                 );
               } else {
                 return const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w500,
-                  color: Color.fromARGB(255, 181, 175, 175),
+                  color: AchaColors.gray181_175_175,
                 );
               }
             },

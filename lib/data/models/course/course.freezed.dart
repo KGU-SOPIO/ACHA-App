@@ -29,13 +29,14 @@ CourseModel _$CourseModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CourseModel {
+  Object get code => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
             String title,
             String professor,
             String lectureRoom,
-            int id,
+            String code,
             DateTime? deadline,
             String? link,
             CourseActivityList? courseActivityList,
@@ -50,7 +51,7 @@ mixin _$CourseModel {
             String title,
             String professor,
             String lectureRoom,
-            int id,
+            String code,
             DateTime? deadline,
             String? link,
             CourseActivityList? courseActivityList,
@@ -65,7 +66,7 @@ mixin _$CourseModel {
             String title,
             String professor,
             String lectureRoom,
-            int id,
+            String code,
             DateTime? deadline,
             String? link,
             CourseActivityList? courseActivityList,
@@ -130,7 +131,7 @@ abstract class _$$CourseImplCopyWith<$Res> {
       {String title,
       String professor,
       String lectureRoom,
-      int id,
+      String code,
       DateTime? deadline,
       String? link,
       CourseActivityList? courseActivityList,
@@ -153,7 +154,7 @@ class __$$CourseImplCopyWithImpl<$Res>
     Object? title = null,
     Object? professor = null,
     Object? lectureRoom = null,
-    Object? id = null,
+    Object? code = null,
     Object? deadline = freezed,
     Object? link = freezed,
     Object? courseActivityList = freezed,
@@ -172,10 +173,10 @@ class __$$CourseImplCopyWithImpl<$Res>
           ? _value.lectureRoom
           : lectureRoom // ignore: cast_nullable_to_non_nullable
               as String,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
+      code: null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String,
       deadline: freezed == deadline
           ? _value.deadline
           : deadline // ignore: cast_nullable_to_non_nullable
@@ -203,7 +204,7 @@ class _$CourseImpl implements Course {
       {required this.title,
       required this.professor,
       required this.lectureRoom,
-      required this.id,
+      required this.code,
       this.deadline,
       this.link,
       this.courseActivityList,
@@ -221,7 +222,7 @@ class _$CourseImpl implements Course {
   @override
   final String lectureRoom;
   @override
-  final int id;
+  final String code;
   @override
   final DateTime? deadline;
   @override
@@ -236,7 +237,7 @@ class _$CourseImpl implements Course {
 
   @override
   String toString() {
-    return 'CourseModel(title: $title, professor: $professor, lectureRoom: $lectureRoom, id: $id, deadline: $deadline, link: $link, courseActivityList: $courseActivityList, noticeList: $noticeList)';
+    return 'CourseModel(title: $title, professor: $professor, lectureRoom: $lectureRoom, code: $code, deadline: $deadline, link: $link, courseActivityList: $courseActivityList, noticeList: $noticeList)';
   }
 
   @override
@@ -249,7 +250,7 @@ class _$CourseImpl implements Course {
                 other.professor == professor) &&
             (identical(other.lectureRoom, lectureRoom) ||
                 other.lectureRoom == lectureRoom) &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.code, code) || other.code == code) &&
             (identical(other.deadline, deadline) ||
                 other.deadline == deadline) &&
             (identical(other.link, link) || other.link == link) &&
@@ -266,7 +267,7 @@ class _$CourseImpl implements Course {
       title,
       professor,
       lectureRoom,
-      id,
+      code,
       deadline,
       link,
       const DeepCollectionEquality().hash(courseActivityList),
@@ -287,7 +288,7 @@ class _$CourseImpl implements Course {
             String title,
             String professor,
             String lectureRoom,
-            int id,
+            String code,
             DateTime? deadline,
             String? link,
             CourseActivityList? courseActivityList,
@@ -295,7 +296,7 @@ class _$CourseImpl implements Course {
         $default, {
     required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
   }) {
-    return $default(title, professor, lectureRoom, id, deadline, link,
+    return $default(title, professor, lectureRoom, code, deadline, link,
         courseActivityList, noticeList);
   }
 
@@ -306,7 +307,7 @@ class _$CourseImpl implements Course {
             String title,
             String professor,
             String lectureRoom,
-            int id,
+            String code,
             DateTime? deadline,
             String? link,
             CourseActivityList? courseActivityList,
@@ -314,7 +315,7 @@ class _$CourseImpl implements Course {
         $default, {
     TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
   }) {
-    return $default?.call(title, professor, lectureRoom, id, deadline, link,
+    return $default?.call(title, professor, lectureRoom, code, deadline, link,
         courseActivityList, noticeList);
   }
 
@@ -325,7 +326,7 @@ class _$CourseImpl implements Course {
             String title,
             String professor,
             String lectureRoom,
-            int id,
+            String code,
             DateTime? deadline,
             String? link,
             CourseActivityList? courseActivityList,
@@ -335,7 +336,7 @@ class _$CourseImpl implements Course {
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(title, professor, lectureRoom, id, deadline, link,
+      return $default(title, professor, lectureRoom, code, deadline, link,
           courseActivityList, noticeList);
     }
     return orElse();
@@ -385,7 +386,7 @@ abstract class Course implements CourseModel {
       {required final String title,
       required final String professor,
       required final String lectureRoom,
-      required final int id,
+      required final String code,
       final DateTime? deadline,
       final String? link,
       final CourseActivityList? courseActivityList,
@@ -396,7 +397,8 @@ abstract class Course implements CourseModel {
   String get title;
   String get professor;
   String get lectureRoom;
-  int get id;
+  @override
+  String get code;
   DateTime? get deadline;
   String? get link;
   CourseActivityList? get courseActivityList;
@@ -491,7 +493,7 @@ class _$CourseErrorImpl implements CourseError {
             String title,
             String professor,
             String lectureRoom,
-            int id,
+            String code,
             DateTime? deadline,
             String? link,
             CourseActivityList? courseActivityList,
@@ -509,7 +511,7 @@ class _$CourseErrorImpl implements CourseError {
             String title,
             String professor,
             String lectureRoom,
-            int id,
+            String code,
             DateTime? deadline,
             String? link,
             CourseActivityList? courseActivityList,
@@ -527,7 +529,7 @@ class _$CourseErrorImpl implements CourseError {
             String title,
             String professor,
             String lectureRoom,
-            int id,
+            String code,
             DateTime? deadline,
             String? link,
             CourseActivityList? courseActivityList,
@@ -589,6 +591,7 @@ abstract class CourseError implements CourseModel {
   factory CourseError.fromJson(Map<String, dynamic> json) =
       _$CourseErrorImpl.fromJson;
 
+  @override
   @ErrorCodeConverter()
   ErrorCode get code;
 

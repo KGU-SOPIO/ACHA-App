@@ -59,7 +59,7 @@ class SignOutUseCase {
   final AuthenticationRepository authenticationRepository;
 
   Future<Either<String, Unit>> call({required String password}) {
-    return authenticationRepository.signout(password: password);
+    return authenticationRepository.signOut(password: password);
   }
 }
 

@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:acha/app.dart';
 
+import 'package:acha/core/constants/index.dart';
 import 'package:acha/presentation/widgets/index.dart';
 
 class ToastManager {
@@ -59,10 +60,10 @@ class ToastManager {
       padding: const EdgeInsets.only(left: 22, right: 10, top: 16, bottom: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: const Color.fromARGB(255, 223, 236, 255),
+        color: AchaColors.blue233_236_255,
         border: Border.all(
           width: 1.5,
-          color: const Color.fromARGB(255, 166, 201, 255),
+          color: AchaColors.blue166_201_255,
         ),
       ),
       child: Row(
@@ -86,7 +87,7 @@ class ToastManager {
               style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
-                color: Color.fromARGB(255, 0, 102, 255),
+                color: AchaColors.primaryBlue,
               ),
             ),
           ),

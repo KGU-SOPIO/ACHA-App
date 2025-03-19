@@ -9,7 +9,7 @@ part 'notice.g.dart';
 @freezed
 class NoticeModel with _$NoticeModel {
   const factory NoticeModel({
-    required int id,
+    required String id,
     required String index,
     required String title,
     required String professor,
@@ -17,9 +17,9 @@ class NoticeModel with _$NoticeModel {
     String? link,
     String? content,
     List<File>? files,
-    int? nextNoticeId,
+    String? nextNoticeId,
     String? nextNoticeTitle,
-    int? previousNoticeId,
+    String? previousNoticeId,
     String? previousNoticeTitle,
   }) = Notice;
 
@@ -28,5 +28,5 @@ class NoticeModel with _$NoticeModel {
   }) = NoticeError;
 
   factory NoticeModel.fromJson(Map<String, dynamic> json) =>
-      const NoticeResponseConverter().fromJson(json);
+      const NoticeResponseConverter(field: 'id').fromJson(json);
 }

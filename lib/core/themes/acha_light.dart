@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 
+import 'package:acha/core/constants/index.dart';
+
 ThemeData achaLight() {
   return ThemeData(
     fontFamily: 'NotoSansKR',
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
-    scaffoldBackgroundColor: Colors.white,
+    scaffoldBackgroundColor: AchaColors.white,
     colorScheme: const ColorScheme.light(
-      primary: Colors.black,
-      secondary: Color.fromARGB(255, 0, 102, 255),
+      primary: AchaColors.black,
+      secondary: AchaColors.primaryBlue,
     ),
     appBarTheme: const AppBarTheme(
       elevation: 0,
-      color: Color.fromARGB(255, 245, 246, 248),
+      color: AchaColors.gray245_246_248,
       surfaceTintColor: Colors.transparent,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(

@@ -10,7 +10,7 @@ _$CourseImpl _$$CourseImplFromJson(Map<String, dynamic> json) => _$CourseImpl(
       title: json['title'] as String,
       professor: json['professor'] as String,
       lectureRoom: json['lectureRoom'] as String,
-      id: (json['id'] as num).toInt(),
+      code: json['code'] as String,
       deadline: json['deadline'] == null
           ? null
           : DateTime.parse(json['deadline'] as String),
@@ -30,7 +30,7 @@ Map<String, dynamic> _$$CourseImplToJson(_$CourseImpl instance) =>
       'title': instance.title,
       'professor': instance.professor,
       'lectureRoom': instance.lectureRoom,
-      'id': instance.id,
+      'code': instance.code,
       'deadline': instance.deadline?.toIso8601String(),
       'link': instance.link,
       'courseActivityList': instance.courseActivityList,

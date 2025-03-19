@@ -12,7 +12,7 @@ class CourseModel with _$CourseModel {
     required String title,
     required String professor,
     required String lectureRoom,
-    required int id,
+    required String code,
     DateTime? deadline,
     String? link,
     CourseActivityList? courseActivityList,
@@ -24,5 +24,5 @@ class CourseModel with _$CourseModel {
   }) = CourseError;
 
   factory CourseModel.fromJson(Map<String, dynamic> json) =>
-      const CourseResponseConverter().fromJson(json);
+      const CourseResponseConverter(field: 'id').fromJson(json);
 }

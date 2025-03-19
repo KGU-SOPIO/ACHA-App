@@ -4,11 +4,13 @@ import 'package:acha/data/models/index.dart';
 
 class NoticeListResponseConverter
     implements JsonConverter<NoticeListModel, Map<String, dynamic>> {
-  const NoticeListResponseConverter();
+  const NoticeListResponseConverter({required this.field});
+
+  final String field;
 
   @override
   NoticeListModel fromJson(Map<String, dynamic> json) {
-    if (json.containsKey('noticeList')) {
+    if (json.containsKey(field)) {
       return NoticeList.fromJson(json);
     } else {
       return NoticeListError.fromJson(json);
