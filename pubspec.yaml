@@ -45,13 +45,13 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   build_runner: ^2.4.12
   json_serializable: ^6.8.0
-  flutter_launcher_icons: ^0.14.3
+  flutter_native_splash: ^2.4.5
 
-flutter_launcher_icons:
-  android: "launcher_icon"
+flutter_native_splash:
+  color: "#FFFFFF"
+  image: lib/assets/images/acha/splash.png
+  android: true
   ios: true
-  image_path: "lib/assets/images/acha/icon.png"
-  remove_alpha_ios: true
 
 flutter:
   uses-material-design: true

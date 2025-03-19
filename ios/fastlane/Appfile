@@ -1,0 +1,8 @@
+app_identifier("sopio.kr.acha") # The bundle identifier of your app
+apple_id("junseokr@icloud.com") # Your Apple Developer Portal username
+
+itc_team_id("127578989") # App Store Connect Team ID
+team_id("D8X4BS3T77") # Developer Portal Team ID
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile
