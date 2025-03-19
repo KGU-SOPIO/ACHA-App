@@ -12,7 +12,7 @@ enum ErrorCode {
     '비밀번호가 올바르지 않아요',
   ),
   kutisServerError(
-    'KUTIS_SERVER_Error',
+    'KUTIS_SERVER_ERROR',
     'KUTIS에서 데이터를 불러오지 못했어요',
   ),
   lmsServerError(
