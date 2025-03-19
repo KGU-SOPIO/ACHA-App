@@ -18,5 +18,5 @@ class SignUpResponseModel with _$SignUpResponseModel {
   }) = SignUpError;
 
   factory SignUpResponseModel.fromJson(Map<String, dynamic> json) =>
-      const SignUpResponseConverter().fromJson(json);
+      const SignUpResponseConverter(field: 'accessToken').fromJson(json);
 }

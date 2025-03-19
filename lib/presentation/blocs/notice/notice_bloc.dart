@@ -20,7 +20,7 @@ class NoticeBloc extends Bloc<NoticeEvent, NoticeState> {
 
   late final FetchNoticeUseCase _fetchNoticeUseCase;
   final Course course;
-  final int noticeId;
+  final String noticeId;
 
   /// 공지사항 데이터를 요청합니다.
   Future<void> _onFetchNotice(

@@ -32,7 +32,7 @@ mixin _$NoticeModel {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            int id,
+            String id,
             String index,
             String title,
             String professor,
@@ -40,9 +40,9 @@ mixin _$NoticeModel {
             String? link,
             String? content,
             List<File>? files,
-            int? nextNoticeId,
+            String? nextNoticeId,
             String? nextNoticeTitle,
-            int? previousNoticeId,
+            String? previousNoticeId,
             String? previousNoticeTitle)
         $default, {
     required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
@@ -51,7 +51,7 @@ mixin _$NoticeModel {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            int id,
+            String id,
             String index,
             String title,
             String professor,
@@ -59,9 +59,9 @@ mixin _$NoticeModel {
             String? link,
             String? content,
             List<File>? files,
-            int? nextNoticeId,
+            String? nextNoticeId,
             String? nextNoticeTitle,
-            int? previousNoticeId,
+            String? previousNoticeId,
             String? previousNoticeTitle)?
         $default, {
     TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
@@ -70,7 +70,7 @@ mixin _$NoticeModel {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            int id,
+            String id,
             String index,
             String title,
             String professor,
@@ -78,9 +78,9 @@ mixin _$NoticeModel {
             String? link,
             String? content,
             List<File>? files,
-            int? nextNoticeId,
+            String? nextNoticeId,
             String? nextNoticeTitle,
-            int? previousNoticeId,
+            String? previousNoticeId,
             String? previousNoticeTitle)?
         $default, {
     TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
@@ -139,7 +139,7 @@ abstract class _$$NoticeImplCopyWith<$Res> {
       __$$NoticeImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
-      {int id,
+      {String id,
       String index,
       String title,
       String professor,
@@ -147,9 +147,9 @@ abstract class _$$NoticeImplCopyWith<$Res> {
       String? link,
       String? content,
       List<File>? files,
-      int? nextNoticeId,
+      String? nextNoticeId,
       String? nextNoticeTitle,
-      int? previousNoticeId,
+      String? previousNoticeId,
       String? previousNoticeTitle});
 }
 
@@ -183,7 +183,7 @@ class __$$NoticeImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       index: null == index
           ? _value.index
           : index // ignore: cast_nullable_to_non_nullable
@@ -215,7 +215,7 @@ class __$$NoticeImplCopyWithImpl<$Res>
       nextNoticeId: freezed == nextNoticeId
           ? _value.nextNoticeId
           : nextNoticeId // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       nextNoticeTitle: freezed == nextNoticeTitle
           ? _value.nextNoticeTitle
           : nextNoticeTitle // ignore: cast_nullable_to_non_nullable
@@ -223,7 +223,7 @@ class __$$NoticeImplCopyWithImpl<$Res>
       previousNoticeId: freezed == previousNoticeId
           ? _value.previousNoticeId
           : previousNoticeId // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       previousNoticeTitle: freezed == previousNoticeTitle
           ? _value.previousNoticeTitle
           : previousNoticeTitle // ignore: cast_nullable_to_non_nullable
@@ -256,7 +256,7 @@ class _$NoticeImpl implements Notice {
       _$$NoticeImplFromJson(json);
 
   @override
-  final int id;
+  final String id;
   @override
   final String index;
   @override
@@ -280,11 +280,11 @@ class _$NoticeImpl implements Notice {
   }
 
   @override
-  final int? nextNoticeId;
+  final String? nextNoticeId;
   @override
   final String? nextNoticeTitle;
   @override
-  final int? previousNoticeId;
+  final String? previousNoticeId;
   @override
   final String? previousNoticeTitle;
 
@@ -349,7 +349,7 @@ class _$NoticeImpl implements Notice {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            int id,
+            String id,
             String index,
             String title,
             String professor,
@@ -357,9 +357,9 @@ class _$NoticeImpl implements Notice {
             String? link,
             String? content,
             List<File>? files,
-            int? nextNoticeId,
+            String? nextNoticeId,
             String? nextNoticeTitle,
-            int? previousNoticeId,
+            String? previousNoticeId,
             String? previousNoticeTitle)
         $default, {
     required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
@@ -372,7 +372,7 @@ class _$NoticeImpl implements Notice {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            int id,
+            String id,
             String index,
             String title,
             String professor,
@@ -380,9 +380,9 @@ class _$NoticeImpl implements Notice {
             String? link,
             String? content,
             List<File>? files,
-            int? nextNoticeId,
+            String? nextNoticeId,
             String? nextNoticeTitle,
-            int? previousNoticeId,
+            String? previousNoticeId,
             String? previousNoticeTitle)?
         $default, {
     TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
@@ -406,7 +406,7 @@ class _$NoticeImpl implements Notice {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            int id,
+            String id,
             String index,
             String title,
             String professor,
@@ -414,9 +414,9 @@ class _$NoticeImpl implements Notice {
             String? link,
             String? content,
             List<File>? files,
-            int? nextNoticeId,
+            String? nextNoticeId,
             String? nextNoticeTitle,
-            int? previousNoticeId,
+            String? previousNoticeId,
             String? previousNoticeTitle)?
         $default, {
     TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
@@ -470,7 +470,7 @@ class _$NoticeImpl implements Notice {
 
 abstract class Notice implements NoticeModel {
   const factory Notice(
-      {required final int id,
+      {required final String id,
       required final String index,
       required final String title,
       required final String professor,
@@ -478,14 +478,14 @@ abstract class Notice implements NoticeModel {
       final String? link,
       final String? content,
       final List<File>? files,
-      final int? nextNoticeId,
+      final String? nextNoticeId,
       final String? nextNoticeTitle,
-      final int? previousNoticeId,
+      final String? previousNoticeId,
       final String? previousNoticeTitle}) = _$NoticeImpl;
 
   factory Notice.fromJson(Map<String, dynamic> json) = _$NoticeImpl.fromJson;
 
-  int get id;
+  String get id;
   String get index;
   String get title;
   String get professor;
@@ -493,9 +493,9 @@ abstract class Notice implements NoticeModel {
   String? get link;
   String? get content;
   List<File>? get files;
-  int? get nextNoticeId;
+  String? get nextNoticeId;
   String? get nextNoticeTitle;
-  int? get previousNoticeId;
+  String? get previousNoticeId;
   String? get previousNoticeTitle;
 
   /// Create a copy of NoticeModel
@@ -584,7 +584,7 @@ class _$NoticeErrorImpl implements NoticeError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            int id,
+            String id,
             String index,
             String title,
             String professor,
@@ -592,9 +592,9 @@ class _$NoticeErrorImpl implements NoticeError {
             String? link,
             String? content,
             List<File>? files,
-            int? nextNoticeId,
+            String? nextNoticeId,
             String? nextNoticeTitle,
-            int? previousNoticeId,
+            String? previousNoticeId,
             String? previousNoticeTitle)
         $default, {
     required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
@@ -606,7 +606,7 @@ class _$NoticeErrorImpl implements NoticeError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            int id,
+            String id,
             String index,
             String title,
             String professor,
@@ -614,9 +614,9 @@ class _$NoticeErrorImpl implements NoticeError {
             String? link,
             String? content,
             List<File>? files,
-            int? nextNoticeId,
+            String? nextNoticeId,
             String? nextNoticeTitle,
-            int? previousNoticeId,
+            String? previousNoticeId,
             String? previousNoticeTitle)?
         $default, {
     TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
@@ -628,7 +628,7 @@ class _$NoticeErrorImpl implements NoticeError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            int id,
+            String id,
             String index,
             String title,
             String professor,
@@ -636,9 +636,9 @@ class _$NoticeErrorImpl implements NoticeError {
             String? link,
             String? content,
             List<File>? files,
-            int? nextNoticeId,
+            String? nextNoticeId,
             String? nextNoticeTitle,
-            int? previousNoticeId,
+            String? previousNoticeId,
             String? previousNoticeTitle)?
         $default, {
     TResult Function(@ErrorCodeConverter() ErrorCode code)? error,

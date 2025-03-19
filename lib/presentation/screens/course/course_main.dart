@@ -309,7 +309,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                       ),
                     ),
                     title: Text(
-                      '${index + 1}주차',
+                      '${weekActivities.week}주차',
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,

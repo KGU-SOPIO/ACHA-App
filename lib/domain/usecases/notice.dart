@@ -8,7 +8,7 @@ class FetchNoticeUseCase {
 
   final CourseRepository courseRepository;
 
-  Future<Either<String, Notice>> call(int noticeId) async {
+  Future<Either<String, Notice>> call(String noticeId) async {
     return await courseRepository.fetchNotice(noticeId);
   }
 }

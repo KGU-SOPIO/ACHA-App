@@ -11,5 +11,5 @@ class BaseApiEndpoints {
   /// iOS: 127.0.0.1
   /// Android: 10.0.2.2
   static const String version = 'v1';
-  static const String baseUri = 'https://api.sopio.kr/api/$version';
+  static const String baseUri = 'https://prod.sopio.kr/api/$version';
 }

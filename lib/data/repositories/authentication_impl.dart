@@ -83,11 +83,13 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     required String password,
   }) async {
     try {
+      final deviceToken = await DeviceTokenRepositoryImpl.getDeviceToken();
       final response = await dio.post(
         AuthenticationApiEndpoints.signIn,
         data: {
           'studentId': studentId,
           'password': password,
+          'deviceToken': deviceToken
         },
       );
 
@@ -148,6 +150,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     required User user,
   }) async {
     try {
+      final deviceToken = await DeviceTokenRepositoryImpl.getDeviceToken();
       final response = await dio.post(
         AuthenticationApiEndpoints.signUp,
         data: {
@@ -156,7 +159,8 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
           'name': user.name,
           'college': user.college,
           'department': user.department,
-          'major': user.major
+          'major': user.major,
+          'deviceToken': deviceToken
         },
       );
 
@@ -184,11 +188,12 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     try {
       dio.interceptors.add(tokenInterceptor);
 
-      final deviceToken = DeviceTokenRepositoryImpl.getDeviceToken();
-      final response = await dio.post(
+      final deviceToken = await DeviceTokenRepositoryImpl.getDeviceToken();
+      final response = await dio.delete(
         AuthenticationApiEndpoints.logout,
         data: {'deviceToken': deviceToken},
       );
+
       if (response.statusCode != 200) {
         final errorCode = response.data['code'] as String;
         final parsedData = const ErrorCodeConverter().fromJson(errorCode);
@@ -213,10 +218,15 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     try {
       dio.interceptors.add(tokenInterceptor);
 
+      final deviceToken = await DeviceTokenRepositoryImpl.getDeviceToken();
       final response = await dio.patch(
         AuthenticationApiEndpoints.signout,
-        data: {'password': password},
+        data: {
+          'password': password,
+          'deviceToken': deviceToken,
+        },
       );
+
       if (response.statusCode != 200) {
         final errorCode = response.data['code'] as String;
         final parsedData = const ErrorCodeConverter().fromJson(errorCode);

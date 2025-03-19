@@ -17,5 +17,5 @@ class TokenReissueResponseModel with _$TokenReissueResponseModel {
   }) = TokenReissueError;
 
   factory TokenReissueResponseModel.fromJson(Map<String, dynamic> json) =>
-      const TokenReissueResponseConverter().fromJson(json);
+      const TokenReissueResponseConverter(field: 'accessToken').fromJson(json);
 }

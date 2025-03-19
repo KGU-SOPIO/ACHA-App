@@ -20,7 +20,8 @@ class CourseActivityListModel with _$CourseActivityListModel {
   }) = CourseActivityListError;
 
   factory CourseActivityListModel.fromJson(Map<String, dynamic> json) =>
-      const CourseActivityListResponseConverter().fromJson(json);
+      const CourseActivityListResponseConverter(field: 'contents')
+          .fromJson(json);
 }
 
 @freezed
@@ -35,7 +36,7 @@ class ActivityListModel with _$ActivityListModel {
   }) = ActivityListError;
 
   factory ActivityListModel.fromJson(Map<String, dynamic> json) =>
-      const ActivityListResponseConverter().fromJson(json);
+      const ActivityListResponseConverter(field: 'contents').fromJson(json);
 }
 
 @freezed

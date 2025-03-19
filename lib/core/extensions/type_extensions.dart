@@ -1,6 +1,7 @@
 import 'package:acha/data/models/index.dart';
 
 extension ActivityTypeExtension on ActivityType {
+  /// 활동 타입에 따라 Svg Asset 경로를 반환합니다.
   String get svgPath {
     switch (this) {
       case ActivityType.url:

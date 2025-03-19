@@ -24,5 +24,5 @@ class CourseModel with _$CourseModel {
   }) = CourseError;
 
   factory CourseModel.fromJson(Map<String, dynamic> json) =>
-      const CourseResponseConverter().fromJson(json);
+      const CourseResponseConverter(field: 'id').fromJson(json);
 }

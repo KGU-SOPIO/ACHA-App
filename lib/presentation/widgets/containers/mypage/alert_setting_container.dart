@@ -19,7 +19,7 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
   @override
   void initState() {
     super.initState();
-    context.read<AlertBloc>().add(const AlertEvent.fetchAlertStatus());
+    // context.read<AlertBloc>().add(const AlertEvent.fetchAlertStatus());
   }
 
   @override
@@ -62,8 +62,8 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
           _buildTitle(),
           const SizedBox(height: 24),
           _buildAlertPeriod(),
-          const SizedBox(height: 24),
-          _buildAlertToggle(state),
+          // const SizedBox(height: 24),
+          // _buildAlertToggle(state),
         ],
       ),
     );

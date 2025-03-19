@@ -18,7 +18,7 @@ class FetchCourseActivitiesUseCase {
 
   final CourseRepository courseRepository;
 
-  Future<Either<String, CourseActivityList>> call(String code) async {
-    return await courseRepository.fetchCourseActivities(code);
+  Future<Either<String, CourseActivityList>> call(String courseCode) async {
+    return await courseRepository.fetchCourseActivities(courseCode);
   }
 }

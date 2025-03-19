@@ -18,7 +18,7 @@ class NoticeMainScreen extends StatefulWidget {
   @override
   State<NoticeMainScreen> createState() => _NoticeMainScreenState();
 
-  static Route<void> route({required Course course, required int noticeId}) {
+  static Route<void> route({required Course course, required String noticeId}) {
     return CupertinoPageRoute(
       builder: (context) => BlocProvider(
         create: (context) => NoticeBloc(

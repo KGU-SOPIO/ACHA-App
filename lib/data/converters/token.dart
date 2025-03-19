@@ -4,11 +4,13 @@ import 'package:acha/data/models/index.dart';
 
 class TokenReissueResponseConverter
     implements JsonConverter<TokenReissueResponseModel, Map<String, dynamic>> {
-  const TokenReissueResponseConverter();
+  const TokenReissueResponseConverter({required this.field});
+
+  final String field;
 
   @override
   TokenReissueResponseModel fromJson(Map<String, dynamic> json) {
-    if (json.containsKey('accessToken')) {
+    if (json.containsKey(field)) {
       return TokenReissueResponse.fromJson(json);
     } else {
       return TokenReissueError.fromJson(json);

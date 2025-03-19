@@ -4,11 +4,13 @@ import 'package:acha/data/models/index.dart';
 
 class UserResponseConverter
     implements JsonConverter<UserModel, Map<String, dynamic>> {
-  const UserResponseConverter();
+  const UserResponseConverter({required this.field});
+
+  final String field;
 
   @override
   UserModel fromJson(Map<String, dynamic> json) {
-    if (json.containsKey('name')) {
+    if (json.containsKey(field)) {
       return User.fromJson(json);
     } else {
       return UserError.fromJson(json);

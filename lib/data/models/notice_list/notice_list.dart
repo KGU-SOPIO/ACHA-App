@@ -17,5 +17,5 @@ class NoticeListModel with _$NoticeListModel {
   }) = NoticeListError;
 
   factory NoticeListModel.fromJson(Map<String, dynamic> json) =>
-      const NoticeListResponseConverter().fromJson(json);
+      const NoticeListResponseConverter(field: 'contents').fromJson(json);
 }

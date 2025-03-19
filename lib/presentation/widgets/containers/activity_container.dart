@@ -127,14 +127,11 @@ class ActivityContainer extends StatelessWidget {
   }
 
   Widget _buildUri() {
+    final access = available && link != null;
     final svgPath = type == ActivityType.lecture
         ? 'lib/assets/svgs/modal/main/lecture.svg'
         : 'lib/assets/svgs/modal/main/assignment.svg';
     final buttonText = type == ActivityType.lecture ? '강의 시청' : '과제 제출';
-
-    if (available == false || link == null) {
-      return const SizedBox.shrink();
-    }
 
     return GestureDetector(
       onTap: () => _openActivityUri(),
@@ -149,14 +146,19 @@ class ActivityContainer extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset(svgPath),
+            SvgPicture.asset(
+              svgPath,
+              colorFilter: !access
+                  ? const ColorFilter.mode(AchaColors.gray186, BlendMode.srcIn)
+                  : null,
+            ),
             const SizedBox(width: 5),
             Text(
               buttonText,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
-                color: AchaColors.gray60,
+                color: access ? AchaColors.gray60 : AchaColors.gray186,
               ),
             ),
           ],
