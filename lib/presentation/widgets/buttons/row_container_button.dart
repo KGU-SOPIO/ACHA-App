@@ -36,6 +36,16 @@ class RowContainerButton extends StatelessWidget {
     );
   }
 
+  Widget _buildContent() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(text, style: textStyle),
+        widget,
+      ],
+    );
+  }
+
   ButtonStyle _buttonStyle() {
     return ElevatedButton.styleFrom(
       minimumSize: const Size(double.infinity, 0),
@@ -45,16 +55,6 @@ class RowContainerButton extends StatelessWidget {
       ),
       foregroundColor: foregroundColor,
       backgroundColor: backgroundColor,
-    );
-  }
-
-  Widget _buildContent() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(text, style: textStyle),
-        widget,
-      ],
     );
   }
 }

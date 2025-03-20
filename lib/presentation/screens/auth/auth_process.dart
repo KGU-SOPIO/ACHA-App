@@ -30,12 +30,42 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
   @override
   void initState() {
     super.initState();
-    if (context.read<SignInBloc>().state.status == SignInStatus.initial) {
-      context.read<SignInBloc>().add(const SubmitSignIn());
-    } else if (context.read<SignInBloc>().state.status ==
-        SignInStatus.inSignUp) {
-      context.read<SignInBloc>().add(const SubmitSignUp());
+    final signInBloc = context.read<SignInBloc>();
+    final status = signInBloc.state.status;
+    if (status == SignInStatus.initial) {
+      signInBloc.add(const SubmitSignIn());
+    } else if (status == SignInStatus.inSignUp) {
+      signInBloc.add(const SubmitSignUp());
     }
+  }
+
+  /// 상태에 따라 이벤트를 호출합니다.
+  void _handleStatusChange(BuildContext context, SignInState state) {
+    final signInBloc = context.read<SignInBloc>();
+
+    switch (state.status) {
+      case SignInStatus.inFetchUser:
+        signInBloc.add(const FetchUserData());
+        break;
+      case SignInStatus.inSignUp:
+        Navigator.push(context, AuthSignUpScreen.route(context));
+        break;
+      case SignInStatus.inFetchData:
+        signInBloc.add(const FetchData());
+        break;
+      default:
+        break;
+    }
+  }
+
+  /// 실패 상태를 판단하여 반환합니다.
+  bool isFailureState(SignInStatus status) {
+    return {
+      SignInStatus.signInFailure,
+      SignInStatus.fetchUserFailure,
+      SignInStatus.signUpFailure,
+      SignInStatus.fetchDataFailure,
+    }.contains(status);
   }
 
   @override
@@ -47,24 +77,11 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
         appBar: _buildAppBar(),
         body: SafeArea(
           child: BlocConsumer<SignInBloc, SignInState>(
-            listener: (context, state) {
-              if (state.status == SignInStatus.inFetchUser) {
-                context.read<SignInBloc>().add(const FetchUserData());
-              } else if (state.status == SignInStatus.inSignUp) {
-                Navigator.push(context, AuthSignUpScreen.route(context));
-              } else if (state.status == SignInStatus.inFetchData) {
-                context.read<SignInBloc>().add(const FetchData());
-              }
-            },
+            listener: _handleStatusChange,
             builder: (context, state) {
-              if (state.status == SignInStatus.signInFailure ||
-                  state.status == SignInStatus.fetchUserFailure ||
-                  state.status == SignInStatus.signUpFailure ||
-                  state.status == SignInStatus.fetchDataFailure) {
-                return _buildErrorContent(context, state);
-              } else {
-                return _buildLoadingContent(state);
-              }
+              return isFailureState(state.status)
+                  ? _buildErrorContent(context, state)
+                  : _buildLoadingContent(state);
             },
           ),
         ),
@@ -72,6 +89,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
     );
   }
 
+  /// 상단 앱바를 빌드합니다.
   PreferredSizeWidget _buildAppBar() {
     return AppBar(
       automaticallyImplyLeading: false,
@@ -87,6 +105,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
     );
   }
 
+  /// 오류 발생 시의 위젯을 빌드합니다.
   Widget _buildErrorContent(BuildContext context, SignInState state) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -96,7 +115,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 50),
+              const SizedBox(height: 60),
               SvgPicture.asset('lib/assets/svgs/auth/error.svg'),
               const SizedBox(height: 30),
               Text(
@@ -106,7 +125,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 30),
               Text(
                 state.errorMessage!,
                 style: const TextStyle(
@@ -115,7 +134,6 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
                   color: AchaColors.gray109,
                 ),
               ),
-              const SizedBox(height: 50),
             ],
           ),
           Column(
@@ -143,6 +161,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
     );
   }
 
+  /// 로딩 위젯을 빌드합니다.
   Widget _buildLoadingContent(SignInState state) {
     return Container(
       width: double.infinity,
@@ -150,49 +169,62 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SizedBox(height: 42),
+          const SizedBox(height: 60),
           Lottie.asset('lib/assets/lotties/auth/loading.json', width: 45),
-          const SizedBox(height: 24),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 5),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                color: AchaColors.primaryBlue_10),
-            child: Text(
-              state.status.description,
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: AchaColors.primaryBlue,
-              ),
-            ),
-          ),
-          if (state.status == SignInStatus.fetchDataProgress) ...[
-            const SizedBox(height: 32),
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
-              margin: const EdgeInsets.symmetric(horizontal: 8),
-              decoration: BoxDecoration(
-                color: AchaColors.gray245_246_248,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  _buildExtractionInfoPanel(),
-                  SvgPicture.asset('lib/assets/svgs/auth/download.svg'),
-                ],
-              ),
-            )
-          ],
+          const SizedBox(height: 40),
+          _buildStatusMessage(state.status),
+          if (state.status == SignInStatus.fetchDataProgress)
+            _buildExtractionInfoSection(),
         ],
       ),
     );
   }
 
-  Widget _buildExtractionInfoPanel() {
+  /// 상태 메세지 부분을 빌드합니다.
+  Widget _buildStatusMessage(SignInStatus status) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 5),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25),
+        color: AchaColors.primaryBlue_10,
+      ),
+      child: Text(
+        status.description,
+        style: const TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+          color: AchaColors.primaryBlue,
+        ),
+      ),
+    );
+  }
+
+  /// 데이터 추출 안내 부분을 빌드합니다.
+  Widget _buildExtractionInfoSection() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 40),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
+        margin: const EdgeInsets.symmetric(horizontal: 8),
+        decoration: BoxDecoration(
+          color: AchaColors.gray245_246_248,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            _buildExtractionInfoText(),
+            SvgPicture.asset('lib/assets/svgs/auth/download.svg'),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// 데이터 추출 안내 텍스트를 빌드합니다.
+  Widget _buildExtractionInfoText() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

@@ -32,6 +32,7 @@ class SopioScreen extends StatelessWidget {
     );
   }
 
+  /// 뒤로가기 버튼을 빌드합니다.
   Widget _buildBackButton(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 20),
@@ -42,6 +43,7 @@ class SopioScreen extends StatelessWidget {
     );
   }
 
+  /// 메인 위젯을 빌드합니다.
   Widget _buildContent() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 26),
@@ -59,6 +61,7 @@ class SopioScreen extends StatelessWidget {
     );
   }
 
+  /// 설명 텍스트를 빌드합니다.
   Widget _buildDescription() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -132,6 +135,7 @@ class SopioScreen extends StatelessWidget {
     );
   }
 
+  /// 개발팀 제목을 빌드합니다.
   Widget _buildTeamTitle() {
     return SizedBox(
       width: double.infinity,
@@ -154,6 +158,7 @@ class SopioScreen extends StatelessWidget {
     );
   }
 
+  /// 멤버 목록을 빌드합니다.
   Widget _buildMemberList() {
     return const Column(
       children: [

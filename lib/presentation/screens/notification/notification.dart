@@ -47,6 +47,7 @@ class _NotificationScreenState extends State<NotificationScreen>
     );
   }
 
+  /// 메인 위젯을 빌드합니다.
   Widget _buildContent() {
     return NestedScrollView(
       headerSliverBuilder: (context, innerBoxIsScrolled) {
@@ -60,17 +61,18 @@ class _NotificationScreenState extends State<NotificationScreen>
       body: BlocBuilder<ActivityBloc, ActivityState>(
         builder: (context, state) {
           if (state.status == ActivityStatus.loading) {
-            return _buildLoadingContent();
-          } else if (state.status == ActivityStatus.loaded) {
-            return _buildLoadedContent(state.activityList);
-          } else {
+            return Loader(height: MediaQuery.of(context).size.height);
+          } else if (state.status == ActivityStatus.error) {
             return _buildErrorContent();
+          } else {
+            return _buildLoadedContent(state.activityList);
           }
         },
       ),
     );
   }
 
+  /// 상단 앱바를 빌드합니다.
   Widget _buildAppBar() {
     return const Padding(
       padding: EdgeInsets.only(bottom: 20),
@@ -78,10 +80,7 @@ class _NotificationScreenState extends State<NotificationScreen>
     );
   }
 
-  Widget _buildLoadingContent() {
-    return Loader(height: MediaQuery.of(context).size.height);
-  }
-
+  /// 데이터 로딩 후 위젯을 빌드합니다.
   Widget _buildLoadedContent(ActivityList? activities) {
     return TabBarView(controller: _tabController, children: [
       _buildActivityListView(
@@ -92,6 +91,7 @@ class _NotificationScreenState extends State<NotificationScreen>
     ]);
   }
 
+  /// 오류 위젯을 빌드합니다.
   Widget _buildErrorContent() {
     const errorWidget = Center(
       child: Text(
@@ -109,13 +109,14 @@ class _NotificationScreenState extends State<NotificationScreen>
     );
   }
 
+  /// 활동 목록 위젯을 빌드합니다.
   Widget _buildActivityListView(
     Map<DateTime, List<Activity>>? groupedActivities,
   ) {
     if (groupedActivities == null) {
       return const Center(
         child: Text(
-          '다 끝내셨군요! 고생하셨어요',
+          '다 끝냈어요!',
           style: TextStyle(
             fontSize: 15,
             color: AchaColors.gray109,

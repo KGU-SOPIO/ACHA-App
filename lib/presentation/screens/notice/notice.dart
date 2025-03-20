@@ -65,6 +65,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
     );
   }
 
+  /// 뒤로가기 버튼을 빌드합니다.
   Widget _buildBackButton(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 20),
@@ -75,6 +76,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
     );
   }
 
+  /// 강좌 제목을 빌드합니다.
   Widget _buildCourseTitle(BuildContext context) {
     return Text(
       context.read<NoticeListBloc>().course.title,
@@ -86,6 +88,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
     );
   }
 
+  /// 공지사항 헤더를 빌드합니다.
   Widget _buildNoticeHeader() {
     return Row(
       children: [
@@ -103,6 +106,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
     );
   }
 
+  /// 공지사항 목록 부분을 빌드합니다.
   Widget _buildNoticeListSection(BuildContext context) {
     return BlocBuilder<NoticeListBloc, NoticeListState>(
       builder: (context, state) {
@@ -116,23 +120,13 @@ class _NoticeScreenState extends State<NoticeScreen> {
         } else if (state.status == NoticeListStatus.loaded) {
           return _buildNoticeListContent(context, state.noticeList?.contents);
         } else {
-          return SizedBox(
-            height: 500,
-            child: Center(
-              child: Text(
-                state.errorMessage!,
-                style: const TextStyle(
-                  fontSize: 15,
-                  color: AchaColors.gray109,
-                ),
-              ),
-            ),
-          );
+          return _buildError(state);
         }
       },
     );
   }
 
+  /// 공지사항 목록 위젯을 빌드합니다.
   Widget _buildNoticeListContent(BuildContext context, List<Notice>? notices) {
     if (notices == null) {
       return const SizedBox(
@@ -157,6 +151,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
     );
   }
 
+  /// 단일 공지사항 위젯을 빌드합니다.
   Widget _buildNoticeItem(BuildContext context, Notice notice) {
     return GestureDetector(
       onTap: () => Navigator.push(
@@ -226,6 +221,22 @@ class _NoticeScreenState extends State<NoticeScreen> {
               ],
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  /// 오류 위젯을 빌드합니다.
+  Widget _buildError(NoticeListState state) {
+    return SizedBox(
+      height: 500,
+      child: Center(
+        child: Text(
+          state.errorMessage!,
+          style: const TextStyle(
+            fontSize: 15,
+            color: AchaColors.gray109,
+          ),
         ),
       ),
     );

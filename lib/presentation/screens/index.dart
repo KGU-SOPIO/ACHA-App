@@ -1,9 +1,9 @@
 export 'package:acha/presentation/screens/auth/index.dart';
 export 'package:acha/presentation/screens/course/index.dart';
-export 'package:acha/presentation/screens/main/index.dart';
+export 'package:acha/presentation/screens/home/home_main.dart';
 export 'package:acha/presentation/screens/mypage/index.dart';
 export 'package:acha/presentation/screens/notice/index.dart';
 export 'package:acha/presentation/screens/notification/index.dart';
-export 'package:acha/presentation/screens/home.dart';
+export 'package:acha/presentation/screens/main.dart';
 export 'package:acha/presentation/screens/splash.dart';
 export 'package:acha/presentation/screens/error.dart';

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 
-import 'package:get_it/get_it.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:acha/core/constants/index.dart';
@@ -19,22 +18,23 @@ class ErrorScreen extends StatelessWidget {
     this.connectionError,
   });
 
+  final String title;
+  final String message;
+  final bool? connectionError;
+
   static Route<void> route({
     required String title,
     required String message,
     bool? connectionError,
-  }) =>
-      CupertinoPageRoute(
-        builder: (context) => ErrorScreen(
-          title: title,
-          message: message,
-          connectionError: connectionError,
-        ),
-      );
-
-  final String title;
-  final String message;
-  final bool? connectionError;
+  }) {
+    return CupertinoPageRoute(
+      builder: (context) => ErrorScreen(
+        title: title,
+        message: message,
+        connectionError: connectionError,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +55,7 @@ class ErrorScreen extends StatelessWidget {
     );
   }
 
+  /// 메인 위젯을 빌드합니다.
   Widget _buildContent() {
     return Expanded(
       child: Center(
@@ -63,18 +64,18 @@ class ErrorScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SvgPicture.asset('lib/assets/svgs/auth/error.svg'),
-            const SizedBox(height: 30),
-            const Text(
-              '인터넷 연결 문제',
-              style: TextStyle(
+            const SizedBox(height: 40),
+            Text(
+              title,
+              style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
               ),
             ),
-            const SizedBox(height: 20),
-            const Text(
-              '인터넷 연결 확인 후 앱을 재실행해 주세요',
-              style: TextStyle(
+            const SizedBox(height: 30),
+            Text(
+              message,
+              style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
                 color: AchaColors.gray109,
@@ -86,6 +87,7 @@ class ErrorScreen extends StatelessWidget {
     );
   }
 
+  /// 버튼을 빌드합니다.
   Widget _buildButton(BuildContext context) {
     return ContainerButton(
       height: 56,
@@ -101,7 +103,7 @@ class ErrorScreen extends StatelessWidget {
           if (Platform.isAndroid) {
             SystemNavigator.pop();
           } else {
-            GetIt.I<ToastManager>().error(message: '인터넷 연결 확인 후 앱을 재실행해 주세요');
+            exit(0);
           }
         } else {
           Navigator.pushAndRemoveUntil(

@@ -28,40 +28,7 @@ class AuthSignUpScreen extends StatefulWidget {
 }
 
 class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
-  void _showTermsModal() => TermsModal(
-        titleWidget: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text.rich(
-              TextSpan(
-                style: TextStyle(
-                  fontSize: 16,
-                  color: AchaColors.gray30,
-                ),
-                children: [
-                  TextSpan(
-                    text: '이용 약관에 동의',
-                    style: TextStyle(fontWeight: FontWeight.w700),
-                  ),
-                  TextSpan(
-                    text: '하고\n회원가입을 진행합니다',
-                    style: TextStyle(fontWeight: FontWeight.w500, height: 1.7),
-                  ),
-                ],
-              ),
-            ),
-            SvgPicture.asset('lib/assets/svgs/acha/small.svg', width: 50)
-          ],
-        ),
-        uri: Uri.parse(AchaUris.serviceTerms),
-        termsButtonText: '아차 이용 약관',
-        agreeButtonText: '동의하고 회원가입',
-        onAgree: () => Navigator.push(
-          context,
-          AuthProcessScreen.route(context),
-        ),
-      ).show(context);
-
+  /// 매뉴얼 URI를 실행합니다.
   Future<void> _openManualUri() async {
     try {
       final uri = Uri.parse(AchaUris.differentManual);
@@ -71,6 +38,43 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
     } catch (e) {
       GetIt.I<ToastManager>().error(message: '매뉴얼 페이지를 열지 못했어요');
     }
+  }
+
+  /// 약관 모달 위젯을 빌드합니다.
+  void _showTermsModal() {
+    return TermsModal(
+      titleWidget: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Text.rich(
+            TextSpan(
+              style: TextStyle(
+                fontSize: 16,
+                color: AchaColors.gray30,
+              ),
+              children: [
+                TextSpan(
+                  text: '이용 약관에 동의',
+                  style: TextStyle(fontWeight: FontWeight.w700),
+                ),
+                TextSpan(
+                  text: '하고\n회원가입을 진행합니다',
+                  style: TextStyle(fontWeight: FontWeight.w500, height: 1.7),
+                ),
+              ],
+            ),
+          ),
+          SvgPicture.asset('lib/assets/svgs/acha/small.svg', width: 50)
+        ],
+      ),
+      uri: Uri.parse(AchaUris.serviceTerms),
+      termsButtonText: '아차 이용 약관',
+      agreeButtonText: '동의하고 회원가입',
+      onAgree: () => Navigator.push(
+        context,
+        AuthProcessScreen.route(context),
+      ),
+    ).show(context);
   }
 
   @override
@@ -86,6 +90,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
     );
   }
 
+  /// 상단 앱바를 빌드합니다.
   PreferredSizeWidget _buildAppBar() {
     return AppBar(
       automaticallyImplyLeading: false,
@@ -101,6 +106,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
     );
   }
 
+  /// 메인 위젯을 빌드합니다.
   Widget _buildBody(BuildContext context, SignInState state) {
     return SafeArea(
       child: Padding(
@@ -108,7 +114,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _buildUserInformationSection(state),
+            _buildUserInfoContent(state),
             _buildButtonSection(),
           ],
         ),
@@ -116,7 +122,8 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
     );
   }
 
-  Widget _buildUserInformationSection(SignInState state) {
+  /// 학생 정보를 빌드합니다.
+  Widget _buildUserInfoContent(SignInState state) {
     return Column(
       children: [
         const SizedBox(height: 24),
@@ -135,6 +142,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
     );
   }
 
+  /// 제목을 빌드합니다.
   Widget _buildTitle() {
     return const SizedBox(
       width: double.infinity,
@@ -159,6 +167,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
     );
   }
 
+  /// 버튼 부분을 빌드합니다.
   Widget _buildButtonSection() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -171,6 +180,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
     );
   }
 
+  /// 매뉴얼 버튼을 빌드합니다.
   Widget _buildManualButton() {
     return TextButton(
       style: TextButton.styleFrom(
@@ -195,6 +205,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
     );
   }
 
+  /// 다음 버튼을 빌드합니다.
   Widget _buildNextButton() {
     return ContainerButton(
       height: 56,

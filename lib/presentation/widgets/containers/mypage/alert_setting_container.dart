@@ -22,14 +22,7 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
     // context.read<AlertBloc>().add(const AlertEvent.fetchAlertStatus());
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return BlocConsumer<AlertBloc, AlertState>(
-      listener: _onAlertStatusChanged,
-      builder: _buildContent,
-    );
-  }
-
+  /// 상태에 따라 Toast를 호출합니다.
   void _onAlertStatusChanged(BuildContext context, AlertState state) {
     switch (state.status) {
       case AlertStatus.error:
@@ -48,6 +41,15 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
     }
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<AlertBloc, AlertState>(
+      listener: _onAlertStatusChanged,
+      builder: _buildContent,
+    );
+  }
+
+  /// 메인 위젯을 빌드합니다.
   Widget _buildContent(BuildContext context, AlertState state) {
     return Container(
       width: double.infinity,
@@ -69,6 +71,7 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
     );
   }
 
+  /// 제목을 빌드합니다.
   Widget _buildTitle() {
     return Row(
       children: [
@@ -88,6 +91,7 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
     );
   }
 
+  /// 알림 주기 텍스트를 빌드합니다.
   Widget _buildAlertPeriod() {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -157,6 +161,7 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
     );
   }
 
+  /// 알림 상태 변경 토글 버튼을 빌드합니다.
   Widget _buildAlertToggle(AlertState state) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

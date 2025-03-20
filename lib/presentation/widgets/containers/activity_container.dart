@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'package:get_it/get_it.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
 import 'package:acha/core/constants/index.dart';
 import 'package:acha/core/extensions/index.dart';
+import 'package:acha/core/utils/index.dart';
 import 'package:acha/data/models/index.dart';
-import 'package:acha/presentation/widgets/index.dart';
 
 class ActivityContainer extends StatelessWidget {
   const ActivityContainer({
@@ -59,22 +57,6 @@ class ActivityContainer extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  Future<void> _openActivityUri() async {
-    if (link == null) {
-      GetIt.I<ToastManager>().error(message: '활동이 비활성화 되어있어요');
-      return;
-    }
-
-    try {
-      final uri = Uri.parse(link!);
-      if (await canLaunchUrl(uri)) {
-        await launchUrl(uri, mode: LaunchMode.externalApplication);
-      }
-    } catch (e) {
-      GetIt.I<ToastManager>().error(message: 'LMS 페이지를 열지 못했어요');
-    }
   }
 
   Widget _buildTitle() {
@@ -134,7 +116,7 @@ class ActivityContainer extends StatelessWidget {
     final buttonText = type == ActivityType.lecture ? '강의 시청' : '과제 제출';
 
     return GestureDetector(
-      onTap: () => _openActivityUri(),
+      onTap: () => UriLauncher.openActivityUri(link),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
         decoration: BoxDecoration(

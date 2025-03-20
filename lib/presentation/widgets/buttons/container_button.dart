@@ -33,7 +33,9 @@ class ContainerButton extends StatelessWidget {
   ButtonStyle _buttonStyle() {
     return ElevatedButton.styleFrom(
       minimumSize: Size(double.infinity, height),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
       side: border ?? BorderSide.none,
       backgroundColor: backgroundColor,
     );

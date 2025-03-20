@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:get_it/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
@@ -37,8 +36,7 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
         children: [
           _buildTitle(),
           const SizedBox(height: 15),
-          BlocConsumer<TodayCourseBloc, TodayCourseState>(
-            listener: _onTodayCourseStateChanged,
+          BlocBuilder<TodayCourseBloc, TodayCourseState>(
             builder: _buildContent,
           ),
         ],
@@ -46,6 +44,7 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
     );
   }
 
+  /// 제목을 빌드합니다.
   Widget _buildTitle() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -80,41 +79,26 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
     );
   }
 
-  void _onTodayCourseStateChanged(
-    BuildContext context,
-    TodayCourseState state,
-  ) {
-    switch (state.status) {
-      case TodayCourseStatus.error:
-        GetIt.I<ToastManager>().error(message: state.errorMessage!);
-        break;
-      default:
-        break;
-    }
-  }
-
+  /// 강좌 표시 부분을 빌드합니다.
   Widget _buildContent(BuildContext context, TodayCourseState state) {
     switch (state.status) {
       case TodayCourseStatus.loading:
         return const Loader(height: 97);
-      case TodayCourseStatus.loaded:
-        if (state.todayCourses!.contents.isEmpty) {
-          return _buildMessage('오늘은 공강이에요');
-        }
-        return _buildCourseList(state.todayCourses!);
       case TodayCourseStatus.error:
         return _buildMessage(state.errorMessage ?? '강좌를 불러오지 못했어요');
+      case TodayCourseStatus.loaded:
+        final courseList = state.todayCourses;
+        if (courseList == null || courseList.contents.isEmpty) {
+          return _buildMessage('오늘은 공강이에요');
+        }
+        return Column(
+            children: courseList.contents
+                .map((course) => _buildCourseContainer(course))
+                .toList());
     }
   }
 
-  Widget _buildCourseList(CourseList courseList) {
-    return Column(
-      children: courseList.contents
-          .map((course) => _buildCourseContainer(course))
-          .toList(),
-    );
-  }
-
+  /// 강좌 컨테이너를 빌드합니다.
   Widget _buildCourseContainer(Course course) {
     return GestureDetector(
       onTap: () =>
@@ -131,13 +115,14 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
             ),
             borderRadius: BorderRadius.circular(20),
           ),
-          child: _buildCourseInformation(course),
+          child: _buildCourseInfo(course),
         ),
       ),
     );
   }
 
-  Widget _buildCourseInformation(Course course) {
+  /// 강좌 정보 텍스트를 빌드합니다.
+  Widget _buildCourseInfo(Course course) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -173,6 +158,7 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
     );
   }
 
+  /// 상태 메세지를 빌드합니다.
   Widget _buildMessage(String message) {
     return SizedBox(
       height: 97,
