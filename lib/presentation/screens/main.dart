@@ -9,25 +9,28 @@ import 'package:acha/core/constants/index.dart';
 import 'package:acha/presentation/blocs/index.dart';
 import 'package:acha/presentation/screens/index.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key, required this.requestPermission});
+class MainScreen extends StatefulWidget {
+  const MainScreen({
+    super.key,
+    required this.requestPermission,
+  });
 
   final bool requestPermission;
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<MainScreen> createState() => _MainScreenState();
 
   static Route<void> route({required bool requestPermission}) {
     return CupertinoPageRoute(
       builder: (context) => BlocProvider(
         create: (context) => NavigationBloc(),
-        child: HomeScreen(requestPermission: requestPermission),
+        child: MainScreen(requestPermission: requestPermission),
       ),
     );
   }
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
@@ -58,11 +61,12 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  /// 메인 위젯을 빌드합니다.
   Widget _buildBody(TabState state) {
     return IndexedStack(
       index: state.selectedIndex,
       children: [
-        const MainScreen(),
+        const HomeScreen(),
         const CourseScreen(),
         const NotificationScreen(),
         const MyPageScreen(),
@@ -70,6 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  /// 하단 네이게이션 바를 빌드합니다.
   Widget _buildBottomNavigationBar(BuildContext context, TabState state) {
     return DecoratedBox(
       decoration: BoxDecoration(boxShadow: _buildBoxShadows()),
@@ -105,29 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  List<BoxShadow> _buildBoxShadows() {
-    return [
-      BoxShadow(
-        color: const Color(0XFF000066).withValues(alpha: 0.05),
-        blurRadius: 15,
-        spreadRadius: 10,
-        offset: const Offset(0, 10),
-      ),
-      BoxShadow(
-        color: const Color(0XFF000066).withValues(alpha: 0.03),
-        blurRadius: 7.5,
-        spreadRadius: 5,
-        offset: const Offset(0, 5),
-      ),
-      BoxShadow(
-        color: const Color(0XFF000066).withValues(alpha: 0.01),
-        blurRadius: 5,
-        spreadRadius: 2.5,
-        offset: const Offset(0, 2.5),
-      ),
-    ];
-  }
-
+  /// 구성 요소를 빌드합니다.
   List<NavigationDestination> _buildDestinations() {
     return [
       NavigationDestination(
@@ -151,6 +134,30 @@ class _HomeScreenState extends State<HomeScreen> {
         selectedIcon: SvgPicture.asset('lib/assets/svgs/navigation/user.svg'),
         icon: SvgPicture.asset('lib/assets/svgs/navigation/user_outline.svg'),
         label: '내 정보',
+      ),
+    ];
+  }
+
+  /// 그림자를 빌드합니다.
+  List<BoxShadow> _buildBoxShadows() {
+    return [
+      BoxShadow(
+        color: const Color(0XFF000066).withValues(alpha: 0.05),
+        blurRadius: 15,
+        spreadRadius: 10,
+        offset: const Offset(0, 10),
+      ),
+      BoxShadow(
+        color: const Color(0XFF000066).withValues(alpha: 0.03),
+        blurRadius: 7.5,
+        spreadRadius: 5,
+        offset: const Offset(0, 5),
+      ),
+      BoxShadow(
+        color: const Color(0XFF000066).withValues(alpha: 0.01),
+        blurRadius: 5,
+        spreadRadius: 2.5,
+        offset: const Offset(0, 2.5),
       ),
     ];
   }

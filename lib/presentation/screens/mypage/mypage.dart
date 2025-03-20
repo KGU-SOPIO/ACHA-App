@@ -19,9 +19,6 @@ class MyPageScreen extends StatefulWidget {
 }
 
 class _MyPageScreenState extends State<MyPageScreen> {
-  void _showLogoutModal() => LogoutModal.show(context);
-  void _showSignOutModal() => SignOutModal.show(context);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,6 +29,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
     );
   }
 
+  /// 메인 위젯을 빌드합니다.
   Widget _buildBody() {
     return SingleChildScrollView(
       child: Column(
@@ -44,6 +42,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
     );
   }
 
+  /// 메인 컨텐츠 위젯을 빌드합니다.
   Widget _buildContent() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 26),
@@ -54,8 +53,8 @@ class _MyPageScreenState extends State<MyPageScreen> {
           const SizedBox(height: 35),
           const AlertSettingContainer(),
           const SizedBox(height: 20),
-          const PhraseContainer(),
-          const SizedBox(height: 20),
+          // const PhraseContainer(),
+          // const SizedBox(height: 20),
           _buildSopioButton(),
           const SizedBox(height: 34),
           _buildLogoutButton(),
@@ -67,6 +66,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
     );
   }
 
+  /// SOPIO 버튼을 빌드합니다.
   Widget _buildSopioButton() {
     return RowContainerButton(
       padding: const EdgeInsets.symmetric(vertical: 22),
@@ -85,10 +85,11 @@ class _MyPageScreenState extends State<MyPageScreen> {
     );
   }
 
+  /// 로그아웃 버튼을 빌드합니다.
   Widget _buildLogoutButton() {
     return ContainerButton(
       height: 56,
-      onPressed: () => _showLogoutModal(),
+      onPressed: () => LogoutModal.show(context),
       backgroundColor: AchaColors.gray237_239_242,
       text: '로그아웃',
       textStyle: const TextStyle(
@@ -99,10 +100,11 @@ class _MyPageScreenState extends State<MyPageScreen> {
     );
   }
 
+  /// 계정 삭제 버튼을 빌드합니다.
   Widget _buildDeleteAccountButton() {
     return ContainerButton(
       height: 56,
-      onPressed: () => _showSignOutModal(),
+      onPressed: () => SignOutModal.show(context),
       backgroundColor: AchaColors.primaryRed_10,
       border: const BorderSide(color: AchaColors.primaryRed),
       text: '계정 삭제',

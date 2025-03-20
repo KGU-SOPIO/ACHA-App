@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:get_it/get_it.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:acha/core/constants/index.dart';
 import 'package:acha/core/extensions/index.dart';
+import 'package:acha/core/utils/index.dart';
 import 'package:acha/data/models/index.dart';
-import 'package:acha/presentation/widgets/index.dart';
 
 class CarouselActivityContainer extends StatelessWidget {
   const CarouselActivityContainer({
@@ -46,7 +44,7 @@ class CarouselActivityContainer extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () => _openActivityUri(activity.link),
+            onTap: () => UriLauncher.openActivityUri(activity.link),
             child: Container(
               width: double.infinity,
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
@@ -81,21 +79,5 @@ class CarouselActivityContainer extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  Future<void> _openActivityUri(String? link) async {
-    if (link == null) {
-      GetIt.I<ToastManager>().error(message: '활동이 비활성화 되어있어요');
-      return;
-    }
-
-    try {
-      final uri = Uri.parse(link);
-      if (await canLaunchUrl(uri)) {
-        await launchUrl(uri, mode: LaunchMode.externalApplication);
-      }
-    } catch (e) {
-      GetIt.I<ToastManager>().error(message: 'LMS 페이지를 열지 못했어요');
-    }
   }
 }

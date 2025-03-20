@@ -40,6 +40,7 @@ class _AuthStartScreenState extends State<AuthStartScreen> {
     );
   }
 
+  /// 캐러셀 전체를 구성하는 위젯을 빌드합니다.
   Widget _buildContent() {
     return Expanded(
       child: Center(
@@ -56,6 +57,7 @@ class _AuthStartScreenState extends State<AuthStartScreen> {
     );
   }
 
+  /// 캐러셀 슬라이드를 빌드합니다.
   Widget _buildCarouselSlider() {
     return CarouselSlider(
       carouselController: _carouselSliderController,
@@ -138,6 +140,7 @@ class _AuthStartScreenState extends State<AuthStartScreen> {
     );
   }
 
+  /// 단일 캐러셀 아이템을 빌드합니다.
   Widget _buildCarouselItem({
     required bool isSvg,
     required String path,
@@ -165,6 +168,7 @@ class _AuthStartScreenState extends State<AuthStartScreen> {
     );
   }
 
+  /// 하단 버튼을 빌드합니다.
   Widget _buildButton() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),

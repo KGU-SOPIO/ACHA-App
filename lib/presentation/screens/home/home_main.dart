@@ -6,18 +6,18 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:acha/core/constants/index.dart';
 import 'package:acha/presentation/widgets/index.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 
   static Route<void> route() {
-    return CupertinoPageRoute(builder: (context) => const MainScreen());
+    return CupertinoPageRoute(builder: (context) => const HomeScreen());
   }
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   final CarouselSliderController _carouselSliderController =
       CarouselSliderController();
   int currentSlide = 0;
@@ -30,6 +30,7 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
+  /// 메인 위젯을 빌드합니다.
   Widget _buildBody() {
     return SafeArea(
       child: Stack(
@@ -41,6 +42,7 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
+  /// 메인 컨텐츠를 빌드합니다.
   Widget _buildContent() {
     return SingleChildScrollView(
       child: Column(
@@ -65,6 +67,7 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
+  /// 드래그 가능한 하단 위젯을 빌드합니다.
   Widget _buildBottomDraggableContainer() {
     return BottomDraggableContainer(
       carouselSliderController: _carouselSliderController,

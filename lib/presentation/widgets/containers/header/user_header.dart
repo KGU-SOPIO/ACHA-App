@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:get_it/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:acha/core/constants/index.dart';
@@ -17,20 +16,9 @@ class UserHeader extends StatefulWidget {
 class _UserHeaderState extends State<UserHeader> {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<UserBloc, UserState>(
-      listener: _onUserStatusChanged,
+    return BlocBuilder<UserBloc, UserState>(
       builder: _buildContent,
     );
-  }
-
-  void _onUserStatusChanged(BuildContext context, UserState state) {
-    switch (state.status) {
-      case UserStatus.error:
-        GetIt.I<ToastManager>().error(message: state.errorMessage!);
-        break;
-      default:
-        break;
-    }
   }
 
   Widget _buildContent(BuildContext context, UserState state) {
@@ -38,13 +26,13 @@ class _UserHeaderState extends State<UserHeader> {
       case UserStatus.loading:
         return const Loader(height: 63);
       case UserStatus.loaded:
-        return _buildUserContainer(state);
+        return _buildUser(state);
       case UserStatus.error:
-        return const SizedBox.shrink();
+        return _buildError();
     }
   }
 
-  Widget _buildUserContainer(UserState state) {
+  Widget _buildUser(UserState state) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -109,6 +97,22 @@ class _UserHeaderState extends State<UserHeader> {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildError() {
+    return const SizedBox(
+      width: double.infinity,
+      height: 70,
+      child: Center(
+        child: Text(
+          '사용자 정보를 불러오지 못했어요',
+          style: TextStyle(
+            fontSize: 15,
+            color: AchaColors.gray109,
+          ),
+        ),
+      ),
     );
   }
 }

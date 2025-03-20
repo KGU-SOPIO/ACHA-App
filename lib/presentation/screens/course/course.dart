@@ -41,7 +41,7 @@ class _CourseScreenState extends State<CourseScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 26),
                 child: Column(
                   children: [
-                    _buildHeader(),
+                    _buildTitle(),
                     const SizedBox(height: 18),
                     _buildContent(),
                   ],
@@ -54,7 +54,8 @@ class _CourseScreenState extends State<CourseScreen> {
     );
   }
 
-  Widget _buildHeader() {
+  /// 제목을 빌드합니다.
+  Widget _buildTitle() {
     return Row(
       children: [
         const Text(
@@ -71,6 +72,7 @@ class _CourseScreenState extends State<CourseScreen> {
     );
   }
 
+  /// 메인 위젯을 빌드합니다.
   Widget _buildContent() {
     return BlocBuilder<CourseListBloc, CourseListState>(
       builder: (context, state) {
@@ -79,26 +81,16 @@ class _CourseScreenState extends State<CourseScreen> {
         } else if (state.status == CourseListStatus.loaded) {
           return _buildLoadedContent(state);
         } else {
-          return SizedBox(
-            height: 500,
-            child: Center(
-              child: Text(
-                state.errorMessage!,
-                style: const TextStyle(
-                  fontSize: 15,
-                  color: AchaColors.gray109,
-                ),
-              ),
-            ),
-          );
+          return _buildError(state);
         }
       },
     );
   }
 
+  /// 데이터 로딩 후 위젯을 빌드합니다.
   Widget _buildLoadedContent(CourseListState state) {
     final courseList = state.courseList?.contents;
-    if (courseList == null) {
+    if (courseList == null || courseList.isEmpty) {
       return const SizedBox(
         height: 500,
         child: Center(
@@ -128,6 +120,22 @@ class _CourseScreenState extends State<CourseScreen> {
         ),
         const SizedBox(height: 16)
       ],
+    );
+  }
+
+  /// 오류 위젯을 빌드합니다.
+  Widget _buildError(CourseListState state) {
+    return SizedBox(
+      height: 500,
+      child: Center(
+        child: Text(
+          state.errorMessage!,
+          style: const TextStyle(
+            fontSize: 15,
+            color: AchaColors.gray109,
+          ),
+        ),
+      ),
     );
   }
 }

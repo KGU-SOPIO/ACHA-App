@@ -51,14 +51,19 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      canPop: false,
-      child: Scaffold(
-        appBar: _buildAppBar(),
-        body: _buildBody(context),
-      ),
-    );
+        canPop: false,
+        child: BlocProvider(
+          create: (context) => SignInBloc(
+            authenticationRepository: _authenticationRepository,
+          ),
+          child: Scaffold(
+            appBar: _buildAppBar(),
+            body: _buildBody(context),
+          ),
+        ));
   }
 
+  /// 상단 앱바를 빌드합니다.
   PreferredSizeWidget _buildAppBar() {
     return AppBar(
       automaticallyImplyLeading: false,
@@ -66,40 +71,44 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
       centerTitle: true,
       title: const Text(
         '시작하기',
-        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-      ),
-    );
-  }
-
-  Widget _buildBody(BuildContext context) {
-    return SafeArea(
-      child: BlocProvider(
-        create: (context) =>
-            SignInBloc(authenticationRepository: _authenticationRepository),
-        child: Builder(
-          builder: (context) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const SizedBox(height: 54),
-                  _buildTitle(),
-                  const SizedBox(height: 30),
-                  _buildStudentIdField(context),
-                ],
-              ),
-            );
-          },
+        style: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.w500,
         ),
       ),
     );
   }
 
+  /// 메인 위젯을 빌드합니다.
+  Widget _buildBody(BuildContext context) {
+    return SafeArea(
+      child: Builder(
+        builder: (context) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const SizedBox(height: 70),
+                _buildTitle(),
+                const SizedBox(height: 30),
+                _buildStudentIdField(context),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  /// 입력 필드의 제목을 빌드합니다.
   Widget _buildTitle() {
     return const Text.rich(
       TextSpan(
-        style: TextStyle(fontSize: 15, color: AchaColors.gray60),
+        style: TextStyle(
+          fontSize: 15,
+          color: AchaColors.gray60,
+        ),
         children: [
           TextSpan(
             text: '학번을 ',
@@ -114,15 +123,8 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
     );
   }
 
+  /// 학번 입력 필드를 빌드합니다.
   Widget _buildStudentIdField(BuildContext context) {
-    final textFieldBorder = OutlineInputBorder(
-      borderRadius: BorderRadius.circular(12),
-      borderSide: const BorderSide(
-        width: 1.5,
-        color: AchaColors.gray237_239_242,
-      ),
-    );
-
     return TextFormField(
       maxLength: 9,
       autofocus: true,
@@ -130,9 +132,9 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
       controller: _textEditingController,
       keyboardType: TextInputType.number,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         hintText: '학번',
-        hintStyle: const TextStyle(
+        hintStyle: TextStyle(
           color: AchaColors.gray186,
           fontSize: 16,
           fontWeight: FontWeight.w400,
@@ -140,9 +142,9 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
         counterText: '',
         filled: true,
         fillColor: AchaColors.gray251,
-        border: textFieldBorder,
-        enabledBorder: textFieldBorder,
-        focusedBorder: textFieldBorder,
+        border: AchaBorders.inputFieldBorder,
+        enabledBorder: AchaBorders.inputFieldBorder,
+        focusedBorder: AchaBorders.inputFieldBorder,
       ),
       style: const TextStyle(
         color: AchaColors.black,
@@ -150,7 +152,7 @@ class _AuthStudentIdScreenState extends State<AuthStudentIdScreen> {
         fontWeight: FontWeight.w400,
       ),
       onChanged: (value) {
-        if (value.length == 9) {
+        if (value.length >= 9) {
           context.read<SignInBloc>().add(InputStudentId(studentId: value));
           Navigator.push(context, AuthPasswordScreen.route(context));
         }

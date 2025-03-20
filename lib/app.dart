@@ -213,7 +213,7 @@ class _AppViewState extends State<AppView> {
     } else {
       _isNavigate = true;
       _navigator.pushAndRemoveUntil(
-        HomeScreen.route(requestPermission: requestPermission),
+        MainScreen.route(requestPermission: requestPermission),
         (route) => false,
       );
     }

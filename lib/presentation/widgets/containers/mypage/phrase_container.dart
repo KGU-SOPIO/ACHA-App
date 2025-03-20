@@ -30,6 +30,7 @@ class PhraseContainer extends StatelessWidget {
     );
   }
 
+  /// 제목을 빌드합니다.
   Widget _buildTitle() {
     return const Text.rich(
       TextSpan(
@@ -52,6 +53,7 @@ class PhraseContainer extends StatelessWidget {
     );
   }
 
+  /// 문구 컨테이너를 빌드합니다.
   Widget _buildPhraseContainer() {
     return Container(
       width: double.infinity,
@@ -77,6 +79,7 @@ class PhraseContainer extends StatelessWidget {
     );
   }
 
+  /// 문구 텍스트를 빌드합니다.
   Widget _buildPhrase() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),

@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:get_it/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -11,6 +10,7 @@ import 'package:stacked_list_carousel/stacked_list_carousel.dart';
 
 import 'package:acha/core/constants/index.dart';
 import 'package:acha/core/extensions/index.dart';
+import 'package:acha/core/utils/index.dart';
 import 'package:acha/data/models/index.dart';
 import 'package:acha/domain/repositories/index.dart';
 import 'package:acha/presentation/blocs/index.dart';
@@ -64,22 +64,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
     );
   }
 
-  Future<void> _openActivityUri(String? link) async {
-    if (link == null) {
-      GetIt.I<ToastManager>().error(message: '활동이 비활성화 되어있어요');
-      return;
-    }
-
-    try {
-      final uri = Uri.parse(link);
-      if (await canLaunchUrl(uri)) {
-        await launchUrl(uri, mode: LaunchMode.externalApplication);
-      }
-    } catch (e) {
-      GetIt.I<ToastManager>().error(message: 'LMS 페이지를 열지 못했어요');
-    }
-  }
-
+  /// 강좌 부분을 빌드합니다.
   Widget _buildCourseSection(BuildContext context, CourseState state) {
     return Container(
       decoration: const BoxDecoration(
@@ -98,7 +83,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 26),
             child: Column(
               children: [
-                _buildCourseHeader(state),
+                _buildCourseInfo(state),
                 const SizedBox(height: 25),
                 _buildNoticeButton(context, state),
                 const SizedBox(height: 27),
@@ -111,7 +96,8 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
     );
   }
 
-  Widget _buildCourseHeader(CourseState state) {
+  /// 강좌 정보 텍스트를 빌드합니다.
+  Widget _buildCourseInfo(CourseState state) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -137,6 +123,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
     );
   }
 
+  /// 공지사항 버튼을 빌드합니다.
   Widget _buildNoticeButton(BuildContext context, CourseState state) {
     return RowContainerButton(
       padding: const EdgeInsets.symmetric(vertical: 17),
@@ -160,6 +147,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
     );
   }
 
+  /// 캐러셀 부분을 빌드합니다.
   Widget _buildCarouselSection(BuildContext context, CourseState state) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -194,10 +182,13 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
     );
   }
 
+  /// 캐러셀 컨텐츠를 빌드합니다.
   Widget _buildCarouselContent(BuildContext context, CourseState state) {
     if (state.status == CourseStatus.loading) {
       return _buildCarouselSkeleton();
-    } else if (state.status == CourseStatus.loaded) {
+    } else if (state.status == CourseStatus.error) {
+      return _buildError();
+    } else {
       final activityList = state.course.courseActivityList!.contents;
       final containers = activityList.expand((weekActivities) {
         final week = weekActivities.week!;
@@ -237,30 +228,37 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
           ),
         );
       }
-    } else {
-      return const SizedBox(
-        height: 165,
-        child: Center(
-          child: Text(
-            '활동을 불러오지 못했어요',
-            style: TextStyle(
-              fontSize: 15,
-              color: AchaColors.gray109,
-            ),
-          ),
-        ),
-      );
     }
   }
 
+  /// 오류 위젯을 빌드합니다.
+  Widget _buildError() {
+    return const SizedBox(
+      height: 165,
+      child: Center(
+        child: Text(
+          '활동을 불러오지 못했어요',
+          style: TextStyle(
+            fontSize: 15,
+            color: AchaColors.gray109,
+          ),
+        ),
+      ),
+    );
+  }
+
+  /// 활동 부분을 빌드합니다.
   Widget _buildActivitySection(CourseState state) {
     if (state.status == CourseStatus.loading) {
-      return _buildPanelSkeleton();
-    } else if (state.status == CourseStatus.loaded) {
+      return _buildExpansionPanelSkeleton();
+    } else if (state.status == CourseStatus.error) {
+      return const SizedBox.shrink();
+    } else {
       final activityList = state.course.courseActivityList!.contents;
       if (activityList.isEmpty) {
         return const SizedBox.shrink();
       }
+
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 27),
         child: ListView.builder(
@@ -273,11 +271,10 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
           },
         ),
       );
-    } else {
-      return const SizedBox.shrink();
     }
   }
 
+  /// 확장 패널을 빌드합니다.
   Widget _buildExpansionPanel(ActivityList weekActivities, int index) {
     final allCompleted = weekActivities.contents.every(
       (activity) => activity.attendance == true,
@@ -328,7 +325,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
                   ...weekActivities.contents.map(
                     (activity) {
                       return GestureDetector(
-                        onTap: () => _openActivityUri(activity.link),
+                        onTap: () => UriLauncher.openActivityUri(activity.link),
                         child: ListTile(
                           leading: SvgPicture.asset(activity.type.svgPath),
                           title: Text(
@@ -352,6 +349,7 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
     );
   }
 
+  /// 캐러셀 스켈레톤 로딩 위젯을 빌드합니다.
   Widget _buildCarouselSkeleton() {
     return Container(
       height: 160,
@@ -372,7 +370,8 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
     );
   }
 
-  Widget _buildPanelSkeleton() {
+  /// 확장 패널 스켈레톤 로딩 위젯을 빌드합니다.
+  Widget _buildExpansionPanelSkeleton() {
     return Skeletonizer(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 27),
