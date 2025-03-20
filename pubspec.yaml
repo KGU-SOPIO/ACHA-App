@@ -1,7 +1,7 @@
 name: acha
 description: "아차! 이젠 놓치지 마세요"
 publish_to: "none"
-version: 1.0.1+2
+version: 1.0.2+3
 
 environment:
   sdk: ">=3.4.1 <4.0.0"
