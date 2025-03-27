@@ -108,11 +108,16 @@ class AppView extends StatefulWidget {
 }
 
 class _AppViewState extends State<AppView> {
-  final ConnectivityChecker _connectivityChecker =
-      GetIt.I<ConnectivityChecker>();
   NavigatorState get _navigator => AppView.navigatorKey.currentState!;
+  late final ConnectivityChecker _connectivityChecker;
   bool _isNavigate = false;
   bool requestPermission = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _connectivityChecker = GetIt.I<ConnectivityChecker>();
+  }
 
   @override
   Widget build(BuildContext context) {

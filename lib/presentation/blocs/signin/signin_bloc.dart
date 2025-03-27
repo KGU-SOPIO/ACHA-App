@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:acha/data/models/index.dart';
 import 'package:acha/domain/usecases/index.dart';
 import 'package:acha/domain/repositories/index.dart';
 import 'package:acha/presentation/blocs/index.dart';
@@ -23,6 +24,12 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       authenticationRepository: authenticationRepository,
     );
 
+    on<ChangeSignInStatus>(
+      (event, emit) => emit(state.copyWith(
+        status: event.status,
+        retry: event.retry,
+      )),
+    );
     on<InputStudentId>(
       (event, emit) => emit(state.copyWith(studentId: event.studentId)),
     );
@@ -51,6 +58,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       final result = await _signInUseCase.call(
         studentId: state.studentId!,
         password: state.password!,
+        retry: state.retry,
       );
       result.fold(
         (errorMessage) => emit(state.copyWith(
@@ -139,10 +147,19 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
 
       final result = await _requestExtractionUseCas.call();
       result.fold(
-        (errorMessage) => emit(state.copyWith(
-          status: SignInStatus.fetchDataFailure,
-          errorMessage: errorMessage,
-        )),
+        (errorMessage) {
+          if (errorMessage == ErrorCode.kutisPasswordError.message) {
+            emit(state.copyWith(
+              status: SignInStatus.kutisPasswordError,
+              errorMessage: 'KUTIS에서 비밀번호를 변경해 주세요',
+            ));
+          } else {
+            emit(state.copyWith(
+              status: SignInStatus.fetchDataFailure,
+              errorMessage: errorMessage,
+            ));
+          }
+        },
         (value) => emit(state.copyWith(status: SignInStatus.fetchDataSuccess)),
       );
     } catch (e) {

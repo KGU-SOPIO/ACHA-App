@@ -1,7 +1,7 @@
 name: acha
 description: "아차! 이젠 놓치지 마세요"
 publish_to: "none"
-version: 1.0.2+3
+version: 1.1.0+4
 
 environment:
   sdk: ">=3.4.1 <4.0.0"
@@ -52,6 +52,8 @@ flutter_native_splash:
   image: lib/assets/images/acha/splash.png
   android: true
   ios: true
+  android_12:
+    image: lib/assets/images/acha/splash_android.png
 
 flutter:
   uses-material-design: true
@@ -59,6 +61,7 @@ flutter:
   assets:
     - lib/assets/images/
     - lib/assets/images/auth/
+    - lib/assets/images/mypage/
     - lib/assets/images/modal/terms/
     - lib/assets/images/modal/auth/
     - lib/assets/svgs/

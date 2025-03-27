@@ -5,9 +5,11 @@ abstract class AchaColors {
 
   static const primaryBlue = Color.fromARGB(255, 0, 102, 255);
   static const primaryBlue_10 = Color.fromARGB(25, 0, 102, 255);
+  static const blue120_136_178 = Color.fromARGB(255, 120, 136, 178);
   static const blue166_201_255 = Color.fromARGB(255, 166, 201, 255);
   static const blue233_236_255 = Color.fromARGB(255, 223, 236, 255);
   static const blue228_232_241 = Color.fromARGB(255, 228, 232, 241);
+  static const blue245_246_248 = Color.fromARGB(255, 245, 246, 248);
 
   static const primaryRed = Color.fromARGB(255, 255, 78, 107);
   static const primaryRed_10 = Color.fromARGB(25, 255, 78, 107);
@@ -20,6 +22,7 @@ abstract class AchaColors {
   static const gray60 = Color.fromARGB(255, 60, 60, 60);
   static const gray80 = Color.fromARGB(255, 80, 80, 80);
   static const gray109 = Color.fromARGB(255, 109, 109, 109);
+  static const gray125 = Color.fromARGB(255, 125, 125, 125);
   static const gray131 = Color.fromARGB(255, 131, 131, 131);
   static const gray151 = Color.fromARGB(255, 151, 151, 151);
   static const gray182 = Color.fromARGB(255, 182, 182, 182);

@@ -40,45 +40,20 @@ class ErrorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Column(
-            children: [
-              const AchaAppbar(backgroundColor: AchaColors.white),
-              _buildContent(),
-              _buildButton(context),
-              const SizedBox(height: 20),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  /// 메인 위젯을 빌드합니다.
-  Widget _buildContent() {
-    return Expanded(
-      child: Center(
         child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SvgPicture.asset('lib/assets/svgs/auth/error.svg'),
-            const SizedBox(height: 40),
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            const SizedBox(height: 30),
-            Text(
-              message,
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                color: AchaColors.gray109,
+            const AchaAppbar(backgroundColor: AchaColors.white),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _buildContent(),
+                    _buildButton(context),
+                  ],
+                ),
               ),
             ),
           ],
@@ -87,32 +62,65 @@ class ErrorScreen extends StatelessWidget {
     );
   }
 
+  /// 메인 위젯을 빌드합니다.
+  Widget _buildContent() {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SvgPicture.asset('lib/assets/svgs/auth/error.svg'),
+          const SizedBox(height: 40),
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(height: 30),
+          Text(
+            message,
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+              color: AchaColors.gray109,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   /// 버튼을 빌드합니다.
   Widget _buildButton(BuildContext context) {
-    return ContainerButton(
-      height: 56,
-      text: '확인',
-      textStyle: const TextStyle(
-        color: AchaColors.white,
-        fontSize: 16,
-        fontWeight: FontWeight.w700,
-      ),
-      backgroundColor: AchaColors.primaryBlue,
-      onPressed: () {
-        if (connectionError == true) {
-          if (Platform.isAndroid) {
-            SystemNavigator.pop();
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 20),
+      child: ContainerButton(
+        height: 56,
+        text: '확인',
+        textStyle: const TextStyle(
+          color: AchaColors.white,
+          fontSize: 16,
+          fontWeight: FontWeight.w700,
+        ),
+        backgroundColor: AchaColors.primaryBlue,
+        onPressed: () {
+          if (connectionError == true) {
+            if (Platform.isAndroid) {
+              SystemNavigator.pop();
+            } else {
+              exit(0);
+            }
           } else {
-            exit(0);
+            Navigator.pushAndRemoveUntil(
+              context,
+              AuthStudentIdScreen.route(),
+              (route) => false,
+            );
           }
-        } else {
-          Navigator.pushAndRemoveUntil(
-            context,
-            AuthStudentIdScreen.route(),
-            (route) => false,
-          );
-        }
-      },
+        },
+      ),
     );
   }
 }
