@@ -11,10 +11,12 @@ class SignInUseCase {
   Future<Either<String, SignInResponseModel>> call({
     required String studentId,
     required String password,
+    required bool retry,
   }) {
     return authenticationRepository.signIn(
       studentId: studentId,
       password: password,
+      retry: retry,
     );
   }
 }

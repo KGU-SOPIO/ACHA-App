@@ -18,7 +18,8 @@ enum SignInStatus {
   signInFailure('인증 실패'),
   fetchUserFailure('인증 실패'),
   signUpFailure('회원가입 실패'),
-  fetchDataFailure('불러오기 실패');
+  fetchDataFailure('불러오기 실패'),
+  kutisPasswordError('불러오기 실패');
 
   final String description;
 
@@ -29,6 +30,7 @@ enum SignInStatus {
 class SignInState with _$SignInState {
   const factory SignInState({
     @Default(SignInStatus.initial) SignInStatus status,
+    @Default(false) bool retry,
     String? studentId,
     String? password,
     User? user,

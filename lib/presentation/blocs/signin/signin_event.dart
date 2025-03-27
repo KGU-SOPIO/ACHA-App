@@ -8,6 +8,7 @@ part 'signin_event.freezed.dart';
 class SignInEvent with _$SignInEvent {
   const factory SignInEvent.changeSignInStatus({
     required SignInStatus status,
+    @Default(false) bool retry,
   }) = ChangeSignInStatus;
   const factory SignInEvent.inputStudentId({
     required String studentId,

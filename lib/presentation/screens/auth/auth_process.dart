@@ -53,6 +53,14 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
       case SignInStatus.inFetchData:
         signInBloc.add(const FetchData());
         break;
+      case SignInStatus.kutisPasswordError:
+        Navigator.push(context, AuthChangePasswordScreen.route(context));
+        break;
+      case SignInStatus.signInSuccess:
+        if (signInBloc.state.retry == true) {
+          signInBloc.add(const FetchData());
+        }
+        break;
       default:
         break;
     }

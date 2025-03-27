@@ -4,7 +4,10 @@ import 'package:acha/domain/apis/index.dart';
 import 'package:acha/domain/repositories/index.dart';
 
 class TokenInterceptor extends Interceptor {
-  TokenInterceptor({required this.dio, required this.secureStorageRepository});
+  TokenInterceptor({
+    required this.dio,
+    required this.secureStorageRepository,
+  });
 
   final Dio dio;
   final SecureStorageRepository secureStorageRepository;

@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SignInState {
   SignInStatus get status => throw _privateConstructorUsedError;
+  bool get retry => throw _privateConstructorUsedError;
   String? get studentId => throw _privateConstructorUsedError;
   String? get password => throw _privateConstructorUsedError;
   User? get user => throw _privateConstructorUsedError;
@@ -37,6 +38,7 @@ abstract class $SignInStateCopyWith<$Res> {
   @useResult
   $Res call(
       {SignInStatus status,
+      bool retry,
       String? studentId,
       String? password,
       User? user,
@@ -59,6 +61,7 @@ class _$SignInStateCopyWithImpl<$Res, $Val extends SignInState>
   @override
   $Res call({
     Object? status = null,
+    Object? retry = null,
     Object? studentId = freezed,
     Object? password = freezed,
     Object? user = freezed,
@@ -69,6 +72,10 @@ class _$SignInStateCopyWithImpl<$Res, $Val extends SignInState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as SignInStatus,
+      retry: null == retry
+          ? _value.retry
+          : retry // ignore: cast_nullable_to_non_nullable
+              as bool,
       studentId: freezed == studentId
           ? _value.studentId
           : studentId // ignore: cast_nullable_to_non_nullable
@@ -99,6 +106,7 @@ abstract class _$$SignInStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {SignInStatus status,
+      bool retry,
       String? studentId,
       String? password,
       User? user,
@@ -119,6 +127,7 @@ class __$$SignInStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
+    Object? retry = null,
     Object? studentId = freezed,
     Object? password = freezed,
     Object? user = freezed,
@@ -129,6 +138,10 @@ class __$$SignInStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as SignInStatus,
+      retry: null == retry
+          ? _value.retry
+          : retry // ignore: cast_nullable_to_non_nullable
+              as bool,
       studentId: freezed == studentId
           ? _value.studentId
           : studentId // ignore: cast_nullable_to_non_nullable
@@ -154,6 +167,7 @@ class __$$SignInStateImplCopyWithImpl<$Res>
 class _$SignInStateImpl implements _SignInState {
   const _$SignInStateImpl(
       {this.status = SignInStatus.initial,
+      this.retry = false,
       this.studentId,
       this.password,
       this.user,
@@ -162,6 +176,9 @@ class _$SignInStateImpl implements _SignInState {
   @override
   @JsonKey()
   final SignInStatus status;
+  @override
+  @JsonKey()
+  final bool retry;
   @override
   final String? studentId;
   @override
@@ -173,7 +190,7 @@ class _$SignInStateImpl implements _SignInState {
 
   @override
   String toString() {
-    return 'SignInState(status: $status, studentId: $studentId, password: $password, user: $user, errorMessage: $errorMessage)';
+    return 'SignInState(status: $status, retry: $retry, studentId: $studentId, password: $password, user: $user, errorMessage: $errorMessage)';
   }
 
   @override
@@ -182,6 +199,7 @@ class _$SignInStateImpl implements _SignInState {
         (other.runtimeType == runtimeType &&
             other is _$SignInStateImpl &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.retry, retry) || other.retry == retry) &&
             (identical(other.studentId, studentId) ||
                 other.studentId == studentId) &&
             (identical(other.password, password) ||
@@ -192,8 +210,8 @@ class _$SignInStateImpl implements _SignInState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, studentId, password,
-      const DeepCollectionEquality().hash(user), errorMessage);
+  int get hashCode => Object.hash(runtimeType, status, retry, studentId,
+      password, const DeepCollectionEquality().hash(user), errorMessage);
 
   /// Create a copy of SignInState
   /// with the given fields replaced by the non-null parameter values.
@@ -207,6 +225,7 @@ class _$SignInStateImpl implements _SignInState {
 abstract class _SignInState implements SignInState {
   const factory _SignInState(
       {final SignInStatus status,
+      final bool retry,
       final String? studentId,
       final String? password,
       final User? user,
@@ -214,6 +233,8 @@ abstract class _SignInState implements SignInState {
 
   @override
   SignInStatus get status;
+  @override
+  bool get retry;
   @override
   String? get studentId;
   @override

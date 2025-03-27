@@ -10,6 +10,7 @@ abstract class AuthenticationRepository {
   Future<Either<String, SignInResponseModel>> signIn({
     required String studentId,
     required String password,
+    required bool retry,
   });
 
   Future<Either<String, User>> fetchUserData({
