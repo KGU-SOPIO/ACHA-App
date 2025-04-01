@@ -81,7 +81,6 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   Future<Either<String, SignInResponseModel>> signIn({
     required String studentId,
     required String password,
-    required bool retry,
   }) async {
     try {
       final deviceToken = await DeviceTokenRepositoryImpl.getDeviceToken();
@@ -102,14 +101,12 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
             refreshToken: value.refreshToken,
           );
 
-          // 추출 재시도인 경우에는 메인 화면 이동하지 않음
-          // 메인 화면 이동은 requestExtraction()에서 처리
-          if (retry == false) {
+          // 강좌 데이터 추출 성공시에만 인증 처리
+          if (value.extract == true) {
             _authStreamController.add(
               const AuthenticationState.authenticated(isSignedUp: false),
             );
           }
-
           return Right(value);
         },
         error: (value) => Right(value),
@@ -196,20 +193,14 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
       dio.interceptors.add(tokenInterceptor);
 
       final courseExtractResponse = await dio.post(
-        CourseApiEndpoints.courseExtraction,
+        CourseApiEndpoints.extraction,
       );
       if (courseExtractResponse.statusCode != 200) {
         final errorCode = courseExtractResponse.data['code'] as String;
         final parsedData = const ErrorCodeConverter().fromJson(errorCode);
-        return Left(parsedData.message);
-      }
 
-      final activityExtractResponse = await dio.post(
-        CourseApiEndpoints.activityExtraction,
-      );
-      if (activityExtractResponse.statusCode != 200) {
-        final errorCode = activityExtractResponse.data['code'] as String;
-        final parsedData = const ErrorCodeConverter().fromJson(errorCode);
+        // 추출 실패 시 인증 정보 삭제
+        await secureStorageRepository.deleteAllData();
         return Left(parsedData.message);
       }
 

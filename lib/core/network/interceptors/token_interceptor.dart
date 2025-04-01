@@ -21,18 +21,16 @@ class TokenInterceptor extends Interceptor {
       final accessToken = await _ensureAccessToken(options);
       options.headers['Authorization'] = 'Bearer $accessToken';
       handler.next(options);
-    } catch (error) {
-      if (error is DioException) {
-        handler.reject(error);
-      } else {
-        handler.reject(
-          DioException(
-            requestOptions: options,
-            error: error,
-            type: DioExceptionType.unknown,
-          ),
-        );
-      }
+    } on DioException catch (e) {
+      handler.reject(e);
+    } catch (e) {
+      handler.reject(
+        DioException(
+          requestOptions: options,
+          error: e,
+          type: DioExceptionType.unknown,
+        ),
+      );
     }
   }
 
@@ -62,10 +60,12 @@ class TokenInterceptor extends Interceptor {
         );
       }
       return accessToken;
+    } on DioException {
+      rethrow;
     } catch (e) {
       throw DioException(
         requestOptions: options,
-        error: '인증 정보를 불러오지 못했어요\n 로그인을 다시 진행해 주세요',
+        error: '인증 정보를 불러오지 못했어요\n로그인을 다시 진행해 주세요',
         type: DioExceptionType.cancel,
       );
     }

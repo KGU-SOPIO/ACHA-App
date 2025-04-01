@@ -325,8 +325,7 @@ class _AuthChangePasswordScreenState extends State<AuthChangePasswordScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       onPressed: () {
         context.read<SignInBloc>().add(const SignInEvent.changeSignInStatus(
-              status: SignInStatus.initial,
-              retry: true,
+              status: SignInStatus.inSignIn,
             ));
         Navigator.pushAndRemoveUntil(
           context,

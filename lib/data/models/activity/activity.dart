@@ -9,6 +9,9 @@ part 'activity.g.dart';
 @JsonEnum(alwaysCreate: true)
 enum ActivityType { url, file, lecture, assignment }
 
+@JsonEnum(alwaysCreate: true)
+enum SubmitType { done, late, miss }
+
 @freezed
 class CourseActivityListModel with _$CourseActivityListModel {
   const factory CourseActivityListModel({
@@ -50,6 +53,7 @@ class ActivityModel with _$ActivityModel {
     DateTime? deadline,
     String? lectureTime,
     bool? attendance,
+    SubmitType? submitStatus,
     String? gradingStatus,
     String? timeLeft,
     String? lastModified,

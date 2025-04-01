@@ -11,6 +11,7 @@ class SignInResponseModel with _$SignInResponseModel {
   const factory SignInResponseModel.success({
     required String accessToken,
     required String refreshToken,
+    required bool extract,
   }) = SignInSuccess;
 
   const factory SignInResponseModel.error({

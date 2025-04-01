@@ -13,8 +13,11 @@ import 'package:acha/presentation/widgets/index.dart';
 class AuthProcessScreen extends StatefulWidget {
   const AuthProcessScreen({super.key});
 
+  static const String routeName = '/authProcess';
+
   static Route<void> route(BuildContext parentContext) {
     return CupertinoPageRoute(
+      settings: const RouteSettings(name: routeName),
       builder: (context) => BlocProvider.value(
         value: BlocProvider.of<SignInBloc>(parentContext),
         child: const AuthProcessScreen(),
@@ -31,11 +34,8 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
   void initState() {
     super.initState();
     final signInBloc = context.read<SignInBloc>();
-    final status = signInBloc.state.status;
-    if (status == SignInStatus.initial) {
+    if (signInBloc.state.status == SignInStatus.inSignIn) {
       signInBloc.add(const SubmitSignIn());
-    } else if (status == SignInStatus.inSignUp) {
-      signInBloc.add(const SubmitSignUp());
     }
   }
 
@@ -47,8 +47,11 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
       case SignInStatus.inFetchUser:
         signInBloc.add(const FetchUserData());
         break;
-      case SignInStatus.inSignUp:
+      case SignInStatus.fetchUserSuccess:
         Navigator.push(context, AuthSignUpScreen.route(context));
+        break;
+      case SignInStatus.inSignUp:
+        signInBloc.add(const SubmitSignUp());
         break;
       case SignInStatus.inFetchData:
         signInBloc.add(const FetchData());
@@ -57,7 +60,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
         Navigator.push(context, AuthChangePasswordScreen.route(context));
         break;
       case SignInStatus.signInSuccess:
-        if (signInBloc.state.retry == true) {
+        if (signInBloc.state.extract == false) {
           signInBloc.add(const FetchData());
         }
         break;
@@ -136,6 +139,7 @@ class _AuthProcessScreenState extends State<AuthProcessScreen> {
               const SizedBox(height: 30),
               Text(
                 state.errorMessage!,
+                textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,

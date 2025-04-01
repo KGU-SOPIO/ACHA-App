@@ -868,6 +868,7 @@ mixin _$ActivityModel {
   DateTime? get deadline => throw _privateConstructorUsedError;
   String? get lectureTime => throw _privateConstructorUsedError;
   bool? get attendance => throw _privateConstructorUsedError;
+  SubmitType? get submitStatus => throw _privateConstructorUsedError;
   String? get gradingStatus => throw _privateConstructorUsedError;
   String? get timeLeft => throw _privateConstructorUsedError;
   String? get lastModified => throw _privateConstructorUsedError;
@@ -899,6 +900,7 @@ abstract class $ActivityModelCopyWith<$Res> {
       DateTime? deadline,
       String? lectureTime,
       bool? attendance,
+      SubmitType? submitStatus,
       String? gradingStatus,
       String? timeLeft,
       String? lastModified,
@@ -929,6 +931,7 @@ class _$ActivityModelCopyWithImpl<$Res, $Val extends ActivityModel>
     Object? deadline = freezed,
     Object? lectureTime = freezed,
     Object? attendance = freezed,
+    Object? submitStatus = freezed,
     Object? gradingStatus = freezed,
     Object? timeLeft = freezed,
     Object? lastModified = freezed,
@@ -968,6 +971,10 @@ class _$ActivityModelCopyWithImpl<$Res, $Val extends ActivityModel>
           ? _value.attendance
           : attendance // ignore: cast_nullable_to_non_nullable
               as bool?,
+      submitStatus: freezed == submitStatus
+          ? _value.submitStatus
+          : submitStatus // ignore: cast_nullable_to_non_nullable
+              as SubmitType?,
       gradingStatus: freezed == gradingStatus
           ? _value.gradingStatus
           : gradingStatus // ignore: cast_nullable_to_non_nullable
@@ -1009,6 +1016,7 @@ abstract class _$$ActivityImplCopyWith<$Res>
       DateTime? deadline,
       String? lectureTime,
       bool? attendance,
+      SubmitType? submitStatus,
       String? gradingStatus,
       String? timeLeft,
       String? lastModified,
@@ -1037,6 +1045,7 @@ class __$$ActivityImplCopyWithImpl<$Res>
     Object? deadline = freezed,
     Object? lectureTime = freezed,
     Object? attendance = freezed,
+    Object? submitStatus = freezed,
     Object? gradingStatus = freezed,
     Object? timeLeft = freezed,
     Object? lastModified = freezed,
@@ -1076,6 +1085,10 @@ class __$$ActivityImplCopyWithImpl<$Res>
           ? _value.attendance
           : attendance // ignore: cast_nullable_to_non_nullable
               as bool?,
+      submitStatus: freezed == submitStatus
+          ? _value.submitStatus
+          : submitStatus // ignore: cast_nullable_to_non_nullable
+              as SubmitType?,
       gradingStatus: freezed == gradingStatus
           ? _value.gradingStatus
           : gradingStatus // ignore: cast_nullable_to_non_nullable
@@ -1112,6 +1125,7 @@ class _$ActivityImpl implements Activity {
       this.deadline,
       this.lectureTime,
       this.attendance,
+      this.submitStatus,
       this.gradingStatus,
       this.timeLeft,
       this.lastModified,
@@ -1138,6 +1152,8 @@ class _$ActivityImpl implements Activity {
   @override
   final bool? attendance;
   @override
+  final SubmitType? submitStatus;
+  @override
   final String? gradingStatus;
   @override
   final String? timeLeft;
@@ -1150,7 +1166,7 @@ class _$ActivityImpl implements Activity {
 
   @override
   String toString() {
-    return 'ActivityModel(type: $type, available: $available, title: $title, link: $link, code: $code, deadline: $deadline, lectureTime: $lectureTime, attendance: $attendance, gradingStatus: $gradingStatus, timeLeft: $timeLeft, lastModified: $lastModified, description: $description, courseName: $courseName)';
+    return 'ActivityModel(type: $type, available: $available, title: $title, link: $link, code: $code, deadline: $deadline, lectureTime: $lectureTime, attendance: $attendance, submitStatus: $submitStatus, gradingStatus: $gradingStatus, timeLeft: $timeLeft, lastModified: $lastModified, description: $description, courseName: $courseName)';
   }
 
   @override
@@ -1170,6 +1186,8 @@ class _$ActivityImpl implements Activity {
                 other.lectureTime == lectureTime) &&
             (identical(other.attendance, attendance) ||
                 other.attendance == attendance) &&
+            (identical(other.submitStatus, submitStatus) ||
+                other.submitStatus == submitStatus) &&
             (identical(other.gradingStatus, gradingStatus) ||
                 other.gradingStatus == gradingStatus) &&
             (identical(other.timeLeft, timeLeft) ||
@@ -1194,6 +1212,7 @@ class _$ActivityImpl implements Activity {
       deadline,
       lectureTime,
       attendance,
+      submitStatus,
       gradingStatus,
       timeLeft,
       lastModified,
@@ -1226,6 +1245,7 @@ abstract class Activity implements ActivityModel {
       final DateTime? deadline,
       final String? lectureTime,
       final bool? attendance,
+      final SubmitType? submitStatus,
       final String? gradingStatus,
       final String? timeLeft,
       final String? lastModified,
@@ -1251,6 +1271,8 @@ abstract class Activity implements ActivityModel {
   String? get lectureTime;
   @override
   bool? get attendance;
+  @override
+  SubmitType? get submitStatus;
   @override
   String? get gradingStatus;
   @override

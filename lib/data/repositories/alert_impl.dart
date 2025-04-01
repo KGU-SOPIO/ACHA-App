@@ -14,7 +14,7 @@ class AlertRepositoryImpl implements AlertRepository {
   Future<Either<String, bool>> fetchAlertStatus() async {
     try {
       final response = await dio.get(AlertApiEndpoints.alert);
-      return Right(response.data['isEnabled'] as bool);
+      return Right(response.data['status'] as bool);
     } on DioException catch (e) {
       return Left(e.error as String);
     } catch (e) {

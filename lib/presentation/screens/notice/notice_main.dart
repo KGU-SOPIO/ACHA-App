@@ -18,7 +18,7 @@ class NoticeMainScreen extends StatefulWidget {
   @override
   State<NoticeMainScreen> createState() => _NoticeMainScreenState();
 
-  static Route<void> route({required Course course, required String noticeId}) {
+  static Route<void> route({required Course course, required int noticeId}) {
     return CupertinoPageRoute(
       builder: (context) => BlocProvider(
         create: (context) => NoticeBloc(
@@ -45,7 +45,7 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
               const SizedBox(height: 20),
               _buildBackButton(context),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32),
+                padding: const EdgeInsets.symmetric(horizontal: 26),
                 child: _buildBody(context),
               ),
             ],
@@ -90,10 +90,10 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
 
   /// 데이터 로딩 후 위젯을 빌드합니다.
   Widget _buildLoadedContent(
-      BuildContext context, NoticeState state, Notice notice) {
-    final hasNext = notice.nextNoticeId != null;
-    final hasPrevious = notice.previousNoticeId != null;
-
+    BuildContext context,
+    NoticeState state,
+    Notice notice,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -101,7 +101,7 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
         const SizedBox(height: 20),
         _buildNoticeContent(notice),
         const SizedBox(height: 30),
-        _buildNavigationSection(context, notice, hasNext, hasPrevious),
+        _buildNavigationSection(context, notice),
       ],
     );
   }
@@ -188,8 +188,10 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
   }
 
   /// 하단 네비게이션 위젯을 빌드합니다.
-  Widget _buildNavigationSection(
-      BuildContext context, Notice notice, bool hasNext, bool hasPrevious) {
+  Widget _buildNavigationSection(BuildContext context, Notice notice) {
+    final hasNext = notice.next != null;
+    final hasPrevious = notice.prev != null;
+
     return Column(
       children: [
         if (hasNext) _buildNextButton(context, notice, hasPrevious),
@@ -200,17 +202,20 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
 
   /// 다음 버튼을 빌드합니다.
   Widget _buildNextButton(
-      BuildContext context, Notice notice, bool hasPrevious) {
+    BuildContext context,
+    Notice notice,
+    bool hasPrevious,
+  ) {
     return GestureDetector(
       onTap: () => Navigator.pushReplacement(
         context,
         NoticeMainScreen.route(
           course: context.read<NoticeBloc>().course,
-          noticeId: notice.nextNoticeId!,
+          noticeId: notice.next!.id,
         ),
       ),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 22),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         decoration: BoxDecoration(
           borderRadius: hasPrevious
               ? const BorderRadius.vertical(top: Radius.circular(20))
@@ -229,13 +234,18 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
                   style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(width: 10),
-                Text(
-                  notice.nextNoticeTitle!,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w700,
+                SizedBox(
+                  width: 215,
+                  child: Text(
+                    notice.next!.title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
-                )
+                ),
               ],
             ),
             SvgPicture.asset('lib/assets/svgs/notice/right_arrow.svg')
@@ -253,11 +263,11 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
         context,
         NoticeMainScreen.route(
           course: context.read<NoticeBloc>().course,
-          noticeId: notice.previousNoticeId!,
+          noticeId: notice.prev!.id,
         ),
       ),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 22),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         decoration: BoxDecoration(
           borderRadius: hasNext
               ? const BorderRadius.vertical(bottom: Radius.circular(20))
@@ -279,11 +289,16 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
                   ),
                 ),
                 const SizedBox(width: 10),
-                Text(
-                  notice.previousNoticeTitle!,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w700,
+                SizedBox(
+                  width: 215,
+                  child: Text(
+                    notice.prev!.title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
               ],

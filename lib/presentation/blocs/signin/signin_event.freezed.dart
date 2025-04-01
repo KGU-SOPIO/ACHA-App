@@ -18,8 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SignInEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SignInStatus status, bool retry)
-        changeSignInStatus,
+    required TResult Function(SignInStatus status) changeSignInStatus,
     required TResult Function(String studentId) inputStudentId,
     required TResult Function(String password) inputPassword,
     required TResult Function() submitSignIn,
@@ -30,7 +29,7 @@ mixin _$SignInEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SignInStatus status, bool retry)? changeSignInStatus,
+    TResult? Function(SignInStatus status)? changeSignInStatus,
     TResult? Function(String studentId)? inputStudentId,
     TResult? Function(String password)? inputPassword,
     TResult? Function()? submitSignIn,
@@ -41,7 +40,7 @@ mixin _$SignInEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SignInStatus status, bool retry)? changeSignInStatus,
+    TResult Function(SignInStatus status)? changeSignInStatus,
     TResult Function(String studentId)? inputStudentId,
     TResult Function(String password)? inputPassword,
     TResult Function()? submitSignIn,
@@ -114,7 +113,7 @@ abstract class _$$ChangeSignInStatusImplCopyWith<$Res> {
           $Res Function(_$ChangeSignInStatusImpl) then) =
       __$$ChangeSignInStatusImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({SignInStatus status, bool retry});
+  $Res call({SignInStatus status});
 }
 
 /// @nodoc
@@ -131,17 +130,12 @@ class __$$ChangeSignInStatusImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? retry = null,
   }) {
     return _then(_$ChangeSignInStatusImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as SignInStatus,
-      retry: null == retry
-          ? _value.retry
-          : retry // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -149,17 +143,14 @@ class __$$ChangeSignInStatusImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ChangeSignInStatusImpl implements ChangeSignInStatus {
-  const _$ChangeSignInStatusImpl({required this.status, this.retry = false});
+  const _$ChangeSignInStatusImpl({required this.status});
 
   @override
   final SignInStatus status;
-  @override
-  @JsonKey()
-  final bool retry;
 
   @override
   String toString() {
-    return 'SignInEvent.changeSignInStatus(status: $status, retry: $retry)';
+    return 'SignInEvent.changeSignInStatus(status: $status)';
   }
 
   @override
@@ -167,12 +158,11 @@ class _$ChangeSignInStatusImpl implements ChangeSignInStatus {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChangeSignInStatusImpl &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.retry, retry) || other.retry == retry));
+            (identical(other.status, status) || other.status == status));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, retry);
+  int get hashCode => Object.hash(runtimeType, status);
 
   /// Create a copy of SignInEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -186,8 +176,7 @@ class _$ChangeSignInStatusImpl implements ChangeSignInStatus {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SignInStatus status, bool retry)
-        changeSignInStatus,
+    required TResult Function(SignInStatus status) changeSignInStatus,
     required TResult Function(String studentId) inputStudentId,
     required TResult Function(String password) inputPassword,
     required TResult Function() submitSignIn,
@@ -195,13 +184,13 @@ class _$ChangeSignInStatusImpl implements ChangeSignInStatus {
     required TResult Function() submitSignUp,
     required TResult Function() fetchData,
   }) {
-    return changeSignInStatus(status, retry);
+    return changeSignInStatus(status);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SignInStatus status, bool retry)? changeSignInStatus,
+    TResult? Function(SignInStatus status)? changeSignInStatus,
     TResult? Function(String studentId)? inputStudentId,
     TResult? Function(String password)? inputPassword,
     TResult? Function()? submitSignIn,
@@ -209,13 +198,13 @@ class _$ChangeSignInStatusImpl implements ChangeSignInStatus {
     TResult? Function()? submitSignUp,
     TResult? Function()? fetchData,
   }) {
-    return changeSignInStatus?.call(status, retry);
+    return changeSignInStatus?.call(status);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SignInStatus status, bool retry)? changeSignInStatus,
+    TResult Function(SignInStatus status)? changeSignInStatus,
     TResult Function(String studentId)? inputStudentId,
     TResult Function(String password)? inputPassword,
     TResult Function()? submitSignIn,
@@ -225,7 +214,7 @@ class _$ChangeSignInStatusImpl implements ChangeSignInStatus {
     required TResult orElse(),
   }) {
     if (changeSignInStatus != null) {
-      return changeSignInStatus(status, retry);
+      return changeSignInStatus(status);
     }
     return orElse();
   }
@@ -278,12 +267,10 @@ class _$ChangeSignInStatusImpl implements ChangeSignInStatus {
 }
 
 abstract class ChangeSignInStatus implements SignInEvent {
-  const factory ChangeSignInStatus(
-      {required final SignInStatus status,
-      final bool retry}) = _$ChangeSignInStatusImpl;
+  const factory ChangeSignInStatus({required final SignInStatus status}) =
+      _$ChangeSignInStatusImpl;
 
   SignInStatus get status;
-  bool get retry;
 
   /// Create a copy of SignInEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -362,8 +349,7 @@ class _$InputStudentIdImpl implements InputStudentId {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SignInStatus status, bool retry)
-        changeSignInStatus,
+    required TResult Function(SignInStatus status) changeSignInStatus,
     required TResult Function(String studentId) inputStudentId,
     required TResult Function(String password) inputPassword,
     required TResult Function() submitSignIn,
@@ -377,7 +363,7 @@ class _$InputStudentIdImpl implements InputStudentId {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SignInStatus status, bool retry)? changeSignInStatus,
+    TResult? Function(SignInStatus status)? changeSignInStatus,
     TResult? Function(String studentId)? inputStudentId,
     TResult? Function(String password)? inputPassword,
     TResult? Function()? submitSignIn,
@@ -391,7 +377,7 @@ class _$InputStudentIdImpl implements InputStudentId {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SignInStatus status, bool retry)? changeSignInStatus,
+    TResult Function(SignInStatus status)? changeSignInStatus,
     TResult Function(String studentId)? inputStudentId,
     TResult Function(String password)? inputPassword,
     TResult Function()? submitSignIn,
@@ -535,8 +521,7 @@ class _$InputPasswordImpl implements InputPassword {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SignInStatus status, bool retry)
-        changeSignInStatus,
+    required TResult Function(SignInStatus status) changeSignInStatus,
     required TResult Function(String studentId) inputStudentId,
     required TResult Function(String password) inputPassword,
     required TResult Function() submitSignIn,
@@ -550,7 +535,7 @@ class _$InputPasswordImpl implements InputPassword {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SignInStatus status, bool retry)? changeSignInStatus,
+    TResult? Function(SignInStatus status)? changeSignInStatus,
     TResult? Function(String studentId)? inputStudentId,
     TResult? Function(String password)? inputPassword,
     TResult? Function()? submitSignIn,
@@ -564,7 +549,7 @@ class _$InputPasswordImpl implements InputPassword {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SignInStatus status, bool retry)? changeSignInStatus,
+    TResult Function(SignInStatus status)? changeSignInStatus,
     TResult Function(String studentId)? inputStudentId,
     TResult Function(String password)? inputPassword,
     TResult Function()? submitSignIn,
@@ -680,8 +665,7 @@ class _$SubmitSignInImpl implements SubmitSignIn {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SignInStatus status, bool retry)
-        changeSignInStatus,
+    required TResult Function(SignInStatus status) changeSignInStatus,
     required TResult Function(String studentId) inputStudentId,
     required TResult Function(String password) inputPassword,
     required TResult Function() submitSignIn,
@@ -695,7 +679,7 @@ class _$SubmitSignInImpl implements SubmitSignIn {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SignInStatus status, bool retry)? changeSignInStatus,
+    TResult? Function(SignInStatus status)? changeSignInStatus,
     TResult? Function(String studentId)? inputStudentId,
     TResult? Function(String password)? inputPassword,
     TResult? Function()? submitSignIn,
@@ -709,7 +693,7 @@ class _$SubmitSignInImpl implements SubmitSignIn {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SignInStatus status, bool retry)? changeSignInStatus,
+    TResult Function(SignInStatus status)? changeSignInStatus,
     TResult Function(String studentId)? inputStudentId,
     TResult Function(String password)? inputPassword,
     TResult Function()? submitSignIn,
@@ -816,8 +800,7 @@ class _$FetchUserDataImpl implements FetchUserData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SignInStatus status, bool retry)
-        changeSignInStatus,
+    required TResult Function(SignInStatus status) changeSignInStatus,
     required TResult Function(String studentId) inputStudentId,
     required TResult Function(String password) inputPassword,
     required TResult Function() submitSignIn,
@@ -831,7 +814,7 @@ class _$FetchUserDataImpl implements FetchUserData {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SignInStatus status, bool retry)? changeSignInStatus,
+    TResult? Function(SignInStatus status)? changeSignInStatus,
     TResult? Function(String studentId)? inputStudentId,
     TResult? Function(String password)? inputPassword,
     TResult? Function()? submitSignIn,
@@ -845,7 +828,7 @@ class _$FetchUserDataImpl implements FetchUserData {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SignInStatus status, bool retry)? changeSignInStatus,
+    TResult Function(SignInStatus status)? changeSignInStatus,
     TResult Function(String studentId)? inputStudentId,
     TResult Function(String password)? inputPassword,
     TResult Function()? submitSignIn,
@@ -952,8 +935,7 @@ class _$SubmitSignUpImpl implements SubmitSignUp {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SignInStatus status, bool retry)
-        changeSignInStatus,
+    required TResult Function(SignInStatus status) changeSignInStatus,
     required TResult Function(String studentId) inputStudentId,
     required TResult Function(String password) inputPassword,
     required TResult Function() submitSignIn,
@@ -967,7 +949,7 @@ class _$SubmitSignUpImpl implements SubmitSignUp {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SignInStatus status, bool retry)? changeSignInStatus,
+    TResult? Function(SignInStatus status)? changeSignInStatus,
     TResult? Function(String studentId)? inputStudentId,
     TResult? Function(String password)? inputPassword,
     TResult? Function()? submitSignIn,
@@ -981,7 +963,7 @@ class _$SubmitSignUpImpl implements SubmitSignUp {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SignInStatus status, bool retry)? changeSignInStatus,
+    TResult Function(SignInStatus status)? changeSignInStatus,
     TResult Function(String studentId)? inputStudentId,
     TResult Function(String password)? inputPassword,
     TResult Function()? submitSignIn,
@@ -1088,8 +1070,7 @@ class _$FetchDataImpl implements FetchData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SignInStatus status, bool retry)
-        changeSignInStatus,
+    required TResult Function(SignInStatus status) changeSignInStatus,
     required TResult Function(String studentId) inputStudentId,
     required TResult Function(String password) inputPassword,
     required TResult Function() submitSignIn,
@@ -1103,7 +1084,7 @@ class _$FetchDataImpl implements FetchData {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SignInStatus status, bool retry)? changeSignInStatus,
+    TResult? Function(SignInStatus status)? changeSignInStatus,
     TResult? Function(String studentId)? inputStudentId,
     TResult? Function(String password)? inputPassword,
     TResult? Function()? submitSignIn,
@@ -1117,7 +1098,7 @@ class _$FetchDataImpl implements FetchData {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SignInStatus status, bool retry)? changeSignInStatus,
+    TResult Function(SignInStatus status)? changeSignInStatus,
     TResult Function(String studentId)? inputStudentId,
     TResult Function(String password)? inputPassword,
     TResult Function()? submitSignIn,
