@@ -116,4 +116,5 @@ const _$SubmitTypeEnumMap = {
   SubmitType.done: 'done',
   SubmitType.late: 'late',
   SubmitType.miss: 'miss',
+  SubmitType.none: 'none',
 };

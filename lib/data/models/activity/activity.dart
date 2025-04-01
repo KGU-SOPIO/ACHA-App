@@ -10,7 +10,7 @@ part 'activity.g.dart';
 enum ActivityType { url, file, lecture, assignment }
 
 @JsonEnum(alwaysCreate: true)
-enum SubmitType { done, late, miss }
+enum SubmitType { done, late, miss, none }
 
 @freezed
 class CourseActivityListModel with _$CourseActivityListModel {
