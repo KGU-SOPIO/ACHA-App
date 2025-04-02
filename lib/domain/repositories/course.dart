@@ -10,5 +10,5 @@ abstract class CourseRepository {
     String courseCode,
   );
   Future<Either<String, NoticeList>> fetchNoticeList(String courseCode);
-  Future<Either<String, Notice>> fetchNotice(String noticeId);
+  Future<Either<String, Notice>> fetchNotice(int noticeId);
 }

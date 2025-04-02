@@ -100,9 +100,13 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
             accessToken: value.accessToken,
             refreshToken: value.refreshToken,
           );
-          _authStreamController.add(
-            const AuthenticationState.authenticated(isSignedUp: false),
-          );
+
+          // 강좌 데이터 추출 성공시에만 인증 처리
+          if (value.extract == true) {
+            _authStreamController.add(
+              const AuthenticationState.authenticated(isSignedUp: false),
+            );
+          }
           return Right(value);
         },
         error: (value) => Right(value),
@@ -182,6 +186,38 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     }
   }
 
+  /// 데이터 추출을 요청합니다.
+  @override
+  Future<Either<String, Unit>> requestExtraction() async {
+    try {
+      dio.interceptors.add(tokenInterceptor);
+
+      final courseExtractResponse = await dio.post(
+        CourseApiEndpoints.extraction,
+      );
+      if (courseExtractResponse.statusCode != 200) {
+        final errorCode = courseExtractResponse.data['code'] as String;
+        final parsedData = const ErrorCodeConverter().fromJson(errorCode);
+
+        // 추출 실패 시 인증 정보 삭제
+        await secureStorageRepository.deleteAllData();
+        return Left(parsedData.message);
+      }
+
+      _authStreamController.add(
+        const AuthenticationState.authenticated(isSignedUp: true),
+      );
+      return const Right(unit);
+    } on DioException catch (e) {
+      return Left(e.error as String);
+    } catch (e) {
+      _authStreamController.add(const AuthenticationState.unauthenticated());
+      return const Left('문제가 발생해 데이터를 불러오지 못했어요');
+    } finally {
+      dio.interceptors.remove(tokenInterceptor);
+    }
+  }
+
   /// 로그아웃을 수행합니다.
   @override
   Future<Either<String, Unit>> logout() async {
@@ -240,44 +276,6 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
       return Left(e.error as String);
     } catch (e) {
       return const Left('문제가 발생해 계정을 삭제하지 못했어요');
-    } finally {
-      dio.interceptors.remove(tokenInterceptor);
-    }
-  }
-
-  /// 데이터 추출을 요청합니다.
-  @override
-  Future<Either<String, Unit>> requestExtraction() async {
-    try {
-      dio.interceptors.add(tokenInterceptor);
-
-      final courseExtractResponse = await dio.post(
-        CourseApiEndpoints.courseExtraction,
-      );
-      if (courseExtractResponse.statusCode != 200) {
-        final errorCode = courseExtractResponse.data['code'] as String;
-        final parsedData = const ErrorCodeConverter().fromJson(errorCode);
-        return Left(parsedData.message);
-      }
-
-      final activityExtractResponse = await dio.post(
-        CourseApiEndpoints.activityExtraction,
-      );
-      if (activityExtractResponse.statusCode != 200) {
-        final errorCode = activityExtractResponse.data['code'] as String;
-        final parsedData = const ErrorCodeConverter().fromJson(errorCode);
-        return Left(parsedData.message);
-      }
-
-      _authStreamController.add(
-        const AuthenticationState.authenticated(isSignedUp: true),
-      );
-      return const Right(unit);
-    } on DioException catch (e) {
-      return Left(e.error as String);
-    } catch (e) {
-      _authStreamController.add(const AuthenticationState.unauthenticated());
-      return const Left('문제가 발생해 데이터를 불러오지 못했어요');
     } finally {
       dio.interceptors.remove(tokenInterceptor);
     }

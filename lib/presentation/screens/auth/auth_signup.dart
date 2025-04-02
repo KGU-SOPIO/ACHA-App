@@ -64,16 +64,21 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
               ],
             ),
           ),
-          SvgPicture.asset('lib/assets/svgs/acha/small.svg', width: 50)
+          SvgPicture.asset('lib/assets/svgs/acha/small.svg', width: 50),
         ],
       ),
       uri: Uri.parse(AchaUris.serviceTerms),
       termsButtonText: '아차 이용 약관',
       agreeButtonText: '동의하고 회원가입',
-      onAgree: () => Navigator.push(
-        context,
-        AuthProcessScreen.route(context),
-      ),
+      onAgree: () {
+        context
+            .read<SignInBloc>()
+            .add(const ChangeSignInStatus(status: SignInStatus.inSignUp));
+        Navigator.popUntil(
+          context,
+          ModalRoute.withName(AuthProcessScreen.routeName),
+        );
+      },
     ).show(context);
   }
 

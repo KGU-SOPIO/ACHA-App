@@ -11,6 +11,10 @@ enum ErrorCode {
     'INVALID_PASSWORD',
     '비밀번호가 올바르지 않아요',
   ),
+  kutisPasswordError(
+    'KUTIS_PASSWORD_ERROR',
+    'KUTIS_PASSWORD_ERROR',
+  ),
   kutisServerError(
     'KUTIS_SERVER_ERROR',
     'KUTIS에서 데이터를 불러오지 못했어요',

@@ -276,9 +276,17 @@ class _CourseMainScreenState extends State<CourseMainScreen> {
 
   /// 확장 패널을 빌드합니다.
   Widget _buildExpansionPanel(ActivityList weekActivities, int index) {
-    final allCompleted = weekActivities.contents.every(
-      (activity) => activity.attendance == true,
-    );
+    final allCompleted = weekActivities.contents.every((activity) {
+      switch (activity.type) {
+        case ActivityType.lecture:
+          return activity.attendance == true;
+        case ActivityType.assignment:
+          return activity.submitStatus == SubmitType.done ||
+              activity.submitStatus == SubmitType.late;
+        default:
+          return true;
+      }
+    });
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),

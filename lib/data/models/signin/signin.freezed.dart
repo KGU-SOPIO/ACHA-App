@@ -31,19 +31,23 @@ SignInResponseModel _$SignInResponseModelFromJson(Map<String, dynamic> json) {
 mixin _$SignInResponseModel {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String accessToken, String refreshToken) success,
+    required TResult Function(
+            String accessToken, String refreshToken, bool extract)
+        success,
     required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String accessToken, String refreshToken)? success,
+    TResult? Function(String accessToken, String refreshToken, bool extract)?
+        success,
     TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String accessToken, String refreshToken)? success,
+    TResult Function(String accessToken, String refreshToken, bool extract)?
+        success,
     TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
     required TResult orElse(),
   }) =>
@@ -99,7 +103,7 @@ abstract class _$$SignInSuccessImplCopyWith<$Res> {
           _$SignInSuccessImpl value, $Res Function(_$SignInSuccessImpl) then) =
       __$$SignInSuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String accessToken, String refreshToken});
+  $Res call({String accessToken, String refreshToken, bool extract});
 }
 
 /// @nodoc
@@ -117,6 +121,7 @@ class __$$SignInSuccessImplCopyWithImpl<$Res>
   $Res call({
     Object? accessToken = null,
     Object? refreshToken = null,
+    Object? extract = null,
   }) {
     return _then(_$SignInSuccessImpl(
       accessToken: null == accessToken
@@ -127,6 +132,10 @@ class __$$SignInSuccessImplCopyWithImpl<$Res>
           ? _value.refreshToken
           : refreshToken // ignore: cast_nullable_to_non_nullable
               as String,
+      extract: null == extract
+          ? _value.extract
+          : extract // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -137,6 +146,7 @@ class _$SignInSuccessImpl implements SignInSuccess {
   const _$SignInSuccessImpl(
       {required this.accessToken,
       required this.refreshToken,
+      required this.extract,
       final String? $type})
       : $type = $type ?? 'success';
 
@@ -147,13 +157,15 @@ class _$SignInSuccessImpl implements SignInSuccess {
   final String accessToken;
   @override
   final String refreshToken;
+  @override
+  final bool extract;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'SignInResponseModel.success(accessToken: $accessToken, refreshToken: $refreshToken)';
+    return 'SignInResponseModel.success(accessToken: $accessToken, refreshToken: $refreshToken, extract: $extract)';
   }
 
   @override
@@ -164,12 +176,14 @@ class _$SignInSuccessImpl implements SignInSuccess {
             (identical(other.accessToken, accessToken) ||
                 other.accessToken == accessToken) &&
             (identical(other.refreshToken, refreshToken) ||
-                other.refreshToken == refreshToken));
+                other.refreshToken == refreshToken) &&
+            (identical(other.extract, extract) || other.extract == extract));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, accessToken, refreshToken);
+  int get hashCode =>
+      Object.hash(runtimeType, accessToken, refreshToken, extract);
 
   /// Create a copy of SignInResponseModel
   /// with the given fields replaced by the non-null parameter values.
@@ -182,30 +196,34 @@ class _$SignInSuccessImpl implements SignInSuccess {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String accessToken, String refreshToken) success,
+    required TResult Function(
+            String accessToken, String refreshToken, bool extract)
+        success,
     required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
   }) {
-    return success(accessToken, refreshToken);
+    return success(accessToken, refreshToken, extract);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String accessToken, String refreshToken)? success,
+    TResult? Function(String accessToken, String refreshToken, bool extract)?
+        success,
     TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
   }) {
-    return success?.call(accessToken, refreshToken);
+    return success?.call(accessToken, refreshToken, extract);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String accessToken, String refreshToken)? success,
+    TResult Function(String accessToken, String refreshToken, bool extract)?
+        success,
     TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(accessToken, refreshToken);
+      return success(accessToken, refreshToken, extract);
     }
     return orElse();
   }
@@ -252,13 +270,15 @@ class _$SignInSuccessImpl implements SignInSuccess {
 abstract class SignInSuccess implements SignInResponseModel {
   const factory SignInSuccess(
       {required final String accessToken,
-      required final String refreshToken}) = _$SignInSuccessImpl;
+      required final String refreshToken,
+      required final bool extract}) = _$SignInSuccessImpl;
 
   factory SignInSuccess.fromJson(Map<String, dynamic> json) =
       _$SignInSuccessImpl.fromJson;
 
   String get accessToken;
   String get refreshToken;
+  bool get extract;
 
   /// Create a copy of SignInResponseModel
   /// with the given fields replaced by the non-null parameter values.
@@ -345,7 +365,9 @@ class _$SignInErrorImpl implements SignInError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String accessToken, String refreshToken) success,
+    required TResult Function(
+            String accessToken, String refreshToken, bool extract)
+        success,
     required TResult Function(@ErrorCodeConverter() ErrorCode code) error,
   }) {
     return error(code);
@@ -354,7 +376,8 @@ class _$SignInErrorImpl implements SignInError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String accessToken, String refreshToken)? success,
+    TResult? Function(String accessToken, String refreshToken, bool extract)?
+        success,
     TResult? Function(@ErrorCodeConverter() ErrorCode code)? error,
   }) {
     return error?.call(code);
@@ -363,7 +386,8 @@ class _$SignInErrorImpl implements SignInError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String accessToken, String refreshToken)? success,
+    TResult Function(String accessToken, String refreshToken, bool extract)?
+        success,
     TResult Function(@ErrorCodeConverter() ErrorCode code)? error,
     required TResult orElse(),
   }) {

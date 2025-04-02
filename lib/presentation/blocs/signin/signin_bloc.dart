@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:acha/data/models/index.dart';
 import 'package:acha/domain/usecases/index.dart';
 import 'package:acha/domain/repositories/index.dart';
 import 'package:acha/presentation/blocs/index.dart';
@@ -9,7 +10,7 @@ import 'package:acha/presentation/blocs/index.dart';
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   SignInBloc({
     required AuthenticationRepository authenticationRepository,
-  }) : super(const SignInState(status: SignInStatus.initial)) {
+  }) : super(const SignInState(status: SignInStatus.inSignIn)) {
     _signInUseCase = SignInUseCase(
       authenticationRepository: authenticationRepository,
     );
@@ -19,10 +20,13 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     _signUpUseCase = SignUpUseCase(
       authenticationRepository: authenticationRepository,
     );
-    _requestExtractionUseCas = RequestExtractionUseCase(
+    _requestExtractionUseCase = RequestExtractionUseCase(
       authenticationRepository: authenticationRepository,
     );
 
+    on<ChangeSignInStatus>(
+      (event, emit) => emit(state.copyWith(status: event.status)),
+    );
     on<InputStudentId>(
       (event, emit) => emit(state.copyWith(studentId: event.studentId)),
     );
@@ -38,7 +42,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   late final SignInUseCase _signInUseCase;
   late final FetchUserDataUseCase _fetchUserDataUseCase;
   late final SignUpUseCase _signUpUseCase;
-  late final RequestExtractionUseCase _requestExtractionUseCas;
+  late final RequestExtractionUseCase _requestExtractionUseCase;
 
   /// 인증 정보로 로그인을 요청합니다.
   Future<void> _onSubmitSignIn(
@@ -58,8 +62,9 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
           errorMessage: errorMessage,
         )),
         (response) => response.when(
-          success: (accessToken, refreshToken) => emit(state.copyWith(
+          success: (accessToken, refreshToken, extract) => emit(state.copyWith(
             status: SignInStatus.signInSuccess,
+            extract: extract,
           )),
           error: (code) => emit(state.copyWith(
             status: SignInStatus.inFetchUser,
@@ -92,7 +97,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
           errorMessage: errorMessage,
         )),
         (value) => emit(state.copyWith(
-          status: SignInStatus.inSignUp,
+          status: SignInStatus.fetchUserSuccess,
           user: value,
         )),
       );
@@ -137,12 +142,21 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     try {
       emit(state.copyWith(status: SignInStatus.fetchDataProgress));
 
-      final result = await _requestExtractionUseCas.call();
+      final result = await _requestExtractionUseCase.call();
       result.fold(
-        (errorMessage) => emit(state.copyWith(
-          status: SignInStatus.fetchDataFailure,
-          errorMessage: errorMessage,
-        )),
+        (errorMessage) {
+          if (errorMessage == ErrorCode.kutisPasswordError.message) {
+            emit(state.copyWith(
+              status: SignInStatus.kutisPasswordError,
+              errorMessage: 'KUTIS에서 비밀번호를 변경해 주세요',
+            ));
+          } else {
+            emit(state.copyWith(
+              status: SignInStatus.fetchDataFailure,
+              errorMessage: errorMessage,
+            ));
+          }
+        },
         (value) => emit(state.copyWith(status: SignInStatus.fetchDataSuccess)),
       );
     } catch (e) {

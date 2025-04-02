@@ -183,12 +183,17 @@ class _NoticeScreenState extends State<NoticeScreen> {
                   ),
                 ),
                 const SizedBox(width: 15),
-                Text(
-                  notice.title,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: AchaColors.gray60,
+                Expanded(
+                  child: Text(
+                    notice.title,
+                    maxLines: 1,
+                    softWrap: false,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: AchaColors.gray60,
+                    ),
                   ),
                 ),
               ],

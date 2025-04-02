@@ -10,6 +10,7 @@ _$SignInSuccessImpl _$$SignInSuccessImplFromJson(Map<String, dynamic> json) =>
     _$SignInSuccessImpl(
       accessToken: json['accessToken'] as String,
       refreshToken: json['refreshToken'] as String,
+      extract: json['extract'] as bool,
       $type: json['runtimeType'] as String?,
     );
 
@@ -17,6 +18,7 @@ Map<String, dynamic> _$$SignInSuccessImplToJson(_$SignInSuccessImpl instance) =>
     <String, dynamic>{
       'accessToken': instance.accessToken,
       'refreshToken': instance.refreshToken,
+      'extract': instance.extract,
       'runtimeType': instance.$type,
     };
 

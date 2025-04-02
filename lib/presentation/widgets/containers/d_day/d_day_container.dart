@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:auto_size_text/auto_size_text.dart';
+
 import 'package:acha/core/constants/index.dart';
 import 'package:acha/core/extensions/index.dart';
 
@@ -41,8 +43,9 @@ class DDayContainer extends StatelessWidget {
         ),
       ),
       child: Center(
-        child: Text(
+        child: AutoSizeText(
           deadline.toDDay(),
+          maxLines: 1,
           style: TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w700,

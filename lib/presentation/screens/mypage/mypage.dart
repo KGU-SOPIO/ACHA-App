@@ -69,12 +69,18 @@ class _MyPageScreenState extends State<MyPageScreen> {
   /// SOPIO 버튼을 빌드합니다.
   Widget _buildSopioButton() {
     return RowContainerButton(
-      padding: const EdgeInsets.symmetric(vertical: 22),
+      padding: const EdgeInsets.symmetric(vertical: 14),
       onPressed: () => Navigator.push(context, SopioScreen.route()),
-      foregroundColor: AchaColors.white,
       backgroundColor: AchaColors.white,
       border: const BorderSide(color: AchaColors.gray228_232_241),
       borderRadius: 25,
+      leading: Padding(
+        padding: const EdgeInsets.only(right: 10),
+        child: Image.asset(
+          'lib/assets/images/mypage/sopio.png',
+          width: 42,
+        ),
+      ),
       text: 'SOPIO',
       textStyle: const TextStyle(
         fontSize: 16,

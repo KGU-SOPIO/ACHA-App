@@ -78,6 +78,8 @@ _$ActivityImpl _$$ActivityImplFromJson(Map<String, dynamic> json) =>
           : DateTime.parse(json['deadline'] as String),
       lectureTime: json['lectureTime'] as String?,
       attendance: json['attendance'] as bool?,
+      submitStatus:
+          $enumDecodeNullable(_$SubmitTypeEnumMap, json['submitStatus']),
       gradingStatus: json['gradingStatus'] as String?,
       timeLeft: json['timeLeft'] as String?,
       lastModified: json['lastModified'] as String?,
@@ -95,6 +97,7 @@ Map<String, dynamic> _$$ActivityImplToJson(_$ActivityImpl instance) =>
       'deadline': instance.deadline?.toIso8601String(),
       'lectureTime': instance.lectureTime,
       'attendance': instance.attendance,
+      'submitStatus': _$SubmitTypeEnumMap[instance.submitStatus],
       'gradingStatus': instance.gradingStatus,
       'timeLeft': instance.timeLeft,
       'lastModified': instance.lastModified,
@@ -107,4 +110,11 @@ const _$ActivityTypeEnumMap = {
   ActivityType.file: 'file',
   ActivityType.lecture: 'lecture',
   ActivityType.assignment: 'assignment',
+};
+
+const _$SubmitTypeEnumMap = {
+  SubmitType.done: 'done',
+  SubmitType.late: 'late',
+  SubmitType.miss: 'miss',
+  SubmitType.none: 'none',
 };
