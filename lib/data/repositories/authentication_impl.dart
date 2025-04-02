@@ -57,7 +57,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
         case TokenStatus.valid:
           await _reissueAccessToken();
           _authStreamController.add(
-            const AuthenticationState.authenticated(isSignedUp: false),
+            const AuthenticationState.authenticated(),
           );
           break;
       }
@@ -104,7 +104,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
           // 강좌 데이터 추출 성공시에만 인증 처리
           if (value.extract == true) {
             _authStreamController.add(
-              const AuthenticationState.authenticated(isSignedUp: false),
+              const AuthenticationState.authenticated(),
             );
           }
           return Right(value);
@@ -205,7 +205,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
       }
 
       _authStreamController.add(
-        const AuthenticationState.authenticated(isSignedUp: true),
+        const AuthenticationState.authenticated(),
       );
       return const Right(unit);
     } on DioException catch (e) {

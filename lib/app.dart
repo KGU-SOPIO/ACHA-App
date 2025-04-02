@@ -111,7 +111,6 @@ class _AppViewState extends State<AppView> {
   NavigatorState get _navigator => AppView.navigatorKey.currentState!;
   late final ConnectivityChecker _connectivityChecker;
   bool _isNavigate = false;
-  bool requestPermission = false;
 
   @override
   void initState() {
@@ -164,7 +163,7 @@ class _AppViewState extends State<AppView> {
       );
     }
 
-    await state.when(
+    state.when(
       unknown: () {},
       error: (title, message) async {
         await _navigator.pushAndRemoveUntil(
@@ -172,10 +171,7 @@ class _AppViewState extends State<AppView> {
           (route) => false,
         );
       },
-      authenticated: (isSignedUp) {
-        if (isSignedUp == true) requestPermission = true;
-        _fetchData(context);
-      },
+      authenticated: () => _fetchData(context),
       unauthenticated: (isExpired) async {
         _isNavigate = false;
         if (isExpired == true) {
@@ -218,7 +214,7 @@ class _AppViewState extends State<AppView> {
     } else {
       _isNavigate = true;
       _navigator.pushAndRemoveUntil(
-        MainScreen.route(requestPermission: requestPermission),
+        MainScreen.route(),
         (route) => false,
       );
     }

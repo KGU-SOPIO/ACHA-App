@@ -10,21 +10,16 @@ import 'package:acha/presentation/blocs/index.dart';
 import 'package:acha/presentation/screens/index.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({
-    super.key,
-    required this.requestPermission,
-  });
-
-  final bool requestPermission;
+  const MainScreen({super.key});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
 
-  static Route<void> route({required bool requestPermission}) {
+  static Route<void> route() {
     return CupertinoPageRoute(
       builder: (context) => BlocProvider(
         create: (context) => NavigationBloc(),
-        child: MainScreen(requestPermission: requestPermission),
+        child: const MainScreen(),
       ),
     );
   }
@@ -39,10 +34,14 @@ class _MainScreenState extends State<MainScreen> {
 
   /// 기기 알림 권한을 확인하고 요청합니다.
   Future<void> _checkPermission() async {
-    if (widget.requestPermission) {
-      final messaging = FirebaseMessaging.instance;
-      final settings = await messaging.requestPermission(announcement: true);
-      if (settings.authorizationStatus == AuthorizationStatus.denied) {
+    final messaging = FirebaseMessaging.instance;
+    final settings = await messaging.getNotificationSettings();
+    if (settings.authorizationStatus == AuthorizationStatus.notDetermined) {
+      final newSettings = await messaging.requestPermission(
+        announcement: true,
+      );
+
+      if (newSettings.authorizationStatus == AuthorizationStatus.denied) {
         if (!mounted) return;
         context.read<AlertBloc>().add(const AlertEvent.denyAlert());
       }
