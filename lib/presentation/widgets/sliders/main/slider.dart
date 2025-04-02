@@ -66,6 +66,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                   child: CarouselIndicator(
                     itemCount: 2,
                     currentIndex: widget.currentSlide,
+                    showBackground: true,
                   ),
                 ),
               ),
