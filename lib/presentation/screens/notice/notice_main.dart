@@ -196,6 +196,7 @@ class _NoticeMainScreenState extends State<NoticeMainScreen> {
       children: [
         if (hasNext) _buildNextButton(context, notice, hasPrevious),
         if (hasPrevious) _buildPreviousButton(context, notice, hasNext),
+        const SizedBox(height: 40),
       ],
     );
   }

@@ -60,9 +60,13 @@ class _SliderWidgetState extends State<SliderWidget> {
               ),
               Positioned(
                 bottom: 20,
-                child: CarouselIndicator(
-                  itemCount: 2,
-                  currentIndex: widget.currentSlide,
+                left: 0,
+                right: 0,
+                child: Center(
+                  child: CarouselIndicator(
+                    itemCount: 2,
+                    currentIndex: widget.currentSlide,
+                  ),
                 ),
               ),
             ],
