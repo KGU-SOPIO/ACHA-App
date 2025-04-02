@@ -173,7 +173,7 @@ class _AppViewState extends State<AppView> {
         );
       },
       authenticated: (isSignedUp) {
-        if (requestPermission == true) requestPermission = true;
+        if (isSignedUp == true) requestPermission = true;
         _fetchData(context);
       },
       unauthenticated: (isExpired) async {
