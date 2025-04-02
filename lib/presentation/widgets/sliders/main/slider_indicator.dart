@@ -7,26 +7,30 @@ class CarouselIndicator extends StatelessWidget {
     super.key,
     required this.itemCount,
     required this.currentIndex,
+    this.showBackground = false,
   });
 
   final int itemCount;
   final int currentIndex;
+  final bool showBackground;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 8),
-      decoration: BoxDecoration(
-        color: AchaColors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: AchaColors.gray131.withValues(alpha: 0.18),
-            blurRadius: 4,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
+      decoration: showBackground
+          ? BoxDecoration(
+              color: AchaColors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: AchaColors.gray131.withValues(alpha: 0.18),
+                  blurRadius: 4,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            )
+          : null,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: List.generate(
