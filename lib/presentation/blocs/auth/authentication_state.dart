@@ -9,9 +9,7 @@ class AuthenticationState with _$AuthenticationState {
     required String title,
     required String message,
   }) = Error;
-  const factory AuthenticationState.authenticated({
-    required bool isSignedUp,
-  }) = Authenticated;
+  const factory AuthenticationState.authenticated() = Authenticated;
   const factory AuthenticationState.unauthenticated({
     bool? isExpired,
   }) = Unauthenticated;
