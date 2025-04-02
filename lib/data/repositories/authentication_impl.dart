@@ -254,13 +254,9 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     try {
       dio.interceptors.add(tokenInterceptor);
 
-      final deviceToken = await DeviceTokenRepositoryImpl.getDeviceToken();
       final response = await dio.patch(
         AuthenticationApiEndpoints.signout,
-        data: {
-          'password': password,
-          'deviceToken': deviceToken,
-        },
+        data: {'password': password},
       );
 
       if (response.statusCode != 200) {
