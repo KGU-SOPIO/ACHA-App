@@ -48,7 +48,7 @@ class _SliderWidgetState extends State<SliderWidget> {
               CarouselSlider(
                 carouselController: widget.carouselSliderController,
                 options: CarouselOptions(
-                  aspectRatio: 0.74,
+                  aspectRatio: 0.73,
                   viewportFraction: 1,
                   enableInfiniteScroll: false,
                   onPageChanged: (index, reason) => widget.onPageChanged(index),
@@ -59,7 +59,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                 ],
               ),
               Positioned(
-                bottom: 20,
+                bottom: 25,
                 left: 0,
                 right: 0,
                 child: Center(
