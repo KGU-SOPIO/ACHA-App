@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
@@ -14,9 +12,7 @@ class DeviceTokenRepositoryImpl implements DeviceTokenRepository {
   /// 기기 고유 토큰을 가져옵니다.
   static Future<String?> getDeviceToken() async {
     try {
-      return Platform.isIOS
-          ? FirebaseMessaging.instance.getAPNSToken()
-          : FirebaseMessaging.instance.getToken();
+      return FirebaseMessaging.instance.getToken();
     } catch (e) {
       return null;
     }
