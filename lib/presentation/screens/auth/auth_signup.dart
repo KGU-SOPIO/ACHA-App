@@ -114,15 +114,27 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
   /// 메인 위젯을 빌드합니다.
   Widget _buildBody(BuildContext context, SignInState state) {
     return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            _buildUserInfoContent(state),
-            _buildButtonSection(),
-          ],
-        ),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            physics: const ClampingScrollPhysics(),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: constraints.maxHeight,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _buildUserInfoContent(state),
+                    _buildButtonSection(),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
@@ -177,6 +189,7 @@ class _AuthSignUpScreenState extends State<AuthSignUpScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        const SizedBox(height: 20),
         _buildManualButton(),
         const SizedBox(height: 20),
         _buildNextButton(),
