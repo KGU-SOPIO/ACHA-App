@@ -216,7 +216,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
                 SvgPicture.asset('lib/assets/svgs/notice/clock.svg'),
                 const SizedBox(width: 7),
                 Text(
-                  notice.date.formatDate(pattern: 'y년 M월 D일'),
+                  notice.date.formatDate(pattern: 'y년 M월 d일'),
                   style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
