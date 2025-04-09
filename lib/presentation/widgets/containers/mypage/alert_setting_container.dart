@@ -53,7 +53,7 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
   Widget _buildContent(BuildContext context, AlertState state) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 24),
       decoration: BoxDecoration(
         color: AchaColors.white,
         border: Border.all(color: AchaColors.gray228_232_241),
@@ -151,7 +151,7 @@ class _AlertSettingContainerState extends State<AlertSettingContainer> {
               style: TextStyle(
                 height: 1.4,
                 fontSize: 15,
-                fontWeight: FontWeight.w300,
+                fontWeight: FontWeight.w400,
                 color: AchaColors.gray151,
               ),
             ),

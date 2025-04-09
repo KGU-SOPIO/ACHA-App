@@ -96,7 +96,7 @@ class _SignOutModalState extends State<SignOutModal> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       _buildHandle(),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 10),
                       _buildModalBody(context),
                       const SizedBox(height: 40),
                       _buildButtons(context),
@@ -139,7 +139,7 @@ class _SignOutModalState extends State<SignOutModal> {
             color: AchaColors.gray30,
           ),
         ),
-        const SizedBox(height: 30),
+        const SizedBox(height: 25),
         const Text(
           '사용자 정보는 안전하게 삭제돼요',
           style: TextStyle(

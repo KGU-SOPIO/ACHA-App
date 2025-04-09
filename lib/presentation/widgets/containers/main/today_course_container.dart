@@ -67,12 +67,15 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
             ],
           ),
         ),
-        Text(
-          DateTime.now().formatDate(pattern: 'M월 d일'),
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-            color: AchaColors.primaryBlue,
+        Padding(
+          padding: const EdgeInsets.only(right: 8),
+          child: Text(
+            DateTime.now().formatDate(pattern: 'M월 d일'),
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              color: AchaColors.primaryBlue,
+            ),
           ),
         ),
       ],
@@ -151,7 +154,7 @@ class _TodayCourseContainerState extends State<TodayCourseContainer> {
           style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w400,
-            color: AchaColors.black,
+            color: AchaColors.gray109,
           ),
         )
       ],
