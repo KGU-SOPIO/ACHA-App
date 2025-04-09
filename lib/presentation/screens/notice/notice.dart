@@ -49,11 +49,11 @@ class _NoticeScreenState extends State<NoticeScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const SizedBox(height: 35),
+                    const SizedBox(height: 25),
                     _buildCourseTitle(context),
                     const SizedBox(height: 10),
                     _buildNoticeHeader(),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 20),
                     _buildNoticeListSection(context),
                   ],
                 ),

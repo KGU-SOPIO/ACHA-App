@@ -128,21 +128,28 @@ class _AppViewState extends State<AppView> {
       themeMode: ThemeMode.system,
       navigatorKey: AppView.navigatorKey,
       scrollBehavior: Behavior(),
-      builder: (context, child) => MultiBlocListener(
-        listeners: [
-          BlocListener<AuthenticationBloc, AuthenticationState>(
-            listener: _onAuthenticationStateChanged,
-          ),
-          BlocListener<UserBloc, UserState>(
-            listener: (context, state) => _checkStates(context),
-          ),
-          BlocListener<TodayCourseBloc, TodayCourseState>(
-            listener: (context, state) => _checkStates(context),
-          ),
-        ],
-        child: child!,
-      ),
       onGenerateRoute: (context) => SplashScreen.route(),
+      builder: (context, child) {
+        return MediaQuery(
+          data: MediaQuery.of(context).copyWith(
+            textScaler: const TextScaler.linear(1.0),
+          ),
+          child: MultiBlocListener(
+            listeners: [
+              BlocListener<AuthenticationBloc, AuthenticationState>(
+                listener: _onAuthenticationStateChanged,
+              ),
+              BlocListener<UserBloc, UserState>(
+                listener: (context, state) => _checkStates(context),
+              ),
+              BlocListener<TodayCourseBloc, TodayCourseState>(
+                listener: (context, state) => _checkStates(context),
+              ),
+            ],
+            child: child!,
+          ),
+        );
+      },
     );
   }
 
